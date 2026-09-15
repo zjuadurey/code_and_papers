@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "correctness_cases": 2096,
+  "incorrect_cases": 0,
+  "native_executions": 4256,
+  "max_abs_error": 2.237726045655905e-16,
+  "max_infidelity": 4.440892098500626e-16,
+  "seed": 20260916,
+  "threshold": 1e-12,
+  "binary_sha256": "a43645bbfc2d8d18f8815964ef61f079604f153fbc1aab7fd962d016266f1584",
+  "code_sha256": {
+    "native/ssd_materialization/gate_kernels.h": "1bab8b5d0f572de1662e3a8db88b3934d3c8bf7b3353ad218a4dc3f7ff4ea8bc",
+    "native/ssd_materialization/main.cpp": "9308b443eed6494ec0d9e022769995b19450b0533dbd1d0f826de824cdbe7cd9",
+    "native/ssd_materialization/io_engine.cpp": "9bd416bf37fb5277f36a9c70fdfa6a1957d190457d7b93ae6c7cdc8bdf3e5404",
+    "native/ssd_materialization/io_engine.h": "8ff1bb1901b2a057a979d2fb889993b739976f08f49c55c23091fe744eba0098",
+    "native/ssd_materialization/gate_kernels.cpp": "cf7fc6661af3c66122a8ad88e4f08ee61fb9a4c6c3f9788a5867afa771f9b0db",
+    "native/ssd_materialization/CMakeLists.txt": "b7207e272edda55f1f881221ae51147ef0e9ce02615bc3997ba94bc0a7a6361d",
+    "src/htp/storage/environment_probe.py": "02cf29afe8ea47aaaeda0f0aad723a2ca6dad8a3ca977563d68500327c1d8207",
+    "src/htp/storage/result_schema.py": "881fe9e378191e4f62aab3444fe8693a36bab14ca19dc85424445958c307a76a",
+    "src/htp/storage/__init__.py": "922e6797bdaaade3516dd63a991572e0d64c91244ed4d2ab7f1af7cc2033c756",
+    "src/htp/storage/benchmark_config.py": "807baea353eb8db56b08307b6d9563df27688f8dd79b9867dddf7c8edb62377a",
+    "scripts/build_ssd_materialization.py": "7630b059881ad44e57aa2627e38e9a6bf747c9c92d03155aa98afe1c1390a78a",
+    "scripts/validate_ssd_materialization.py": "5d9ff6dc95529932ebd5bdb4283d0bae86d784833af30df928ba351e0b8198b5",
+    "scripts/_ssd_common.py": "59824bd45acc9c47262b0d2512cbff0a94c1d0844945ab21cd32b07e6b70f08d",
+    "configs/ssd_materialization.yaml": "624c40d16d8e3ac1ca8338ebded5d2d1a94343f2443164db092c8394f5677e41"
+  },
+  "timestamp": "2026-09-15T17:10:53.566858+00:00"
+}

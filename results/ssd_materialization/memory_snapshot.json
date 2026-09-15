@@ -1,0 +1,41 @@
+[
+  {
+    "timestamp": "2026-09-15T17:44:00.114504+00:00",
+    "pid": 1489367,
+    "cmdline": [
+      "/home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/build/ssd_materialization/qthin_storage",
+      "--input",
+      "/home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/results/ssd_materialization/workdir/qthin-q27-881aw886/input.bin",
+      "--output",
+      "/home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/results/ssd_materialization/workdir/qthin-q27-881aw886/6f5189e0c0666e78cae5.bin",
+      "--q",
+      "27",
+      "--policy",
+      "THIN_BASIS",
+      "--gate",
+      "cx_product_target",
+      "--target",
+      "3",
+      "--chunk-bytes",
+      "16777216",
+      "--mode",
+      "direct",
+      "--ar",
+      "1.0",
+      "--ai",
+      "0.0",
+      "--br",
+      "0.0",
+      "--bi",
+      "0.0",
+      "--device-stat",
+      "/sys/class/block/sdd/stat"
+    ],
+    "proc_status": {
+      "VmSize": "72524 kB",
+      "VmHWM": "69640 kB",
+      "VmRSS": "69640 kB",
+      "Threads": "1"
+    }
+  }
+]

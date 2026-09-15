@@ -1,0 +1,22 @@
+Native cross-file correctness 200
+Native cross-file correctness 400
+Native cross-file correctness 600
+Native cross-file correctness 800
+Native cross-file correctness 1000
+Native cross-file correctness 1200
+Native cross-file correctness 1400
+Native cross-file correctness 1600
+Native cross-file correctness 1800
+Native cross-file correctness 2000
+{
+  "status": "PASS",
+  "correctness_cases": 2096,
+  "incorrect_cases": 0,
+  "native_executions": 4256,
+  "max_abs_error": 2.237726045655905e-16,
+  "max_infidelity": 4.440892098500626e-16,
+  "seed": 20260916,
+  "threshold": 1e-12,
+  "binary_sha256": "a43645bbfc2d8d18f8815964ef61f079604f153fbc1aab7fd962d016266f1584",
+  "timestamp": "2026-09-15T17:10:53.566858+00:00"
+}

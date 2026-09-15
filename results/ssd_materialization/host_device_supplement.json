@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-09-15T18:20:15.655647+00:00",
+  "queries": [
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-Command",
+        "Get-Partition -DriveLetter D | Get-Disk | Select-Object Number,FriendlyName,@{Name=\"BusType\";Expression={$_.BusType.ToString()}},Size,@{Name=\"HealthStatus\";Expression={$_.HealthStatus.ToString()}} | ConvertTo-Json"
+      ],
+      "returncode": 0,
+      "stdout": "{\r\n    \"Number\":  0,\r\n    \"FriendlyName\":  \"KINGBANK KP130\",\r\n    \"BusType\":  \"NVMe\",\r\n    \"Size\":  1024209543168,\r\n    \"HealthStatus\":  \"Healthy\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "powershell.exe",
+        "-NoProfile",
+        "-Command",
+        "Get-PhysicalDisk | Where-Object FriendlyName -eq \"KINGBANK KP130\" | Get-StorageReliabilityCounter | Select-Object Temperature,TemperatureMax,ReadLatencyMax,WriteLatencyMax,Wear | ConvertTo-Json"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Get-StorageReliabilityCounter : 无法从客户端中访问 CIM 资源。\r\n所在位置 行:1 字符: 69\r\n+ ... ndlyName -eq \"KINGBANK KP130\" | Get-StorageReliabilityCounter | Selec ...\r\n+                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : PermissionDenied: (PS_StorageCmdlets:ROOT/Microsoft/..._StorageCmdlets) [Get-StorageReli \r\n   abilityCounter], CimException\r\n    + FullyQualifiedErrorId : MI RESULT 2,Get-StorageReliabilityCounter\r\n \r\n"
+    }
+  ]
+}

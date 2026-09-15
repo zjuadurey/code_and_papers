@@ -3,3 +3,5 @@ __pycache__/
 .pytest_cache/
 *.pyc
 results/.working/
+build/
+results/ssd_materialization/workdir/

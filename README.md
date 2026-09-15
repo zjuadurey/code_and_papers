@@ -126,3 +126,20 @@ python scripts/audit_materialization_results.py
 - 测试及 exact validation 结果记录于新的 `verification.json`；前一阶段全部结果的 SHA256 保存在 `prior_results_frozen.json` 并在每阶段复核。`run_manifest.json`、`reproducibility.txt` 和 `artifact_audit.json` 记录源代码、配置、输入、外部仓库、输出与当前 commit 的溯源。
 - `policy_summary.csv` 是主集汇总；`workload_policy_results.csv` 保留所有表示、policy、m 的独立行；其余主要表为 `qubit_lifetimes.csv`、`physicalization_events.csv`、`gate_event_trace.csv`、`sensitivity.csv`。never-physicalized lifetimes 为右删失，不虚构 circuit-end 物化事件。七张图各提供 PNG/PDF。
 - 本轮结果是 **trace-driven static model — NOT measured SSD traffic**。不把模型 byte reduction 或 RAM microbenchmark 叫 SSD speedup。特别单列 all-product/no-event 输入与实际发生物化的 circuits，避免由巨大 scalar-backing 比例掩盖适用边界。
+
+## 第三阶段：QThin SSD/storage-path materialization prototype
+
+本阶段入口为 `scripts/run_ssd_materialization_all.sh`，报告为 `SSD_MATERIALIZATION_REPORT.md`，所有新数据位于 `results/ssd_materialization/`。没有修改前两阶段结果，也没有集成 QDAO runtime 或增加 workload。
+
+```bash
+conda activate htp-static
+bash scripts/run_ssd_materialization_all.sh
+```
+
+该入口依次 probe、CMake Release build、pytest、至少 2,000 个 native cross-file correctness cases、真实普通文件 microbenchmark、Markdown/CSV 分析。单独运行完整 pytest 前先执行 `python scripts/build_ssd_materialization.py`，因为新增测试会调用 native binary。构建使用 C++17、POSIX I/O 与 `-O3`，无需新 Python 依赖或 sudo。
+
+`HTP_SSD_BENCH_DIR` 可设置 benchmark 目录；默认 `results/ssd_materialization/workdir/`。目录必须容纳 input + working output，运行时同时检查 guest 文件系统及可识别的 WSL VHDX 宿主卷，最多采用可用空间的 70% 并预留少量 metadata 空间。普通文件输出使用 O_EXCL/O_NOFOLLOW，禁止 raw-device 写入。每个 run 将指标安全写入 journal 后删除输出，每个 size 完成后删除输入；不自动清理其他用户文件。现有 `raw_runs.jsonl` 的已完成 configuration ID 会恢复使用，避免意外重复 TB 级写入；重新测量前应将本阶段结果目录另存，并保留 `prior_results_frozen.json`。
+
+协议见 `notes/ssd_materialization_protocol.md`。原生 loop 的工作内存为四个 chunk，最大 256 MiB；支持 CX 两个方向、CZ 和 correctness 用 generic 2q unitary。目标 bit 必须位于 chunk 内。Application、process 和 mapped block-device counters 分列；在 WSL2 下 block counters 是 **guest-visible storage-path traffic**，不能称为原生 NVMe/NAND 流量。DIRECT 与 BUFFERED+fdatasync 分开统计。仅验证单次物化机制，不声称 whole-program QDAO speedup。
+
+本阶段不生成 publication figures。主要产物为 `summary.csv`、完整 `raw_runs.csv`、含 median/min/max/std/CV 的 `run_statistics.csv`、`allocation_behavior.csv`、`chunk_sensitivity.csv`、`direct_vs_buffered.csv`、明确的 `skipped_cases.csv`，以及环境、构建、correctness 和 reproducibility 记录。

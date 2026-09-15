@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.16)
+project(qthin_storage LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+add_executable(qthin_storage main.cpp io_engine.cpp gate_kernels.cpp)
+target_compile_options(qthin_storage PRIVATE -Wall -Wextra -Wpedantic)
+target_compile_definitions(qthin_storage PRIVATE _FILE_OFFSET_BITS=64)

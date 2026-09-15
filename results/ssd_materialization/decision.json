@@ -1,0 +1,19 @@
+{
+  "result": "STRONG",
+  "next_step": "INTEGRATE_QDAO",
+  "largest_completed_q": 28,
+  "decision_q_values": [
+    28
+  ],
+  "smaller_size_fallback": false,
+  "decision_configurations": 5,
+  "median_algorithmic_traffic_reduction": 2.3333333333333335,
+  "median_proc_traffic_reduction": 2.3333065250340774,
+  "median_device_traffic_reduction": 2.333450175056019,
+  "median_latency_speedup": 1.834265387056676,
+  "median_max_policy_cv": 0.139405430683046,
+  "measured_counter_domain": "device",
+  "correctness_cases": 2096,
+  "correctness_failures": 0,
+  "native_publication_prerequisites": false
+}
