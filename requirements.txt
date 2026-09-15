@@ -1,0 +1,12 @@
+qiskit
+qiskit-aer
+qiskit-qasm3-import
+numpy
+scipy
+pandas
+matplotlib
+networkx
+psutil
+tqdm
+pyyaml
+pytest

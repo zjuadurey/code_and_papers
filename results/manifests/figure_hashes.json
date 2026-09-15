@@ -1,0 +1,15 @@
+{
+  "results/figures/figure1_q_traces.pdf": "47b610c1e31e87ed79d93f1e5bf393ad77525b6b1a41f80f59ee8b3cdd820258",
+  "results/figures/figure1_q_traces.png": "14b2c84bbcab6c759f1b8efcb2a05dc17324694f09f2957a5bc8831f2f5d9b66",
+  "results/figures/figure2_activation_cdf.pdf": "a744179fcc864a640d289297892d42d79562e013c6d4d98a2934250f50ab16fe",
+  "results/figures/figure2_activation_cdf.png": "3f7cfda8a6588c3fa473de92bcd3a95093e87eadb8f57fddd8fdce6926c60a37",
+  "results/figures/figure3_reduction_by_family.pdf": "dcce1ee7f545f0485c58c58638a8d76a33189d5104a4f3705ddb54eb91dc44fa",
+  "results/figures/figure3_reduction_by_family.png": "af545c9b758f63ca04dc49672b4fa5430e25334b4c58e283474905b8ae79f9a5",
+  "results/figures/figure4_semantic_vs_lowered.pdf": "f9d2abf841cf73d94665dde65ab2a0a78a4e4817b94172d19bc398069ca15d9b",
+  "results/figures/figure4_semantic_vs_lowered.png": "dcaba2691b3e7ccea685429a6115b16fc9c09eaddf2c54b9e1423fbdbcd9e83f",
+  "results/figures/figure5_full_materialization.pdf": "777c98414112d0e4774b718487d7a923be1230043747d37a45833f8dccbb8c14",
+  "results/figures/figure5_full_materialization.png": "d2db48dc8a5563f22ec2afdb5276b56c8dc4b1bb2201456b2bcccad1f4856180",
+  "results/figures/figure6_qdao_oracle.pdf": "e7956bfa6b81a42ef0ff41a419a3dacce414edc85210463ba58ba376e6d7223a",
+  "results/figures/figure6_qdao_oracle.png": "f53c8bc4b526ff4f534ba73780a4e018ed1e1b2653e29ae9807c77a98d6aaee4",
+  "results/figures/representative_workloads.csv": "2b8511b9a83e982f140e01a2b2b208354c04cd1d227346b2788adab35c36206a"
+}

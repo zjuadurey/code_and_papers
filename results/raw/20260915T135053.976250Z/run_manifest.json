@@ -1,0 +1,37 @@
+{
+  "run_id": "20260915T135053.976250Z",
+  "raw_directory": "results/raw/20260915T135053.976250Z",
+  "semantic_lowered_pairs": 221,
+  "analysis_failures": 178,
+  "structural_duplicates": 0,
+  "code_sha256": {
+    "src/htp/__init__.py": "946ed596cfbf18bd568f216c566607c40e9b3d470c789d0caf98e30400f357c2",
+    "src/htp/abstract_state.py": "ccdde1fafd2ee6d5a0a1783772e9596382326a327bec1c6367500aab000c28b1",
+    "src/htp/analyzer.py": "353a1628182d408ecce6a3f5e5dca8a3ae0abaef19692655cee3b99e84600792",
+    "src/htp/gate_semantics.py": "6f75014d66a3552570be778997986ac7d6be1778fdf8e8a0171f34e79c9cfa5a",
+    "src/htp/loaders.py": "2ccdda43f67d6395f6b81e3d58d54c176cef8dcc7f26014ce3d4db551bf8e22b",
+    "src/htp/metrics.py": "84eae64709b64254d505f8ef4634073b1be34390ef6fc8f422015c107571732c",
+    "src/htp/qdao_model.py": "9e6adc9d56ef2716438b64435878ea9695635c960009b8206c9f8a8c14df9269",
+    "src/htp/validation.py": "f2de2d2939115c6a76808bf217f3bb9f8da09fac2cd0354af22140172dce059b",
+    "src/htp/workload_discovery.py": "8e89c98c6b0cff809c3edf1b1d816331dac9e7ab56dbcd776181b146f416de96",
+    "src/htp/workload_generators.py": "b7ee6927f35f9e017991f7c29d410d2f32e02be2608ad70403677196d566bfce",
+    "scripts/_common.py": "f9b072194dba17e3814a331a284e87313caa91357d8815f479994221ecb12fb8",
+    "scripts/bootstrap_check.py": "adeaba6846ed586299cd68eb24902f9701b545a10f68c894d26170cdc74290f5",
+    "scripts/discover_workloads.py": "62a5a2be7b7983427f818019939f341daa6d52b7776703abcaffa16b5b96ef8b",
+    "scripts/run_characterization.py": "dea9dd38b7d188c31574d6997d75276f7726aaa5a73610bb34401cc4b10d27aa",
+    "scripts/validate_small_exact.py": "9a64fa75c9a1cf099892994aaf93a76d0a4e8cf94ee15799a16ddf758d14d190",
+    "configs/analysis.yaml": "126677a754d9df09dcc1da00666c87cfc6d8f172f860047b9d2f66d8d9e9c8af",
+    "configs/workloads.yaml": "a63c8f7a079ee7398ef9562be44d4e1e614589f6d574c61a2500942f9d5597a2"
+  },
+  "outputs": {
+    "results/analysis_failures.csv": "d7a085cae48f4acf0fef436fc0c71c34c733933fd6cc62e3850f944b329f4050",
+    "results/circuit_summary.csv": "ee3adfce09657d1a9e1dff47c30325a40e96b8ade974d1fa2a264c9c9e8514b2",
+    "results/layer_trace.csv": "ee08476a7dcd3fc2bcfada01448e0e6cadb5e220a9d76b34f70059f928610004",
+    "results/materialization_events.csv": "fc7cd9e0d86546d3f3002c2f29a20945dda6bb94ea5138eb0230fb5aa17ebcc6",
+    "results/parse_failures.csv": "ca56932b3a4a7b8bc172aafab75b20d30ad96610555e17825f6f660ee318aa9f",
+    "results/q_trace.csv": "9ec47b5a63e7bac1b3b901192e4b58d79290c3881b8e7e6b5d90ce4ee2633243",
+    "results/qdao_oracle.csv": "9a0008df5303ad6200f821c528dd776389e03efffec5aec104addf297cbdecac",
+    "results/qubit_activation.csv": "f1b39c064a7f13a5a2b67c47073de9c32b1600067b777be403f892c50a44daa2",
+    "results/unknown_gates.csv": "1f5fd789b4c9ca75567163d1e494c5152ea4ccbe679443f7d6f1544914c6c193"
+  }
+}

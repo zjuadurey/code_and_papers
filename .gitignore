@@ -1,0 +1,5 @@
+external/*
+__pycache__/
+.pytest_cache/
+*.pyc
+results/.working/

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "false_known_violations": 0,
+  "exact_validation_cases": 1112,
+  "random_cases": 1000,
+  "benchmark_cases": 112,
+  "prefixes": 72665,
+  "known_claims": 195810,
+  "max_density_error": 5.639932965095795e-14,
+  "aer_crosschecks": 20,
+  "tolerance": 1e-10,
+  "seed": 20260915,
+  "max_qubits": 8,
+  "tests_passed": 154,
+  "test_failures": 0,
+  "validated_code_sha256": {
+    "src/htp/__init__.py": "946ed596cfbf18bd568f216c566607c40e9b3d470c789d0caf98e30400f357c2",
+    "src/htp/abstract_state.py": "076773e54b0762bbe90f7904bbbf965857ce9e38c1babbb905ec7b61e16a1d14",
+    "src/htp/analyzer.py": "353a1628182d408ecce6a3f5e5dca8a3ae0abaef19692655cee3b99e84600792",
+    "src/htp/gate_semantics.py": "642baa04860e39c29fbfe8e5a007e117116013b1210bdcc4c77a4783b7c01d76",
+    "src/htp/loaders.py": "15914571b4d0d5a69872916309d4fc9abe811543cedd27c31094bf7bba61ef10",
+    "src/htp/metrics.py": "84eae64709b64254d505f8ef4634073b1be34390ef6fc8f422015c107571732c",
+    "src/htp/qdao_model.py": "9e6adc9d56ef2716438b64435878ea9695635c960009b8206c9f8a8c14df9269",
+    "src/htp/validation.py": "f2de2d2939115c6a76808bf217f3bb9f8da09fac2cd0354af22140172dce059b",
+    "src/htp/workload_discovery.py": "3e8cf653014e5c9bc737b6c9ddebcdfea09e254ce4c19856938fd124d5722ad4",
+    "src/htp/workload_generators.py": "85c82bc82a6f780c7d4430f5d104a45e678bf1ad7989354540e0b439dfc19d15"
+  }
+}

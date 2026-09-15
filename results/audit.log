@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "timestamp": "2026-09-15T14:14:11.015532+00:00",
+  "run_id": "20260915T141040.945114Z",
+  "summary_rows": 718,
+  "trace_rows": 487533,
+  "activation_rows": 21890,
+  "materialization_events": 17014,
+  "external_repos_clean": true
+}

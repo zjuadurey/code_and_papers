@@ -1,0 +1,11 @@
+seed: 20260915
+generated_sizes: [8, 12, 16, 20, 24, 28, 32, 40]
+max_parse_bytes: 10000000
+max_parse_qubits: 2048
+per_source_family_size_gate_stratum: 4
+sources:
+  qdao: external/qcs
+  qasmbench: external/QASMBench
+  veriq: external/veriq-benchmark
+size_bins: [20, 41, 65]
+gate_bins: [1000, 10000]

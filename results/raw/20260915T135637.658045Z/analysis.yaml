@@ -1,0 +1,9 @@
+angle_tol: 1.0e-10
+exact_tol: 1.0e-10
+exact_cases: 500
+exact_seed: 20260915
+qdao_m: [16, 18, 20, 22, 24]
+qdao_fixed_t: 2
+optimization_level: 0
+max_analysis_gates: 100000
+max_analysis_qubits: 128

@@ -1,0 +1,5 @@
+name,local_path,repository,git_commit,git_branch,dirty,clone_date
+qdao,external/qdao,https://github.com/Zhaoyilunnn/qdao.git,fb360e6670b9818a3d4e106fb21cf605838be0a4,main,False,2026-09-15T13:35:51+00:00
+QASMBench,external/QASMBench,https://github.com/pnnl/QASMBench.git,357b942396d5c2b7cbc1c229c585a6ef5ccaebac,master,False,2026-09-15T13:36:08+00:00
+veriq-benchmark,external/veriq-benchmark,https://github.com/Veri-Q/Benchmark.git,1c03e45371e5701f62c123943dec1cace4d46767,main,False,2026-09-15T13:35:51+00:00
+qcs,external/qcs,https://github.com/Zhaoyilunnn/quantum-computing-resources.git,c03dfa056ab2f765847b536494480081daa8caad,main,False,2026-09-15T13:37:33+00:00
