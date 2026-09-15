@@ -1,0 +1,6 @@
+# Keep generated artifact bytes stable for SHA256 checks, including CSV CRLF.
+*.csv -text whitespace=cr-at-eol
+*.qpy binary
+*.gz binary
+*.pdf binary
+*.png binary
