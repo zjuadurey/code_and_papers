@@ -1,0 +1,204 @@
+$ uname -a
+Linux YYJS-2025QYSDCS 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
+
+$ cat /proc/version
+Linux version 6.18.33.2-microsoft-standard-WSL2 (root@f1bbfb02316b) (gcc (GCC) 13.2.0, GNU ld (GNU Binutils) 2.41) #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026
+
+$ lsblk -o NAME,TYPE,SIZE,ROTA,FSTYPE,MOUNTPOINTS,MODEL
+NAME TYPE   SIZE ROTA FSTYPE MOUNTPOINTS      MODEL
+sda  disk 356.9M    1 ext4                    Virtual Disk
+sdb  disk 159.4M    1 ext4                    Virtual Disk
+sdc  disk     4G    1 swap   [SWAP]           Virtual Disk
+sdd  disk     1T    1 ext4   /mnt/wslg/distro Virtual Disk
+                             /                
+
+$ findmnt
+TARGET                                               SOURCE                  FSTYPE      OPTIONS
+/                                                    /dev/sdd                ext4        rw,relatime,discard,errors=remount-ro,data=ordered
+├─/usr/lib/modules/6.18.33.2-microsoft-standard-WSL2 none                    overlay     rw,nosuid,nodev,noatime,lowerdir=/modules,upperdir=/lib/modules/6.18.33.2-microsoft-standard-WSL2/rw/upper,workdir=/lib/modules/6.18.33.2-microsoft-standard-WSL2/rw/work,uuid=on
+├─/mnt/wsl                                           none                    tmpfs       rw,relatime
+├─/usr/lib/wsl/drivers                               drivers                 9p          ro,nosuid,nodev,noatime,aname=drivers;fmask=222;dmask=222,cache=0x5,access=client,msize=65536,trans=fd,rfd=8,wfd=8
+├─/mnt/wslg                                          none                    tmpfs       rw,relatime
+│ ├─/mnt/wslg/distro                                 /dev/sdd                ext4        ro,relatime,discard,errors=remount-ro,data=ordered
+│ ├─/mnt/wslg/versions.txt                           none[/etc/versions.txt] overlay     rw,relatime,lowerdir=/systemvhd,upperdir=/system/rw/upper,workdir=/system/rw/work,uuid=on
+│ ├─/mnt/wslg/doc                                    none[/usr/share/doc]    overlay     rw,relatime,lowerdir=/systemvhd,upperdir=/system/rw/upper,workdir=/system/rw/work,uuid=on
+│ └─/mnt/wslg/run/user/1000                          tmpfs                   tmpfs       rw,nosuid,nodev,relatime,size=1628940k,nr_inodes=407235,mode=700,uid=1000,gid=1000
+├─/usr/lib/wsl/lib                                   none                    overlay     rw,nosuid,nodev,noatime,lowerdir=/gpu_lib_packaged:/gpu_lib_inbox,upperdir=/gpu_lib/rw/upper,workdir=/gpu_lib/rw/work,uuid=on
+├─/init                                              rootfs[/init]           rootfs      ro,size=8138956k,nr_inodes=2034739
+├─/dev                                               none                    devtmpfs    rw,nosuid,relatime,size=8138956k,nr_inodes=2034739,mode=755
+│ ├─/dev/pts                                         devpts                  devpts      rw,nosuid,noexec,noatime,gid=5,mode=620,ptmxmode=000
+│ ├─/dev/shm                                         none                    tmpfs       rw,nosuid,nodev,noatime
+│ ├─/dev/mqueue                                      mqueue                  mqueue      rw,nosuid,nodev,noexec,relatime
+│ └─/dev/hugepages                                   hugetlbfs               hugetlbfs   rw,nosuid,nodev,relatime,pagesize=2M
+├─/sys                                               sysfs                   sysfs       rw,nosuid,nodev,noexec,noatime
+│ ├─/sys/fs/cgroup                                   cgroup2                 cgroup2     rw,nosuid,nodev,noexec,relatime,nsdelegate
+│ ├─/sys/fs/fuse/connections                         fusectl                 fusectl     rw,nosuid,nodev,noexec,relatime
+│ ├─/sys/kernel/tracing                              tracefs                 tracefs     rw,nosuid,nodev,noexec,relatime
+│ ├─/sys/kernel/debug                                debugfs                 debugfs     rw,nosuid,nodev,noexec,relatime
+│ └─/sys/kernel/config                               configfs                configfs    rw,nosuid,nodev,noexec,relatime
+├─/proc                                              proc                    proc        rw,nosuid,nodev,noexec,noatime
+│ └─/proc/sys/fs/binfmt_misc                         binfmt_misc             binfmt_misc rw,relatime
+├─/run                                               none                    tmpfs       rw,nosuid,nodev,mode=755
+│ ├─/run/lock                                        none                    tmpfs       rw,nosuid,nodev,noexec,noatime
+│ ├─/run/shm                                         none                    tmpfs       rw,nosuid,nodev,noatime
+│ ├─/run/user                                        none                    tmpfs       rw,nosuid,nodev,noexec,noatime,mode=755
+│ │ └─/run/user                                      none[/run/user]         tmpfs       rw,relatime
+│ │   └─/run/user/1000                               tmpfs                   tmpfs       rw,nosuid,nodev,relatime,size=1628940k,nr_inodes=407235,mode=700,uid=1000,gid=1000
+│ ├─/run/credentials/systemd-journald.service        none                    tmpfs       ro,nosuid,nodev,noexec,relatime,nosymfollow,size=1024k,nr_inodes=1024,mode=700,noswap
+│ ├─/run/credentials/systemd-resolved.service        none                    tmpfs       ro,nosuid,nodev,noexec,relatime,nosymfollow,size=1024k,nr_inodes=1024,mode=700,noswap
+│ └─/run/credentials/getty@tty1.service              none                    tmpfs       ro,nosuid,nodev,noexec,relatime,nosymfollow,size=1024k,nr_inodes=1024,mode=700,noswap
+├─/tmp/.X11-unix                                     none[/.X11-unix]        tmpfs       ro,relatime
+├─/mnt/c                                             C:\                     9p          rw,noatime,aname=drvfs;path=C:\;uid=1000;gid=1000;symlinkroot=/mnt/,cache=0x5,access=client,msize=65536,trans=fd,rfd=6,wfd=6
+├─/mnt/d                                             D:\                     9p          rw,noatime,aname=drvfs;path=D:\;uid=1000;gid=1000;symlinkroot=/mnt/,cache=0x5,access=client,msize=65536,trans=fd,rfd=6,wfd=6
+└─/tmp                                               tmpfs                   tmpfs       rw,nosuid,nodev,size=8144716k,nr_inodes=1048576
+  └─/tmp/.X11-unix                                   none[/.X11-unix]        tmpfs       ro,relatime
+
+$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+none            7.8G     0  7.8G   0% /usr/lib/modules/6.18.33.2-microsoft-standard-WSL2
+none            7.8G  4.0K  7.8G   1% /mnt/wsl
+drivers         151G   97G   54G  65% /usr/lib/wsl/drivers
+/dev/sdd       1007G  197G  759G  21% /
+none            7.8G  124K  7.8G   1% /mnt/wslg
+none            7.8G     0  7.8G   0% /usr/lib/wsl/lib
+rootfs          7.8G  2.8M  7.8G   1% /init
+none            7.8G  560K  7.8G   1% /run
+none            7.8G     0  7.8G   0% /run/lock
+none            7.8G  1.7M  7.8G   1% /run/shm
+none            7.8G  1.3M  7.8G   1% /mnt/wslg/versions.txt
+none            7.8G  1.3M  7.8G   1% /mnt/wslg/doc
+C:\             151G   97G   54G  65% /mnt/c
+D:\             804G  761G   44G  95% /mnt/d
+none            1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+tmpfs           7.8G  3.2M  7.8G   1% /tmp
+none            1.0M     0  1.0M   0% /run/credentials/systemd-resolved.service
+none            1.0M     0  1.0M   0% /run/credentials/getty@tty1.service
+tmpfs           1.6G   12K  1.6G   1% /run/user/1000
+
+$ df -T
+Filesystem     Type     1K-blocks      Used Available Use% Mounted on
+none           overlay    8144712         0   8144712   0% /usr/lib/modules/6.18.33.2-microsoft-standard-WSL2
+none           tmpfs      8144712         4   8144708   1% /mnt/wsl
+drivers        9p       157288444 101079548  56208896  65% /usr/lib/wsl/drivers
+/dev/sdd       ext4    1055762868 206388140 795671256  21% /
+none           tmpfs      8144712       124   8144588   1% /mnt/wslg
+none           overlay    8144712         0   8144712   0% /usr/lib/wsl/lib
+rootfs         rootfs     8138956      2772   8136184   1% /init
+none           tmpfs      8144712       560   8144152   1% /run
+none           tmpfs      8144712         0   8144712   0% /run/lock
+none           tmpfs      8144712      1728   8142984   1% /run/shm
+none           overlay    8144712      1288   8143424   1% /mnt/wslg/versions.txt
+none           overlay    8144712      1288   8143424   1% /mnt/wslg/doc
+C:\            9p       157288444 101079548  56208896  65% /mnt/c
+D:\            9p       842590532 797328540  45261992  95% /mnt/d
+none           tmpfs         1024         0      1024   0% /run/credentials/systemd-journald.service
+tmpfs          tmpfs      8144716      3184   8141532   1% /tmp
+none           tmpfs         1024         0      1024   0% /run/credentials/systemd-resolved.service
+none           tmpfs         1024         0      1024   0% /run/credentials/getty@tty1.service
+tmpfs          tmpfs      1628940        12   1628928   1% /run/user/1000
+
+$ findmnt -T /home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/results/ssd_materialization/workdir -J
+{
+   "filesystems": [
+      {
+         "target": "/",
+         "source": "/dev/sdd",
+         "fstype": "ext4",
+         "options": "rw,relatime,discard,errors=remount-ro,data=ordered"
+      }
+   ]
+}
+
+$ stat -f /home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/results/ssd_materialization/workdir
+  File: "/home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/results/ssd_materialization/workdir"
+    ID: 9630126b31ce0920 Namelen: 255     Type: ext2/ext3
+Block size: 4096       Fundamental block size: 4096
+Blocks: Total: 263940717  Free: 212343682  Available: 198917814
+Inodes: Total: 67108864   Free: 66125266
+
+$ df -B1 /home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/results/ssd_materialization/workdir
+Filesystem         1B-blocks         Used    Available Use% Mounted on
+/dev/sdd       1081101176832 211341455360 814767366144  21% /
+
+$ lscpu
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           39 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  16
+On-line CPU(s) list:                     0-15
+Vendor ID:                               GenuineIntel
+Model name:                              13th Gen Intel(R) Core(TM) i5-13400F
+CPU family:                              6
+Model:                                   191
+Thread(s) per core:                      2
+Core(s) per socket:                      8
+Socket(s):                               1
+Stepping:                                2
+BogoMIPS:                                4992.00
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves avx_vnni vnmi umip waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize ibt flush_l1d arch_capabilities
+Virtualization:                          VT-x
+Hypervisor vendor:                       Microsoft
+Virtualization type:                     full
+L1d cache:                               384 KiB (8 instances)
+L1i cache:                               256 KiB (8 instances)
+L2 cache:                                10 MiB (8 instances)
+L3 cache:                                20 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-15
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Ghostwrite:                Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+Vulnerability Old microcode:             Not affected
+Vulnerability Reg file data sampling:    Vulnerable: No microcode
+Vulnerability Retbleed:                  Mitigation; Enhanced IBRS
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Not affected
+
+{
+  "benchmark_directory": "/home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/results/ssd_materialization/workdir",
+  "storage_environment_class": "wsl2_ext4_vhdx",
+  "filesystem": "ext4",
+  "mount_point": "/",
+  "mount_source": "/dev/sdd",
+  "mount_options": "rw,relatime,discard,errors=remount-ro,data=ordered",
+  "free_bytes_before_run": 814767366144,
+  "block_size": 4096,
+  "device": "sdd",
+  "device_stat_path": "/sys/class/block/sdd/stat",
+  "device_counter_scope": "guest-visible shared block-device",
+  "device_counter_unavailable_reason": null,
+  "device_model": "Virtual Disk",
+  "rotational_flag": "1",
+  "direct_io": {
+    "supported": true,
+    "alignment": 4096,
+    "reason": null
+  },
+  "host_volume": {
+    "DriveLetter": "D",
+    "FileSystem": "NTFS",
+    "SizeRemaining": 46348279808,
+    "Size": 862812704768,
+    "distribution": "Ubuntu-Recovered",
+    "base_path": "\\\\?\\D:\\WSL\\Ubuntu"
+  },
+  "cpu_logical_count": 16,
+  "load_average": [
+    0.14697265625,
+    0.07275390625,
+    0.01123046875
+  ],
+  "kernel": "6.18.33.2-microsoft-standard-WSL2"
+}

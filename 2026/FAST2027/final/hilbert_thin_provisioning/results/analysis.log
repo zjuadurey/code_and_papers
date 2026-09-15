@@ -1,0 +1,23 @@
+{
+  "classification": "STRONG",
+  "primary_real_circuits": 211,
+  "all_real_circuits": 251,
+  "focus_20_40_circuits": 90,
+  "source_count": 3,
+  "family_count": 22,
+  "robust_focus_families": [
+    "arithmetic",
+    "hidden_linear_function",
+    "iqp",
+    "mapping",
+    "qaoa",
+    "qft",
+    "quantum_ml",
+    "reversible",
+    "state_preparation",
+    "vqe"
+  ],
+  "strong_pairs_destroyed_by_aer_lowering": 2,
+  "paired_metric_changed": 108,
+  "all_basis_focus_lowered": 10
+}

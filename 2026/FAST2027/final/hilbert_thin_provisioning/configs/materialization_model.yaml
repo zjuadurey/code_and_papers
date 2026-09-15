@@ -1,0 +1,14 @@
+seed: 20260916
+amplitude_bytes: 16
+primary_m: 16
+qdao_m: [16, 18, 20, 22, 24]
+fixed_t: 2
+proof_tolerance: 1.0e-10
+numerical_budget: 1.0e-12
+exact_random_circuits: 500
+fused_cases: 1600
+chunk_bytes: [4096, 65536, 1048576, 4194304]
+amplitude_byte_sensitivity: [8, 16]
+microbenchmark_q: [18, 20, 22, 24]
+microbenchmark_repeats: 3
+primary_accounting: conservative_additive_checkpoints

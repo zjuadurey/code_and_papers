@@ -1,0 +1,5 @@
+policy,median_traversal_only_reduction,median_materialization_fraction,median_total_over_traversal_bytes,capacity_reduced_circuits,eventually_full_circuits,explicit_resize_copies_avoided
+BASIS_REWRITE,4.798828505019128,0.3692720782317368,1.5855963081633315,19,67,0
+BASIS_THIN,4.798828505019128,0.3692720782317368,1.5855963081633315,19,67,2123
+EAGER_FULL,1.0,0.0,1.0,0,86,0
+PRODUCT_FUSED,8.317466985560937,0.28281331401554777,1.3943419269321196,46,40,2123

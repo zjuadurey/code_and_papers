@@ -1,0 +1,19 @@
+benchmark_dir: null
+io_modes: [direct, buffered]
+q_values: [24, 26, 27, 28, 29, 30]
+chunk_mib: [16]
+gates: [cx_product_control, cx_product_target, cz]
+product_states: [plus, random_seeded]
+repetitions_small: 5
+repetitions_large: 3
+max_free_space_fraction: 0.70
+sync_mode: fdatasync
+random_seed: 20260916
+target_bit: 3
+correctness_cases: 2000
+chunk_sensitivity_q: [28, 29]
+chunk_sensitivity_mib: [1, 4, 16, 64]
+sensitivity_repetitions: 3
+buffered_sensitivity_q: [26, 28]
+high_target_q: 28
+high_target_bit: 18

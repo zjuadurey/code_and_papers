@@ -1,0 +1,5 @@
+workload_id,family,qubit,quantum_gate,physical_gate,delay_gates,delay_fraction,gates_on_wire
+qdao_b55d2dd9bf5b66fa_0,state_preparation,25,48,49,1,0.0181818181818181,48:h → 49:cz
+veriq_caf4f6fd0033a07b_0,grover_oracle,9,10,26,16,0.1073825503355704,10:h → 26:ccx
+veriq_1e3f14dad487dc42_0,qaoa,15,311,314,3,0.0044378698224852,311:h → 312:rz → 313:u3 → 314:cx
+qdao_f582b0405134801e_0,random,0,1,6,5,0.0136239782016348,1:u2 → 6:cx

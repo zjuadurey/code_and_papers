@@ -1,0 +1,163 @@
+Excluded qasmbench_601bbadb96700150_0: UnsupportedDynamic: Nonunitary/dynamic operation: reset
+Excluded qasmbench_1ab43276437fe600_0: UnsupportedDynamic: Nonunitary/dynamic operation: reset
+External 20/291; pairs=18, exclusions=0, failures=2
+Excluded qasmbench_78a11d6fadec00a0_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded qasmbench_4dc17a12b187cc3c_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded qasmbench_dcf8d069188a5cf9_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded qasmbench_27399092d22b1605_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded qasmbench_2b950bb566ea5479_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+External 40/291; pairs=33, exclusions=0, failures=7
+External 60/291; pairs=53, exclusions=0, failures=7
+Excluded qasmbench_32cb8b0b9a82ab79_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded qasmbench_46a3b2997c7aa44c_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded qasmbench_0f67ec718f5663c1_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded qasmbench_eb67f8cf6f308aed_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+External 80/291; pairs=69, exclusions=0, failures=11
+Excluded qdao_8001ec9967912f6c_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded qdao_e4dace5c3769f934_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+External 100/291; pairs=87, exclusions=0, failures=13
+External 120/291; pairs=107, exclusions=0, failures=13
+External 140/291; pairs=127, exclusions=0, failures=13
+External 160/291; pairs=147, exclusions=0, failures=13
+External 180/291; pairs=167, exclusions=0, failures=13
+External 200/291; pairs=187, exclusions=0, failures=13
+Excluded veriq_9cf5e856627326c1_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_03821b9ab83191bd_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_e51375b1cc76a535_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_81dbb134d527375f_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_c519dd24e733ebb1_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_af9acea8a2589cba_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_325e56308e1c4435_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_a5fdcc329e64888d_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_2e79d9ed55502d03_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_6fb6cf96bf1ec474_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_e3e8811ec6039009_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+External 220/291; pairs=196, exclusions=0, failures=24
+Excluded veriq_4000d91c9c653c13_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_1cd9f205b70986a0_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_2062f8fc8aee0ca7_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_f94c336ff4764835_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+External 240/291; pairs=212, exclusions=0, failures=28
+Excluded veriq_a2307425391932ad_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_8b14ccd141f818a5_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_b922346dd95083e2_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_e530202ec776de6f_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_bd41b3f2c105fbf8_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_d1a0b9c7246242e3_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_ff1122794dbcb907_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_2c7e074552b08ee4_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+External 260/291; pairs=224, exclusions=0, failures=36
+Excluded veriq_b74333370f96a6a9_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+External 280/291; pairs=243, exclusions=0, failures=37
+Excluded veriq_effa565c6253c492_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_e1913a07f3d44710_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Excluded veriq_02b9057e321df559_0: UnsupportedDynamic: Nonunitary/dynamic operation: measure
+Generated qft_8; pairs=252
+Generated qaoa_8; pairs=253
+Generated hea_8; pairs=254
+Generated random_8; pairs=255
+Generated grover_8; pairs=256
+Generated qft_12; pairs=257
+Generated qaoa_12; pairs=258
+Generated hea_12; pairs=259
+Generated random_12; pairs=260
+Generated grover_12; pairs=261
+Generated qft_16; pairs=262
+Generated qaoa_16; pairs=263
+Generated hea_16; pairs=264
+Generated random_16; pairs=265
+Generated grover_16; pairs=266
+Generated qft_20; pairs=267
+Generated qaoa_20; pairs=268
+Generated hea_20; pairs=269
+Generated random_20; pairs=270
+Generated grover_20; pairs=271
+Generated qft_24; pairs=272
+Generated qaoa_24; pairs=273
+Generated hea_24; pairs=274
+Generated random_24; pairs=275
+Generated grover_24; pairs=276
+Generated qft_28; pairs=277
+Generated qaoa_28; pairs=278
+Generated hea_28; pairs=279
+Generated random_28; pairs=280
+Generated grover_28; pairs=281
+Generated qft_32; pairs=282
+Generated qaoa_32; pairs=283
+Generated hea_32; pairs=284
+Generated random_32; pairs=285
+Generated grover_32; pairs=286
+Generated qft_40; pairs=287
+Generated qaoa_40; pairs=288
+Generated hea_40; pairs=289
+Generated random_40; pairs=290
+Generated cdkm_3_basis; pairs=291
+Generated cdkm_3_superposed_input; pairs=292
+Generated vbe_3_basis; pairs=293
+Generated vbe_3_superposed_input; pairs=294
+Generated comparator_3_basis; pairs=295
+Generated comparator_3_superposed_input; pairs=296
+Generated draper_3_basis; pairs=297
+Generated draper_3_superposed_input; pairs=298
+Generated modular_adder_3_basis; pairs=299
+Generated modular_adder_3_superposed_input; pairs=300
+Generated multiplier_3_basis; pairs=301
+Generated multiplier_3_superposed_input; pairs=302
+Generated cdkm_5_basis; pairs=303
+Generated cdkm_5_superposed_input; pairs=304
+Generated vbe_5_basis; pairs=305
+Generated vbe_5_superposed_input; pairs=306
+Generated comparator_5_basis; pairs=307
+Generated comparator_5_superposed_input; pairs=308
+Generated draper_5_basis; pairs=309
+Generated draper_5_superposed_input; pairs=310
+Generated modular_adder_5_basis; pairs=311
+Generated modular_adder_5_superposed_input; pairs=312
+Generated multiplier_5_basis; pairs=313
+Generated multiplier_5_superposed_input; pairs=314
+Generated cdkm_7_basis; pairs=315
+Generated cdkm_7_superposed_input; pairs=316
+Generated vbe_7_basis; pairs=317
+Generated vbe_7_superposed_input; pairs=318
+Generated comparator_7_basis; pairs=319
+Generated comparator_7_superposed_input; pairs=320
+Generated draper_7_basis; pairs=321
+Generated draper_7_superposed_input; pairs=322
+Generated modular_adder_7_basis; pairs=323
+Generated modular_adder_7_superposed_input; pairs=324
+Generated multiplier_7_basis; pairs=325
+Generated multiplier_7_superposed_input; pairs=326
+Generated cdkm_9_basis; pairs=327
+Generated cdkm_9_superposed_input; pairs=328
+Generated vbe_9_basis; pairs=329
+Generated vbe_9_superposed_input; pairs=330
+Generated comparator_9_basis; pairs=331
+Generated comparator_9_superposed_input; pairs=332
+Generated draper_9_basis; pairs=333
+Generated draper_9_superposed_input; pairs=334
+Generated modular_adder_9_basis; pairs=335
+Generated modular_adder_9_superposed_input; pairs=336
+Generated multiplier_9_basis; pairs=337
+Generated multiplier_9_superposed_input; pairs=338
+Generated cdkm_11_basis; pairs=339
+Generated cdkm_11_superposed_input; pairs=340
+Generated vbe_11_basis; pairs=341
+Generated vbe_11_superposed_input; pairs=342
+Generated comparator_11_basis; pairs=343
+Generated comparator_11_superposed_input; pairs=344
+Generated draper_11_basis; pairs=345
+Generated draper_11_superposed_input; pairs=346
+Generated modular_adder_11_basis; pairs=347
+Generated modular_adder_11_superposed_input; pairs=348
+Generated cdkm_13_basis; pairs=349
+Generated cdkm_13_superposed_input; pairs=350
+Generated vbe_13_basis; pairs=351
+Generated vbe_13_superposed_input; pairs=352
+Generated comparator_13_basis; pairs=353
+Generated comparator_13_superposed_input; pairs=354
+Generated draper_13_basis; pairs=355
+Generated draper_13_superposed_input; pairs=356
+Generated modular_adder_13_basis; pairs=357
+Generated modular_adder_13_superposed_input; pairs=358
+Generated staged_40; pairs=359
+Characterization complete: 359 pairs; 40 explicit failures

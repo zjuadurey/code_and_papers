@@ -1,0 +1,154 @@
+$ date -Is
+2026-09-15T21:58:46+08:00
+
+$ uname -a
+Linux YYJS-2025QYSDCS 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
+
+$ lscpu
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           39 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  16
+On-line CPU(s) list:                     0-15
+Vendor ID:                               GenuineIntel
+Model name:                              13th Gen Intel(R) Core(TM) i5-13400F
+CPU family:                              6
+Model:                                   191
+Thread(s) per core:                      2
+Core(s) per socket:                      8
+Socket(s):                               1
+Stepping:                                2
+BogoMIPS:                                4992.00
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves avx_vnni vnmi umip waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize ibt flush_l1d arch_capabilities
+Virtualization:                          VT-x
+Hypervisor vendor:                       Microsoft
+Virtualization type:                     full
+L1d cache:                               384 KiB (8 instances)
+L1i cache:                               256 KiB (8 instances)
+L2 cache:                                10 MiB (8 instances)
+L3 cache:                                20 MiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-15
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Ghostwrite:                Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+Vulnerability Old microcode:             Not affected
+Vulnerability Reg file data sampling:    Vulnerable: No microcode
+Vulnerability Retbleed:                  Mitigation; Enhanced IBRS
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Not affected
+
+$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       2.5Gi        10Gi       3.2Mi       3.2Gi        13Gi
+Swap:          4.0Gi       517Mi       3.5Gi
+
+$ /home/audrey/miniconda3/envs/htp-static/bin/python --version
+Python 3.11.16
+
+$ conda info
+
+     active environment : base
+    active env location : /home/audrey/miniconda3
+            shell level : 1
+       user config file : /home/audrey/.condarc
+ populated config files : /home/audrey/miniconda3/.condarc
+                          /home/audrey/miniconda3/condarc.d/anaconda-auth.yml
+          conda version : 26.5.3
+    conda-build version : not installed
+         python version : 3.14.6.final.0
+                 solver : libmamba (default)
+       virtual packages : __archspec=1=skylake
+                          __conda=26.5.3=0
+                          __cuda=13.3=0
+                          __glibc=2.43=0
+                          __linux=6.18.33.2=0
+                          __unix=0=0
+       base environment : /home/audrey/miniconda3  (writable)
+      conda av data dir : /home/audrey/miniconda3/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /home/audrey/miniconda3/pkgs
+                          /home/audrey/.conda/pkgs
+       envs directories : /home/audrey/miniconda3/envs
+                          /home/audrey/.conda/envs
+    temporary directory : /tmp
+               platform : linux-64
+             user-agent : conda/26.5.3 requests/2.34.2 CPython/3.14.6 Linux/6.18.33.2-microsoft-standard-WSL2 ubuntu/26.04 glibc/2.43 solver/libmamba conda-libmamba-solver/26.6.0 libmambapy/2.3.2 aau/0.8.1 c/. s/. e/.
+                UID:GID : 1000:1000
+             netrc file : None
+           offline mode : False
+
+
+$ /home/audrey/miniconda3/envs/htp-static/bin/python -m pip freeze
+antlr4-python3-runtime==4.13.2
+contourpy==1.3.3
+cycler==0.12.1
+dill==0.4.1
+fonttools==4.65.0
+iniconfig==2.3.0
+kiwisolver==1.5.1
+matplotlib==3.11.2
+networkx==3.6.1
+numpy==2.4.6
+openqasm3==1.0.1
+packaging @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_packaging_1785888127/work
+pandas==3.0.5
+pillow==12.3.0
+pluggy==1.6.0
+psutil==7.2.2
+Pygments==2.21.0
+pyparsing==3.3.2
+pytest==9.1.1
+python-dateutil==2.9.0.post0
+PyYAML==6.0.3
+qiskit==2.5.2
+qiskit-aer==0.17.2
+qiskit-qasm3-import==0.6.0
+rustworkx==0.18.1
+scipy==1.17.1
+six==1.17.0
+stevedore==5.9.1
+tqdm==4.70.1
+typing_extensions==4.16.0
+
+$ /home/audrey/miniconda3/envs/htp-static/bin/python -m pytest --version
+pytest 9.1.1
+
+$ nvidia-smi
+Tue Sep 15 21:58:48 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.43.02              KMD Version: 610.62        CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 5060        On  |   00000000:01:00.0  On |                  N/A |
+| 30%   46C    P3             17W /  145W |    3281MiB /   8151MiB |      4%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A             364      G   /Xwayland                             N/A      |
++-----------------------------------------------------------------------------------------+
+

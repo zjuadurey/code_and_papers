@@ -1,0 +1,36 @@
+{
+  "benchmark_directory": "/home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/results/ssd_materialization/workdir",
+  "storage_environment_class": "wsl2_ext4_vhdx",
+  "filesystem": "ext4",
+  "mount_point": "/",
+  "mount_source": "/dev/sdd",
+  "mount_options": "rw,relatime,discard,errors=remount-ro,data=ordered",
+  "free_bytes_before_run": 814767366144,
+  "block_size": 4096,
+  "device": "sdd",
+  "device_stat_path": "/sys/class/block/sdd/stat",
+  "device_counter_scope": "guest-visible shared block-device",
+  "device_counter_unavailable_reason": null,
+  "device_model": "Virtual Disk",
+  "rotational_flag": "1",
+  "direct_io": {
+    "supported": true,
+    "alignment": 4096,
+    "reason": null
+  },
+  "host_volume": {
+    "DriveLetter": "D",
+    "FileSystem": "NTFS",
+    "SizeRemaining": 46348279808,
+    "Size": 862812704768,
+    "distribution": "Ubuntu-Recovered",
+    "base_path": "\\\\?\\D:\\WSL\\Ubuntu"
+  },
+  "cpu_logical_count": 16,
+  "load_average": [
+    0.14697265625,
+    0.07275390625,
+    0.01123046875
+  ],
+  "kernel": "6.18.33.2-microsoft-standard-WSL2"
+}

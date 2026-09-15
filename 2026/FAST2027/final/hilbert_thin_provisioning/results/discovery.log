@@ -1,0 +1,4 @@
+qdao files/circuits 160 failures 6
+qasmbench files/circuits 254 failures 13
+veriq files/circuits 966 failures 110
+Selected 291 circuits without using outcome metrics

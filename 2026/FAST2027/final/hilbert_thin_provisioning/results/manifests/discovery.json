@@ -1,0 +1,13 @@
+{
+  "prior_local_repository": "not provided",
+  "scanned": 1380,
+  "parse_success": 1240,
+  "parse_failures": 129,
+  "metadata_skips": 11,
+  "selected": 291,
+  "source_counts": {
+    "qdao": 160,
+    "qasmbench": 254,
+    "veriq": 966
+  }
+}
