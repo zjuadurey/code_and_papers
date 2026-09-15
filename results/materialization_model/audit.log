@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "timestamp": "2026-09-15T15:06:17.449977+00:00",
+  "current_git_commit": "765b480e46642b5a84e61bb3db1e284f0f4f8cd6",
+  "parent_git_commit": "61dc1b762a337e9f4d751477830db5614238765f",
+  "previous_phase_commit": "765b480e46642b5a84e61bb3db1e284f0f4f8cd6",
+  "frozen_prior_files": 5543,
+  "prior_outputs_unchanged": true,
+  "views": 718,
+  "trace_rows": 487533,
+  "real_circuits": 251,
+  "primary_candidates": 90,
+  "primary_common_valid": 86,
+  "tests_passed": 194,
+  "false_virtual": 0,
+  "fused_correctness_cases": 1600,
+  "report_sha256": "d63871016ff4f503f6a193b69e63394f3f5ccd3c9b6c34cfd259ab1a08bea074"
+}

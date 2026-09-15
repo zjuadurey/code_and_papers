@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "skips": [],
+  "scope": "CPU NumPy memory mechanism sanity check; NOT SSD traffic or simulator speedup",
+  "isolated_process_per_trial": true
+}

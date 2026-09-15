@@ -1,0 +1,22 @@
+{
+  "mechanism_result": "PROMISING",
+  "primary_candidates": 90,
+  "primary_common_valid": 86,
+  "excluded_m16": 4,
+  "real_circuits": 251,
+  "median_eager_to_basis_rewrite": 1.4890354567855826,
+  "median_eager_to_basis_thin": 1.4890354567855826,
+  "median_eager_to_product_fused": 5.243420987783236,
+  "median_basis_thin_to_product_fused": 1.2957357191467629,
+  "median_observed_virtual_window_fraction": 0.0119047619047619,
+  "median_completed_physicalization_delay_fraction": 0.007399577167019,
+  "never_physicalized_quantum_qubits": 510,
+  "quantum_qubits": 2123,
+  "median_materialization_write_reduction": 1.5,
+  "median_event_bearing_product_reduction": 1.9936738952431323,
+  "minimum_next_mechanisms": [
+    "A. logical/physical qubit remapping",
+    "C. product-state metadata",
+    "D. fused first-entangler materialization"
+  ]
+}

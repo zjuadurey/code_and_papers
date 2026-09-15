@@ -1,0 +1,180 @@
+trace-driven static model — NOT measured SSD traffic
+{
+  "run_id": "20260915T150221.309310Z",
+  "raw_directory": "results/materialization_model/raw/20260915T150221.309310Z",
+  "code_sha256": {
+    "src/htp/__init__.py": "946ed596cfbf18bd568f216c566607c40e9b3d470c789d0caf98e30400f357c2",
+    "src/htp/abstract_state.py": "076773e54b0762bbe90f7904bbbf965857ce9e38c1babbb905ec7b61e16a1d14",
+    "src/htp/analyzer.py": "353a1628182d408ecce6a3f5e5dca8a3ae0abaef19692655cee3b99e84600792",
+    "src/htp/fused_materialization.py": "7c9a5b56201bbe1373be3366c649beef0f921827907e1618506e8d9a89bfc8bf",
+    "src/htp/gate_semantics.py": "642baa04860e39c29fbfe8e5a007e117116013b1210bdcc4c77a4783b7c01d76",
+    "src/htp/loaders.py": "15914571b4d0d5a69872916309d4fc9abe811543cedd27c31094bf7bba61ef10",
+    "src/htp/materialization_policy.py": "56d17c00ee00ee03d808c9c6091acfeba0b4f5133a939e40874aea5b6ea4a598",
+    "src/htp/metrics.py": "84eae64709b64254d505f8ef4634073b1be34390ef6fc8f422015c107571732c",
+    "src/htp/product_state_model.py": "76d05120698bffdce0b9a2cb35c1ac4a8629019d4bf28df240224f70edc04eac",
+    "src/htp/qdao_model.py": "9e6adc9d56ef2716438b64435878ea9695635c960009b8206c9f8a8c14df9269",
+    "src/htp/qdao_trace_model.py": "1af47b40a20b4d9a8a7278fd953fa16311f7817a40f34aa0a260e314a3ec4caa",
+    "src/htp/traffic_model.py": "c03d00a3130094c25c6abc9f54348951f897a2c9024762d8c29ddbb11dee2875",
+    "src/htp/validation.py": "f2de2d2939115c6a76808bf217f3bb9f8da09fac2cd0354af22140172dce059b",
+    "src/htp/workload_discovery.py": "3e8cf653014e5c9bc737b6c9ddebcdfea09e254ce4c19856938fd124d5722ad4",
+    "src/htp/workload_generators.py": "85c82bc82a6f780c7d4430f5d104a45e678bf1ad7989354540e0b439dfc19d15",
+    "scripts/_common.py": "f9b072194dba17e3814a331a284e87313caa91357d8815f479994221ecb12fb8",
+    "scripts/_materialization_common.py": "e8fc6c0e3f536e731fdd45d41c7261dac2640cef96d09325a4df0d279370f372",
+    "scripts/analyze_materialization_results.py": "3d19962755a08add199798cb5e0ccf8b3452b8119d973371693346db49eb9333",
+    "scripts/analyze_results.py": "c8ade5a076a7ad4aa10ee7a55ab75df035f9165b68b0f7d550aab9a1b00fa352",
+    "scripts/audit_artifacts.py": "fc3ade3dfbee8e391c00879aa72c961d388c4aa6e290e0fe1796dd0ca4c2a7d8",
+    "scripts/audit_materialization_results.py": "8330a4559b8a33d8650e8c9be26df425e523fbdd41bdf15947e9a139113b11ed",
+    "scripts/benchmark_fused_materialization.py": "dc595b200ab3254617a4cfed8a1eaeb435a2ae4ba9a54e91b37fcff165282564",
+    "scripts/bootstrap_check.py": "211c7e4103b461a7ba69041b58622244513fbad2dfe265825d6da19a5b3149c1",
+    "scripts/discover_workloads.py": "62a5a2be7b7983427f818019939f341daa6d52b7776703abcaffa16b5b96ef8b",
+    "scripts/plot_materialization_results.py": "8626ab7a927ee23c25f697a394371c6eb08738bfe18c8ed7e2cc1f74c0bce559",
+    "scripts/plot_results.py": "51bc4eb878b656b906fe2cea68d52addb1617a3e458726405dd5f9ca999f096f",
+    "scripts/run_all.sh": "8514b68998052e2ff909bb74b380183a9916f2b4e0d179b3a26dca6a97f26214",
+    "scripts/run_characterization.py": "c7982d6d364667ab300094a285051740c230bac12b0bea414d5eeb8aab8b17ad",
+    "scripts/run_materialization_all.sh": "1abf75096491cff056a2713a4a62e29d400a328ccc110623a03c03ecfae4992c",
+    "scripts/run_materialization_model.py": "a5e70e26da0e69e8f9a000dda4aa779ca07a6dcac9473670904d3a854a1da8fa",
+    "scripts/validate_product_virtualization.py": "4851b27447242cf1beeffc804ac4e96a33bbacba76740ced2b3ad6f40fcca7fe",
+    "scripts/validate_small_exact.py": "4445eb212960bbe9f7cefbeadc8a179010ec8966ae2d9dcffecdf2240138e803",
+    "configs/analysis.yaml": "126677a754d9df09dcc1da00666c87cfc6d8f172f860047b9d2f66d8d9e9c8af",
+    "configs/materialization_model.yaml": "a27cf9e1e301f220aa1180af73b69cd0a0b351979a0d450942e2d649d4b69336",
+    "configs/workloads.yaml": "a63c8f7a079ee7398ef9562be44d4e1e614589f6d574c61a2500942f9d5597a2"
+  },
+  "input_summary_sha256": "e59e8e43514ef34c5131cb25503a0c05727cd6887948fec9aff0522396f5c262",
+  "external_repositories_sha256": "30a3fbf54b0757c3c899efe6b220f60b54e1711e6ccd4f8af856db76ebff0de6",
+  "primary_eligible": 90,
+  "real_circuits": 251,
+  "views": 718,
+  "output_sha256": {
+    "results/materialization_model/workload_policy_results.csv": "24f5a85e2d6618fbba29486f725542d0e8f28b56613a9b1a3db19cd4ec0469a0",
+    "results/materialization_model/physicalization_events.csv": "56a70e0c75d4e97996845a715b089e9e191045239869452dca4cc6c1cd95045e",
+    "results/materialization_model/qubit_lifetimes.csv": "028b1dc61077957feb07ae0582bf94bc06201c2bc830eca4fd974096c0c89b14",
+    "results/materialization_model/gate_event_trace.csv": "dc157d40f1212653adc935b5e0d120ca1cdf87af508d0bea6b67eb7a9d82b09d",
+    "results/materialization_model/sensitivity.csv": "f57efe94313453c3ac5d54fbcd1b06b2ab39fb12f8f73b3dd205dfc394a5c92a",
+    "results/materialization_model/oracle_exclusions.csv": "02403c15c1fd4f29c536610a2286d02ad3aa8089b267818a4e53eb1f727eca42",
+    "results/materialization_model/batch_sensitivity.csv": "ef1373c8157d28a483ccaacb9b22664ea83aaa9fdb09298cb56e070b4a91452c"
+  }
+}
+$ git rev-parse HEAD
+765b480e46642b5a84e61bb3db1e284f0f4f8cd6
+
+$ git rev-parse HEAD^
+61dc1b762a337e9f4d751477830db5614238765f
+
+$ git status --short
+ M README.md
+?? MATERIALIZATION_REPORT.md
+?? configs/materialization_model.yaml
+?? notes/materialization_model_semantics.md
+?? results/materialization_model/
+?? scripts/_materialization_common.py
+?? scripts/analyze_materialization_results.py
+?? scripts/audit_materialization_results.py
+?? scripts/benchmark_fused_materialization.py
+?? scripts/plot_materialization_results.py
+?? scripts/run_materialization_all.sh
+?? scripts/run_materialization_model.py
+?? scripts/validate_product_virtualization.py
+?? src/htp/fused_materialization.py
+?? src/htp/materialization_policy.py
+?? src/htp/product_state_model.py
+?? src/htp/qdao_trace_model.py
+?? src/htp/traffic_model.py
+?? tests/test_fused_materialization.py
+?? tests/test_physicalization_rules.py
+?? tests/test_policy_monotonicity.py
+?? tests/test_product_state_semantics.py
+?? tests/test_traffic_accounting.py
+
+$ conda info
+
+     active environment : base
+    active env location : /home/audrey/miniconda3
+            shell level : 1
+       user config file : /home/audrey/.condarc
+ populated config files : /home/audrey/miniconda3/.condarc
+                          /home/audrey/miniconda3/condarc.d/anaconda-auth.yml
+          conda version : 26.5.3
+    conda-build version : not installed
+         python version : 3.14.6.final.0
+                 solver : libmamba (default)
+       virtual packages : __archspec=1=skylake
+                          __conda=26.5.3=0
+                          __cuda=13.3=0
+                          __glibc=2.43=0
+                          __linux=6.18.33.2=0
+                          __unix=0=0
+       base environment : /home/audrey/miniconda3  (writable)
+      conda av data dir : /home/audrey/miniconda3/etc/conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/linux-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/linux-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+          package cache : /home/audrey/miniconda3/pkgs
+                          /home/audrey/.conda/pkgs
+       envs directories : /home/audrey/miniconda3/envs
+                          /home/audrey/.conda/envs
+    temporary directory : /tmp
+               platform : linux-64
+             user-agent : conda/26.5.3 requests/2.34.2 CPython/3.14.6 Linux/6.18.33.2-microsoft-standard-WSL2 ubuntu/26.04 glibc/2.43 solver/libmamba conda-libmamba-solver/26.6.0 libmambapy/2.3.2 aau/0.8.1 c/. s/. e/.
+                UID:GID : 1000:1000
+             netrc file : None
+           offline mode : False
+
+
+$ /home/audrey/miniconda3/envs/htp-static/bin/python --version
+Python 3.11.16
+
+$ /home/audrey/miniconda3/envs/htp-static/bin/python -m pip freeze
+antlr4-python3-runtime==4.13.2
+contourpy==1.3.3
+cycler==0.12.1
+dill==0.4.1
+fonttools==4.65.0
+iniconfig==2.3.0
+kiwisolver==1.5.1
+matplotlib==3.11.2
+networkx==3.6.1
+numpy==2.4.6
+openqasm3==1.0.1
+packaging @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_packaging_1785888127/work
+pandas==3.0.5
+pillow==12.3.0
+pluggy==1.6.0
+psutil==7.2.2
+Pygments==2.21.0
+pyparsing==3.3.2
+pytest==9.1.1
+python-dateutil==2.9.0.post0
+PyYAML==6.0.3
+qiskit==2.5.2
+qiskit-aer==0.17.2
+qiskit-qasm3-import==0.6.0
+rustworkx==0.18.1
+scipy==1.17.1
+six==1.17.0
+stevedore==5.9.1
+tqdm==4.70.1
+typing_extensions==4.16.0
+
+name,local_path,repository,git_commit,git_branch,dirty,clone_date
+qdao,external/qdao,https://github.com/Zhaoyilunnn/qdao.git,fb360e6670b9818a3d4e106fb21cf605838be0a4,main,False,2026-09-15T13:35:51+00:00
+QASMBench,external/QASMBench,https://github.com/pnnl/QASMBench.git,357b942396d5c2b7cbc1c229c585a6ef5ccaebac,master,False,2026-09-15T13:36:08+00:00
+veriq-benchmark,external/veriq-benchmark,https://github.com/Veri-Q/Benchmark.git,1c03e45371e5701f62c123943dec1cace4d46767,main,False,2026-09-15T13:35:51+00:00
+qcs,external/qcs,https://github.com/Zhaoyilunnn/quantum-computing-resources.git,c03dfa056ab2f765847b536494480081daa8caad,main,False,2026-09-15T13:37:33+00:00
+
+CONFIG
+seed: 20260916
+amplitude_bytes: 16
+primary_m: 16
+qdao_m: [16, 18, 20, 22, 24]
+fixed_t: 2
+proof_tolerance: 1.0e-10
+numerical_budget: 1.0e-12
+exact_random_circuits: 500
+fused_cases: 1600
+chunk_bytes: [4096, 65536, 1048576, 4194304]
+amplitude_byte_sensitivity: [8, 16]
+microbenchmark_q: [18, 20, 22, 24]
+microbenchmark_repeats: 3
+primary_accounting: conservative_additive_checkpoints

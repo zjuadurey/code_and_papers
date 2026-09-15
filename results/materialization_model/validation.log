@@ -1,0 +1,35 @@
+........................................................................ [ 37%]
+........................................................................ [ 74%]
+..................................................                       [100%]
+=============================== warnings summary ===============================
+tests/test_loaders.py::test_arithmetic_portable_qpy
+  /home/audrey/miniconda3/envs/htp-static/lib/python3.11/site-packages/qiskit/circuit/library/arithmetic/integer_comparator.py:54: DeprecationWarning: The class ``qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. There is no direct replacement other than the QuantumCircuit class.
+    super().__init__(name=name)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+194 passed, 1 warning in 3.44s
+Random product circuits 100
+Random product circuits 200
+Random product circuits 300
+Random product circuits 400
+Random product circuits 500
+{
+  "status": "PASS",
+  "false_virtual": 0,
+  "false_virtual_violations": 0,
+  "product_validation_cases": 1216,
+  "prefixes": 58665,
+  "virtual_claims": 136965,
+  "P_claims": 62524,
+  "max_impurity": 1.2501111257279263e-13,
+  "max_vector_projector_error": 6.250555628639631e-14,
+  "fused_correctness_cases": 1600,
+  "max_fused_infidelity": 4.440892098500626e-16,
+  "max_fused_amplitude_error": 2.237726045655905e-16,
+  "seed": 20260916,
+  "exact_max_qubits": 8,
+  "fused_max_qubits": 12,
+  "tolerance": 1e-10,
+  "tests_passed": 194,
+  "test_failures": 0
+}

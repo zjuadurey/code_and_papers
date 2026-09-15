@@ -1,0 +1,12 @@
+gate_name,trigger_reason,events,dimensions,median_batch
+cx,cx_materialized_control,462,462,1.0
+cx,cx_product_control,244,448,2.0
+cz,controlled_diagonal_backing,156,156,1.0
+cp,controlled_diagonal_backing,114,114,1.0
+cswap,multi_qubit_gate,111,158,1.0
+cz,cz_product_pair,55,110,2.0
+ccx,multi_qubit_gate,54,112,2.0
+cy,controlled_rotation,24,29,1.0
+ryy,generic_entangler,6,12,2.0
+cp,cz_product_pair,4,8,2.0
+rzz,controlled_diagonal_backing,4,4,1.0

@@ -97,3 +97,32 @@ python scripts/audit_artifacts.py
 | `results/figures/` | 六张主图，PNG 与 PDF |
 
 不把 basis-only reversible circuits 等同于一般量子算法输入，不把 q_peak=n 的 delayed allocation 叫 peak capacity reduction，不将 generated/synthetic circuits 混入 real-workload aggregate。
+
+## 第二阶段：materialization mechanism study
+
+报告：[MATERIALIZATION_REPORT.md](MATERIALIZATION_REPORT.md)。此阶段只读取冻结的上一阶段输入和结果，所有新输出位于 `results/materialization_model/`。重现本阶段请使用以下独立入口；上面的第一阶段命令会重建第一阶段结果，不属于本轮执行流程。
+
+```bash
+conda activate htp-static
+bash scripts/run_materialization_all.sh
+```
+
+逐步执行：
+
+```bash
+pytest -q
+python scripts/run_materialization_model.py
+python scripts/validate_product_virtualization.py
+python scripts/benchmark_fused_materialization.py
+python scripts/analyze_materialization_results.py
+python scripts/plot_materialization_results.py
+python scripts/audit_materialization_results.py
+```
+
+- `notes/materialization_model_semantics.md` 定义 K0/K1/P/M、bounded local isometry proof、SWAP remapping、四种 policy 及计费假设。每个 virtual qubit 必须与 rest factorized；M 不 dematerialize。符号单比特 unitary 保留为未知 local pure factor。
+- 主集为冻结的 90 个 20–40q lowered real circuits。固定 m=16、t=2 的 common-valid 集合为 86；其余 4 个完整分析但单门超过 oracle 分区容量。其余 m 仅用于 sensitivity，n≤m 的结果明确标记 in-memory analytical extension。
+- 主计费为 conservative additive checkpoints：正常 QDAO traversal 加物化 read/write；另给 boundary fusion 和 resident 乐观界。BASIS_THIN 的 ZERO 插入无 amplitude I/O，但 dense gate output 仍计费，因此主表 BASIS_THIN=BASIS_REWRITE。这不意味着文件系统 sparse extents 免费，也不证明 ZERO extents 没有实现价值。
+- PRODUCT_FUSED 的两标量 metadata 延迟 backing dimension，直到不能证明保持 factorization 的 interaction。NumPy correctness prototype 验证直接生成 post-gate output，不分配 expanded input。性能 microbenchmark 只测 CPU RAM，逐 trial 独立进程，q≤24；没有 SSD backend 或 measured SSD traffic。
+- 测试及 exact validation 结果记录于新的 `verification.json`；前一阶段全部结果的 SHA256 保存在 `prior_results_frozen.json` 并在每阶段复核。`run_manifest.json`、`reproducibility.txt` 和 `artifact_audit.json` 记录源代码、配置、输入、外部仓库、输出与当前 commit 的溯源。
+- `policy_summary.csv` 是主集汇总；`workload_policy_results.csv` 保留所有表示、policy、m 的独立行；其余主要表为 `qubit_lifetimes.csv`、`physicalization_events.csv`、`gate_event_trace.csv`、`sensitivity.csv`。never-physicalized lifetimes 为右删失，不虚构 circuit-end 物化事件。七张图各提供 PNG/PDF。
+- 本轮结果是 **trace-driven static model — NOT measured SSD traffic**。不把模型 byte reduction 或 RAM microbenchmark 叫 SSD speedup。特别单列 all-product/no-event 输入与实际发生物化的 circuits，避免由巨大 scalar-backing 比例掩盖适用边界。

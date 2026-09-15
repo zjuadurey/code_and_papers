@@ -1,0 +1,7 @@
+workload_id,source,family,n,reduction_vs_eager
+qdao_697fba7b6720fb11_0,qdao,arithmetic,30,1073741824.0
+qasmbench_e17668cbd88ae908_0,qasmbench,qft,29,536870912.0
+veriq_8b22a3d4354f5421_0,veriq,qaoa,35,1.9842539056226216
+veriq_bcc9faaaa845cf45_0,veriq,random,40,1.3520980496510302
+veriq_caf4f6fd0033a07b_0,veriq,grover_oracle,33,5.240685264728448
+qasmbench_f31c4f2beba87afc_0,qasmbench,state_preparation,40,1.4996338337680275
