@@ -207,3 +207,20 @@ python scripts/analyze_end_to_end_scaling.py
 从已有数据再生时，先运行 `analyze_end_to_end.py`，再运行 `analyze_end_to_end_scaling.py`。
 核心阶段的 `audit_end_to_end.py` 检查四张主表；扩展后 LaTeX 文件另含两张子集表，
 最终核查记录在扩展目录。归档的 Phase A/B 数据请在独立 checkout 中复现，避免覆盖。
+
+本次已完成：26q 的 `cdkm_superposed`、`qaoa`，以及 28q 的 `cdkm_superposed`，
+每点三种系统各三次，共 27 个扩展样本；完整主矩阵另有 216 个样本。
+范围见 `results/end_to_end_scaling/coverage.csv`，跨规模中位数见 `combined_size_trends.csv`。
+28q 的输入准备与运行命令为：
+
+```bash
+python scripts/prepare_end_to_end_scaling.py --size 28 --families cdkm_superposed
+python scripts/run_end_to_end_scaling.py --size 28 --families cdkm_superposed
+python scripts/analyze_end_to_end_scaling.py
+python scripts/audit_end_to_end_scaling.py
+```
+
+28q 曾因原先统一 3B 的容量预留而安全暂停。核查 bank 生命周期后，将预留改为
+保守的 `2B + 1 GiB`，仍限制在宿主盘/客体较小空闲空间的 70% 内；没有改动计时执行代码。
+该估算仅支持本次 26/28q、t=12、文件系统 block 不大于 4 KiB 的条件，并有独立测试。
+暂停、修订及全部样本都保存在扩展目录，没有丢弃慢样本或清理其他用户文件。

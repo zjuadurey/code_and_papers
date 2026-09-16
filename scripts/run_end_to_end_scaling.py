@@ -15,6 +15,7 @@ import time
 
 import pandas as pd
 from htp.storage.environment_probe import host_free, host_volume
+from htp.e2e.capacity import scaling_capacity_bytes
 
 
 def digest(path):
@@ -50,6 +51,7 @@ def main():
     pd.concat([recorded, selected]).drop_duplicates('workload_id').to_csv(selected_path, index=False)
     sources = {p: digest(p) for p in [
         'src/htp/e2e/runtime.py', 'src/htp/e2e/gbsa.py',
+        'src/htp/e2e/capacity.py',
         'scripts/run_end_to_end_scaling.py',
         'scripts/run_e2e_case.py', 'scripts/run_gbsa_case.py',
         'results/end_to_end_workloads.csv', 'patches/qdao_current_qiskit.patch']}
@@ -91,7 +93,12 @@ def main():
                 host_capacity = host_free(host['DriveLetter']) if host else None
                 if host_capacity is not None:
                     free = min(free, host_capacity)
-                if 3 * 16 * (1 << args.size) > .7 * free:
+                required = scaling_capacity_bytes(args.size, os.statvfs(root).f_frsize)
+                if required > .7 * free:
+                    with (root / 'capacity_stops.jsonl').open('a') as handle:
+                        handle.write(json.dumps(dict(workload_id=row.workload_id, system=method,
+                            repetition=repetition, free_bytes=free, required_bytes=required,
+                            time_unix=time.time())) + '\n')
                     raise RuntimeError('Insufficient safe disk capacity; do not run an incomplete comparison silently')
                 assert all(digest(p) == sha for p, sha in sources.items())
                 command = [sys.executable,
@@ -101,7 +108,7 @@ def main():
                     command += ['--system', method]
                 with (root / 'execution_order.jsonl').open('a') as handle:
                     handle.write(json.dumps(dict(command=command, start_unix=time.time(),
-                        free_bytes=free, load_average=os.getloadavg())) + '\n')
+                        free_bytes=free, required_capacity_bytes=required, load_average=os.getloadavg())) + '\n')
                 print('START', row.workload_id, method, repetition, flush=True)
                 subprocess.run(command, check=True, env=dict(os.environ,
                     OMP_NUM_THREADS='1', OPENBLAS_NUM_THREADS='1', MKL_NUM_THREADS='1'))

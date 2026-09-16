@@ -8,4 +8,4 @@ tests/test_loaders.py::test_arithmetic_portable_qpy
     super().__init__(name=name)
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-249 passed, 1 warning in 7.14s
+249 passed, 1 warning in 6.12s

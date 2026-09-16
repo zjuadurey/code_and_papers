@@ -1,3 +1,4 @@
 workload_id,family,n,source,input_file,hash,gate_count,depth,representation,m,t,threads,precision
 cdkm_superposed_26,cdkm_superposed,26,existing CDKMRippleCarryAdder; width=12; prep=superposed,results/qdao_end_to_end/inputs/cdkm_superposed_26.qpy,ca9a4e9657be2f590e17cc910393b8b5c0f40346e2a00c2e291ba832d639d7ae,422,292,lowered_u_cx_optimization_0,16,12,1,complex128
 qaoa_26,qaoa,26,existing workload_generators.generate: QAOA MaxCut ring p=3 gamma=.355 beta=.185,results/qdao_end_to_end/inputs/qaoa_26.qpy,605d1cf91d8ea6c113da43035edc7e37453481536171662fb83d8f5fe75abdbf,338,238,lowered_u_cx_optimization_0,16,12,1,complex128
+cdkm_superposed_28,cdkm_superposed,28,existing CDKMRippleCarryAdder; width=13; prep=superposed,results/end_to_end_scaling/inputs/cdkm_superposed_28.qpy,b1bf08b6f2fdc1db63bbe695b87c02fb8be39dcdbc673976f5a6862336c91a06,457,316,lowered_u_cx_optimization_0,16,12,1,complex128

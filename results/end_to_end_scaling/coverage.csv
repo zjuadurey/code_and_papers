@@ -1,0 +1,41 @@
+workload_id,family,n,status,measured_runs,systems,scope
+cdkm_basis_20,cdkm_basis,20,COMPLETED,9,3,required core
+cdkm_basis_22,cdkm_basis,22,COMPLETED,9,3,required core
+cdkm_basis_24,cdkm_basis,24,COMPLETED,9,3,required core
+cdkm_basis_26,cdkm_basis,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+cdkm_basis_28,cdkm_basis,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+cdkm_superposed_20,cdkm_superposed,20,COMPLETED,9,3,required core
+cdkm_superposed_22,cdkm_superposed,22,COMPLETED,9,3,required core
+cdkm_superposed_24,cdkm_superposed,24,COMPLETED,9,3,required core
+cdkm_superposed_26,cdkm_superposed,26,COMPLETED,9,3,representative scaling subset
+cdkm_superposed_28,cdkm_superposed,28,COMPLETED,9,3,representative scaling subset
+comparator_20,comparator,20,COMPLETED,9,3,required core
+comparator_22,comparator,22,COMPLETED,9,3,required core
+comparator_24,comparator,24,COMPLETED,9,3,required core
+comparator_26,comparator,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+comparator_28,comparator,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+grover_oracle_20,grover_oracle,20,COMPLETED,9,3,required core
+grover_oracle_22,grover_oracle,22,COMPLETED,9,3,required core
+grover_oracle_24,grover_oracle,24,COMPLETED,9,3,required core
+grover_oracle_26,grover_oracle,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+grover_oracle_28,grover_oracle,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+hea_20,hea,20,COMPLETED,9,3,required core
+hea_22,hea,22,COMPLETED,9,3,required core
+hea_24,hea,24,COMPLETED,9,3,required core
+hea_26,hea,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+hea_28,hea,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+mcx_oracle_20,mcx_oracle,20,COMPLETED,9,3,required core
+mcx_oracle_22,mcx_oracle,22,COMPLETED,9,3,required core
+mcx_oracle_24,mcx_oracle,24,COMPLETED,9,3,required core
+mcx_oracle_26,mcx_oracle,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+mcx_oracle_28,mcx_oracle,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+qaoa_20,qaoa,20,COMPLETED,9,3,required core
+qaoa_22,qaoa,22,COMPLETED,9,3,required core
+qaoa_24,qaoa,24,COMPLETED,9,3,required core
+qaoa_26,qaoa,26,COMPLETED,9,3,representative scaling subset
+qaoa_28,qaoa,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+qft_20,qft,20,COMPLETED,9,3,required core
+qft_22,qft,22,COMPLETED,9,3,required core
+qft_24,qft,24,COMPLETED,9,3,required core
+qft_26,qft,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset
+qft_28,qft,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset

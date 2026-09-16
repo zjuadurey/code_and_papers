@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-09-16T04:39:17.300975+00:00",
+  "selected_workload": "cdkm_superposed_28",
+  "systems": 3,
+  "repetitions": 3,
+  "reason": "One predeclared arithmetic scaling point after complete audited primary core and balanced 26q subset; no additional points.",
+  "planning_only": true,
+  "conservative_time_estimate_s": 8472.58368526795,
+  "size_step_multiplier": 6,
+  "estimated_finish": "2026-09-16T07:00:29.884660+00:00",
+  "free_bytes_min_host_guest": 30012317696,
+  "capacity_reserve_bytes": 12884901888,
+  "main_checkpoint": "756965a",
+  "scaling_26_checkpoint": "e3832ce"
+}

@@ -1,0 +1,247 @@
+{
+  "workload_id": "cdkm_superposed_28",
+  "family": "cdkm_superposed",
+  "n": 28,
+  "gate_count": 457,
+  "depth": 316,
+  "system": "QThin",
+  "repetition": 1,
+  "input_hash": "b1bf08b6f2fdc1db63bbe695b87c02fb8be39dcdbc673976f5a6862336c91a06",
+  "m": 16,
+  "t": 12,
+  "threads": 1,
+  "io_mode": "buffered_npy",
+  "load_average": [
+    0.29638671875,
+    1.20556640625,
+    1.849609375
+  ],
+  "aer_state_injection": "shared normalized set_statevector",
+  "available_memory_before": 13396582400,
+  "runtime_sha256": "ca8916090d92e3a99ed556ee2ef729ef683d29c0c4afa9969372e316e8eeab94",
+  "compatibility_patch_sha256": "aa1a6b53472de4da4d499348f96acd84a32b7c21be09c58dd751fcf6bce03264",
+  "wall_time_s": 552.4863153120386,
+  "user_cpu_s": 270.885273,
+  "system_cpu_s": 63.448455,
+  "peak_rss_bytes": 498425856,
+  "algorithmic_read_bytes": 17750426128,
+  "algorithmic_write_bytes": 22045393424,
+  "file_read_bytes": 17785169040,
+  "file_write_bytes": 22088524944,
+  "compute_unit_count": 21026,
+  "state_traversals": 9,
+  "sync_time_s": 81.2801017370075,
+  "sync_barrier_count": 1,
+  "fdatasync_calls": 65536,
+  "initial_q_physical": 0,
+  "final_q_physical": 28,
+  "peak_q_physical": 28,
+  "materialization_event_count": 5,
+  "logical_activation_event_count": 15,
+  "materialized_dimensions_total": 28,
+  "fused_materialization_count": 5,
+  "materialization_bytes_read": 570556944,
+  "materialization_bytes_written": 4865524224,
+  "time_spent_materializing": 62.98972805897938,
+  "events": [
+    {
+      "block": 0,
+      "gate_events": [
+        {
+          "gate_index": 15,
+          "gate": "cx",
+          "old_q": 0,
+          "new_q": 2,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        },
+        {
+          "gate_index": 16,
+          "gate": "cx",
+          "old_q": 2,
+          "new_q": 3,
+          "batch": 1,
+          "trigger": "cx_materialized_control",
+          "block": 0
+        },
+        {
+          "gate_index": 32,
+          "gate": "cx",
+          "old_q": 3,
+          "new_q": 5,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        }
+      ],
+      "old_q": 0,
+      "new_q": 5,
+      "batch": 5,
+      "read_bytes": 16,
+      "write_bytes": 512,
+      "elapsed_s": 0.011596083000767976
+    },
+    {
+      "block": 1,
+      "gate_events": [
+        {
+          "gate_index": 49,
+          "gate": "cx",
+          "old_q": 5,
+          "new_q": 7,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 66,
+          "gate": "cx",
+          "old_q": 7,
+          "new_q": 9,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 83,
+          "gate": "cx",
+          "old_q": 9,
+          "new_q": 11,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 100,
+          "gate": "cx",
+          "old_q": 11,
+          "new_q": 13,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        }
+      ],
+      "old_q": 5,
+      "new_q": 13,
+      "batch": 8,
+      "read_bytes": 512,
+      "write_bytes": 131072,
+      "elapsed_s": 0.0160533880116418
+    },
+    {
+      "block": 2,
+      "gate_events": [
+        {
+          "gate_index": 117,
+          "gate": "cx",
+          "old_q": 13,
+          "new_q": 15,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 134,
+          "gate": "cx",
+          "old_q": 15,
+          "new_q": 17,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 151,
+          "gate": "cx",
+          "old_q": 17,
+          "new_q": 19,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 168,
+          "gate": "cx",
+          "old_q": 19,
+          "new_q": 21,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 2
+        }
+      ],
+      "old_q": 13,
+      "new_q": 21,
+      "batch": 8,
+      "read_bytes": 131072,
+      "write_bytes": 33554432,
+      "elapsed_s": 0.5847961109830067
+    },
+    {
+      "block": 3,
+      "gate_events": [
+        {
+          "gate_index": 185,
+          "gate": "cx",
+          "old_q": 21,
+          "new_q": 23,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 3
+        },
+        {
+          "gate_index": 202,
+          "gate": "cx",
+          "old_q": 23,
+          "new_q": 25,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 3
+        }
+      ],
+      "old_q": 21,
+      "new_q": 25,
+      "batch": 4,
+      "read_bytes": 33554432,
+      "write_bytes": 536870912,
+      "elapsed_s": 6.451874257996678
+    },
+    {
+      "block": 4,
+      "gate_events": [
+        {
+          "gate_index": 219,
+          "gate": "cx",
+          "old_q": 25,
+          "new_q": 27,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 4
+        },
+        {
+          "gate_index": 236,
+          "gate": "cx",
+          "old_q": 27,
+          "new_q": 28,
+          "batch": 1,
+          "trigger": "cx_materialized_control",
+          "block": 4
+        }
+      ],
+      "old_q": 25,
+      "new_q": 28,
+      "batch": 3,
+      "read_bytes": 536870912,
+      "write_bytes": 4294967296,
+      "elapsed_s": 55.925408218987286
+    }
+  ],
+  "proc_rchar": 18931543375,
+  "proc_wchar": 22088524944,
+  "proc_syscr": 1357014,
+  "proc_syscw": 673930,
+  "proc_read_bytes": 131072,
+  "proc_write_bytes": 23425470464,
+  "proc_cancelled_write_bytes": 415567872,
+  "device_read_bytes": 3629056,
+  "device_write_bytes": 23770796032
+}

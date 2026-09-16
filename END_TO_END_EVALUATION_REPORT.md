@@ -2,10 +2,16 @@
 
 QDAO integration status: completed; Phase A result **STRONG**; commit `79ab9a1`.
 GBSA reproduction status: completed, independent paper-policy implementation.
-Workloads completed: 24 points (8 variants × 20/22/24q), 216 timed runs total.
+Workloads completed: 24 points (8 variants × 20/22/24q), 216 core timed runs.
 20q completed: yes. 22q completed: yes. 24q completed: yes.
 26q: outside this required-core dataset; see the separate representative scaling extension.
 Correctness: 195 Phase A cases + 195 GBSA cases; **0 failures**.
+
+<!-- scaling-coverage -->
+Representative 26q extension: completed (2 workload-size points).
+Representative 28q extension: completed (1 arithmetic point); other 28q workloads were not measured.
+Core plus extension: **243 measured runs**, three repetitions per system at every completed point.
+<!-- /scaling-coverage -->
 
 ## Primary runtime table
 
@@ -198,17 +204,18 @@ alongside the individual samples and CV rather than as resolved superiority.
 
 ## Artifacts
 
-`results/end_to_end_summary.csv`, `results/end_to_end_tables.tex`, `results/gbsa_comparison/{raw_runs,summary,fairness_manifest}.csv`. Four standalone LaTeX table environments; no paper source was edited.
+`results/end_to_end_summary.csv`, `results/end_to_end_tables.tex`, `results/gbsa_comparison/{raw_runs,summary,fairness_manifest}.csv`. Four core LaTeX table environments plus two scaling tables; no paper source was edited.
 
 <!-- representative-scaling-extension -->
 
 ## Completed representative scaling extension
 
-2 additional common points, 18 measured runs; three repetitions per system. These are a preselected subset, not the full larger-size workload matrix.
+3 additional common points, 27 measured runs; three repetitions per system. These are a preselected subset, not the full larger-size workload matrix.
 
 | Workload | $n$ | QDAO (s) | GBSA repr. (s) | QThin (s) | QDAO/QThin | GBSA/QThin |
 |---|---|---|---|---|---|---|
 | cdkm_superposed | 26 | 148.654 | 232.937 | 89.108 | 1.668 | 2.614 |
 | qaoa | 26 | 223.059 | 325.043 | 176.182 | 1.266 | 1.845 |
+| cdkm_superposed | 28 | 1003.765 | 1557.833 | 552.486 | 1.817 | 2.820 |
 
 See `END_TO_END_SCALING_REPORT.md` for traffic, coverage and limitations.
