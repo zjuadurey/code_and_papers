@@ -8,7 +8,7 @@ from qiskit import qpy
 from htp.e2e.runtime import Counters, QThinEngine, original
 
 p=argparse.ArgumentParser()
-p.add_argument('--workload',required=True);p.add_argument('--system',choices=['QDAO','QThin','GBSA'],required=True)
+p.add_argument('--workload',required=True);p.add_argument('--system',choices=['QDAO','QThin'],required=True)
 p.add_argument('--repetition',type=int,required=True);p.add_argument('--output',required=True)
 a=p.parse_args()
 row=pd.read_csv('results/end_to_end_workloads.csv').set_index('workload_id').loc[a.workload]
@@ -26,10 +26,7 @@ def device_io():
     v=list(map(int,path.read_text().split()))
     return dict(device_read_bytes=v[2]*512,device_write_bytes=v[6]*512)
 
-partitioner=None
-if a.system=='GBSA':
-    from htp.e2e.gbsa import GBSAPartitioner
-    partitioner=GBSAPartitioner(np=16,nl=12,backend='qiskit')
+partitioner=None  # A GBSA path requires a verified implementation; none is claimed.
 
 metadata=dict(workload_id=a.workload,family=row.family,n=int(row.n),gate_count=int(row.gate_count),
               depth=int(row.depth),system=a.system,repetition=a.repetition,input_hash=row['hash'],

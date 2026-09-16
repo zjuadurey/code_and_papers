@@ -71,3 +71,77 @@ qft & 24 & 40.750 & 5.750 & 7.087 \\
 \hline
 \end{tabular}
 \end{table*}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Measured runtime medians. GBSA reproduction is source-blocked and NOT RUN; NA is not a performance result.}
+\label{tab:three-way-runtime}
+\begin{tabular}{lrrrrrr}
+\hline
+Workload & $n$ & QDAO (s) & GBSA repr. (s) & QThin (s) & QThin/QDAO speedup & QThin/GBSA speedup \\
+\hline
+cdkm\_basis & 20 & 1.524 & NA & 0.094 & 16.290 & NA \\
+cdkm\_superposed & 20 & 1.534 & NA & 1.099 & 1.397 & NA \\
+comparator & 20 & 2.008 & NA & 1.389 & 1.445 & NA \\
+grover\_oracle & 20 & 26.611 & NA & 21.523 & 1.236 & NA \\
+hea & 20 & 2.021 & NA & 1.134 & 1.782 & NA \\
+mcx\_oracle & 20 & 22.859 & NA & 17.216 & 1.328 & NA \\
+qaoa & 20 & 2.109 & NA & 1.751 & 1.204 & NA \\
+qft & 20 & 7.863 & NA & 2.767 & 2.842 & NA \\
+cdkm\_basis & 22 & 7.143 & NA & 0.102 & 69.714 & NA \\
+cdkm\_superposed & 22 & 7.346 & NA & 4.693 & 1.566 & NA \\
+comparator & 22 & 8.576 & NA & 6.017 & 1.425 & NA \\
+grover\_oracle & 22 & 163.069 & NA & 125.875 & 1.295 & NA \\
+hea & 22 & 9.523 & NA & 4.016 & 2.371 & NA \\
+mcx\_oracle & 22 & 143.641 & NA & 104.824 & 1.370 & NA \\
+qaoa & 22 & 8.667 & NA & 7.108 & 1.219 & NA \\
+qft & 22 & 54.973 & NA & 15.229 & 3.610 & NA \\
+cdkm\_basis & 24 & 28.356 & NA & 0.115 & 246.435 & NA \\
+cdkm\_superposed & 24 & 28.510 & NA & 19.438 & 1.467 & NA \\
+comparator & 24 & 40.902 & NA & 25.825 & 1.584 & NA \\
+grover\_oracle & 24 & 668.044 & NA & 566.727 & 1.179 & NA \\
+hea & 24 & 46.415 & NA & 15.382 & 3.017 & NA \\
+mcx\_oracle & 24 & 578.149 & NA & 465.751 & 1.241 & NA \\
+qaoa & 24 & 41.404 & NA & 33.727 & 1.228 & NA \\
+qft & 24 & 244.512 & NA & 65.400 & 3.739 & NA \\
+\hline
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Instrumented state-payload requests, not SSD traffic. GBSA reproduction was NOT RUN.}
+\label{tab:three-way-traffic}
+\begin{tabular}{lrrrrrr}
+\hline
+Workload & $n$ & QDAO (GiB) & GBSA repr. (GiB) & QThin (GiB) & QDAO/QThin & GBSA/QThin \\
+\hline
+cdkm\_basis & 20 & 0.109 & NA & $1.49\times 10^{-8}$ & $7.34\times 10^{6}$ & NA \\
+cdkm\_superposed & 20 & 0.109 & NA & 0.047 & 2.321 & NA \\
+comparator & 20 & 0.203 & NA & 0.111 & 1.824 & NA \\
+grover\_oracle & 20 & 3.016 & NA & 2.184 & 1.381 & NA \\
+hea & 20 & 0.266 & NA & 0.115 & 2.305 & NA \\
+mcx\_oracle & 20 & 2.578 & NA & 1.746 & 1.477 & NA \\
+qaoa & 20 & 0.266 & NA & 0.189 & 1.402 & NA \\
+qft & 20 & 1.172 & NA & 0.203 & 5.769 & NA \\
+cdkm\_basis & 22 & 0.688 & NA & $1.49\times 10^{-8}$ & $4.61\times 10^{7}$ & NA \\
+cdkm\_superposed & 22 & 0.688 & NA & 0.328 & 2.095 & NA \\
+comparator & 22 & 0.938 & NA & 0.563 & 1.665 & NA \\
+grover\_oracle & 22 & 24.562 & NA & 17.979 & 1.366 & NA \\
+hea & 22 & 1.438 & NA & 0.475 & 3.029 & NA \\
+mcx\_oracle & 22 & 21.812 & NA & 15.229 & 1.432 & NA \\
+qaoa & 22 & 1.188 & NA & 0.830 & 1.431 & NA \\
+qft & 22 & 8.812 & NA & 1.312 & 6.714 & NA \\
+cdkm\_basis & 24 & 2.750 & NA & $1.49\times 10^{-8}$ & $1.85\times 10^{8}$ & NA \\
+cdkm\_superposed & 24 & 2.750 & NA & 1.254 & 2.193 & NA \\
+comparator & 24 & 4.750 & NA & 2.758 & 1.722 & NA \\
+grover\_oracle & 24 & 97.250 & NA & 77.754 & 1.251 & NA \\
+hea & 24 & 7.250 & NA & 1.912 & 3.792 & NA \\
+mcx\_oracle & 24 & 82.250 & NA & 62.754 & 1.311 & NA \\
+qaoa & 24 & 6.250 & NA & 4.393 & 1.423 & NA \\
+qft & 24 & 40.750 & NA & 5.750 & 7.087 & NA \\
+\hline
+\end{tabular}
+\end{table*}

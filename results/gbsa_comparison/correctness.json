@@ -1,0 +1,9 @@
+{
+  "status": "NOT_RUN_SOURCE_BLOCKED",
+  "cases": 0,
+  "failures": null,
+  "validated": false,
+  "reason": "SOURCE_BLOCKED_NO_VERIFIABLE_GBSA_ALGORITHM_OR_ARTIFACT",
+  "phase_a_correctness_cases": 195,
+  "phase_a_failures": 0
+}

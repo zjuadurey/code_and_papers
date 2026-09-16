@@ -163,3 +163,15 @@ python scripts/analyze_qdao_end_to_end.py
 共同输入见 `results/end_to_end_workloads.csv`。主结果和逐次原始 JSON 位于 `results/qdao_end_to_end/`，报告为 `QDAO_INTEGRATION_REPORT.md`。入口按已完成 run ID 恢复，使用文件锁防止重叠实验。不得同时运行此前 SSD microbenchmark。GBSA 阶段必须等待 Phase A 数据审计、封存和 checkpoint commit 完成。
 
 这里测量的是小规模文件后端执行，不是超出 RAM 容量的 OOC 结果。state-payload requests、process accounting 和 shared guest-visible block-device counters 分列；不能把前两者称为物理 SSD bytes。最终表格输出到 `results/end_to_end_tables.tex`，不生成 publication plots。
+
+Phase A 已在 `79ab9a1` 冻结，144 个计时样本、195 个三方 exact cases。`results/qdao_end_to_end/phase_a_hashes.json` 保存完整结果哈希；复现实验请使用独立 checkout，避免覆盖归档结果。
+
+GBSA 阶段目前 **SOURCE_BLOCKED / NOT RUN**：未取得可核实的论文全文算法或官方 artifact。详见 `notes/gbsa_reproduction.md` 和 `GBSA_COMPARISON_REPORT.md`。没有把普通 greedy 分块器冒充 GBSA；GBSA 性能与正确性字段为 NA。恢复该阶段需要 DOI `10.1145/3769002.3769982` 的可读全文或作者 artifact，然后先验证、再计时。
+
+组合报告和四张 LaTeX 表可从已冻结数据再生：
+
+```bash
+python scripts/analyze_end_to_end.py
+```
+
+该命令先核验 Phase A 与所有旧结果哈希；若未来已有 GBSA 原始测量，会拒绝用当前缺失值流程覆盖。最终状态见 `END_TO_END_EVALUATION_REPORT.md`。
