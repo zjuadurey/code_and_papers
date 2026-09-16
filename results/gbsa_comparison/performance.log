@@ -1,0 +1,145 @@
+START 20 comparator 0
+{"workload_id": "comparator_20", "repetition": 0, "wall_time_s": 1.859131786011858, "algorithmic_read_bytes": 83886080, "algorithmic_write_bytes": 100663296, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 2}
+START 20 grover_oracle 0
+{"workload_id": "grover_oracle_20", "repetition": 0, "wall_time_s": 22.488243100990076, "algorithmic_read_bytes": 1073741824, "algorithmic_write_bytes": 1090519040, "gbsa_gate_blocks": 28, "gbsa_swap_passes": 36}
+START 20 qaoa 0
+{"workload_id": "qaoa_20", "repetition": 0, "wall_time_s": 2.120689419010887, "algorithmic_read_bytes": 134217728, "algorithmic_write_bytes": 150994944, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 4}
+START 20 mcx_oracle 0
+{"workload_id": "mcx_oracle_20", "repetition": 0, "wall_time_s": 17.06815178299439, "algorithmic_read_bytes": 704643072, "algorithmic_write_bytes": 721420288, "gbsa_gate_blocks": 20, "gbsa_swap_passes": 22}
+START 20 cdkm_superposed 0
+{"workload_id": "cdkm_superposed_20", "repetition": 0, "wall_time_s": 1.801723476004554, "algorithmic_read_bytes": 83886080, "algorithmic_write_bytes": 100663296, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 2}
+START 20 qft 0
+{"workload_id": "qft_20", "repetition": 0, "wall_time_s": 3.0983768140140455, "algorithmic_read_bytes": 100663296, "algorithmic_write_bytes": 117440512, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 3}
+START 20 hea 0
+{"workload_id": "hea_20", "repetition": 0, "wall_time_s": 1.327148971002316, "algorithmic_read_bytes": 50331648, "algorithmic_write_bytes": 67108864, "gbsa_gate_blocks": 2, "gbsa_swap_passes": 1}
+START 20 cdkm_basis 0
+{"workload_id": "cdkm_basis_20", "repetition": 0, "wall_time_s": 1.7904481000150554, "algorithmic_read_bytes": 83886080, "algorithmic_write_bytes": 100663296, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 2}
+START 20 qft 1
+{"workload_id": "qft_20", "repetition": 1, "wall_time_s": 3.159522631991422, "algorithmic_read_bytes": 100663296, "algorithmic_write_bytes": 117440512, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 3}
+START 20 comparator 1
+{"workload_id": "comparator_20", "repetition": 1, "wall_time_s": 1.8619415260036476, "algorithmic_read_bytes": 83886080, "algorithmic_write_bytes": 100663296, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 2}
+START 20 cdkm_basis 1
+{"workload_id": "cdkm_basis_20", "repetition": 1, "wall_time_s": 1.8273671279894188, "algorithmic_read_bytes": 83886080, "algorithmic_write_bytes": 100663296, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 2}
+START 20 cdkm_superposed 1
+{"workload_id": "cdkm_superposed_20", "repetition": 1, "wall_time_s": 1.8730208699998911, "algorithmic_read_bytes": 83886080, "algorithmic_write_bytes": 100663296, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 2}
+START 20 grover_oracle 1
+{"workload_id": "grover_oracle_20", "repetition": 1, "wall_time_s": 21.73875223301002, "algorithmic_read_bytes": 1073741824, "algorithmic_write_bytes": 1090519040, "gbsa_gate_blocks": 28, "gbsa_swap_passes": 36}
+START 20 qaoa 1
+{"workload_id": "qaoa_20", "repetition": 1, "wall_time_s": 2.1094674000050873, "algorithmic_read_bytes": 134217728, "algorithmic_write_bytes": 150994944, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 4}
+START 20 hea 1
+{"workload_id": "hea_20", "repetition": 1, "wall_time_s": 1.3993568840087391, "algorithmic_read_bytes": 50331648, "algorithmic_write_bytes": 67108864, "gbsa_gate_blocks": 2, "gbsa_swap_passes": 1}
+START 20 mcx_oracle 1
+{"workload_id": "mcx_oracle_20", "repetition": 1, "wall_time_s": 17.582235011010198, "algorithmic_read_bytes": 704643072, "algorithmic_write_bytes": 721420288, "gbsa_gate_blocks": 20, "gbsa_swap_passes": 22}
+START 20 cdkm_basis 2
+{"workload_id": "cdkm_basis_20", "repetition": 2, "wall_time_s": 1.871623028011527, "algorithmic_read_bytes": 83886080, "algorithmic_write_bytes": 100663296, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 2}
+START 20 cdkm_superposed 2
+{"workload_id": "cdkm_superposed_20", "repetition": 2, "wall_time_s": 1.801959156000521, "algorithmic_read_bytes": 83886080, "algorithmic_write_bytes": 100663296, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 2}
+START 20 mcx_oracle 2
+{"workload_id": "mcx_oracle_20", "repetition": 2, "wall_time_s": 17.074211211991496, "algorithmic_read_bytes": 704643072, "algorithmic_write_bytes": 721420288, "gbsa_gate_blocks": 20, "gbsa_swap_passes": 22}
+START 20 hea 2
+{"workload_id": "hea_20", "repetition": 2, "wall_time_s": 1.3341547439922579, "algorithmic_read_bytes": 50331648, "algorithmic_write_bytes": 67108864, "gbsa_gate_blocks": 2, "gbsa_swap_passes": 1}
+START 20 qft 2
+{"workload_id": "qft_20", "repetition": 2, "wall_time_s": 3.1244331120105926, "algorithmic_read_bytes": 100663296, "algorithmic_write_bytes": 117440512, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 3}
+START 20 qaoa 2
+{"workload_id": "qaoa_20", "repetition": 2, "wall_time_s": 2.077192611002829, "algorithmic_read_bytes": 134217728, "algorithmic_write_bytes": 150994944, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 4}
+START 20 comparator 2
+{"workload_id": "comparator_20", "repetition": 2, "wall_time_s": 1.8506114060000982, "algorithmic_read_bytes": 83886080, "algorithmic_write_bytes": 100663296, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 2}
+START 20 grover_oracle 2
+{"workload_id": "grover_oracle_20", "repetition": 2, "wall_time_s": 21.568736666988116, "algorithmic_read_bytes": 1073741824, "algorithmic_write_bytes": 1090519040, "gbsa_gate_blocks": 28, "gbsa_swap_passes": 36}
+START 22 comparator 0
+{"workload_id": "comparator_22", "repetition": 0, "wall_time_s": 8.54500805301359, "algorithmic_read_bytes": 469762048, "algorithmic_write_bytes": 536870912, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 4}
+START 22 mcx_oracle 0
+{"workload_id": "mcx_oracle_22", "repetition": 0, "wall_time_s": 115.65402307899785, "algorithmic_read_bytes": 7784628224, "algorithmic_write_bytes": 7851737088, "gbsa_gate_blocks": 44, "gbsa_swap_passes": 72}
+START 22 qaoa 0
+{"workload_id": "qaoa_22", "repetition": 0, "wall_time_s": 12.525168437015964, "algorithmic_read_bytes": 1006632960, "algorithmic_write_bytes": 1073741824, "gbsa_gate_blocks": 5, "gbsa_swap_passes": 10}
+START 22 cdkm_basis 0
+{"workload_id": "cdkm_basis_22", "repetition": 0, "wall_time_s": 8.348470607976196, "algorithmic_read_bytes": 469762048, "algorithmic_write_bytes": 536870912, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 4}
+START 22 qft 0
+{"workload_id": "qft_22", "repetition": 0, "wall_time_s": 17.631178045005072, "algorithmic_read_bytes": 872415232, "algorithmic_write_bytes": 939524096, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 9}
+START 22 hea 0
+{"workload_id": "hea_22", "repetition": 0, "wall_time_s": 5.940495950984769, "algorithmic_read_bytes": 268435456, "algorithmic_write_bytes": 335544320, "gbsa_gate_blocks": 2, "gbsa_swap_passes": 2}
+START 22 cdkm_superposed 0
+{"workload_id": "cdkm_superposed_22", "repetition": 0, "wall_time_s": 8.448402362992056, "algorithmic_read_bytes": 469762048, "algorithmic_write_bytes": 536870912, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 4}
+START 22 grover_oracle 0
+{"workload_id": "grover_oracle_22", "repetition": 0, "wall_time_s": 143.76816135502304, "algorithmic_read_bytes": 9328132096, "algorithmic_write_bytes": 9395240960, "gbsa_gate_blocks": 52, "gbsa_swap_passes": 87}
+START 22 grover_oracle 1
+{"workload_id": "grover_oracle_22", "repetition": 1, "wall_time_s": 142.08634791098302, "algorithmic_read_bytes": 9328132096, "algorithmic_write_bytes": 9395240960, "gbsa_gate_blocks": 52, "gbsa_swap_passes": 87}
+START 22 comparator 1
+{"workload_id": "comparator_22", "repetition": 1, "wall_time_s": 9.497365162998904, "algorithmic_read_bytes": 469762048, "algorithmic_write_bytes": 536870912, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 4}
+START 22 cdkm_basis 1
+{"workload_id": "cdkm_basis_22", "repetition": 1, "wall_time_s": 8.417240568000125, "algorithmic_read_bytes": 469762048, "algorithmic_write_bytes": 536870912, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 4}
+START 22 cdkm_superposed 1
+{"workload_id": "cdkm_superposed_22", "repetition": 1, "wall_time_s": 8.726202824007487, "algorithmic_read_bytes": 469762048, "algorithmic_write_bytes": 536870912, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 4}
+START 22 qft 1
+{"workload_id": "qft_22", "repetition": 1, "wall_time_s": 17.788858665997395, "algorithmic_read_bytes": 872415232, "algorithmic_write_bytes": 939524096, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 9}
+START 22 mcx_oracle 1
+{"workload_id": "mcx_oracle_22", "repetition": 1, "wall_time_s": 121.9407138240058, "algorithmic_read_bytes": 7784628224, "algorithmic_write_bytes": 7851737088, "gbsa_gate_blocks": 44, "gbsa_swap_passes": 72}
+START 22 hea 1
+{"workload_id": "hea_22", "repetition": 1, "wall_time_s": 5.992492671997752, "algorithmic_read_bytes": 268435456, "algorithmic_write_bytes": 335544320, "gbsa_gate_blocks": 2, "gbsa_swap_passes": 2}
+START 22 qaoa 1
+{"workload_id": "qaoa_22", "repetition": 1, "wall_time_s": 12.290057899983367, "algorithmic_read_bytes": 1006632960, "algorithmic_write_bytes": 1073741824, "gbsa_gate_blocks": 5, "gbsa_swap_passes": 10}
+START 22 hea 2
+{"workload_id": "hea_22", "repetition": 2, "wall_time_s": 6.017874701996334, "algorithmic_read_bytes": 268435456, "algorithmic_write_bytes": 335544320, "gbsa_gate_blocks": 2, "gbsa_swap_passes": 2}
+START 22 qaoa 2
+{"workload_id": "qaoa_22", "repetition": 2, "wall_time_s": 12.578296861000126, "algorithmic_read_bytes": 1006632960, "algorithmic_write_bytes": 1073741824, "gbsa_gate_blocks": 5, "gbsa_swap_passes": 10}
+START 22 cdkm_superposed 2
+{"workload_id": "cdkm_superposed_22", "repetition": 2, "wall_time_s": 8.629972566996003, "algorithmic_read_bytes": 469762048, "algorithmic_write_bytes": 536870912, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 4}
+START 22 qft 2
+{"workload_id": "qft_22", "repetition": 2, "wall_time_s": 18.11410484899534, "algorithmic_read_bytes": 872415232, "algorithmic_write_bytes": 939524096, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 9}
+START 22 grover_oracle 2
+{"workload_id": "grover_oracle_22", "repetition": 2, "wall_time_s": 141.9617252140015, "algorithmic_read_bytes": 9328132096, "algorithmic_write_bytes": 9395240960, "gbsa_gate_blocks": 52, "gbsa_swap_passes": 87}
+START 22 mcx_oracle 2
+{"workload_id": "mcx_oracle_22", "repetition": 2, "wall_time_s": 120.30739589501172, "algorithmic_read_bytes": 7784628224, "algorithmic_write_bytes": 7851737088, "gbsa_gate_blocks": 44, "gbsa_swap_passes": 72}
+START 22 comparator 2
+{"workload_id": "comparator_22", "repetition": 2, "wall_time_s": 8.705074844008777, "algorithmic_read_bytes": 469762048, "algorithmic_write_bytes": 536870912, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 4}
+START 22 cdkm_basis 2
+{"workload_id": "cdkm_basis_22", "repetition": 2, "wall_time_s": 8.586108443996636, "algorithmic_read_bytes": 469762048, "algorithmic_write_bytes": 536870912, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 4}
+START 24 cdkm_superposed 0
+{"workload_id": "cdkm_superposed_24", "repetition": 0, "wall_time_s": 38.55436953698518, "algorithmic_read_bytes": 2147483648, "algorithmic_write_bytes": 2415919104, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 5}
+START 24 mcx_oracle 0
+{"workload_id": "mcx_oracle_24", "repetition": 0, "wall_time_s": 691.1101435250021, "algorithmic_read_bytes": 51808043008, "algorithmic_write_bytes": 52076478464, "gbsa_gate_blocks": 55, "gbsa_swap_passes": 138}
+START 24 grover_oracle 0
+{"workload_id": "grover_oracle_24", "repetition": 0, "wall_time_s": 780.4704421490023, "algorithmic_read_bytes": 59592671232, "algorithmic_write_bytes": 59861106688, "gbsa_gate_blocks": 63, "gbsa_swap_passes": 159}
+START 24 comparator 0
+{"workload_id": "comparator_24", "repetition": 0, "wall_time_s": 46.150813332002144, "algorithmic_read_bytes": 2684354560, "algorithmic_write_bytes": 2952790016, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 6}
+START 24 hea 0
+{"workload_id": "hea_24", "repetition": 0, "wall_time_s": 25.613201266998658, "algorithmic_read_bytes": 1073741824, "algorithmic_write_bytes": 1342177280, "gbsa_gate_blocks": 2, "gbsa_swap_passes": 2}
+START 24 qaoa 0
+{"workload_id": "qaoa_24", "repetition": 0, "wall_time_s": 55.14407949100132, "algorithmic_read_bytes": 4294967296, "algorithmic_write_bytes": 4563402752, "gbsa_gate_blocks": 5, "gbsa_swap_passes": 11}
+START 24 qft 0
+{"workload_id": "qft_24", "repetition": 0, "wall_time_s": 82.01075144499191, "algorithmic_read_bytes": 3489660928, "algorithmic_write_bytes": 3758096384, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 9}
+START 24 cdkm_basis 0
+{"workload_id": "cdkm_basis_24", "repetition": 0, "wall_time_s": 35.878807567001786, "algorithmic_read_bytes": 2147483648, "algorithmic_write_bytes": 2415919104, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 5}
+START 24 grover_oracle 1
+{"workload_id": "grover_oracle_24", "repetition": 1, "wall_time_s": 784.5012942859903, "algorithmic_read_bytes": 59592671232, "algorithmic_write_bytes": 59861106688, "gbsa_gate_blocks": 63, "gbsa_swap_passes": 159}
+START 24 comparator 1
+{"workload_id": "comparator_24", "repetition": 1, "wall_time_s": 45.482755212986376, "algorithmic_read_bytes": 2684354560, "algorithmic_write_bytes": 2952790016, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 6}
+START 24 qft 1
+{"workload_id": "qft_24", "repetition": 1, "wall_time_s": 81.16930009800126, "algorithmic_read_bytes": 3489660928, "algorithmic_write_bytes": 3758096384, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 9}
+START 24 mcx_oracle 1
+{"workload_id": "mcx_oracle_24", "repetition": 1, "wall_time_s": 693.7401953930093, "algorithmic_read_bytes": 51808043008, "algorithmic_write_bytes": 52076478464, "gbsa_gate_blocks": 55, "gbsa_swap_passes": 138}
+START 24 hea 1
+{"workload_id": "hea_24", "repetition": 1, "wall_time_s": 25.031240109994542, "algorithmic_read_bytes": 1073741824, "algorithmic_write_bytes": 1342177280, "gbsa_gate_blocks": 2, "gbsa_swap_passes": 2}
+START 24 qaoa 1
+{"workload_id": "qaoa_24", "repetition": 1, "wall_time_s": 54.17965753900353, "algorithmic_read_bytes": 4294967296, "algorithmic_write_bytes": 4563402752, "gbsa_gate_blocks": 5, "gbsa_swap_passes": 11}
+START 24 cdkm_basis 1
+{"workload_id": "cdkm_basis_24", "repetition": 1, "wall_time_s": 36.58899451099569, "algorithmic_read_bytes": 2147483648, "algorithmic_write_bytes": 2415919104, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 5}
+START 24 cdkm_superposed 1
+{"workload_id": "cdkm_superposed_24", "repetition": 1, "wall_time_s": 37.55149573198287, "algorithmic_read_bytes": 2147483648, "algorithmic_write_bytes": 2415919104, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 5}
+START 24 mcx_oracle 2
+{"workload_id": "mcx_oracle_24", "repetition": 2, "wall_time_s": 678.7231508060067, "algorithmic_read_bytes": 51808043008, "algorithmic_write_bytes": 52076478464, "gbsa_gate_blocks": 55, "gbsa_swap_passes": 138}
+START 24 qft 2
+{"workload_id": "qft_24", "repetition": 2, "wall_time_s": 79.22495568302111, "algorithmic_read_bytes": 3489660928, "algorithmic_write_bytes": 3758096384, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 9}
+START 24 cdkm_superposed 2
+{"workload_id": "cdkm_superposed_24", "repetition": 2, "wall_time_s": 36.70629474299494, "algorithmic_read_bytes": 2147483648, "algorithmic_write_bytes": 2415919104, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 5}
+START 24 hea 2
+{"workload_id": "hea_24", "repetition": 2, "wall_time_s": 24.80510880300426, "algorithmic_read_bytes": 1073741824, "algorithmic_write_bytes": 1342177280, "gbsa_gate_blocks": 2, "gbsa_swap_passes": 2}
+START 24 grover_oracle 2
+{"workload_id": "grover_oracle_24", "repetition": 2, "wall_time_s": 778.3192501019803, "algorithmic_read_bytes": 59592671232, "algorithmic_write_bytes": 59861106688, "gbsa_gate_blocks": 63, "gbsa_swap_passes": 159}
+START 24 qaoa 2
+{"workload_id": "qaoa_24", "repetition": 2, "wall_time_s": 53.43992384200101, "algorithmic_read_bytes": 4294967296, "algorithmic_write_bytes": 4563402752, "gbsa_gate_blocks": 5, "gbsa_swap_passes": 11}
+START 24 cdkm_basis 2
+{"workload_id": "cdkm_basis_24", "repetition": 2, "wall_time_s": 35.99209291298757, "algorithmic_read_bytes": 2147483648, "algorithmic_write_bytes": 2415919104, "gbsa_gate_blocks": 3, "gbsa_swap_passes": 5}
+START 24 comparator 2
+{"workload_id": "comparator_24", "repetition": 2, "wall_time_s": 46.01684970600763, "algorithmic_read_bytes": 2684354560, "algorithmic_write_bytes": 2952790016, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 6}
+PHASE B BATCH COMPLETE

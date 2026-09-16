@@ -1,0 +1,63 @@
+Phase B source audit; no GBSA performance measurement.
+
+$ git rev-parse HEAD
+79ab9a107b83346452bdbb96341a22076a533a44
+
+$ git rev-parse HEAD^
+ba5d0da0e45027f55395129530916c938c4058e0
+
+$ git branch --show-current
+exp/qdao-end-to-end
+
+$ git status --short
+ M results/end_to_end_tables.tex
+ M scripts/run_e2e_case.py
+?? END_TO_END_EVALUATION_REPORT.md
+?? GBSA_COMPARISON_REPORT.md
+?? notes/gbsa_reproduction.md
+?? results/end_to_end_summary.csv
+?? results/gbsa_comparison/
+?? scripts/analyze_end_to_end.py
+
+$ uname -a
+Linux YYJS-2025QYSDCS 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
+
+$ /home/audrey/miniconda3/envs/htp-static/bin/python --version
+Python 3.11.16
+
+$ /home/audrey/miniconda3/envs/htp-static/bin/python -m pip freeze
+antlr4-python3-runtime==4.13.2
+contourpy==1.3.3
+cycler==0.12.1
+dill==0.4.1
+fonttools==4.65.0
+iniconfig==2.3.0
+kiwisolver==1.5.1
+matplotlib==3.11.2
+networkx==3.6.1
+numpy==2.4.6
+openqasm3==1.0.1
+packaging @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_packaging_1785888127/work
+pandas==3.0.5
+pillow==12.3.0
+pluggy==1.6.0
+psutil==7.2.2
+Pygments==2.21.0
+pyparsing==3.3.2
+pytest==9.1.1
+python-dateutil==2.9.0.post0
+PyYAML==6.0.3
+qiskit==2.5.2
+qiskit-aer==0.17.2
+qiskit-qasm3-import==0.6.0
+rustworkx==0.18.1
+scipy==1.17.1
+six==1.17.0
+stevedore==5.9.1
+tqdm==4.70.1
+typing_extensions==4.16.0
+
+Phase A environment and full commands: results/qdao_end_to_end/reproducibility.txt
+Common manifest SHA256: 9d504f94ab2a3f839a7888029cabd5b00a8d37d17ef4ee2f2b0804cae18b5f30
+Random seed: 20260916 (Phase A); GBSA random seed: NA (not run).
+Report regeneration: python scripts/analyze_end_to_end.py

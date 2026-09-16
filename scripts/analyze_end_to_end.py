@@ -1,273 +1,238 @@
-"""Combine measured Phase A with explicitly unavailable GBSA results.
-
-Never manufacture a published baseline from an unspecified blocking heuristic.
-This script intentionally refuses to overwrite any future GBSA measurements.
-"""
+"""Measured three-way summaries, audit and LaTeX tables; never writes Phase A."""
 import _e2e_common
-import datetime
-import hashlib
-import json
-import subprocess
+import datetime, hashlib, json, subprocess, sys
 from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
-from htp.e2e.tables import phase_a_tables, latex_table, number
+from htp.e2e.tables import phase_a_tables, latex_table
 
-root = Path('results/gbsa_comparison')
-root.mkdir(exist_ok=True)
-a = Path('results/qdao_end_to_end')
-for manifest in ['phase_a_hashes.json', 'previous_results_hashes.json']:
-    hashes = json.loads((a/manifest).read_text())
-    assert all(hashlib.sha256(Path(p).read_bytes()).hexdigest() == h for p,h in hashes.items())
-raw_path = root/'raw_runs.csv'
-if raw_path.exists():
-    assert pd.read_csv(raw_path).empty, 'GBSA measurements exist: implement measured combination explicitly'
-summary = pd.read_csv(a/'summary.csv')
-raw = pd.read_csv(a/'raw_runs.csv')
-manifest = pd.read_csv('results/end_to_end_workloads.csv')
-required = manifest[manifest.n.isin([20,22,24])]
-assert len(summary)==24 and len(raw)==144
-assert raw.groupby(['workload_id','system']).size().eq(3).all()
-assert not raw.duplicated(['workload_id','system','repetition']).any()
+root=Path('results/gbsa_comparison');a=Path('results/qdao_end_to_end')
+checks={}
+for name in ['phase_a_hashes.json','previous_results_hashes.json']:
+    hashes=json.loads((a/name).read_text())
+    assert all(hashlib.sha256(Path(p).read_bytes()).hexdigest()==h for p,h in hashes.items()),name
+    checks[name]=len(hashes)
+av=json.loads((a/'correctness.json').read_text());bv=json.loads((root/'correctness.json').read_text())
+assert av['failures']==bv['failures']==0 and bv['validated']
+source_hash=hashlib.sha256(Path('src/htp/e2e/gbsa.py').read_bytes()).hexdigest()
+assert bv['source_sha256']==source_hash
+raw=pd.read_csv(root/'raw_runs.csv');araw=pd.read_csv(a/'raw_runs.csv')
+manifest=pd.read_csv('results/end_to_end_workloads.csv');required=manifest[manifest.n.isin([20,22,24])]
+assert len(raw)==72 and len(araw)==144
+assert set(raw.workload_id)==set(required.workload_id)
+assert raw.groupby('workload_id').size().eq(3).all()
+assert not raw.duplicated(['workload_id','repetition']).any()
+assert set(raw.gbsa_sha256)=={source_hash}
+assert set(raw.runtime_sha256)==set(araw.runtime_sha256), 'Common backend changed'
 for r in manifest.itertuples():
     assert hashlib.sha256(Path(r.input_file).read_bytes()).hexdigest()==r.hash
-
-blocked = 'SOURCE_BLOCKED_NO_VERIFIABLE_GBSA_ALGORITHM_OR_ARTIFACT'
-pd.DataFrame(columns=['workload_id','family','n','system','repetition','wall_time_s',
-    'algorithmic_read_bytes','algorithmic_write_bytes','proc_read_bytes','proc_write_bytes',
-    'device_read_bytes','device_write_bytes']).to_csv(raw_path,index=False)
-b = required[['workload_id','family','n','hash']].copy()
-b['system']='GBSA reproduction';b['status']=blocked;b['repetitions']=0
-for col in ['wall_time_s','algorithmic_total_bytes','proc_total_bytes','device_total_bytes',
-            'time_min_s','time_max_s','time_std_s','time_cv']:
-    b[col]=np.nan
-b.to_csv(root/'summary.csv',index=False,na_rep='NA')
-verification=dict(status='NOT_RUN_SOURCE_BLOCKED',cases=0,failures=None,
-    validated=False,reason=blocked,phase_a_correctness_cases=195,phase_a_failures=0)
-(root/'correctness.json').write_text(json.dumps(verification,indent=2)+'\n')
-env=json.loads((a/'environment.json').read_text())
-env.update(phase_a_commit='79ab9a107b83346452bdbb96341a22076a533a44',
-    gbsa_status=blocked,gbsa_commit=None,gbsa_language=None,gbsa_license=None,
-    gbsa_backend=None,gbsa_runtime_versions=None,
-    note='No GBSA timed run; environment is the intended common Phase A environment.')
-(root/'environment.json').write_text(json.dumps(env,indent=2)+'\n')
-fairness=[];skips=[]
-for r in required.itertuples():
-    for system in ['QDAO','QThin','GBSA reproduction']:
-        available=system!='GBSA reproduction'
-        fairness.append(dict(workload_id=r.workload_id,system=system,input_file=r.input_file,
-            input_hash=r.hash,representation=r.representation,precision='complex128',
-            m=16 if available else None,t=12 if available else None,threads=1 if available else None,
-            io_mode='buffered_npy' if available else None,
-            sync='final surviving state fdatasync' if available else None,
-            status='MEASURED_PHASE_A' if available else blocked))
-    for rep in range(3):
-        skips.append(dict(workload_id=r.workload_id,n=r.n,system='GBSA reproduction',repetition=rep,reason=blocked))
-for r in manifest[manifest.n==26].itertuples():
-    for system in ['QDAO','QThin','GBSA reproduction']:
-        skips.append(dict(workload_id=r.workload_id,n=26,system=system,repetition='ALL',reason='SKIPPED_TIME_BUDGET'))
-pd.DataFrame(fairness).to_csv(root/'fairness_manifest.csv',index=False,na_rep='NA')
-pd.DataFrame(skips).to_csv(root/'skipped_cases.csv',index=False)
-
-# Untimed partition counts; extrapolation is a planning estimate, never a result.
-counts={'cdkm_basis':7,'cdkm_superposed':7,'comparator':11,'qft':119,
-        'qaoa':14,'hea':17,'grover_oracle':234,'mcx_oracle':198}
-est=[]
-for r in summary[summary.n==24].itertuples():
-    units=counts[r.family]*1024
-    est.append(dict(family=r.family,n=26,partition_count=counts[r.family],compute_units=units,
-        qdao_seconds_extrapolated_per_run=r.qdao_wall_time_s*units/r.qdao_compute_unit_count,
-        measured=False,method='24q median seconds per CU times untimed 26q CU count'))
-est=pd.DataFrame(est);est.to_csv(root/'optional_26_planning.csv',index=False)
-estimated_hours=est.qdao_seconds_extrapolated_per_run.sum()*3/3600
-
-combined=summary.copy()
-for col in ['gbsa_wall_time_s','gbsa_algorithmic_total_bytes','qthin_vs_gbsa']:
-    combined[col]=np.nan
-combined['gbsa_status']=blocked
+    assert raw[raw.workload_id==r.workload_id].input_hash.eq(r.hash).all()
+raw['algorithmic_total_bytes']=raw.algorithmic_read_bytes+raw.algorithmic_write_bytes
+raw['proc_total_bytes']=raw.proc_read_bytes+raw.proc_write_bytes
+raw['device_total_bytes']=raw.device_read_bytes+raw.device_write_bytes
+raw['proc_write_minus_cancelled_bytes']=raw.proc_write_bytes-raw.proc_cancelled_write_bytes
+assert np.all(raw.algorithmic_read_bytes==16*2.**raw.n*raw.state_traversals)
+assert np.all(raw.algorithmic_write_bytes==16*2.**raw.n*(raw.state_traversals+1))
+assert np.all(raw.state_traversals==raw.gbsa_gate_blocks+raw.gbsa_swap_passes)
+assert np.all(raw.compute_unit_count==raw.state_traversals*2.**(raw.n-16))
+columns=['wall_time_s','user_cpu_s','system_cpu_s','algorithmic_read_bytes',
+    'algorithmic_write_bytes','algorithmic_total_bytes','proc_total_bytes','proc_read_bytes',
+    'proc_write_bytes','proc_cancelled_write_bytes','proc_write_minus_cancelled_bytes',
+    'device_total_bytes','device_read_bytes','device_write_bytes','peak_rss_bytes',
+    'compute_unit_count','state_traversals','gbsa_gate_blocks','gbsa_swap_passes',
+    'gbsa_swap_count','gbsa_search_s','gbsa_swap_s','sync_time_s']
+rows=[]
+for wid,g in raw.groupby('workload_id'):
+    row=dict(workload_id=wid,family=g.family.iloc[0],n=int(g.n.iloc[0]),system='GBSA reproduction',repetitions=len(g))
+    row.update({c:g[c].median() for c in columns})
+    row.update(time_min_s=g.wall_time_s.min(),time_max_s=g.wall_time_s.max(),
+        time_std_s=g.wall_time_s.std(ddof=1),time_cv=g.wall_time_s.std(ddof=1)/g.wall_time_s.mean())
+    rows.append(row)
+b=pd.DataFrame(rows).sort_values(['n','family']);b.to_csv(root/'summary.csv',index=False,na_rep='NA')
+summary=pd.read_csv(a/'summary.csv')
+prefixed=b.drop(columns=['system','family','n']).rename(columns={c:'gbsa_'+c for c in b.columns if c!='workload_id'})
+combined=summary.merge(prefixed,on='workload_id',validate='one_to_one').sort_values(['n','family'])
+combined['qthin_vs_gbsa']=combined.gbsa_wall_time_s/combined.qthin_wall_time_s
+combined['gbsa_qthin_traffic_reduction']=combined.gbsa_algorithmic_total_bytes/combined.qthin_algorithmic_total_bytes
+combined['gbsa_vs_qdao']=combined.qdao_wall_time_s/combined.gbsa_wall_time_s
+combined['gbsa_status']='MEASURED_REPRODUCTION_COMMON_SUBSTRATE'
 combined.to_csv('results/end_to_end_summary.csv',index=False,na_rep='NA')
+
+fairness=[]
+for r in required.itertuples():
+    for method in ['QDAO','QThin','GBSA reproduction']:
+        fairness.append(dict(workload_id=r.workload_id,system=method,input_file=r.input_file,
+            input_hash=r.hash,representation=r.representation,precision='complex128',
+            m=16,t=12,threads=1,io_mode='buffered_npy',sync='final surviving state fdatasync',
+            batch='A' if method!='GBSA reproduction' else 'B',
+            selector='published GBSA reproduction' if method=='GBSA reproduction' else 'upstream QDAO static',
+            layout_swaps=method=='GBSA reproduction',status='MEASURED'))
+pd.DataFrame(fairness).to_csv(root/'fairness_manifest.csv',index=False)
+skips=[dict(workload_id=r.workload_id,n=26,system=method,repetition='ALL',reason='NOT_IN_REQUIRED_CORE_SEE_SCALING_SUBSET')
+       for r in manifest[manifest.n==26].itertuples() for method in ['QDAO','QThin','GBSA reproduction']]
+pd.DataFrame(skips).to_csv(root/'skipped_cases.csv',index=False)
+env=json.loads((a/'environment.json').read_text())
+env.update(git_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+    phase_a_commit='79ab9a107b83346452bdbb96341a22076a533a44',
+    benchmark_dir=str((root/'workdir').resolve()),gbsa_status='independent paper-policy reproduction',
+    gbsa_sha256=source_hash,gbsa_artifact_commit=None,gbsa_author_license=None,
+    gbsa_language='Python search and layout orchestration; shared Aer native kernels',chunk_bits=16)
+(root/'environment.json').write_text(json.dumps(env,indent=2)+'\n')
+
 runtime_columns=[('family','Workload'),('n','$n$'),('qdao_wall_time_s','QDAO (s)'),
     ('gbsa_wall_time_s','GBSA repr. (s)'),('qthin_wall_time_s','QThin (s)'),
-    ('speedup','QThin/QDAO speedup'),('qthin_vs_gbsa','QThin/GBSA speedup')]
+    ('speedup','QDAO/QThin'),('qthin_vs_gbsa','GBSA/QThin')]
 tex=phase_a_tables(summary)+'\n'+latex_table(combined,runtime_columns,
-    'Measured runtime medians. GBSA reproduction is source-blocked and NOT RUN; NA is not a performance result.',
+    'Measured runtime medians of three runs. GBSA is an independent policy reproduction on the common backend, not author software.',
     'tab:three-way-runtime')
 for method in ['qdao','qthin','gbsa']:
     combined[method+'_gib']=combined[method+'_algorithmic_total_bytes']/2**30
 tex+='\n'+latex_table(combined,[('family','Workload'),('n','$n$'),('qdao_gib','QDAO (GiB)'),
     ('gbsa_gib','GBSA repr. (GiB)'),('qthin_gib','QThin (GiB)'),
-    ('algorithmic_traffic_reduction','QDAO/QThin'),('qthin_vs_gbsa','GBSA/QThin')],
-    'Instrumented state-payload requests, not SSD traffic. GBSA reproduction was NOT RUN.',
+    ('algorithmic_traffic_reduction','QDAO/QThin'),('gbsa_qthin_traffic_reduction','GBSA/QThin')],
+    'Instrumented state-payload read/write requests, including GBSA layout swaps; not physical SSD traffic.',
     'tab:three-way-traffic')
 Path('results/end_to_end_tables.tex').write_text(tex)
 
-table='| Workload | n | QDAO s | GBSA repr. s | QThin s | QThin vs QDAO | QThin vs GBSA |\n|---|---:|---:|---:|---:|---:|---:|\n'
-traffic='| Workload | n | QDAO requested GiB | GBSA requested GiB | QThin requested GiB | QDAO/QThin |\n|---|---:|---:|---:|---:|---:|\n'
-for r in combined.itertuples():
-    table+=f'| {r.family} | {r.n} | {r.qdao_wall_time_s:.3f} | NA | {r.qthin_wall_time_s:.3f} | {r.speedup:.3f}× | NA |\n'
-    traffic+=f'| {r.family} | {r.n} | {r.qdao_gib:.4f} | NA | {r.qthin_gib:.4g} | {r.algorithmic_traffic_reduction:.3f}× |\n'
-full=summary[summary.qthin_final_q_physical==summary.n]
-negative=summary[summary.family.isin(['qaoa','hea'])]
+def md(frame,columns):
+    text='| '+' | '.join(title for _,title in columns)+' |\n|'+ '|'.join('---' for _ in columns)+'|\n'
+    for r in frame.to_dict('records'):
+        text+='| '+' | '.join(str(r[k]) if isinstance(r[k],str) else str(int(r[k])) if k=='n'
+            else f'{r[k]:.3g}' if abs(r[k])<.001 else f'{r[k]:.3f}' for k,_ in columns)+' |\n'
+    return text
+
+table=md(combined,runtime_columns)
+traffic=md(combined,[('family','Workload'),('n','n'),('qdao_gib','QDAO GiB'),('gbsa_gib','GBSA repr. GiB'),
+    ('qthin_gib','QThin GiB'),('algorithmic_traffic_reduction','QDAO/QThin'),
+    ('gbsa_qthin_traffic_reduction','GBSA/QThin')])
+full=combined[combined.qthin_final_q_physical==combined.n]
+family=combined.groupby('family')[['speedup','qthin_vs_gbsa','algorithmic_traffic_reduction','gbsa_qthin_traffic_reduction']].median().reset_index()
+family_table=md(family,[('family','Variant'),('speedup','QDAO/QThin time'),('qthin_vs_gbsa','GBSA/QThin time'),
+    ('algorithmic_traffic_reduction','QDAO/QThin bytes'),('gbsa_qthin_traffic_reduction','GBSA/QThin bytes')])
+size=combined.groupby('n')[['speedup','qthin_vs_gbsa']].median().reset_index()
+size_table=md(size,[('n','n'),('speedup','Median QDAO/QThin time'),('qthin_vs_gbsa','Median GBSA/QThin time')])
+diagnostic=md(b,[('family','Variant'),('n','n'),('gbsa_gate_blocks','Gate blocks'),
+    ('gbsa_swap_passes','Swap passes'),('gbsa_search_s','Search s'),('gbsa_swap_s','Swap s'),('time_cv','Time CV')])
+wins=int((combined.qthin_vs_gbsa>1).sum());fullwins=int((full.qthin_vs_gbsa>1).sum())
+result='PROMISING' if wins>=12 else 'MIXED'
+gbsa_winners=', '.join(f'{r.family} {r.n}q' for r in combined[combined.qthin_vs_gbsa<1].itertuples()) or 'none'
+strongest=', '.join(f'{r.family} ({r.qthin_vs_gbsa:.3f}x)' for r in family.sort_values('qthin_vs_gbsa',ascending=False).head(3).itertuples())
+swap_fraction=(raw.gbsa_swap_s/raw.wall_time_s).median()
+search_fraction=(raw.gbsa_search_s/raw.wall_time_s).median()
 corr=spearmanr(full.algorithmic_traffic_reduction,full.speedup).statistic
-families=summary.groupby('family')[['speedup','algorithmic_traffic_reduction']].median().sort_values('speedup',ascending=False)
-family_table='| Variant | Median runtime speedup | Median request reduction |\n|---|---:|---:|\n'
-for name,r in families.iterrows():family_table+=f'| {name} | {r.speedup:.3f}× | {r.algorithmic_traffic_reduction:.3f}× |\n'
-size_table='| n | Points | Median speedup | Fully materialized median |\n|---:|---:|---:|---:|\n'
-for n,g in summary.groupby('n'):
-    size_table+=f'| {n} | {len(g)} | {g.speedup.median():.3f}× | {g[g.qthin_final_q_physical==g.n].speedup.median():.3f}× |\n'
+negative=combined[combined.family.isin(['qaoa','hea'])]
+common=f'''## Measurement contract and limitations
 
-Path('GBSA_COMPARISON_REPORT.md').write_text(f'''# GBSA comparison: NOT COMPLETED — SOURCE_BLOCKED
+Small-scale **file-backed end-to-end** execution on WSL2/ext4 VHDX. These states
+fit system RAM; no large-scale capacity/OOC claim. All methods: complex128,
+fixed m=16/t=12, one thread, identical lowered u/cx QPY hashes, Aer 0.17.2/Qiskit
+2.5.2, fusion disabled, buffered NPY, final surviving-state fdatasync. Phase A
+uses QDAO upstream `fb360e6670b9818a3d4e106fb21cf605838be0a4` with the documented
+shared modern-Aer state-injection adapter. It is not an untouched historical
+author binary. Phase B shares the exact runtime source hash.
 
-Phase A checkpoint: `79ab9a1`. All Phase A performance processes finished before
-GBSA source inspection. Phase A and older results remain hash-verified and frozen.
+GBSA is an independent Algorithms 1/2 **policy reproduction on that substrate**,
+with unrestricted C=16 chunk selection and charged physical layout swaps.
+It is not the authors' optimized native SSDGBSA implementation. Algorithm 2 has
+printed ambiguities resolved using Section 3.3 and tested against Figure 4.
+See `notes/gbsa_reproduction.md` for exact decisions, omitted kernels and license.
+No official artifact commit is available (NA).
 
-The requested published baseline could not be faithfully implemented because
-the RACS paper's full algorithm and an official artifact were not obtained.
-The DOI is [10.1145/3769002.3769982](https://doi.org/10.1145/3769002.3769982).
-The [institution record](https://researchoutput.ncku.edu.tw/zh/publications/toward-efficient-quantum-circuit-simulation-with-memory-and-io-re/)
-confirms the paper and abstract, but does not specify the selector/storage rules
-needed for a fair reproduction. See `notes/gbsa_reproduction.md` and the source
-audit for retrieval attempts and exact missing information.
+Wall/CPU time, counter deltas, request counts and sync time are measured. Ratios,
+medians, std/CV and correlations are derived. Request bytes count actual state
+payload loads/stores, including initialization and layout swaps. They are not
+native SSD bytes. Process read/write/cancelled-write counters and shared
+guest-visible device counters remain separate in raw/summary CSV. Buffered reads
+can hit cache and truncated writes can be cancelled. Device counters are not
+uniquely attributable and do not measure native NVMe/NAND traffic.
 
-GBSA correctness cases: 0; failures: **NA (not tested)**. GBSA performance runs:
-0. All 72 required GBSA runs are explicitly skipped for the source blocker.
-No official result, fabricated number or generic greedy proxy is substituted.
-The following tables preserve only measured Phase A values. They are incomplete
-three-way tables and cannot support a QThin-versus-GBSA claim.
+Every required point has three repetitions; no slow sample was removed. Phase A
+interleaved QDAO/QThin order. Phase B ran later, serially with shuffled workload
+order; cross-phase background drift remains a limitation. Search, initialization,
+swaps, execution and final sync are timed; QPY loading/import/cleanup are outside
+all timing windows. No overlapping performance experiments were allowed.
+Counts of wins refer only to sample medians, not statistical significance.
+Near-unity ratios, especially differences of a few percent, should be read
+alongside the individual samples and CV rather than as resolved superiority.
+'''
+answers=f'''## Answers and applicability
 
-## Runtime
+1. **QDAO runtime:** QThin median speedup across 24 points is {combined.speedup.median():.3f}x;
+   among 21 eventually fully materialized points it is {full.speedup.median():.3f}x.
+   Basis-only CDKM is separated because it never allocates an amplitude dimension.
+2. **Traffic correlation:** strict-subset median requested-byte reduction is
+   {full.algorithmic_traffic_reduction.median():.3f}x; descriptive Spearman correlation
+   with runtime speedup is {corr:.3f}. This does not isolate SSD causality: fewer
+   Aer compute units and staging operations also save CPU time.
+3. **Families:** use the family table below. These 8 workload variants from 7
+   families are small controlled instantiations of existing generators, not a
+   rerun of the earlier 251-circuit corpus. Do not generalize a family-wide win
+   from one size/variant or pool basis-only and eventually entangled inputs.
+4. **Negative controls:** all QAOA/HEA Phase A median speedups lie between
+   {negative.speedup.min():.3f}x and {negative.speedup.max():.3f}x, with no median
+   slowdown. QFT also benefits here; the actual lowered ordering does not make it
+   an immediate-full-materialization control. Noise/CV is retained in CSV.
+5. **Published policy comparison:** QThin beats this GBSA reproduction at
+   {wins}/24 points ({fullwins}/21 eventually fully materialized). Overall median
+   GBSA/QThin runtime ratio is {combined.qthin_vs_gbsa.median():.3f}x; strict-subset
+   median is {full.qthin_vs_gbsa.median():.3f}x. Ratios below one favor GBSA.
+   This supports only the documented reproduction comparison, not superiority
+   to the authors' full system.
+6. **GBSA wins and costs:** GBSA wins at: {gbsa_winners}.
+   QThin's largest median advantages over this reproduction are: {strongest}.
+   Its gate-block reuse and QThin's delayed physicalization are different
+   mechanisms. The diagnostic table separates search and layout-swap costs;
+   median per-run layout-swap time fraction is {swap_fraction:.1%}, while search
+   consumes {search_fraction:.3%}. These fractions are measured execution-time
+   decompositions, not ablation results. Common-substrate swap overhead is not
+   an inherent bound on native GBSA.
+7. **Size consistency:** all required 20/22/24q points completed; see size table.
+8. **26q:** not included in this required-core dataset. A separately authorized,
+   preselected scaling subset is tracked in `results/end_to_end_scaling/`.
+   Untimed full-suite planning predicted about 6.99 hours for QDAO alone at three
+   repetitions; that extrapolation is not the cost of the smaller subset and
+   is not a measured 26q result. Any scaling claims must cite the separate data.
+9. **Measured vs derived:** see the measurement contract; paper-reported results
+   and earlier trace-model reductions are not inserted into these tables.
+10. **FAST claims:** a validated QThin integration reduces measured file-backed
+    runtime and instrumented state traffic against the documented QDAO baseline;
+    a separate, transparent GBSA policy reproduction supplies a qualified
+    three-way comparison. Do not claim author-artifact reproduction, native SSD
+    byte reduction, capacity-scale OOC speedup, or a universal family advantage.
+'''
+header=f'''# END-TO-END RESULT: {result}
+
+QDAO integration status: completed; Phase A result **STRONG**; commit `79ab9a1`.
+GBSA reproduction status: completed, independent paper-policy implementation.
+Workloads completed: 24 points (8 variants × 20/22/24q), 216 timed runs total.
+20q completed: yes. 22q completed: yes. 24q completed: yes.
+26q: outside this required-core dataset; see the separate representative scaling extension.
+Correctness: {av['cases']} Phase A cases + {bv['cases']} GBSA cases; **0 failures**.
+
+## Primary runtime table
+
+Times in seconds, medians of three repetitions. Ratios greater than one favor
+QThin. GBSA columns are **GBSA reproduction**, not official author results.
 
 {table}
-## Requested state traffic
+## Instrumented requested state traffic
 
 {traffic}
-## Fairness and resumption
-
-Common QPY files and SHA256s are frozen in `results/end_to_end_workloads.csv`.
-`fairness_manifest.csv` maps those files to all three intended systems; GBSA
-configuration fields remain NA. A later reproduction must validate correctness,
-then run the same 24 required points with three repetitions. Reuse of Phase A
-would introduce a sequential-batch timing limitation, which must be disclosed.
-
-26q: SKIPPED_TIME_BUDGET. An untimed count-based extrapolation predicts roughly
-{estimated_hours:.1f} hours for QDAO alone at 26q with three repetitions, before
-QThin/GBSA and reporting. This is not a measured 26q runtime.
-''')
-
-Path('END_TO_END_EVALUATION_REPORT.md').write_text(f'''# END-TO-END RESULT: PROMISING
-
-**Required task partially complete: Phase A is STRONG; Phase B is source-blocked.**
-This label summarizes the available integration evidence, not an unmeasured
-victory over GBSA. The requested published-baseline comparison is still missing.
-
-- QDAO integration: completed, checkpoint `79ab9a1`.
-- GBSA reproduction: NOT IMPLEMENTED / NOT RUN — missing verifiable algorithm/artifact.
-- Workloads completed: 8 variants × 3 sizes = 24 points; 144 timed runs.
-- 20q: completed QDAO/QThin; GBSA not run.
-- 22q: completed QDAO/QThin; GBSA not run.
-- 24q: completed QDAO/QThin; GBSA not run.
-- 26q: SKIPPED_TIME_BUDGET.
-- Correctness: 195 three-way exact cases, 0 QDAO/QThin failures; GBSA failures NA.
-- Tests at Phase A freeze: 229 passed.
-- Environment: WSL2/ext4 VHDX, buffered file-backed state, m=16/t=12,
-  complex128, one CPU thread, shared current-Aer state-injection adapter.
-
-## Primary runtime table: measured medians, seconds
-
-{table}
-## Requested state traffic: measured at actual manager calls
-
-{traffic}
-These are amplitude payload requests, not physical SSD traffic. NPY file bytes,
-process counters and shared guest-device counters are separately retained in
-Phase A CSVs. The sizes fit in available RAM; these are **small-scale file-backed
-end-to-end integration results**, not capacity-scale out-of-core results.
-
-## Q1–Q3: runtime, traffic and benefiting families
-
-QThin is faster at all {len(summary)} measured workload/size medians. Overall
-median speedup is {summary.speedup.median():.3f}×; the {len(full)} eventually fully
-materialized points have median {full.speedup.median():.3f}× and median requested
-traffic reduction {full.algorithmic_traffic_reduction.median():.3f}×. Basis-input
-CDKM never materializes, so its much larger gains are shown separately.
-
-Across the fully materialized points, Spearman correlation between request-byte
-reduction and runtime speedup is {corr:.3f} (descriptive, not a causal estimate).
-Lower backing width also reduces compute-unit execution and staging. This
-combined experiment cannot attribute all speedup to storage or fusion alone.
-
-{family_table}
-## Q4: earlier-entangling controls
-
-QAOA/HEA show no median-time slowdown in this set: speedups range from
-{negative.speedup.min():.3f}× to {negative.speedup.max():.3f}×. This does not prove
-zero overhead on every fully entangled circuit. Small exact tests exercise the
-full-materialization fallback; they are correctness checks, not a performance
-ablation. QFT is not assumed negative: on the frozen lowered zero-input stream,
-dimensions activate progressively despite a product final state.
-
-## Q5–Q6: comparison with GBSA
-
-**Unanswered.** Neither QThin superiority nor GBSA superiority can be inferred.
-The source audit is in `notes/gbsa_reproduction.md`; the unavailable baseline
-cells deliberately remain NA. Do not put a GBSA win/loss claim in the paper.
-
-## Q7: consistency across sizes
-
-{size_table}
-The sign is consistent, but magnitude is workload dependent. For example, 24q
-Grover and MCX provide modest gains; they are retained alongside stronger cases.
-All three repetitions, min/max, standard deviation and CV are available.
-
-## Q8: optional 26q
-
-Not run. Using actual 26q partition counts and measured 24q seconds per compute
-unit predicts approximately {estimated_hours:.1f} hours for QDAO alone at three
-repetitions, before QThin or GBSA. This exceeds the remaining approximate
-seven-hour window. `optional_26_planning.csv` marks this explicitly as an
-extrapolation, not a performance measurement. No fast-only 26q subset is
-presented as completion of the common suite.
-
-## Q9: evidence types
-
-- Measured: wall/CPU/sync time, manager payload/file requests, /proc counters,
-  shared guest-device deltas, correctness errors and per-run event counts.
-- Derived: medians, CV, ratios, correlations and aggregates.
-- Planning estimate: 26q extrapolation from compute-unit counts.
-- Unavailable: GBSA timings/correctness; native physical NVMe/NAND traffic.
-
-The final sync covers surviving files for both systems. Intermediate buffered
-writes may be coalesced/cancelled; process cancelled_write_bytes is retained.
-Shared guest-device deltas are not uniquely attributable to this process.
-
-## Q10: defensible FAST claims
-
-1. A minimal QThin runtime integrated with upstream QDAO's fixed partitions and
-   compute-unit storage path is numerically correct on 195 small exact cases.
-2. On this eight-variant 20/22/24q suite, with common current-Aer compatibility
-   adaptation, it reduces median end-to-end time and requested state bytes.
-   Quote the fully materialized subset ({full.speedup.median():.3f}× median
-   runtime speedup) alongside the overall {summary.speedup.median():.3f}×.
-3. These results demonstrate file-backed integration on WSL2, complementing
-   the previous independently measured event-level storage prototype. They do
-   not establish native-NVMe large-capacity speedup or superiority over GBSA.
-
-QDAO baseline caveat: the upstream engine, partitioner, scheduling and
-gather/scatter are retained, but both systems use a shared public Aer
-set_statevector/norm-restoration bridge. It is not completely unmodified author
-software. Original-API diagnostic samples are preserved and excluded from the
-primary matrix. All previous stage results and Phase A files remain unchanged.
-
-## Artifacts and remaining blocker
-
-- `QDAO_INTEGRATION_REPORT.md`: complete Phase A analysis.
-- `GBSA_COMPARISON_REPORT.md`: explicit missing baseline and resume requirements.
-- `results/end_to_end_summary.csv`: measured A with unavailable B fields.
-- `results/end_to_end_tables.tex`: four LaTeX table environments; GBSA cells NA.
-
-A readable GBSA paper or verified author artifact is required to complete Phase
-B fairly. No paper draft was edited and no results were pushed.
-''')
-print('Combined measured tables generated; GBSA remains explicitly NOT RUN.')
-print('26q QDAO-only planning estimate, hours:',estimated_hours)
+'''
+Path('END_TO_END_EVALUATION_REPORT.md').write_text(header+common+answers+
+    '\n## Median comparisons by variant\n\n'+family_table+'\n## By size\n\n'+size_table+
+    '\n## GBSA execution diagnostics\n\n'+diagnostic+
+    '\n## Artifacts\n\n`results/end_to_end_summary.csv`, `results/end_to_end_tables.tex`, '
+    '`results/gbsa_comparison/{raw_runs,summary,fairness_manifest}.csv`. '
+    'Four standalone LaTeX table environments; no paper source was edited.\n')
+Path('GBSA_COMPARISON_REPORT.md').write_text('# GBSA REPRODUCTION: COMPLETED\n\n'+
+    f'{bv["cases"]} exact cases, zero failures; 72 serial timed runs, all required sizes.\n\n'+
+    table+'\n## Requested state traffic\n\n'+traffic+common+answers+
+    '\n## Execution diagnostics\n\n'+diagnostic)
+(root/'analysis_audit.json').write_text(json.dumps(dict(timestamp=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    frozen_hash_counts=checks,phase_a_runs=144,gbsa_runs=72,input_hashes_verified=True,
+    gbsa_code_sha256=source_hash,common_runtime_hash_unchanged=True,
+    requested_byte_identities_verified=True,correctness_failures=0,result=result),indent=2)+'\n')
+print('END-TO-END RESULT:',result)
+print(f'GBSA points={len(b)}; QThin wins={wins}/24; median GBSA/QThin={combined.qthin_vs_gbsa.median():.3f}')

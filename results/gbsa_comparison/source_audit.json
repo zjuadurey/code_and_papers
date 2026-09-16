@@ -3,7 +3,7 @@
   "doi": "10.1145/3769002.3769982",
   "title": "Toward Efficient Quantum Circuit Simulation with Memory and I/O Reduction through Gate Block Search Algorithm",
   "official_artifact_found": false,
-  "full_paper_obtained": false,
+  "full_paper_obtained": true,
   "license": null,
   "implementation_language": null,
   "outcomes": [
@@ -71,5 +71,23 @@
     "external/gbsa-paper/retrieval_2.txt": "adddd6e1f3af12611814ae55b1fb7c1b5fcecbc81002401037b4c26608320006",
     "external/gbsa-paper/hungsh.html": "840a1ef0cb998cc1d8ee8030f7361842ffad75339a16b53a74863e56f3117383"
   },
-  "status": "SOURCE_BLOCKED"
+  "status": "SOURCE_BLOCKED",
+  "resumption": {
+    "status": "FULL_TEXT_OBTAINED_AND_READ",
+    "utc": "2026-09-16T01:49:08.966046+00:00",
+    "user_path": "D:\\Downloads\\3769002.3769982.pdf",
+    "local_copy": "external/gbsa-paper/racs2025-user.pdf",
+    "sha256": "dd421fc76a2c7ff2ba9bfe2bc713d574762db6f8325c83c01af63d4fad195563",
+    "pages": 8,
+    "algorithm_evidence": [
+      "Section 3.1",
+      "Section 3.2",
+      "Section 3.3",
+      "Algorithm 1",
+      "Algorithm 2",
+      "Figure 4"
+    ],
+    "official_artifact": "not located; no GBSA code/artifact link in full paper",
+    "implementation": "independent GBSA reproduction on common QDAO/Aer substrate"
+  }
 }

@@ -166,7 +166,16 @@ python scripts/analyze_qdao_end_to_end.py
 
 Phase A 已在 `79ab9a1` 冻结，144 个计时样本、195 个三方 exact cases。`results/qdao_end_to_end/phase_a_hashes.json` 保存完整结果哈希；复现实验请使用独立 checkout，避免覆盖归档结果。
 
-GBSA 阶段目前 **SOURCE_BLOCKED / NOT RUN**：未取得可核实的论文全文算法或官方 artifact。详见 `notes/gbsa_reproduction.md` 和 `GBSA_COMPARISON_REPORT.md`。没有把普通 greedy 分块器冒充 GBSA；GBSA 性能与正确性字段为 NA。恢复该阶段需要 DOI `10.1145/3769002.3769982` 的可读全文或作者 artifact，然后先验证、再计时。
+GBSA 全文已由用户提供，Algorithms 1/2 的依赖传播、最大前驱门数搜索、跨 chunk 布局交换已独立复现。明确标为 **GBSA reproduction**，不是作者的完整 native SSDGBSA 实现。Figure 4 的三个 blocks 和 195 个真实文件 exact cases 已验证。伪代码歧义、实现边界和参数见 `notes/gbsa_reproduction.md`；此前 source-blocked 审计保存在 `results/gbsa_comparison/source_blocked_checkpoint/`。
+
+在独立 checkout 中复现 Phase B（计时程序持有与 Phase A 相同的排他锁）：
+
+```bash
+pytest -q
+python scripts/validate_gbsa_reproduction.py
+python scripts/run_gbsa_comparison.py
+python scripts/analyze_end_to_end.py
+```
 
 组合报告和四张 LaTeX 表可从已冻结数据再生：
 
@@ -174,4 +183,4 @@ GBSA 阶段目前 **SOURCE_BLOCKED / NOT RUN**：未取得可核实的论文全�
 python scripts/analyze_end_to_end.py
 ```
 
-该命令先核验 Phase A 与所有旧结果哈希；若未来已有 GBSA 原始测量，会拒绝用当前缺失值流程覆盖。最终状态见 `END_TO_END_EVALUATION_REPORT.md`。
+该命令先核验 Phase A 与所有旧结果哈希、24 个三次重复的 GBSA 测量及共同后端哈希，再生成三方统计。最终状态见 `END_TO_END_EVALUATION_REPORT.md`。GBSA 搜索不受 QDAO 固定低位 qubits 限制，但其布局交换通过共同 QDAO/Aer 文件后端执行且计入开销；不能把本复现成绩冒充官方 artifact 成绩。

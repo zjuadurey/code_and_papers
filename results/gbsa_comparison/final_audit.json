@@ -7,14 +7,18 @@
     "files": 7407,
     "unchanged": true
   },
-  "tests_passed": 229,
+  "tests_passed": 243,
   "phase_a_exact_cases": 195,
   "phase_a_correctness_failures": 0,
-  "gbsa_cases": 0,
-  "gbsa_correctness_failures": null,
-  "gbsa_status": "NOT_RUN_SOURCE_BLOCKED",
+  "phase_a_benchmark_state_files_remaining": 0,
+  "phase_a_measured_runs": 144,
+  "gbsa_exact_cases": 195,
+  "gbsa_correctness_failures": 0,
+  "gbsa_benchmark_state_files_remaining": 0,
+  "gbsa_measured_runs": 72,
+  "qdao_reference_clean": true,
   "latex_tables": 4,
   "latex_compilation_passed": true,
-  "qdao_reference_clean": true,
-  "phase_a_benchmark_state_files_remaining": 0
+  "gbsa_status": "MEASURED_REPRODUCTION_COMMON_SUBSTRATE",
+  "timestamp": "2026-09-16T03:37:36.786170+00:00"
 }

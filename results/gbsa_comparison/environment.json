@@ -13,15 +13,14 @@
   "storage_environment": "wsl2_ext4_vhdx",
   "filesystem": "ext4",
   "device_counter_scope": "shared guest-visible /dev/sdd",
-  "benchmark_dir": "/home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/results/qdao_end_to_end/workdir",
+  "benchmark_dir": "/home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/results/gbsa_comparison/workdir",
   "precision": "complex128",
-  "git_commit": "ba5d0da0e45027f55395129530916c938c4058e0",
+  "git_commit": "2b7f7c3d09ad87e48070962be6fd7c3e301b8a85",
   "phase_a_commit": "79ab9a107b83346452bdbb96341a22076a533a44",
-  "gbsa_status": "SOURCE_BLOCKED_NO_VERIFIABLE_GBSA_ALGORITHM_OR_ARTIFACT",
-  "gbsa_commit": null,
-  "gbsa_language": null,
-  "gbsa_license": null,
-  "gbsa_backend": null,
-  "gbsa_runtime_versions": null,
-  "note": "No GBSA timed run; environment is the intended common Phase A environment."
+  "gbsa_status": "independent paper-policy reproduction",
+  "gbsa_sha256": "705450de4e6411a5aad12dc8666c064172ea392725ff96f2a2c7a4d7a28bcaf3",
+  "gbsa_artifact_commit": null,
+  "gbsa_author_license": null,
+  "gbsa_language": "Python search and layout orchestration; shared Aer native kernels",
+  "chunk_bits": 16
 }

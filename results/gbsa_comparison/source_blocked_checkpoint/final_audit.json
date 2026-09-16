@@ -1,0 +1,20 @@
+{
+  "phase_a_hashes.json": {
+    "files": 296,
+    "unchanged": true
+  },
+  "previous_results_hashes.json": {
+    "files": 7407,
+    "unchanged": true
+  },
+  "tests_passed": 229,
+  "phase_a_exact_cases": 195,
+  "phase_a_correctness_failures": 0,
+  "gbsa_cases": 0,
+  "gbsa_correctness_failures": null,
+  "gbsa_status": "NOT_RUN_SOURCE_BLOCKED",
+  "latex_tables": 4,
+  "latex_compilation_passed": true,
+  "qdao_reference_clean": true,
+  "phase_a_benchmark_state_files_remaining": 0
+}
