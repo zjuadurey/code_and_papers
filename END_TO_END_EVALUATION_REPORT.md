@@ -199,3 +199,16 @@ alongside the individual samples and CV rather than as resolved superiority.
 ## Artifacts
 
 `results/end_to_end_summary.csv`, `results/end_to_end_tables.tex`, `results/gbsa_comparison/{raw_runs,summary,fairness_manifest}.csv`. Four standalone LaTeX table environments; no paper source was edited.
+
+<!-- representative-scaling-extension -->
+
+## Completed representative scaling extension
+
+2 additional common points, 18 measured runs; three repetitions per system. These are a preselected subset, not the full larger-size workload matrix.
+
+| Workload | $n$ | QDAO (s) | GBSA repr. (s) | QThin (s) | QDAO/QThin | GBSA/QThin |
+|---|---|---|---|---|---|---|
+| cdkm_superposed | 26 | 148.654 | 232.937 | 89.108 | 1.668 | 2.614 |
+| qaoa | 26 | 223.059 | 325.043 | 176.182 | 1.266 | 1.845 |
+
+See `END_TO_END_SCALING_REPORT.md` for traffic, coverage and limitations.

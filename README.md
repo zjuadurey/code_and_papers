@@ -184,3 +184,26 @@ python scripts/analyze_end_to_end.py
 ```
 
 该命令先核验 Phase A 与所有旧结果哈希、24 个三次重复的 GBSA 测量及共同后端哈希，再生成三方统计。最终状态见 `END_TO_END_EVALUATION_REPORT.md`。GBSA 搜索不受 QDAO 固定低位 qubits 限制，但其布局交换通过共同 QDAO/Aer 文件后端执行且计入开销；不能把本复现成绩冒充官方 artifact 成绩。
+
+### 投稿前的代表性规模扩展
+
+完整 20/22/24q 三方结果先审计、提交，再运行独立的 `results/end_to_end_scaling/`。
+26q 预先选择叠加态 CDKM 与 QAOA，三方各三次；28q 仅在时间允许时增加共同代表点。
+这不是完整的 26/28q workload 矩阵，也不是超出内存容量的 OOC 结果。
+
+```bash
+python scripts/audit_end_to_end.py
+python scripts/run_end_to_end_scaling.py --size 26 --families cdkm_superposed qaoa
+python scripts/analyze_end_to_end_scaling.py
+```
+
+扩展脚本复用相同 case runner 和输入哈希，持有共同性能锁，串行轮换三种方法。
+每个点保留三次样本，结果安全落盘后删除该次临时状态文件。
+默认 `--latest-group-start` 是本次投稿日北京时间 2026-09-16 16:00；未来复现时应显式设置自己的带时区截止时间。
+可选 28q 输入只由 `prepare_end_to_end_scaling.py` 实例化已有 generator 的规模变体，
+追加到共同 manifest，保留既有行及 Phase A 输入文件。准备输入和核查不能与计时实验并行。
+
+扩展报告为 `END_TO_END_SCALING_REPORT.md`，分析入口同时向总报告和 LaTeX 文件附加独立子集表。
+从已有数据再生时，先运行 `analyze_end_to_end.py`，再运行 `analyze_end_to_end_scaling.py`。
+核心阶段的 `audit_end_to_end.py` 检查四张主表；扩展后 LaTeX 文件另含两张子集表，
+最终核查记录在扩展目录。归档的 Phase A/B 数据请在独立 checkout 中复现，避免覆盖。

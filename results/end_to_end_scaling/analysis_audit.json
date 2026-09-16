@@ -1,0 +1,9 @@
+{
+  "runs": 18,
+  "points": 2,
+  "input_hashes_verified": true,
+  "repetitions_per_system": 3,
+  "common_runtime_sha256": "ca8916090d92e3a99ed556ee2ef729ef683d29c0c4afa9969372e316e8eeab94",
+  "gbsa_sha256": "705450de4e6411a5aad12dc8666c064172ea392725ff96f2a2c7a4d7a28bcaf3",
+  "all_three_systems_at_every_point": true
+}

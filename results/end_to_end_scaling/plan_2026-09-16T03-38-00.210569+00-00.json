@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-09-16T03-38-00.210569+00-00",
+  "families": [
+    "cdkm_superposed",
+    "qaoa"
+  ],
+  "n": 26,
+  "repetitions": 3,
+  "systems": [
+    "QDAO",
+    "QThin",
+    "GBSA reproduction"
+  ],
+  "seed": 20260916,
+  "rationale": "Preselected superposed arithmetic positive and early-physicalization control; comparator optional.",
+  "latest_group_start": "2026-09-16T16:00:00+08:00",
+  "source_sha256": {
+    "src/htp/e2e/runtime.py": "ca8916090d92e3a99ed556ee2ef729ef683d29c0c4afa9969372e316e8eeab94",
+    "src/htp/e2e/gbsa.py": "705450de4e6411a5aad12dc8666c064172ea392725ff96f2a2c7a4d7a28bcaf3",
+    "scripts/run_end_to_end_scaling.py": "544e40fcbfc2787ab0a3b5231cea21e33fb44b109e563a5a8c725ce9d18ff941",
+    "scripts/run_e2e_case.py": "69f0b4fbf2217244aef7211a4b042905e12c7b1e5d9b42ca0bd79d005302af48",
+    "scripts/run_gbsa_case.py": "f297dda70eb748374afd00224fdf3cab4549296703e8af09854af9596a4782cd",
+    "results/end_to_end_workloads.csv": "9d504f94ab2a3f839a7888029cabd5b00a8d37d17ef4ee2f2b0804cae18b5f30",
+    "patches/qdao_current_qiskit.patch": "aa1a6b53472de4da4d499348f96acd84a32b7c21be09c58dd751fcf6bce03264"
+  },
+  "parent_commit": "756965ab3b1c75ece6c82baf29d90e9a5482766b",
+  "scope": "Representative scaling subset; not a full larger-size corpus or capacity-scale OOC test."
+}
