@@ -143,3 +143,23 @@ bash scripts/run_ssd_materialization_all.sh
 协议见 `notes/ssd_materialization_protocol.md`。原生 loop 的工作内存为四个 chunk，最大 256 MiB；支持 CX 两个方向、CZ 和 correctness 用 generic 2q unitary。目标 bit 必须位于 chunk 内。Application、process 和 mapped block-device counters 分列；在 WSL2 下 block counters 是 **guest-visible storage-path traffic**，不能称为原生 NVMe/NAND 流量。DIRECT 与 BUFFERED+fdatasync 分开统计。仅验证单次物化机制，不声称 whole-program QDAO speedup。
 
 本阶段不生成 publication figures。主要产物为 `summary.csv`、完整 `raw_runs.csv`、含 median/min/max/std/CV 的 `run_statistics.csv`、`allocation_behavior.csv`、`chunk_sensitivity.csv`、`direct_vs_buffered.csv`、明确的 `skipped_cases.csv`，以及环境、构建、correctness 和 reproducibility 记录。
+
+## 第四阶段：小规模 file-backed QDAO end-to-end evaluation
+
+在项目根目录、现有 `htp-static` 环境中运行以下命令。继续使用已构建的第三阶段 native binary 运行完整回归测试；本阶段不重跑或覆盖此前实验结果。
+
+```bash
+conda activate htp-static
+python scripts/setup_qdao_integration.py
+python scripts/prepare_end_to_end.py
+pytest -q
+python scripts/validate_qdao_integration.py
+python scripts/run_qdao_end_to_end.py --sizes 20 22 24
+python scripts/analyze_qdao_end_to_end.py
+```
+
+参考 QDAO checkout 保持只读；兼容性修改位于独立 worktree，补丁和上游 SHA 均保留。两组使用相同的 current-Aer state-injection adapter、固定 m=16/t=12、单线程、complex128、buffered NPY 文件，以及最终状态 `fdatasync`。这不是完全未修改的作者软件；旧 Initialize 接口对照及一次同步策略诊断完整保留，详见 `notes/qdao_integration.md`。
+
+共同输入见 `results/end_to_end_workloads.csv`。主结果和逐次原始 JSON 位于 `results/qdao_end_to_end/`，报告为 `QDAO_INTEGRATION_REPORT.md`。入口按已完成 run ID 恢复，使用文件锁防止重叠实验。不得同时运行此前 SSD microbenchmark。GBSA 阶段必须等待 Phase A 数据审计、封存和 checkpoint commit 完成。
+
+这里测量的是小规模文件后端执行，不是超出 RAM 容量的 OOC 结果。state-payload requests、process accounting 和 shared guest-visible block-device counters 分列；不能把前两者称为物理 SSD bytes。最终表格输出到 `results/end_to_end_tables.tex`，不生成 publication plots。

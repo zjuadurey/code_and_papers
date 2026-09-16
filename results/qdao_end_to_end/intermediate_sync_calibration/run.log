@@ -1,0 +1,96 @@
+START 20 cdkm_basis QThin 0
+{"workload_id": "cdkm_basis_20", "system": "QThin", "repetition": 0, "wall_time_s": 0.09008107500267215, "algorithmic_read_bytes": 0, "algorithmic_write_bytes": 16, "final_q_physical": 0}
+START 20 cdkm_basis QDAO 0
+{"workload_id": "cdkm_basis_20", "system": "QDAO", "repetition": 0, "wall_time_s": 1.5062415760185104, "algorithmic_read_bytes": 50331648, "algorithmic_write_bytes": 67108864, "final_q_physical": 20}
+START 20 cdkm_basis QDAO 1
+{"workload_id": "cdkm_basis_20", "system": "QDAO", "repetition": 1, "wall_time_s": 1.5225795959995594, "algorithmic_read_bytes": 50331648, "algorithmic_write_bytes": 67108864, "final_q_physical": 20}
+START 20 cdkm_basis QThin 1
+{"workload_id": "cdkm_basis_20", "system": "QThin", "repetition": 1, "wall_time_s": 0.09072663198458031, "algorithmic_read_bytes": 0, "algorithmic_write_bytes": 16, "final_q_physical": 0}
+START 20 cdkm_basis QThin 2
+{"workload_id": "cdkm_basis_20", "system": "QThin", "repetition": 2, "wall_time_s": 0.09026994497980922, "algorithmic_read_bytes": 0, "algorithmic_write_bytes": 16, "final_q_physical": 0}
+START 20 cdkm_basis QDAO 2
+{"workload_id": "cdkm_basis_20", "system": "QDAO", "repetition": 2, "wall_time_s": 1.506792085012421, "algorithmic_read_bytes": 50331648, "algorithmic_write_bytes": 67108864, "final_q_physical": 20}
+START 20 cdkm_superposed QThin 0
+{"workload_id": "cdkm_superposed_20", "system": "QThin", "repetition": 0, "wall_time_s": 1.1934481500065885, "algorithmic_read_bytes": 16908304, "algorithmic_write_bytes": 33685520, "final_q_physical": 20}
+START 20 cdkm_superposed QDAO 0
+{"workload_id": "cdkm_superposed_20", "system": "QDAO", "repetition": 0, "wall_time_s": 1.525239128008252, "algorithmic_read_bytes": 50331648, "algorithmic_write_bytes": 67108864, "final_q_physical": 20}
+START 20 cdkm_superposed QDAO 1
+{"workload_id": "cdkm_superposed_20", "system": "QDAO", "repetition": 1, "wall_time_s": 1.513867844012566, "algorithmic_read_bytes": 50331648, "algorithmic_write_bytes": 67108864, "final_q_physical": 20}
+START 20 cdkm_superposed QThin 1
+{"workload_id": "cdkm_superposed_20", "system": "QThin", "repetition": 1, "wall_time_s": 1.1741791460081004, "algorithmic_read_bytes": 16908304, "algorithmic_write_bytes": 33685520, "final_q_physical": 20}
+START 20 cdkm_superposed QThin 2
+{"workload_id": "cdkm_superposed_20", "system": "QThin", "repetition": 2, "wall_time_s": 1.1963493810035288, "algorithmic_read_bytes": 16908304, "algorithmic_write_bytes": 33685520, "final_q_physical": 20}
+START 20 cdkm_superposed QDAO 2
+{"workload_id": "cdkm_superposed_20", "system": "QDAO", "repetition": 2, "wall_time_s": 1.5485185940051451, "algorithmic_read_bytes": 50331648, "algorithmic_write_bytes": 67108864, "final_q_physical": 20}
+START 20 comparator QDAO 0
+{"workload_id": "comparator_20", "system": "QDAO", "repetition": 0, "wall_time_s": 1.9896670629968867, "algorithmic_read_bytes": 100663296, "algorithmic_write_bytes": 117440512, "final_q_physical": 20}
+START 20 comparator QThin 0
+{"workload_id": "comparator_20", "system": "QThin", "repetition": 0, "wall_time_s": 2.2716830790159293, "algorithmic_read_bytes": 51396624, "algorithmic_write_bytes": 68173840, "final_q_physical": 20}
+START 20 comparator QThin 1
+{"workload_id": "comparator_20", "system": "QThin", "repetition": 1, "wall_time_s": 2.2157722580013797, "algorithmic_read_bytes": 51396624, "algorithmic_write_bytes": 68173840, "final_q_physical": 20}
+START 20 comparator QDAO 1
+{"workload_id": "comparator_20", "system": "QDAO", "repetition": 1, "wall_time_s": 2.04818587898626, "algorithmic_read_bytes": 100663296, "algorithmic_write_bytes": 117440512, "final_q_physical": 20}
+START 20 comparator QThin 2
+{"workload_id": "comparator_20", "system": "QThin", "repetition": 2, "wall_time_s": 2.224546334007755, "algorithmic_read_bytes": 51396624, "algorithmic_write_bytes": 68173840, "final_q_physical": 20}
+START 20 comparator QDAO 2
+{"workload_id": "comparator_20", "system": "QDAO", "repetition": 2, "wall_time_s": 1.9930192200117745, "algorithmic_read_bytes": 100663296, "algorithmic_write_bytes": 117440512, "final_q_physical": 20}
+START 20 qft QThin 0
+{"workload_id": "qft_20", "system": "QThin", "repetition": 0, "wall_time_s": 6.383016228995984, "algorithmic_read_bytes": 100666640, "algorithmic_write_bytes": 117443856, "final_q_physical": 20}
+START 20 qft QDAO 0
+{"workload_id": "qft_20", "system": "QDAO", "repetition": 0, "wall_time_s": 7.984848099993542, "algorithmic_read_bytes": 620756992, "algorithmic_write_bytes": 637534208, "final_q_physical": 20}
+START 20 qft QDAO 1
+{"workload_id": "qft_20", "system": "QDAO", "repetition": 1, "wall_time_s": 7.90239194498281, "algorithmic_read_bytes": 620756992, "algorithmic_write_bytes": 637534208, "final_q_physical": 20}
+START 20 qft QThin 1
+{"workload_id": "qft_20", "system": "QThin", "repetition": 1, "wall_time_s": 6.496737787005259, "algorithmic_read_bytes": 100666640, "algorithmic_write_bytes": 117443856, "final_q_physical": 20}
+START 20 qft QDAO 2
+{"workload_id": "qft_20", "system": "QDAO", "repetition": 2, "wall_time_s": 7.8556174430123065, "algorithmic_read_bytes": 620756992, "algorithmic_write_bytes": 637534208, "final_q_physical": 20}
+START 20 qft QThin 2
+{"workload_id": "qft_20", "system": "QThin", "repetition": 2, "wall_time_s": 6.521561511006439, "algorithmic_read_bytes": 100666640, "algorithmic_write_bytes": 117443856, "final_q_physical": 20}
+START 20 qaoa QDAO 0
+{"workload_id": "qaoa_20", "system": "QDAO", "repetition": 0, "wall_time_s": 2.131896561011672, "algorithmic_read_bytes": 134217728, "algorithmic_write_bytes": 150994944, "final_q_physical": 20}
+START 20 qaoa QThin 0
+{"workload_id": "qaoa_20", "system": "QThin", "repetition": 0, "wall_time_s": 2.4808853210124653, "algorithmic_read_bytes": 93323280, "algorithmic_write_bytes": 110100496, "final_q_physical": 20}
+START 20 qaoa QDAO 1
+{"workload_id": "qaoa_20", "system": "QDAO", "repetition": 1, "wall_time_s": 2.110426022991305, "algorithmic_read_bytes": 134217728, "algorithmic_write_bytes": 150994944, "final_q_physical": 20}
+START 20 qaoa QThin 1
+{"workload_id": "qaoa_20", "system": "QThin", "repetition": 1, "wall_time_s": 2.5553659359866288, "algorithmic_read_bytes": 93323280, "algorithmic_write_bytes": 110100496, "final_q_physical": 20}
+START 20 qaoa QDAO 2
+{"workload_id": "qaoa_20", "system": "QDAO", "repetition": 2, "wall_time_s": 2.119366886006901, "algorithmic_read_bytes": 134217728, "algorithmic_write_bytes": 150994944, "final_q_physical": 20}
+START 20 qaoa QThin 2
+{"workload_id": "qaoa_20", "system": "QThin", "repetition": 2, "wall_time_s": 2.670439388981322, "algorithmic_read_bytes": 93323280, "algorithmic_write_bytes": 110100496, "final_q_physical": 20}
+START 20 hea QDAO 0
+{"workload_id": "hea_20", "system": "QDAO", "repetition": 0, "wall_time_s": 1.99523195400252, "algorithmic_read_bytes": 134217728, "algorithmic_write_bytes": 150994944, "final_q_physical": 20}
+START 20 hea QThin 0
+{"workload_id": "hea_20", "system": "QThin", "repetition": 0, "wall_time_s": 2.2140794040169567, "algorithmic_read_bytes": 53477392, "algorithmic_write_bytes": 70254608, "final_q_physical": 20}
+START 20 hea QThin 1
+{"workload_id": "hea_20", "system": "QThin", "repetition": 1, "wall_time_s": 2.1019361109938473, "algorithmic_read_bytes": 53477392, "algorithmic_write_bytes": 70254608, "final_q_physical": 20}
+START 20 hea QDAO 1
+{"workload_id": "hea_20", "system": "QDAO", "repetition": 1, "wall_time_s": 2.0693494899896905, "algorithmic_read_bytes": 134217728, "algorithmic_write_bytes": 150994944, "final_q_physical": 20}
+START 20 hea QDAO 2
+{"workload_id": "hea_20", "system": "QDAO", "repetition": 2, "wall_time_s": 2.014229988999432, "algorithmic_read_bytes": 134217728, "algorithmic_write_bytes": 150994944, "final_q_physical": 20}
+START 20 hea QThin 2
+{"workload_id": "hea_20", "system": "QThin", "repetition": 2, "wall_time_s": 2.250405928993132, "algorithmic_read_bytes": 53477392, "algorithmic_write_bytes": 70254608, "final_q_physical": 20}
+START 20 grover_oracle QThin 0
+{"workload_id": "grover_oracle_20", "system": "QThin", "repetition": 0, "wall_time_s": 21.615302231017267, "algorithmic_read_bytes": 1163921424, "algorithmic_write_bytes": 1180698640, "final_q_physical": 20}
+START 20 grover_oracle QDAO 0
+{"workload_id": "grover_oracle_20", "system": "QDAO", "repetition": 0, "wall_time_s": 26.33144420600729, "algorithmic_read_bytes": 1610612736, "algorithmic_write_bytes": 1627389952, "final_q_physical": 20}
+START 20 grover_oracle QThin 1
+{"workload_id": "grover_oracle_20", "system": "QThin", "repetition": 1, "wall_time_s": 21.724088276998373, "algorithmic_read_bytes": 1163921424, "algorithmic_write_bytes": 1180698640, "final_q_physical": 20}
+START 20 grover_oracle QDAO 1
+{"workload_id": "grover_oracle_20", "system": "QDAO", "repetition": 1, "wall_time_s": 26.625021007988835, "algorithmic_read_bytes": 1610612736, "algorithmic_write_bytes": 1627389952, "final_q_physical": 20}
+START 20 grover_oracle QDAO 2
+{"workload_id": "grover_oracle_20", "system": "QDAO", "repetition": 2, "wall_time_s": 26.58378600902506, "algorithmic_read_bytes": 1610612736, "algorithmic_write_bytes": 1627389952, "final_q_physical": 20}
+START 20 grover_oracle QThin 2
+{"workload_id": "grover_oracle_20", "system": "QThin", "repetition": 2, "wall_time_s": 21.66747733199736, "algorithmic_read_bytes": 1163921424, "algorithmic_write_bytes": 1180698640, "final_q_physical": 20}
+START 20 mcx_oracle QDAO 0
+{"workload_id": "mcx_oracle_20", "system": "QDAO", "repetition": 0, "wall_time_s": 23.170303092018003, "algorithmic_read_bytes": 1375731712, "algorithmic_write_bytes": 1392508928, "final_q_physical": 20}
+START 20 mcx_oracle QThin 0
+{"workload_id": "mcx_oracle_20", "system": "QThin", "repetition": 0, "wall_time_s": 18.068443195981672, "algorithmic_read_bytes": 929040400, "algorithmic_write_bytes": 945817616, "final_q_physical": 20}
+START 20 mcx_oracle QDAO 1
+{"workload_id": "mcx_oracle_20", "system": "QDAO", "repetition": 1, "wall_time_s": 22.934038767998572, "algorithmic_read_bytes": 1375731712, "algorithmic_write_bytes": 1392508928, "final_q_physical": 20}
+START 20 mcx_oracle QThin 1
+{"workload_id": "mcx_oracle_20", "system": "QThin", "repetition": 1, "wall_time_s": 18.09534748599981, "algorithmic_read_bytes": 929040400, "algorithmic_write_bytes": 945817616, "final_q_physical": 20}
+START 20 mcx_oracle QThin 2
+{"workload_id": "mcx_oracle_20", "system": "QThin", "repetition": 2, "wall_time_s": 18.255038381001214, "algorithmic_read_bytes": 929040400, "algorithmic_write_bytes": 945817616, "final_q_physical": 20}
+START 20 mcx_oracle QDAO 2
+{"workload_id": "mcx_oracle_20", "system": "QDAO", "repetition": 2, "wall_time_s": 23.341122499026824, "algorithmic_read_bytes": 1375731712, "algorithmic_write_bytes": 1392508928, "final_q_physical": 20}

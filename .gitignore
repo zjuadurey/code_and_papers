@@ -5,3 +5,5 @@ __pycache__/
 results/.working/
 build/
 results/ssd_materialization/workdir/
+results/qdao_end_to_end/workdir/
+results/gbsa_comparison/workdir/

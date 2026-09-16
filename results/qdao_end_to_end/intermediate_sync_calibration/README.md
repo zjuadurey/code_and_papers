@@ -1,0 +1,1 @@
+Diagnostic shared-Aer run with extra old-bank fdatasync for QThin. Excluded from primary matrix because this is an asymmetric sync policy, not because of performance. All samples retained. Primary matrix restarted with final-surviving-state fdatasync for both systems; cancelled_write_bytes remains visible.
