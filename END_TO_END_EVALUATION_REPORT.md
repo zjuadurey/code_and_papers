@@ -1,5 +1,9 @@
 # END-TO-END RESULT: PROMISING
 
+Memory/OOC claim audit (2026-09-18): [内存、页缓存与后续论文改进记录](notes/memory_and_ooc_claim_audit.md).
+Peak process RSS is below 2 GiB for all 243 runs, but no 2 GiB memory limit was enforced.
+These are file-backed results, not demonstrated beyond-memory capacity results.
+
 QDAO integration status: completed; Phase A result **STRONG**; commit `79ab9a1`.
 GBSA reproduction status: completed, independent paper-policy implementation.
 Workloads completed: 24 points (8 variants × 20/22/24q), 216 core timed runs.
