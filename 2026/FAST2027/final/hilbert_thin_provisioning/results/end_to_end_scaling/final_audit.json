@@ -1,0 +1,31 @@
+{
+  "phase_a_hashes.json": {
+    "files": 296,
+    "unchanged": true
+  },
+  "previous_results_hashes.json": {
+    "files": 7407,
+    "unchanged": true
+  },
+  "core_phase_b_hashes.json": {
+    "files": 103,
+    "unchanged": true
+  },
+  "frozen_26_raw_hashes.json": {
+    "files": 19,
+    "unchanged": true
+  },
+  "tests_passed": 249,
+  "benchmark_state_files_remaining": 0,
+  "runs": 27,
+  "points": 3,
+  "input_hashes_verified": true,
+  "repetitions_per_system": 3,
+  "common_runtime_sha256": "ca8916090d92e3a99ed556ee2ef729ef683d29c0c4afa9969372e316e8eeab94",
+  "gbsa_sha256": "705450de4e6411a5aad12dc8666c064172ea392725ff96f2a2c7a4d7a28bcaf3",
+  "all_three_systems_at_every_point": true,
+  "latex_tables": 6,
+  "latex_compilation_passed": true,
+  "qdao_reference_clean": true,
+  "timestamp": "2026-09-16T07:20:53.348778+00:00"
+}

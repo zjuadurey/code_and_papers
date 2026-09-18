@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-09-16T07:20:52.588310+00:00",
+  "git_commit": "e3832ce89372878b14c97975112b4d31067da33f",
+  "branch": "exp/qdao-end-to-end",
+  "git_status_at_analysis": " M END_TO_END_EVALUATION_REPORT.md\n M END_TO_END_SCALING_REPORT.md\n M README.md\n M results/end_to_end_scaling/analysis_audit.json\n M results/end_to_end_scaling/execution_order.jsonl\n M results/end_to_end_scaling/final_audit.json\n M results/end_to_end_scaling/final_tests.log\n M results/end_to_end_scaling/raw_runs.csv\n M results/end_to_end_scaling/selected_workloads.csv\n M results/end_to_end_scaling/skipped_cases.csv\n M results/end_to_end_scaling/summary.csv\n M results/end_to_end_scaling/system_summary.csv\n M results/end_to_end_scaling/tables.tex\n M results/end_to_end_tables.tex\n M results/end_to_end_workloads.csv\n M scripts/analyze_end_to_end_scaling.py\n M scripts/run_end_to_end_scaling.py\n?? results/end_to_end_scaling/capacity_revision.json\n?? results/end_to_end_scaling/capacity_revision_tests.log\n?? results/end_to_end_scaling/combined_size_trends.csv\n?? results/end_to_end_scaling/coverage.csv\n?? results/end_to_end_scaling/decision_28.json\n?? results/end_to_end_scaling/inputs/\n?? results/end_to_end_scaling/performance_28.log\n?? results/end_to_end_scaling/plan_2026-09-16T04-39-17.754186+00-00.json\n?? results/end_to_end_scaling/plan_2026-09-16T05-49-42.630407+00-00.json\n?? results/end_to_end_scaling/raw/cdkm_superposed_28_GBSA_0.json\n?? results/end_to_end_scaling/raw/cdkm_superposed_28_GBSA_1.json\n?? results/end_to_end_scaling/raw/cdkm_superposed_28_GBSA_2.json\n?? results/end_to_end_scaling/raw/cdkm_superposed_28_QDAO_0.json\n?? results/end_to_end_scaling/raw/cdkm_superposed_28_QDAO_1.json\n?? results/end_to_end_scaling/raw/cdkm_superposed_28_QDAO_2.json\n?? results/end_to_end_scaling/raw/cdkm_superposed_28_QThin_0.json\n?? results/end_to_end_scaling/raw/cdkm_superposed_28_QThin_1.json\n?? results/end_to_end_scaling/raw/cdkm_superposed_28_QThin_2.json\n?? results/end_to_end_scaling/reproducibility.txt\n?? src/htp/e2e/capacity.py\n?? tests/test_e2e_capacity.py\n",
+  "python": "3.11.16 (main, Sep  2 2026, 23:39:52) [GCC 15.3.0]",
+  "kernel": "6.18.33.2-microsoft-standard-WSL2",
+  "seed": 20260916,
+  "core_environment": "results/gbsa_comparison/environment.json",
+  "measured_execution_order": "results/end_to_end_scaling/execution_order.jsonl",
+  "plans": [
+    "results/end_to_end_scaling/plan_2026-09-16T03-38-00.210569+00-00.json",
+    "results/end_to_end_scaling/plan_2026-09-16T04-39-17.754186+00-00.json",
+    "results/end_to_end_scaling/plan_2026-09-16T05-49-42.630407+00-00.json"
+  ],
+  "source_sha256": {
+    "src/htp/e2e/runtime.py": "ca8916090d92e3a99ed556ee2ef729ef683d29c0c4afa9969372e316e8eeab94",
+    "src/htp/e2e/gbsa.py": "705450de4e6411a5aad12dc8666c064172ea392725ff96f2a2c7a4d7a28bcaf3",
+    "src/htp/e2e/capacity.py": "6a117118e0b58617f6701b704b2f8ac9cf02de8185079ead6b2fe3f69bf7a4b3",
+    "scripts/run_end_to_end_scaling.py": "9dd9044b30c5e3672629defeae7dfa192a941354511a73465a7de12bf70d2607",
+    "scripts/run_e2e_case.py": "69f0b4fbf2217244aef7211a4b042905e12c7b1e5d9b42ca0bd79d005302af48",
+    "scripts/run_gbsa_case.py": "f297dda70eb748374afd00224fdf3cab4549296703e8af09854af9596a4782cd",
+    "results/end_to_end_workloads.csv": "ec4852e693515ba50093496695649a57f9531398347b996d49e0ad4c46694b3a"
+  },
+  "commands": [
+    "python scripts/run_end_to_end_scaling.py --size 26 --families cdkm_superposed qaoa",
+    "python scripts/prepare_end_to_end_scaling.py --size 28 --families cdkm_superposed",
+    "python scripts/run_end_to_end_scaling.py --size 28 --families cdkm_superposed",
+    "python scripts/analyze_end_to_end_scaling.py",
+    "python scripts/audit_end_to_end_scaling.py"
+  ]
+}

@@ -1,0 +1,78 @@
+diff --git a/qdao/circuit.py b/qdao/circuit.py
+index f370b96..192248c 100644
+--- a/qdao/circuit.py
++++ b/qdao/circuit.py
+@@ -20,7 +20,10 @@ import logging
+ from typing import Any, List
+ 
+ from qdao.qiskit.circuit import QiskitCircuitWrapper
+-from qdao.quafu.circuit import QuafuCircuitHelper
++try:
++    from qdao.quafu.circuit import QuafuCircuitHelper
++except ImportError:
++    QuafuCircuitHelper = None  # Optional backend; Qiskit-only evaluation.
+ 
+ 
+ class QdaoCircuit:
+diff --git a/qdao/qiskit/data_preparation/initializer.py b/qdao/qiskit/data_preparation/initializer.py
+index ccd1548..c90d5ce 100644
+--- a/qdao/qiskit/data_preparation/initializer.py
++++ b/qdao/qiskit/data_preparation/initializer.py
+@@ -21,7 +21,7 @@ from collections.abc import Sequence
+ 
+ from qiskit.circuit.instruction import Instruction
+ from qiskit.circuit.quantumcircuit import QuantumCircuit
+-from qiskit.circuit.quantumregister import QuantumRegister
++from qiskit.circuit import QuantumRegister
+ 
+ from .state_preparation import StatePreparation
+ 
+diff --git a/qdao/qiskit/data_preparation/state_preparation.py b/qdao/qiskit/data_preparation/state_preparation.py
+index 8d0c0f3..31dcadf 100644
+--- a/qdao/qiskit/data_preparation/state_preparation.py
++++ b/qdao/qiskit/data_preparation/state_preparation.py
+@@ -23,7 +23,7 @@ from qiskit.circuit.library.standard_gates.rz import RZGate
+ from qiskit.circuit.library.standard_gates.s import SdgGate, SGate
+ from qiskit.circuit.library.standard_gates.x import CXGate, XGate
+ from qiskit.circuit.quantumcircuit import QuantumCircuit
+-from qiskit.circuit.quantumregister import QuantumRegister
++from qiskit.circuit import QuantumRegister
+ from qiskit.exceptions import QiskitError
+ from qiskit.quantum_info.states.statevector import (  # pylint: disable=cyclic-import
+     Statevector,
+diff --git a/qdao/qiskit/instruction.py b/qdao/qiskit/instruction.py
+index c191eaa..ee2410d 100644
+--- a/qdao/qiskit/instruction.py
++++ b/qdao/qiskit/instruction.py
+@@ -44,7 +44,7 @@ from qiskit.circuit.classicalregister import ClassicalRegister, Clbit
+ from qiskit.circuit.exceptions import CircuitError
+ from qiskit.circuit.operation import Operation
+ from qiskit.circuit.parameter import ParameterExpression
+-from qiskit.circuit.quantumregister import QuantumRegister
++from qiskit.circuit import QuantumRegister
+ from qiskit.qobj.qasm_qobj import QasmQobjInstruction
+ 
+ _CUTOFF_PRECISION = 1e-10
+@@ -678,4 +678,4 @@ class Instruction(Operation):
+             except TypeError:
+                 if x != y:
+                     return False
+-        return True
+\ No newline at end of file
++        return True
+diff --git a/qdao/simulator.py b/qdao/simulator.py
+index be3bca0..8cde987 100644
+--- a/qdao/simulator.py
++++ b/qdao/simulator.py
+@@ -25,7 +25,10 @@ Attributes:
+ """
+ 
+ from qdao.qiskit.simulator import QiskitSimulator
+-from qdao.quafu.simulator import QuafuSimulator
++try:
++    from qdao.quafu.simulator import QuafuSimulator
++except ImportError:
++    QuafuSimulator = None  # Optional backend; Qiskit-only evaluation.
+ 
+ 
+ class QdaoSimObj:

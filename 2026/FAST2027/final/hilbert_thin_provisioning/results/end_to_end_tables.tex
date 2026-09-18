@@ -1,0 +1,180 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{File-backed end-to-end runtime: medians of three repetitions. Both systems use the same current-Aer state-injection adapter.}
+\label{tab:qdao-qthin-runtime}
+\begin{tabular}{lrrrr}
+\hline
+Workload & $n$ & QDAO (s) & QThin (s) & Speedup \\
+\hline
+cdkm\_basis & 20 & 1.524 & 0.094 & 16.290 \\
+cdkm\_superposed & 20 & 1.534 & 1.099 & 1.397 \\
+comparator & 20 & 2.008 & 1.389 & 1.445 \\
+grover\_oracle & 20 & 26.611 & 21.523 & 1.236 \\
+hea & 20 & 2.021 & 1.134 & 1.782 \\
+mcx\_oracle & 20 & 22.859 & 17.216 & 1.328 \\
+qaoa & 20 & 2.109 & 1.751 & 1.204 \\
+qft & 20 & 7.863 & 2.767 & 2.842 \\
+cdkm\_basis & 22 & 7.143 & 0.102 & 69.714 \\
+cdkm\_superposed & 22 & 7.346 & 4.693 & 1.566 \\
+comparator & 22 & 8.576 & 6.017 & 1.425 \\
+grover\_oracle & 22 & 163.069 & 125.875 & 1.295 \\
+hea & 22 & 9.523 & 4.016 & 2.371 \\
+mcx\_oracle & 22 & 143.641 & 104.824 & 1.370 \\
+qaoa & 22 & 8.667 & 7.108 & 1.219 \\
+qft & 22 & 54.973 & 15.229 & 3.610 \\
+cdkm\_basis & 24 & 28.356 & 0.115 & 246.435 \\
+cdkm\_superposed & 24 & 28.510 & 19.438 & 1.467 \\
+comparator & 24 & 40.902 & 25.825 & 1.584 \\
+grover\_oracle & 24 & 668.044 & 566.727 & 1.179 \\
+hea & 24 & 46.415 & 15.382 & 3.017 \\
+mcx\_oracle & 24 & 578.149 & 465.751 & 1.241 \\
+qaoa & 24 & 41.404 & 33.727 & 1.228 \\
+qft & 24 & 244.512 & 65.400 & 3.739 \\
+\hline
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Instrumented state-payload read/write requests. These are not physical SSD bytes.}
+\label{tab:qdao-qthin-traffic}
+\begin{tabular}{lrrrr}
+\hline
+Workload & $n$ & QDAO (GiB) & QThin (GiB) & Reduction \\
+\hline
+cdkm\_basis & 20 & 0.109 & $1.49\times 10^{-8}$ & $7.34\times 10^{6}$ \\
+cdkm\_superposed & 20 & 0.109 & 0.047 & 2.321 \\
+comparator & 20 & 0.203 & 0.111 & 1.824 \\
+grover\_oracle & 20 & 3.016 & 2.184 & 1.381 \\
+hea & 20 & 0.266 & 0.115 & 2.305 \\
+mcx\_oracle & 20 & 2.578 & 1.746 & 1.477 \\
+qaoa & 20 & 0.266 & 0.189 & 1.402 \\
+qft & 20 & 1.172 & 0.203 & 5.769 \\
+cdkm\_basis & 22 & 0.688 & $1.49\times 10^{-8}$ & $4.61\times 10^{7}$ \\
+cdkm\_superposed & 22 & 0.688 & 0.328 & 2.095 \\
+comparator & 22 & 0.938 & 0.563 & 1.665 \\
+grover\_oracle & 22 & 24.562 & 17.979 & 1.366 \\
+hea & 22 & 1.438 & 0.475 & 3.029 \\
+mcx\_oracle & 22 & 21.812 & 15.229 & 1.432 \\
+qaoa & 22 & 1.188 & 0.830 & 1.431 \\
+qft & 22 & 8.812 & 1.312 & 6.714 \\
+cdkm\_basis & 24 & 2.750 & $1.49\times 10^{-8}$ & $1.85\times 10^{8}$ \\
+cdkm\_superposed & 24 & 2.750 & 1.254 & 2.193 \\
+comparator & 24 & 4.750 & 2.758 & 1.722 \\
+grover\_oracle & 24 & 97.250 & 77.754 & 1.251 \\
+hea & 24 & 7.250 & 1.912 & 3.792 \\
+mcx\_oracle & 24 & 82.250 & 62.754 & 1.311 \\
+qaoa & 24 & 6.250 & 4.393 & 1.423 \\
+qft & 24 & 40.750 & 5.750 & 7.087 \\
+\hline
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Measured runtime medians of three runs. GBSA is an independent policy reproduction on the common backend, not author software.}
+\label{tab:three-way-runtime}
+\begin{tabular}{lrrrrrr}
+\hline
+Workload & $n$ & QDAO (s) & GBSA repr. (s) & QThin (s) & QDAO/QThin & GBSA/QThin \\
+\hline
+cdkm\_basis & 20 & 1.524 & 1.827 & 0.094 & 16.290 & 19.534 \\
+cdkm\_superposed & 20 & 1.534 & 1.802 & 1.099 & 1.397 & 1.640 \\
+comparator & 20 & 2.008 & 1.859 & 1.389 & 1.445 & 1.338 \\
+grover\_oracle & 20 & 26.611 & 21.739 & 21.523 & 1.236 & 1.010 \\
+hea & 20 & 2.021 & 1.334 & 1.134 & 1.782 & 1.177 \\
+mcx\_oracle & 20 & 22.859 & 17.074 & 17.216 & 1.328 & 0.992 \\
+qaoa & 20 & 2.109 & 2.109 & 1.751 & 1.204 & 1.205 \\
+qft & 20 & 7.863 & 3.124 & 2.767 & 2.842 & 1.129 \\
+cdkm\_basis & 22 & 7.143 & 8.417 & 0.102 & 69.714 & 82.146 \\
+cdkm\_superposed & 22 & 7.346 & 8.630 & 4.693 & 1.566 & 1.839 \\
+comparator & 22 & 8.576 & 8.705 & 6.017 & 1.425 & 1.447 \\
+grover\_oracle & 22 & 163.069 & 142.086 & 125.875 & 1.295 & 1.129 \\
+hea & 22 & 9.523 & 5.992 & 4.016 & 2.371 & 1.492 \\
+mcx\_oracle & 22 & 143.641 & 120.307 & 104.824 & 1.370 & 1.148 \\
+qaoa & 22 & 8.667 & 12.525 & 7.108 & 1.219 & 1.762 \\
+qft & 22 & 54.973 & 17.789 & 15.229 & 3.610 & 1.168 \\
+cdkm\_basis & 24 & 28.356 & 35.992 & 0.115 & 246.435 & 312.804 \\
+cdkm\_superposed & 24 & 28.510 & 37.551 & 19.438 & 1.467 & 1.932 \\
+comparator & 24 & 40.902 & 46.017 & 25.825 & 1.584 & 1.782 \\
+grover\_oracle & 24 & 668.044 & 780.470 & 566.727 & 1.179 & 1.377 \\
+hea & 24 & 46.415 & 25.031 & 15.382 & 3.017 & 1.627 \\
+mcx\_oracle & 24 & 578.149 & 691.110 & 465.751 & 1.241 & 1.484 \\
+qaoa & 24 & 41.404 & 54.180 & 33.727 & 1.228 & 1.606 \\
+qft & 24 & 244.512 & 81.169 & 65.400 & 3.739 & 1.241 \\
+\hline
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Instrumented state-payload read/write requests, including GBSA layout swaps; not physical SSD traffic.}
+\label{tab:three-way-traffic}
+\begin{tabular}{lrrrrrr}
+\hline
+Workload & $n$ & QDAO (GiB) & GBSA repr. (GiB) & QThin (GiB) & QDAO/QThin & GBSA/QThin \\
+\hline
+cdkm\_basis & 20 & 0.109 & 0.172 & $1.49\times 10^{-8}$ & $7.34\times 10^{6}$ & $1.15\times 10^{7}$ \\
+cdkm\_superposed & 20 & 0.109 & 0.172 & 0.047 & 2.321 & 3.648 \\
+comparator & 20 & 0.203 & 0.172 & 0.111 & 1.824 & 1.543 \\
+grover\_oracle & 20 & 3.016 & 2.016 & 2.184 & 1.381 & 0.923 \\
+hea & 20 & 0.266 & 0.109 & 0.115 & 2.305 & 0.949 \\
+mcx\_oracle & 20 & 2.578 & 1.328 & 1.746 & 1.477 & 0.761 \\
+qaoa & 20 & 0.266 & 0.266 & 0.189 & 1.402 & 1.402 \\
+qft & 20 & 1.172 & 0.203 & 0.203 & 5.769 & 1.000 \\
+cdkm\_basis & 22 & 0.688 & 0.938 & $1.49\times 10^{-8}$ & $4.61\times 10^{7}$ & $6.29\times 10^{7}$ \\
+cdkm\_superposed & 22 & 0.688 & 0.938 & 0.328 & 2.095 & 2.857 \\
+comparator & 22 & 0.938 & 0.938 & 0.563 & 1.665 & 1.665 \\
+grover\_oracle & 22 & 24.562 & 17.438 & 17.979 & 1.366 & 0.970 \\
+hea & 22 & 1.438 & 0.562 & 0.475 & 3.029 & 1.185 \\
+mcx\_oracle & 22 & 21.812 & 14.562 & 15.229 & 1.432 & 0.956 \\
+qaoa & 22 & 1.188 & 1.938 & 0.830 & 1.431 & 2.334 \\
+qft & 22 & 8.812 & 1.688 & 1.312 & 6.714 & 1.286 \\
+cdkm\_basis & 24 & 2.750 & 4.250 & $1.49\times 10^{-8}$ & $1.85\times 10^{8}$ & $2.85\times 10^{8}$ \\
+cdkm\_superposed & 24 & 2.750 & 4.250 & 1.254 & 2.193 & 3.389 \\
+comparator & 24 & 4.750 & 5.250 & 2.758 & 1.722 & 1.904 \\
+grover\_oracle & 24 & 97.250 & 111.250 & 77.754 & 1.251 & 1.431 \\
+hea & 24 & 7.250 & 2.250 & 1.912 & 3.792 & 1.177 \\
+mcx\_oracle & 24 & 82.250 & 96.750 & 62.754 & 1.311 & 1.542 \\
+qaoa & 24 & 6.250 & 8.250 & 4.393 & 1.423 & 1.878 \\
+qft & 24 & 40.750 & 6.750 & 5.750 & 7.087 & 1.174 \\
+\hline
+\end{tabular}
+\end{table*}
+
+% representative-scaling-extension
+\begin{table*}[t]
+\centering
+\small
+\caption{Representative scaling subset, three measured repetitions per system. GBSA is a policy reproduction on the common backend.}
+\label{tab:scaling-runtime}
+\begin{tabular}{lrrrrrr}
+\hline
+Workload & $n$ & QDAO (s) & GBSA repr. (s) & QThin (s) & QDAO/QThin & GBSA/QThin \\
+\hline
+cdkm\_superposed & 26 & 148.654 & 232.937 & 89.108 & 1.668 & 2.614 \\
+qaoa & 26 & 223.059 & 325.043 & 176.182 & 1.266 & 1.845 \\
+cdkm\_superposed & 28 & 1003.765 & 1557.833 & 552.486 & 1.817 & 2.820 \\
+\hline
+\end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Scaling subset: instrumented state-payload read/write requests, not physical SSD bytes.}
+\label{tab:scaling-traffic}
+\begin{tabular}{lrrrrrr}
+\hline
+Workload & $n$ & QDAO (GiB) & GBSA repr. (GiB) & QThin (GiB) & QDAO/QThin & GBSA/QThin \\
+\hline
+cdkm\_superposed & 26 & 15.000 & 25.000 & 7.251 & 2.069 & 3.448 \\
+qaoa & 26 & 29.000 & 45.000 & 20.143 & 1.440 & 2.234 \\
+cdkm\_superposed & 28 & 76.000 & 116.000 & 37.063 & 2.051 & 3.130 \\
+\hline
+\end{tabular}
+\end{table*}

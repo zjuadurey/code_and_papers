@@ -1,0 +1,11 @@
+........................................................................ [ 29%]
+........................................................................ [ 59%]
+........................................................................ [ 88%]
+...........................                                              [100%]
+=============================== warnings summary ===============================
+tests/test_loaders.py::test_arithmetic_portable_qpy
+  /home/audrey/miniconda3/envs/htp-static/lib/python3.11/site-packages/qiskit/circuit/library/arithmetic/integer_comparator.py:54: DeprecationWarning: The class ``qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`` is deprecated as of Qiskit 2.1. It will be removed in Qiskit 3.0. There is no direct replacement other than the QuantumCircuit class.
+    super().__init__(name=name)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+243 passed, 1 warning in 6.00s

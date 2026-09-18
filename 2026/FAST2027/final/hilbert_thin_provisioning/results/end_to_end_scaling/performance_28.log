@@ -1,0 +1,25 @@
+START cdkm_superposed_28 QThin 0
+{"workload_id": "cdkm_superposed_28", "system": "QThin", "repetition": 0, "wall_time_s": 491.5776588759909, "algorithmic_read_bytes": 17750426128, "algorithmic_write_bytes": 22045393424, "final_q_physical": 28}
+START cdkm_superposed_28 QDAO 0
+{"workload_id": "cdkm_superposed_28", "system": "QDAO", "repetition": 0, "wall_time_s": 1003.764567182021, "algorithmic_read_bytes": 38654705664, "algorithmic_write_bytes": 42949672960, "final_q_physical": 28}
+START cdkm_superposed_28 GBSA reproduction 0
+{"workload_id": "cdkm_superposed_28", "repetition": 0, "wall_time_s": 1557.8334323129966, "algorithmic_read_bytes": 60129542144, "algorithmic_write_bytes": 64424509440, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 10}
+START cdkm_superposed_28 QDAO 1
+{"workload_id": "cdkm_superposed_28", "system": "QDAO", "repetition": 1, "wall_time_s": 998.993969187024, "algorithmic_read_bytes": 38654705664, "algorithmic_write_bytes": 42949672960, "final_q_physical": 28}
+Traceback (most recent call last):
+  File "/home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/scripts/run_end_to_end_scaling.py", line 116, in <module>
+    main()
+  File "/home/audrey/code_and_papers/2026/FAST2027/final/hilbert_thin_provisioning/scripts/run_end_to_end_scaling.py", line 95, in main
+    raise RuntimeError('Insufficient safe disk capacity; do not run an incomplete comparison silently')
+RuntimeError: Insufficient safe disk capacity; do not run an incomplete comparison silently
+START cdkm_superposed_28 QThin 1
+{"workload_id": "cdkm_superposed_28", "system": "QThin", "repetition": 1, "wall_time_s": 552.4863153120386, "algorithmic_read_bytes": 17750426128, "algorithmic_write_bytes": 22045393424, "final_q_physical": 28}
+START cdkm_superposed_28 GBSA reproduction 1
+{"workload_id": "cdkm_superposed_28", "repetition": 1, "wall_time_s": 1486.1112006579642, "algorithmic_read_bytes": 60129542144, "algorithmic_write_bytes": 64424509440, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 10}
+START cdkm_superposed_28 QThin 2
+{"workload_id": "cdkm_superposed_28", "system": "QThin", "repetition": 2, "wall_time_s": 591.5967549179913, "algorithmic_read_bytes": 17750426128, "algorithmic_write_bytes": 22045393424, "final_q_physical": 28}
+START cdkm_superposed_28 GBSA reproduction 2
+{"workload_id": "cdkm_superposed_28", "repetition": 2, "wall_time_s": 1602.7791252739844, "algorithmic_read_bytes": 60129542144, "algorithmic_write_bytes": 64424509440, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 10}
+START cdkm_superposed_28 QDAO 2
+{"workload_id": "cdkm_superposed_28", "system": "QDAO", "repetition": 2, "wall_time_s": 1103.2612414140021, "algorithmic_read_bytes": 38654705664, "algorithmic_write_bytes": 42949672960, "final_q_physical": 28}
+SCALING BATCH COMPLETE

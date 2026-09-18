@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-09-16T05:49:42.008392+00:00",
+  "reason": "Original 3B uniform reserve exceeded 70% of remaining host space after four completed 28q runs; all temporary files were already removed.",
+  "original_reserve_bytes": 12884901888,
+  "revised_reserve_bytes": 9663676416,
+  "free_host_bytes_observed": 18027999232,
+  "unchanged_max_free_fraction": 0.7,
+  "peak_amplitude_bound": "old+new <= 1.5B; budget reserves 2B plus 1 GiB for NPY/file allocation metadata",
+  "filesystem_block_limit": 4096,
+  "fixed_storage_t": 12,
+  "validated_sizes": [
+    26,
+    28
+  ],
+  "new_capacity_tests": 6,
+  "timed_case_runners_unchanged": true,
+  "runtime_unchanged": true,
+  "raw_samples_discarded": 0,
+  "unrelated_files_removed": 0,
+  "trim_or_compaction_performed": false
+}

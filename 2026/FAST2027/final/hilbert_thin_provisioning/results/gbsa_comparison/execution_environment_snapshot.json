@@ -1,0 +1,20 @@
+{
+  "pid": 1648987,
+  "captured_unix": 1789527894.7367148,
+  "command": [
+    "/home/audrey/miniconda3/envs/htp-static/bin/python",
+    "scripts/run_gbsa_case.py",
+    "--workload",
+    "mcx_oracle_24",
+    "--repetition",
+    "1",
+    "--output",
+    "results/gbsa_comparison/raw/mcx_oracle_24_GBSA_1.json"
+  ],
+  "selected_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "HTP_QDAO_LEGACY_INITIALIZE": null
+  }
+}

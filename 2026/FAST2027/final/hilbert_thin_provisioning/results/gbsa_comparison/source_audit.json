@@ -1,0 +1,93 @@
+{
+  "checked_utc": "2026-09-16T00:48:44.599100+00:00",
+  "doi": "10.1145/3769002.3769982",
+  "title": "Toward Efficient Quantum Circuit Simulation with Memory and I/O Reduction through Gate Block Search Algorithm",
+  "official_artifact_found": false,
+  "full_paper_obtained": true,
+  "license": null,
+  "implementation_language": null,
+  "outcomes": [
+    {
+      "source": "https://dl.acm.org/doi/pdf/10.1145/3769002.3769982",
+      "result": "HTTP_403_HTML_NOT_PDF"
+    },
+    {
+      "source": "https://dl.acm.org/doi/epdf/10.1145/3769002.3769982",
+      "result": "HTTP_403"
+    },
+    {
+      "source": "https://api.crossref.org/works/10.1145/3769002.3769982",
+      "result": "Metadata; publisher PDF only; no license returned"
+    },
+    {
+      "source": "https://api.openalex.org/works/https://doi.org/10.1145/3769002.3769982",
+      "result": "closed; any_repository_has_fulltext=false"
+    },
+    {
+      "source": "https://api.semanticscholar.org/graph/v1/paper/DOI:10.1145/3769002.3769982?fields=title,openAccessPdf,url",
+      "result": "openAccessPdf.url empty"
+    },
+    {
+      "source": "https://zenodo.org/api/records?q=%22Gate%20Block%20Search%22&size=5",
+      "result": "0 hits"
+    },
+    {
+      "source": "GitHub public repository/code search: exact title, DOI, GBSA quantum, findMaxGate; nckuasrlab repos",
+      "result": "No verified author GBSA artifact found"
+    },
+    {
+      "source": "https://arxiv.org/abs/2406.14084",
+      "result": "Related author preprint, not the requested RACS paper; selector abstract"
+    },
+    {
+      "source": "https://arxiv.org/abs/2604.12256",
+      "result": "Related author preprint calls GBSA but does not specify requested algorithm"
+    },
+    {
+      "source": "ACM ordinary headless browser navigation",
+      "result": "Timed out without usable full text"
+    },
+    {
+      "source": "https://pas.csie.ntu.edu.tw/wiki/",
+      "result": "DNS resolution failed"
+    }
+  ],
+  "external_file_sha256": {
+    "external/gbsa-paper/acm.pdf": "3b2777d4f46e1bebaf7f0503a96da775b82589eed9597ae1c11a45350c1a9c05",
+    "external/gbsa-paper/2406.14084.pdf": "57e5bed8a8017f6175d380703a72c087b992f6b641a6c20aae72d5e8ec7426f1",
+    "external/gbsa-paper/browser.log": "f443c2e48868cce86e5edf3d0c73d2dea2f8c926618141599b62369e48542c66",
+    "external/gbsa-paper/retrieval_1.txt": "e04bd1d2173d40747706816a9be36b0684a45d8986da29b83cf5987672d28a41",
+    "external/gbsa-paper/zenodo.json": "e0d4c6e0adf87886fa737abb13943d9b4f85bc34c818bfcb60cc481729299b01",
+    "external/gbsa-paper/arxiv_exact.html": "aa8a7550c6c5d28b48bd51320f00ef15c66c3b936ef42eb25c576127b3c7bb40",
+    "external/gbsa-paper/ncku.html": "6f5ec0dd582471a0fad1140837a4c7fefb1aab0a53b680fa84d7991c2a77fcc8",
+    "external/gbsa-paper/github_search.json": "4ce95f6cc5bd886f2a616aed644cf7b2752be13f7813e2c22961197fc1f4b2df",
+    "external/gbsa-paper/arxiv_search.html": "c7f9db9bce144b720c138f5f28b2645fc59d97b145261928645984f0c89f9400",
+    "external/gbsa-paper/crossref.json": "1e15c85f701220f084da8b940d52c89bf44dff934f43e85be72cc5bd39d34113",
+    "external/gbsa-paper/paperreader.log": "1d3db04f82ac5d63fd1c4d70752c37c5f299405c3338c91db1bfa25a90c4d116",
+    "external/gbsa-paper/browser.html": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "external/gbsa-paper/2604.12256v1.pdf": "c2213d114db3a1efcb3f721aca456fe7ae332225dc9dc2415e514354f476f8eb",
+    "external/gbsa-paper/2604.12256v1.txt": "f2b8786f38f5ce652ebdf7300a5dd4aca1fb32ca947dc904d0ff4776ebc9a01c",
+    "external/gbsa-paper/2406.14084.txt": "f6aa52ad89efb06510fba93f479d246e6efd2c2953e32df09f8432fc0ce0a9c0",
+    "external/gbsa-paper/retrieval_2.txt": "adddd6e1f3af12611814ae55b1fb7c1b5fcecbc81002401037b4c26608320006",
+    "external/gbsa-paper/hungsh.html": "840a1ef0cb998cc1d8ee8030f7361842ffad75339a16b53a74863e56f3117383"
+  },
+  "status": "SOURCE_BLOCKED",
+  "resumption": {
+    "status": "FULL_TEXT_OBTAINED_AND_READ",
+    "utc": "2026-09-16T01:49:08.966046+00:00",
+    "user_path": "D:\\Downloads\\3769002.3769982.pdf",
+    "local_copy": "external/gbsa-paper/racs2025-user.pdf",
+    "sha256": "dd421fc76a2c7ff2ba9bfe2bc713d574762db6f8325c83c01af63d4fad195563",
+    "pages": 8,
+    "algorithm_evidence": [
+      "Section 3.1",
+      "Section 3.2",
+      "Section 3.3",
+      "Algorithm 1",
+      "Algorithm 2",
+      "Figure 4"
+    ],
+    "official_artifact": "not located; no GBSA code/artifact link in full paper",
+    "implementation": "independent GBSA reproduction on common QDAO/Aer substrate"
+  }
+}

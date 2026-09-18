@@ -1,0 +1,37 @@
+START cdkm_superposed_26 QThin 0
+{"workload_id": "cdkm_superposed_26", "system": "QThin", "repetition": 0, "wall_time_s": 87.41368226500344, "algorithmic_read_bytes": 3355969552, "algorithmic_write_bytes": 4429711376, "final_q_physical": 26}
+START cdkm_superposed_26 QDAO 0
+{"workload_id": "cdkm_superposed_26", "system": "QDAO", "repetition": 0, "wall_time_s": 148.65438607300166, "algorithmic_read_bytes": 7516192768, "algorithmic_write_bytes": 8589934592, "final_q_physical": 26}
+START cdkm_superposed_26 GBSA reproduction 0
+{"workload_id": "cdkm_superposed_26", "repetition": 0, "wall_time_s": 236.3161440550175, "algorithmic_read_bytes": 12884901888, "algorithmic_write_bytes": 13958643712, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 8}
+START cdkm_superposed_26 QDAO 1
+{"workload_id": "cdkm_superposed_26", "system": "QDAO", "repetition": 1, "wall_time_s": 148.52327339100884, "algorithmic_read_bytes": 7516192768, "algorithmic_write_bytes": 8589934592, "final_q_physical": 26}
+START cdkm_superposed_26 QThin 1
+{"workload_id": "cdkm_superposed_26", "system": "QThin", "repetition": 1, "wall_time_s": 89.10787965700729, "algorithmic_read_bytes": 3355969552, "algorithmic_write_bytes": 4429711376, "final_q_physical": 26}
+START cdkm_superposed_26 GBSA reproduction 1
+{"workload_id": "cdkm_superposed_26", "repetition": 1, "wall_time_s": 232.93682789598824, "algorithmic_read_bytes": 12884901888, "algorithmic_write_bytes": 13958643712, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 8}
+START cdkm_superposed_26 QThin 2
+{"workload_id": "cdkm_superposed_26", "system": "QThin", "repetition": 2, "wall_time_s": 90.94041802099673, "algorithmic_read_bytes": 3355969552, "algorithmic_write_bytes": 4429711376, "final_q_physical": 26}
+START cdkm_superposed_26 GBSA reproduction 2
+{"workload_id": "cdkm_superposed_26", "repetition": 2, "wall_time_s": 222.37759345798986, "algorithmic_read_bytes": 12884901888, "algorithmic_write_bytes": 13958643712, "gbsa_gate_blocks": 4, "gbsa_swap_passes": 8}
+START cdkm_superposed_26 QDAO 2
+{"workload_id": "cdkm_superposed_26", "system": "QDAO", "repetition": 2, "wall_time_s": 150.38329962600255, "algorithmic_read_bytes": 7516192768, "algorithmic_write_bytes": 8589934592, "final_q_physical": 26}
+START qaoa_26 GBSA reproduction 0
+{"workload_id": "qaoa_26", "repetition": 0, "wall_time_s": 326.5057167299965, "algorithmic_read_bytes": 23622320128, "algorithmic_write_bytes": 24696061952, "gbsa_gate_blocks": 6, "gbsa_swap_passes": 16}
+START qaoa_26 QDAO 0
+{"workload_id": "qaoa_26", "system": "QDAO", "repetition": 0, "wall_time_s": 222.81629361299565, "algorithmic_read_bytes": 15032385536, "algorithmic_write_bytes": 16106127360, "final_q_physical": 26}
+START qaoa_26 QThin 0
+{"workload_id": "qaoa_26", "system": "QThin", "repetition": 0, "wall_time_s": 175.5372537559888, "algorithmic_read_bytes": 10277093392, "algorithmic_write_bytes": 11350835216, "final_q_physical": 26}
+START qaoa_26 QDAO 1
+{"workload_id": "qaoa_26", "system": "QDAO", "repetition": 1, "wall_time_s": 224.6587529729877, "algorithmic_read_bytes": 15032385536, "algorithmic_write_bytes": 16106127360, "final_q_physical": 26}
+START qaoa_26 QThin 1
+{"workload_id": "qaoa_26", "system": "QThin", "repetition": 1, "wall_time_s": 176.18158500400023, "algorithmic_read_bytes": 10277093392, "algorithmic_write_bytes": 11350835216, "final_q_physical": 26}
+START qaoa_26 GBSA reproduction 1
+{"workload_id": "qaoa_26", "repetition": 1, "wall_time_s": 325.0434742750076, "algorithmic_read_bytes": 23622320128, "algorithmic_write_bytes": 24696061952, "gbsa_gate_blocks": 6, "gbsa_swap_passes": 16}
+START qaoa_26 QThin 2
+{"workload_id": "qaoa_26", "system": "QThin", "repetition": 2, "wall_time_s": 178.295621199999, "algorithmic_read_bytes": 10277093392, "algorithmic_write_bytes": 11350835216, "final_q_physical": 26}
+START qaoa_26 QDAO 2
+{"workload_id": "qaoa_26", "system": "QDAO", "repetition": 2, "wall_time_s": 223.05943579997984, "algorithmic_read_bytes": 15032385536, "algorithmic_write_bytes": 16106127360, "final_q_physical": 26}
+START qaoa_26 GBSA reproduction 2
+{"workload_id": "qaoa_26", "repetition": 2, "wall_time_s": 317.2582205290091, "algorithmic_read_bytes": 23622320128, "algorithmic_write_bytes": 24696061952, "gbsa_gate_blocks": 6, "gbsa_swap_passes": 16}
+SCALING BATCH COMPLETE

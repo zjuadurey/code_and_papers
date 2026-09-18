@@ -143,3 +143,84 @@ bash scripts/run_ssd_materialization_all.sh
 协议见 `notes/ssd_materialization_protocol.md`。原生 loop 的工作内存为四个 chunk，最大 256 MiB；支持 CX 两个方向、CZ 和 correctness 用 generic 2q unitary。目标 bit 必须位于 chunk 内。Application、process 和 mapped block-device counters 分列；在 WSL2 下 block counters 是 **guest-visible storage-path traffic**，不能称为原生 NVMe/NAND 流量。DIRECT 与 BUFFERED+fdatasync 分开统计。仅验证单次物化机制，不声称 whole-program QDAO speedup。
 
 本阶段不生成 publication figures。主要产物为 `summary.csv`、完整 `raw_runs.csv`、含 median/min/max/std/CV 的 `run_statistics.csv`、`allocation_behavior.csv`、`chunk_sensitivity.csv`、`direct_vs_buffered.csv`、明确的 `skipped_cases.csv`，以及环境、构建、correctness 和 reproducibility 记录。
+
+## 第四阶段：小规模 file-backed QDAO end-to-end evaluation
+
+在项目根目录、现有 `htp-static` 环境中运行以下命令。继续使用已构建的第三阶段 native binary 运行完整回归测试；本阶段不重跑或覆盖此前实验结果。
+
+```bash
+conda activate htp-static
+python scripts/setup_qdao_integration.py
+python scripts/prepare_end_to_end.py
+pytest -q
+python scripts/validate_qdao_integration.py
+python scripts/run_qdao_end_to_end.py --sizes 20 22 24
+python scripts/analyze_qdao_end_to_end.py
+```
+
+参考 QDAO checkout 保持只读；兼容性修改位于独立 worktree，补丁和上游 SHA 均保留。两组使用相同的 current-Aer state-injection adapter、固定 m=16/t=12、单线程、complex128、buffered NPY 文件，以及最终状态 `fdatasync`。这不是完全未修改的作者软件；旧 Initialize 接口对照及一次同步策略诊断完整保留，详见 `notes/qdao_integration.md`。
+
+共同输入见 `results/end_to_end_workloads.csv`。主结果和逐次原始 JSON 位于 `results/qdao_end_to_end/`，报告为 `QDAO_INTEGRATION_REPORT.md`。入口按已完成 run ID 恢复，使用文件锁防止重叠实验。不得同时运行此前 SSD microbenchmark。GBSA 阶段必须等待 Phase A 数据审计、封存和 checkpoint commit 完成。
+
+这里测量的是小规模文件后端执行，不是超出 RAM 容量的 OOC 结果。state-payload requests、process accounting 和 shared guest-visible block-device counters 分列；不能把前两者称为物理 SSD bytes。最终表格输出到 `results/end_to_end_tables.tex`，不生成 publication plots。
+
+Phase A 已在 `79ab9a1` 冻结，144 个计时样本、195 个三方 exact cases。`results/qdao_end_to_end/phase_a_hashes.json` 保存完整结果哈希；复现实验请使用独立 checkout，避免覆盖归档结果。
+
+GBSA 全文已由用户提供，Algorithms 1/2 的依赖传播、最大前驱门数搜索、跨 chunk 布局交换已独立复现。明确标为 **GBSA reproduction**，不是作者的完整 native SSDGBSA 实现。Figure 4 的三个 blocks 和 195 个真实文件 exact cases 已验证。伪代码歧义、实现边界和参数见 `notes/gbsa_reproduction.md`；此前 source-blocked 审计保存在 `results/gbsa_comparison/source_blocked_checkpoint/`。
+
+在独立 checkout 中复现 Phase B（计时程序持有与 Phase A 相同的排他锁）：
+
+```bash
+pytest -q
+python scripts/validate_gbsa_reproduction.py
+python scripts/run_gbsa_comparison.py
+python scripts/analyze_end_to_end.py
+```
+
+组合报告和四张 LaTeX 表可从已冻结数据再生：
+
+```bash
+python scripts/analyze_end_to_end.py
+```
+
+该命令先核验 Phase A 与所有旧结果哈希、24 个三次重复的 GBSA 测量及共同后端哈希，再生成三方统计。最终状态见 `END_TO_END_EVALUATION_REPORT.md`。GBSA 搜索不受 QDAO 固定低位 qubits 限制，但其布局交换通过共同 QDAO/Aer 文件后端执行且计入开销；不能把本复现成绩冒充官方 artifact 成绩。
+
+### 投稿前的代表性规模扩展
+
+完整 20/22/24q 三方结果先审计、提交，再运行独立的 `results/end_to_end_scaling/`。
+26q 预先选择叠加态 CDKM 与 QAOA，三方各三次；28q 仅在时间允许时增加共同代表点。
+这不是完整的 26/28q workload 矩阵，也不是超出内存容量的 OOC 结果。
+
+```bash
+python scripts/audit_end_to_end.py
+python scripts/run_end_to_end_scaling.py --size 26 --families cdkm_superposed qaoa
+python scripts/analyze_end_to_end_scaling.py
+```
+
+扩展脚本复用相同 case runner 和输入哈希，持有共同性能锁，串行轮换三种方法。
+每个点保留三次样本，结果安全落盘后删除该次临时状态文件。
+默认 `--latest-group-start` 是本次投稿日北京时间 2026-09-16 16:00；未来复现时应显式设置自己的带时区截止时间。
+可选 28q 输入只由 `prepare_end_to_end_scaling.py` 实例化已有 generator 的规模变体，
+追加到共同 manifest，保留既有行及 Phase A 输入文件。准备输入和核查不能与计时实验并行。
+
+扩展报告为 `END_TO_END_SCALING_REPORT.md`，分析入口同时向总报告和 LaTeX 文件附加独立子集表。
+从已有数据再生时，先运行 `analyze_end_to_end.py`，再运行 `analyze_end_to_end_scaling.py`。
+核心阶段的 `audit_end_to_end.py` 检查四张主表；扩展后 LaTeX 文件另含两张子集表，
+最终核查记录在扩展目录。归档的 Phase A/B 数据请在独立 checkout 中复现，避免覆盖。
+
+本次已完成：26q 的 `cdkm_superposed`、`qaoa`，以及 28q 的 `cdkm_superposed`，
+每点三种系统各三次，共 27 个扩展样本；完整主矩阵另有 216 个样本。
+范围见 `results/end_to_end_scaling/coverage.csv`，跨规模中位数见 `combined_size_trends.csv`。
+28q 的输入准备与运行命令为：
+
+```bash
+python scripts/prepare_end_to_end_scaling.py --size 28 --families cdkm_superposed
+python scripts/run_end_to_end_scaling.py --size 28 --families cdkm_superposed
+python scripts/analyze_end_to_end_scaling.py
+python scripts/audit_end_to_end_scaling.py
+```
+
+28q 曾因原先统一 3B 的容量预留而安全暂停。核查 bank 生命周期后，将预留改为
+保守的 `2B + 1 GiB`，仍限制在宿主盘/客体较小空闲空间的 70% 内；没有改动计时执行代码。
+该估算仅支持本次 26/28q、t=12、文件系统 block 不大于 4 KiB 的条件，并有独立测试。
+暂停、修订及全部样本都保存在扩展目录，没有丢弃慢样本或清理其他用户文件。

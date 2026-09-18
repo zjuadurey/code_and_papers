@@ -1,0 +1,33 @@
+       workload_id  gate_count  depth
+     cdkm_basis_20         308    219
+cdkm_superposed_20         317    220
+     comparator_20         348    198
+            qft_20        1000    154
+           qaoa_20         260    184
+            hea_20         236     33
+  grover_oracle_20        5884   4623
+     mcx_oracle_20        5158   4187
+     cdkm_basis_22         342    243
+cdkm_superposed_22         352    244
+     comparator_22         389    221
+            qft_22        1210    170
+           qaoa_22         286    202
+            hea_22         260     35
+  grover_oracle_22        6740   5118
+     mcx_oracle_22        5926   4630
+     cdkm_basis_24         376    267
+cdkm_superposed_24         387    268
+     comparator_24         430    244
+            qft_24        1440    186
+           qaoa_24         312    220
+            hea_24         284     37
+  grover_oracle_24        6966   4823
+     mcx_oracle_24        6064   4281
+     cdkm_basis_26         410    291
+cdkm_superposed_26         422    292
+     comparator_26         471    267
+            qft_26        1690    202
+           qaoa_26         338    238
+            hea_26         308     39
+  grover_oracle_26        7596   5259
+     mcx_oracle_26        6606   4665

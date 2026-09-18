@@ -1,0 +1,207 @@
+{
+  "workload_id": "cdkm_superposed_24",
+  "family": "cdkm_superposed",
+  "n": 24,
+  "gate_count": 387,
+  "depth": 268,
+  "system": "QThin",
+  "repetition": 1,
+  "input_hash": "9797d7bd092a67d5fdecd2c02b172c9b3ffd3ecc82fc96461a694b1f5501dad8",
+  "m": 16,
+  "t": 12,
+  "threads": 1,
+  "io_mode": "buffered_npy",
+  "load_average": [
+    0.9013671875,
+    0.97119140625,
+    0.99560546875
+  ],
+  "aer_state_injection": "shared normalized set_statevector",
+  "available_memory_before": 13845901312,
+  "runtime_sha256": "ca8916090d92e3a99ed556ee2ef729ef683d29c0c4afa9969372e316e8eeab94",
+  "compatibility_patch_sha256": "aa1a6b53472de4da4d499348f96acd84a32b7c21be09c58dd751fcf6bce03264",
+  "wall_time_s": 19.723464705981314,
+  "user_cpu_s": 12.949321999999999,
+  "system_cpu_s": 1.9965350000000002,
+  "peak_rss_bytes": 207650816,
+  "algorithmic_read_bytes": 538976272,
+  "algorithmic_write_bytes": 807411728,
+  "file_read_bytes": 540059792,
+  "file_write_bytes": 809019536,
+  "compute_unit_count": 771,
+  "state_traversals": 5,
+  "sync_time_s": 4.8488341409829445,
+  "sync_barrier_count": 1,
+  "fdatasync_calls": 4096,
+  "initial_q_physical": 0,
+  "final_q_physical": 24,
+  "peak_q_physical": 24,
+  "materialization_event_count": 3,
+  "logical_activation_event_count": 13,
+  "materialized_dimensions_total": 24,
+  "fused_materialization_count": 3,
+  "materialization_bytes_read": 2105360,
+  "materialization_bytes_written": 270540800,
+  "time_spent_materializing": 5.61368416598998,
+  "events": [
+    {
+      "block": 0,
+      "gate_events": [
+        {
+          "gate_index": 13,
+          "gate": "cx",
+          "old_q": 0,
+          "new_q": 2,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        },
+        {
+          "gate_index": 14,
+          "gate": "cx",
+          "old_q": 2,
+          "new_q": 3,
+          "batch": 1,
+          "trigger": "cx_materialized_control",
+          "block": 0
+        },
+        {
+          "gate_index": 30,
+          "gate": "cx",
+          "old_q": 3,
+          "new_q": 5,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        },
+        {
+          "gate_index": 47,
+          "gate": "cx",
+          "old_q": 5,
+          "new_q": 7,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        },
+        {
+          "gate_index": 64,
+          "gate": "cx",
+          "old_q": 7,
+          "new_q": 9,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        }
+      ],
+      "old_q": 0,
+      "new_q": 9,
+      "batch": 9,
+      "read_bytes": 16,
+      "write_bytes": 8192,
+      "elapsed_s": 0.013155119988368824
+    },
+    {
+      "block": 1,
+      "gate_events": [
+        {
+          "gate_index": 81,
+          "gate": "cx",
+          "old_q": 9,
+          "new_q": 11,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 98,
+          "gate": "cx",
+          "old_q": 11,
+          "new_q": 13,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 115,
+          "gate": "cx",
+          "old_q": 13,
+          "new_q": 15,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 132,
+          "gate": "cx",
+          "old_q": 15,
+          "new_q": 17,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        }
+      ],
+      "old_q": 9,
+      "new_q": 17,
+      "batch": 8,
+      "read_bytes": 8192,
+      "write_bytes": 2097152,
+      "elapsed_s": 0.054500669008120894
+    },
+    {
+      "block": 2,
+      "gate_events": [
+        {
+          "gate_index": 149,
+          "gate": "cx",
+          "old_q": 17,
+          "new_q": 19,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 166,
+          "gate": "cx",
+          "old_q": 19,
+          "new_q": 21,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 183,
+          "gate": "cx",
+          "old_q": 21,
+          "new_q": 23,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 200,
+          "gate": "cx",
+          "old_q": 23,
+          "new_q": 24,
+          "batch": 1,
+          "trigger": "cx_materialized_control",
+          "block": 2
+        }
+      ],
+      "old_q": 17,
+      "new_q": 24,
+      "batch": 7,
+      "read_bytes": 2097152,
+      "write_bytes": 268435456,
+      "elapsed_s": 5.54602837699349
+    }
+  ],
+  "proc_rchar": 575757131,
+  "proc_wchar": 809019536,
+  "proc_syscr": 42298,
+  "proc_syscw": 25122,
+  "proc_read_bytes": 0,
+  "proc_write_bytes": 858853376,
+  "proc_cancelled_write_bytes": 288428032,
+  "device_read_bytes": 663552,
+  "device_write_bytes": 576012288
+}

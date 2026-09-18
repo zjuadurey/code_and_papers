@@ -1,0 +1,20 @@
+{
+  "locked_utc": "2026-09-15T21:30:16.256606+00:00",
+  "m": 16,
+  "t": 12,
+  "threads": 1,
+  "io_mode": "buffered_npy",
+  "initialization": "shared normalized Aer set_statevector",
+  "sync": "final surviving state only, all methods",
+  "repetitions": 3,
+  "sizes": [
+    20,
+    22,
+    24
+  ],
+  "method_order_seed": 20260916,
+  "prior_diagnostics": [
+    "legacy_api_calibration",
+    "intermediate_sync_calibration"
+  ]
+}

@@ -1,0 +1,9 @@
+family,n,partition_count,compute_units,qdao_seconds_extrapolated_per_run,measured,method
+cdkm_basis,26,7,7168,158.790882527153,False,24q median seconds per CU times untimed 26q CU count
+cdkm_superposed,26,7,7168,159.65602785993832,False,24q median seconds per CU times untimed 26q CU count
+comparator,26,11,11264,199.96639937506473,False,24q median seconds per CU times untimed 26q CU count
+grover_oracle,26,234,239616,3223.138683400339,False,24q median seconds per CU times untimed 26q CU count
+hea,26,17,17408,225.44554946996504,False,24q median seconds per CU times untimed 26q CU count
+mcx_oracle,26,198,202752,2792.0361929734654,False,24q median seconds per CU times untimed 26q CU count
+qaoa,26,14,14336,193.21872749193184,False,24q median seconds per CU times untimed 26q CU count
+qft,26,119,121856,1436.8824580053158,False,24q median seconds per CU times untimed 26q CU count

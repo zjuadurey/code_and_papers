@@ -1,0 +1,14 @@
+workload_id,family,n,status,measured_runs,systems,scope,reason
+cdkm_basis_26,cdkm_basis,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+cdkm_basis_28,cdkm_basis,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+comparator_26,comparator,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+comparator_28,comparator,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+grover_oracle_26,grover_oracle,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+grover_oracle_28,grover_oracle,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+hea_26,hea,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+hea_28,hea,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+mcx_oracle_26,mcx_oracle,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+mcx_oracle_28,mcx_oracle,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+qaoa_28,qaoa,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+qft_26,qft,26,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET
+qft_28,qft,28,NOT_SELECTED_TIME_BUDGET,0,0,representative scaling subset,NOT_SELECTED_TIME_BUDGET

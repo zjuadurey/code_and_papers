@@ -1,0 +1,312 @@
+{
+  "workload_id": "grover_oracle_22",
+  "family": "grover_oracle",
+  "n": 22,
+  "gate_count": 6740,
+  "depth": 5118,
+  "system": "QThin",
+  "repetition": 2,
+  "input_hash": "2e7543b37549c7f32bf260017af64a267aa8cebb99606e0d3e336b14f7c621c4",
+  "m": 16,
+  "t": 12,
+  "threads": 1,
+  "io_mode": "buffered_npy",
+  "load_average": [
+    0.92822265625,
+    0.9541015625,
+    1.00244140625
+  ],
+  "aer_state_injection": "shared normalized set_statevector",
+  "available_memory_before": 13904441344,
+  "runtime_sha256": "ca8916090d92e3a99ed556ee2ef729ef683d29c0c4afa9969372e316e8eeab94",
+  "compatibility_patch_sha256": "aa1a6b53472de4da4d499348f96acd84a32b7c21be09c58dd751fcf6bce03264",
+  "wall_time_s": 125.87486047498533,
+  "user_cpu_s": 101.63637399999999,
+  "system_cpu_s": 21.458054,
+  "peak_rss_bytes": 369618944,
+  "algorithmic_read_bytes": 9618589712,
+  "algorithmic_write_bytes": 9685698576,
+  "file_read_bytes": 9639071888,
+  "file_write_bytes": 9706311824,
+  "compute_unit_count": 9238,
+  "state_traversals": 195,
+  "sync_time_s": 1.2268509939895011,
+  "sync_barrier_count": 1,
+  "fdatasync_calls": 1024,
+  "initial_q_physical": 0,
+  "final_q_physical": 22,
+  "peak_q_physical": 22,
+  "materialization_event_count": 6,
+  "logical_activation_event_count": 21,
+  "materialized_dimensions_total": 22,
+  "fused_materialization_count": 6,
+  "materialization_bytes_read": 53479440,
+  "materialization_bytes_written": 120588288,
+  "time_spent_materializing": 2.192975304002175,
+  "events": [
+    {
+      "block": 1,
+      "gate_events": [
+        {
+          "gate_index": 22,
+          "gate": "cx",
+          "old_q": 0,
+          "new_q": 2,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 24,
+          "gate": "cx",
+          "old_q": 2,
+          "new_q": 3,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 36,
+          "gate": "cx",
+          "old_q": 3,
+          "new_q": 4,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 38,
+          "gate": "cx",
+          "old_q": 4,
+          "new_q": 5,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 41,
+          "gate": "cx",
+          "old_q": 5,
+          "new_q": 6,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 43,
+          "gate": "cx",
+          "old_q": 6,
+          "new_q": 7,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 1
+        }
+      ],
+      "old_q": 0,
+      "new_q": 7,
+      "batch": 7,
+      "read_bytes": 16,
+      "write_bytes": 2048,
+      "elapsed_s": 0.009340284013887867
+    },
+    {
+      "block": 2,
+      "gate_events": [
+        {
+          "gate_index": 46,
+          "gate": "cx",
+          "old_q": 7,
+          "new_q": 8,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 48,
+          "gate": "cx",
+          "old_q": 8,
+          "new_q": 9,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 51,
+          "gate": "cx",
+          "old_q": 9,
+          "new_q": 10,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 53,
+          "gate": "cx",
+          "old_q": 10,
+          "new_q": 11,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 56,
+          "gate": "cx",
+          "old_q": 11,
+          "new_q": 12,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 58,
+          "gate": "cx",
+          "old_q": 12,
+          "new_q": 13,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 61,
+          "gate": "cx",
+          "old_q": 13,
+          "new_q": 14,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 63,
+          "gate": "cx",
+          "old_q": 14,
+          "new_q": 15,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 2
+        },
+        {
+          "gate_index": 66,
+          "gate": "cx",
+          "old_q": 15,
+          "new_q": 16,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 2
+        }
+      ],
+      "old_q": 7,
+      "new_q": 16,
+      "batch": 9,
+      "read_bytes": 2048,
+      "write_bytes": 1048576,
+      "elapsed_s": 0.03343470400432125
+    },
+    {
+      "block": 3,
+      "gate_events": [
+        {
+          "gate_index": 72,
+          "gate": "cx",
+          "old_q": 16,
+          "new_q": 17,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 3
+        }
+      ],
+      "old_q": 16,
+      "new_q": 17,
+      "batch": 1,
+      "read_bytes": 1048576,
+      "write_bytes": 2097152,
+      "elapsed_s": 0.06491190099040978
+    },
+    {
+      "block": 29,
+      "gate_events": [
+        {
+          "gate_index": 791,
+          "gate": "cx",
+          "old_q": 17,
+          "new_q": 18,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 29
+        },
+        {
+          "gate_index": 803,
+          "gate": "cx",
+          "old_q": 18,
+          "new_q": 19,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 29
+        },
+        {
+          "gate_index": 808,
+          "gate": "cx",
+          "old_q": 19,
+          "new_q": 20,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 29
+        }
+      ],
+      "old_q": 17,
+      "new_q": 20,
+      "batch": 3,
+      "read_bytes": 2097152,
+      "write_bytes": 16777216,
+      "elapsed_s": 0.20825707400217652
+    },
+    {
+      "block": 31,
+      "gate_events": [
+        {
+          "gate_index": 845,
+          "gate": "cx",
+          "old_q": 20,
+          "new_q": 21,
+          "batch": 1,
+          "trigger": "cx_product_control",
+          "block": 31
+        }
+      ],
+      "old_q": 20,
+      "new_q": 21,
+      "batch": 1,
+      "read_bytes": 16777216,
+      "write_bytes": 33554432,
+      "elapsed_s": 0.41824035899480805
+    },
+    {
+      "block": 75,
+      "gate_events": [
+        {
+          "gate_index": 2140,
+          "gate": "cx",
+          "old_q": 21,
+          "new_q": 22,
+          "batch": 1,
+          "trigger": "cx_materialized_control",
+          "block": 75
+        }
+      ],
+      "old_q": 21,
+      "new_q": 22,
+      "batch": 1,
+      "read_bytes": 33554432,
+      "write_bytes": 67108864,
+      "elapsed_s": 1.4587909819965716
+    }
+  ],
+  "proc_rchar": 10314918731,
+  "proc_wchar": 9706311824,
+  "proc_syscr": 786490,
+  "proc_syscw": 322082,
+  "proc_read_bytes": 57344,
+  "proc_write_bytes": 10345320448,
+  "proc_cancelled_write_bytes": 132190208,
+  "device_read_bytes": 57344,
+  "device_write_bytes": 10231496704
+}

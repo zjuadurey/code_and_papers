@@ -1,0 +1,173 @@
+{
+  "workload_id": "cdkm_superposed_20",
+  "family": "cdkm_superposed",
+  "n": 20,
+  "gate_count": 317,
+  "depth": 220,
+  "system": "QThin",
+  "repetition": 0,
+  "input_hash": "e1db4372855039db1057c94931b87ee9cd4be44395e7e608426e056dc76ff400",
+  "m": 16,
+  "t": 12,
+  "threads": 1,
+  "io_mode": "buffered_npy",
+  "load_average": [
+    0.80517578125,
+    0.689453125,
+    0.59033203125
+  ],
+  "available_memory_before": 14171430912,
+  "wall_time_s": 2.4166960430156905,
+  "user_cpu_s": 1.911284,
+  "system_cpu_s": 0.11221400000000001,
+  "peak_rss_bytes": 226451456,
+  "algorithmic_read_bytes": 16908304,
+  "algorithmic_write_bytes": 33685520,
+  "file_read_bytes": 16943248,
+  "file_write_bytes": 33753232,
+  "compute_unit_count": 33,
+  "state_traversals": 3,
+  "sync_time_s": 0.4001248060085345,
+  "initial_q_physical": 0,
+  "final_q_physical": 20,
+  "peak_q_physical": 20,
+  "materialization_event_count": 2,
+  "logical_activation_event_count": 11,
+  "materialized_dimensions_total": 20,
+  "fused_materialization_count": 2,
+  "materialization_bytes_read": 131088,
+  "materialization_bytes_written": 16908288,
+  "time_spent_materializing": 1.1044145119958557,
+  "events": [
+    {
+      "block": 0,
+      "gate_events": [
+        {
+          "gate_index": 11,
+          "gate": "cx",
+          "old_q": 0,
+          "new_q": 2,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        },
+        {
+          "gate_index": 12,
+          "gate": "cx",
+          "old_q": 2,
+          "new_q": 3,
+          "batch": 1,
+          "trigger": "cx_materialized_control",
+          "block": 0
+        },
+        {
+          "gate_index": 28,
+          "gate": "cx",
+          "old_q": 3,
+          "new_q": 5,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        },
+        {
+          "gate_index": 45,
+          "gate": "cx",
+          "old_q": 5,
+          "new_q": 7,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        },
+        {
+          "gate_index": 62,
+          "gate": "cx",
+          "old_q": 7,
+          "new_q": 9,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        },
+        {
+          "gate_index": 79,
+          "gate": "cx",
+          "old_q": 9,
+          "new_q": 11,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        },
+        {
+          "gate_index": 96,
+          "gate": "cx",
+          "old_q": 11,
+          "new_q": 13,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 0
+        }
+      ],
+      "old_q": 0,
+      "new_q": 13,
+      "batch": 13,
+      "read_bytes": 16,
+      "write_bytes": 131072,
+      "elapsed_s": 0.032057531003374606
+    },
+    {
+      "block": 1,
+      "gate_events": [
+        {
+          "gate_index": 113,
+          "gate": "cx",
+          "old_q": 13,
+          "new_q": 15,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 130,
+          "gate": "cx",
+          "old_q": 15,
+          "new_q": 17,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 147,
+          "gate": "cx",
+          "old_q": 17,
+          "new_q": 19,
+          "batch": 2,
+          "trigger": "cx_product_control",
+          "block": 1
+        },
+        {
+          "gate_index": 164,
+          "gate": "cx",
+          "old_q": 19,
+          "new_q": 20,
+          "batch": 1,
+          "trigger": "cx_materialized_control",
+          "block": 1
+        }
+      ],
+      "old_q": 13,
+      "new_q": 20,
+      "batch": 7,
+      "read_bytes": 131072,
+      "write_bytes": 16777216,
+      "elapsed_s": 1.0723569809924811
+    }
+  ],
+  "proc_rchar": 18120709,
+  "proc_wchar": 33753232,
+  "proc_syscr": 1375,
+  "proc_syscw": 1058,
+  "proc_read_bytes": 0,
+  "proc_write_bytes": 35852288,
+  "proc_cancelled_write_bytes": 17825792,
+  "device_read_bytes": 135168,
+  "device_write_bytes": 19251200
+}
