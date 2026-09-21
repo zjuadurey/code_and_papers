@@ -1,0 +1,8 @@
+{
+  "batch_id": "release-demo",
+  "events": [
+    {"event_id": "e1", "component": "api", "message": "Update timeout"},
+    {"event_id": "e2", "component": "worker", "message": "Fix retry count"},
+    {"event_id": "e3", "component": "api", "message": "Add request log"}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "case_id": "source-core-010",
+  "title": "Sparse balance iteration review",
+  "software_contract": "advance(rows,rhs,current,steps,tolerance) runs the unpreconditioned recurrence on valid symmetric positive strictly diagonally dominant rows of (column,float), returning (iterate,initial_norm,trace). apply is ordered sparse matrix-vector multiplication; dot is ordered dot product. Valid dimensions only, copies current. Stops at budget/relative recurrent residual and checks numerical breakdown. No preconditioner or exact-result substitution.",
+  "input_domain": "Valid kernel arguments as specified; application validation and reports are not part of this core view.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}

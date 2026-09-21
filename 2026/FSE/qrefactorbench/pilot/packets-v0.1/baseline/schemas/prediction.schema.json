@@ -1,0 +1,121 @@
+{
+  "$id": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "QUANTUMIZE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "candidate_regions": {
+            "minItems": 1
+          },
+          "plan": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "plan"
+        ]
+      }
+    }
+  ],
+  "properties": {
+    "candidate_regions": {
+      "items": {
+        "$ref": "https://qrefactorbench.example/schemas/0.1.0/case.schema.json#/$defs/region"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "case_id": {
+      "pattern": "^[a-z][a-z0-9_-]+$",
+      "type": "string"
+    },
+    "computational_intent_id": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "decision": {
+      "enum": [
+        "QUANTUMIZE",
+        "REMAIN_CLASSICAL"
+      ]
+    },
+    "generated_files": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "path": {
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "generated_patch": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "migration_family": {
+      "enum": [
+        "unstructured_search",
+        "combinatorial_optimization",
+        null
+      ]
+    },
+    "plan": {
+      "anyOf": [
+        {
+          "$ref": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "decision",
+    "candidate_regions"
+  ],
+  "type": "object"
+}

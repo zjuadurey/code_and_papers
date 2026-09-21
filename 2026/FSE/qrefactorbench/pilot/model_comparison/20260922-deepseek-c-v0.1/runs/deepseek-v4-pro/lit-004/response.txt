@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-004",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "review_releases",
+      "start_line": 24,
+      "end_line": 30
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "maximum-pairwise-compatible-release-selection",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "For each eligible version i in 0..n-1, let x_i=1 if selected. The selected set must satisfy x_i*x_j=0 for every pair whose latest check is not true (non-edge). Maximize cardinality sum_i x_i. A QUBO objective is H = -A*sum_i x_i + P*sum_{(i,j) in nonedges} x_i*x_j + epsilon*sum_i 2^i*x_i, with A>0, P>A to make infeasible sets worse than smaller feasible sets, and epsilon sufficiently small to order equal-cardinality feasible optima by the contract's smallest sum(2^i) tie-break. In Ising form substitute x_i=(1-Z_i)/2.",
+    "input_encoding": "Binary decision variables x_i for the n eligible active request members in global version order. Pair nonedges are derived from latest_results: undirected frozenset keys with the last check for each pair; missing or passed=false records are nonedges. Singleton and empty cases need no pair penalties.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure candidate bitstrings, decode to subsets of eligible version IDs, and classically verify compatibility with the latest check matrix. Recompute size and tie-break sum(2^i). Reject infeasible or suboptimal candidates and fall back to the classical exact search for final report generation.",
+    "assumptions": [
+      "Eligible set is finite and known after classical prepare, latest_results, and eligible filtering.",
+      "The latest check data can be represented in a reversible oracle or Hamiltonian penalty circuit; no data loading is free.",
+      "Penalty coefficients A, P, and epsilon are selected for the specific n; epsilon may require precision below A/(2^n-1) for tie-breaking."
+    ],
+    "risks": [
+      "QAOA/QUBO ground-state sampling does not guarantee the exact global optimum or deterministic tie-break required by the contract.",
+      "Choosing P>A and a tie-breaking epsilon is prone to coefficient precision and scalability issues for large n.",
+      "Oracle construction and data loading may exceed the cost of the current O(2^n*n^2) exhaustive scan in practical cases.",
+      "Measurement errors can produce infeasible or suboptimal candidates; classical verification and fallback are mandatory but may negate any advantage.",
+      "The draft contract menu does not provide benchmark evidence for this specific performance claim."
+    ],
+    "expected_resource_characteristics": {
+      "num_qubits": "O(n) decision-variable qubits plus ancillas for penalty/oracle evaluation; exact ancilla count is unresolved",
+      "depth": "QAOA depth p and objective circuit depth are not prescribed by the DRAFT contract",
+      "measurement_count": "not specified; requires sufficient shots for ground-state confidence plus classical verification",
+      "shots": "not specified"
+    },
+    "rationale": "Conditional plan only: this formulates the brute-force select-mode maximum clique as QUBO/Ising. It does not recommend adoption or certify correctness; exactness and deterministic tie-breaking are unresolved."
+  },
+  "rationale": "program.py:24-30 is the select-mode exhaustive search. It activates only when row['mode']=='select'. It depends on names = eligible(versions, row['members']), which preserves global version order for active request members, and matrix = relation(names, latest), where latest is built by latest_results(checks) using undirected frozenset keys and last-record-wins semantics. The loop visits masks in increasing integer order, so among maximum-size compatible subsets it keeps the smallest numeric mask, matching the required smallest sum(2^i) tie-break. Surrounding report behavior must remain intact: current and preview are computed independently, inspect mode keeps proposed and changes null, describe reports in global version order, and changes.add/remove are differences from current rather than an objective. Structural eligibility is true because this is a maximum-clique problem over a finite pairwise compatibility graph and can be represented in QUBO/Ising. Practical suitability is false because no hardware, workload, encoding-cost, or practical-benefit evidence is supplied, and the exact deterministic optimum cannot be silently relaxed to an approximate QAOA result. Benchmark support is false because no benchmark support or measured workload distribution is supplied. Decision: REMAIN_CLASSICAL. The attached plan is conditional only.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Exact maximum-cardinality pairwise-compatible release selection with deterministic smallest-position-sum tie-breaking",
+  "assumptions": [
+    "Compatibility is exactly pairwise and derives solely from supplied check records.",
+    "Repeated or reversed checks are superseeded by the last record for an undirected pair.",
+    "Singleton groups are compatible without pair checks.",
+    "Eligible version order is the global version input order, not request member order."
+  ],
+  "risks": [
+    "QAOA does not guarantee the exact maximum or deterministic tie-break.",
+    "No practical speedup evidence is supplied for the select-mode exhaustive scan.",
+    "Quantum encoding of the latest-check graph may be more expensive than the classical scan.",
+    "Exactness, validation, error policy, empty-eligible behavior, and output ordering must be preserved."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The binary objective and pairwise incompatibility penalties can be represented explicitly, so a QUBO/Ising formulation is structurally available; this does not imply practical QAOA suitability or exact conformity."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The task is a cardinality-maximizing clique with deterministic tie-breaking rather than a single marked-state Boolean predicate. A Grover threshold search still leaves exact maximum selection and tie-breaking unresolved."
+    }
+  ]
+}

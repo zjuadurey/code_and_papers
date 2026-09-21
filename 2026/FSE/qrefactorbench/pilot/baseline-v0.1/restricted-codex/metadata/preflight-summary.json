@@ -1,0 +1,8 @@
+{
+  "context_audit": "PASS: no repository, case or personal instructions in inspected context",
+  "harness_caveat": "Built-in skill descriptions and collaboration-role scaffolding still appear despite skill overrides and multi_agent=false. No private/research material appears. Wrapper prohibits tool/delegation use; events must show none.",
+  "overstrict_audit_assertion": "A check expecting no built-in skill catalog failed; preserved here, not a benchmark failure. Scientific calls have not started.",
+  "config_audit": "PASS: named feature flags disabled; isolated ChatGPT login works",
+  "runner_sha256_before_scientific_cases": "05d9a1cac32940eb8055f4111cf4297c870643eabc96dd1a852abbf5c6a8d126",
+  "prompt_context_sha256": "a4f071103e424405d74981ad97929f26636974e987b13a8aec8404134aafc654"
+}

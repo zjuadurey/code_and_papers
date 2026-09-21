@@ -1,0 +1,15 @@
+{
+  "initial_residual_norm": 2.23606797749979,
+  "proposal": {
+    "left": 0.25,
+    "right": 0.5
+  },
+  "trace": [
+    {
+      "iteration": 1,
+      "residual_norm": 0.5590169943749475
+    }
+  ],
+  "iterations": 1,
+  "final_residual_norm": 0.5590169943749475
+}

@@ -1,0 +1,9 @@
+{
+  "version": "context-adaptation-0.1.0-review-input",
+  "case_id": "context-001",
+  "files_sha256": {
+    "program.py": "9431955f692c02cf4e2d1bf7288b21d08f39b3378d4504cf998a3de6decb5905",
+    "maintenance.py": "b1acb0f1a52185375aaccf624f8da082accd12748bb456d488037d8c1b29e880",
+    "public_task.json": "fec1bfbff8f66b55d54580b0adc4eb02226a6c3c61cd3b4b03c7fa241e745b91"
+  }
+}

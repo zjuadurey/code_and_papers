@@ -1,0 +1,14 @@
+{
+  "form_version": "phase1-v0",
+  "case_id": null,
+  "adjudicator_id": null,
+  "completion_status": "UNFILLED",
+  "independent_submissions": {"a_path": null, "a_sha256": null, "b_path": null, "b_sha256": null},
+  "comparison_artifact": null,
+  "disagreements": [],
+  "resolutions_with_evidence": [],
+  "remaining_uncertainty": null,
+  "resolved_annotation": null,
+  "resulting_case_version": null,
+  "resulting_annotation_status": "DRAFT"
+}

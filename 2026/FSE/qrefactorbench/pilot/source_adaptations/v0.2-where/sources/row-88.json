@@ -1,0 +1,4 @@
+{
+  "code_snippet": "def clique_greedy(n, edges):\\n    clique = set()\\n    for node in range(n):\\n        if all((node, neighbor) in edges or (neighbor, node) in edges for neighbor in clique):\\n            clique.add(node)\\n    return clique",
+  "labels": "3"
+}

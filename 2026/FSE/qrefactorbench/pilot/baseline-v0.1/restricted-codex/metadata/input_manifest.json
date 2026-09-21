@@ -1,0 +1,91 @@
+{
+  "case_ids": [
+    "pilot-001",
+    "pilot-002",
+    "pilot-003",
+    "pilot-004",
+    "pilot-005",
+    "pilot-006",
+    "pilot-007",
+    "pilot-008",
+    "pilot-009",
+    "pilot-010"
+  ],
+  "files": [
+    {
+      "destination": "inputs/pilot-001/prompt.md",
+      "source_packet_path": "prompts/pilot-001.md",
+      "sha256": "c8b44c86eb90bed775022355b159ec0b5a245fd22ce7c631d35d64e620c861d6"
+    },
+    {
+      "destination": "inputs/pilot-002/prompt.md",
+      "source_packet_path": "prompts/pilot-002.md",
+      "sha256": "9498274754eb97d7e086243a3209623cf9e3898bc47a6c953ef7b558d62a47ad"
+    },
+    {
+      "destination": "inputs/pilot-003/prompt.md",
+      "source_packet_path": "prompts/pilot-003.md",
+      "sha256": "d463fd05052be4afc558254b9e6dc2e295cd0add3b6b1548b8ad7c66971787d6"
+    },
+    {
+      "destination": "inputs/pilot-004/prompt.md",
+      "source_packet_path": "prompts/pilot-004.md",
+      "sha256": "3d8532585f688cb94dc5ca9bc938c7243ecbab7be92b11f6aba8a906e1b2cad7"
+    },
+    {
+      "destination": "inputs/pilot-005/prompt.md",
+      "source_packet_path": "prompts/pilot-005.md",
+      "sha256": "f12792b29fae04abbe4a8f27b7a04d74f0f7bd0b7e8c48272912c71ae1f030da"
+    },
+    {
+      "destination": "inputs/pilot-006/prompt.md",
+      "source_packet_path": "prompts/pilot-006.md",
+      "sha256": "33403a2e5a2461b295460b24b09fcdcecc37cac05e942161c5c97183956d3fed"
+    },
+    {
+      "destination": "inputs/pilot-007/prompt.md",
+      "source_packet_path": "prompts/pilot-007.md",
+      "sha256": "e8a39d8c98cc7425eda6a89aebb432ef0b6666c08123b49528c2617cc41e9e88"
+    },
+    {
+      "destination": "inputs/pilot-008/prompt.md",
+      "source_packet_path": "prompts/pilot-008.md",
+      "sha256": "ae861bf2c912b6ba95b6fcb7a6666bfbedfd6f6d8dcf1fbbb337d8c2c63f07a2"
+    },
+    {
+      "destination": "inputs/pilot-009/prompt.md",
+      "source_packet_path": "prompts/pilot-009.md",
+      "sha256": "f9bb3230cc37fbb856c833a2251e61dcba18d32ff6a7c4710305bdb75da22a6d"
+    },
+    {
+      "destination": "inputs/pilot-010/prompt.md",
+      "source_packet_path": "prompts/pilot-010.md",
+      "sha256": "50d47f2d71bd2d107f0aa0a1412a0d1649424a25dd0338985968623ccefb82dd"
+    },
+    {
+      "destination": "schema/case.schema.json",
+      "source_packet_path": "schemas/case.schema.json",
+      "sha256": "c5a78bf44c0e86e48c64c482b5bdb99d4d9b03860cbe970b1cb8089060cde127"
+    },
+    {
+      "destination": "schema/migration_plan.schema.json",
+      "source_packet_path": "schemas/migration_plan.schema.json",
+      "sha256": "2b3a7fc52558cc8b6ba3d32ee6e9e23d8f51f0bb87b5b97eeb0c3d96e3aa3be2"
+    },
+    {
+      "destination": "schema/phase1_prediction.schema.json",
+      "source_packet_path": "schemas/phase1_prediction.schema.json",
+      "sha256": "83930dc89b7cd3b7a9c62e34abc3797315a1f76ab1fbc5951bb17ad4018cb28d"
+    },
+    {
+      "destination": "schema/prediction.schema.json",
+      "source_packet_path": "schemas/prediction.schema.json",
+      "sha256": "3332f30e433b294ebadd1969a6b7599ec7f681a93e1a00e48e1c3412a4a39a78"
+    }
+  ],
+  "source_packet_manifest_sha256": "e14955a93faa59647e725cd907276698c9b88b44b7651fa8b73348d43079e51e",
+  "scientific_stdin": "Exact frozen rendered prompt bytes, no added task text",
+  "common_prompt_archive": "Derived common prefix with CASE_ID placeholder; not submitted separately",
+  "reference_field_scan": "PASS; generic schema definitions/menu are not populated case answers",
+  "copied_reference_annotations": false
+}

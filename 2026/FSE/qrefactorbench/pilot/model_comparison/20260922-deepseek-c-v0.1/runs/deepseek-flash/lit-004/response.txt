@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-004",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "review_releases",
+      "start_line": 25,
+      "end_line": 29
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_maximum_pairwise_compatible_group_selection",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Encode each eligible version position i in names (global version order, active and member) as a binary variable x_i. The classical select-mode computes the maximum-cardinality subset S of positions with all pairwise checks passed in matrix; ties are broken by the smallest integer sum(2^i) over i in S, equivalent to the smallest mask in the existing loop. A QUBO/Ising objective can be: minimize -M * sum_i x_i + sum_i 2^i x_i + P * sum over i<j where matrix[i][j] is False of x_i x_j, with M > sum_i 2^i (e.g., M = 2^n) to make cardinality primary, and P large enough (e.g., P > M*n + sum_i 2^i) to forbid incompatible pairs. The empty set is represented by all x_i=0 and is optimal only when no eligible version exists; singleton groups need no pair checks. This preserves the exact maximum-size and tie-break objective structurally, but QAOA-style execution does not guarantee the exact optimum.",
+    "input_encoding": "n = len(names) qubits or Ising spins, one per eligible requested version in the order produced by eligible. Linear coefficients: for minimization, -M + 2^i on x_i. Quadratic coefficients: P for each pair (i,j) with i<j and matrix[i][j] == False, meaning latest check missing, failed, or otherwise not True. Diagonal terms and i=j are ignored. If using Ising, map x_i = (1 - Z_i)/2 and expand constants, linear Z_i terms, and quadratic Z_i Z_j terms explicitly. The compatibility matrix is derived from relation(names, latest), where latest is the last-writer-wins frozenset mapping from latest_results; inactive versions are already excluded by eligible, and unknown pairs are False, not passed.",
+    "quantum_algorithm_family": "QAOA-style or quantum annealing for the QUBO/Ising formulation; exact maximum clique is not guaranteed by these heuristics.",
+    "output_decoding": "Measure the final state, decode bitstring x to selected indices i with x_i=1, and map back to version IDs via names[i]. Classically recompute the compatibility predicate with compatible(indices, matrix), the size len(indices), and the tie-break sum sum(2**i for i in indices). If the decoded set is infeasible due to a penalty violation, or if exactness is required, the result must be rejected, repaired, or replaced by a classical exact solver; a heuristic sample cannot silently substitute for the required greatest-size and tie-break result. The existing describe, changes, eligible, current, preview, and report-ordering behavior must be retained around the decoded selected IDs.",
+    "assumptions": [
+      "The eligible set and compatibility matrix are finite and fully supplied before the quantum step; no data loading is free.",
+      "Only the mode=select exhaustive search is considered for replacement; mode=inspect and the preview greedy scan remain classical.",
+      "Penalties and tie-break weights are representable in the chosen QUBO/Ising precision; this is an unresolved encoding obligation.",
+      "Classical verification of any decoded candidate is available and mandatory."
+    ],
+    "risks": [
+      "QAOA or annealing returns approximate samples and does not preserve the required exact greatest-size optimum or the smallest-integer-sum tie-break without a proven exactness mechanism.",
+      "The tie-break term sum 2^i grows exponentially with n; coefficient range and precision may make the QUBO/Ising representation impractical or numerically unstable.",
+      "Penalty sufficiency must be proven for all feasible and infeasible subsets; too small a penalty can yield infeasible high-cardinality samples.",
+      "Quadratic terms are O(n^2) in the number of incompatible pairs, with associated two-qubit gate and coherence costs.",
+      "No measured workload distribution, hardware budget, encoding cost, or benchmark advantage is supplied, so practical benefit is unestablished.",
+      "The preview algorithm in reports.py lines 15-20 is a separate greedy scan and must not be changed by this optimization; current may be inactive or incompatible and is reported honestly."
+    ],
+    "expected_resource_characteristics": {
+      "num_qubits": "n = number of eligible versions in the request, potentially one per active requested member",
+      "quadratic_terms": "one penalty term per incompatible eligible pair, O(n^2) worst case",
+      "linear_terms": "n",
+      "depth": "unresolved",
+      "shots": "unresolved",
+      "classical_optimization_overhead": "unresolved",
+      "encoding_precision": "unresolved; exponential tie-break weights may dominate"
+    },
+    "rationale": "The select-mode block is the only supplied computation whose cost grows as an exponential search over subsets and whose objective is a pairwise-constrained maximum-cardinality selection with a lexicographic tie-break. That matches the supported combinatorial_optimization family structurally. However, exactness is part of the software contract: the proposed group must be of greatest possible size, and ties must minimize sum(2**i). QAOA or Ising heuristics do not guarantee either, and no benchmark or resource evidence supports practical migration. Therefore the conditional QUBO formulation is recorded but the decision remains REMAIN_CLASSICAL."
+  },
+  "rationale": "Source evidence: program.py lines 25-29 contain the mode=select exact search. Lines 26-29 brute-force every subset of eligible versions via for mask in range(1 << len(names)), test compatible(subset, matrix), and keep the first strictly larger subset; because masks are scanned in increasing integer order and the break condition is strict greater-than, this implements the specified primary maximum-size and secondary smallest sum(2**i) tie-break. The eligible set comes from catalog.eligible, which returns active versions from the request members in global version order. The matrix comes from reports.relation over latest_results, where later checks supersede earlier ones for undirected frozenset pairs and unknown pairs are False. Activation: only requests with mode == select enter the search; mode == inspect leaves proposed and changes null. Dependencies: valid prepared request via catalog.prepare, latest pair map, eligible names, relation matrix, and the compatible predicate. Surrounding behavior that must remain intact: validation and ValueError behavior, request independence and input order, version_count, check_count, pair_count, superseded_check_count, eligible/current/preview/describe output, the preview greedy scan in reports.py lines 15-20, changes.add and changes.remove ordering and semantics, and CLI JSON behavior. Structural eligibility: the search is a finite binary decision problem with explicit pairwise compatibility constraints, so a QUBO/Ising encoding is structurally representable. Practical suitability is false because the contract requires exact optimum and exact tie-break, QAOA or annealing is heuristic, the tie-break weights grow as 2**n, and no workload, hardware, encoding cost, or benefit data is supplied. Benchmark support is null because no benchmark evidence is supplied. Decision: REMAIN_CLASSICAL; a conditional combinatorial_optimization plan is provided because structural eligibility holds, but it does not recommend adoption or certify exactness.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "exact_maximum_pairwise_compatible_group_selection",
+  "assumptions": [
+    "The eligible set and compatibility matrix are finite and fully supplied before any quantum step.",
+    "Only mode=select is a candidate for quantumization; mode=inspect and the preview greedy scan remain classical.",
+    "The exact maximum-size and smallest-integer-sum tie-break are part of the required output contract and cannot be weakened to an approximate objective.",
+    "Classical verification and fallback are available for any decoded candidate."
+  ],
+  "risks": [
+    "QAOA or annealing cannot be assumed to return the exact optimum or the exact tie-break required by the software contract.",
+    "Exponential tie-break weights sum(2**i) and large penalty coefficients may exceed practical encoding precision.",
+    "No benchmark or resource evidence supports a practical quantum advantage for this case.",
+    "Replacing only the search block must not alter validation, request ordering, preview, current reporting, changes, counts, or CLI behavior."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The select-mode problem can be formulated with one binary variable per eligible version, quadratic penalties for incompatible pairs, and linear terms for cardinality plus the smallest-sum tie-break. Exactness, penalty sufficiency, coefficient scaling, and decoding obligations remain unresolved."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The select-mode contract is not a pure existence predicate: it requires the greatest possible size and a secondary smallest-integer-sum tie-break. A single marked-state Grover predicate would not encode that optimization without an outer search or estimation layer, so this contract is not directly applicable."
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-008",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "No region implements either supported computational family. kernel.py lines 7-9 deterministically compute an eight-bit XOR and its fixed-width binary representation; this is direct arithmetic, not search over a finite candidate domain and not optimization over binary decisions. program.py lines 19-24 merely apply that operation to every validated record, accumulate an order-dependent checksum, and construct mandatory receipts. Its dependencies are each row's left, right, and id values; the prior checksum; request mode; and repetitions. It activates once per input row after complete validation by program.py lines 9-17. The surrounding behavior that must remain intact includes validation before any receipt computation, rejection of booleans and out-of-range integers, distinct nonempty identifiers, input ordering, exactly eight most-significant-bit-first characters, exact set-bit counts, modulo-256 prefix checksums, deterministic counts equal to repetitions only in counts mode, null counts in inspect mode, complete output for every row, empty-list behavior, no mutation, ValueError behavior, and JSON CLI I/O. Grover-style search would add an artificial search problem without replacing the required exhaustive ordered transformation, while a QUBO/Ising formulation has no objective or decision variables to optimize. The fixed eight-bit classical operation and linear receipt construction provide no practical basis for quantum migration.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Validate an ordered list of byte pairs, compute each pair's deterministic XOR representation, and emit complete ordered receipts with exact repetition metadata and running modulo-256 checksums.",
+  "assumptions": [
+    "The supported migration families are limited to unstructured search and combinatorial optimization as stated.",
+    "Repetitions specifies an exact deterministic histogram count and does not authorize sampling or quantum execution.",
+    "The Qiskit HumanEval attribution establishes provenance only; it does not by itself establish eligibility, performance, resource feasibility, or quantum advantage."
+  ],
+  "risks": [
+    "Treating reversible XOR circuitry as sufficient eligibility would confuse implementability on a quantum circuit with applicability of a supported quantum algorithm family.",
+    "Introducing measurement or sampling could violate exact bits, counts, set-bit totals, and checksum semantics.",
+    "Batching, reordering, filtering, or aggregating records could violate validation-before-processing, ordered receipts, prefix checksums, and the requirement to return every receipt.",
+    "Quantum data loading, execution, and decoding would add overhead to a constant-width operation without supplied workload or resource evidence."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "Although eight-bit values form a finite domain and XOR equality could be embedded in a Boolean predicate, the software does not request discovery of a marked candidate or an existence decision. It must transform every supplied row and preserve ordered, exact outputs, so Grover-style search does not match the computational intent."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The program contains no binary decision problem, objective function, competing assignments, constraints, or optimum to recover. Encoding deterministic XOR receipt generation as a QUBO would manufacture an optimization problem and would not justify weakening exact output semantics."
+    }
+  ]
+}

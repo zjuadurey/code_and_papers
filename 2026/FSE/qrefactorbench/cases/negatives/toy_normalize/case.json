@@ -1,0 +1,52 @@
+{
+  "schema_version": "0.1.0",
+  "title": "DRAFT: normalize a display label",
+  "description": "DRAFT infrastructure demonstration; not scientifically validated ground truth.",
+  "source": "Original toy authored during infrastructure setup; generated assistance, human scientific review pending.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "infrastructure_demonstration",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "kernel",
+  "case_type": "negative",
+  "difficulty": "unknown",
+  "classical_program": "program.py",
+  "candidate_regions": [],
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "expected_decision": "REMAIN_CLASSICAL",
+  "computational_intent": {
+    "id": "normalize_label",
+    "description": "Strip whitespace and lowercase a display label."
+  },
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "deterministic_equality",
+    "description": "One illustrative normalization input.",
+    "config": {
+      "input": " A ",
+      "expected": "a"
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Local simulator demonstration only; no speedup or practical advantage claim."
+    ],
+    "limits": {}
+  },
+  "negative_reason": "Toy direct string processing outside the two defined migration families.",
+  "annotation_rationale": "DRAFT toy metadata exercises the infrastructure. Researchers must replace or independently verify every scientific label.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "Not benchmark ground truth; not evidence of advantage."
+  ],
+  "case_id": "toy-negative-001"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "id": "8712064",
+    "feature": "radius_mean",
+    "error": "missing",
+    "injected_value": "nan"
+  },
+  {
+    "id": "894604",
+    "feature": "texture_mean",
+    "error": "missing",
+    "injected_value": "nan"
+  },
+  {
+    "id": "868826",
+    "feature": "perimeter_mean",
+    "error": "missing",
+    "injected_value": "nan"
+  },
+  {
+    "id": "921644",
+    "feature": "area_mean",
+    "error": "missing",
+    "injected_value": "nan"
+  },
+  {
+    "id": "926424",
+    "feature": "smoothness_mean",
+    "error": "missing",
+    "injected_value": "nan"
+  },
+  {
+    "id": "897137",
+    "feature": "compactness_mean",
+    "error": "missing",
+    "injected_value": "nan"
+  },
+  {
+    "id": "86211",
+    "feature": "concavity_mean",
+    "error": "missing",
+    "injected_value": "nan"
+  },
+  {
+    "id": "873885",
+    "feature": "concave_points_mean",
+    "error": "missing",
+    "injected_value": "nan"
+  },
+  {
+    "id": "89511501",
+    "feature": "radius_mean",
+    "error": "type_error",
+    "injected_value": "not_numeric"
+  },
+  {
+    "id": "908469",
+    "feature": "texture_mean",
+    "error": "type_error",
+    "injected_value": "not_numeric"
+  },
+  {
+    "id": "911157302",
+    "feature": "perimeter_mean",
+    "error": "type_error",
+    "injected_value": "not_numeric"
+  },
+  {
+    "id": "863270",
+    "feature": "area_mean",
+    "error": "negative_measurement",
+    "injected_value": "-50"
+  },
+  {
+    "id": "892214",
+    "feature": "radius_mean",
+    "error": "negative_measurement",
+    "injected_value": "-2"
+  },
+  {
+    "id": "907914",
+    "feature": "perimeter_mean",
+    "error": "nonfinite",
+    "injected_value": "inf"
+  },
+  {
+    "id": "8711003",
+    "feature": "radius_mean",
+    "error": "extreme_value",
+    "injected_value": "100000000.0"
+  },
+  {
+    "error": "duplicate_rows",
+    "count": 4,
+    "ids": [
+      "90602302",
+      "914580",
+      "90745",
+      "857637"
+    ]
+  },
+  {
+    "error": "invalid_label",
+    "count": 1,
+    "id": "synthetic_invalid_label_row"
+  }
+]

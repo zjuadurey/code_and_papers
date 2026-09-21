@@ -1,0 +1,9 @@
+{
+  "case_id": "source-core-006",
+  "title": "Independent transfer windows",
+  "software_contract": "choose(items,capacity) accepts valid ordered item dicts with positive integer weight and nonnegative integer value; nonnegative capacity. Return numeric subset mask maximizing total value under capacity, ties smallest mask. Every item is indivisible and usable at most once. Extra id/active fields are ignored; caller prefilters. Inputs unchanged.",
+  "input_domain": "Valid kernel arguments as specified; application validation and reports are not part of this core view.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}

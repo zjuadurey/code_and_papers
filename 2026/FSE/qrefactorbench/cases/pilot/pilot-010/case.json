@@ -1,0 +1,111 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "pilot-010",
+  "title": "Fresh-data record membership",
+  "description": "Parse every classical JSON payload, then return whether any active record has the requested key. Pilot annotation material; not validated benchmark ground truth.",
+  "source": "Original synthetic program authored with Codex assistance for the requested Phase-1 pilot on 2026-09-18. No independent researcher authorship or review is claimed; not copied from an external repository.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "phase1_synthetic",
+  "version": "0.1.0",
+  "migration_family": "unstructured_search",
+  "context_level": "function_with_distractors",
+  "case_type": "hard_negative",
+  "difficulty": "unknown",
+  "classical_program": "program.py",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "contains_record",
+      "start_line": 4,
+      "end_line": 8
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "expected_decision": "REMAIN_CLASSICAL",
+  "computational_intent": {
+    "id": "fresh_record_existence",
+    "description": "Parse every classical JSON payload, then return whether any active record has the requested key."
+  },
+  "admissible_migration_contracts": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "status": "DRAFT",
+      "applicability_conditions": [
+        "A finite domain and pure Boolean predicate can be explicitly represented.",
+        "Preserve required classical effects and input/output semantics; demonstrate reversible predicate construction."
+      ],
+      "input_encoding": "Finite basis-state encoding of candidates; predicate data and workspace costs must be accounted for.",
+      "formulation": "Grover-style marked-state predicate search; define success/no-solution handling explicitly.",
+      "algorithm_families": [
+        "grover_style"
+      ],
+      "output_decoding": "Classically verify decoded candidates; existence decisions also require a justified no-solution policy.",
+      "semantic_relation": "Preserve the classical task contract; probabilistic error policy is unresolved, not silently accepted.",
+      "resource_assumptions": [
+        "No free data loading, oracle construction, workspace or coherent memory is assumed."
+      ],
+      "known_limitations": [
+        "Shared candidate contract for planning, not a validated implementation.",
+        "No universal suitability or advantage claim; statistical semantics require human review."
+      ]
+    }
+  ],
+  "reference_plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "fresh_record_existence",
+    "migration_family": "unstructured_search",
+    "formulation": "Draft predicate: Parse every classical JSON payload, then return whether any active record has the requested key. Explore a marked-state existence reformulation.",
+    "input_encoding": "Encode each finite candidate by a basis-state bit string; construct and uncompute the predicate with explicitly costed data access.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Validate measured candidates using the original predicate; no-solution semantics remain unresolved.",
+    "assumptions": [
+      "One membership query for each fresh batch of serialized classical records; no state is reused across batches.",
+      "No preloaded coherent data oracle or QRAM is supplied; a plan must include building its representation from this batch.",
+      "Parsing, buffering, encoding and decoding costs belong to the complete software operation; no cost model has been approved."
+    ],
+    "risks": [
+      "Shared candidate contract for planning, not a validated implementation.",
+      "No universal suitability or advantage claim; statistical semantics require human review.",
+      "Predicate construction, data loading, and zero-solution behavior require explicit review."
+    ],
+    "expected_resource_characteristics": {
+      "status": "unresolved",
+      "cost_model": null
+    },
+    "rationale": "PROVISIONAL distinction: a pure finite predicate formulation is plausible, while the explicit workload/setup assumptions suggest remaining classical. This suitability label has no measured cost-model validation."
+  },
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "Parse every classical JSON payload, then return whether any active record has the requested key. Check the declared input domain, edge cases and effects using the classical tests; this draft is not a registered quantum semantic oracle.",
+    "hook_id": "pilot-010-semantics",
+    "config": {
+      "input_domain": "payloads is a list of JSON strings representing dictionaries with key and active fields; all payloads are parsed even if the first one matches; malformed JSON raises.",
+      "probabilistic_policy": null
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "One membership query for each fresh batch of serialized classical records; no state is reused across batches.",
+      "No preloaded coherent data oracle or QRAM is supplied; a plan must include building its representation from this batch.",
+      "Parsing, buffering, encoding and decoding costs belong to the complete software operation; no cost model has been approved."
+    ],
+    "limits": {}
+  },
+  "negative_reason": "PROVISIONAL distinction: a pure finite predicate formulation is plausible, while the explicit workload/setup assumptions suggest remaining classical. This suitability label has no measured cost-model validation.",
+  "annotation_rationale": "PROVISIONAL distinction: a pure finite predicate formulation is plausible, while the explicit workload/setup assumptions suggest remaining classical. This suitability label has no measured cost-model validation.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "DRAFT synthetic annotation material; curator hypotheses must not be distributed to independent annotators.",
+    "Licensing is unresolved; NOASSERTION grants no redistribution rights.",
+    "Human review must determine whether the proposed category and span are defensible."
+  ]
+}

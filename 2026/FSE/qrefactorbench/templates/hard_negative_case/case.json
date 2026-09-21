@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "title": "DRAFT: replace with human-curated case",
+  "description": "DRAFT infrastructure demonstration; not scientifically validated ground truth.",
+  "source": "Original toy authored during infrastructure setup; generated assistance, human scientific review pending.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "infrastructure_demonstration",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "kernel",
+  "case_type": "hard_negative",
+  "difficulty": "unknown",
+  "classical_program": "program.py",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "candidate",
+      "start_line": 1,
+      "end_line": 2
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [],
+  "semantic_oracle": null,
+  "resource_expectations": {
+    "assumptions": [
+      "Local simulator demonstration only; no speedup or practical advantage claim."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT toy metadata exercises the infrastructure. Researchers must replace or independently verify every scientific label.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "Not benchmark ground truth; not evidence of advantage."
+  ],
+  "case_id": "template-hard-negative"
+}

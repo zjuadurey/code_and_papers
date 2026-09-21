@@ -1,0 +1,33 @@
+{
+  "record_count": 3,
+  "receipts": [
+    {
+      "id": "r0",
+      "bits": "00011110",
+      "set_bits": 4,
+      "counts": {
+        "00011110": 1024
+      },
+      "prefix_checksum": 30
+    },
+    {
+      "id": "r1",
+      "bits": "00110100",
+      "set_bits": 3,
+      "counts": {
+        "00110100": 1024
+      },
+      "prefix_checksum": 82
+    },
+    {
+      "id": "r2",
+      "bits": "00100111",
+      "set_bits": 4,
+      "counts": {
+        "00100111": 1024
+      },
+      "prefix_checksum": 121
+    }
+  ],
+  "checksum": 121
+}

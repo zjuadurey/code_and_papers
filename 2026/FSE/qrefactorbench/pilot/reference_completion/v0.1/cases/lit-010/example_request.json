@@ -1,0 +1,39 @@
+{
+  "variables": [
+    "left",
+    "right"
+  ],
+  "entries": [
+    {
+      "row": "left",
+      "column": "left",
+      "value": 4
+    },
+    {
+      "row": "left",
+      "column": "right",
+      "value": 1
+    },
+    {
+      "row": "right",
+      "column": "left",
+      "value": 1
+    },
+    {
+      "row": "right",
+      "column": "right",
+      "value": 3
+    }
+  ],
+  "rhs": [
+    1,
+    2
+  ],
+  "current": [
+    0,
+    0
+  ],
+  "steps": 1,
+  "relative_tolerance": 0.0,
+  "mode": "advance"
+}

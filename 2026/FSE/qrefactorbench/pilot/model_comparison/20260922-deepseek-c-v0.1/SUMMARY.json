@@ -1,0 +1,363 @@
+{
+  "review_status": "PENDING",
+  "condition": "C",
+  "models": {
+    "deepseek-v4-pro": {
+      "valid_responses": 10,
+      "population": 10,
+      "rows": [
+        {
+          "mother_case_id": "lit-001",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 155.456,
+          "returned_model": "deepseek-v4-pro",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": true,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-002",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 166.16,
+          "returned_model": "deepseek-v4-pro",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": true,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-003",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 208.377,
+          "returned_model": "deepseek-v4-pro",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": true,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-004",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 163.998,
+          "returned_model": "deepseek-v4-pro",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": false,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-005",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 139.623,
+          "returned_model": "deepseek-v4-pro",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": null,
+          "migration_family": "unstructured_search",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-006",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 171.213,
+          "returned_model": "deepseek-v4-pro",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": false,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-007",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 147.83,
+          "returned_model": "deepseek-v4-pro",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": true,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-008",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 93.568,
+          "returned_model": "deepseek-v4-pro",
+          "finish_reason": "stop",
+          "structural_eligibility": false,
+          "practical_suitability": false,
+          "benchmark_supported": false,
+          "migration_family": null,
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-009",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 201.122,
+          "returned_model": "deepseek-v4-pro",
+          "finish_reason": "stop",
+          "structural_eligibility": false,
+          "practical_suitability": false,
+          "benchmark_supported": false,
+          "migration_family": null,
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-010",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 128.375,
+          "returned_model": "deepseek-v4-pro",
+          "finish_reason": "stop",
+          "structural_eligibility": false,
+          "practical_suitability": false,
+          "benchmark_supported": false,
+          "migration_family": null,
+          "decision": "REMAIN_CLASSICAL"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 100931,
+        "completion_tokens": 117667,
+        "total_tokens": 218598,
+        "prompt_cache_hit_tokens": 4096,
+        "prompt_cache_miss_tokens": 96835
+      },
+      "elapsed_seconds_sum": 1575.722,
+      "full_population_evaluation_available": true,
+      "aggregate": {
+        "structural_eligibility": {
+          "unresolved": 3,
+          "total": 10,
+          "reference_known": 7,
+          "prediction_known": 10,
+          "matched": 7,
+          "mismatched": 0,
+          "agreement_on_resolved_pairs": 1.0,
+          "matched_over_known_references": 1.0
+        },
+        "practical_suitability": {
+          "unresolved": 10,
+          "total": 10,
+          "reference_known": 0,
+          "prediction_known": 10,
+          "matched": 0,
+          "mismatched": 0,
+          "agreement_on_resolved_pairs": null,
+          "matched_over_known_references": null
+        },
+        "benchmark_supported": {
+          "unresolved": 1,
+          "total": 10,
+          "reference_known": 10,
+          "prediction_known": 9,
+          "matched": 5,
+          "mismatched": 4,
+          "agreement_on_resolved_pairs": 0.5555555555555556,
+          "matched_over_known_references": 0.5
+        },
+        "migration_family": {
+          "unresolved": 4,
+          "total": 10,
+          "reference_known": 7,
+          "prediction_known": 7,
+          "matched": 6,
+          "mismatched": 0,
+          "agreement_on_resolved_pairs": 1.0,
+          "matched_over_known_references": 0.8571428571428571
+        }
+      },
+      "plan_coverage": {
+        "reference_required": 7,
+        "present": 7
+      },
+      "decision_agreement": {
+        "matched": 10,
+        "total": 10
+      },
+      "where_reference_positive": {
+        "population": 7,
+        "exact_region_set_matches": 5,
+        "mean_line_iou": 0.9260204081632654
+      }
+    },
+    "deepseek-flash": {
+      "valid_responses": 9,
+      "population": 10,
+      "rows": [
+        {
+          "mother_case_id": "lit-001",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 55.629,
+          "returned_model": "deepseek-flash",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": null,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-002",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 40.437,
+          "returned_model": "deepseek-flash",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": null,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-003",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 64.485,
+          "returned_model": "deepseek-flash",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": null,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-004",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 59.343,
+          "returned_model": "deepseek-flash",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": null,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-005",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 50.386,
+          "returned_model": "deepseek-flash",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": null,
+          "migration_family": "unstructured_search",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-006",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 45.695,
+          "returned_model": "deepseek-flash",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": null,
+          "benchmark_supported": null,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-007",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 58.02,
+          "returned_model": "deepseek-flash",
+          "finish_reason": "stop",
+          "structural_eligibility": true,
+          "practical_suitability": false,
+          "benchmark_supported": null,
+          "migration_family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-008",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 22.13,
+          "returned_model": "deepseek-flash",
+          "finish_reason": "stop",
+          "structural_eligibility": false,
+          "practical_suitability": false,
+          "benchmark_supported": null,
+          "migration_family": null,
+          "decision": "REMAIN_CLASSICAL"
+        },
+        {
+          "mother_case_id": "lit-009",
+          "valid": false,
+          "errors": [
+            "API response missing/incomplete/failed",
+            "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-009/response.txt: Expecting value: line 1 column 1 (char 0)"
+          ],
+          "elapsed_seconds": 77.916,
+          "returned_model": "deepseek-flash",
+          "finish_reason": "length",
+          "structural_eligibility": null,
+          "practical_suitability": null,
+          "benchmark_supported": null,
+          "migration_family": null,
+          "decision": null
+        },
+        {
+          "mother_case_id": "lit-010",
+          "valid": true,
+          "errors": [],
+          "elapsed_seconds": 18.839,
+          "returned_model": "deepseek-flash",
+          "finish_reason": "stop",
+          "structural_eligibility": false,
+          "practical_suitability": false,
+          "benchmark_supported": null,
+          "migration_family": null,
+          "decision": "REMAIN_CLASSICAL"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 100401,
+        "completion_tokens": 109693,
+        "total_tokens": 210094,
+        "prompt_cache_hit_tokens": 3456,
+        "prompt_cache_miss_tokens": 96945
+      },
+      "elapsed_seconds_sum": 492.88,
+      "full_population_evaluation_available": false
+    }
+  },
+  "planned_calls": 20,
+  "comparison_limits": [
+    "Same public task bytes and reference; API has no Codex system scaffolding.",
+    "DeepSeek high and GPT medium are not matched reasoning budgets.",
+    "API aliases can move; preserve returned model/fingerprint without claiming pinned weights.",
+    "Output cap differs from unspecified GPT CLI cap; truncation is a failure, never repaired.",
+    "Pending labels, single sample; no stable ranking or whole-task accuracy."
+  ],
+  "protected_files_unchanged": 458
+}

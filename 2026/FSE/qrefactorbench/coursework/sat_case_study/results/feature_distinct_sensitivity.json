@@ -1,0 +1,19 @@
+{
+  "n": 597,
+  "accuracy": 0.916247906197655,
+  "precision_sat": 0.9140625,
+  "recall_sat": 0.8931297709923665,
+  "f1_sat": 0.9034749034749036,
+  "confusion_matrix": [
+    [
+      313,
+      22
+    ],
+    [
+      28,
+      234
+    ]
+  ],
+  "threshold": 0.5,
+  "description": "Post-hoc sensitivity subset excluding test rows with feature vectors seen in training; no retraining or primary-score replacement."
+}

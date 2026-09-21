@@ -1,0 +1,51 @@
+{
+  "catalog_version": "phase1-v0",
+  "contracts": [
+    {
+      "algorithm_families": [
+        "grover_style"
+      ],
+      "applicability_conditions": [
+        "A finite domain and pure Boolean predicate can be explicitly represented.",
+        "Preserve required classical effects and input/output semantics; demonstrate reversible predicate construction."
+      ],
+      "contract_id": "grover-predicate-v0",
+      "formulation": "Grover-style marked-state predicate search; define success/no-solution handling explicitly.",
+      "input_encoding": "Finite basis-state encoding of candidates; predicate data and workspace costs must be accounted for.",
+      "known_limitations": [
+        "Shared candidate contract for planning, not a validated implementation.",
+        "No universal suitability or advantage claim; statistical semantics require human review."
+      ],
+      "output_decoding": "Classically verify decoded candidates; existence decisions also require a justified no-solution policy.",
+      "resource_assumptions": [
+        "No free data loading, oracle construction, workspace or coherent memory is assumed."
+      ],
+      "semantic_relation": "Preserve the classical task contract; probabilistic error policy is unresolved, not silently accepted.",
+      "status": "DRAFT"
+    },
+    {
+      "algorithm_families": [
+        "qaoa"
+      ],
+      "applicability_conditions": [
+        "The binary objective and any constraint penalties can be represented explicitly.",
+        "Check coefficients, signs, penalty sufficiency and decoding against the original objective."
+      ],
+      "contract_id": "qubo-ising-v0",
+      "formulation": "QUBO/Ising encoding; QAOA-style execution is a possible proposal, not an exactness guarantee.",
+      "input_encoding": "Binary decision variables; document the x=(1-Z)/2 mapping, constants and coefficients if using Ising.",
+      "known_limitations": [
+        "No depth, parameter-optimization budget, approximation ratio or probability threshold is prescribed.",
+        "Shared DRAFT planning contract; conformity and scientific admissibility remain unverified."
+      ],
+      "output_decoding": "Decode feasible assignments and recompute the classical objective.",
+      "resource_assumptions": [
+        "State preparation, classical optimization, measurement and decoding overheads must be stated."
+      ],
+      "semantic_relation": "Preserve the required solution quality and software interface. An exact optimum cannot be silently weakened to an approximate one.",
+      "status": "DRAFT"
+    }
+  ],
+  "notice": "Identical menu for all annotators and models. Inclusion is not per-case applicability or an admissibility judgment.",
+  "status": "DRAFT"
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-007",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "has_total",
+      "start_line": 2,
+      "end_line": 7
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": false,
+  "computational_intent": "Decide exactly whether at least one positional subset of the finite integer list sums to target, including the empty subset for target zero, while returning only a Boolean and producing no side effects.",
+  "migration_family": "unstructured_search",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": null,
+      "rationale": "The masks form a finite domain and equality of a selected-element sum with target is a pure Boolean predicate, so a Grover-style formulation is structurally available. Applicability remains unresolved because reversible signed-arithmetic construction, coherent access to all input values, integer and accumulator widths, uncomputation workspace, repeated oracle cost, and an exact-contract-compatible no-solution/error policy are not established."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": null,
+      "rationale": "A formal QUBO can minimize (sum_i values[i] x_i - target)^2, whose zero-energy assignments correspond to satisfying subsets. However, coefficient magnitudes and precision costs are unstated, and ordinary QAOA sampling or approximate minimization does not establish the exact Boolean result or reliably certify that no zero-energy assignment exists."
+    }
+  ],
+  "assumptions": [
+    "Subsets select list positions independently, so duplicate values remain distinct choices.",
+    "The supplied integer-domain contract and Python's exact integer semantics must be preserved.",
+    "No input-size distribution, integer-width bound, quantum hardware model, or acceptable probabilistic error bound is supplied."
+  ],
+  "risks": [
+    "Coherent loading of the classical list could dominate the proposed oracle cost and cannot be treated as free.",
+    "A reversible predicate requires signed accumulation with width derived from target and the possible subset-sum range, plus ancillary workspace and uncomputation.",
+    "A sampled search procedure can miss existing solutions, while observing no marked state does not by itself certify nonexistence under the exact Boolean contract.",
+    "The current exhaustive implementation is not a sufficient classical baseline; dynamic programming, bitset methods where ranges permit, meet-in-the-middle, branch-and-bound, and specialized subset-sum algorithms must be evaluated.",
+    "Grover's query-count reduction over naive enumeration does not establish end-to-end advantage, particularly against meet-in-the-middle methods and after oracle and data-access costs.",
+    "The squared QUBO may require large signed coefficients and precision, and approximate optimization can silently weaken exact equality semantics."
+  ],
+  "rationale": "Lines 2-7 are both the exponential hotspot and a genuine structural search candidate: each mask is a subset and the marked-state predicate is exact sum equality. Structural eligibility alone is insufficient. No representative scale, bounded integer width, reversible-oracle resource estimate, suitable classical comparison, hardware assumptions, benchmark evidence, or acceptable probabilistic decision policy is provided. Only existence is required, but false must still mean that no subset exists; neither Grover-style sampling nor QAOA supplies that exact negative certificate without additional justified machinery. Therefore no practical advantage or semantic preservation can presently be supported, and the program should remain classical.",
+  "plan": null
+}

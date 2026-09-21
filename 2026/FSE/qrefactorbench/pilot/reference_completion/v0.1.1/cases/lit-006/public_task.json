@@ -1,0 +1,9 @@
+{
+  "case_id": "lit-006",
+  "title": "Independent transfer windows",
+  "software_contract": "review(request) validates the whole batch first. Eligible items are active entries in catalogue order. Each window is independent; no shared-stock allocation across windows. current report retains listed inactive items and marks infeasible if any are inactive or total weight exceeds capacity. select maximizes total value of indivisible eligible items under capacity; ties use smallest numeric mask in eligible order. proposal includes IDs/weight/value/feasible. transfers follows selected catalogue order with contiguous offsets starting at 0 and item weight as length. inspect has no proposal or transfers. No mutation; invalid input raises ValueError. CLI reads/prints JSON.",
+  "input_domain": "Exactly items and windows lists. Item={id:unique nonempty string, weight:positive int, value:nonnegative int, active:bool}. Window={id:unique nonempty string, capacity:nonnegative int, current:distinct known item IDs, mode:inspect|select}. Bool is not an int. Empty lists allowed; no added numeric cap.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}

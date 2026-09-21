@@ -1,0 +1,13 @@
+{
+  "demo/context001_qiskit/hybrid_program.py": "c415994879aca9e9a949e2e86cbce0626345fc72c4b08915289f10a3559c5a00",
+  "demo/context001_qiskit/maintenance.py": "b1acb0f1a52185375aaccf624f8da082accd12748bb456d488037d8c1b29e880",
+  "demo/context001_qiskit/protocol.json": "3749c3bb6a5a6d84db47420be7ba9b6ff2c633c629d5a523d88414419327fc0f",
+  "demo/context001_qiskit/run_comparison.py": "96522c1ecc1dd0f3b0bb7ae280bdf485c60a94968efae017ca07442f39c39e73",
+  "pilot/context_adaptations/v0.1/cases/context-001/program.py": "9431955f692c02cf4e2d1bf7288b21d08f39b3378d4504cf998a3de6decb5905",
+  "pilot/context_adaptations/v0.1/cases/context-001/maintenance.py": "b1acb0f1a52185375aaccf624f8da082accd12748bb456d488037d8c1b29e880",
+  "pilot/context_adaptations/v0.1/cases/context-001/public_task.json": "fec1bfbff8f66b55d54580b0adc4eb02226a6c3c61cd3b4b03c7fa241e745b91",
+  "pilot/context_adaptations/v0.1/cases/context-001/example_request.json": "e47c4387aad947e5ce98c8ad5870aabacc8869d1d925f9da6d2889479e5467ea",
+  "qrefactorbench/evaluator/resources.py": "6bd9f23eec6a92dcfcdf9e9a986d171c25e0d2b539309230dc4cb22f136c0a8a",
+  "demo/context001_qiskit/test_conversion.py": "0aa2f5861b918566bf7244a9c8066db36437b096527faa50fea68b81a22de1d5",
+  "demo/context001_qiskit/README.md": "d75ba3a235e6b0e26080b08b34ddfcb35006b46ba0b6cec05d7da1e9b78fe424"
+}

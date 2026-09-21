@@ -1,0 +1,215 @@
+"""One fresh isolated Codex CLI call per case, with immutable first-attempt outputs."""
+
+import argparse
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import tempfile
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+ROOT = Path(__file__).resolve().parent
+CODEX = Path('/home/audrey/.local/bin/codex').resolve()
+AUTH = Path('/home/audrey/.codex/auth.json')
+MODEL = 'gpt-5.6-sol'
+WRAPPER = (
+    'This is a restricted single-turn research baseline. All task information is '
+    'in the supplied user message. Do not invoke tools, browse files or the web, '
+    'execute code, delegate, request clarification, or produce interim messages. '
+    'Return one final response to the supplied prompt. Do not use previous sessions.'
+)
+DISABLED = (
+    'shell_tool', 'unified_exec', 'multi_agent', 'multi_agent_v2', 'apps', 'plugins',
+    'hooks', 'memories', 'shell_snapshot', 'skill_search',
+    'skill_mcp_dependency_install', 'browser_use', 'browser_use_external',
+    'computer_use', 'in_app_browser', 'image_generation', 'view_image',
+    'code_mode', 'code_mode_host', 'goals', 'sleep_tool', 'tool_suggest',
+    'unbounded_connection_retries', 'workspace_dependencies',
+)
+CONFIG = [
+    'model_reasoning_effort="high"', 'approval_policy="never"',
+    'web_search="disabled"', 'project_doc_max_bytes=0',
+    'forced_login_method="chatgpt"', 'personality="none"',
+    'features.skip_host_skill_discovery=true',
+    'skills.config=[' + ','.join(
+        '{path="/home/runner/.codex/skills/.system/' + name + '",enabled=false}'
+        for name in ('imagegen', 'openai-docs', 'plugin-creator', 'skill-creator', 'skill-installer')
+    ) + ']',
+    'developer_instructions=' + json.dumps(WRAPPER),
+    *[f'features.{name}=false' for name in DISABLED],
+]
+
+
+def digest(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def save_json(path: Path, value: object) -> None:
+    with path.open('x', encoding='utf-8') as stream:
+        json.dump(value, stream, indent=2, ensure_ascii=False)
+        stream.write('\n')
+
+
+def isolated_command(case_dir: Path, output_dir: Path, arguments: list[str]) -> list[str]:
+    """Allowlist mounts: no repository, other cases, global config or history."""
+    return [
+        '/usr/bin/bwrap', '--die-with-parent', '--new-session',
+        '--unshare-pid', '--unshare-ipc', '--unshare-uts', '--clearenv',
+        '--ro-bind', '/usr', '/usr', '--symlink', 'usr/bin', '/bin',
+        '--symlink', 'usr/lib', '/lib', '--symlink', 'usr/lib64', '/lib64',
+        '--ro-bind', '/etc', '/etc',
+        '--dir', '/mnt/wsl',
+        '--ro-bind', str(Path('/etc/resolv.conf').resolve()), str(Path('/etc/resolv.conf').resolve()),
+        '--proc', '/proc', '--dev', '/dev', '--tmpfs', '/tmp',
+        '--tmpfs', '/home', '--dir', '/home/runner/.codex',
+        '--ro-bind', str(AUTH), '/home/runner/.codex/auth.json',
+        '--ro-bind', str(CODEX), '/codex',
+        '--ro-bind', str(case_dir), '/work', '--bind', str(output_dir), '/out',
+        '--setenv', 'HOME', '/home/runner',
+        '--setenv', 'CODEX_HOME', '/home/runner/.codex',
+        '--setenv', 'PATH', '/usr/bin:/bin', '--setenv', 'LANG', 'C.UTF-8',
+        '--chdir', '/work', '/codex', *arguments,
+    ]
+
+
+def config_args() -> list[str]:
+    return [part for value in CONFIG for part in ('-c', value)]
+
+
+def preflight() -> None:
+    """Read-only CLI checks and prompt inspection; no scientific model calls."""
+    attempt = len(list((ROOT / 'metadata').glob('*isolated-login.json'))) + 1
+    with tempfile.TemporaryDirectory(prefix='qrb-preflight-') as temporary:
+        temporary = Path(temporary)
+        case_dir = temporary / 'input'
+        output_dir = temporary / 'output'
+        case_dir.mkdir(); output_dir.mkdir()
+        commands = {
+            'isolated-login': ['login', 'status'],
+            'isolated-features': [*config_args(), 'features', 'list'],
+            'prompt-inspection': ['-m', MODEL, *config_args(), 'debug', 'prompt-input', 'BASELINE_SMOKE_OK'],
+        }
+        for name, args in commands.items():
+            name = f'preflight-{attempt:02d}-{name}'
+            command = isolated_command(case_dir, output_dir, args)
+            result = subprocess.run(command, capture_output=True, timeout=60)
+            (ROOT / 'logs' / f'{name}.stdout').write_bytes(result.stdout)
+            (ROOT / 'logs' / f'{name}.stderr').write_bytes(result.stderr)
+            save_json(ROOT / 'metadata' / f'{name}.json', {'command': command, 'exit_code': result.returncode})
+            print(json.dumps({'preflight': name, 'exit_code': result.returncode}), flush=True)
+            if result.returncode:
+                raise SystemExit(result.returncode)
+
+
+def run_case(case_id: str) -> None:
+    if case_id != 'smoke' and case_id not in {f'pilot-{i:03d}' for i in range(1, 11)}:
+        raise ValueError('Unknown case')
+    metadata_path = ROOT / 'metadata' / f'{case_id}.json'
+    started_path = ROOT / 'metadata' / f'{case_id}.started.json'
+    if started_path.exists() or metadata_path.exists() or (ROOT / 'raw' / f'{case_id}.txt').exists():
+        raise RuntimeError('First-attempt artifact already exists; no retry or overwrite allowed')
+    if case_id != 'smoke':
+        smoke = json.loads((ROOT / 'metadata/smoke.json').read_text())
+        if not smoke.get('smoke_passed'):
+            raise RuntimeError('Smoke test has not passed; scientific calls prohibited')
+    started = datetime.now(timezone.utc)
+    with tempfile.TemporaryDirectory(prefix=f'qrb-{case_id}-') as temporary:
+        temporary = Path(temporary)
+        case_dir = temporary / 'input'; case_dir.mkdir()
+        output_dir = temporary / 'output'; output_dir.mkdir()
+        if case_id == 'smoke':
+            prompt = b'Return exactly BASELINE_SMOKE_OK and nothing else. Do not use tools.\n'
+        else:
+            prompt = (ROOT / 'inputs' / case_id / 'prompt.md').read_bytes()
+            manifest = json.loads((ROOT / 'metadata/input_manifest.json').read_text())
+            record = next(r for r in manifest['files'] if r['destination'] == f'inputs/{case_id}/prompt.md')
+            if digest(prompt) != record['sha256']:
+                raise RuntimeError('Frozen input hash mismatch')
+        (case_dir / 'prompt.md').write_bytes(prompt)
+        arguments = [
+            'exec', '--ignore-user-config', '--ignore-rules', '--strict-config',
+            '--ephemeral', '--sandbox', 'read-only', '--skip-git-repo-check',
+            '--model', MODEL, *config_args(), '--color', 'never', '--json',
+            '--output-last-message', '/out/response.txt', '-',
+        ]
+        command = isolated_command(case_dir, output_dir, arguments)
+        record = {
+            'case_id': case_id, 'started_utc': started.isoformat(),
+            'started_local': started.astimezone(ZoneInfo('Asia/Shanghai')).isoformat(),
+            'cli_version': (ROOT / 'metadata/cli-version.txt').read_text().strip(),
+            'model_argument': MODEL, 'effective_model_identifier': None,
+            'effective_model_observation': 'Requested slug verified against bundled catalog; server snapshot only if exposed in events.',
+            'reasoning_effort': 'high', 'authentication': 'existing ChatGPT login; auth file read-only mount, contents never logged',
+            'sandbox': 'read-only', 'ephemeral': True, 'command': command,
+            'prompt_sha256': digest(prompt), 'input_sha256': digest(prompt),
+            'wrapper': WRAPPER, 'retry_count': 0,
+            'transport_retry_configuration': 'Built-in provider retry overrides rejected by CLI; bounded internal defaults retained, unbounded=false. Record any visible reconnect/error events; one invocation only.',
+            'temperature': None, 'seed': None, 'max_output_tokens': None,
+            'parameter_note': 'Unspecified CLI/provider defaults; no sampling reproducibility claim',
+        }
+        save_json(started_path, record)
+        before = time.monotonic()
+        with (ROOT / 'logs' / f'{case_id}.events.jsonl').open('xb') as stdout, (ROOT / 'logs' / f'{case_id}.stderr').open('xb') as stderr:
+            process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=stdout, stderr=stderr,
+                                       start_new_session=True)
+            timed_out = False
+            try:
+                process.communicate(prompt, timeout=900)
+            except subprocess.TimeoutExpired:
+                timed_out = True
+                import signal
+                os.killpg(process.pid, signal.SIGTERM)
+                process.wait(timeout=10)
+        record.update(exit_code=process.returncode, timeout=timed_out,
+                      elapsed_seconds=round(time.monotonic()-before, 3),
+                      finished_utc=datetime.now(timezone.utc).isoformat())
+        response = output_dir / 'response.txt'
+        raw = response.read_bytes() if response.exists() else None
+        if raw is not None:
+            with (ROOT / 'raw' / f'{case_id}.txt').open('xb') as stream:
+                stream.write(raw)
+        record['raw_output_sha256'] = digest(raw) if raw is not None else None
+        record['raw_output_present'] = raw is not None
+        events = []
+        for line in (ROOT / 'logs' / f'{case_id}.events.jsonl').read_text().splitlines():
+            try:
+                events.append(json.loads(line))
+            except json.JSONDecodeError:
+                pass
+        record['event_types'] = [e.get('type') for e in events]
+        record['item_types'] = sorted({e.get('item', {}).get('type', '') for e in events if 'item' in e})
+        record['tool_items'] = [e for e in events if e.get('item', {}).get('type') in (
+            'command_execution', 'mcp_tool_call', 'web_search', 'file_change', 'collab_tool_call')]
+        record['thread_ids'] = [e['thread_id'] for e in events if 'thread_id' in e]
+        record['usage'] = [e['usage'] for e in events if 'usage' in e]
+        record['errors'] = [e for e in events if e.get('type') in ('error', 'turn.failed')]
+        record['parse_status'] = 'not_available'
+        if case_id == 'smoke':
+            record['smoke_passed'] = process.returncode == 0 and raw is not None and raw.strip() == b'BASELINE_SMOKE_OK' and not record['tool_items']
+            record['parse_status'] = 'not_applicable_smoke'
+        elif raw is not None:
+            try:
+                # Do not strip fences, extract substrings, normalize or repair.
+                parsed = json.loads(raw)
+                record['parse_status'] = 'json_object' if isinstance(parsed, dict) else 'json_non_object'
+                if isinstance(parsed, dict):
+                    with (ROOT / 'parsed' / f'{case_id}.json').open('xb') as stream:
+                        stream.write(raw)
+            except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+                record['parse_status'] = 'malformed_json'
+                record['parse_error'] = str(exc)
+        save_json(metadata_path, record)
+        print(json.dumps({key: record.get(key) for key in (
+            'case_id', 'exit_code', 'elapsed_seconds', 'parse_status', 'smoke_passed',
+            'raw_output_present', 'item_types', 'retry_count')}), flush=True)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('case_id', help='preflight, smoke, or exactly one pilot-NNN')
+    value = parser.parse_args().case_id
+    preflight() if value == 'preflight' else run_case(value)

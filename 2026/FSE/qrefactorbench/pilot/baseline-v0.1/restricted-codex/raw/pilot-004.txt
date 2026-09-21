@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-004",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "has_code",
+      "start_line": 4,
+      "end_line": 7
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Reject inputs containing more than eight codes with ValueError; otherwise return an exact Boolean indicating whether target equals any resident code, including false for empty input.",
+  "migration_family": "unstructured_search",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The bounded list forms a finite search domain and equality with target is a pure Boolean predicate, so a Grover-style structural formulation is possible. An actual migration would still need a reversible equality predicate, explicit handling of empty and duplicate-containing inputs, a justified no-solution policy, classical verification, and preservation of exact Boolean semantics."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The program performs an existence test rather than optimizing a binary objective, and no natural QUBO objective, constraints, or required optimal assignment are present."
+    }
+  ],
+  "assumptions": [
+    "Each invocation receives no more than eight resident integers unless it must raise ValueError.",
+    "Only one invocation occurs per process.",
+    "Quantum state preparation, data transfer, oracle construction, measurement, and verification costs are included.",
+    "No larger-domain extrapolation or reusable oracle is permitted."
+  ],
+  "risks": [
+    "Encoding the resident integers and target and constructing a reversible equality oracle would add setup and workspace costs for a domain of at most eight candidates.",
+    "A Grover-style execution would introduce probabilistic measurement and no-solution handling into an exact deterministic Boolean contract.",
+    "Classical verification and repeated execution could further increase latency without changing the required result.",
+    "Duplicate values and empty input require explicit handling in any marked-state and no-solution procedure.",
+    "No benchmark evidence or resource estimate is supplied to support an advantage claim."
+  ],
+  "rationale": "Lines 4-7 are structurally expressible as an unstructured marked-item search, but this is a rejected quantumization candidate rather than a worthwhile hotspot. The complete classical scan performs at most eight integer comparisons on data already in memory. Under the stated one-shot execution model, all quantum data preparation, oracle construction, transfer, measurement, no-solution handling, and classical verification costs count and cannot be amortized. Quantum execution would also have to preserve the exact deterministic result and the existing size-validation behavior. Structural quantumizability therefore does not establish practical suitability, and no benchmark evidence is provided; the program should remain classical.",
+  "plan": null
+}

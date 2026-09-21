@@ -1,0 +1,12 @@
+{
+  "requested_model": "deepseek-flash",
+  "mother_case_id": "lit-003",
+  "started_utc": "2026-09-21T17:13:55.308381+00:00",
+  "input_sha256": "f20e2374eadaca85cb94fb983d706fd595b8e922c693b53d1e2d9accb50ac6f5",
+  "request_sha256": "c79b9d48f93474495f93fdaeb599a4ad8870a5a0a6cb19f19ebec1e4d4348e04",
+  "operator_retries": 0,
+  "http_status": null,
+  "transport_error": null,
+  "response_complete": false,
+  "unexpected_tool_calls": false
+}

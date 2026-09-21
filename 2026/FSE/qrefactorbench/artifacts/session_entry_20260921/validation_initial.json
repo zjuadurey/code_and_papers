@@ -1,0 +1,36 @@
+{
+  "command": "python -B artifacts/session_entry_20260921/check_docs.py",
+  "protected_files": 1383,
+  "protected_changed": [],
+  "original_archives": 6,
+  "archive_errors": [],
+  "local_paths_checked": 144,
+  "local_anchors_checked": 8,
+  "broken_links": [
+    [
+      "qrefactorbench/artifacts/session_entry_20260921/README.md",
+      "validation.json",
+      "path"
+    ]
+  ],
+  "startup_static_checks": {
+    "parent_entry_routes_to_project": true,
+    "read_command_explicit": true,
+    "continue_separate": true,
+    "intent_for_non_experts": true,
+    "original_charter_scientific_body_preserved": true,
+    "current_vs_historical_inputs": true,
+    "status_short": true,
+    "queue_short": true,
+    "no_false_run_claim": true
+  },
+  "current_line_counts": {
+    "AGENTS.md": 51,
+    "PROJECT_STATUS.md": 67,
+    "NEXT_ACTIONS.md": 31,
+    "README.md": 104
+  },
+  "model_calls": 0,
+  "runtime_tests_rerun": false,
+  "limits": "Static paths/anchors and reading-contract checks only; no fresh model session or automatic semantic consistency proof."
+}

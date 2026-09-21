@@ -1,0 +1,132 @@
+{
+  "authorization": "2026-09-22 user: 用当前benchmark跑一下llm测试，给我一个小报告; preceding two-model C-condition plan.",
+  "models": [
+    "gpt-5.6-sol",
+    "gpt-6-astra"
+  ],
+  "condition": "C",
+  "cases_per_model": 10,
+  "attempts_per_case": 1,
+  "max_concurrency": 2,
+  "reasoning_effort": "medium",
+  "timeout_seconds": 600,
+  "cli_version": "codex-cli 0.155.1",
+  "entries": [
+    {
+      "case_id": "lit-001",
+      "condition": "C",
+      "file": "lit-001-C.txt",
+      "sha256": "9268f0b7023736ab7fa88e42610194c0cdfd7131c5ff6fa72403eab3b3e19a65",
+      "prediction_case_id": "context-001"
+    },
+    {
+      "case_id": "lit-002",
+      "condition": "C",
+      "file": "lit-002-C.txt",
+      "sha256": "78d179578aad53e085314bc7c8950f504ab2171798424f88356fda67d61a7702",
+      "prediction_case_id": "context-002"
+    },
+    {
+      "case_id": "lit-003",
+      "condition": "C",
+      "file": "lit-003-C.txt",
+      "sha256": "f20e2374eadaca85cb94fb983d706fd595b8e922c693b53d1e2d9accb50ac6f5",
+      "prediction_case_id": "lit-003"
+    },
+    {
+      "case_id": "lit-004",
+      "condition": "C",
+      "file": "lit-004-C.txt",
+      "sha256": "c7d39e87215fdb8d54b69d9c387911ca17020108782de50189a6fcb21847c278",
+      "prediction_case_id": "lit-004"
+    },
+    {
+      "case_id": "lit-005",
+      "condition": "C",
+      "file": "lit-005-C.txt",
+      "sha256": "dd8d7f2d0022e82930aed2f8f2293b707c4502ef882bbc387783f00afb644a10",
+      "prediction_case_id": "lit-005"
+    },
+    {
+      "case_id": "lit-006",
+      "condition": "C",
+      "file": "lit-006-C.txt",
+      "sha256": "788cc5bf47576888f1c5b883542ee92e9e6c73031524a1be1dc9a8bea557d817",
+      "prediction_case_id": "lit-006"
+    },
+    {
+      "case_id": "lit-007",
+      "condition": "C",
+      "file": "lit-007-C.txt",
+      "sha256": "2d0d9c2d999879cb3e43242ae092a56bf3889cb3af95b611419282dd6a1b7c74",
+      "prediction_case_id": "lit-007"
+    },
+    {
+      "case_id": "lit-008",
+      "condition": "C",
+      "file": "lit-008-C.txt",
+      "sha256": "0521e1deb52d47ba8b123f09c3b3ea894de23bbcc1c6bc05b2e80c6e8a764a20",
+      "prediction_case_id": "lit-008"
+    },
+    {
+      "case_id": "lit-009",
+      "condition": "C",
+      "file": "lit-009-C.txt",
+      "sha256": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+      "prediction_case_id": "lit-009"
+    },
+    {
+      "case_id": "lit-010",
+      "condition": "C",
+      "file": "lit-010-C.txt",
+      "sha256": "813a8c8fe93ec272831290f415c96a550c76cca8854b978a996e7c5689d91094",
+      "prediction_case_id": "lit-010"
+    }
+  ],
+  "input_manifest_sha256": "cf3420621dcfbeb0b3c082e38c8dd54f737b56476108bbe1ff34fb8aee77c61a",
+  "reference_labels_sha256": "36a691f92c0042cc558e318170c5273de54086bcf06c749b1b3be5d04d468a7e",
+  "reference_provenance_sha256": "56137c7c8c830374de2dde39d2ab7e8d7210d1e92c1d77c97c836126cbf607ed",
+  "wrapper": "This is a restricted single-turn research baseline. All task information is in the supplied user message. Do not invoke tools, browse files or the web, execute code, delegate, request clarification, or produce interim messages. Return one final response to the supplied prompt. Do not use previous sessions.",
+  "config": [
+    "model_provider=\"openai\"",
+    "forced_login_method=\"chatgpt\"",
+    "model_reasoning_effort=\"medium\"",
+    "approval_policy=\"never\"",
+    "web_search=\"disabled\"",
+    "project_doc_max_bytes=0",
+    "personality=\"none\"",
+    "features.skip_host_skill_discovery=true",
+    "developer_instructions=\"This is a restricted single-turn research baseline. All task information is in the supplied user message. Do not invoke tools, browse files or the web, execute code, delegate, request clarification, or produce interim messages. Return one final response to the supplied prompt. Do not use previous sessions.\"",
+    "features.shell_tool=false",
+    "features.unified_exec=false",
+    "features.multi_agent=false",
+    "features.multi_agent_v2=false",
+    "features.apps=false",
+    "features.plugins=false",
+    "features.hooks=false",
+    "features.memories=false",
+    "features.shell_snapshot=false",
+    "features.skill_search=false",
+    "features.skill_mcp_dependency_install=false",
+    "features.browser_use=false",
+    "features.browser_use_external=false",
+    "features.computer_use=false",
+    "features.in_app_browser=false",
+    "features.image_generation=false",
+    "features.view_image=false",
+    "features.code_mode=false",
+    "features.code_mode_host=false",
+    "features.goals=false",
+    "features.sleep_tool=false",
+    "features.tool_suggest=false",
+    "features.unbounded_connection_retries=false",
+    "features.workspace_dependencies=false"
+  ],
+  "runner_sha256": "63aab4e00a4adca7a25f2fd2813bb1b5a2c965bece04295efae3b3d71bd465ec",
+  "temperature": null,
+  "seed": null,
+  "max_output_tokens": null,
+  "sampling_note": "Unspecified CLI/provider defaults; no deterministic sampling claim.",
+  "server_snapshot": null,
+  "created_utc": "2026-09-21T16:19:18.475254+00:00"
+}

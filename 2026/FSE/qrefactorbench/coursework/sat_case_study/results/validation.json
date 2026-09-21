@@ -1,0 +1,36 @@
+{
+  "pptx_slides": 8,
+  "pptx_xml_and_relationships_valid": true,
+  "visible_slide_text_english": true,
+  "native_powerpoint_render": "Blocked by Windows script execution policy; not bypassed",
+  "package_manifest_verified": 64,
+  "isolated_package_training_exit": 0,
+  "identical_reproduced_metrics": true,
+  "identical_reproduced_test_predictions": true,
+  "package_tests_passed": true,
+  "protected_files": 442,
+  "protected_files_changed": [],
+  "focused_tests": "6 passed",
+  "repository_tests": "97 passed, 15 optional skips",
+  "optional_tests": "25 passed",
+  "browser_checks": {
+    "examples": [
+      {
+        "prediction": "MLP: SAT  \u00b7  Exact solver: SAT",
+        "verification": "MATCH \u2014 prediction agrees with exact enumeration."
+      },
+      {
+        "prediction": "MLP: UNSAT  \u00b7  Exact solver: UNSAT",
+        "verification": "MATCH \u2014 prediction agrees with exact enumeration."
+      },
+      {
+        "prediction": "MLP: UNSAT  \u00b7  Exact solver: SAT",
+        "verification": "MISMATCH \u2014 model prediction is incorrect."
+      }
+    ],
+    "invalid_input": "Use 4 or 5 variables and n to 7*n clauses, matching the dataset domain",
+    "passed": true
+  },
+  "presentation_pdf_pages": 8,
+  "report_pdf_pages": 7
+}

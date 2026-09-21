@@ -1,0 +1,11 @@
+{
+  "case_id": "pilot-007",
+  "execution_assumptions": [
+    "Explore growing subset domains; compare against suitable classical methods in future cost analysis.",
+    "Integer width, reversible arithmetic and workspace costs must be stated by the plan.",
+    "Only existence is required; no particular subset must be returned."
+  ],
+  "input_domain": "values and target are integers; negative values and duplicates are allowed; the empty subset sums to zero.",
+  "software_contract": "Return whether any subset of the integer list has exactly the target sum.",
+  "title": "Subset total decision"
+}

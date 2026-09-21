@@ -1,0 +1,11 @@
+{
+  "case_id": "pilot-004",
+  "title": "Resident code request",
+  "software_contract": "Return whether a target is present among at most eight resident integer codes.",
+  "input_domain": "codes contains at most 8 integers; duplicates and empty input allowed; larger input raises ValueError.",
+  "execution_assumptions": [
+    "One invocation per process; at most eight codes already resident in classical memory.",
+    "There is no reusable quantum state or oracle; setup and transfer costs count.",
+    "No hypothetical larger-domain extrapolation is part of this case."
+  ]
+}

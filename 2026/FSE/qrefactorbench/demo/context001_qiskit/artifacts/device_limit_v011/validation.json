@@ -1,0 +1,117 @@
+{
+  "utc": "2026-09-20T18:33:15.360703+00:00",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "commands": [
+    {
+      "name": "quantum_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "demo/context001_qiskit/test_conversion.py",
+        "tests/test_optional.py"
+      ],
+      "thread_env": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      },
+      "exit_code": 0,
+      "result": "31 passed in 2.13s",
+      "evidence": "Executed once in this session; result copied from tool output, not rerun"
+    },
+    {
+      "name": "core_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": "core_tests.stdout.txt",
+      "stderr": "core_tests.stderr.txt"
+    },
+    {
+      "name": "context_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/context_adaptations/v0.1/cases/context-001/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "context_tests.stdout.txt",
+      "stderr": "context_tests.stderr.txt"
+    },
+    {
+      "name": "validate_original",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validate_original.stdout.txt",
+      "stderr": "validate_original.stderr.txt"
+    },
+    {
+      "name": "validate_context",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "pilot/context_adaptations/v0.1/cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validate_context.stdout.txt",
+      "stderr": "validate_context.stderr.txt"
+    }
+  ],
+  "protected_count": 547,
+  "protected_changed": [],
+  "original_snapshot_hash_mismatches": [],
+  "current_run_hash_mismatches": [],
+  "new_dependencies": false,
+  "benchmark_changed": false,
+  "protocol_changes": {
+    "version": [
+      "0.1.0",
+      "0.1.1"
+    ],
+    "max_qubits": [
+      6,
+      16
+    ]
+  },
+  "implementation_change": "Only the over-device-limit exception/message changed; max_qubits changed in protocol.",
+  "documentation_links_checked": 104,
+  "missing_local_links": [],
+  "protected_changed_after_documentation": [],
+  "run_output_sha256": {
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/path_7.stdout.txt": "a2a8ca4f73ba15e8262c1b3b3fbb794adeb1e96c52f0f4880eb22c350768ac03",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/path_12.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/dense_16.stdout.txt": "374b0b3c52d1b4662d6a3bc5722371a1d7c4aed9347b97500972c1905dde1789",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/path_16.json": "62f9fb5b8485ea51160c6223d1ac387e44c352b35b9b6a61a52880cb0d01fdb1",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/path_7.json": "97ffcda040a9c5dcdfa7ce70556987d3c7c6dcb850d04cbfa7a9226de63edcb7",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/path_16.stdout.txt": "f7c81f4ac9124039bbd75789030e100bf65d3515f118eca0091fed619723b2db",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/dense_16.json": "721a5fe9fc711a6a1b6f5f6df1b82b205713e7f06fdf74fe28c2847e8cff09f7",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/manifest.json": "983eb266fb2387fb51a2ac2d8c935f6051ec5b3d0c925ba989be2d7674471269",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/path_16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/path_12.stdout.txt": "cbc3c9bbc5dccb2afb580be44f9c7071d067cab8d55fc7bb96a11fd372a73071",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/path_7.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/dense_16.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "demo/context001_qiskit/artifacts/device_limit_v011/runs/path_12.json": "8c0f233bd15b86db624a0adf5f3c46e48ce371fa4a7586f18511f8d1607d52b3"
+  }
+}

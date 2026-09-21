@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "context-001",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "maintenance.py",
+      "function": "maxcut_bruteforce",
+      "start_line": 74,
+      "end_line": 89
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Find an exact minimum-conflict two-window assignment, breaking ties by the smallest equipment-position bitmask for window 0.",
+  "rationale": "maintenance.py:74–89 is a self-contained binary optimization region, not merely an expensive loop. Lines 78–85 enumerate every assignment and compute separated weight; lines 86–88 update only on strict improvement. Ascending masks therefore select the smallest window-0 mask among all optimal cuts. The function depends only on the validated adjacency matrix and its size, not on current_windows, movement counts or equipment names. prepare_request at lines 6–51 establishes a symmetric, nonnegative, arbitrary-precision integer matrix, adding repeated/reversed records, and validates the entire request before program.py:14 invokes the region. The call is reached for every valid request, including empty equipment; invalid requests must still raise before optimization. The whole-function boundary includes initialization, tie handling and the returned score/partition interface. A replacement must return increasing position lists and the exact optimum separated weight. Keep validation, nonmutation, current evaluation, named reporting, comparison and CLI behavior classical and intact: program.py:12–18 and maintenance.py:54–71,92–107 preserve raw requirement counts, positive-weight conflicts, endpoint and record ordering, input-order windows and moves, and ordered resolved/introduced conflict lists. Zero improvement can still require moves because current arrangement is not a tie-breaker. Empty equipment returns two empty windows and zero scores; an all-zero matrix selects mask zero. These surrounding operations are not independently justified quantum candidates. Structural eligibility follows from an explicit unconstrained weighted Max-Cut/QUBO formulation. Practical suitability remains unknown: the domain has at most 65,536 assignments, exact tie selection is mandatory, weights have unbounded bit length, and no backend, workload or resource evidence is supplied. Benchmark support also remains unknown; dataset provenance is not measured end-to-end evidence. Retaining classical execution is justified while considering the conditional plan, without claiming quantum advantage.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_two_window_conflict_minimization_with_minimum_mask",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditional analysis only. Let x_i=1 mean equipment position i belongs to window 0, and x_i=0 mean window 1. With w_ij=adj[i][j] for i<j, define W=sum w_ij, S(x)=sum w_ij(x_i+x_j-2x_ix_j), C(x)=W-S(x), and M(x)=sum 2^i x_i. Globally minimize H(x)=2^n C(x)+M(x). Since C is integer and 0<=M<2^n, this exactly implements minimum conflict followed by minimum mask. All bitstrings are feasible; no capacity or movement penalties apply. Under x_i=(1-Z_i)/2, H=2^(n-1) sum w_ij(1+Z_i Z_j)+sum 2^(i-1)(1-Z_i), including constants. Handle n=0 directly as the empty partition.",
+    "input_encoding": "Build coefficients classically from the fully validated, aggregated matrix. Use one logical decision qubit per equipment position, preserving positional significance and window labels. No coherent memory or free loading is assumed. Establish bounds per request for coefficient bit lengths, arithmetic precision, Hamiltonian synthesis and any normalization; arbitrary-precision Python integers and the tie objective cannot be silently rounded.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Decode bits into increasing-index left and right lists, recompute S, C and M with exact classical integers, and return (S, (left, right)). Feasibility and objective recomputation alone do not prove global optimality or the minimum-mask tie. Require an exact global certificate, or retain complete classical verification/fallback before returning a report. Pass the partition through the unchanged evaluate_windows and compare_assignments functions.",
+    "assumptions": [
+      "This is a conditional formulation, not authorization to replace the existing exact optimizer.",
+      "Only validated matrices produced by prepare_request are in scope.",
+      "No approximate solution or nonzero probability of an incorrect returned report is accepted by the supplied contract.",
+      "Trivial empty and zero-weight cases may remain entirely classical."
+    ],
+    "risks": [
+      "QAOA sampling does not guarantee the exact global optimum or the unique tie-selected mask.",
+      "Encoding the secondary objective creates a potentially large coefficient range; normalization can make the tie-selection energy gap difficult to resolve.",
+      "Exact classical verification or fallback may retain the original enumeration cost.",
+      "Complementary cuts have equal conflict scores but different window labels and masks; arbitrary symmetry breaking can violate reporting semantics.",
+      "No Grover oracle is needed for this QUBO proposal. Any alternative threshold-search implementation must separately supply reversible arithmetic, comparison, uncomputation and justified no-solution handling."
+    ],
+    "expected_resource_characteristics": {
+      "logical_decision_qubits": "n, with 0<=n<=16; physical qubits and auxiliary resources depend on implementation.",
+      "objective_terms": "At most n(n-1)/2=120 pair interactions and n=16 single-variable terms.",
+      "coefficient_precision": "Depends on aggregated weight bit lengths and the 2^n primary-objective multiplier; the equipment cap does not bound numeric precision.",
+      "unresolved_resources": "Circuit depth, connectivity/routing, physical encoding, state preparation, coefficient synthesis accuracy, optimizer evaluations, measurement shots and exact certification/fallback cost.",
+      "comparison_requirement": "Measure total validation-to-report latency and resource cost against exact classical methods, including loading, compilation, classical optimization, sampling, verification and reporting. No advantage estimate is supported."
+    },
+    "rationale": "The draft QUBO contract fits the explicit binary objective without artificial scheduling constraints. Adoption remains conditional on exactness, coefficient fidelity, feasibility-preserving decoding, interface preservation and resource evidence; QAOA alone does not meet those obligations."
+  },
+  "assumptions": [
+    "Analysis uses only the supplied source, public contract and draft contract menu.",
+    "The 16-item limit is a local implementation constraint, not evidence of workload scale or frequency.",
+    "Validation, exceptions, input immutability, ordering and CLI success/failure semantics remain unchanged."
+  ],
+  "risks": [
+    "Replacing exact enumeration with an approximate optimizer would violate the contract even if its conflict score is usually good.",
+    "Choosing a different optimal partition can change moves and conflict explanations despite an identical optimum score.",
+    "Neither an exponential enumeration loop nor dataset inclusion establishes practical quantum suitability or benchmark support."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "Structurally applicable: the validated symmetric matrix defines an unconstrained binary quadratic objective, and an integer-scaled secondary term encodes the exact minimum-mask tie. This does not certify a QAOA implementation, coefficient precision or exact global solution."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Conditionally applicable as an alternative on the same region: masks form a finite domain and P_t(x)=[2^n C(x)+M(x)<t] is a pure Boolean predicate. Optimization requires a threshold/minimum-finding procedure, not a single existence search. Reversible weighted arithmetic, threshold representation, data loading, workspace and uncomputation must be constructed and costed. Candidate verification cannot prove that no better mask exists; exact termination/no-solution certification or classical fallback remains necessary."
+    }
+  ]
+}

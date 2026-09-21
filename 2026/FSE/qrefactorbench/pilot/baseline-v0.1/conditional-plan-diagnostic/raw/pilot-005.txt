@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-005",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "feasible_bundle",
+      "start_line": 4,
+      "end_line": 12
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": false,
+  "computational_intent": "After classically filtering unavailable offers and sorting eligible offers by SKU, determine exactly whether any subset has total units equal to the target and total price no greater than the budget, then return that Boolean together with the eligible-offer count and target metadata.",
+  "migration_family": "unstructured_search",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The finite set of subset masks supports a pure Boolean predicate checking exact unit equality and the budget inequality. A reversible implementation using controlled integer accumulation, equality and comparison is structurally plausible. Practical application remains conditional on accounting for classical data encoding, arithmetic workspace, uncomputation, and an exact-contract-compatible no-solution policy."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": null,
+      "rationale": "Binary offer-selection variables and auxiliary slack variables could potentially encode the equality and budget constraints as a zero-energy feasibility objective. However, coefficient bounds, sufficient penalties, auxiliary-variable costs, and a QAOA procedure that preserves the exact existential Boolean result have not been established."
+    }
+  ],
+  "assumptions": [
+    "The eligible-offer list is finite and each offer can be selected at most once.",
+    "Classical preprocessing in prepare_offers and response construction in handle_request remain unchanged.",
+    "Integer register widths could be derived from the concrete eligible offers, target and budget without arithmetic overflow.",
+    "The empty subset remains part of the search domain, matching the original mask loop."
+  ],
+  "risks": [
+    "Offer data arrive classically, and the cost of loading per-offer units and prices into a coherent predicate may dominate any search benefit.",
+    "No offer-count or numeric-range scale is supplied, so qubit, gate-depth, workspace and crossover requirements are unknown.",
+    "Ordinary Grover-style sampling is probabilistic and does not by itself provide the exact no-solution result required by the classical function.",
+    "Classical verification can certify a found subset but cannot cheaply certify absence without an additional justified method or exhaustive fallback.",
+    "Using an exhaustive classical fallback to preserve exact semantics could eliminate any practical benefit.",
+    "No benchmarks compare the proposal with the current enumeration or exact classical alternatives such as dynamic programming or meet-in-the-middle search.",
+    "Filtering, sorting, considered-count metadata and target metadata must remain classical contract-preserving behavior."
+  ],
+  "rationale": "The exhaustive subset loop is structurally expressible as Grover-style predicate search, so it is a supported candidate rather than merely an expensive hotspot. Nevertheless, structural eligibility does not establish practical suitability. The program provides no scale, benchmark, coherent-data-access model, reusable-oracle assumption, resource estimate, or exact no-solution protocol. Because the required output is an exact Boolean and classical verification only certifies positive witnesses, replacing the loop would risk weakening semantics. The appropriate current decision is therefore REMAIN_CLASSICAL while retaining a conditional formulation for future evaluation.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "exact_bundle_feasibility_existence",
+    "migration_family": "unstructured_search",
+    "formulation": "For n eligible offers, encode a subset as an n-bit mask x and mark it exactly when sum_i(x_i * units_i) equals target and sum_i(x_i * price_i) is at most budget. Implement controlled reversible accumulators, equality and comparison flags, phase marking, and complete uncomputation. Preserve inclusion of the empty subset. The unresolved requirement is how to turn the probabilistic search into the exact Boolean existence result required by the software contract, especially when no marked subset exists.",
+    "input_encoding": "Run prepare_offers classically so filtering, copying and SKU sorting are preserved. Represent each subset by n selection qubits and make each eligible offer's integer units and price available to reversible controlled arithmetic. No free QRAM or state preparation is assumed; data-loading gates, register widths, ancillary workspace and any benefit from repeated oracle reuse must be measured.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Measure a candidate subset mask, reconstruct its unit and price totals classically, and return feasible=true only after exact verification. Do not expose the subset or alter response metadata. A verified witness preserves the positive result, but returning feasible=false requires a justified exact or contract-approved bounded-error no-solution procedure; otherwise an exact classical fallback is necessary.",
+    "assumptions": [
+      "A reversible predicate can be constructed within available integer widths and workspace.",
+      "The cost of loading offer constants and invoking the oracle is included in evaluation.",
+      "Any probabilistic error policy must be explicitly approved; exact behavior is not assumed to tolerate false negatives or false positives.",
+      "The handler continues to compute considered and target metadata classically."
+    ],
+    "risks": [
+      "Oracle construction and repeated arithmetic may outweigh the quadratic query reduction.",
+      "Unknown problem sizes prevent a resource or advantage claim.",
+      "Exact no-solution certification is unresolved.",
+      "A classical fallback may preserve semantics while removing practical advantage.",
+      "Hardware feasibility, fault-tolerant cost and repeated-use economics are unknown."
+    ],
+    "expected_resource_characteristics": {
+      "status": "unresolved"
+    }
+  }
+}

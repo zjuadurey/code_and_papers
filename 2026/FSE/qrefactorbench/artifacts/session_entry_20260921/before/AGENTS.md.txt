@@ -1,0 +1,73 @@
+# QRefactorBench — mandatory Codex entry point
+
+Target: **FSE 2027 / top-tier Software Engineering research**. Study Automatic /
+Selective Quantumization of Existing Classical Software: WHERE, WHETHER, conditional
+HOW, hybrid refactoring and semantic validation. This is not statement-by-statement
+code translation. Python → hybrid Python/Qiskit; only `unstructured_search`
+(Grover-style) and `combinatorial_optimization` (QUBO/Ising, potentially QAOA).
+The current phase and evidence are in PROJECT_STATUS; no agent design is the default.
+
+## Mandatory startup procedure for every Codex session
+
+**If the user says only “continue”, “继续”, “推进”, “看看下一步”, or similar,
+reconstruct context from this repository and execute the highest-priority safe
+next action. Do not ask the user to explain the project again.**
+
+Before substantial work, read in order:
+
+1. This AGENTS.md.
+2. [docs/RESEARCH_CHARTER.md](docs/RESEARCH_CHARTER.md) — stable research intent.
+3. [PROJECT_STATUS.md](PROJECT_STATUS.md) — current phase and latest handoff.
+4. [NEXT_ACTIONS.md](NEXT_ACTIONS.md) — short actionable queue.
+5. [DECISIONS.md](DECISIONS.md) — accepted/provisional constraints and evidence.
+6. [docs/CODEX_WORKFLOW.md](docs/CODEX_WORKFLOW.md), then the most recent relevant
+   result/review linked from PROJECT_STATUS. Read [README.md](README.md) for layout
+   and [TODO.md](TODO.md) for relevant backlog detail; inspect task-specific docs,
+   implementation and tests before edits.
+
+Inspect scoped Git status/diff, including untracked work. Never assume previous
+chat context is available. State the current phase/question, last action, next safe
+action and any blocker briefly; investigate documentation/implementation conflicts.
+Historical handoffs are evidence, not competing current instructions.
+
+## Operating rules and scientific boundaries
+
+Proceed autonomously with routine, reversible work in scope: existing checks,
+consistency audits, approved-input derivations in new directories, evidence tables,
+metadata, documentation and bugs that do not alter scientific meaning. Finish useful
+safe work before escalating. Do not build infrastructure merely to remain busy.
+
+Never invent benchmark ground truth, silently change accepted decisions, or resolve
+OPEN scientific questions for engineering convenience. AI proposals and detailed
+plans are not validated labels. Keep structural eligibility, practical suitability,
+benchmark support, conditional planning and actual advantage separate; unknown
+evidence stays unknown. Do not alter schema enums to match conceptual terminology.
+
+Stop for changes to task meaning, families, disputed labels, assumptions, main
+metrics, inclusion/exclusion, paper claims, competing scientific methods or final
+releases. Ask **one** concise question using the decision format in CODEX_WORKFLOW.
+Do not re-ask routine permission or documented decisions. A completed one-off
+experiment is not continuing authorization to rerun it. No new model/QPU call,
+installation, external publication/push or paid resource without applicable authority.
+
+Keep frozen packets, raw responses and experiment reports unchanged; add a new
+version/addendum for approved changes. Blinded prediction processes receive only
+approved public input, never this repository, references, prior responses or review
+notes. Current packets: [pilot/packets-v0.1/](pilot/packets-v0.1/). DRAFT remains DRAFT.
+Work in the main thread; no agent framework or subagents unless explicitly requested.
+
+## Repository conventions and handoff
+
+`schemas/`, `cases/`, `qrefactorbench/`, `tests/` contain formats, cases, implementation
+and checks; `pilot/` contains blinded packets **and private review/results**, so never
+distribute its common parent. `docs/` holds methods, questions and the research log.
+Use typed readable Python, minimal dependencies, stable JSON, inclusive 1-based
+regions, portable paths and existing environments. Trusted execution is not a sandbox.
+
+Communicate concisely in Chinese by default. Run relevant validation; report actual
+passes, skips, failures and limitations. For prose-only work, links and protected-file
+checks suffice. Update PROJECT_STATUS/NEXT_ACTIONS and relevant TODOs; append meaningful
+engineering changes to CHANGELOG and research evidence to [docs/research_log.md](docs/research_log.md).
+Record decisions/open questions in their existing ledgers. Do not create duplicate
+status/log files. Leave a concise handoff and stop when only human scientific judgment
+remains. Details: [docs/CODEX_WORKFLOW.md](docs/CODEX_WORKFLOW.md).

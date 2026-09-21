@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-006",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 4,
+      "end_line": 15
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_binary_knapsack_with_least_mask_tiebreak",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditional QUBO/Ising encoding of each select window's 0/1 knapsack: binary x_i for eligible item i in catalogue order, maximize sum(value_i*x_i) subject to sum(weight_i*x_i) <= capacity, and break equal-value ties by the smallest numeric mask sum(2^i*x_i). The objective is converted to minimization and capacity is handled by an exact penalty with slack bits. The tie-break is a secondary objective. This is a planning sketch only; exact QUBO coefficient and penalty construction is unresolved.",
+    "input_encoding": "Eligible items are already filtered classically at program.py line 31, preserving catalogue order. Use x_i in {0,1} for each eligible item i, with i equal to the eligible-list index used by kernel.choose and program.py line 38. If Ising, map x_i=(1-Z_i)/2. Capacity inequality needs slack binary variables for nonnegative unused capacity or an equivalent penalty; the slack width depends on capacity and is not supplied. The least-mask tie-break maps to minimizing sum(2^i*x_i), which requires a lexicographic or sufficiently large secondary coefficient.",
+    "quantum_algorithm_family": "QAOA-style QUBO/Ising optimization or quantum annealing; this is a proposal family, not an exactness guarantee.",
+    "output_decoding": "Read a returned bitstring as x_i values, reconstruct mask = sum(2^i*x_i) for i in eligible order, derive chosen IDs by program.py line 38's eligible-order rule, recompute weight = sum(weight_i*x_i), value = sum(value_i*x_i), and feasible = weight <= capacity and all selected active. Classically verify feasibility, exact maximum value, and smallest numeric mask among equal-value optima before emitting proposal and transfers. Any approximate sampler result must be either verified or rejected.",
+    "assumptions": [
+      "Eligible items, weights, values and capacities are finite and already validated by the classical front end.",
+      "Each select window is optimized independently; no shared allocation or cross-window coupling is introduced.",
+      "The capacity constraint can be encoded exactly with slack bits or an exact penalty whose sufficiency is proven for the actual value and weight ranges.",
+      "The least-mask tie-break is preserved as a separate lexicographic or sufficiently weighted objective.",
+      "Classical validation, filtering, reporting, transfer-offset construction, and ValueError behavior remain outside the quantumized core."
+    ],
+    "risks": [
+      "Penalty coefficients may be insufficient or numerically extreme because no capacity, weight-sum, value-sum or added numeric cap is supplied.",
+      "A single scalarized QUBO for value plus least-mask tie-break may require exponentially large coefficients, and an approximate QAOA result cannot guarantee exact optimality or the exact tie-break.",
+      "Slack-bit encoding width depends on capacity and may dominate qubit count; no resource evidence is supplied.",
+      "Decoded bitstrings may be infeasible or suboptimal; classical recomputation and exact fallback are required.",
+      "The quantumized kernel must still return the same mask semantics expected at program.py lines 37-38 and preserve all surrounding window behavior."
+    ],
+    "expected_resource_characteristics": {
+      "num_qubits": "unknown; at least number of eligible items, plus unresolved slack bits for capacity and any tie-break encoding workspace",
+      "depth": "unknown; QAOA depth and parameter-optimization budget not specified",
+      "shots": "unknown; no statistical error or confidence target supplied",
+      "note": "No workload, hardware, encoding-cost or advantage evidence is supplied."
+    },
+    "rationale": "The kernel is structurally a finite binary optimization: each eligible item is an indivisible 0/1 choice, value and weight are linear, and the capacity is a single knapsack constraint. This matches the combinatorial_optimization family. However, no practical or benchmark evidence justifies replacing the exact pseudo-polynomial DP."
+  },
+  "rationale": "kernel.choose lines 4-15 is the only region that performs the selection search. It builds a capacity-indexed table over eligible items; for each item it either keeps prior table state or uses previous[available-weight] plus (value, mask|1<<i). The comparison candidate[0] > incumbent[0] or equal value and candidate[1] < incumbent[1] implements maximize value and smallest numeric mask tie-break. Inputs: eligible list of dicts with positive int weight, nonnegative int value, and capacity nonnegative int; active filtering and validation are outside at program.py lines 17-31. Activation: only window mode select at program.py line 36 calls choose; inspect windows leave proposal None and transfers empty. State dependencies: bit i corresponds to eligible index i; table length capacity+1; no mutation of items. Surrounding behavior that must remain intact: validation and ValueError paths, eligible catalogue order, current describe over full item list including inactive entries, independent windows, no shared allocation, proposal IDs/weight/value/feasible, transfers in selected eligible order with contiguous offsets starting at 0 and length item weight, CLI JSON printing, and no mutation. Structural eligibility true because the core is a finite 0/1 knapsack with linear objective/constraint and deterministic tie-break. Practical suitability null and benchmark_supported null because the supplied assumptions state no workload, quantum hardware, encoding-cost or advantage evidence, and the notice's QuanBench attribution is source-task metadata rather than quantum performance evidence. Decision REMAIN_CLASSICAL: the exact DP is not shown to be unsuitable, and no evidence supports quantum migration. A conditional QUBO plan is supplied only because structural eligibility is true; it is not a recommendation. Tie-break and capacity-penalty encoding are unresolved and exact optimum cannot be relaxed.",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Exact per-select-window 0/1 knapsack optimization over eligible items with value maximization and smallest numeric mask tie-break, preserving catalogue order and independent windows.",
+  "assumptions": [
+    "The supplied classical contract is the source of truth; quantumization would replace only the optimization core if later justified.",
+    "Eligible items are active items in catalogue order, as produced at program.py line 31.",
+    "Select mode activates choose; inspect mode never calls it.",
+    "The returned mask uses bit i for eligible index i and is consumed at program.py line 38.",
+    "No quantum resource, workload, encoding-cost or advantage evidence is supplied."
+  ],
+  "risks": [
+    "Exact optimum and deterministic least-mask tie-break may not be preserved by approximate QUBO/QAOA execution.",
+    "Penalty and coefficient encodings are unresolved and may be impractical for large values or capacities.",
+    "Window independence and current/proposal/transfer reporting semantics must not be altered.",
+    "There is no benchmark support or practical suitability evidence in the supplied material."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The required task is exact optimization with a deterministic tie-break, not a single Boolean decision predicate. Grover could at best search thresholded decision versions, but that would require extra threshold logic, repeated searches, and unresolved exact-optimum and no-solution handling; it does not directly encode the maximize-minimize-tie problem."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The core is a finite binary objective with a linear capacity constraint, so a QUBO/Ising formulation is structurally applicable. Applicability is not practical validation: exact capacity penalty, slack width, least-mask tie-break, and approximate-execution exactness remain unresolved."
+    }
+  ]
+}

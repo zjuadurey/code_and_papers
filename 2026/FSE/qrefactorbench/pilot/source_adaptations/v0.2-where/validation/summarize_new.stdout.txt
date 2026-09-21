@@ -1,0 +1,42 @@
+{
+  "case_count": 2,
+  "counts": {
+    "annotation_status": {
+      "DRAFT": 2
+    },
+    "benchmark_supported": {
+      "unknown": 2
+    },
+    "case_type": {
+      "positive": 2
+    },
+    "context_level": {
+      "small_program": 2
+    },
+    "difficulty": {
+      "unknown": 2
+    },
+    "migration_family": {
+      "unknown": 2
+    },
+    "practical_suitability": {
+      "unknown": 2
+    },
+    "structural_eligibility": {
+      "unknown": 2
+    }
+  },
+  "issues": [
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "pilot/source_adaptations/v0.2-where/cases/lit-003/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "pilot/source_adaptations/v0.2-where/cases/lit-004/case.json",
+      "severity": "warning"
+    }
+  ],
+  "valid": true
+}

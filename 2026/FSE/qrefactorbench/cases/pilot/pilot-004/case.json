@@ -1,0 +1,111 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "pilot-004",
+  "title": "Small resident lookup",
+  "description": "Return whether a target is present among at most eight resident integer codes. Pilot annotation material; not validated benchmark ground truth.",
+  "source": "Original synthetic program authored with Codex assistance for the requested Phase-1 pilot on 2026-09-18. No independent researcher authorship or review is claimed; not copied from an external repository.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "phase1_synthetic",
+  "version": "0.1.0",
+  "migration_family": "unstructured_search",
+  "context_level": "kernel",
+  "case_type": "hard_negative",
+  "difficulty": "unknown",
+  "classical_program": "program.py",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "has_code",
+      "start_line": 1,
+      "end_line": 7
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "expected_decision": "REMAIN_CLASSICAL",
+  "computational_intent": {
+    "id": "resident_code_membership",
+    "description": "Return whether a target is present among at most eight resident integer codes."
+  },
+  "admissible_migration_contracts": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "status": "DRAFT",
+      "applicability_conditions": [
+        "A finite domain and pure Boolean predicate can be explicitly represented.",
+        "Preserve required classical effects and input/output semantics; demonstrate reversible predicate construction."
+      ],
+      "input_encoding": "Finite basis-state encoding of candidates; predicate data and workspace costs must be accounted for.",
+      "formulation": "Grover-style marked-state predicate search; define success/no-solution handling explicitly.",
+      "algorithm_families": [
+        "grover_style"
+      ],
+      "output_decoding": "Classically verify decoded candidates; existence decisions also require a justified no-solution policy.",
+      "semantic_relation": "Preserve the classical task contract; probabilistic error policy is unresolved, not silently accepted.",
+      "resource_assumptions": [
+        "No free data loading, oracle construction, workspace or coherent memory is assumed."
+      ],
+      "known_limitations": [
+        "Shared candidate contract for planning, not a validated implementation.",
+        "No universal suitability or advantage claim; statistical semantics require human review."
+      ]
+    }
+  ],
+  "reference_plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "resident_code_membership",
+    "migration_family": "unstructured_search",
+    "formulation": "Draft predicate: Return whether a target is present among at most eight resident integer codes. Explore a marked-state existence reformulation.",
+    "input_encoding": "Encode each finite candidate by a basis-state bit string; construct and uncompute the predicate with explicitly costed data access.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Validate measured candidates using the original predicate; no-solution semantics remain unresolved.",
+    "assumptions": [
+      "One invocation per process; at most eight codes already resident in classical memory.",
+      "There is no reusable quantum state or oracle; setup and transfer costs count.",
+      "No hypothetical larger-domain extrapolation is part of this case."
+    ],
+    "risks": [
+      "Shared candidate contract for planning, not a validated implementation.",
+      "No universal suitability or advantage claim; statistical semantics require human review.",
+      "Predicate construction, data loading, and zero-solution behavior require explicit review."
+    ],
+    "expected_resource_characteristics": {
+      "status": "unresolved",
+      "cost_model": null
+    },
+    "rationale": "PROVISIONAL distinction: a pure finite predicate formulation is plausible, while the explicit workload/setup assumptions suggest remaining classical. This suitability label has no measured cost-model validation."
+  },
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "Return whether a target is present among at most eight resident integer codes. Check the declared input domain, edge cases and effects using the classical tests; this draft is not a registered quantum semantic oracle.",
+    "hook_id": "pilot-004-semantics",
+    "config": {
+      "input_domain": "codes contains at most 8 integers; duplicates and empty input allowed; larger input raises ValueError.",
+      "probabilistic_policy": null
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "One invocation per process; at most eight codes already resident in classical memory.",
+      "There is no reusable quantum state or oracle; setup and transfer costs count.",
+      "No hypothetical larger-domain extrapolation is part of this case."
+    ],
+    "limits": {}
+  },
+  "negative_reason": "PROVISIONAL distinction: a pure finite predicate formulation is plausible, while the explicit workload/setup assumptions suggest remaining classical. This suitability label has no measured cost-model validation.",
+  "annotation_rationale": "PROVISIONAL distinction: a pure finite predicate formulation is plausible, while the explicit workload/setup assumptions suggest remaining classical. This suitability label has no measured cost-model validation.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "DRAFT synthetic annotation material; curator hypotheses must not be distributed to independent annotators.",
+    "Licensing is unresolved; NOASSERTION grants no redistribution rights.",
+    "Human review must determine whether the proposed category and span are defensible."
+  ]
+}

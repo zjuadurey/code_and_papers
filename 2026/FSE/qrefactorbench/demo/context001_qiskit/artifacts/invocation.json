@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "/home/audrey/miniconda3/envs/htp-static/bin/python",
+    "-m",
+    "demo.context001_qiskit.run_comparison",
+    "--output",
+    "demo/context001_qiskit/artifacts/first_run.json"
+  ],
+  "exit_code": 0,
+  "retry_count": 0
+}

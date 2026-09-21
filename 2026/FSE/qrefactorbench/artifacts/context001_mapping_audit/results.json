@@ -1,0 +1,160 @@
+{
+  "status": "AI-ASSISTED STRUCTURAL EVIDENCE; NOT HUMAN-VALIDATED GROUND TRUTH",
+  "case_id": "context-001",
+  "input_count": 98,
+  "assignment_comparisons": 1271,
+  "exact_polynomial_report_matches": 98,
+  "example_qubo": {
+    "constant": 8,
+    "linear": [
+      -5,
+      -7,
+      -4
+    ],
+    "upper_triangle": [
+      {
+        "i": 0,
+        "j": 1,
+        "coefficient": 8
+      },
+      {
+        "i": 0,
+        "j": 2,
+        "coefficient": 2
+      },
+      {
+        "i": 1,
+        "j": 2,
+        "coefficient": 6
+      }
+    ]
+  },
+  "example_assignments": [
+    {
+      "mask": 0,
+      "x_by_equipment_order": [
+        0,
+        0,
+        0
+      ],
+      "conflict_weight": 8
+    },
+    {
+      "mask": 1,
+      "x_by_equipment_order": [
+        1,
+        0,
+        0
+      ],
+      "conflict_weight": 3
+    },
+    {
+      "mask": 2,
+      "x_by_equipment_order": [
+        0,
+        1,
+        0
+      ],
+      "conflict_weight": 1
+    },
+    {
+      "mask": 3,
+      "x_by_equipment_order": [
+        1,
+        1,
+        0
+      ],
+      "conflict_weight": 4
+    },
+    {
+      "mask": 4,
+      "x_by_equipment_order": [
+        0,
+        0,
+        1
+      ],
+      "conflict_weight": 4
+    },
+    {
+      "mask": 5,
+      "x_by_equipment_order": [
+        1,
+        0,
+        1
+      ],
+      "conflict_weight": 1
+    },
+    {
+      "mask": 6,
+      "x_by_equipment_order": [
+        0,
+        1,
+        1
+      ],
+      "conflict_weight": 3
+    },
+    {
+      "mask": 7,
+      "x_by_equipment_order": [
+        1,
+        1,
+        1
+      ],
+      "conflict_weight": 8
+    }
+  ],
+  "example_minimizers": [
+    2,
+    5
+  ],
+  "source_tie_choice": 2,
+  "mutant_counterexamples": {
+    "omitted_constant": {
+      "bits": [
+        0,
+        0,
+        0
+      ],
+      "correct": 8,
+      "wrong": 0
+    },
+    "wrong_linear_sign": {
+      "bits": [
+        1,
+        0,
+        0
+      ],
+      "correct": 3,
+      "wrong": 13
+    },
+    "half_pair_coefficient": {
+      "bits": [
+        1,
+        1,
+        0
+      ],
+      "correct": 4,
+      "wrong": 0
+    },
+    "reversed_equipment_bit_order": {
+      "bits": [
+        1,
+        0,
+        0
+      ],
+      "correct": 3,
+      "wrong": 4
+    }
+  },
+  "quantum_runs": 0,
+  "model_calls": 0,
+  "scientific_labels_changed": false,
+  "inputs_sha256": {
+    "pilot/context_adaptations/v0.1/cases/context-001/maintenance.py": "b1acb0f1a52185375aaccf624f8da082accd12748bb456d488037d8c1b29e880",
+    "pilot/context_adaptations/v0.1/cases/context-001/program.py": "9431955f692c02cf4e2d1bf7288b21d08f39b3378d4504cf998a3de6decb5905",
+    "pilot/context_adaptations/v0.1/cases/context-001/public_task.json": "fec1bfbff8f66b55d54580b0adc4eb02226a6c3c61cd3b4b03c7fa241e745b91",
+    "pilot/context_adaptations/v0.1/cases/context-001/example_request.json": "e47c4387aad947e5ce98c8ad5870aabacc8869d1d925f9da6d2889479e5467ea",
+    "artifacts/plan_mapping_audit/check_mappings.py": "085f3008260b163745108c07bd9dd5d86dd8a226946be328ebc87106170e71c6",
+    "artifacts/context001_mapping_audit/check_mapping.py": "7df1c5b5abcad1b9376ef18123216605c2f5fb266a00e03716518477ebb4195d"
+  }
+}

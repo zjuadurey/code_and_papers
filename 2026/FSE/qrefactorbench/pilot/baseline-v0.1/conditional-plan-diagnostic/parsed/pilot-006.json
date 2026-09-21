@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-006",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "minimum_energy",
+      "start_line": 2,
+      "end_line": 8
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Exactly minimize the specified integer-valued quadratic expression over all binary assignments and return only its minimum value, counting every coupling tuple independently, including repeated and self-coupling terms.",
+  "migration_family": "combinatorial_optimization",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": null,
+      "rationale": "The finite assignment space could support a reversible threshold predicate, but the program performs optimization rather than a single predicate-existence query. Applying this contract would require an additional exact minimum-finding procedure, reversible objective evaluation, threshold management, and justified probabilistic failure handling, none of which are specified."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The expression is already an unconstrained quadratic binary objective. Its coefficients, signs, repeated terms, and self-couplings can be represented explicitly, but the DRAFT contract does not establish that QAOA will return the exact optimum required by the software contract."
+    }
+  ],
+  "assumptions": [
+    "Each coupling tuple contributes once, even when another tuple has the same indices.",
+    "For binary variables, a self-coupling uses x_i squared equal to x_i and can therefore be folded into the corresponding linear coefficient.",
+    "The returned integer must be the mathematically exact global minimum; an approximate value or merely the best sampled value is insufficient.",
+    "Inputs are finite, but no useful bound on variable count, coefficient magnitude, sparsity, or interaction topology is supplied."
+  ],
+  "risks": [
+    "QAOA sampling and parameter optimization do not inherently certify discovery of the exact global minimum.",
+    "Preserving exact integer coefficients may require unresolved precision and phase-angle resources.",
+    "Arbitrary coupling topology may require substantial hardware connectivity mapping and circuit depth.",
+    "State preparation, repeated measurements, classical parameter optimization, and classical verification may dominate execution cost.",
+    "Recomputing the objective verifies a sampled assignment's value but does not certify that no lower-valued assignment exists.",
+    "No benchmark evidence, scale threshold, resource budget, approximation allowance, or physical-feasibility evidence supports deployment."
+  ],
+  "rationale": "Lines 2-8 implement exhaustive minimization, with the exponential enumeration on lines 3-7 forming the expensive hotspot. This is structurally quantumizable as a QUBO/Ising problem because the required objective is quadratic in binary variables. That structural match does not make it practically suitable: the contract requires the exact minimum, while the supported QAOA-style proposal is probabilistic and supplies neither an exactness guarantee nor an optimality certificate. The supplied tests are correctness fixtures rather than performance benchmarks, and no resource or approximation policy is available. The region is therefore a rejected quantumization candidate rather than a deployment recommendation.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_binary_quadratic_minimum_value",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Construct the exact binary objective E(x)=sum_i b_i*x_i+sum_(i,j,w) w*x_i*x_j. Sum every repeated tuple contribution. Fold each self-coupling w*x_i*x_i into the linear coefficient using x_i squared equal to x_i. For an Ising representation, substitute x_i=(1-Z_i)/2 while retaining all induced constants, linear terms, quadratic terms, and signs. A QAOA-style process may seek low-energy assignments, but an unresolved exact-optimality mechanism is required before it can satisfy the software contract.",
+    "input_encoding": "Use one logical binary decision variable or qubit per bias entry. Classically aggregate coefficients without dropping repeated tuples, preserve arbitrary signed integer weights, and compile the resulting diagonal cost Hamiltonian. Hardware embedding, coefficient precision, normalization effects, circuit depth, and data-loading costs remain unresolved.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure candidate bit strings, evaluate each candidate with the original classical expression, and return the smallest verified value only if a justified procedure certifies it as the global minimum. Returning the best observed sample would weaken the exact contract and is not acceptable without an explicit contract change.",
+    "assumptions": [
+      "All referenced indices are valid as stated.",
+      "The target platform can represent the required signed coefficients without changing the optimizer.",
+      "A future exactness or optimality-certification procedure can be supplied; this is currently unresolved.",
+      "Any probabilistic failure probability and repetition policy must be explicitly approved rather than silently introduced."
+    ],
+    "risks": [
+      "Finite-depth QAOA may omit the true optimum.",
+      "Classical parameter optimization may be expensive or unstable.",
+      "Coefficient scaling or limited precision may alter the ordering of energies.",
+      "Embedding nonlocal couplings may consume prohibitive depth or ancillary resources.",
+      "Sampling cannot by itself prove global optimality.",
+      "The conditional formulation establishes structural plausibility only and provides no speedup or physical-feasibility claim."
+    ],
+    "expected_resource_characteristics": {
+      "status": "unresolved unless justified"
+    }
+  }
+}

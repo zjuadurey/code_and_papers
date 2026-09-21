@@ -1,0 +1,9 @@
+{
+  "case_id": "lit-010",
+  "title": "Sparse balance iteration review",
+  "software_contract": "review(request) validates a symmetric strictly diagonally dominant sparse matrix with positive diagonal. Missing entries are zero, duplicates rejected, entries normalized by variable order. inspect reports only initial Euclidean residual norm. advance follows the supplied unpreconditioned conjugate-direction recurrence from current, up to steps while recurrent residual norm / initial norm exceeds relative_tolerance. Zero initial residual takes zero steps. Return full named iterate, per-step recurrent residual trace, iterations and final directly recomputed residual norm. Budget exhaustion is not exact convergence; do not replace the iterate/trace with an exact solution. Numerical breakdown/nonfinite detected results raise ValueError. No mutation. No multigrid/MPI/rating; not a compliant HPCG run.",
+  "input_domain": "Exactly variables (distinct names), entries ({row,column:known names,value:finite number}), rhs/current (matching finite vectors), steps:nonnegative int, relative_tolerance:finite nonnegative number, mode inspect|advance. Bool excluded from numbers. Symmetry exact after float conversion; diagonal strictly exceeds sum of absolute off-diagonal entries. Empty system allowed. Python binary64 arithmetic, no added size cap.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}

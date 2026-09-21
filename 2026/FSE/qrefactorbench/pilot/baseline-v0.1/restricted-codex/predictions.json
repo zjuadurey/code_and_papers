@@ -1,0 +1,445 @@
+[
+  {
+    "assumptions": [
+      "The literal validation stated by the input domain occurs outside these functions or all inputs already satisfy it.",
+      "Clause data is available only classically and its coherent representation is not free.",
+      "No preloaded quantum memory, fault-tolerant resource budget, error policy, or measured practical advantage is available.",
+      "The required return value is an exact Boolean decision under the stated software contract."
+    ],
+    "benchmark_supported": false,
+    "candidate_regions": [
+      {
+        "end_line": 6,
+        "file": "program.py",
+        "function": "satisfies",
+        "start_line": 1
+      },
+      {
+        "end_line": 13,
+        "file": "program.py",
+        "function": "has_assignment",
+        "start_line": 9
+      }
+    ],
+    "case_id": "pilot-001",
+    "computational_intent": "Decide exactly whether any of the 2^n Boolean assignments satisfies every supplied clause, returning a classical Boolean. The empty clause must make the result false, an empty clause list must make it true, and no witness assignment or other side effect is required.",
+    "contract_applicability": [
+      {
+        "applicable": true,
+        "contract_id": "grover-predicate-v0",
+        "rationale": "Assignments form a finite basis-state domain and satisfies is a pure Boolean predicate, so the exhaustive loop has a structural Grover-style formulation. Actual conformity would still require a reversible clause predicate, explicit loading or encoding of all clause data and workspace costs, classical verification of measured assignments, and a justified bounded-error or exact no-solution policy preserving the Boolean contract."
+      },
+      {
+        "applicable": null,
+        "contract_id": "qubo-ising-v0",
+        "rationale": "SAT can potentially be reduced to a binary penalty objective, possibly with auxiliary variables for clauses, but no QUBO coefficients, auxiliary-variable construction, or sufficient penalty bounds are supplied. Moreover, a QAOA sample that fails to find a satisfying assignment does not establish unsatisfiability, so preservation of the exact existence decision is unresolved."
+      }
+    ],
+    "decision": "REMAIN_CLASSICAL",
+    "migration_family": "unstructured_search",
+    "plan": null,
+    "practical_suitability": false,
+    "rationale": "Lines 9-13 are an exponential exhaustive-search hotspot, and lines 1-6 provide the predicate needed for a structural Grover-style proposal. That establishes structural eligibility but not practical suitability. The clauses are classical variable-sized data, so coherent representation and reversible predicate construction may dominate the idealized query reduction. The program must also distinguish satisfiable from unsatisfiable instances exactly, while ordinary Grover-style execution is probabilistic and needs an explicitly justified no-solution procedure. With no resource estimates, implementation, scale distribution, benchmark evidence, or measured end-to-end benefit, quantumization is not supported. The hotspot is therefore a rejected quantumization candidate rather than sufficient evidence for migration.",
+    "risks": [
+      "A reversible predicate must evaluate every relevant clause and literal coherently, uncompute temporary state, and account for clause storage, indexing, and workspace.",
+      "Grover-style search reduces ideal predicate-query count but does not by itself show an end-to-end advantage once oracle construction, data loading, repetitions, measurement, and classical verification are included.",
+      "Unknown solution count complicates amplitude-amplification scheduling.",
+      "An unsuccessful probabilistic search cannot silently be returned as proof of unsatisfiability.",
+      "The edge cases n = 0, an empty clause, and an empty clause list must retain their current exact semantics.",
+      "A QAOA or QUBO alternative could weaken exact satisfiability into heuristic optimization unless global-optimum and no-solution guarantees are independently supplied."
+    ],
+    "schema_version": "0.2.0",
+    "structural_eligibility": true
+  },
+  {
+    "assumptions": [
+      "SHA-256 has the behavior supplied by Python's hashlib implementation.",
+      "Each audit invocation and intermediate digest is externally observable.",
+      "If audit raises, processing terminates at that event and the exception propagates.",
+      "No relaxation of digest equality, event ordering, callback count, or callback ordering is permitted."
+    ],
+    "benchmark_supported": null,
+    "candidate_regions": [],
+    "case_id": "pilot-002",
+    "computational_intent": "Sequentially consume every event, update a rolling SHA-256 digest from the previous digest and current event, invoke the host audit callback exactly once per event in input order with each observable intermediate digest, propagate callback exceptions according to ordinary Python execution, and return the final digest.",
+    "contract_applicability": [
+      {
+        "applicable": false,
+        "contract_id": "grover-predicate-v0",
+        "rationale": "The program performs no search over a finite candidate domain and defines no pure Boolean predicate or marked state. Its core recurrence and required ordered callback effects cannot be represented as a Grover-style predicate search without changing the task."
+      },
+      {
+        "applicable": false,
+        "contract_id": "qubo-ising-v0",
+        "rationale": "The program contains no binary decision variables, objective function, constraints, or optimization requirement. Encoding its deterministic ordered digest computation as a QUBO would not satisfy the contract's intended optimization structure and would not preserve exact semantics through approximate QAOA execution."
+      }
+    ],
+    "decision": "REMAIN_CLASSICAL",
+    "migration_family": null,
+    "plan": null,
+    "practical_suitability": false,
+    "rationale": "Lines 7-9 may be a runtime hotspot for a long event list, but they are a mandatory sequential recurrence with an observable classical side effect after every update, not a supported quantumization candidate. Every iteration depends on the preceding digest, every intermediate value must be supplied to audit in order, and audit may raise. Neither unstructured search nor combinatorial optimization matches this computation. There is no supplied benchmark evidence, so benchmark support remains unknown rather than being inferred.",
+    "risks": [
+      "Parallelizing or reordering digest updates would violate the dependency of each digest on its predecessor.",
+      "Deferring, batching, duplicating, or omitting audit calls would change externally visible behavior.",
+      "Probabilistic or approximate quantum output would violate the exact digest requirement.",
+      "Quantum data preparation, reversible SHA-256 construction, measurement, and classical verification would add unquantified overhead without creating a supported search or optimization formulation."
+    ],
+    "schema_version": "0.2.0",
+    "structural_eligibility": false
+  },
+  {
+    "assumptions": [
+      "Each mask bit represents the side assigned to the corresponding vertex.",
+      "All supplied edge endpoints satisfy the stated domain constraints.",
+      "The returned integer must equal the mathematical optimum for every valid input; an approximate value or merely high-probability candidate is not permitted.",
+      "No free coherent loading of the edge list or edge weights is available."
+    ],
+    "benchmark_supported": null,
+    "candidate_regions": [
+      {
+        "end_line": 6,
+        "file": "program.py",
+        "function": "best_partition_score",
+        "start_line": 3
+      }
+    ],
+    "case_id": "pilot-003",
+    "computational_intent": "Enumerate binary vertex partitions, sum the weights of all edges whose endpoints lie on opposite sides, including repeated edges independently and excluding self-loop contributions, and return the exact maximum crossing weight.",
+    "contract_applicability": [
+      {
+        "applicable": false,
+        "contract_id": "grover-predicate-v0",
+        "rationale": "The required result is an optimum value rather than a direct marked-state search. A threshold predicate over partitions could be constructed, but obtaining the maximum would require an additional maximum-finding or repeated-threshold procedure outside this contract, reversible weighted arithmetic, coherent edge access, and an exact no-better-solution certification policy."
+      },
+      {
+        "applicable": true,
+        "contract_id": "qubo-ising-v0",
+        "rationale": "With one binary variable x_u per vertex, the crossing-weight objective is explicitly representable as sum over edges of w_uv*(x_u+x_v-2*x_u*x_v), with repeated edges included separately and self-loop terms cancelling. Decoded assignments can be checked classically. This establishes structural applicability only; ordinary QAOA sampling does not guarantee the exact optimum required by the software contract."
+      }
+    ],
+    "decision": "REMAIN_CLASSICAL",
+    "migration_family": "combinatorial_optimization",
+    "plan": null,
+    "practical_suitability": false,
+    "rationale": "Lines 3-6 are the exponential classical hotspot and admit the standard weighted Max-Cut QUBO formulation, making them structurally quantumizable under the combinatorial-optimization family. They are nevertheless a rejected practical migration target under the supplied assumptions: the interface requires the exact optimum, while the catalog's QAOA-style proposal supplies no exactness or optimality-certificate guarantee. Making execution exhaustive or adding a classical exact fallback could preserve semantics but would leave any advantage unsupported. Edge-data encoding and hardware resource costs are also unknown. The region should therefore remain classical unless the contract later permits approximation or a concrete exact quantum procedure, error policy, resource analysis, and benchmark establish suitability.",
+    "risks": [
+      "QAOA provides no general exact-optimum guarantee, so substituting its best sampled partition could violate the API.",
+      "Classically recomputing a sampled partition's score verifies that score but does not certify global optimality.",
+      "Encoding arbitrary integer weights may require substantial coefficient precision or reversible arithmetic resources.",
+      "The QUBO interaction graph follows the input graph and may require costly hardware embedding or routing.",
+      "State preparation, repeated measurements, parameter optimization, decoding, and classical verification introduce unquantified overhead.",
+      "No scale data or quantum benchmark evidence is supplied, so advantage and physical feasibility are unresolved."
+    ],
+    "schema_version": "0.2.0",
+    "structural_eligibility": true
+  },
+  {
+    "assumptions": [
+      "Each invocation receives no more than eight resident integers unless it must raise ValueError.",
+      "Only one invocation occurs per process.",
+      "Quantum state preparation, data transfer, oracle construction, measurement, and verification costs are included.",
+      "No larger-domain extrapolation or reusable oracle is permitted."
+    ],
+    "benchmark_supported": null,
+    "candidate_regions": [
+      {
+        "end_line": 7,
+        "file": "program.py",
+        "function": "has_code",
+        "start_line": 4
+      }
+    ],
+    "case_id": "pilot-004",
+    "computational_intent": "Reject inputs containing more than eight codes with ValueError; otherwise return an exact Boolean indicating whether target equals any resident code, including false for empty input.",
+    "contract_applicability": [
+      {
+        "applicable": true,
+        "contract_id": "grover-predicate-v0",
+        "rationale": "The bounded list forms a finite search domain and equality with target is a pure Boolean predicate, so a Grover-style structural formulation is possible. An actual migration would still need a reversible equality predicate, explicit handling of empty and duplicate-containing inputs, a justified no-solution policy, classical verification, and preservation of exact Boolean semantics."
+      },
+      {
+        "applicable": false,
+        "contract_id": "qubo-ising-v0",
+        "rationale": "The program performs an existence test rather than optimizing a binary objective, and no natural QUBO objective, constraints, or required optimal assignment are present."
+      }
+    ],
+    "decision": "REMAIN_CLASSICAL",
+    "migration_family": "unstructured_search",
+    "plan": null,
+    "practical_suitability": false,
+    "rationale": "Lines 4-7 are structurally expressible as an unstructured marked-item search, but this is a rejected quantumization candidate rather than a worthwhile hotspot. The complete classical scan performs at most eight integer comparisons on data already in memory. Under the stated one-shot execution model, all quantum data preparation, oracle construction, transfer, measurement, no-solution handling, and classical verification costs count and cannot be amortized. Quantum execution would also have to preserve the exact deterministic result and the existing size-validation behavior. Structural quantumizability therefore does not establish practical suitability, and no benchmark evidence is provided; the program should remain classical.",
+    "risks": [
+      "Encoding the resident integers and target and constructing a reversible equality oracle would add setup and workspace costs for a domain of at most eight candidates.",
+      "A Grover-style execution would introduce probabilistic measurement and no-solution handling into an exact deterministic Boolean contract.",
+      "Classical verification and repeated execution could further increase latency without changing the required result.",
+      "Duplicate values and empty input require explicit handling in any marked-state and no-solution procedure.",
+      "No benchmark evidence or resource estimate is supplied to support an advantage claim."
+    ],
+    "schema_version": "0.2.0",
+    "structural_eligibility": true
+  },
+  {
+    "assumptions": [
+      "Each eligible list position is a distinct selectable offer, including positions whose offer fields may be identical.",
+      "Any conditional quantum formulation would run after prepare_offers and leave filtering, SKU sorting, response construction, and metadata preservation classical.",
+      "Any finite-width encoding would have to select arithmetic widths from validated instance bounds so that it matches Python's non-overflowing integer semantics."
+    ],
+    "benchmark_supported": null,
+    "candidate_regions": [
+      {
+        "end_line": 12,
+        "file": "program.py",
+        "function": "feasible_bundle",
+        "start_line": 4
+      }
+    ],
+    "case_id": "pilot-005",
+    "computational_intent": "After filtering unavailable offers and sorting the remaining copies by SKU, determine exactly whether any subset of eligible offer instances has total units equal to target and total price at most budget; return only that Boolean decision together with the eligible-offer count and target metadata.",
+    "contract_applicability": [
+      {
+        "applicable": true,
+        "contract_id": "grover-predicate-v0",
+        "rationale": "The eligible-offer indices define a finite domain of subset masks, and the marked-state predicate is total_units(mask) == target and total_price(mask) <= budget. This is structurally compatible with predicate search, provided sufficient-width reversible arithmetic, instance-data access, candidate verification, and a justified exact success/no-solution policy are supplied. Applicability does not establish practical advantage."
+      },
+      {
+        "applicable": true,
+        "contract_id": "qubo-ising-v0",
+        "rationale": "Binary variables can represent offer inclusion, with squared penalties for the exact-unit equality and for a budget equality augmented by nonnegative slack bits. Coefficient widths, slack bounds, penalty sufficiency, and reliable recovery of a zero-penalty assignment would need validation. QAOA supplies no stated guarantee of the exact Boolean decision required here, making this a less direct formulation than predicate search."
+      }
+    ],
+    "decision": "REMAIN_CLASSICAL",
+    "migration_family": "unstructured_search",
+    "plan": null,
+    "practical_suitability": null,
+    "rationale": "Lines 4-12 are an exponential exhaustive subset scan and admit a structural Grover-style formulation over masks. They are nevertheless a rejected hotspot for the current migration decision: no scale, benchmark, reusable data-loading mechanism, oracle resource estimate, or exact no-solution procedure is supplied. The handler must also preserve classical preprocessing and response metadata. Structural eligibility alone therefore does not support quantumization, and the program should remain classical unless end-to-end evidence and an exactness-preserving execution policy are later established.",
+    "risks": [
+      "Classically arriving offer data may require substantial per-request state preparation or oracle construction, and no reusable coherent-data assumption is established.",
+      "The input scale, request frequency, hardware model, and end-to-end cost are unspecified, so practical suitability and advantage cannot be inferred from the exponential classical enumeration alone.",
+      "A probabilistic search procedure could return a false negative unless its no-solution and error policy is justified against the required exact Boolean semantics.",
+      "Reversible summation, comparison, workspace cleanup, and repeated oracle invocation may dominate the search cost.",
+      "A QAOA formulation could produce only nonzero-penalty samples and therefore cannot silently replace the required exact feasibility decision.",
+      "Moving preprocessing or changing offer-instance identity could alter the considered count, ordering behavior, or subset semantics."
+    ],
+    "schema_version": "0.2.0",
+    "structural_eligibility": true
+  },
+  {
+    "assumptions": [
+      "Every coupling index is valid as stated in the input domain.",
+      "Each coupling tuple contributes independently, including repeated tuples.",
+      "The returned minimum value must be exact for all accepted inputs.",
+      "No approximate result or probabilistic failure rate is implicitly acceptable."
+    ],
+    "benchmark_supported": null,
+    "candidate_regions": [
+      {
+        "end_line": 7,
+        "file": "program.py",
+        "function": "minimum_energy",
+        "start_line": 2
+      }
+    ],
+    "case_id": "pilot-006",
+    "computational_intent": "Compute and return the exact minimum integer value of the unconstrained binary quadratic expression sum_i biases[i] * x_i + sum_(i,j,w) w * x_i * x_j over every binary assignment, preserving self-couplings, repeated coupling tuples, coefficient signs, and the existing integer return interface.",
+    "contract_applicability": [
+      {
+        "applicable": null,
+        "contract_id": "grover-predicate-v0",
+        "rationale": "The assignments form a finite domain and a threshold predicate such as energy(x) < T could be defined, but the catalog contract alone does not specify the adaptive threshold protocol, reversible arithmetic, exact no-solution handling, or error policy needed to return the exact minimum. Oracle construction and its resource costs are also unevaluated."
+      },
+      {
+        "applicable": true,
+        "contract_id": "qubo-ising-v0",
+        "rationale": "The program directly defines an unconstrained binary quadratic objective. Repeated tuples can be accumulated, and self-couplings can be retained or folded into linear coefficients using x_i squared equals x_i. This establishes formulation-level applicability only; QAOA does not by itself satisfy the required exact-optimum semantics."
+      }
+    ],
+    "decision": "REMAIN_CLASSICAL",
+    "migration_family": "combinatorial_optimization",
+    "plan": null,
+    "practical_suitability": false,
+    "rationale": "Lines 2-7 perform exhaustive minimization over 2^n binary assignments and admit a direct QUBO/Ising formulation, so the region is structurally eligible for the combinatorial-optimization family. That structural correspondence is insufficient for migration. The required output is the exact global minimum, while the available QAOA-style contract supplies no exactness guarantee, approximation threshold, success probability, optimality certificate, or resource budget. The fixtures are explicitly not performance evidence, and no benchmark supports an advantage. The exponential classical loop is therefore a rejected hotspot rather than a justified quantumization opportunity.",
+    "risks": [
+      "A QAOA execution generally produces sampled candidate assignments and provides no supplied guarantee that the global optimum was observed.",
+      "Classical recomputation can verify a sampled assignment's energy but cannot by itself certify that its energy is globally minimal.",
+      "No circuit-depth, shot-count, parameter-optimization, coefficient-range, or hardware budget is supplied.",
+      "Encoding arbitrary integer coefficients, repeated terms, and dense couplings may require substantial precision and connectivity resources.",
+      "State preparation, measurement, decoding, and classical parameter optimization could dominate any putative benefit.",
+      "Changing the result to an approximate minimum would violate the software contract unless an explicit approximation policy were added."
+    ],
+    "schema_version": "0.2.0",
+    "structural_eligibility": true
+  },
+  {
+    "assumptions": [
+      "Subsets select list positions independently, so duplicate values remain distinct choices.",
+      "The supplied integer-domain contract and Python's exact integer semantics must be preserved.",
+      "No input-size distribution, integer-width bound, quantum hardware model, or acceptable probabilistic error bound is supplied."
+    ],
+    "benchmark_supported": false,
+    "candidate_regions": [
+      {
+        "end_line": 7,
+        "file": "program.py",
+        "function": "has_total",
+        "start_line": 2
+      }
+    ],
+    "case_id": "pilot-007",
+    "computational_intent": "Decide exactly whether at least one positional subset of the finite integer list sums to target, including the empty subset for target zero, while returning only a Boolean and producing no side effects.",
+    "contract_applicability": [
+      {
+        "applicable": null,
+        "contract_id": "grover-predicate-v0",
+        "rationale": "The masks form a finite domain and equality of a selected-element sum with target is a pure Boolean predicate, so a Grover-style formulation is structurally available. Applicability remains unresolved because reversible signed-arithmetic construction, coherent access to all input values, integer and accumulator widths, uncomputation workspace, repeated oracle cost, and an exact-contract-compatible no-solution/error policy are not established."
+      },
+      {
+        "applicable": null,
+        "contract_id": "qubo-ising-v0",
+        "rationale": "A formal QUBO can minimize (sum_i values[i] x_i - target)^2, whose zero-energy assignments correspond to satisfying subsets. However, coefficient magnitudes and precision costs are unstated, and ordinary QAOA sampling or approximate minimization does not establish the exact Boolean result or reliably certify that no zero-energy assignment exists."
+      }
+    ],
+    "decision": "REMAIN_CLASSICAL",
+    "migration_family": "unstructured_search",
+    "plan": null,
+    "practical_suitability": null,
+    "rationale": "Lines 2-7 are both the exponential hotspot and a genuine structural search candidate: each mask is a subset and the marked-state predicate is exact sum equality. Structural eligibility alone is insufficient. No representative scale, bounded integer width, reversible-oracle resource estimate, suitable classical comparison, hardware assumptions, benchmark evidence, or acceptable probabilistic decision policy is provided. Only existence is required, but false must still mean that no subset exists; neither Grover-style sampling nor QAOA supplies that exact negative certificate without additional justified machinery. Therefore no practical advantage or semantic preservation can presently be supported, and the program should remain classical.",
+    "risks": [
+      "Coherent loading of the classical list could dominate the proposed oracle cost and cannot be treated as free.",
+      "A reversible predicate requires signed accumulation with width derived from target and the possible subset-sum range, plus ancillary workspace and uncomputation.",
+      "A sampled search procedure can miss existing solutions, while observing no marked state does not by itself certify nonexistence under the exact Boolean contract.",
+      "The current exhaustive implementation is not a sufficient classical baseline; dynamic programming, bitset methods where ranges permit, meet-in-the-middle, branch-and-bound, and specialized subset-sum algorithms must be evaluated.",
+      "Grover's query-count reduction over naive enumeration does not establish end-to-end advantage, particularly against meet-in-the-middle methods and after oracle and data-access costs.",
+      "The squared QUBO may require large signed coefficients and precision, and approximate optimization can silently weaken exact equality semantics."
+    ],
+    "schema_version": "0.2.0",
+    "structural_eligibility": true
+  },
+  {
+    "assumptions": [
+      "Every requested copy must be returned explicitly rather than represented lazily or by reference.",
+      "Each appended list must have independent mutable identity.",
+      "Input row order and copy order must be preserved.",
+      "Python's existing numeric behavior for absolute values, summation, division, and zero-row handling is part of the required semantics."
+    ],
+    "benchmark_supported": null,
+    "candidate_regions": [],
+    "case_id": "pilot-008",
+    "computational_intent": "For each input row in order, compute its total absolute magnitude, normalize every element (using 0.0 for zero-magnitude rows), and materialize the requested number of distinct mutable list copies in the complete nested classical output.",
+    "contract_applicability": [
+      {
+        "applicable": false,
+        "contract_id": "grover-predicate-v0",
+        "rationale": "The program performs deterministic transformation and exhaustive output materialization, not a search over a finite candidate domain using a Boolean predicate. No marked-state predicate, candidate-selection result, or meaningful success/no-solution behavior exists."
+      },
+      {
+        "applicable": false,
+        "contract_id": "qubo-ising-v0",
+        "rationale": "The program has no binary decision variables, objective function, constraints, or optimization result to encode as QUBO or Ising. Recasting arithmetic and copying as optimization would not preserve the exact transformation contract."
+      }
+    ],
+    "decision": "REMAIN_CLASSICAL",
+    "migration_family": null,
+    "plan": null,
+    "practical_suitability": false,
+    "rationale": "Lines 3-7 may become an expensive hotspot as rows and copies grow, but the work is mandated deterministic arithmetic and classical output construction. It is neither unstructured predicate search nor combinatorial optimization. Even if some arithmetic were expressed in a quantum circuit, the caller requires every normalized value and every distinct mutable copy, so the dominant output-size lower bound and classical materialization remain. Therefore there is no supported candidate region, and the program should remain classical.",
+    "risks": [
+      "Runtime and memory grow with the total number of input elements multiplied by the number of copies because the contract requires complete materialization.",
+      "Sharing lists, returning a compressed representation, sampling outputs, or using lazy generation would violate the required output semantics.",
+      "A quantum formulation would introduce data-loading, arithmetic, measurement, and decoding costs while still requiring classical construction of every output element and distinct list.",
+      "No benchmark evidence is supplied for quantum advantage or practical feasibility."
+    ],
+    "schema_version": "0.2.0",
+    "structural_eligibility": false
+  },
+  {
+    "assumptions": [
+      "Input validation and metadata report construction remain classical surrounding behavior.",
+      "No approximate or probabilistically incorrect cost may replace the exact minimum without a contract change."
+    ],
+    "benchmark_supported": null,
+    "candidate_regions": [
+      {
+        "end_line": 12,
+        "file": "program.py",
+        "function": "best_cost",
+        "start_line": 4
+      }
+    ],
+    "case_id": "pilot-009",
+    "computational_intent": "Validate the job and link data, compute the exact minimum cost over all binary left/right placements, and return that cost together with the original job names and job count. The placement itself need not be returned, but the reported cost must be exactly optimal and validation behavior must be preserved.",
+    "contract_applicability": [
+      {
+        "applicable": null,
+        "contract_id": "grover-predicate-v0",
+        "rationale": "The placement domain is finite, and a threshold predicate such as cost(mask) <= B is structurally conceivable. However, the program requires an exact minimum rather than a single predicate-search result, and no reversible cost oracle, threshold-search procedure, register widths, or probabilistic failure policy is supplied. Applicability therefore remains unresolved."
+      },
+      {
+        "applicable": true,
+        "contract_id": "qubo-ising-v0",
+        "rationale": "Using x_i=1 for right and x_i=0 for left, the objective is a QUBO: sum_i(left_cost_i + (right_cost_i-left_cost_i)x_i) plus sum_(a,b,p) p(1-x_a-x_b+2x_a*x_b). There are no additional placement constraints because every binary assignment is valid. Decoding an assignment and classically recomputing its cost could preserve the interface, but the draft QAOA proposal does not ensure the required exact optimum."
+      }
+    ],
+    "decision": "REMAIN_CLASSICAL",
+    "migration_family": "combinatorial_optimization",
+    "plan": null,
+    "practical_suitability": false,
+    "rationale": "Lines 4-12 are an exponential exhaustive-search hotspot and admit a direct QUBO formulation, so they are structurally eligible for the combinatorial-optimization family. That structural fact is insufficient for migration: the contract requires the exact minimum cost, while the available QAOA-style draft contract supplies no exactness guarantee, approved error policy, resource bounds, benchmark evidence, or physical performance target. The validation and report-generation portions are required classical behavior rather than quantum candidates. The hotspot should therefore remain classical under the stated assumptions.",
+    "risks": [
+      "QAOA sampling and parameter optimization provide no stated guarantee of finding the exact optimum required by the API.",
+      "Instance size, graph structure, coefficient magnitudes, and workload frequency are unspecified, so resource needs and any performance benefit cannot be evaluated.",
+      "Encoding arbitrary integer costs and penalties requires bounded register or coefficient precision that has not been specified.",
+      "State preparation, objective construction, classical parameter optimization, measurement, decoding, and exact classical verification may dominate execution.",
+      "Returning the lowest sampled cost would silently weaken exact semantics unless global optimality were independently established.",
+      "Validation exceptions, names, count, and empty-input behavior must remain consistent with the classical program."
+    ],
+    "schema_version": "0.2.0",
+    "structural_eligibility": true
+  },
+  {
+    "assumptions": [
+      "Each payload list is finite.",
+      "Within the stated input domain, parsed records contain both key and active fields.",
+      "The required behavior includes parsing every payload before searching and propagating malformed-JSON exceptions.",
+      "The returned Boolean must preserve Python truthiness for active and Python equality against the string target."
+    ],
+    "benchmark_supported": null,
+    "candidate_regions": [
+      {
+        "end_line": 8,
+        "file": "program.py",
+        "function": "contains_record",
+        "start_line": 4
+      }
+    ],
+    "case_id": "pilot-010",
+    "computational_intent": "Parse every JSON payload, propagating any parsing failure, and only after all parsing is complete return an exact Boolean indicating whether at least one record has a truthy active field and a key equal to the requested target.",
+    "contract_applicability": [
+      {
+        "applicable": null,
+        "contract_id": "grover-predicate-v0",
+        "rationale": "The contains_record loop is structurally an existence search over a finite list with the predicate bool(record[\"active\"]) and record[\"key\"] == target. Applicability remains unresolved because arbitrary parsed JSON values and Python truthiness/equality would need bounded reversible encodings, a coherent representation must be rebuilt for every batch, and no exact success/no-solution error policy or reversible oracle construction is supplied."
+      },
+      {
+        "applicable": false,
+        "contract_id": "qubo-ising-v0",
+        "rationale": "The program performs an existence test and defines neither a binary optimization objective nor constraints whose optimum is a required output. Recasting the Boolean search as a QUBO would add an optimization problem without preserving an evident computational purpose."
+      }
+    ],
+    "decision": "REMAIN_CLASSICAL",
+    "migration_family": "unstructured_search",
+    "plan": null,
+    "practical_suitability": false,
+    "rationale": "Lines 4-8 admit an abstract Grover-style predicate-search formulation, so they are structurally eligible. They are not practically suitable under the supplied execution assumptions: all payloads must first be parsed even when an early record matches, malformed input must still raise, and a coherent representation must be constructed anew for every batch. Thus the complete operation retains unavoidable classical input work linear in the batch size, while the remaining predicate is a simple classical comparison. With no benchmark, scale, cost model, reusable oracle, or permitted probabilistic-error policy, no practical advantage or exact semantic preservation is established. The parsing comprehension is a potentially expensive but rejected hotspot because quantumizing it fits neither supported migration family and could violate required parsing effects.",
+    "risks": [
+      "Every fresh batch requires classical parsing and at least linear-size data preparation before any coherent search representation could be used.",
+      "Oracle construction and coherent loading may cost as much as or more than the simple classical scan.",
+      "Grover-style measurement is probabilistic, while the software contract requires an exact Boolean and supplies no acceptable error threshold.",
+      "Encoding general JSON-derived values may require substantial workspace and reversible logic to reproduce Python truthiness and equality.",
+      "There is no scale information, benchmark evidence, approved cost model, coherent-memory facility, or evidence of end-to-end advantage.",
+      "Line 12 may be an expensive hotspot for large payloads, but it is a required classical parsing stage rather than a supported quantum search or optimization candidate."
+    ],
+    "schema_version": "0.2.0",
+    "structural_eligibility": true
+  }
+]

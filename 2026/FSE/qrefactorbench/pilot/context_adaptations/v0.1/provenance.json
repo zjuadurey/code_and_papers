@@ -1,0 +1,23 @@
+{
+  "version": "0.1.0",
+  "case_id": "context-001",
+  "source_lineage": "c2q-c5b457cf425c31e91bae829503ece6e92646dd0a-row-164",
+  "parent_case": "lit-001",
+  "parent_directory": "pilot/source_adaptations/v0.1/cases/lit-001",
+  "dataset_revision": "c5b457cf425c31e91bae829503ece6e92646dd0a",
+  "data_row": 164,
+  "csv_url": "https://huggingface.co/datasets/boshuai1/c2q-dataset/resolve/c5b457cf425c31e91bae829503ece6e92646dd0a/python_programs.csv",
+  "csv_sha256": "7592e3dc879df65f16bc6c58baf9bc5db53e4f89e49751ab986a4702b682e2bd",
+  "upstream_license": "CC-BY-4.0",
+  "package_license": "NOASSERTION",
+  "upstream_function": {
+    "file": "cases/context-001/maintenance.py",
+    "start_line": 74,
+    "end_line": 89,
+    "sha256": "2aa73675fc76452d16d2a016675e6367c3048d59fac893a9a9de846ffbd9f499",
+    "identical_to_parent": true
+  },
+  "new_context": "AI-assisted synthetic maintenance assessment and adjustment; no deployed provenance",
+  "model_runs": 0,
+  "scientific_status": "DRAFT"
+}

@@ -1,0 +1,50 @@
+{
+  "feature_count": 3,
+  "profile_count": 3,
+  "profiles": [
+    {
+      "profile_id": "connected",
+      "enabled": [
+        "sync"
+      ],
+      "disabled": [],
+      "unfixed_features": [
+        "encrypted",
+        "offline"
+      ],
+      "completion_exists": true
+    },
+    {
+      "profile_id": "conflicting",
+      "enabled": [
+        "sync",
+        "offline"
+      ],
+      "disabled": [],
+      "unfixed_features": [
+        "encrypted"
+      ],
+      "completion_exists": false
+    },
+    {
+      "profile_id": "offline-only",
+      "enabled": [
+        "offline"
+      ],
+      "disabled": [
+        "encrypted"
+      ],
+      "unfixed_features": [
+        "sync"
+      ],
+      "completion_exists": true
+    }
+  ],
+  "compatible_profile_ids": [
+    "connected",
+    "offline-only"
+  ],
+  "incompatible_profile_ids": [
+    "conflicting"
+  ]
+}

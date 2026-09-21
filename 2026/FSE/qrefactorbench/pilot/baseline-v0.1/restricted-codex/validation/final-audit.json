@@ -1,0 +1,10 @@
+{
+  "protected_files_unchanged": 308,
+  "raw_case_outputs_identical_to_external_originals": 10,
+  "parsed_copies_byte_identical": 10,
+  "runner_snapshot_identical": true,
+  "local_document_links_valid": true,
+  "all_scientific_calls_completed_before_reference_evaluation": true,
+  "model_input_files_changed": false,
+  "benchmark_schema_evaluator_or_scientific_labels_changed": false
+}

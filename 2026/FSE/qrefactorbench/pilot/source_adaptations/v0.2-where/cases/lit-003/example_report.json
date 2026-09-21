@@ -1,0 +1,83 @@
+{
+  "session_count": 4,
+  "current": {
+    "assignment": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "unassigned": [
+      "design",
+      "release",
+      "testing",
+      "operations"
+    ],
+    "conflicts": [],
+    "feasible": false,
+    "slots": [
+      {
+        "slot": "morning",
+        "sessions": []
+      },
+      {
+        "slot": "afternoon",
+        "sessions": []
+      }
+    ]
+  },
+  "preview": {
+    "status": "blocked",
+    "assignment": null
+  },
+  "proposed": {
+    "assignment": [
+      "morning",
+      "afternoon",
+      "afternoon",
+      "morning"
+    ],
+    "unassigned": [],
+    "conflicts": [],
+    "feasible": true,
+    "slots": [
+      {
+        "slot": "morning",
+        "sessions": [
+          "design",
+          "operations"
+        ]
+      },
+      {
+        "slot": "afternoon",
+        "sessions": [
+          "release",
+          "testing"
+        ]
+      }
+    ]
+  },
+  "status": "completed",
+  "moves": [
+    {
+      "session_id": "design",
+      "from": null,
+      "to": "morning"
+    },
+    {
+      "session_id": "release",
+      "from": null,
+      "to": "afternoon"
+    },
+    {
+      "session_id": "testing",
+      "from": null,
+      "to": "afternoon"
+    },
+    {
+      "session_id": "operations",
+      "from": null,
+      "to": "morning"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "lit-003",
+  "title": "Participant-aware agenda review",
+  "description": "review_agenda(request) validates the whole request before processing, raises ValueError for invalid inputs (message unspecified), and never mutates it. Sessions sharing any participant cannot occupy the same slot. Output contains session_count, current, preview, proposed, status and moves. A described arrangement contains assignment in session input order, unassigned session IDs, conflicts (each pair in input order with first/second IDs and sorted shared participant names), feasible (all sessions assigned and no conflicts), and slots (all slots in declared order, each with slot and its session IDs in input order). mode=inspect reports current only: preview/proposed are null, status=inspected, moves=[]. In complete mode, preserve an already feasible current arrangement exactly, status=retained and preview=null. Otherwise construct a preview by taking the earliest slot available for each session in session order, without revisiting preceding choices. A completed preview is {status:ready, assignment:[slot names]}, becomes proposed, and yields status=preview. If preview blocks, retain {status:blocked, assignment:null}; find an arrangement satisfying all participant restrictions, choosing the lexicographically smallest slot-index vector. If found, report status=completed and its proposed description; if none exists, report status=unavailable and proposed=null. Preview blockage alone does not mean no arrangement exists. Failed previews and partial current arrangements impose no fixed assignments on completion. moves lists changed sessions in input order with session_id/from/to, only when a proposal exists. Empty sessions are feasible, including with zero slots. Nonempty sessions with zero slots cannot be completed. CLI reads a JSON request and prints one JSON report; invalid requests exit nonzero without a successful report.",
+  "source": "Codex-assisted adaptation of C2|Q> pinned dataset records [97, 98]. Original records preserved in ../../sources/. Newly authored synthetic workflow, not deployed software. See ADAPTATION.md and ../../SOURCES.md.",
+  "source_url": "https://huggingface.co/datasets/boshuai1/c2q-dataset/tree/c5b457cf425c31e91bae829503ece6e92646dd0a",
+  "license": "NOASSERTION",
+  "domain": "source_adapted_synthetic_context",
+  "version": "0.2.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "agenda.py",
+    "catalog.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "agenda.py",
+      "function": "complete",
+      "start_line": 28,
+      "end_line": 57
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT independent full-report functional oracle, source equivalence checks and wrong-boundary/dependency regressions; no automatic scoring of localization or quantum migration.",
+    "config": {
+      "test_artifact": "test_program.py",
+      "probabilistic_policy": null,
+      "approximation_permitted": false
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "This is a planning report, not calendar deployment. Preserve valid current choices and prescribed preview behavior even if another arrangement might be preferable.",
+      "Ordinary classical inputs; workload frequencies, hardware, encoding costs and latency targets are not supplied."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT, AI-ASSISTED PROPOSAL — NOT GROUND TRUTH. Required case_type=positive denotes a provisional sampling hypothesis only. The region is a private review nomination, not an accepted localization answer. All scientific judgment fields remain null. Inspect ADAPTATION.md before human annotation.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "External source programs are synthetic C2|Q> records, not existing deployed applications.",
+    "Context transformations and application requirements are new and explicitly documented; originals remain unchanged.",
+    "WHERE challenge is a design hypothesis with executable boundary counterexamples, not measured model difficulty.",
+    "Scientific labels, admissible quantum contracts, practical suitability, and localization scoring remain unreviewed.",
+    "Source portions CC-BY-4.0; new material/package license NOASSERTION."
+  ]
+}

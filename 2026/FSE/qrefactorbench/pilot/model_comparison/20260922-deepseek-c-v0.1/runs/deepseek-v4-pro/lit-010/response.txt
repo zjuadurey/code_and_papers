@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-010",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "No supported quantumization candidate is justified. The computational core is real-valued sparse-matrix validation and an unpreconditioned conjugate-direction recurrence: program.py lines 9-47 perform strict field/name/finite/duplicate/symmetry/positive strict diagonal dominance checks and reporting, while kernel.py lines 17-40 implement the unpreconditioned HPCG-derived recurrence. The state is continuous binary64 vectors, and required semantics include exact symmetry after float conversion, duplicate rejection, distinct-name normalization, no mutation, ValueError on numerical breakdown/nonfinite results, per-step recurrent residual trace, budget exhaustion not treated as exact convergence, and final directly recomputed residual norm. These cannot be preserved by the supported families. Unstructured search requires a finite marked-state Boolean predicate over a central candidate domain; this program is a numerical recurrence, not a search problem, and incidental list index lookups such as variables.index at program.py line 22 are input normalization rather than a quantumizable solver region. Combinatorial optimization would require artificial binary discretization of arbitrary real-valued matrix entries and vectors; that does not match the original continuous exact sparse solve and would not preserve ordering, trace contents, or deterministic error behavior. No workload, encoding-cost, or quantum-advantage evidence is supplied.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Classical validation of a symmetric strictly diagonally dominant sparse matrix and unpreconditioned conjugate-direction iteration with initial/final residual norms and per-step recurrent residual trace.",
+  "assumptions": [
+    "Classical inputs and outputs remain Python binary64 arithmetic; no quantum hardware, encoding-cost, or advantage evidence is supplied.",
+    "The supported quantumization families are restricted to unstructured_search and combinatorial_optimization.",
+    "Exact validation, error behavior, ordering, trace contents, and no-mutation semantics must not be relaxed."
+  ],
+  "risks": [
+    "Reformulating the continuous sparse linear solve or validation as QUBO/Ising or Grover would not preserve exactness and deterministic interface behavior.",
+    "Probabilistic decoding or approximate search would violate ValueError and residual-norm contract obligations.",
+    "Any finite encoding of arbitrary real matrix entries and vectors would impose unresolved precision and feasibility limits."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The central computation is continuous sparse linear iteration and real-valued validation, not a finite-candidate Boolean predicate search. Incidental list index lookups are not a justified quantumization target."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "There is no native binary combinatorial objective or constraint encoding that represents the real-valued sparse solve exactly; a bit-discretized QUBO would be artificial and would alter required recurrence, trace, and error semantics."
+    }
+  ]
+}

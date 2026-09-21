@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-010",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "No supplied region is structurally eligible for the only supported quantumization families. The reviewed code is a numerical sparse linear-solver iteration: program.py:9-47 validates a request and either reports the initial Euclidean residual norm or calls kernel.py:17-40 to run an unpreconditioned conjugate-direction recurrence over real binary64 vectors. kernel.py:17-40 computes continuous vector updates x, r, p and scalar recurrence quantities dot, apply, alpha, rr, denominator; it does not enumerate a finite candidate set, does not evaluate a pure Boolean predicate over candidates, and does not define binary decision variables or a combinatorial objective. The runtime predicates are numerical control conditions: len(trace) < steps, initial residual truthiness, norm / initial > tolerance, denominator > 0, and finiteness checks. Activation for the iterative region requires mode == 'advance', nonnegative steps, nonzero initial residual in kernel.py:20-24, and relative residual still above relative_tolerance. Required inputs and state are the validated variable order, normalized sparse rows with exact symmetry and strict positive diagonal dominance, matching finite rhs/current vectors, steps, relative_tolerance, and the current iterate. Surrounding behavior that must remain intact includes exact validation errors, duplicate rejection, zero-initial-residual taking zero steps, no mutation, per-step recurrent residual trace, named iterate output, directly recomputed final residual norm, budget exhaustion not being treated as exact convergence, and ValueError on numerical breakdown/nonfinite results. A Grover-style search has no finite Boolean predicate or marked-state formulation here, and a QUBO/Ising formulation would require an unsupported binary discretization of continuous floating-point iterates while breaking exact residual and recurrence semantics. No benchmark evidence for quantum workload, encoding cost, hardware, or advantage is supplied.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Budgeted unpreconditioned conjugate-direction iteration for a validated sparse symmetric strictly diagonally dominant linear system, returning a residual-norm trace and named iterate without exact-solution substitution.",
+  "assumptions": [
+    "Classical binary64 arithmetic and the supplied exact input validation semantics are fixed.",
+    "No workload, quantum hardware, encoding-cost, or advantage evidence is supplied.",
+    "Exactness, ordering, non-mutation, and ValueError behavior must be preserved if any alternative is considered.",
+    "No added size cap or replacement of the iterate/trace by an exact solution is allowed."
+  ],
+  "risks": [
+    "Quantumizing continuous Krylov recurrence would not preserve exact floating-point residual traces or convergence semantics.",
+    "Binary discretization of real vectors would introduce approximation and resource overhead not justified by supplied evidence.",
+    "No supported unstructured-search predicate or combinatorial binary objective is present in the validated solver path.",
+    "Benchmark support and quantum advantage remain unmeasured and unknown from the supplied material."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The advance region performs continuous floating-point recurrence over real vectors, not search over a finite candidate basis with a pure Boolean marked-state predicate. No oracle can be constructed from the supplied numerical loop without changing the task semantics and exact residual behavior."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "No binary decision variables, constraint penalties, or combinatorial objective are present. The linear-system solve is a continuous numerical iteration, and any QUBO/Ising encoding would require unsupported discretization or approximation, violating exactness and trace preservation requirements."
+    }
+  ]
+}

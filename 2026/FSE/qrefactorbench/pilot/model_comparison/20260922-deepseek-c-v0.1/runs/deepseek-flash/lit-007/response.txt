@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-007",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 12,
+      "end_line": 19
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "maximize_signed_pair_score",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "QUBO/Ising equivalent of maximizing the signed pair score. Let x_i=1 if member i is in group True, else 0. For each preference pair (i,j,w) with w=+1 for apart and w=-1 for together, contribution = w*(2*(x_i xor x_j)-1) = w*(2x_i+2x_j-4x_i x_j-1). Hence score = constant + sum_i h_i x_i + sum_{i<j} Q_ij x_i x_j with h_i = 2*sum_{j!=i} w_ij, Q_ij = -4*w_ij, constant = -sum_{i<j} w_ij. Maximize this QUBO (or minimize its negation); all 2^n assignments are feasible because groups may be empty and there are no capacity constraints.",
+    "input_encoding": "One binary variable/qubit per member, ordered as in validated `members`. Map x_i=0 to False and x_i=1 to True, or Ising x_i=(1-Z_i)/2 if using Z operators. The `pairs` list is already sorted and contains one (i,j,w) per unordered pair; coefficients must be computed from these weights and must include all n(n-1)/2 pair terms.",
+    "quantum_algorithm_family": "QAOA-style QUBO/Ising optimization; this is a heuristic and does not by itself guarantee the exact classical optimum.",
+    "output_decoding": "Measure bitstrings, decode each to a boolean `values` vector in member order, recompute `score(values,pairs)` classically, and select the best observed score. To preserve the classical deterministic tie-break, choose the smallest numeric membership mask among equal-score observed candidates. Because sampling may miss the global optimum, exactness requires an additional exact fallback or verification, which is unresolved.",
+    "assumptions": [
+      "The QUBO coefficients, signs, and constant exactly reproduce `kernel.score` for every assignment.",
+      "No constraint penalties are needed because the contract has no capacity or group-size constraints and empty groups are allowed.",
+      "Inputs are already validated by `review`: distinct nonempty names, complete symmetric preferences, no duplicates, boolean current vector of correct length.",
+      "The tie-break by smallest numeric membership mask is part of the required output semantics and must be preserved.",
+      "Resource estimates for state preparation, dense pair interactions, parameter optimization, shots, measurement, and decoding are not supplied and must be established before any practical claim."
+    ],
+    "risks": [
+      "QAOA/Ising heuristics are probabilistic and approximate; they do not guarantee the exact maximum required by `choose`.",
+      "The smallest-mask tie-break among equal optima is not naturally produced by measurement sampling and requires classical post-selection or exhaustive fallback.",
+      "The objective is fully connected in general, leading to O(n^2) two-qubit interactions and potential connectivity/compilation overhead.",
+      "No workload sizes, hardware assumptions, encoding-cost or advantage evidence is supplied, so performance and benefit are unverified.",
+      "Silently returning a sampled suboptimal assignment would change `proposed`, `gain`, and `moves` and violate the classical contract."
+    ],
+    "expected_resource_characteristics": {
+      "num_qubits": "n (one per member) plus any ancilla/workspace needed for coherent objective evaluation or constraint handling.",
+      "interactions": "O(n^2) pair terms in the worst case; the preference graph may be dense.",
+      "depth": "Unspecified; depends on QAOA ansatz, problem Hamiltonian compilation, and hardware connectivity.",
+      "shots": "Unspecified; statistical confidence does not imply exact global optimality without exhaustive search or a verified exact optimizer.",
+      "classical_overhead": "Compute QUBO coefficients, optimize variational parameters, decode sampled bitstrings, recompute scores, and enforce the smallest-mask tie-break."
+    },
+    "rationale": "This conditional plan encodes the exponential `choose` region as a QUBO/Ising problem. It does not recommend adoption, does not certify exactness, and leaves encoding-cost, oracle, feasibility, and resource obligations unresolved."
+  },
+  "rationale": "Source evidence: `kernel.py` `choose` (lines 12-19) is the only exponential search region: it enumerates all 2^size boolean assignments and returns the first assignment maximizing `score` (kernel.py lines 8-9). `program.py` lines 34-38 activate this only when request['mode'] == 'propose'; `review` has already validated members, preferences, duplicates, completeness of all unordered pairs, and current bits. `describe` (program.py lines 8-11) and the `review` result construction (lines 32-38) must remain intact: groups are listed False then True, score uses the signed pair weights, violated pairs are in catalogue-pair order, gain is proposed score minus current score, and moves are names whose boolean value changed. The exact maximum and deterministic tie-break (smallest numeric membership mask) are part of the contract. Structural eligibility: true for combinatorial_optimization. The objective is a quadratic pseudo-Boolean function of binary group variables: for each pair (i,j,w), contribution = w*(2*(x_i xor x_j)-1) = w*(2x_i+2x_j-4x_i x_j-1). Thus score = constant + sum_i h_i x_i + sum_{i<j} Q_ij x_i x_j with h_i=2*sum_{j!=i}w_ij, Q_ij=-4w_ij, constant=-sum_{i<j}w_ij. No constraints exist, so all 2^n assignments are feasible. The qubo-ising-v0 contract is structurally applicable. Grover-predicate-v0 is not directly applicable: the classical task is exact optimization with deterministic tie-breaking, not a pure Boolean decision predicate. Practical suitability: false. QAOA-style QUBO/Ising execution is probabilistic/approximate and does not guarantee the exact optimum or the smallest-mask tie-break without exhaustive fallback; the objective is fully connected in general, giving O(n^2) pair interactions; and no workload, hardware, encoding-cost, or advantage evidence is supplied. Benchmark support: null, because no benchmark or workload evidence is supplied. Decision: REMAIN_CLASSICAL. A conditional migration plan is still provided because structural_eligibility is true; it is not an adoption recommendation.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "maximize signed pair preference score over binary group assignments",
+  "assumptions": [
+    "The candidate region is kernel.py choose lines 12-19; score in kernel.py lines 8-9 is its objective dependency.",
+    "Activation occurs only when review mode is 'propose' (program.py lines 34-38); inspect mode does not call choose.",
+    "All input validation, member ordering, pair sorting, describe output, gain, moves, and deterministic smallest-mask tie-break must remain intact.",
+    "No workload, hardware, encoding-cost, or quantum advantage evidence is supplied."
+  ],
+  "risks": [
+    "Exact maximum and deterministic tie-break are required; QAOA-style sampling does not guarantee either without exhaustive fallback.",
+    "Dense pair interactions may cause high resource overhead.",
+    "No benchmark or practical advantage evidence supports replacement.",
+    "A suboptimal decoded assignment would silently change proposed, gain, and moves."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The objective is an explicit binary quadratic pseudo-Boolean function with no constraints; it can be encoded as QUBO/Ising. Coefficients and signs must be checked against kernel.score, and exactness/tie-breaking remain unresolved."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The classical region solves a maximization over all assignments with a deterministic tie-break, not a pure Boolean existence predicate. A thresholded Grover variant would require an unknown best score, repeated exact decision calls, and an explicit no-solution policy, so it is not directly applicable."
+    }
+  ]
+}

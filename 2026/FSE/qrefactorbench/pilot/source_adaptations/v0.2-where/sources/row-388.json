@@ -1,0 +1,4 @@
+{
+  "code_snippet": "def min_vertex_cover_bruteforce(n, edges):\\n    min_cover = set()\\n    for i in range(1 << n):\\n        cover = {j for j in range(n) if i & (1 << j)}\\n        if all(u in cover or v in cover for u, v in edges):\\n            if not min_cover or len(cover) < len(min_cover):\\n                min_cover = cover\\n    return min_cover\\n\\n# Input data\\nedges = [(0, 1), (1, 2), (2, 3)]\\nmin_cover = min_vertex_cover_bruteforce(4, edges)\\nprint(min_cover)",
+  "labels": "9"
+}

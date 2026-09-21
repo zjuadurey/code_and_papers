@@ -1,0 +1,20 @@
+{
+  "annotation_rationale": null,
+  "annotation_status": "DRAFT",
+  "annotator_id": null,
+  "assumptions": null,
+  "benchmark_supported": null,
+  "candidate_regions": null,
+  "case_id": "pilot-002",
+  "completion_status": "UNFILLED",
+  "computational_intent": null,
+  "contract_applicability": null,
+  "expected_decision": null,
+  "form_version": "phase1-v0",
+  "migration_family": null,
+  "practical_suitability": null,
+  "role": "annotator_a",
+  "semantic_oracle": null,
+  "structural_eligibility": null,
+  "uncertainty": null
+}

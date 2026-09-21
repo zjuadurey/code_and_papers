@@ -1,0 +1,15 @@
+{
+  "version": "reference-views-0.1.0",
+  "files_sha256": {
+    "core-001/program.py": "2aa73675fc76452d16d2a016675e6367c3048d59fac893a9a9de846ffbd9f499",
+    "core-001/public_task.json": "a61e38d5d076263b8962c02c5dd670083503e99fc50e02448697d1a1e229cab0",
+    "core-002/program.py": "70a4f423fd3f5c41ff6062469044a161d980398918be68422b05099c8ac886bf",
+    "core-002/public_task.json": "2f6694577bc3894a08dbc9cdedcebd8966dc387d088a5e3be88b34239af628f4",
+    "context-001/program.py": "9431955f692c02cf4e2d1bf7288b21d08f39b3378d4504cf998a3de6decb5905",
+    "context-001/maintenance.py": "b1acb0f1a52185375aaccf624f8da082accd12748bb456d488037d8c1b29e880",
+    "context-001/public_task.json": "fec1bfbff8f66b55d54580b0adc4eb02226a6c3c61cd3b4b03c7fa241e745b91",
+    "context-002/program.py": "cf980e90e44333b4df9679a92243685219c7f67fad85f5897117c243d9b2dfba",
+    "context-002/inspection.py": "b3af442ac12d1470d5aaf1c68f8aeca76503b40770cec82bc89eb78f9d9acf10",
+    "context-002/public_task.json": "2d7ddb98b0f3e692bef362b4717be52054321b873c7eb6434695e6279bb0c9fd"
+  }
+}

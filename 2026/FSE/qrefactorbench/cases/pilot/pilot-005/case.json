@@ -1,0 +1,114 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "pilot-005",
+  "title": "Bundle request handler",
+  "description": "Return a response describing whether some subset of available offers meets the exact unit target within budget, while preserving preprocessing and response metadata. Pilot annotation material; not validated benchmark ground truth.",
+  "source": "Original synthetic program authored with Codex assistance for the requested Phase-1 pilot on 2026-09-18. No independent researcher authorship or review is claimed; not copied from an external repository.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "phase1_synthetic",
+  "version": "0.1.0",
+  "migration_family": "unstructured_search",
+  "context_level": "small_program",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "support.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "feasible_bundle",
+      "start_line": 4,
+      "end_line": 12
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": {
+    "id": "budgeted_bundle_existence",
+    "description": "Return a response describing whether some subset of available offers meets the exact unit target within budget, while preserving preprocessing and response metadata."
+  },
+  "admissible_migration_contracts": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "status": "DRAFT",
+      "applicability_conditions": [
+        "A finite domain and pure Boolean predicate can be explicitly represented.",
+        "Preserve required classical effects and input/output semantics; demonstrate reversible predicate construction."
+      ],
+      "input_encoding": "Finite basis-state encoding of candidates; predicate data and workspace costs must be accounted for.",
+      "formulation": "Grover-style marked-state predicate search; define success/no-solution handling explicitly.",
+      "algorithm_families": [
+        "grover_style"
+      ],
+      "output_decoding": "Classically verify decoded candidates; existence decisions also require a justified no-solution policy.",
+      "semantic_relation": "Preserve the classical task contract; probabilistic error policy is unresolved, not silently accepted.",
+      "resource_assumptions": [
+        "No free data loading, oracle construction, workspace or coherent memory is assumed."
+      ],
+      "known_limitations": [
+        "Shared candidate contract for planning, not a validated implementation.",
+        "No universal suitability or advantage claim; statistical semantics require human review."
+      ]
+    }
+  ],
+  "reference_plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "budgeted_bundle_existence",
+    "migration_family": "unstructured_search",
+    "formulation": "Draft predicate: Return a response describing whether some subset of available offers meets the exact unit target within budget, while preserving preprocessing and response metadata. Explore a marked-state existence reformulation.",
+    "input_encoding": "Encode each finite candidate by a basis-state bit string; construct and uncompute the predicate with explicitly costed data access.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Validate measured candidates using the original predicate; no-solution semantics remain unresolved.",
+    "assumptions": [
+      "Only the Boolean feasibility result is required, not a particular witness or ordering.",
+      "Filtering, sorting and response metadata remain classical; analyze the subset enumeration in context.",
+      "Offer data arrive classically; encoding and repeated-use assumptions are not settled."
+    ],
+    "risks": [
+      "Shared candidate contract for planning, not a validated implementation.",
+      "No universal suitability or advantage claim; statistical semantics require human review.",
+      "Predicate construction, data loading, and zero-solution behavior require explicit review."
+    ],
+    "expected_resource_characteristics": {
+      "status": "unresolved",
+      "cost_model": null
+    },
+    "rationale": "PROVISIONAL structural positive intended for T1/T2/T3 review. Practical suitability, benchmark support and final decision remain unknown; no benefit or semantic migration is established."
+  },
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "Return a response describing whether some subset of available offers meets the exact unit target within budget, while preserving preprocessing and response metadata. Check the declared input domain, edge cases and effects using the classical tests; this draft is not a registered quantum semantic oracle.",
+    "hook_id": "pilot-005-semantics",
+    "config": {
+      "input_domain": "offers have sku, units, price, available; units/prices are nonnegative integers; target/budget are nonnegative integers; unavailable offers are ignored.",
+      "probabilistic_policy": null
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Only the Boolean feasibility result is required, not a particular witness or ordering.",
+      "Filtering, sorting and response metadata remain classical; analyze the subset enumeration in context.",
+      "Offer data arrive classically; encoding and repeated-use assumptions are not settled."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "PROVISIONAL structural positive intended for T1/T2/T3 review. Practical suitability, benchmark support and final decision remain unknown; no benefit or semantic migration is established.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "DRAFT synthetic annotation material; curator hypotheses must not be distributed to independent annotators.",
+    "Licensing is unresolved; NOASSERTION grants no redistribution rights.",
+    "Human review must determine whether the proposed category and span are defensible."
+  ]
+}

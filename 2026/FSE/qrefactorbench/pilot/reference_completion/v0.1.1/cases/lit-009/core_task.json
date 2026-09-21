@@ -1,0 +1,9 @@
+{
+  "case_id": "source-core-009",
+  "title": "Named balance-system review",
+  "software_contract": "solve(matrix,rhs): valid square finite float system, copy then pivoted elimination/back substitution, float list; zero pivot/nonfinite result raises ValueError. residual(matrix,rhs,x) computes vector/infinity norm/scaled backward error as described in the context view; valid dimensions only. Inputs unchanged. Newly authored implementation of a documented numerical problem.",
+  "input_domain": "Valid kernel arguments as specified; application validation and reports are not part of this core view.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}

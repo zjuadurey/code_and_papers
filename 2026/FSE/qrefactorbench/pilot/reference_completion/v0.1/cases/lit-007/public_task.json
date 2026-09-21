@@ -1,0 +1,9 @@
+{
+  "case_id": "lit-007",
+  "title": "Signed pair assignment review",
+  "software_contract": "review(request) validates one together/apart preference for every unordered pair, rejecting duplicates. current and proposed describe ordered False/True groups, signed score and violated pairs in catalogue-pair order. A satisfied preference contributes +1, an unsatisfied preference -1. inspect reports current only. propose maximizes signed score, ties use smallest numeric membership mask (member i is bit i); report gain and moved members. It need not retain another equally good current. No capacity or group-size constraint, groups may be empty. No mutation; invalid inputs raise ValueError. CLI reads/prints JSON.",
+  "input_domain": "Exactly members (distinct nonempty names), preferences ({left,right,relation:together|apart} for all distinct pairs), current (bool list matching members), mode inspect|propose. Empty/singleton groups allowed. Relation symmetry is explicit; no missing-pair defaults.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}

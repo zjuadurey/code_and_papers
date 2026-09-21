@@ -1,0 +1,41 @@
+{
+  "eligible": [
+    "item0",
+    "item1",
+    "item2",
+    "item3",
+    "item4"
+  ],
+  "windows": [
+    {
+      "id": "window",
+      "current": {
+        "ids": [],
+        "weight": 0,
+        "value": 0,
+        "feasible": true
+      },
+      "proposal": {
+        "ids": [
+          "item0",
+          "item4"
+        ],
+        "weight": 7,
+        "value": 8,
+        "feasible": true
+      },
+      "transfers": [
+        {
+          "id": "item0",
+          "offset": 0,
+          "length": 2
+        },
+        {
+          "id": "item4",
+          "offset": 2,
+          "length": 5
+        }
+      ]
+    }
+  ]
+}

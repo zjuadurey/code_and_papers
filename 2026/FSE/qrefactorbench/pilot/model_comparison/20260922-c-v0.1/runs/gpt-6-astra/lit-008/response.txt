@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-008",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "migration_family": null,
+  "plan": null,
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Produce every ordered eight-bit XOR receipt with exact population counts, optional deterministic outcome multiplicities, and cumulative modulo-256 checksums.",
+  "rationale": "No supported search or optimization region is justified. kernel.py:7-9 directly computes a fixed-width XOR and formats its already determined result; there is no unknown candidate to search for or objective to optimize. program.py:19-24 traverses all records because every receipt is required, not to select a satisfying record. Its dependencies are validated left/right values, row identifiers, mode, repetitions, and the preceding checksum initialized at program.py:18. Each iteration computes checksum = (checksum + value) % 256 and emits its own prefix checksum, so order and cumulative state must remain intact. program.py:9-17 must finish validation before receipt generation, retaining exact-field checks, non-Boolean integer bounds, positive repetitions, unique nonempty identifiers, and ValueError behavior from common.py:5-14 and 29-33. Both modes generate all receipts; only counts mode activates the exact {bitstring: repetitions} mapping. Repetitions is not a sampling budget or repeated computational workload. Empty input retains an empty receipt list and zero checksum. The nonmutating interface, eight-bit most-significant-first formatting, set-bit counts, complete return structure at program.py:25, and JSON CLI at program.py:28-29 must remain unchanged. Practical suitability is false for these supported migrations: this is direct fixed-width arithmetic plus mandatory full output, with no relevant search or optimization bottleneck. Benchmark support is unknown; the Qiskit task attribution is provenance, not performance, hardware, or migration validation evidence.",
+  "assumptions": [
+    "Assessment is limited to the supplied source and exact classical input/output contract.",
+    "Only unstructured search and combinatorial optimization are supported migration families."
+  ],
+  "risks": [
+    "Sampling outcomes or returning only selected records would violate exact multiplicities and complete ordered output.",
+    "Skipping computation in inspect mode or reordering receipts would violate receipt and prefix-checksum semantics.",
+    "Artificially encoding the known XOR result as a search target or optimization objective does not establish a justified opportunity."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "No required marked-state search exists. Validation predicates enforce input acceptance, while the receipt loop must emit all records. A finite eight-bit output space alone does not justify Grover search."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "There are no decision variables, competing feasible assignments, or optimization objective in the required computation. XOR and checksum arithmetic directly determine every output."
+    }
+  ]
+}

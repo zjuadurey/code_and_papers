@@ -1,0 +1,9 @@
+{
+  "case_id": "lit-009",
+  "title": "Named balance-system review",
+  "software_contract": "review(request) validates a dense square system then reports current residual. solve mode uses partial-pivoted elimination (largest absolute pivot, first index tie) and back substitution, raises ValueError on exact zero pivot or detected numerical overflow, and returns named float solution, deltas and proposed residual. inspect does not solve and need not reject a singular matrix. Residual vector is Ax-b. scaled_backward_error is its infinity norm divided by machine epsilon*(||A||inf*||x||inf+||b||inf)*n. Zero/zero is 0; nonzero/zero is null. within_requested_limit compares the proposed scaled diagnostic to caller residual_limit; not a quantum-semantic acceptance criterion. Empty system yields empty solution and zero residual. No mutation. This is a small serial Python program, not a compliant HPL performance run.",
+  "input_domain": "Exactly variables (distinct names), matrix (n rows of n finite real numbers), rhs/current (n finite numbers), residual_limit (finite nonnegative number), mode inspect|solve. Bool excluded from numbers. Computation uses Python binary64; values outside that range rejected; detected nonfinite results raise ValueError. No condition-number guarantee or bitwise match to a particular HPL installation.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}

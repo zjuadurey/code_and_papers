@@ -1,0 +1,271 @@
+{
+  "commands": [
+    {
+      "name": "lit-005",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1/cases/lit-005/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/lit-005.stdout.txt",
+      "stderr": "validation/lit-005.stderr.txt"
+    },
+    {
+      "name": "lit-006",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1/cases/lit-006/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/lit-006.stdout.txt",
+      "stderr": "validation/lit-006.stderr.txt"
+    },
+    {
+      "name": "lit-007",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1/cases/lit-007/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/lit-007.stdout.txt",
+      "stderr": "validation/lit-007.stderr.txt"
+    },
+    {
+      "name": "lit-008",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1/cases/lit-008/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/lit-008.stdout.txt",
+      "stderr": "validation/lit-008.stderr.txt"
+    },
+    {
+      "name": "lit-009",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1/cases/lit-009/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/lit-009.stdout.txt",
+      "stderr": "validation/lit-009.stderr.txt"
+    },
+    {
+      "name": "lit-010",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1/cases/lit-010/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/lit-010.stdout.txt",
+      "stderr": "validation/lit-010.stderr.txt"
+    },
+    {
+      "name": "methods",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1/test_methods.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/methods.stdout.txt",
+      "stderr": "validation/methods.stderr.txt"
+    },
+    {
+      "name": "quantum_methods",
+      "command": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1/test_quantum_methods.py"
+      ],
+      "exit_code": 1,
+      "stdout": "validation/quantum_methods.stdout.txt",
+      "stderr": "validation/quantum_methods.stderr.txt"
+    },
+    {
+      "name": "methods_after_numpy_fix",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1/test_methods.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/methods_after_numpy_fix.stdout.txt",
+      "stderr": "validation/methods_after_numpy_fix.stderr.txt"
+    },
+    {
+      "name": "quantum_methods_after_numpy_fix",
+      "command": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1/test_quantum_methods.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/quantum_methods_after_numpy_fix.stdout.txt",
+      "stderr": "validation/quantum_methods_after_numpy_fix.stderr.txt"
+    },
+    {
+      "name": "package",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1/test_package.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/package.stdout.txt",
+      "stderr": "validation/package.stderr.txt"
+    },
+    {
+      "name": "validate_new",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "pilot/reference_completion/v0.1/cases"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_new.stdout.txt",
+      "stderr": "validation/validate_new.stderr.txt"
+    },
+    {
+      "name": "summary_new",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "pilot/reference_completion/v0.1/cases",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/summary_new.stdout.txt",
+      "stderr": "validation/summary_new.stderr.txt"
+    },
+    {
+      "name": "core",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/core.stdout.txt",
+      "stderr": "validation/core.stderr.txt"
+    },
+    {
+      "name": "optional",
+      "command": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_optional.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/optional.stdout.txt",
+      "stderr": "validation/optional.stderr.txt"
+    },
+    {
+      "name": "validate_original",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_original.stdout.txt",
+      "stderr": "validation/validate_original.stderr.txt"
+    },
+    {
+      "name": "summary_original",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "cases/",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/summary_original.stdout.txt",
+      "stderr": "validation/summary_original.stderr.txt"
+    }
+  ],
+  "final_integrity_report": "validation/final_integrity.json",
+  "actual_method_fixture_results": "METHOD_RESULTS.json",
+  "unique_new_tests_passed": 81,
+  "initial_failures_retained": "quantum_methods: 2 failed / 3 passed; NumPy scalar compatibility fixed, same assertions pass"
+}

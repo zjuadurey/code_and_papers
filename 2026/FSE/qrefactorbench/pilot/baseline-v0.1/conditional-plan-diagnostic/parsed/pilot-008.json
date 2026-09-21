@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-008",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "For each input row in order, compute its total absolute magnitude, normalize every element (using 0.0 when the magnitude is zero), and materialize the requested number of distinct mutable list copies in row-major and copy order.",
+  "migration_family": null,
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The computation does not search a finite candidate domain for states satisfying a Boolean predicate. It must transform and return every input element in every requested copy, so a Grover-style search would not preserve the task structure or avoid complete classical output materialization."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "There are no binary decision variables, constraints, or optimization objective to encode as a QUBO or Ising model. Recasting deterministic normalization and copying as optimization would introduce an unrelated formulation without preserving exact semantics."
+    }
+  ],
+  "assumptions": [
+    "The complete nested output is consumed by the caller.",
+    "Each requested copy must be a distinct mutable list.",
+    "Row order, copy order, element values, and zero-magnitude behavior must be preserved.",
+    "No implicit output representation, lazy iterator, shared storage, or probabilistic approximation is permitted by the software contract."
+  ],
+  "risks": [
+    "A quantum proposal based only on the loop's growing runtime would mistake an output-materialization cost for a searchable or optimizable computational structure.",
+    "Quantum state encoding would not satisfy the requirement to return every normalized value as explicit classical data.",
+    "Measurement, data loading, and construction of distinct classical lists would retain costs proportional to the required output size.",
+    "Probabilistic or approximate normalization could violate the program's deterministic element-wise semantics."
+  ],
+  "rationale": "Lines 3-7 are the workload-growing hotspot, but they are a rejected hotspot rather than a supported quantumization candidate. The region performs element-wise arithmetic followed by mandatory full classical materialization. Neither unstructured search nor combinatorial optimization matches that computational intent. Moreover, the output contains every requested element and requires independent mutable copies, imposing unavoidable classical construction and output costs proportional to the result size. No benchmark evidence is supplied, so benchmark support remains unresolved rather than being inferred. The program should remain classical.",
+  "plan": null
+}

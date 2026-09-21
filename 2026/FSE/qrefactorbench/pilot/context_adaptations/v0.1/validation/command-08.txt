@@ -1,0 +1,3 @@
+VALID: 2 structurally valid cases
+warning: pilot/source_adaptations/v0.1/cases/lit-001/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: pilot/source_adaptations/v0.1/cases/lit-002/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth

@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "lit-008",
+  "title": "Ordered masking receipts",
+  "description": "review(request) validates all records first. For each input row compute the bitwise exclusive-or of left and right, encode exactly eight bits (most significant first), count set bits and update a running sum modulo 256. Return ordered receipts with id/bits/set_bits/counts/prefix_checksum plus record_count and final checksum. counts mode maps the one deterministic bitstring to repetitions; inspect uses null counts but still produces every receipt. Do not replace full output by a sample/aggregate. No mutation; invalid input raises ValueError. CLI reads/prints JSON.",
+  "source": "Source-task adaptation: Qiskit HumanEval qiskitHumanEval/53; arithmetic specification and three original examples. New synthetic classical program; source and changes documented in ADAPTATION.md.",
+  "source_url": "https://github.com/qiskit-community/qiskit-human-eval/blob/c98ba538239fcfd554aa89627ee8026f4b5de450/dataset/dataset_qiskit_test_human_eval.json",
+  "license": "NOASSERTION",
+  "domain": "source_adapted_synthetic_context",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "hard_negative",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "kernel.py",
+    "common.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "encode",
+      "start_line": 7,
+      "end_line": 9
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT classical contract tests; no quantum semantic threshold adopted.",
+    "config": {
+      "test_artifact": "test_program.py"
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+    ],
+    "limits": {}
+  },
+  "negative_reason": "Provisional scope/retention control for review; not an assertion that no conceivable quantum reformulation exists.",
+  "annotation_rationale": "DRAFT AI construction proposal, not ground truth. All scientific judgments remain null; category and span are review nominations only. A potentially rejected computation may still be nominated for WHERE.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "New synthetic classical application from an attributed problem or recurrence; not imported deployed software.",
+    "No quantum mapping, practical suitability or harder WHERE result established.",
+    "Classical tests support specified behavior on tested inputs, not complete migration correctness.",
+    "No new positive quantum families added."
+  ]
+}

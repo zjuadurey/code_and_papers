@@ -1,0 +1,18 @@
+{
+  "form_version": "phase1-v0",
+  "run_id": null,
+  "case_id": null,
+  "reviewer_id": null,
+  "prediction_artifact": null,
+  "prediction_sha256": null,
+  "reference_annotation_version": null,
+  "reference_annotation_status": null,
+  "task": null,
+  "observed_behavior": null,
+  "supporting_source_or_prediction_evidence": null,
+  "open_code": null,
+  "alternative_explanation": null,
+  "reference_uncertainty": null,
+  "human_judgments": {"candidate_acceptable": null, "intent_recognized": null, "contract_applicable": null},
+  "discussion_notes": null
+}

@@ -1,0 +1,21 @@
+{
+  "records": [
+    {
+      "id": "r0",
+      "left": 10,
+      "right": 20
+    },
+    {
+      "id": "r1",
+      "left": 61,
+      "right": 9
+    },
+    {
+      "id": "r2",
+      "left": 47,
+      "right": 8
+    }
+  ],
+  "repetitions": 1024,
+  "mode": "counts"
+}

@@ -1,0 +1,4 @@
+{
+  "code_snippet": "def clique_backtracking(n, edges):\\n    def is_clique(nodes):\\n        return all((u, v) in edges or (v, u) in edges for u in nodes for v in nodes if u != v)\\n    def backtrack(node, current_clique):\\n        if node == n:\\n            return current_clique\\n        if is_clique(current_clique + [node]):\\n            with_node = backtrack(node + 1, current_clique + [node])\\n            without_node = backtrack(node + 1, current_clique)\\n            return max(with_node, without_node, key=len)\\n        return backtrack(node + 1, current_clique)\\n    return backtrack(0, [])",
+  "labels": "3"
+}

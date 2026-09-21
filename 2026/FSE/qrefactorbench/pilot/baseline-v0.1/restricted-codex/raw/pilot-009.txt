@@ -1,0 +1,44 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "best_cost",
+      "start_line": 4,
+      "end_line": 12
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Validate the job and link data, compute the exact minimum cost over all binary left/right placements, and return that cost together with the original job names and job count. The placement itself need not be returned, but the reported cost must be exactly optimal and validation behavior must be preserved.",
+  "migration_family": "combinatorial_optimization",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": null,
+      "rationale": "The placement domain is finite, and a threshold predicate such as cost(mask) <= B is structurally conceivable. However, the program requires an exact minimum rather than a single predicate-search result, and no reversible cost oracle, threshold-search procedure, register widths, or probabilistic failure policy is supplied. Applicability therefore remains unresolved."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "Using x_i=1 for right and x_i=0 for left, the objective is a QUBO: sum_i(left_cost_i + (right_cost_i-left_cost_i)x_i) plus sum_(a,b,p) p(1-x_a-x_b+2x_a*x_b). There are no additional placement constraints because every binary assignment is valid. Decoding an assignment and classically recomputing its cost could preserve the interface, but the draft QAOA proposal does not ensure the required exact optimum."
+    }
+  ],
+  "assumptions": [
+    "Input validation and metadata report construction remain classical surrounding behavior.",
+    "No approximate or probabilistically incorrect cost may replace the exact minimum without a contract change."
+  ],
+  "risks": [
+    "QAOA sampling and parameter optimization provide no stated guarantee of finding the exact optimum required by the API.",
+    "Instance size, graph structure, coefficient magnitudes, and workload frequency are unspecified, so resource needs and any performance benefit cannot be evaluated.",
+    "Encoding arbitrary integer costs and penalties requires bounded register or coefficient precision that has not been specified.",
+    "State preparation, objective construction, classical parameter optimization, measurement, decoding, and exact classical verification may dominate execution.",
+    "Returning the lowest sampled cost would silently weaken exact semantics unless global optimality were independently established.",
+    "Validation exceptions, names, count, and empty-input behavior must remain consistent with the classical program."
+  ],
+  "rationale": "Lines 4-12 are an exponential exhaustive-search hotspot and admit a direct QUBO formulation, so they are structurally eligible for the combinatorial-optimization family. That structural fact is insufficient for migration: the contract requires the exact minimum cost, while the available QAOA-style draft contract supplies no exactness guarantee, approved error policy, resource bounds, benchmark evidence, or physical performance target. The validation and report-generation portions are required classical behavior rather than quantum candidates. The hotspot should therefore remain classical under the stated assumptions.",
+  "plan": null
+}

@@ -1,0 +1,40 @@
+{
+  "current": {
+    "groups": [
+      [
+        "a",
+        "b",
+        "c"
+      ],
+      []
+    ],
+    "score": -1,
+    "violated": [
+      [
+        "a",
+        "b"
+      ],
+      [
+        "b",
+        "c"
+      ]
+    ]
+  },
+  "proposed": {
+    "groups": [
+      [
+        "a",
+        "c"
+      ],
+      [
+        "b"
+      ]
+    ],
+    "score": 3,
+    "violated": []
+  },
+  "gain": 4,
+  "moves": [
+    "b"
+  ]
+}

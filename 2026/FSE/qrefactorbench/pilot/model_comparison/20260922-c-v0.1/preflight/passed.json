@@ -1,0 +1,22 @@
+{
+  "checks": [
+    {
+      "check": "login",
+      "exit_code": 0
+    },
+    {
+      "check": "features",
+      "exit_code": 0
+    },
+    {
+      "check": "gpt-5.6-sol",
+      "exit_code": 0
+    },
+    {
+      "check": "gpt-6-astra",
+      "exit_code": 0
+    }
+  ],
+  "model_inference_calls": 0,
+  "notes": "Generic built-in Codex instructions can remain; repository/private references absent."
+}

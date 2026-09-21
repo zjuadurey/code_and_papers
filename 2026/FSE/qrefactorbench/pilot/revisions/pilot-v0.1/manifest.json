@@ -1,0 +1,112 @@
+{
+  "cases": {
+    "pilot-001": {
+      "changed_fields": [
+        "title",
+        "execution_assumptions"
+      ],
+      "current_path": "cases/pilot/pilot-001/public_task.json",
+      "current_sha256": "34750c0ef49a12cb3f2bdadb55baf4da8678ecc0758fb6fcad3423bf4e1bf79e",
+      "original_path": "pilot/revisions/pilot-v0.1/original_public_tasks/pilot-001/public_task.json",
+      "original_sha256": "40a073445add8ec18796e94a69e88e2c3c030e4124480636c4df37783740d40f"
+    },
+    "pilot-002": {
+      "changed_fields": [
+        "execution_assumptions"
+      ],
+      "current_path": "cases/pilot/pilot-002/public_task.json",
+      "current_sha256": "ccbc2e37ce7972ae5077f457fc8909ef67bf6014e519a3396b0e079f8d2623da",
+      "original_path": "pilot/revisions/pilot-v0.1/original_public_tasks/pilot-002/public_task.json",
+      "original_sha256": "376cdcb7393f694e70abfbde4e0b72cbc624a31d910a437de73feb3ce2a973a7"
+    },
+    "pilot-003": {
+      "changed_fields": [
+        "title",
+        "execution_assumptions"
+      ],
+      "current_path": "cases/pilot/pilot-003/public_task.json",
+      "current_sha256": "946996b2fdf2b5b977fe2cc0751a6dd58e8b41a0390046917ef6ba647c1ee6ef",
+      "original_path": "pilot/revisions/pilot-v0.1/original_public_tasks/pilot-003/public_task.json",
+      "original_sha256": "29aa7fe3379df118ca4cbbdf4ae713a694037a419461dfcedbb5295bed4e692f"
+    },
+    "pilot-004": {
+      "changed_fields": [
+        "title"
+      ],
+      "current_path": "cases/pilot/pilot-004/public_task.json",
+      "current_sha256": "7cc4efc1e6796c2e5f710c10aef9e0dccff0cb2dacb8f0b4b95d19c144da83f6",
+      "original_path": "pilot/revisions/pilot-v0.1/original_public_tasks/pilot-004/public_task.json",
+      "original_sha256": "3f79b3761b186abdeaa18371d39a902f7a6bae7f464cfab7a39f97a5f35a240f"
+    },
+    "pilot-005": {
+      "changed_fields": [
+        "execution_assumptions"
+      ],
+      "current_path": "cases/pilot/pilot-005/public_task.json",
+      "current_sha256": "3946697e0224b2f6f439a10a043120620bdd0336c988d0b94338be1f44cc3511",
+      "original_path": "pilot/revisions/pilot-v0.1/original_public_tasks/pilot-005/public_task.json",
+      "original_sha256": "4ea9d40774f4ca47fd9b73d770b67784c86e3eb8c1584a9f5b1be25c077312a5"
+    },
+    "pilot-006": {
+      "changed_fields": [
+        "title",
+        "software_contract",
+        "execution_assumptions"
+      ],
+      "current_path": "cases/pilot/pilot-006/public_task.json",
+      "current_sha256": "a4f4fa6e31f935d40ff3658a1a9fd89463b78a9f42b5d7a957a38e9e33c09242",
+      "original_path": "pilot/revisions/pilot-v0.1/original_public_tasks/pilot-006/public_task.json",
+      "original_sha256": "daac2eccaf40edaadddf38d039d91abd4cb981c84693d4551f165df91109051a"
+    },
+    "pilot-007": {
+      "changed_fields": [
+        "title",
+        "execution_assumptions"
+      ],
+      "current_path": "cases/pilot/pilot-007/public_task.json",
+      "current_sha256": "232901ba909aac2062eab9cb0a7264ed5734bf7d9f4a03ba018346d15d0d83be",
+      "original_path": "pilot/revisions/pilot-v0.1/original_public_tasks/pilot-007/public_task.json",
+      "original_sha256": "505f14e9452c9bf617184248e846ee8b5afbf72b92ab9e7bec5fe6edd1524d12"
+    },
+    "pilot-008": {
+      "changed_fields": [
+        "execution_assumptions"
+      ],
+      "current_path": "cases/pilot/pilot-008/public_task.json",
+      "current_sha256": "f44729573c24341af4862ea7e796fa74388aaa51db66ee57f275669e1aec6c02",
+      "original_path": "pilot/revisions/pilot-v0.1/original_public_tasks/pilot-008/public_task.json",
+      "original_sha256": "dbdf69d6b4c8f1f037c8f390556f52d26e5aa26f5fd51bd5f4b9f49310e26be2"
+    },
+    "pilot-009": {
+      "changed_fields": [
+        "input_domain"
+      ],
+      "current_path": "cases/pilot/pilot-009/public_task.json",
+      "current_sha256": "72790e04859610dc6debba1bd36c32ac222512c1bbe7298a809cf6bc371f4d07",
+      "original_path": "pilot/revisions/pilot-v0.1/original_public_tasks/pilot-009/public_task.json",
+      "original_sha256": "571b0dc05c42fab888f7776f15ae83f1f9f10ec9a3d67fd211982d44cd24e795"
+    },
+    "pilot-010": {
+      "changed_fields": [
+        "title",
+        "execution_assumptions"
+      ],
+      "current_path": "cases/pilot/pilot-010/public_task.json",
+      "current_sha256": "9dce921248b8a6a42f5e3c9bfaa86c1a6f2636c62acfb484a636c16f5f3e135b",
+      "original_path": "pilot/revisions/pilot-v0.1/original_public_tasks/pilot-010/public_task.json",
+      "original_sha256": "6d839e0ad8612a6243aa8f5bb9780c72eddc92a72c374cd8262ca8d3b7e2b103"
+    }
+  },
+  "current_packets": "pilot/packets-v0.1",
+  "date": "2026-09-20",
+  "packet_format_version": "phase1-v0",
+  "packet_manifest_sha256": {
+    "adjudication": "441ce2464cfd027fb2334675a459a8d130e2240d361ec13e0d9858c5ea892f2f",
+    "annotator_a": "b4e4fd4cd1e997fac8f3f488ca030223f7176033ea0a4897dd75e8dcd2bc2b67",
+    "annotator_b": "b0973660cdda87cf1e02b3967ecc3d1f7da088073d88c566248e399258ea9082",
+    "baseline": "e14955a93faa59647e725cd907276698c9b88b44b7651fa8b73348d43079e51e"
+  },
+  "previous_packets": "pilot/packets",
+  "revision": "pilot-v0.1",
+  "scope": "Public prose/type correction only; all scientific annotations remain unchanged DRAFT."
+}

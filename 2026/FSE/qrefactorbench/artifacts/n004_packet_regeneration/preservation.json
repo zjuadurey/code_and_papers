@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "existing_files_checked": 704,
+  "unchanged_existing_files": 695,
+  "intentionally_changed_files": [
+    "CHANGELOG.md",
+    "NEXT_ACTIONS.md",
+    "PROJECT_STATUS.md",
+    "TODO.md",
+    "docs/research_log.md",
+    "docs/validation.md",
+    "pilot/baseline/README.md",
+    "qrefactorbench/pilot.py",
+    "tests/test_pilot_v01.py"
+  ],
+  "protected": "All other existing files unchanged, including cases, schemas, evaluator, prompts, both packet snapshots, raw/parsed outputs and metadata.",
+  "frozen_packet_file_count": 99,
+  "versioned_instructions_sha256": "26f26558a85b521c883e322ad2239d37a2456cd89f95b7e223db3288248acca8",
+  "experiment_manifest_entries_verified": {
+    "restricted-codex": 120,
+    "conditional-plan-diagnostic": 129
+  },
+  "local_links_checked": 58,
+  "markdown_fragments_checked": 8,
+  "model_calls": 0
+}

@@ -1,0 +1,78 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-005",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "complete",
+      "start_line": 10,
+      "end_line": 13
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "search_first_conforming_feature_assignment",
+    "migration_family": "unstructured_search",
+    "formulation": "Grover-style amplitude amplification over n-bit assignments x in {0,1}^n. The oracle marks x iff conforms(x, clauses, locked) is true, i.e. all locked equalities hold and every rule clause has at least one literal equal to x. Empty clauses are true. Repeated and contradictory literals are handled by the Boolean predicate exactly as classical conforms does. The classical contract additionally requires returning the first conforming assignment in feature order (False before True), or retaining current if it already conforms; this ordering is not directly provided by Grover and must be addressed separately.",
+    "input_encoding": "n qubits represent the Boolean feature vector. Clause and locked data are classical compile-time parameters embedded in the reversible oracle circuit; if parameterized loading is used, its qubit and gate costs must be included. Ancilla workspace is needed for literal equality tests, 3-way OR per clause, AND across clauses, and locked equality conjunction. No free data loading or coherent memory is assumed.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Measure the n decision qubits in the computational basis, decode the bitstring to a feature assignment, and classically verify conforms against the original clauses and locked map. A measured candidate must be verified before returning. The exact first-in-feature-order requirement is unresolved: simple Grover samples among marked states and does not guarantee the lexicographically first satisfying assignment. No-solution handling is also unresolved: if no assignment conforms, Grover may yield no marked outcome, and a separate quantum-counting or classical exhaustive no-solution policy is required to return unavailable with null proposal exactly as classical complete does.",
+    "assumptions": [
+      "Finite Boolean search space of size 2^n is explicitly representable.",
+      "The predicate conforms can be compiled into a reversible oracle with accounted ancillas.",
+      "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied.",
+      "Classical verification of any measured candidate is available.",
+      "Shots and error mitigation are sufficient to detect a marked state with a specified confidence, but no such threshold is supplied."
+    ],
+    "risks": [
+      "Exact ordering semantics (first conforming in feature order, False before True) are not preserved by straightforward Grover search.",
+      "No-solution case is not reliably distinguished by Grover alone without quantum counting or a classical exhaustive check.",
+      "Oracle construction and ancilla workspace may dominate resources for small n, where classical enumeration is already trivial.",
+      "Probabilistic measurement outcomes require repeated shots and classical post-selection; exactness is not guaranteed.",
+      "No workload, size cap, hardware or advantage evidence is provided; practical speedup is unsubstantiated.",
+      "Locked constraints and empty rules must be preserved exactly; any penalty-based encoding could alter semantics."
+    ],
+    "expected_resource_characteristics": {
+      "decision_qubits": "n",
+      "ancilla_qubits": "O(number_of_clauses + number_of_literals + locked_constraints)",
+      "oracle_calls": "O(sqrt(2^n / k)) for k conforming assignments if k is known or estimated; no free data loading",
+      "depth": "Oracle depth scales with clause count and literal evaluation plus uncomputation; exact depth not specified",
+      "measurements": "Multiple shots needed; no shot count or probability threshold supplied",
+      "classical_overhead": "Compilation of clauses/locked into oracle, parameter optimization if any, and classical verification of measured candidates"
+    },
+    "rationale": "kernel.complete is a finite exhaustive search over Boolean assignments for the first vector satisfying conforms. This matches the structural shape of unstructured search: finite domain, pure Boolean predicate, reversible oracle possible. However, the classical contract's exact ordering, no-solution semantics, and lack of any size/workload/advantage evidence make practical quantumization unsupported. This plan is conditional and does not recommend adoption."
+  },
+  "rationale": "The search candidate is kernel.py lines 10-13, function complete. It enumerates product((False, True), repeat=size) and returns the first list satisfying conforms, or None. The predicate dependency is kernel.py lines 5-7, function conforms: it checks all locked equalities and all clauses, with each clause true if any literal matches; empty rules are true. program.py lines 37-41 activate this search only when mode is complete and current does not already conform; if current conforms, retained is returned and no search is performed. program.py lines 31-32 compute failed_rules and locked_failures in input feature/rule order before any completion; program.py lines 42-45 set status, proposal, and changes in feature order. Any migration must preserve exact ordering (first conforming in feature order, False before True), exact no-solution semantics (unavailable with null proposal), retained behavior, failed_rules and locked_failures ordering, and all ValueError behavior. Structurally, the search is a finite Boolean domain with a pure Boolean predicate, so structural eligibility is true and a conditional Grover-style plan is required. Practically, exact ordering and no-solution handling are not naturally preserved by Grover, and no workload, size cap, hardware, encoding-cost, or advantage evidence is supplied, so practical suitability is false. Benchmark support is null: the only supplied provenance is an attribution to QuanBench task 03 and QuanBench+ Qiskit task 03, with no independent benchmark results, resource data, or advantage evidence. The decision is REMAIN_CLASSICAL; the included plan is conditional planning material, not a recommendation to deploy.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Search for the first Boolean feature assignment that satisfies all named rules and locked feature constraints, preserving exact feature order, no-solution semantics, and existing report ordering.",
+  "assumptions": [
+    "Finite Boolean search space of size 2^n is explicitly representable.",
+    "The predicate conforms can be compiled into a reversible oracle with accounted ancillas.",
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied.",
+    "Classical verification of any measured candidate is available."
+  ],
+  "risks": [
+    "Exact ordering (first conforming in feature order, False before True) is not preserved by straightforward Grover search.",
+    "No-solution detection requires quantum counting or a classical exhaustive check, which may erase any speedup.",
+    "Oracle and ancilla overhead may dominate for small n, where classical enumeration is already trivial.",
+    "No workload, size cap, hardware or advantage evidence is provided; practical speedup is unsubstantiated.",
+    "Locked constraints, empty rules, repeated literals, and contradictions must be preserved exactly."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Finite Boolean domain and pure predicate conforms are explicitly representable; a reversible oracle can be constructed in principle. Exact ordering and no-solution handling remain unresolved."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "Constraints can be encoded as penalty terms and the lexicographic first-solution requirement as weighted objective terms, but penalty sufficiency, coefficient scaling, and exactness under QAOA are unresolved. This is a structural possibility, not a validated exactness-preserving formulation."
+    }
+  ]
+}

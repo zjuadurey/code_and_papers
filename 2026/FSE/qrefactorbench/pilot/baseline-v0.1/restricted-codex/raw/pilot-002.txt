@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-002",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Sequentially consume every event, update a rolling SHA-256 digest from the previous digest and current event, invoke the host audit callback exactly once per event in input order with each observable intermediate digest, propagate callback exceptions according to ordinary Python execution, and return the final digest.",
+  "migration_family": null,
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The program performs no search over a finite candidate domain and defines no pure Boolean predicate or marked state. Its core recurrence and required ordered callback effects cannot be represented as a Grover-style predicate search without changing the task."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The program contains no binary decision variables, objective function, constraints, or optimization requirement. Encoding its deterministic ordered digest computation as a QUBO would not satisfy the contract's intended optimization structure and would not preserve exact semantics through approximate QAOA execution."
+    }
+  ],
+  "assumptions": [
+    "SHA-256 has the behavior supplied by Python's hashlib implementation.",
+    "Each audit invocation and intermediate digest is externally observable.",
+    "If audit raises, processing terminates at that event and the exception propagates.",
+    "No relaxation of digest equality, event ordering, callback count, or callback ordering is permitted."
+  ],
+  "risks": [
+    "Parallelizing or reordering digest updates would violate the dependency of each digest on its predecessor.",
+    "Deferring, batching, duplicating, or omitting audit calls would change externally visible behavior.",
+    "Probabilistic or approximate quantum output would violate the exact digest requirement.",
+    "Quantum data preparation, reversible SHA-256 construction, measurement, and classical verification would add unquantified overhead without creating a supported search or optimization formulation."
+  ],
+  "rationale": "Lines 7-9 may be a runtime hotspot for a long event list, but they are a mandatory sequential recurrence with an observable classical side effect after every update, not a supported quantumization candidate. Every iteration depends on the preceding digest, every intermediate value must be supplied to audit in order, and audit may raise. Neither unstructured search nor combinatorial optimization matches this computation. There is no supplied benchmark evidence, so benchmark support remains unknown rather than being inferred.",
+  "plan": null
+}

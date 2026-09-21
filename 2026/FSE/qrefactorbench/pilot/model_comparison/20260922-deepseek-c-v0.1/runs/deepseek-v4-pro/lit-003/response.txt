@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-003",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "agenda.py",
+      "function": "complete",
+      "start_line": 28,
+      "end_line": 57
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "lexicographic-agenda-completion",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Binary QUBO/Ising over variables x_{v,s}, where session v in 0..n-1 and declared slot index s in 0..m-1. Objective: minimize sum_v W_v * sum_s s*x_{v,s}, with W_v chosen such as (m+1)^(n-v) so earlier sessions dominate later sessions lexicographically. Constraints: for each session exactly one slot, penalty lambda * (sum_s x_{v,s}-1)^2; for each participant-conflict edge (u,v) and each slot s, penalty mu * x_{u,s}*x_{v,s}. If n>0 and slot_count=0, handle as classical infeasible because no slot assignments exist. Lambda/mu must be proven large enough to make constraint violation strictly worse than any feasible lexicographic objective saving; this proof is unresolved.",
+    "input_encoding": "Encode n*slot_count binary variables. If using Ising, use the mapping x=(1-Z)/2 and account for constants. The already computed conflict matrix/neighbors from catalog.relations must be loaded as quadratic coefficients. Slot-name validation, participant validation, preview construction, describe, and moves remain classical and outside the candidate region.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Classically decode sampled bits to an assignment, reject infeasible or non-one-hot bitstrings, verify all conflict constraints, then convert indices to slot names through the existing describe and moves logic. Only accept a decoded result if it is guaranteed to be the exact lexicographically smallest feasible arrangement; otherwise restore the deterministic classical complete path. If the input is infeasible, exact no-solution certification is required before raising ValueError so review_agenda reports status unavailable with proposed null.",
+    "assumptions": [
+      "The region is entered only after prepare/relations have validated and converted the request to integer conflict data.",
+      "n and slot_count are finite, so a finite binary encoding exists.",
+      "Exact lexicographic weights and constraint penalty coefficients can be represented with sufficient numerical precision.",
+      "All surrounding behavior in program.py, preview, describe, and moves remains intact and classical."
+    ],
+    "risks": [
+      "QAOA-style sampling is probabilistic and does not guarantee finding the global optimum or exact lexicographic minimum.",
+      "QAOA cannot provide a deterministic infeasibility certificate, so unavailable cannot be safely emitted without an additional exact infeasibility proof.",
+      "Large lexicographic and penalty weights may cause ill-conditioned QAOA optimization and precision problems.",
+      "Resource cost scales as n*slot_count variables and up to O(n^2*slot_count) conflict terms, with no supplied evidence of quantum advantage.",
+      "A decoded feasible arrangement may still be lexicographically incorrect unless the exact optimum is independently certified."
+    ],
+    "expected_resource_characteristics": {
+      "variables": "n * slot_count",
+      "quadratic_penalty_terms": "O(n^2 * slot_count) worst-case conflict terms plus one-hot terms",
+      "notes": "QAOA depth, repetition count, and outer classical optimizer cost are unresolved; they may exceed the classical backtracking cost for ordinary agenda sizes."
+    },
+    "rationale": "Conditional formulation only: the graph-coloring completion problem is structurally representable as QUBO/Ising, but the known QAOA execution model does not preserve the required deterministic lexicographic minimum, no-solution ValueError semantics, and exact output contract, so this plan is not adopted."
+  },
+  "rationale": "The selected region is agenda.complete, the backtracking solver invoked only when mode=complete, current is not feasible, and preview has already raised ValueError. Evidence: agenda.py lines 28-57 implement exhaustive slot assignment over a participant-conflict graph; program.py lines 28-29 call complete and turn a ValueError into status unavailable. The region depends on neighbors and slot_count, not on any choices from the blocked preview; preview failure imposes no fixed assignments. It must preserve the lexicographically smallest slot-index vector, raise ValueError when no arrangement exists, and leave the existing preview-retained/current-feasible paths unchanged. This finite coloring problem is structurally expressible as a QUBO/Ising with weighted lexicographic objective and one-hot/edge-conflict penalties, so structural eligibility is true. Practical suitability is false because QAOA-style output is probabilistic, exact infeasibility is not certified, penalty/objective weights can be ill-conditioned, and there is no supplied workload or advantage evidence. Benchmark support is treated as true only at the generic family level because combinatorial_optimization/QUBO is in the shared draft contracts; it is not adoption approval. The deterministic classical backend is therefore retained.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": true,
+  "computational_intent": "Find the lexicographically smallest slot-index vector satisfying one-session-per-declared-slot and pairwise participant-conflict restrictions, or certify that no arrangement exists, while preserving preview and current-feasible behavior.",
+  "assumptions": [
+    "The request has already passed all validation in catalog.prepare.",
+    "The conflict graph is already computed by catalog.relations.",
+    "Preview and current-feasible paths remain classical and unchanged.",
+    "Any quantumized complete replacement would have to preserve deterministic exactness and no-solution handling."
+  ],
+  "risks": [
+    "Approximate QAOA/QUBO decoding may return an infeasible or non-lexicographically-smallest assignment.",
+    "No-solution certification is unresolved for quantum statistical semantics.",
+    "Large penalty weights and lexicographic weights may exceed practical precision.",
+    "No execution-frequency, hardware, or latency data are supplied to justify quantumization over the existing backtracking implementation."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The complete region is not a pure marked-state existence search: it must return the lexicographically smallest slot-index vector and raise ValueError only when no arrangement exists. Grover-style predicate search as drafted does not specify exact minimum extraction or an exact no-solution decision policy, so it is not selected."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The finite coloring problem can be explicitly represented with binary slot-assignment variables, one-hot and conflict penalties, and a weighted lexicographic objective. This is formulation-level applicability only; QAOA exactness, infeasibility certification, and coefficient settings remain unresolved, which is why practical suitability is false and the decision remains classical."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-001",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "satisfies",
+      "start_line": 1,
+      "end_line": 6
+    },
+    {
+      "file": "program.py",
+      "function": "has_assignment",
+      "start_line": 9,
+      "end_line": 13
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Decide exactly whether any of the 2^n Boolean assignments satisfies every supplied clause, returning a classical Boolean. The empty clause must make the result false, an empty clause list must make it true, and no witness assignment or other side effect is required.",
+  "migration_family": "unstructured_search",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Assignments form a finite basis-state domain and satisfies is a pure Boolean predicate, so the exhaustive loop has a structural Grover-style formulation. Actual conformity would still require a reversible clause predicate, explicit loading or encoding of all clause data and workspace costs, classical verification of measured assignments, and a justified bounded-error or exact no-solution policy preserving the Boolean contract."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": null,
+      "rationale": "SAT can potentially be reduced to a binary penalty objective, possibly with auxiliary variables for clauses, but no QUBO coefficients, auxiliary-variable construction, or sufficient penalty bounds are supplied. Moreover, a QAOA sample that fails to find a satisfying assignment does not establish unsatisfiability, so preservation of the exact existence decision is unresolved."
+    }
+  ],
+  "assumptions": [
+    "The literal validation stated by the input domain occurs outside these functions or all inputs already satisfy it.",
+    "Clause data is available only classically and its coherent representation is not free.",
+    "No preloaded quantum memory, fault-tolerant resource budget, error policy, or measured practical advantage is available.",
+    "The required return value is an exact Boolean decision under the stated software contract."
+  ],
+  "risks": [
+    "A reversible predicate must evaluate every relevant clause and literal coherently, uncompute temporary state, and account for clause storage, indexing, and workspace.",
+    "Grover-style search reduces ideal predicate-query count but does not by itself show an end-to-end advantage once oracle construction, data loading, repetitions, measurement, and classical verification are included.",
+    "Unknown solution count complicates amplitude-amplification scheduling.",
+    "An unsuccessful probabilistic search cannot silently be returned as proof of unsatisfiability.",
+    "The edge cases n = 0, an empty clause, and an empty clause list must retain their current exact semantics.",
+    "A QAOA or QUBO alternative could weaken exact satisfiability into heuristic optimization unless global-optimum and no-solution guarantees are independently supplied."
+  ],
+  "rationale": "Lines 9-13 are an exponential exhaustive-search hotspot, and lines 1-6 provide the predicate needed for a structural Grover-style proposal. That establishes structural eligibility but not practical suitability. The clauses are classical variable-sized data, so coherent representation and reversible predicate construction may dominate the idealized query reduction. The program must also distinguish satisfiable from unsatisfiable instances exactly, while ordinary Grover-style execution is probabilistic and needs an explicitly justified no-solution procedure. With no resource estimates, implementation, scale distribution, benchmark evidence, or measured end-to-end benefit, quantumization is not supported. The hotspot is therefore a rejected quantumization candidate rather than sufficient evidence for migration.",
+  "plan": null
+}

@@ -1,0 +1,44 @@
+{
+  "item_count": 3,
+  "capacity": 5,
+  "current": {
+    "selected": [
+      "image",
+      "index"
+    ],
+    "used": 8,
+    "priority": 11,
+    "feasible": false,
+    "remaining_capacity": -3
+  },
+  "proposed": {
+    "selected": [
+      "notes",
+      "index"
+    ],
+    "used": 5,
+    "priority": 9,
+    "feasible": true,
+    "remaining_capacity": 0
+  },
+  "changes": {
+    "add": [
+      "notes"
+    ],
+    "remove": [
+      "image"
+    ]
+  },
+  "manifest": [
+    {
+      "item_id": "notes",
+      "offset": 0,
+      "length": 3
+    },
+    {
+      "item_id": "index",
+      "offset": 3,
+      "length": 2
+    }
+  ]
+}

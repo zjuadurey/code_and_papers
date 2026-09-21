@@ -1,0 +1,75 @@
+{
+  "date": "2026-09-21",
+  "status": "PASS",
+  "model_calls": 0,
+  "qpu_calls": 0,
+  "scientific_review_status": "PENDING",
+  "labels_are_gold": false,
+  "checks": [
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "pilot/provisional_labels/v0.1/test_labels.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/test_labels.stdout.txt",
+      "stderr": "validation/test_labels.stderr.txt",
+      "passed": 24
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_evaluation.py",
+        "tests/test_pilot.py"
+      ],
+      "exit_code": 0,
+      "passed": 33,
+      "observed_stdout_summary": "33 passed in 2.25s",
+      "record": "Observed tool execution in this session; no separate raw log captured."
+    }
+  ],
+  "protected_artifacts": {
+    "checked": 1308,
+    "changed": [],
+    "hashes": "validation/protected_before.json"
+  },
+  "coverage": {
+    "mother_cases": 10,
+    "input_conditions": 30,
+    "structural_yes": 7,
+    "structural_no": 0,
+    "structural_unresolved": 3,
+    "practical_known": 0,
+    "individual_human_reviews": 0
+  },
+  "limits": [
+    "Finite small-instance mapping witnesses are not full contract proofs.",
+    "Synthetic responses test diagnostics, not actual model discrimination.",
+    "No overall task pass definition or automatic HOW correctness scoring.",
+    "Unknown controls do not measure structural negative-class recognition.",
+    "No full repository or optional-Qiskit rerun; focused existing evaluator/pilot regression only."
+  ],
+  "documentation": {
+    "checked_documents": [
+      "PROJECT_STATUS.md",
+      "NEXT_ACTIONS.md",
+      "DECISIONS.md",
+      "CHANGELOG.md",
+      "TODO.md",
+      "docs/annotation_guidelines.md",
+      "docs/research_log.md",
+      "pilot/provisional_labels/v0.1/README.md"
+    ],
+    "local_link_targets_checked": 143,
+    "missing": [],
+    "anchors_and_remote_urls_checked": false
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "dataset": "boshuai1/c2q-dataset",
+  "revision": "c5b457cf425c31e91bae829503ece6e92646dd0a",
+  "csv_url": "https://huggingface.co/datasets/boshuai1/c2q-dataset/resolve/c5b457cf425c31e91bae829503ece6e92646dd0a/python_programs.csv",
+  "csv_sha256": "7592e3dc879df65f16bc6c58baf9bc5db53e4f89e49751ab986a4702b682e2bd",
+  "row_count": 434,
+  "row_numbering": "1-based data rows, excluding header",
+  "source_license": "CC-BY-4.0",
+  "selection": {
+    "lit-001": {
+      "data_row": 164,
+      "original_function": "maxcut_bruteforce",
+      "original_label": "0",
+      "original_field_sha256": "0a7dfe7f5b1e4ba68085ca1b2e49bdccdad785531ba7dd5a42bfbfa2b61f8bbd",
+      "decoded_sha256": "205ac18af456b35058566f266018a0600796829714bab7da6e9830f25876dc15",
+      "kernel_sha256": "2aa73675fc76452d16d2a016675e6367c3048d59fac893a9a9de846ffbd9f499",
+      "normalization": "literal \\n to newline only; function body unchanged; demo removed"
+    },
+    "lit-002": {
+      "data_row": 427,
+      "original_function": "min_vertex_cover_bruteforce",
+      "original_label": "9",
+      "original_field_sha256": "8bde38b8cb486ca1a56f2b95709fbab4e1709fdc951d42b8ec233b1a63219dc6",
+      "decoded_sha256": "ca0d3bb4edd9885e5bd1e713ef59642d774c0c3ef83f1b7ad8395d9adff2adeb",
+      "kernel_sha256": "70a4f423fd3f5c41ff6062469044a161d980398918be68422b05099c8ac886bf",
+      "normalization": "literal \\n to newline only; function body unchanged; demo removed"
+    }
+  },
+  "files_sha256": {
+    "DATASET_CARD.md": "a1a4266849997691233c4aaf060f5ab1946ce8e8853180d297cb7289b7006b5a",
+    "lit-001.row.json": "9a4679f9d2dad0b6809e19969e73f107ce85414710e64145bfee7834e823b2ca",
+    "lit-001.decoded.py": "205ac18af456b35058566f266018a0600796829714bab7da6e9830f25876dc15",
+    "lit-001.kernel.py": "2aa73675fc76452d16d2a016675e6367c3048d59fac893a9a9de846ffbd9f499",
+    "lit-002.row.json": "1bb09e588d7e86b19e02e832bcbfa67040db303f4b08ef2c51426bd12aca9a3f",
+    "lit-002.decoded.py": "ca0d3bb4edd9885e5bd1e713ef59642d774c0c3ef83f1b7ad8395d9adff2adeb",
+    "lit-002.kernel.py": "70a4f423fd3f5c41ff6062469044a161d980398918be68422b05099c8ac886bf"
+  }
+}

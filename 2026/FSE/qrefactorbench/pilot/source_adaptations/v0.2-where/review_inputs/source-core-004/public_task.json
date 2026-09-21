@@ -1,0 +1,7 @@
+{
+  "case_id": "source-core-004",
+  "title": "Pair-compatible subsets under two selection policies",
+  "software_contract": "clique_greedy(n,edges) scans vertices in ascending order and adds each vertex if it is adjacent to every vertex already selected, returning a set. It need not return the largest subset. clique_bitmask(n,edges) returns a list of increasing indices for a pair-adjacent subset of greatest cardinality; among ties it chooses the smallest sum(2**i) over selected indices. Either orientation of an edge counts, and duplicates do not change the relation. Empty graph with n=0 gives an empty result; with n>0 and no edges the exact result is [0]. No mutation, no extra invalid-input validation obligation.",
+  "input_domain": "n is a nonnegative Python int, not bool. edges is a finite list of two-tuples of distinct integer vertex indices in 0..n-1; bool indices are excluded. Repeated/reversed edges are allowed. No numeric count cap is introduced by this view.",
+  "execution_assumptions": ["Ordinary classical inputs. Preserve the requested selection policy, not just pair compatibility.", "No workload, hardware budget, encoding cost or benefit evidence is provided."]
+}

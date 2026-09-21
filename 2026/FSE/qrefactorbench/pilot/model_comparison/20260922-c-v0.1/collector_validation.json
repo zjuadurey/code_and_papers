@@ -1,0 +1,13 @@
+{
+  "synthetic_only": true,
+  "checks": [
+    {
+      "scenario": "valid complete population scored",
+      "passed": true
+    },
+    {
+      "scenario": "invalid response preserved; no partial score",
+      "passed": true
+    }
+  ]
+}

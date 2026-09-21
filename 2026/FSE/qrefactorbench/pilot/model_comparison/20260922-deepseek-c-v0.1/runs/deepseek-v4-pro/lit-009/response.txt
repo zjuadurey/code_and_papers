@@ -1,0 +1,44 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 9,
+      "end_line": 26
+    }
+  ],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "The nominated solve region is the main computational core and was analyzed for selective quantumization. It performs dense Gaussian elimination with partial pivoting: for each column it selects the largest absolute pivot with first-index tie behavior (line 13), swaps rows, eliminates below, and back-substitutes; an exact zero pivot raises ValueError on lines 14-15, and detected non-finite x raises ValueError on lines 24-25. These required effects, finite-number validation, mode activation for solve only, empty-system behavior, deterministic tie ordering, and overflow/singular exception semantics must remain intact. The computation is continuous binary64 linear algebra, not a finite-domain Boolean predicate search or a binary-variable QUBO/Ising problem. The only search-like operation is an argmax over floating-point values, which would require a global maximum/argmax predicate or precomputed target rather than a naturally marked unstructured-search predicate. A QUBO/Ising mapping would require discretizing real variables and could not preserve exactness, exceptions, or residual diagnostics. Therefore no supported migration family is structurally eligible.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Deterministic dense numerical linear algebra: validate a named square system, optionally solve Ax=b via partial-pivoted elimination and back substitution, and compute named residual-vector diagnostics with scaled backward error.",
+  "assumptions": [
+    "Only the supplied draft contracts apply: grover-predicate-v0 and qubo-ising-v0; quantum linear-system solvers such as HHL are out of scope.",
+    "Classical semantics, deterministic pivoting/tie behavior, exact exceptions, finite-number checks, and no-mutation behavior must be preserved in any migration.",
+    "Inputs are dense finite real numbers, not binary decision variables or a finite marked-item database.",
+    "No quantum resource, encoding-cost, or advantage evidence is supplied for this small serial program."
+  ],
+  "risks": [
+    "Treating pivot selection as Grover search would require an exact argmax/max oracle or classical precomputation and could alter deterministic first-index tie behavior.",
+    "Reformulating Ax=b as QUBO/Ising would require a lossy binary encoding of real variables, violating exact solution and exception semantics.",
+    "Any quantum replacement of solve would still need surrounding review/residual checks, scaled_backward_error denominator rules, and ValueError behavior intact.",
+    "The program is small and serial, so quantum data loading, oracle construction, measurement, and decoding overhead could dominate any search step."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "No natural finite-domain pure Boolean predicate search exists. The pivot argmax is a numeric maximum/ordering operation, not a pre-marked unstructured search; a Grover oracle would rely on a global maximum or precomputed target, and exact tie/error semantics are not naturally captured by a marked-state predicate-search contract."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The matrix/vector variables are continuous finite real numbers, not binary decision variables. There is no QUBO/Ising objective or constraint penalty that preserves exact dense solve, singular/overflow exceptions, and residual diagnostic semantics."
+    }
+  ]
+}

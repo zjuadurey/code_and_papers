@@ -1,0 +1,71 @@
+{
+  "version": "0.3.0",
+  "new_pairs": [
+    {
+      "context_id": "context-005",
+      "core_id": "core-005",
+      "source_path": "cases/pilot/pilot-007/program.py",
+      "source_sha256": "60bf573573754e5cfc840ce8e6dc6e7d4081c7da3dcfbc9f1b74cd11e8c62a21",
+      "reused_function": "has_total",
+      "source_origin": "Original synthetic program authored with Codex assistance for the requested Phase-1 pilot on 2026-09-18. No independent researcher authorship or review is claimed; not copied from an external repository.",
+      "source_url": null,
+      "source_license": "NOASSERTION",
+      "new_code_license": "NOASSERTION",
+      "synthetic": true,
+      "codex_assisted": true,
+      "external_source": null,
+      "method_reference": "Existing four reference groups provide the case-construction and testing pattern; no new literature provenance claimed.",
+      "core_context_domain_relation": "Positive units and nonnegative target after site/held filtering; core also accepts signed values."
+    },
+    {
+      "context_id": "context-006",
+      "core_id": "core-006",
+      "source_path": "cases/pilot/pilot-006/program.py",
+      "source_sha256": "d1895555a136ee69daef2769991310c6729af33defeae08966ff142c295b8798",
+      "reused_function": "minimum_energy",
+      "source_origin": "Original synthetic program authored with Codex assistance for the requested Phase-1 pilot on 2026-09-18. No independent researcher authorship or review is claimed; not copied from an external repository.",
+      "source_url": null,
+      "source_license": "NOASSERTION",
+      "new_code_license": "NOASSERTION",
+      "synthetic": true,
+      "codex_assisted": true,
+      "external_source": null,
+      "method_reference": "Existing four reference groups provide the case-construction and testing pattern; no new literature provenance claimed.",
+      "core_context_domain_relation": "Named components plus constant base charge; context excludes self-adjustments but core supports them."
+    },
+    {
+      "context_id": "context-007",
+      "core_id": "core-007",
+      "source_path": "pilot/reference_cases/v0.3/cores/core-007.py",
+      "source_sha256": "ef28904872112229049992b6a4d454dc96580b9b48ddbbeedea73eca8a27108b",
+      "reused_function": "select_items",
+      "source_origin": "New Codex-assisted synthetic archive selection kernel.",
+      "source_url": null,
+      "source_license": "NOASSERTION",
+      "new_code_license": "NOASSERTION",
+      "synthetic": true,
+      "codex_assisted": true,
+      "external_source": null,
+      "method_reference": "Existing four reference groups provide the case-construction and testing pattern; no new literature provenance claimed.",
+      "core_context_domain_relation": "Same positive size/nonnegative value domain; context validates names, evaluates current and emits manifest."
+    },
+    {
+      "context_id": "context-008",
+      "core_id": "core-008",
+      "source_path": "cases/pilot/pilot-008/program.py",
+      "source_sha256": "81ee2cc29ce9ba6fb717621831fdf6abe763584438751f8dc8cedcf127bebcbc",
+      "reused_function": "materialize",
+      "source_origin": "Original synthetic program authored with Codex assistance for the requested Phase-1 pilot on 2026-09-18. No independent researcher authorship or review is claimed; not copied from an external repository.",
+      "source_url": null,
+      "source_license": "NOASSERTION",
+      "new_code_license": "NOASSERTION",
+      "synthetic": true,
+      "codex_assisted": true,
+      "external_source": null,
+      "method_reference": "Existing four reference groups provide the case-construction and testing pattern; no new literature provenance claimed.",
+      "core_context_domain_relation": "Rectangular labelled rows in context; core also accepts ragged rows."
+    }
+  ],
+  "annotation_status": "DRAFT",
+  "notes": "Source function identity is engineering provenance, not quantum eligibility or independent problem evidence."
+}

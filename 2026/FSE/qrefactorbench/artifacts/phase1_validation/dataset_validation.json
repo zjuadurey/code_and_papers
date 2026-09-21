@@ -1,0 +1,76 @@
+{
+  "case_count": 14,
+  "issues": [
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/negatives/toy_audit/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/negatives/toy_normalize/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/optimization/toy_max_cut/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/pilot/pilot-001/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/pilot/pilot-002/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/pilot/pilot-003/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/pilot/pilot-004/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/pilot/pilot-005/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/pilot/pilot-006/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/pilot/pilot-007/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/pilot/pilot-008/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/pilot/pilot-009/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/pilot/pilot-010/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "cases/search/toy_search/case.json",
+      "severity": "warning"
+    }
+  ],
+  "valid": true
+}

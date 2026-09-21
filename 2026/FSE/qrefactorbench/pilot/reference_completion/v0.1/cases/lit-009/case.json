@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "lit-009",
+  "title": "Named balance-system review",
+  "description": "review(request) validates a dense square system then reports current residual. solve mode uses partial-pivoted elimination (largest absolute pivot, first index tie) and back substitution, raises ValueError on exact zero pivot or detected numerical overflow, and returns named float solution, deltas and proposed residual. inspect does not solve and need not reject a singular matrix. Residual vector is Ax-b. scaled_backward_error is its infinity norm divided by machine epsilon*(||A||inf*||x||inf+||b||inf)*n. Zero/zero is 0; nonzero/zero is null. within_requested_limit compares the proposed scaled diagnostic to caller residual_limit; not a quantum-semantic acceptance criterion. Empty system yields empty solution and zero residual. No mutation. This is a small serial Python program, not a compliant HPL performance run.",
+  "source": "Source-task adaptation: HPL Algorithm: row partial pivoting and Checking the Solution normalized backward error. New synthetic classical program; source and changes documented in ADAPTATION.md.",
+  "source_url": "https://www.netlib.org/benchmark/hpl/algorithm.html",
+  "license": "NOASSERTION",
+  "domain": "source_adapted_synthetic_context",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "hard_negative",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "kernel.py",
+    "common.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 9,
+      "end_line": 26
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT classical contract tests; no quantum semantic threshold adopted.",
+    "config": {
+      "test_artifact": "test_program.py"
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+    ],
+    "limits": {}
+  },
+  "negative_reason": "Provisional scope/retention control for review; not an assertion that no conceivable quantum reformulation exists.",
+  "annotation_rationale": "DRAFT AI construction proposal, not ground truth. All scientific judgments remain null; category and span are review nominations only. A potentially rejected computation may still be nominated for WHERE.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "New synthetic classical application from an attributed problem or recurrence; not imported deployed software.",
+    "No quantum mapping, practical suitability or harder WHERE result established.",
+    "Classical tests support specified behavior on tested inputs, not complete migration correctness.",
+    "No new positive quantum families added."
+  ]
+}

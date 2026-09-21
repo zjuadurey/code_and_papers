@@ -1,0 +1,32 @@
+{
+  "utc": "2026-09-20T18:48:30.805918+00:00",
+  "scope": "Documentation-only; no new case manifest or evaluator change",
+  "protected_count": 820,
+  "protected_changed": [],
+  "local_links_checked": 153,
+  "missing_links": [],
+  "ratio_checks": [
+    {
+      "fixture": "path_16",
+      "total_weight": 45,
+      "returned_conflict": 4,
+      "optimal_conflict": 0,
+      "absolute_gap": 4,
+      "satisfied_quality_fraction": "41/45",
+      "acceptance_threshold": null,
+      "approximate_semantic_acceptance": null
+    },
+    {
+      "fixture": "dense_16",
+      "total_weight": 360,
+      "returned_conflict": 141,
+      "optimal_conflict": 136,
+      "absolute_gap": 5,
+      "satisfied_quality_fraction": "219/224",
+      "acceptance_threshold": null,
+      "approximate_semantic_acceptance": null
+    }
+  ],
+  "tests_rerun": false,
+  "solver_model_qpu_runs": 0
+}

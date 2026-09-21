@@ -1,0 +1,12 @@
+{
+  "annotation_state": "blank DRAFT forms",
+  "case_count": 10,
+  "model_calls": 0,
+  "output": "pilot/packets-v0.1",
+  "roles": [
+    "annotator_a",
+    "annotator_b",
+    "adjudication",
+    "baseline"
+  ]
+}

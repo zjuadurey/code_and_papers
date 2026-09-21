@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "context-007",
+  "title": "Archive staging and transfer manifest",
+  "description": "review_archive(request) validates the entire input before producing a proposal; invalid input raises ValueError (message unspecified) and input is not mutated. Each item is indivisible and may be selected at most once. Choose items whose total size is at most capacity and whose total priority is greatest. Among equal-priority feasible selections choose the lexicographically smallest tuple of selected zero-based input indices (ordinary Python tuple order), not the smallest item count, smallest used space, or least change from current. Empty selection is valid and wins when all attainable priorities are zero. Return item_count, capacity, current, proposed, changes and manifest. current and proposed each contain selected IDs in item input order, used (sum of sizes), priority (sum of priorities), feasible (used <= capacity), remaining_capacity (capacity-used). The current selection may exceed capacity and must still be assessed; negative remaining capacity is then reported. changes.add and changes.remove list IDs in item input order. manifest contains proposed items in input order, each with item_id, offset (sum of preceding proposed sizes, starting at zero) and length (item size). This is a transfer plan only; no files are read or written. Exact greatest priority and the stated tie rule are required. CLI reads a JSON request and prints a report; invalid input has nonzero exit and no successful report.",
+  "source": "New Codex-assisted synthetic archive selection program, authored for this package. Standard finite subset enumeration; no external source or paper adaptation claimed.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "synthetic_reference_context",
+  "version": "0.3.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "archive.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "archive.py",
+      "function": "select_items",
+      "start_line": 47,
+      "end_line": 57
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT Subset-list oracle independently checks hard capacity, greatest priority, tuple ties, transfer offsets and current infeasibility.",
+    "config": {
+      "test_artifact": "test_program.py",
+      "approximation_permitted": false,
+      "probabilistic_policy": null
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Item sizes and available capacity use the same integer unit; priorities are supplied by the caller. The program does not infer their business validity.",
+      "No hardware, resource budget, latency target or benefit measurement is provided."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT / AI-ASSISTED PROPOSAL — NOT GROUND TRUTH. Sampling category and region nomination are private design intentions. Scientific fields remain null; previous pilot labels are not copied. Functional correctness tests are not quantumization labels.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "DRAFT synthetic functionality, not a deployed software case or independent annotation.",
+    "Related views and parent source must remain grouped in any future split; parent is new synthetic core-007.",
+    "Source names and visible computations may cue intent. No proven increase in WHERE difficulty.",
+    "No quantum migration, practical advantage, oracle/encoding correctness, or scientific labels validated.",
+    "Package and new code rights remain NOASSERTION."
+  ]
+}

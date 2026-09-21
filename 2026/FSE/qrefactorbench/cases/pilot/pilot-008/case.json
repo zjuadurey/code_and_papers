@@ -1,0 +1,57 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "pilot-008",
+  "title": "Full sample materialization",
+  "description": "Normalize every row and materialize every element of every requested output copy. Pilot annotation material; not validated benchmark ground truth.",
+  "source": "Original synthetic program authored with Codex assistance for the requested Phase-1 pilot on 2026-09-18. No independent researcher authorship or review is claimed; not copied from an external repository.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "phase1_synthetic",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "kernel",
+  "case_type": "hard_negative",
+  "difficulty": "unknown",
+  "classical_program": "program.py",
+  "candidate_regions": [],
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "expected_decision": "REMAIN_CLASSICAL",
+  "computational_intent": {
+    "id": "full_vector_materialization",
+    "description": "Normalize every row and materialize every element of every requested output copy."
+  },
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "Normalize every row and materialize every element of every requested output copy. Check the declared input domain, edge cases and effects using the classical tests; this draft is not a registered quantum semantic oracle.",
+    "hook_id": "pilot-008-semantics",
+    "config": {
+      "input_domain": "rows is a list of integer lists; copies >= 0; rows with zero total absolute magnitude normalize to zeros.",
+      "probabilistic_policy": null
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "The caller consumes the complete nested classical output, not a summary, sample or optimum.",
+      "All copies must be distinct mutable lists, in input order.",
+      "The workload is large when rows/copies grow; no search predicate or optimization objective is specified."
+    ],
+    "limits": {}
+  },
+  "negative_reason": "PROVISIONAL hard-negative hypothesis within the two supported families; candidate_regions is empty because no supported candidate is proposed. The rejected hotspot is recorded in CURATOR_NOTES.md. This is not an impossibility theorem; the REVIEWED hard-negative region convention in D-005 remains an open issue.",
+  "annotation_rationale": "PROVISIONAL hard-negative hypothesis within the two supported families; candidate_regions is empty because no supported candidate is proposed. The rejected hotspot is recorded in CURATOR_NOTES.md. This is not an impossibility theorem; the REVIEWED hard-negative region convention in D-005 remains an open issue.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "DRAFT synthetic annotation material; curator hypotheses must not be distributed to independent annotators.",
+    "Licensing is unresolved; NOASSERTION grants no redistribution rights.",
+    "Human review must determine whether the proposed category and span are defensible."
+  ]
+}

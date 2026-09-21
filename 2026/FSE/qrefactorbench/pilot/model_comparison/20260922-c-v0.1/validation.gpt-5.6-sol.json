@@ -1,0 +1,52 @@
+[
+  {
+    "mother_case_id": "lit-001",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "mother_case_id": "lit-002",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "mother_case_id": "lit-003",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "mother_case_id": "lit-004",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "mother_case_id": "lit-005",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "mother_case_id": "lit-006",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "mother_case_id": "lit-007",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "mother_case_id": "lit-008",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "mother_case_id": "lit-009",
+    "valid": true,
+    "errors": []
+  },
+  {
+    "mother_case_id": "lit-010",
+    "valid": true,
+    "errors": []
+  }
+]

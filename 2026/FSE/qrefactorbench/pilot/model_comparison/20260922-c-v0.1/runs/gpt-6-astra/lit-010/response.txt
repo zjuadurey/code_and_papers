@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-010",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "migration_family": null,
+  "plan": null,
+  "structural_eligibility": false,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Validate a sparse symmetric positive strictly diagonally dominant system, inspect its initial residual, or advance a budgeted conjugate-direction recurrence while preserving its complete iterate and residual trace.",
+  "assumptions": [
+    "Only the supplied source and contract are evidence.",
+    "Inputs and outputs remain classical, with the supplied Python binary64 arithmetic and no additional size restriction."
+  ],
+  "risks": [
+    "Replacing the recurrence with an exact or approximate linear-system solution changes the required budget-dependent iterate and trace.",
+    "Changing reduction order or numerical precision can change stopping decisions, output values and numerical exceptions.",
+    "HPCG source attribution does not establish benchmark compliance, a measured hotspot or quantum advantage."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The numerical computation performs ordered arithmetic reductions and state updates, not marked-candidate search. Validation and nonfinite checks contain finite Boolean scans, but they do not establish a justified replacement for the numerical kernel. A separate search proposal for those checks would require an exact reversible predicate and acceptance/no-solution policy preserving validation sequencing and exceptions; none is supplied."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "Although a positive-definite linear system has a continuous quadratic minimization interpretation, the required output is a particular finite binary64 recurrence, not a minimizing assignment. No binary decision objective or constraint encoding is supplied. Discretizing the solution or seeking an optimum would not preserve the iteration-budget contract."
+    }
+  ],
+  "rationale": "No region is nominated for the supported migration families. The principal numerical region, kernel.py:17-40, depends on normalized sparse rows, rhs, current, steps and tolerance. Its evolving state includes x, r, p, previous, norm and trace; kernel.py:9-14 supplies ordered dot products and sparse matrix-vector products. This is sequential numerical linear algebra, not combinatorial optimization or unstructured candidate search. program.py:39-40 activates advance only in advance mode. kernel.py:24 executes updates only while the budget remains, the initial residual is nonzero and the recurrent relative residual exceeds tolerance. Zero budget, zero initial residual and an initially satisfied tolerance must preserve the unchanged iterate and empty trace. program.py:10-32 and common.py:5-39 must retain strict validation, duplicate rejection, exact float symmetry, positive strict diagonal dominance and variable-order normalization. program.py:33-38 computes the initial residual even for inspect; program.py:41-46 independently recomputes the final residual and returns the full named iterate and recurrent trace for advance. Ordered arithmetic, numerical breakdown/nonfinite exceptions, empty-system behavior and nonmutation must remain intact. Exhausting steps is not exact convergence. Structural eligibility is false for the assessed numerical task under the two supported families; merely having validation scans does not justify nominating them here. Practical suitability remains unknown because no workload, encoding or hardware evidence is supplied. Benchmark support remains unknown: the supplied provenance documents derivation, not measured quantum performance or a compliant HPCG run."
+}

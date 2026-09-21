@@ -1,0 +1,31 @@
+{
+  "receipt": {
+    "batch_id": "release-demo",
+    "event_count": 3,
+    "components": [
+      {
+        "component": "api",
+        "event_count": 2
+      },
+      {
+        "component": "worker",
+        "event_count": 1
+      }
+    ],
+    "final_digest": "d7f94c43ad389d199ae2c7fcd32c6b276aab8b6bd66c48f1c8cfe422da399980"
+  },
+  "checkpoints": [
+    {
+      "index": 0,
+      "digest": "5e9171de2370f64a5d54a65e85f9891175c73976e1186da95c768b0592dd49e1"
+    },
+    {
+      "index": 1,
+      "digest": "30be00f3f6697139b5ecdd6c16a0270fe5e51c2591dd34b3974f8b50bc04e3b6"
+    },
+    {
+      "index": 2,
+      "digest": "d7f94c43ad389d199ae2c7fcd32c6b276aab8b6bd66c48f1c8cfe422da399980"
+    }
+  ]
+}

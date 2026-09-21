@@ -1,0 +1,226 @@
+{
+  "commands": [
+    {
+      "name": "lit-005_before_fix",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-005/test_program.py",
+        "-k",
+        "locked_failures_follow"
+      ],
+      "exit_code": 1,
+      "log": "validation/lit-005_before_fix.txt"
+    },
+    {
+      "name": "lit-009_before_fix",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-009/test_program.py",
+        "-k",
+        "delta_overflow or large_finite_delta"
+      ],
+      "exit_code": 1,
+      "log": "validation/lit-009_before_fix.txt"
+    },
+    {
+      "name": "lit-005_fixed",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-005/test_program.py"
+      ],
+      "exit_code": 0,
+      "log": "validation/lit-005_fixed.txt"
+    },
+    {
+      "name": "lit-006_fixed",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-006/test_program.py"
+      ],
+      "exit_code": 0,
+      "log": "validation/lit-006_fixed.txt"
+    },
+    {
+      "name": "lit-007_fixed",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-007/test_program.py"
+      ],
+      "exit_code": 0,
+      "log": "validation/lit-007_fixed.txt"
+    },
+    {
+      "name": "lit-008_fixed",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-008/test_program.py"
+      ],
+      "exit_code": 0,
+      "log": "validation/lit-008_fixed.txt"
+    },
+    {
+      "name": "lit-009_fixed",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-009/test_program.py"
+      ],
+      "exit_code": 0,
+      "log": "validation/lit-009_fixed.txt"
+    },
+    {
+      "name": "lit-010_fixed",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-010/test_program.py"
+      ],
+      "exit_code": 0,
+      "log": "validation/lit-010_fixed.txt"
+    },
+    {
+      "name": "corrections",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/test_corrections.py"
+      ],
+      "exit_code": 0,
+      "log": "validation/corrections.txt"
+    },
+    {
+      "name": "core",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "log": "validation/core.txt"
+    },
+    {
+      "name": "optional",
+      "command": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_optional.py"
+      ],
+      "exit_code": 0,
+      "log": "validation/optional.txt"
+    },
+    {
+      "name": "validate_new",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "pilot/reference_completion/v0.1.1/cases"
+      ],
+      "exit_code": 0,
+      "log": "validation/validate_new.txt"
+    },
+    {
+      "name": "validate_original",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "cases/"
+      ],
+      "exit_code": 0,
+      "log": "validation/validate_original.txt"
+    },
+    {
+      "name": "summarize_new",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "pilot/reference_completion/v0.1.1/cases",
+        "--json"
+      ],
+      "exit_code": 0,
+      "log": "validation/summarize_new.txt"
+    },
+    {
+      "name": "summarize_original",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "cases/",
+        "--json"
+      ],
+      "exit_code": 0,
+      "log": "validation/summarize_original.txt"
+    }
+  ]
+}

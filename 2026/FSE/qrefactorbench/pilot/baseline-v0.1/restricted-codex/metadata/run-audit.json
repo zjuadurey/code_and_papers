@@ -1,0 +1,20 @@
+{
+  "scientific_invocations": 10,
+  "unique_threads": 10,
+  "cli_successes": 10,
+  "json_objects": 10,
+  "single_final_messages": 10,
+  "single_turns": 10,
+  "observed_tool_calls": 0,
+  "operator_retries": 0,
+  "visible_transport_retry_events": 0,
+  "warnings": {
+    "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/runner/.codex/config.toml.": 10,
+    "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`.": 10
+  },
+  "more_specific_server_model_snapshot_observable": false,
+  "runner_hash_unchanged": true,
+  "all_raw_outputs_match_jsonl_final_messages": true,
+  "all_parsed_copies_identical_to_raw": true,
+  "total_case_elapsed_seconds": 356.247
+}

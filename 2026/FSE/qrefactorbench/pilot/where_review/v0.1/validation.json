@@ -1,0 +1,137 @@
+{
+  "model_calls": 0,
+  "commands": [
+    {
+      "name": "preparation_tests",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/where_review/v0.1/test_preparation.py"
+      ],
+      "exit_code": 0,
+      "stdout": "6 passed in 0.24s",
+      "note": "Actual first run completed before documentation edits; not repeated."
+    },
+    {
+      "name": "agenda",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/source_adaptations/v0.2-where/cases/lit-003/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/agenda.stdout.txt",
+      "stderr": "validation/agenda.stderr.txt"
+    },
+    {
+      "name": "releases",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/source_adaptations/v0.2-where/cases/lit-004/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/releases.stdout.txt",
+      "stderr": "validation/releases.stderr.txt"
+    },
+    {
+      "name": "source_export",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/source_adaptations/v0.2-where/test_sources_and_views.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/source_export.stdout.txt",
+      "stderr": "validation/source_export.stderr.txt"
+    },
+    {
+      "name": "core",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/core.stdout.txt",
+      "stderr": "validation/core.stderr.txt"
+    },
+    {
+      "name": "validate_source",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "pilot/source_adaptations/v0.2-where/cases"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_source.stdout.txt",
+      "stderr": "validation/validate_source.stderr.txt"
+    },
+    {
+      "name": "validate_original",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_original.stdout.txt",
+      "stderr": "validation/validate_original.stderr.txt"
+    },
+    {
+      "name": "summarize_original",
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "cases/",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/summarize_original.stdout.txt",
+      "stderr": "validation/summarize_original.stderr.txt"
+    }
+  ],
+  "final_checks": {
+    "utc": "2026-09-20T21:16:14.036140+00:00",
+    "protected_files": 1138,
+    "protected_changes": [],
+    "condition_messages": 6,
+    "input_hash_changes": [],
+    "build_source_hash_changes": [],
+    "local_links_checked": 235,
+    "broken_links": [],
+    "model_calls": 0,
+    "mother_problems": 2,
+    "classical_witness_records": 13
+  }
+}

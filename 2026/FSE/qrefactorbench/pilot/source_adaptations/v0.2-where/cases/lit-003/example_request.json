@@ -1,0 +1,11 @@
+{
+  "slots": ["morning", "afternoon"],
+  "sessions": [
+    {"session_id": "design", "participants": ["alice"]},
+    {"session_id": "release", "participants": ["carol"]},
+    {"session_id": "testing", "participants": ["alice", "bob"]},
+    {"session_id": "operations", "participants": ["bob", "carol"]}
+  ],
+  "current": [null, null, null, null],
+  "mode": "complete"
+}

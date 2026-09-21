@@ -1,0 +1,58 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "context-008",
+  "title": "Row-labelled normalized table export",
+  "description": "export_table(request) fully validates input before materialization, even for copies=0. Invalid input raises ValueError (message unspecified); do not mutate input. Divide each integer entry by the sum of absolute entries in its source row, using Python integer true division to float. All-zero rows become all 0.0; empty rows are also zero rows. Emit copies entries per source row, source-row-major and then copy-index order (indices 0 through copies-1). Return columns (fresh list), source_row_count, export_row_count, zero_row_ids (source order, once per zero source row even for zero copies), column_totals (Python sum in emitted row order for each column; empty totals are integer zero) and entries. Each entry has row_id, copy_index and values (float list). All emitted values lists must be distinct objects and share no mutable list with the request; changing one copy must not change another. Entire output is materialized; no sampling, aggregate-only or lazy substitute is permitted. Empty columns, rows, and zero copies are supported. CLI reads one JSON request and prints one report; invalid input has nonzero exit and no successful report. Python object identity obligations apply to the callable interface; JSON conveys the values and order only.",
+  "source": "Codex-assisted synthetic functional-context adaptation of existing pilot-008; source function preserved. No external-paper or deployed-system provenance.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "synthetic_reference_context",
+  "version": "0.3.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "hard_negative",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "exports.py"
+  ],
+  "candidate_regions": [],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT Fraction-based value oracle, full export order and alias tests; value equality alone is insufficient.",
+    "config": {
+      "test_artifact": "test_program.py",
+      "approximation_permitted": false,
+      "probabilistic_policy": null
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "The caller consumes every emitted entry and may edit copies independently. Outputs are ordinary classical lists; no external writes or asynchronous operations occur.",
+      "No workload distribution, specialized hardware, measured runtime budget or benefit evidence is supplied."
+    ],
+    "limits": {}
+  },
+  "negative_reason": "Proposed retention control: complete output materialization and independent mutable copies. No reviewed supported formulation or impossibility claim.",
+  "annotation_rationale": "DRAFT / AI-ASSISTED PROPOSAL — NOT GROUND TRUTH. Sampling category and region nomination are private design intentions. Scientific fields remain null; previous pilot labels are not copied. Functional correctness tests are not quantumization labels.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "DRAFT synthetic functionality, not a deployed software case or independent annotation.",
+    "Related views and parent source must remain grouped in any future split; parent is 008.",
+    "Source names and visible computations may cue intent. No proven increase in WHERE difficulty.",
+    "No quantum migration, practical advantage, oracle/encoding correctness, or scientific labels validated.",
+    "Package and new code rights remain NOASSERTION."
+  ]
+}

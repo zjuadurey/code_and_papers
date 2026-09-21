@@ -1,0 +1,58 @@
+FF...                                                                    [100%]
+=================================== FAILURES ===================================
+_________ test_same_pqid_count_signature_different_operation_operands __________
+
+    def test_same_pqid_count_signature_different_operation_operands():
+        a,b=QuantumCircuit(2),QuantumCircuit(2)
+        a.h(0);a.cx(0,1)
+        b.h(0);b.cx(1,0)
+        assert structural_signature(a)==structural_signature(b)
+        assert process_overlap(a,b)<1
+>       assert distribution_report(Statevector.from_instruction(a).probabilities_dict(),Statevector.from_instruction(b).probabilities_dict())['total_variation']>0
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+pilot/reference_completion/v0.1/test_quantum_methods.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pilot/reference_completion/v0.1/methods.py:31: in distribution_report
+    p,q=probabilities(reference),probabilities(observed)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+values = {np.str_('00'): np.float64(0.4999999999999999), np.str_('11'): np.float64(0.4999999999999999)}
+
+    def probabilities(values: Mapping[str, float]) -> dict[str,float]:
+        """Normalize nonnegative count/mass maps; keys are already decoded, not reversed."""
+        if not values or any(not isinstance(k,str) or type(v) not in (int,float)
+                             or not math.isfinite(v) or v < 0 for k,v in values.items()):
+>           raise ValueError("finite nonnegative keyed masses required")
+E           ValueError: finite nonnegative keyed masses required
+
+pilot/reference_completion/v0.1/methods.py:22: ValueError
+____ test_equal_computational_basis_distribution_is_not_channel_equivalence ____
+
+    def test_equal_computational_basis_distribution_is_not_channel_equivalence():
+        a,b=QuantumCircuit(1),QuantumCircuit(1);a.id(0);b.z(0)
+>       assert distribution_report(Statevector.from_instruction(a).probabilities_dict(),Statevector.from_instruction(b).probabilities_dict())['total_variation']==0
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+pilot/reference_completion/v0.1/test_quantum_methods.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+pilot/reference_completion/v0.1/methods.py:31: in distribution_report
+    p,q=probabilities(reference),probabilities(observed)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+values = {np.str_('0'): np.float64(1.0)}
+
+    def probabilities(values: Mapping[str, float]) -> dict[str,float]:
+        """Normalize nonnegative count/mass maps; keys are already decoded, not reversed."""
+        if not values or any(not isinstance(k,str) or type(v) not in (int,float)
+                             or not math.isfinite(v) or v < 0 for k,v in values.items()):
+>           raise ValueError("finite nonnegative keyed masses required")
+E           ValueError: finite nonnegative keyed masses required
+
+pilot/reference_completion/v0.1/methods.py:22: ValueError
+=========================== short test summary info ============================
+FAILED pilot/reference_completion/v0.1/test_quantum_methods.py::test_same_pqid_count_signature_different_operation_operands
+FAILED pilot/reference_completion/v0.1/test_quantum_methods.py::test_equal_computational_basis_distribution_is_not_channel_equivalence
+2 failed, 3 passed in 0.96s

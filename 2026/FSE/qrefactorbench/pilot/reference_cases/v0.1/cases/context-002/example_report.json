@@ -1,0 +1,100 @@
+{
+  "station_count": 4,
+  "connection_count": 3,
+  "current": {
+    "selected_stations": [
+      "north",
+      "south",
+      "west",
+      "east"
+    ],
+    "selected_count": 4,
+    "covered_connection_count": 3,
+    "uncovered_connections": [],
+    "checklists": [
+      {
+        "station": "north",
+        "connections": [
+          [
+            "north",
+            "south"
+          ]
+        ]
+      },
+      {
+        "station": "south",
+        "connections": [
+          [
+            "south",
+            "west"
+          ]
+        ]
+      },
+      {
+        "station": "west",
+        "connections": [
+          [
+            "west",
+            "east"
+          ]
+        ]
+      },
+      {
+        "station": "east",
+        "connections": []
+      }
+    ]
+  },
+  "proposed": {
+    "selected_stations": [
+      "north",
+      "west"
+    ],
+    "selected_count": 2,
+    "covered_connection_count": 3,
+    "uncovered_connections": [],
+    "checklists": [
+      {
+        "station": "north",
+        "connections": [
+          [
+            "north",
+            "south"
+          ]
+        ]
+      },
+      {
+        "station": "west",
+        "connections": [
+          [
+            "south",
+            "west"
+          ],
+          [
+            "west",
+            "east"
+          ]
+        ]
+      }
+    ]
+  },
+  "changes": {
+    "add_stations": [],
+    "remove_stations": [
+      "south",
+      "east"
+    ],
+    "selected_count_delta": -2,
+    "newly_covered_connections": [],
+    "reassigned_connections": [
+      {
+        "connection": [
+          "south",
+          "west"
+        ],
+        "from_station": "south",
+        "to_station": "west"
+      }
+    ]
+  }
+}

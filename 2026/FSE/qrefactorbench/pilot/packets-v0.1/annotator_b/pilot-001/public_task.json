@@ -1,0 +1,11 @@
+{
+  "case_id": "pilot-001",
+  "execution_assumptions": [
+    "n and the clause list may grow beyond the regression inputs.",
+    "Clauses are supplied as classical data; the cost of representing them in a proposed implementation must be included.",
+    "No preloaded quantum memory or measured practical benefit is assumed."
+  ],
+  "input_domain": "n >= 0; each literal is a nonzero signed integer with abs(literal) <= n; empty clause is false; empty clause list is true.",
+  "software_contract": "Return whether at least one Boolean assignment satisfies every clause.",
+  "title": "Clause interface"
+}

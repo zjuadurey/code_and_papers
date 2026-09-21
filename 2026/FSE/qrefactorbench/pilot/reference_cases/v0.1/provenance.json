@@ -1,0 +1,20 @@
+{
+  "version": "0.1.0",
+  "case_id": "context-002",
+  "parent_case": "lit-002",
+  "source_lineage": "c2q-c5b457cf425c31e91bae829503ece6e92646dd0a-row-427",
+  "source_metadata": "pilot/source_adaptations/v0.1/sources/manifest.json",
+  "upstream_function": {
+    "file": "cases/context-002/inspection.py",
+    "start_line": 77,
+    "end_line": 91,
+    "sha256": "ec1d3d6e98bd5110409dab235680ce08a9b0ddb92524702fa78e60d9d61beade",
+    "identical_to_parent": true
+  },
+  "upstream_license": "CC-BY-4.0",
+  "package_license": "NOASSERTION",
+  "context_origin": "New Codex-assisted synthetic inspection assessment/worklist needs; not an upstream or deployed application",
+  "scientific_status": "DRAFT",
+  "new_model_runs": 0,
+  "new_quantum_runs": 0
+}

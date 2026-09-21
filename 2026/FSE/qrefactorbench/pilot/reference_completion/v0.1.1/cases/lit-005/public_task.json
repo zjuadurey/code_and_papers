@@ -1,0 +1,9 @@
+{
+  "case_id": "lit-005",
+  "title": "Named feature requirements",
+  "software_contract": "review(request) validates all fields before reporting. Each named rule has exactly three alternatives; at least one must match. Locked feature values must also match. Output failed_rules and locked_failures always describe current in input feature/rule order. inspect returns no proposal. complete retains a conforming current; otherwise returns the first conforming Boolean vector in feature order (False before True), or unavailable with null proposal. changes lists changed names in feature order. Repeated/contradictory literals within a rule are allowed. Empty rules are true. No mutation; invalid inputs raise ValueError, text unspecified. CLI reads one JSON request and prints the report.",
+  "input_domain": "Exactly features (distinct nonempty names), rules (unique id, any list of three {feature,enabled:bool}), locked (known-name to bool map), current (bool list matching features), mode inspect|complete. Empty feature lists require no rules or locks. No arbitrary size cap; enumeration is classical and finite.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}

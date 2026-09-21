@@ -1,0 +1,5 @@
+Source-task attribution: HPL Algorithm: row partial pivoting and Checking the Solution normalized backward error.
+https://www.netlib.org/benchmark/hpl/algorithm.html
+New Codex-assisted classical implementation/context, not an upstream classical application or author endorsement.
+New material/package license NOASSERTION; original rights retained.
+The HPL web specification's page license is not established here. No HPL source code is copied into this application.

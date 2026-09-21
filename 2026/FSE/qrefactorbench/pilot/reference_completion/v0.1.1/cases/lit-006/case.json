@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "lit-006",
+  "title": "Independent transfer windows",
+  "description": "review(request) validates the whole batch first. Eligible items are active entries in catalogue order. Each window is independent; no shared-stock allocation across windows. current report retains listed inactive items and marks infeasible if any are inactive or total weight exceeds capacity. select maximizes total value of indivisible eligible items under capacity; ties use smallest numeric mask in eligible order. proposal includes IDs/weight/value/feasible. transfers follows selected catalogue order with contiguous offsets starting at 0 and item weight as length. inspect has no proposal or transfers. No mutation; invalid input raises ValueError. CLI reads/prints JSON.",
+  "source": "Source-task adaptation: QuanBench task 05; values [3,3,1,1,5], weights [2,4,1,3,5], capacity 7. New synthetic classical program; source and changes documented in ADAPTATION.md.",
+  "source_url": "https://github.com/GuoXiaoYu1125/Quanbench/blob/e6cbd58628366c7538cc5a27e9dbf9ebdfc38e1f/QuanBench44.jsonl",
+  "license": "NOASSERTION",
+  "domain": "source_adapted_synthetic_context",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "kernel.py",
+    "common.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 4,
+      "end_line": 15
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT classical contract tests; no quantum semantic threshold adopted.",
+    "config": {
+      "test_artifact": "test_program.py"
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT AI construction proposal, not ground truth. All scientific judgments remain null; category and span are review nominations only. A potentially rejected computation may still be nominated for WHERE.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "New synthetic classical application from an attributed problem or recurrence; not imported deployed software.",
+    "No quantum mapping, practical suitability or harder WHERE result established.",
+    "Classical tests support specified behavior on tested inputs, not complete migration correctness.",
+    "No new positive quantum families added."
+  ]
+}

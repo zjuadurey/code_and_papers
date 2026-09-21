@@ -1,0 +1,769 @@
+{
+  "$defs": {
+    "region": {
+      "additionalProperties": false,
+      "properties": {
+        "end_line": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "file": {
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$",
+          "type": "string"
+        },
+        "function": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "start_line": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "file",
+        "start_line",
+        "end_line"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://qrefactorbench.example/schemas/0.1.0/case.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "case_type": {
+            "const": "positive"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "benchmark_supported": {
+            "enum": [
+              true,
+              null
+            ]
+          },
+          "candidate_regions": {
+            "minItems": 1
+          },
+          "expected_decision": {
+            "enum": [
+              "QUANTUMIZE",
+              null
+            ]
+          },
+          "negative_reason": {
+            "type": "null"
+          },
+          "practical_suitability": {
+            "enum": [
+              true,
+              null
+            ]
+          },
+          "structural_eligibility": {
+            "enum": [
+              true,
+              null
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "case_type": {
+            "enum": [
+              "negative",
+              "hard_negative"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "expected_decision": {
+            "enum": [
+              "REMAIN_CLASSICAL",
+              null
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_status": {
+            "enum": [
+              "REVIEWED",
+              "ADJUDICATED",
+              "FROZEN"
+            ]
+          }
+        }
+      },
+      "then": {
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "case_type": {
+                  "const": "positive"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "admissible_migration_contracts": {
+                  "minItems": 1
+                },
+                "benchmark_supported": {
+                  "const": true
+                },
+                "practical_suitability": {
+                  "const": true
+                },
+                "structural_eligibility": {
+                  "const": true
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "case_type": {
+                  "enum": [
+                    "negative",
+                    "hard_negative"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "structural_eligibility": {
+                      "const": false
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "practical_suitability": {
+                      "const": false
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "benchmark_supported": {
+                      "const": false
+                    }
+                  }
+                }
+              ],
+              "properties": {
+                "negative_reason": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "negative_reason"
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "case_type": {
+                  "const": "hard_negative"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "candidate_regions": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ],
+        "properties": {
+          "annotation_rationale": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "annotators": {
+            "minItems": 2
+          },
+          "benchmark_supported": {
+            "type": "boolean"
+          },
+          "classical_tests": {
+            "minItems": 1
+          },
+          "computational_intent": {
+            "type": "object"
+          },
+          "expected_decision": {
+            "enum": [
+              "QUANTUMIZE",
+              "REMAIN_CLASSICAL"
+            ]
+          },
+          "practical_suitability": {
+            "type": "boolean"
+          },
+          "resource_expectations": {
+            "type": "object"
+          },
+          "semantic_oracle": {
+            "type": "object"
+          },
+          "structural_eligibility": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "computational_intent",
+          "admissible_migration_contracts",
+          "classical_tests",
+          "semantic_oracle",
+          "resource_expectations",
+          "annotation_rationale",
+          "annotators",
+          "review"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_status": {
+            "enum": [
+              "ADJUDICATED",
+              "FROZEN"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "required": [
+              "adjudicator_id",
+              "resolution"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_status": {
+            "const": "FROZEN"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "benchmark_release"
+        ]
+      }
+    }
+  ],
+  "oneOf": [
+    {
+      "not": {
+        "required": [
+          "files"
+        ]
+      },
+      "required": [
+        "classical_program"
+      ]
+    },
+    {
+      "not": {
+        "required": [
+          "classical_program"
+        ]
+      },
+      "required": [
+        "files"
+      ]
+    }
+  ],
+  "properties": {
+    "admissible_migration_contracts": {
+      "items": {
+        "$ref": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json#/$defs/contract"
+      },
+      "type": "array"
+    },
+    "annotation_rationale": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "annotation_status": {
+      "enum": [
+        "DRAFT",
+        "REVIEWED",
+        "ADJUDICATED",
+        "FROZEN"
+      ]
+    },
+    "annotators": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "benchmark_release": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "benchmark_supported": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "candidate_regions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "end_line": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "file": {
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$",
+            "type": "string"
+          },
+          "function": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "start_line": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "file",
+          "start_line",
+          "end_line"
+        ],
+        "type": "object"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "case_id": {
+      "pattern": "^[a-z][a-z0-9_-]+$",
+      "type": "string"
+    },
+    "case_type": {
+      "enum": [
+        "positive",
+        "hard_negative",
+        "negative"
+      ]
+    },
+    "classical_program": {
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$",
+      "type": "string"
+    },
+    "classical_tests": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "computational_intent": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "description": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "id": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "description"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "context_level": {
+      "enum": [
+        "kernel",
+        "function_with_distractors",
+        "small_program"
+      ]
+    },
+    "description": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "difficulty": {
+      "enum": [
+        "easy",
+        "medium",
+        "hard",
+        "unknown"
+      ]
+    },
+    "domain": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "expected_decision": {
+      "enum": [
+        "QUANTUMIZE",
+        "REMAIN_CLASSICAL",
+        null
+      ]
+    },
+    "files": {
+      "items": {
+        "minLength": 1,
+        "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$",
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "license": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "migration_family": {
+      "enum": [
+        "unstructured_search",
+        "combinatorial_optimization",
+        null
+      ]
+    },
+    "negative_reason": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "practical_suitability": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "reference_hybrid_implementation": {
+      "anyOf": [
+        {
+          "items": {
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reference_plan": {
+      "anyOf": [
+        {
+          "$ref": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "resource_expectations": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "assumptions": {
+              "items": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "execution_config": {
+              "additionalProperties": false,
+              "properties": {
+                "backend": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "seed": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "shots": {
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
+            "limits": {
+              "additionalProperties": false,
+              "properties": {
+                "depth": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "gate_count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "measurement_count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "num_qubits": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "operation_count": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "shots": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "two_qubit_gate_count": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "assumptions",
+            "limits"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "review": {
+      "additionalProperties": false,
+      "properties": {
+        "adjudicator_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "disagreements": {
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$",
+          "type": "string"
+        },
+        "independent_annotations": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "annotator_id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "artifact": {
+                "minLength": 1,
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "annotator_id",
+              "artifact"
+            ],
+            "type": "object"
+          },
+          "minItems": 2,
+          "type": "array"
+        },
+        "resolution": {
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "independent_annotations",
+        "disagreements"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "semantic_oracle": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "config": {
+              "type": "object"
+            },
+            "description": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "hook_id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "kind": {
+              "enum": [
+                "deterministic_equality",
+                "property",
+                "optimization_feasibility",
+                "optimization_objective",
+                "probabilistic"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "description",
+            "config"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_url": {
+      "anyOf": [
+        {
+          "format": "uri",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "structural_eligibility": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "title": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "title",
+    "description",
+    "source",
+    "source_url",
+    "license",
+    "domain",
+    "version",
+    "migration_family",
+    "context_level",
+    "case_type",
+    "difficulty",
+    "candidate_regions",
+    "structural_eligibility",
+    "practical_suitability",
+    "benchmark_supported",
+    "expected_decision",
+    "annotation_status"
+  ],
+  "type": "object"
+}

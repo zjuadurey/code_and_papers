@@ -1,0 +1,47 @@
+{
+  "lot_count": 4,
+  "requests": [
+    {
+      "request_id": "six",
+      "target": 6,
+      "eligible_lot_ids": [
+        "a",
+        "b"
+      ],
+      "available_units": 10,
+      "exact_capacity_exists": true
+    },
+    {
+      "request_id": "six-again",
+      "target": 6,
+      "eligible_lot_ids": [
+        "a",
+        "b"
+      ],
+      "available_units": 10,
+      "exact_capacity_exists": true
+    },
+    {
+      "request_id": "five-west",
+      "target": 5,
+      "eligible_lot_ids": [
+        "a",
+        "b"
+      ],
+      "available_units": 10,
+      "exact_capacity_exists": false
+    },
+    {
+      "request_id": "empty",
+      "target": 0,
+      "eligible_lot_ids": [],
+      "available_units": 0,
+      "exact_capacity_exists": true
+    }
+  ],
+  "possible_request_ids": [
+    "six",
+    "six-again",
+    "empty"
+  ]
+}

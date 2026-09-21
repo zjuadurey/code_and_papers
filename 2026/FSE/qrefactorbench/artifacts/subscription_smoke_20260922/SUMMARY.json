@@ -1,0 +1,68 @@
+{
+  "date": "2026-09-22",
+  "authorization": "User requested a subscription trial: 试一下？; limited to two connectivity probes, not the twenty-case experiment.",
+  "authentication": "ChatGPT login confirmed; API-key/token override environment variables removed; no credential contents read or copied by runner.",
+  "cli_version": "codex-cli 0.155.1",
+  "reasoning_effort": "medium",
+  "operator_inference_invocations": 2,
+  "benchmark_case_invocations": 0,
+  "preflight_failure": "One local login-status syntax error before inference: --ignore-user-config is exec-specific. Removed unsupported flag; failure log preserved.",
+  "results": [
+    {
+      "requested_model": "gpt-5.6-sol",
+      "connectivity_passed": true,
+      "elapsed_seconds": 6.183,
+      "response": "SUBSCRIPTION_SMOKE_OK",
+      "usage": [
+        {
+          "input_tokens": 9477,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 10,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "observed_tool_items": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/audrey/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "server_snapshot": null,
+      "raw_passed_flag": false,
+      "raw_flag_explanation": "Runner initially counted startup warning items as tool use. Classification corrected by inspecting item types; raw record preserved. No inference rerun."
+    },
+    {
+      "requested_model": "gpt-6-astra",
+      "connectivity_passed": true,
+      "elapsed_seconds": 6.884,
+      "response": "SUBSCRIPTION_SMOKE_OK",
+      "usage": [
+        {
+          "input_tokens": 10602,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 10,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "observed_tool_items": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/audrey/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "server_snapshot": null,
+      "raw_passed_flag": false,
+      "raw_flag_explanation": "Runner initially counted startup warning items as tool use. Classification corrected by inspecting item types; raw record preserved. No inference rerun."
+    }
+  ],
+  "integrity": {
+    "unchanged_public_inputs": 30,
+    "unchanged_reference_evaluation_files": 11
+  },
+  "limits": [
+    "Empty cwd and tools disabled, not full filesystem namespace isolation.",
+    "Requested model IDs accepted, server-side snapshots not exposed.",
+    "Connectivity only, not benchmark performance, remaining quota or billing audit.",
+    "No full benchmark or additional inference authorized by this completed smoke check."
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "date_utc": "2026-09-20T10:42:50.420793+00:00",
+  "task": "Documentation/project control only",
+  "all_checks_passed": true,
+  "pre_existing_files_checked": 687,
+  "unchanged_pre_existing_files": 675,
+  "intentionally_modified_documentation": [
+    "AGENTS.md",
+    "CHANGELOG.md",
+    "DECISIONS.md",
+    "PHASE1_PILOT_STATUS.md",
+    "PROJECT_STATUS.md",
+    "README.md",
+    "TODO.md",
+    "docs/annotation_guidelines.md",
+    "docs/research_log.md",
+    "docs/task_definition.md",
+    "pilot/README.md",
+    "pilot/baseline/README.md"
+  ],
+  "created_documentation": [
+    "NEXT_ACTIONS.md",
+    "docs/CODEX_WORKFLOW.md",
+    "docs/DOCUMENTATION_AUDIT.md",
+    "docs/RESEARCH_CHARTER.md"
+  ],
+  "protected_groups_all_unchanged": {
+    "cases/": 69,
+    "schemas/": 5,
+    "qrefactorbench/": 17,
+    "tests/": 8,
+    "pilot/packets/": 99,
+    "pilot/packets-v0.1/": 99,
+    "pilot/baseline-v0.1/": 252
+  },
+  "experiment_artifact_manifests_verified": {
+    "restricted-codex": 120,
+    "conditional-plan-diagnostic": 129
+  },
+  "prior_decision_bodies_and_statuses_unchanged": true,
+  "research_log_and_changelog_append_only": true,
+  "local_markdown_links_checked": 133,
+  "broken_local_links": [],
+  "external_links_not_network_checked": [
+    [
+      "pilot/README.md",
+      "https://quantum.cloud.ibm.com/docs/en/tutorials/grovers-algorithm"
+    ],
+    [
+      "pilot/README.md",
+      "https://arxiv.org/abs/1411.4028"
+    ]
+  ],
+  "startup_order_and_action_queue_checked": true,
+  "no_duplicate_research_log": true,
+  "latest_status_numbers_match_saved_diagnostic_summary": true,
+  "runtime_tests_executed": false,
+  "reason_tests_not_run": "Only Markdown and audit evidence changed; no code, hook, schema or tooling modifications.",
+  "model_calls": 0,
+  "scientific_label_changes": 0,
+  "new_dependencies": 0,
+  "validation_method": "Python standard-library path/anchor checks, SHA-256 comparisons, historical-prefix reconstruction, and saved artifact inspection."
+}

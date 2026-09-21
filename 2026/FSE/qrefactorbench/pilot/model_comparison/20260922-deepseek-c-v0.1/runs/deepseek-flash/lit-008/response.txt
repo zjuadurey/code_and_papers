@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-008",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "The supplied code is a deterministic ordered transformation, not a search or optimization problem. In kernel.py, encode() at lines 7-9 computes a ^ b and formats it as exactly eight bits most significant first. In program.py, review() at lines 13-25 validates records, iterates over them in order, updates a running checksum modulo 256, and appends receipts containing id, bits, set_bits, counts, and prefix_checksum. The counts mode maps the single deterministic bitstring to repetitions, while inspect mode uses null counts but still emits every receipt. Required inputs are records with unique nonempty ids and left/right integers in 0..255, a positive repetitions integer, and mode inspect|counts; bools are excluded from integers. State dependencies are the ordered record list and the running prefix_checksum. There is no finite candidate set with a Boolean marking predicate for Grover-style search, and no binary objective with constraints for QUBO/Ising optimization; left and right are fixed inputs and the output is exact. Any quantum formulation would have to preserve full receipts, ordering, exact eight-bit encoding, set-bit counts, modulo-256 prefix checksum, record_count, final checksum, no mutation, and ValueError behavior, and none of the supported families does so without changing the problem semantics. The loop is also trivially linear and local, with no supplied workload, hardware, encoding-cost, or advantage evidence. Therefore no candidate region is justified for selective quantumization.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Deterministic ordered receipt generation from eight-bit XOR results with set-bit counts and modulo-256 prefix checksum",
+  "assumptions": [
+    "Inputs and outputs are classical JSON values as specified in the public task contract.",
+    "The review() function must preserve validation, record ordering, exact eight-bit most-significant-first encoding, set-bit counts, counts-mode repetition mapping, inspect-mode null counts, prefix checksum update modulo 256, record_count, and final checksum.",
+    "repetitions denotes an exact repeated-outcome count, not random sampling or QPU execution.",
+    "No quantum workload, hardware, encoding-cost, benchmark, or advantage evidence is supplied."
+  ],
+  "risks": [
+    "Forcing a Grover or QUBO/Ising mapping would replace a direct deterministic transformation with an unnecessary search or optimization, risking altered output, ordering, exactness, or exception behavior.",
+    "Any quantum approach would face state-preparation, oracle/encoding, measurement, and decoding overhead with no supplied evidence that these costs are offset.",
+    "A migration that samples, aggregates, or omits receipts would violate the contract requirement to produce every receipt exactly."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "No finite search domain or Boolean marking predicate is present. The code directly computes XOR bitstrings and counts for given records; there is no unknown candidate to mark or find."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "No binary decision variables, constraints, or objective function are present. left and right are fixed inputs, and the required receipts, ordering, and checksum are exact deterministic outputs, not an optimization result."
+    }
+  ]
+}

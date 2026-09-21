@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-006",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 4,
+      "end_line": 15
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "select_exact_knapsack_tie_mask",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Binary variables x_i for each eligible item i in catalogue order. The classical objective is maximize sum_i v_i x_i subject to sum_i w_i x_i <= C. QUBO/Ising objective form: H = -sum_i v_i x_i + P * penalty, with penalty constructed from the capacity constraint. A slack representation for sum_i w_i x_i <= C can use slack s = C - sum_i w_i x_i with binary slack bits y_j, but the exact coefficient form and feasible slack range must be derived. Ising mapping is x_i = (1 - Z_i)/2 with constants folded. The penalty P must dominate all feasible value differences and is unresolved because weights/values have no supplied numeric cap.",
+    "input_encoding": "n qubits for eligible item bits x_i, or n Ising spins under x_i = (1 - Z_i)/2, plus m slack qubits for capacity slack. Classical preprocessing loads item positions, weights, values and window capacity into coefficient arrays/oracle logic; catalogue-order bit indices must be retained so the smallest numeric mask can be decoded.",
+    "quantum_algorithm_family": "QAOA",
+    "output_decoding": "Measure candidate bits; reconstruct the eligible item subset from the catalogue-order bitmask; recompute total weight and value and verify capacity feasibility. Because QAOA does not guarantee the exact classical optimum or the smallest-mask tie rule, the quantum candidate must be classically verified against the DP result and rejected if not exactly matching.",
+    "assumptions": [
+      "Classical input validation and active-item filtering remain outside the quantum routine.",
+      "QUBO/Ising coefficients are constructed from supplied weights/values; data loading and operator construction are not free.",
+      "A suitable penalty strength and exact slack-variable encoding can be found for every integer capacity.",
+      "Probabilistic quantum readout is acceptable only as a candidate generator, with classical verification preserving exactness."
+    ],
+    "risks": [
+      "QAOA is heuristic and can return infeasible or suboptimal candidates.",
+      "The tie-breaking rule uses smallest numeric eligible-order bitmask, which is not directly represented in the scalar QUBO objective.",
+      "Unbounded weights/values mean no universal finite penalty coefficient is known from the supplied material.",
+      "Slack-variable count depends on capacity and can dominate quantum resources.",
+      "No quantum advantage evidence supplied; replacing deterministic DP would violate exactness unless classically verified."
+    ],
+    "expected_resource_characteristics": {
+      "qubits": "O(number_of_eligible_items + slack_bits) in a direct QUBO/Ising mapping; slack_bits depends on capacity",
+      "depth": "Unresolved QAOA depth; no parameters or budget supplied",
+      "shots": "Unknown; multiple measurements would be needed for candidate verification",
+      "classical_preprocessing": "Coefficient generation and DP verification O(number_of_eligible_items * capacity) or more"
+    },
+    "rationale": "Conditional only: structural QUBO mapping is possible, but this plan does not recommend adoption or certify exactness."
+  },
+  "rationale": "The candidate is kernel.choose at kernel.py:4-15. Source evidence: review (program.py:16-46) validates the batch, item fields, active bool, window capacity and current IDs; then eligible is the active items in catalogue order (program.py:31). For each window, current is described first, and only when window.mode == 'select' is choose(eligible, window.capacity) called (program.py:36-38). Dependencies: choose receives the pre-filtered eligible list and validated nonnegative capacity; the 1<<i mask positions refer to eligible order, and chosen IDs are reconstructed via enumerate(eligible) (program.py:38-39). Transfers are then built in the same eligible order for selected items, accumulating offsets by item weight (program.py:40-44). Activation conditions: select windows are independent, with no shared-stock allocation; empty eligible or zero capacity yields mask 0; inspect mode never calls choose. Surrounding behavior that must remain intact includes exact 0/1 knapsack maximization, the smallest numeric eligible-order mask tie rule, current report infeasibility for listed inactive items or overweight totals, no mutation, ValueError on invalid input, and JSON CLI input/output. Structural eligibility is true for combinatorial optimization because kernel.choose is a binary linear program with a capacity constraint. Practical suitability is false because a QUBO/QAOA path would introduce approximation and probabilistic measurement, conflicting with the required exact optimum and deterministic tie/order semantics, and no advantage evidence is supplied. Benchmark support is false because the supplied NOTICE is source-task attribution only, not an executable benchmark or validation harness.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Exact 0/1 knapsack selection over active eligible items maximizing value under per-window capacity, with smallest numeric eligible-order bitmask tie-breaking.",
+  "assumptions": [
+    "Only kernel.choose is considered for optimization; all validation, reporting and transfer logic remains classical.",
+    "The algorithm must preserve deterministic exact optimum and smallest-mask tie-breaking.",
+    "No quantum workload, quantum hardware, encoding-cost or advantage evidence is supplied."
+  ],
+  "risks": [
+    "QUBO/QAOA cannot guarantee the required exact optimum or tie-mask semantics without classical verification.",
+    "Instance sizes and numeric bounds are unbounded; penalty and slack construction are unresolved.",
+    "The source-task attribution does not provide an executable benchmark or evidence of quantum benefit."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "choose() is constrained objective maximization rather than an unstructured search for a predetermined Boolean predicate. A predicate could be synthesized only after solving for the optimal threshold, but the supplied code does not represent any such predicate, and exact optimum/tie semantics would require auxiliary search beyond the routine."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The kernel is a binary linear optimization problem with a capacity constraint, so QUBO/Ising representation is structurally applicable. However, exact DP semantics, smallest-mask tie-breaking, and approximate/probabilistic QAOA execution make practical adoption unsuitable without classical verification."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "members": [
+    "a",
+    "b",
+    "c"
+  ],
+  "preferences": [
+    {
+      "left": "a",
+      "right": "b",
+      "relation": "apart"
+    },
+    {
+      "left": "a",
+      "right": "c",
+      "relation": "together"
+    },
+    {
+      "left": "b",
+      "right": "c",
+      "relation": "apart"
+    }
+  ],
+  "current": [
+    false,
+    false,
+    false
+  ],
+  "mode": "propose"
+}

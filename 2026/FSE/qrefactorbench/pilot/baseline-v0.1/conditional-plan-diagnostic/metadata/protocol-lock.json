@@ -1,0 +1,15 @@
+{
+  "locked_utc": "2026-09-20T08:18:31.988474+00:00",
+  "runner_sha256": "05d9a1cac32940eb8055f4111cf4297c870643eabc96dd1a852abbf5c6a8d126",
+  "original_runner_identical": true,
+  "cli_binary": "/home/audrey/.codex/packages/standalone/releases/0.154.0-x86_64-unknown-linux-musl/bin/codex",
+  "cli_binary_sha256": "3188814c35471432d4123203e0eb38e5bddc60226e3d7ddf0e59e649ea140022",
+  "cli_version": "codex-cli 0.154.0",
+  "model": "gpt-5.6-sol",
+  "reasoning": "high",
+  "authentication": "existing ChatGPT login",
+  "retry_policy": "one first attempt per case; no scientific retries or repairs",
+  "only_scientific_change": "append exact approved conditional-plan instruction",
+  "previous_responses_exposed": false,
+  "reference_annotations_exposed": false
+}

@@ -1,0 +1,166 @@
+{
+  "utc": "2026-09-20T19:41:25.926751+00:00",
+  "commands": [
+    {
+      "name": "context_005",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_cases/v0.3/cases/context-005/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/context_005.stdout.txt",
+      "stderr": "validation/context_005.stderr.txt"
+    },
+    {
+      "name": "context_006",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_cases/v0.3/cases/context-006/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/context_006.stdout.txt",
+      "stderr": "validation/context_006.stderr.txt"
+    },
+    {
+      "name": "context_007",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_cases/v0.3/cases/context-007/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/context_007.stdout.txt",
+      "stderr": "validation/context_007.stderr.txt"
+    },
+    {
+      "name": "context_008",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_cases/v0.3/cases/context-008/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/context_008.stdout.txt",
+      "stderr": "validation/context_008.stderr.txt"
+    },
+    {
+      "name": "paired_views",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_cases/v0.3/test_views.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/paired_views.stdout.txt",
+      "stderr": "validation/paired_views.stderr.txt"
+    },
+    {
+      "name": "core_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/core_tests.stdout.txt",
+      "stderr": "validation/core_tests.stderr.txt"
+    },
+    {
+      "name": "validate_new",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "pilot/reference_cases/v0.3/cases"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_new.stdout.txt",
+      "stderr": "validation/validate_new.stderr.txt"
+    },
+    {
+      "name": "summarize_new",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "pilot/reference_cases/v0.3/cases",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/summarize_new.stdout.txt",
+      "stderr": "validation/summarize_new.stderr.txt"
+    },
+    {
+      "name": "validate_original",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_original.stdout.txt",
+      "stderr": "validation/validate_original.stderr.txt"
+    },
+    {
+      "name": "summarize_original",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "cases/",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/summarize_original.stdout.txt",
+      "stderr": "validation/summarize_original.stderr.txt"
+    }
+  ],
+  "protected_count": 926,
+  "protected_changed": [],
+  "new_context_cases": 4,
+  "reference_problem_groups": 8,
+  "public_views": 16,
+  "new_model_quantum_calls": 0,
+  "new_dependencies": false,
+  "optional_quantum_tests": "Not rerun; no quantum code changes",
+  "prior_eight_views_byte_identical": true,
+  "prior_public_files_checked": 20,
+  "public_files": 40,
+  "public_manifest_valid": true,
+  "scientific_judgments_null": true,
+  "local_links_checked": 184,
+  "missing_local_links": [],
+  "public_spec_cue_scan": "Passed in paired_views test; functional intent/source names retained, not proof of zero task cueing",
+  "preservation_audit": "Python SHA256 comparison against protected_before.json after all changes",
+  "documentation_link_audit": "Regex Markdown local-path existence check; remote links and anchors not validated"
+}

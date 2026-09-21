@@ -1,0 +1,150 @@
+{
+  "$defs": {
+    "contract": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm_families": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "applicability_conditions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "contract_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "formulation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "input_encoding": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "known_limitations": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "output_decoding": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "resource_assumptions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "semantic_relation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "DRAFT",
+            "REVIEWED"
+          ]
+        }
+      },
+      "required": [
+        "contract_id",
+        "status",
+        "applicability_conditions",
+        "input_encoding",
+        "formulation",
+        "algorithm_families",
+        "output_decoding",
+        "semantic_relation",
+        "resource_assumptions",
+        "known_limitations"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assumptions": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "computational_intent_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "contract_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "expected_resource_characteristics": {
+      "type": "object"
+    },
+    "formulation": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "input_encoding": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "migration_family": {
+      "enum": [
+        "unstructured_search",
+        "combinatorial_optimization"
+      ]
+    },
+    "output_decoding": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "quantum_algorithm_family": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "risks": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    }
+  },
+  "required": [
+    "schema_version",
+    "contract_id",
+    "computational_intent_id",
+    "migration_family",
+    "formulation",
+    "input_encoding",
+    "quantum_algorithm_family",
+    "output_decoding",
+    "assumptions",
+    "risks",
+    "expected_resource_characteristics"
+  ],
+  "type": "object"
+}

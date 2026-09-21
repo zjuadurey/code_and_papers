@@ -1,0 +1,11 @@
+......ssssssssssss........................ss..s......................... [ 64%]
+........................................                                 [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_coursework.py:16: could not import 'qiskit': No module named 'qiskit'
+SKIPPED [1] tests/test_demo.py:12: could not import 'qiskit': No module named 'qiskit'
+SKIPPED [9] tests/test_demo.py:31: could not import 'qiskit': No module named 'qiskit'
+SKIPPED [1] tests/test_demo.py:42: could not import 'qiskit': No module named 'qiskit'
+SKIPPED [1] tests/test_optional.py:10: could not import 'qiskit': No module named 'qiskit'
+SKIPPED [1] tests/test_optional.py:30: could not import 'qiskit': No module named 'qiskit'
+SKIPPED [1] tests/test_optional.py:49: could not import 'yaml': No module named 'yaml'
+97 passed, 15 skipped in 3.40s

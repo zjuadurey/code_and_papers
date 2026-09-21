@@ -1,0 +1,6 @@
+Error: failed to load bootstrap configuration
+
+Caused by:
+    model_providers contains reserved built-in provider IDs: `openai`. Built-in providers cannot be overridden. Rename your custom provider (for example, `openai-custom`).
+    in `model_providers`
+    

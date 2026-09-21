@@ -1,0 +1,40 @@
+{
+  "status": "AI_PENDING",
+  "maxcut": {
+    "instances": 761,
+    "n": [
+      0,
+      4
+    ],
+    "edge_weights": [
+      0,
+      2
+    ],
+    "scope": "Core objective, variable flip, Sol/Astra/Flash tie and Astra Ising identity; not hardware or reports."
+  },
+  "signed_pairs": {
+    "instances": 1100,
+    "assignments": 33867,
+    "n": [
+      0,
+      5
+    ],
+    "weights": [
+      -1,
+      1
+    ],
+    "scope": "All four core polynomials; Sol/Astra scalar tie only. No tie encoding credited to DeepSeek."
+  },
+  "boolean_search": {
+    "instances": 6472,
+    "n": [
+      0,
+      3
+    ],
+    "rules": "zero or one, each rule exactly three literals",
+    "scope": "Predicate and exact prefix logic; not reversible oracle, Grover, all rule sets or full wrapper."
+  },
+  "new_model_calls": 0,
+  "quantum_runs": 0,
+  "script_sha256": "9b7fc71cc2c3dc11e18ca0784e3692271338a9189814f7ecbd8c66b71a6775f1"
+}

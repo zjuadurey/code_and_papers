@@ -1,0 +1,57 @@
+QRefactorBench | 本地终端 DEMO | 非 benchmark 分数
+分析/计划：已有模型输出回放；混合实现：本次 AI 辅助编写；执行：本地 Qiskit Statevector
+本次无模型调用、无 QPU；不宣称加速或科学标签正确。
+
+==================================================================
+pilot-001 | WHERE / WHETHER / HOW [历史输出回放]
+  1  def satisfies(mask: int, clauses: list[list[int]]) -> bool:
+  2      return all(
+  3          any(bool(mask & (1 << (abs(literal) - 1))) == (literal > 0)
+  4              for literal in clause)
+  5          for clause in clauses
+  6      )
+  7  
+  8  
+  9  def has_assignment(n: int, clauses: list[list[int]]) -> bool:
+ 10      for mask in range(1 << n):
+ 11          if satisfies(mask, clauses):
+ 12              return True
+ 13      return False
+WHERE: satisfies:1-6, has_assignment:9-13
+结构=YES | 实际适用=NO | 建议=REMAIN_CLASSICAL
+计算意图: Decide exactly whether any of the 2^n Boolean assignments satisfies every supplied clause, returning a Boolean with no other required effects. Empty clauses must make the result false, while an empty clause list must make it true.
+条件 HOW: unstructured_search / grover_style
+编码: Use n assignment qubits for the candidate mask. Incorporate the classical clause list by synthesizing clause-controlled reversible logic or by another explicitly costed coherent representation. Compute literal truth values, reversible clause OR results, and their conjunction into a phase or flag qubit, then uncompute all temporary values. Gate count, clause-data representation, ancillary qubits, and synthesis cost remain unresolved.
+解码与语义义务: Measure a candidate assignment and verify it with the classical satisfies predicate before returning true. Return false only after an exact or otherwise contract-approved no-solution certification; absent such a method, an exhaustive classical fallback is required and its cost must be included. Handle n=0, empty clauses, and an empty clause list explicitly.
+
+==================================================================
+pilot-002 | WHERE / WHETHER / HOW [历史输出回放]
+  1  import hashlib
+  2  from collections.abc import Callable
+  3  
+  4  
+  5  def ledger_digest(events: list[bytes], audit: Callable[[int, str], None]) -> str:
+  6      digest = bytes(32)
+  7      for index, event in enumerate(events):
+  8          digest = hashlib.sha256(digest + event).digest()
+  9          audit(index, digest.hex())
+ 10      return digest.hex()
+WHERE: NONE
+结构=NO | 实际适用=NO | 建议=REMAIN_CLASSICAL
+计算意图: Sequentially consume every byte-string event, update a rolling SHA-256 digest from the preceding digest and current event, invoke the host audit callback exactly once per event in input order with each observable intermediate digest, propagate any callback exception according to normal Python execution, and return the final digest if processing completes.
+HOW: null；保留原程序。
+
+[实际执行] pilot-001 条件实现演示（原建议仍是 REMAIN_CLASSICAL）
+  PASS 有解: classical=True, hybrid=True; quantum=True, fallback=False, witness=7
+       qubits=6, depth=34, CX=18, shots=16 [u/cx 分解，非硬件成本]
+  PASS 无解：必须认证 false: classical=False, hybrid=False; quantum=True, fallback=True, witness=None
+       qubits=5, depth=25, CX=11, shots=16 [u/cx 分解，非硬件成本]
+  PASS 空合取: classical=True, hybrid=True; quantum=False, fallback=True, witness=None
+  PASS 空子句: classical=False, hybrid=False; quantum=False, fallback=True, witness=None
+  PASS 重复文字/重言式: classical=True, hybrid=True; quantum=True, fallback=False, witness=3
+       qubits=3, depth=14, CX=3, shots=16 [u/cx 分解，非硬件成本]
+
+[实际执行] pilot-002 原经典实现；保留回调和顺序
+  PASS digest 一致，3 次回调内容/顺序一致；未量子化。
+
+DEMO PASS | 仅以上输入的运行验证；经典兜底成本必须计入，未建立量子优势。

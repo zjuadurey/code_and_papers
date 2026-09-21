@@ -1,0 +1,92 @@
+[
+  {
+    "argv": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_pilot_v01.py",
+      "tests/test_pilot.py"
+    ],
+    "env": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "log": "focused_pytest.txt"
+  },
+  {
+    "argv": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "env": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "log": "pytest_core.txt"
+  },
+  {
+    "argv": [
+      "/home/audrey/miniconda3/envs/htp-static/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_optional.py"
+    ],
+    "env": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "log": "pytest_optional.txt"
+  },
+  {
+    "argv": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-m",
+      "qrefactorbench",
+      "validate",
+      "cases/"
+    ],
+    "env": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "log": "dataset_validation.txt"
+  },
+  {
+    "argv": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-m",
+      "qrefactorbench",
+      "summarize",
+      "cases/",
+      "--json"
+    ],
+    "env": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "log": "dataset_summary.json"
+  },
+  {
+    "argv": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "pilot/annotation_assist/verify_workflow.py",
+      "--packets",
+      "pilot/packets-v0.1"
+    ],
+    "env": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    },
+    "exit_code": 0,
+    "log": "workflow_audit.json"
+  }
+]

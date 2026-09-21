@@ -1,0 +1,14 @@
+{
+  "lots": [
+    {"lot_id": "a", "units": 4, "site": "west", "held": false},
+    {"lot_id": "b", "units": 6, "site": "west", "held": false},
+    {"lot_id": "c", "units": 5, "site": "west", "held": true},
+    {"lot_id": "d", "units": 5, "site": "east", "held": false}
+  ],
+  "requests": [
+    {"request_id": "six", "target": 6, "sites": ["west"]},
+    {"request_id": "six-again", "target": 6, "sites": ["west"]},
+    {"request_id": "five-west", "target": 5, "sites": ["west"]},
+    {"request_id": "empty", "target": 0, "sites": []}
+  ]
+}

@@ -1,0 +1,1001 @@
+{
+  "purpose": "device-limit fix validation; not quantum advantage",
+  "utc": "2026-09-20T18:32:05.759544+00:00",
+  "fixtures": {
+    "path_7": [
+      7,
+      false
+    ],
+    "path_12": [
+      12,
+      false
+    ],
+    "path_16": [
+      16,
+      false
+    ],
+    "dense_16": [
+      16,
+      true
+    ]
+  },
+  "inputs": {
+    "path_7": {
+      "equipment": [
+        "device-0",
+        "device-1",
+        "device-2",
+        "device-3",
+        "device-4",
+        "device-5",
+        "device-6"
+      ],
+      "requirements": [
+        {
+          "first": "device-0",
+          "second": "device-1",
+          "weight": 3
+        },
+        {
+          "first": "device-1",
+          "second": "device-2",
+          "weight": 1
+        },
+        {
+          "first": "device-2",
+          "second": "device-3",
+          "weight": 4
+        },
+        {
+          "first": "device-3",
+          "second": "device-4",
+          "weight": 2
+        },
+        {
+          "first": "device-4",
+          "second": "device-5",
+          "weight": 5
+        },
+        {
+          "first": "device-5",
+          "second": "device-6",
+          "weight": 3
+        }
+      ],
+      "current_windows": [
+        [
+          "device-0",
+          "device-1",
+          "device-2",
+          "device-3",
+          "device-4",
+          "device-5",
+          "device-6"
+        ],
+        []
+      ]
+    },
+    "path_12": {
+      "equipment": [
+        "device-0",
+        "device-1",
+        "device-2",
+        "device-3",
+        "device-4",
+        "device-5",
+        "device-6",
+        "device-7",
+        "device-8",
+        "device-9",
+        "device-10",
+        "device-11"
+      ],
+      "requirements": [
+        {
+          "first": "device-0",
+          "second": "device-1",
+          "weight": 3
+        },
+        {
+          "first": "device-1",
+          "second": "device-2",
+          "weight": 1
+        },
+        {
+          "first": "device-2",
+          "second": "device-3",
+          "weight": 4
+        },
+        {
+          "first": "device-3",
+          "second": "device-4",
+          "weight": 2
+        },
+        {
+          "first": "device-4",
+          "second": "device-5",
+          "weight": 5
+        },
+        {
+          "first": "device-5",
+          "second": "device-6",
+          "weight": 3
+        },
+        {
+          "first": "device-6",
+          "second": "device-7",
+          "weight": 1
+        },
+        {
+          "first": "device-7",
+          "second": "device-8",
+          "weight": 4
+        },
+        {
+          "first": "device-8",
+          "second": "device-9",
+          "weight": 2
+        },
+        {
+          "first": "device-9",
+          "second": "device-10",
+          "weight": 5
+        },
+        {
+          "first": "device-10",
+          "second": "device-11",
+          "weight": 3
+        }
+      ],
+      "current_windows": [
+        [
+          "device-0",
+          "device-1",
+          "device-2",
+          "device-3",
+          "device-4",
+          "device-5",
+          "device-6",
+          "device-7",
+          "device-8",
+          "device-9",
+          "device-10",
+          "device-11"
+        ],
+        []
+      ]
+    },
+    "path_16": {
+      "equipment": [
+        "device-0",
+        "device-1",
+        "device-2",
+        "device-3",
+        "device-4",
+        "device-5",
+        "device-6",
+        "device-7",
+        "device-8",
+        "device-9",
+        "device-10",
+        "device-11",
+        "device-12",
+        "device-13",
+        "device-14",
+        "device-15"
+      ],
+      "requirements": [
+        {
+          "first": "device-0",
+          "second": "device-1",
+          "weight": 3
+        },
+        {
+          "first": "device-1",
+          "second": "device-2",
+          "weight": 1
+        },
+        {
+          "first": "device-2",
+          "second": "device-3",
+          "weight": 4
+        },
+        {
+          "first": "device-3",
+          "second": "device-4",
+          "weight": 2
+        },
+        {
+          "first": "device-4",
+          "second": "device-5",
+          "weight": 5
+        },
+        {
+          "first": "device-5",
+          "second": "device-6",
+          "weight": 3
+        },
+        {
+          "first": "device-6",
+          "second": "device-7",
+          "weight": 1
+        },
+        {
+          "first": "device-7",
+          "second": "device-8",
+          "weight": 4
+        },
+        {
+          "first": "device-8",
+          "second": "device-9",
+          "weight": 2
+        },
+        {
+          "first": "device-9",
+          "second": "device-10",
+          "weight": 5
+        },
+        {
+          "first": "device-10",
+          "second": "device-11",
+          "weight": 3
+        },
+        {
+          "first": "device-11",
+          "second": "device-12",
+          "weight": 1
+        },
+        {
+          "first": "device-12",
+          "second": "device-13",
+          "weight": 4
+        },
+        {
+          "first": "device-13",
+          "second": "device-14",
+          "weight": 2
+        },
+        {
+          "first": "device-14",
+          "second": "device-15",
+          "weight": 5
+        }
+      ],
+      "current_windows": [
+        [
+          "device-0",
+          "device-1",
+          "device-2",
+          "device-3",
+          "device-4",
+          "device-5",
+          "device-6",
+          "device-7",
+          "device-8",
+          "device-9",
+          "device-10",
+          "device-11",
+          "device-12",
+          "device-13",
+          "device-14",
+          "device-15"
+        ],
+        []
+      ]
+    },
+    "dense_16": {
+      "equipment": [
+        "device-0",
+        "device-1",
+        "device-2",
+        "device-3",
+        "device-4",
+        "device-5",
+        "device-6",
+        "device-7",
+        "device-8",
+        "device-9",
+        "device-10",
+        "device-11",
+        "device-12",
+        "device-13",
+        "device-14",
+        "device-15"
+      ],
+      "requirements": [
+        {
+          "first": "device-0",
+          "second": "device-1",
+          "weight": 3
+        },
+        {
+          "first": "device-0",
+          "second": "device-2",
+          "weight": 5
+        },
+        {
+          "first": "device-0",
+          "second": "device-3",
+          "weight": 2
+        },
+        {
+          "first": "device-0",
+          "second": "device-4",
+          "weight": 4
+        },
+        {
+          "first": "device-0",
+          "second": "device-5",
+          "weight": 1
+        },
+        {
+          "first": "device-0",
+          "second": "device-6",
+          "weight": 3
+        },
+        {
+          "first": "device-0",
+          "second": "device-7",
+          "weight": 5
+        },
+        {
+          "first": "device-0",
+          "second": "device-8",
+          "weight": 2
+        },
+        {
+          "first": "device-0",
+          "second": "device-9",
+          "weight": 4
+        },
+        {
+          "first": "device-0",
+          "second": "device-10",
+          "weight": 1
+        },
+        {
+          "first": "device-0",
+          "second": "device-11",
+          "weight": 3
+        },
+        {
+          "first": "device-0",
+          "second": "device-12",
+          "weight": 5
+        },
+        {
+          "first": "device-0",
+          "second": "device-13",
+          "weight": 2
+        },
+        {
+          "first": "device-0",
+          "second": "device-14",
+          "weight": 4
+        },
+        {
+          "first": "device-0",
+          "second": "device-15",
+          "weight": 1
+        },
+        {
+          "first": "device-1",
+          "second": "device-2",
+          "weight": 1
+        },
+        {
+          "first": "device-1",
+          "second": "device-3",
+          "weight": 3
+        },
+        {
+          "first": "device-1",
+          "second": "device-4",
+          "weight": 5
+        },
+        {
+          "first": "device-1",
+          "second": "device-5",
+          "weight": 2
+        },
+        {
+          "first": "device-1",
+          "second": "device-6",
+          "weight": 4
+        },
+        {
+          "first": "device-1",
+          "second": "device-7",
+          "weight": 1
+        },
+        {
+          "first": "device-1",
+          "second": "device-8",
+          "weight": 3
+        },
+        {
+          "first": "device-1",
+          "second": "device-9",
+          "weight": 5
+        },
+        {
+          "first": "device-1",
+          "second": "device-10",
+          "weight": 2
+        },
+        {
+          "first": "device-1",
+          "second": "device-11",
+          "weight": 4
+        },
+        {
+          "first": "device-1",
+          "second": "device-12",
+          "weight": 1
+        },
+        {
+          "first": "device-1",
+          "second": "device-13",
+          "weight": 3
+        },
+        {
+          "first": "device-1",
+          "second": "device-14",
+          "weight": 5
+        },
+        {
+          "first": "device-1",
+          "second": "device-15",
+          "weight": 2
+        },
+        {
+          "first": "device-2",
+          "second": "device-3",
+          "weight": 4
+        },
+        {
+          "first": "device-2",
+          "second": "device-4",
+          "weight": 1
+        },
+        {
+          "first": "device-2",
+          "second": "device-5",
+          "weight": 3
+        },
+        {
+          "first": "device-2",
+          "second": "device-6",
+          "weight": 5
+        },
+        {
+          "first": "device-2",
+          "second": "device-7",
+          "weight": 2
+        },
+        {
+          "first": "device-2",
+          "second": "device-8",
+          "weight": 4
+        },
+        {
+          "first": "device-2",
+          "second": "device-9",
+          "weight": 1
+        },
+        {
+          "first": "device-2",
+          "second": "device-10",
+          "weight": 3
+        },
+        {
+          "first": "device-2",
+          "second": "device-11",
+          "weight": 5
+        },
+        {
+          "first": "device-2",
+          "second": "device-12",
+          "weight": 2
+        },
+        {
+          "first": "device-2",
+          "second": "device-13",
+          "weight": 4
+        },
+        {
+          "first": "device-2",
+          "second": "device-14",
+          "weight": 1
+        },
+        {
+          "first": "device-2",
+          "second": "device-15",
+          "weight": 3
+        },
+        {
+          "first": "device-3",
+          "second": "device-4",
+          "weight": 2
+        },
+        {
+          "first": "device-3",
+          "second": "device-5",
+          "weight": 4
+        },
+        {
+          "first": "device-3",
+          "second": "device-6",
+          "weight": 1
+        },
+        {
+          "first": "device-3",
+          "second": "device-7",
+          "weight": 3
+        },
+        {
+          "first": "device-3",
+          "second": "device-8",
+          "weight": 5
+        },
+        {
+          "first": "device-3",
+          "second": "device-9",
+          "weight": 2
+        },
+        {
+          "first": "device-3",
+          "second": "device-10",
+          "weight": 4
+        },
+        {
+          "first": "device-3",
+          "second": "device-11",
+          "weight": 1
+        },
+        {
+          "first": "device-3",
+          "second": "device-12",
+          "weight": 3
+        },
+        {
+          "first": "device-3",
+          "second": "device-13",
+          "weight": 5
+        },
+        {
+          "first": "device-3",
+          "second": "device-14",
+          "weight": 2
+        },
+        {
+          "first": "device-3",
+          "second": "device-15",
+          "weight": 4
+        },
+        {
+          "first": "device-4",
+          "second": "device-5",
+          "weight": 5
+        },
+        {
+          "first": "device-4",
+          "second": "device-6",
+          "weight": 2
+        },
+        {
+          "first": "device-4",
+          "second": "device-7",
+          "weight": 4
+        },
+        {
+          "first": "device-4",
+          "second": "device-8",
+          "weight": 1
+        },
+        {
+          "first": "device-4",
+          "second": "device-9",
+          "weight": 3
+        },
+        {
+          "first": "device-4",
+          "second": "device-10",
+          "weight": 5
+        },
+        {
+          "first": "device-4",
+          "second": "device-11",
+          "weight": 2
+        },
+        {
+          "first": "device-4",
+          "second": "device-12",
+          "weight": 4
+        },
+        {
+          "first": "device-4",
+          "second": "device-13",
+          "weight": 1
+        },
+        {
+          "first": "device-4",
+          "second": "device-14",
+          "weight": 3
+        },
+        {
+          "first": "device-4",
+          "second": "device-15",
+          "weight": 5
+        },
+        {
+          "first": "device-5",
+          "second": "device-6",
+          "weight": 3
+        },
+        {
+          "first": "device-5",
+          "second": "device-7",
+          "weight": 5
+        },
+        {
+          "first": "device-5",
+          "second": "device-8",
+          "weight": 2
+        },
+        {
+          "first": "device-5",
+          "second": "device-9",
+          "weight": 4
+        },
+        {
+          "first": "device-5",
+          "second": "device-10",
+          "weight": 1
+        },
+        {
+          "first": "device-5",
+          "second": "device-11",
+          "weight": 3
+        },
+        {
+          "first": "device-5",
+          "second": "device-12",
+          "weight": 5
+        },
+        {
+          "first": "device-5",
+          "second": "device-13",
+          "weight": 2
+        },
+        {
+          "first": "device-5",
+          "second": "device-14",
+          "weight": 4
+        },
+        {
+          "first": "device-5",
+          "second": "device-15",
+          "weight": 1
+        },
+        {
+          "first": "device-6",
+          "second": "device-7",
+          "weight": 1
+        },
+        {
+          "first": "device-6",
+          "second": "device-8",
+          "weight": 3
+        },
+        {
+          "first": "device-6",
+          "second": "device-9",
+          "weight": 5
+        },
+        {
+          "first": "device-6",
+          "second": "device-10",
+          "weight": 2
+        },
+        {
+          "first": "device-6",
+          "second": "device-11",
+          "weight": 4
+        },
+        {
+          "first": "device-6",
+          "second": "device-12",
+          "weight": 1
+        },
+        {
+          "first": "device-6",
+          "second": "device-13",
+          "weight": 3
+        },
+        {
+          "first": "device-6",
+          "second": "device-14",
+          "weight": 5
+        },
+        {
+          "first": "device-6",
+          "second": "device-15",
+          "weight": 2
+        },
+        {
+          "first": "device-7",
+          "second": "device-8",
+          "weight": 4
+        },
+        {
+          "first": "device-7",
+          "second": "device-9",
+          "weight": 1
+        },
+        {
+          "first": "device-7",
+          "second": "device-10",
+          "weight": 3
+        },
+        {
+          "first": "device-7",
+          "second": "device-11",
+          "weight": 5
+        },
+        {
+          "first": "device-7",
+          "second": "device-12",
+          "weight": 2
+        },
+        {
+          "first": "device-7",
+          "second": "device-13",
+          "weight": 4
+        },
+        {
+          "first": "device-7",
+          "second": "device-14",
+          "weight": 1
+        },
+        {
+          "first": "device-7",
+          "second": "device-15",
+          "weight": 3
+        },
+        {
+          "first": "device-8",
+          "second": "device-9",
+          "weight": 2
+        },
+        {
+          "first": "device-8",
+          "second": "device-10",
+          "weight": 4
+        },
+        {
+          "first": "device-8",
+          "second": "device-11",
+          "weight": 1
+        },
+        {
+          "first": "device-8",
+          "second": "device-12",
+          "weight": 3
+        },
+        {
+          "first": "device-8",
+          "second": "device-13",
+          "weight": 5
+        },
+        {
+          "first": "device-8",
+          "second": "device-14",
+          "weight": 2
+        },
+        {
+          "first": "device-8",
+          "second": "device-15",
+          "weight": 4
+        },
+        {
+          "first": "device-9",
+          "second": "device-10",
+          "weight": 5
+        },
+        {
+          "first": "device-9",
+          "second": "device-11",
+          "weight": 2
+        },
+        {
+          "first": "device-9",
+          "second": "device-12",
+          "weight": 4
+        },
+        {
+          "first": "device-9",
+          "second": "device-13",
+          "weight": 1
+        },
+        {
+          "first": "device-9",
+          "second": "device-14",
+          "weight": 3
+        },
+        {
+          "first": "device-9",
+          "second": "device-15",
+          "weight": 5
+        },
+        {
+          "first": "device-10",
+          "second": "device-11",
+          "weight": 3
+        },
+        {
+          "first": "device-10",
+          "second": "device-12",
+          "weight": 5
+        },
+        {
+          "first": "device-10",
+          "second": "device-13",
+          "weight": 2
+        },
+        {
+          "first": "device-10",
+          "second": "device-14",
+          "weight": 4
+        },
+        {
+          "first": "device-10",
+          "second": "device-15",
+          "weight": 1
+        },
+        {
+          "first": "device-11",
+          "second": "device-12",
+          "weight": 1
+        },
+        {
+          "first": "device-11",
+          "second": "device-13",
+          "weight": 3
+        },
+        {
+          "first": "device-11",
+          "second": "device-14",
+          "weight": 5
+        },
+        {
+          "first": "device-11",
+          "second": "device-15",
+          "weight": 2
+        },
+        {
+          "first": "device-12",
+          "second": "device-13",
+          "weight": 4
+        },
+        {
+          "first": "device-12",
+          "second": "device-14",
+          "weight": 1
+        },
+        {
+          "first": "device-12",
+          "second": "device-15",
+          "weight": 3
+        },
+        {
+          "first": "device-13",
+          "second": "device-14",
+          "weight": 2
+        },
+        {
+          "first": "device-13",
+          "second": "device-15",
+          "weight": 4
+        },
+        {
+          "first": "device-14",
+          "second": "device-15",
+          "weight": 5
+        }
+      ],
+      "current_windows": [
+        [
+          "device-0",
+          "device-1",
+          "device-2",
+          "device-3",
+          "device-4",
+          "device-5",
+          "device-6",
+          "device-7",
+          "device-8",
+          "device-9",
+          "device-10",
+          "device-11",
+          "device-12",
+          "device-13",
+          "device-14",
+          "device-15"
+        ],
+        []
+      ]
+    }
+  },
+  "thread_env": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "timeout_seconds_per_fixture": 300,
+  "source_sha256": {
+    "demo/context001_qiskit/hybrid_program.py": "00929c77dff0b361724016b752071f2e44ed089c9a1bc8f0c6f094f85347973b",
+    "demo/context001_qiskit/protocol.json": "9da0663e98030f74dcee2700643fd57cf608d4495b3092145e925836de8d0b7a",
+    "demo/context001_qiskit/maintenance.py": "b1acb0f1a52185375aaccf624f8da082accd12748bb456d488037d8c1b29e880",
+    "demo/context001_qiskit/run_comparison.py": "96522c1ecc1dd0f3b0bb7ae280bdf485c60a94968efae017ca07442f39c39e73",
+    "demo/context001_qiskit/check_device_range.py": "7eaa239fd018c1db076fad6a30282e42c5ba8a97a907951714f35074d325b33b"
+  },
+  "runs": [
+    {
+      "fixture": "path_7",
+      "command": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-m",
+        "demo.context001_qiskit.check_device_range",
+        "--fixture",
+        "path_7",
+        "--output",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/demo/context001_qiskit/artifacts/device_limit_v011/runs/path_7.json"
+      ],
+      "retry_count": 0,
+      "exit_code": 0
+    },
+    {
+      "fixture": "path_12",
+      "command": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-m",
+        "demo.context001_qiskit.check_device_range",
+        "--fixture",
+        "path_12",
+        "--output",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/demo/context001_qiskit/artifacts/device_limit_v011/runs/path_12.json"
+      ],
+      "retry_count": 0,
+      "exit_code": 0
+    },
+    {
+      "fixture": "path_16",
+      "command": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-m",
+        "demo.context001_qiskit.check_device_range",
+        "--fixture",
+        "path_16",
+        "--output",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/demo/context001_qiskit/artifacts/device_limit_v011/runs/path_16.json"
+      ],
+      "retry_count": 0,
+      "exit_code": 0
+    },
+    {
+      "fixture": "dense_16",
+      "command": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-m",
+        "demo.context001_qiskit.check_device_range",
+        "--fixture",
+        "dense_16",
+        "--output",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/demo/context001_qiskit/artifacts/device_limit_v011/runs/dense_16.json"
+      ],
+      "retry_count": 0,
+      "exit_code": 0
+    }
+  ]
+}

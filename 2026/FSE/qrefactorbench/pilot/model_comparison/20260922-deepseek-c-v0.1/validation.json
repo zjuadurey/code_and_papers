@@ -1,0 +1,128 @@
+{
+  "status": "completed_with_one_preserved_budget_failure",
+  "http_requests": 20,
+  "http_200": 20,
+  "valid_final_responses": 19,
+  "models": {
+    "deepseek-v4-pro": 10,
+    "deepseek-flash": 9
+  },
+  "preserved_failures": [
+    {
+      "model": "deepseek-flash",
+      "case": "lit-009",
+      "reason": "length; all 16384 completion tokens were reasoning; no final answer"
+    }
+  ],
+  "operator_retries": 0,
+  "repairs": 0,
+  "unexpected_tool_calls": 0,
+  "request_payloads_match_public_input_allowlist": 20,
+  "raw_response_and_request_hashes_verified": 20,
+  "real_credential_absent_from_all_experiment_files": true,
+  "protected_files_unchanged": 458,
+  "old_GPT_manifest_files_verified": 138,
+  "pro_evaluation_recomputed_exactly": true,
+  "flash_full_population_scores_withheld": true,
+  "counterexample_script_replays": 2,
+  "original_classical_witnesses": {
+    "scope": "Original trusted classical validation/kernel only; no model or quantum calls",
+    "initial_review_check_error": "First offline check used reversed positional arguments and raised TypeError before producing results; corrected to named edges/n arguments. This was not a model retry.",
+    "source": "pilot/reference_cases/v0.1/cases/context-002/inspection.py",
+    "source_sha256": "b3af442ac12d1470d5aaf1c68f8aeca76503b40770cec82bc89eb78f9d9acf10",
+    "source_bytes_match_C_packet": true,
+    "witnesses": [
+      {
+        "model_claim": "deepseek-flash",
+        "valid_public_request": {
+          "stations": [
+            "S0",
+            "S1"
+          ],
+          "connections": [
+            [
+              "S0",
+              "S1"
+            ]
+          ],
+          "current_stations": []
+        },
+        "original_kernel_selected": [
+          0
+        ],
+        "expected": [
+          0
+        ]
+      },
+      {
+        "model_claim": "deepseek-v4-pro",
+        "valid_public_request": {
+          "stations": [
+            "S0",
+            "S1",
+            "S2",
+            "S3"
+          ],
+          "connections": [
+            [
+              "S0",
+              "S1"
+            ],
+            [
+              "S0",
+              "S2"
+            ],
+            [
+              "S1",
+              "S3"
+            ],
+            [
+              "S2",
+              "S3"
+            ]
+          ],
+          "current_stations": []
+        },
+        "original_kernel_selected": [
+          0,
+          3
+        ],
+        "expected": [
+          0,
+          3
+        ]
+      }
+    ]
+  },
+  "offline_tests": {
+    "phase": "pre-inference offline validation",
+    "tests": 9,
+    "passed": 9,
+    "command": "python -B -m pytest -q -p no:cacheprovider pilot/model_comparison/20260922-deepseek-c-v0.1/test_run.py",
+    "elapsed_test_seconds": 0.33,
+    "live_model_calls_in_tests": 0,
+    "fixtures": "mock HTTP transport and historical GPT JSON used offline only; never in API payloads",
+    "files": {
+      "run.py": "e5a20e1013abf12095102188527b6b83d510a8089449876637b6f8abfcb5d5a9",
+      "test_run.py": "a47ce727309704632c882ad4fc4e1b3d35a8e683c0e4e0c5cb482ac6fd0b546c"
+    }
+  },
+  "provider_fingerprints": {
+    "deepseek-v4-pro": [
+      "a307abda487cd1b463329ccb945ce396"
+    ],
+    "deepseek-flash": [
+      "aeb56401ca74e127821c4f9126dcb669"
+    ]
+  },
+  "reasoning_tokens_included_in_completion": {
+    "deepseek-v4-pro": 105254,
+    "deepseek-flash": 94723
+  },
+  "local_document_targets_checked": 169,
+  "limits": [
+    "AI content review, not independent expert annotation or gold.",
+    "No quantum execution or complete migration validation.",
+    "Core code/schema/labels unchanged; full repository test suite not rerun."
+  ]
+}

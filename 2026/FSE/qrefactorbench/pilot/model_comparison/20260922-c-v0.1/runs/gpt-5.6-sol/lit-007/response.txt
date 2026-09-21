@@ -1,0 +1,79 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-007",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 12,
+      "end_line": 19
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact-signed-pair-assignment",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditionally replace exhaustive mask selection with a binary quadratic optimization over x_i in {0,1}. For pair (i,j,w), its signed-score contribution is -w + 2w*x_i + 2w*x_j - 4w*x_i*x_j. Thus S(x) is already a QUBO objective with no feasibility constraints. Exact tie-breaking can be represented by maximizing F(x)=2^n*S(x)-sum_i(2^i*x_i), which prioritizes score and then the smallest numeric membership mask. This exponentially scaled lexicographic term must be checked for implementable coefficient precision; an alternative is a certified two-stage optimization that first obtains the exact maximum score and then minimizes the mask subject to that score.",
+    "input_encoding": "Use one binary variable x_i for each member, in the original member order, with False encoded as 0 and True as 1. Encode every validated, sorted pair and its weight (+1 for apart, -1 for together). Under an Ising implementation document x_i=(1-Z_i)/2, including all constants, signs, linear terms, quadratic couplings, and the tie-breaking terms.",
+    "quantum_algorithm_family": "QAOA-style QUBO/Ising optimization, conditional on an execution and certification procedure capable of preserving the exact classical contract",
+    "output_decoding": "Decode a measured bit string in member-index order to a Boolean list. Recompute the original score classically with kernel.score, verify that the assignment is a global maximizer, and verify that no smaller numeric mask has the same score. Pass the verified list to the unchanged describe and review reporting logic. If exact optimality and tie-breaking cannot be certified, retain the classical chooser or use it as an exact fallback.",
+    "assumptions": [
+      "Input validation, duplicate and completeness checks, pair sorting, and mode dispatch remain classical and unchanged.",
+      "The optimizer receives only pairs produced after successful validation, with indices matching the original member order.",
+      "No capacity or group-size constraint is introduced; every bit string, including all-False and all-True, remains feasible.",
+      "The proposed path is activated only when mode is propose; inspect continues to report the current assignment without optimization.",
+      "Any quantum execution is subordinate to the existing requirement for an exact deterministic optimum and smallest-mask tie-break."
+    ],
+    "risks": [
+      "Ordinary finite-shot QAOA does not guarantee that the exact global optimum is observed.",
+      "Classical rescoring validates a candidate's score but does not by itself prove global optimality or the absence of a smaller equally optimal mask.",
+      "Encoding the tie-break in one objective requires exponentially separated coefficients, potentially exceeding backend precision and distorting the primary score objective.",
+      "The complete preference catalogue produces a dense interaction graph with n(n-1)/2 pair terms, potentially requiring substantial routing, depth, and two-qubit operations.",
+      "State preparation, parameter optimization, repeated measurement, decoding, certification, and fallback costs may exceed the simple classical exhaustive search for relevant input sizes.",
+      "Global bit-flip symmetry creates equal-score complementary assignments; failure to enforce the numeric-mask rule would change observable output, moved members, and group ordering."
+    ],
+    "expected_resource_characteristics": {
+      "logical_variables": "n assignment bits, with any ancillas and routing overhead dependent on the chosen backend and exactness mechanism",
+      "objective_terms": "n(n-1)/2 quadratic pair interactions plus n linear tie-breaking terms",
+      "connectivity": "Dense complete-pair coupling in the supplied input domain",
+      "coefficient_range": "The direct exact tie-break construction scales the score by 2^n and therefore has exponential dynamic range",
+      "shots": "Unspecified; enough samples to discover an optimum is not an exactness certificate",
+      "classical_overhead": "QAOA parameter optimization, decoding, rescoring, exact optimality and tie certification, and potentially exhaustive fallback",
+      "unresolved": "No input-size distribution, hardware, depth, qubit, shot, precision, encoding-cost, or performance budget is supplied"
+    },
+    "rationale": "This is a conditional formulation only. The signed complete-graph objective maps structurally to QUBO/Ising, but the supplied contract requires an exact optimum and deterministic smallest-mask tie resolution. No supplied evidence establishes that a QAOA execution can meet those obligations economically or reliably."
+  },
+  "rationale": "The nominated region is kernel.py lines 12-19 because choose enumerates all 2^size membership masks, computes the signed pair objective through score at lines 8-9, retains only strictly better scores, and thereby returns the first optimum in ascending mask order—the required smallest numeric mask. Its required inputs are size and the validated pairs list of (i,j,w) tuples; it depends on member-index order, weights +1 for apart and -1 for together, and score's XOR-based contribution. It has no mutable external state. Activation occurs only from program.py line 35 when mode is propose. Validation and normalization at program.py lines 15-31 must remain intact, including exact fields, distinct names, Boolean current vector, valid relations, duplicate rejection, complete-pair coverage, and catalogue-pair sorting. The surrounding behavior at lines 32-39 must also remain intact: current is always described; inspect performs no proposal; propose describes the selected assignment, computes gain, and lists moved members in member order. describe must continue producing False/True groups in that order and violated pairs in sorted catalogue-pair order. Empty groups, exact exceptions, absence of mutation, and CLI JSON behavior must not change. Structural eligibility is true because the unconstrained signed binary objective is explicitly quadratic. Practical suitability is false because the observable contract demands an exact global optimum and exact lexicographic tie-break, while the supplied material provides no quantum certification method and the direct tie encoding has exponential coefficient range on a dense graph. Benchmark support is unknown: attribution of the score formula to SupermarQ is provenance, not workload, resource, correctness, or advantage evidence.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Select, from all two-group membership masks, the assignment with maximum signed satisfaction of all pair preferences, breaking equal-score ties by the smallest numeric mask.",
+  "assumptions": [
+    "The supplied software contract and source are the complete basis for assessment.",
+    "All pair weights are exactly +1 or -1 as constructed by review.",
+    "Exact output equivalence includes the selected mask, not merely the optimal score.",
+    "No unsupplied workload scale, quantum hardware capability, oracle access, coherent memory, or advantage evidence is assumed."
+  ],
+  "risks": [
+    "Treating an approximate high-scoring sample as acceptable would violate the exact maximization contract.",
+    "Ignoring smallest-mask tie-breaking can change proposed groups, gain-independent proposal identity, and moves.",
+    "A quantum path that changes validation timing or raises different exceptions would alter observable behavior.",
+    "Dense pair interactions and exact tie-breaking may make encoding and execution costs impractical.",
+    "Formula provenance must not be mistaken for benchmark evidence or a claim of quantum advantage."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Structurally conditional: masks form a finite domain and a reversible predicate could compare the exactly computed augmented objective against a threshold. However, the draft predicate-search contract alone does not supply exact maximum finding, smallest-mask selection, reversible score-arithmetic costs, or a deterministic no-error policy. Those unresolved obligations make it less direct than QUBO and do not establish practical suitability."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The assignment bits and signed pair score give an explicit unconstrained quadratic objective, so the structural applicability conditions hold. Applicability remains conditional on checking coefficients and signs, preserving exact optimum and smallest-mask semantics, classically verifying decoded output, accounting for dense connectivity and exponential tie-break precision, and providing an exact certification or fallback procedure."
+    }
+  ]
+}

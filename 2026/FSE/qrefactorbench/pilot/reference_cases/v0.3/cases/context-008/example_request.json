@@ -1,0 +1,5 @@
+{
+  "columns": ["gain", "loss"],
+  "rows": [{"row_id": "signed", "values": [2, -2]}, {"row_id": "empty", "values": [0, 0]}, {"row_id": "uneven", "values": [1, 2]}],
+  "copies": 2
+}

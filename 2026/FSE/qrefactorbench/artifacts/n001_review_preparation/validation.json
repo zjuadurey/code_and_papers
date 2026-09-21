@@ -1,0 +1,57 @@
+{
+  "checked_utc": "2026-09-20T11:59:30.299181+00:00",
+  "task": "N-001 coordinator-only review preparation",
+  "all_checks_passed": true,
+  "case_ids": [
+    "pilot-001",
+    "pilot-002",
+    "pilot-003",
+    "pilot-004",
+    "pilot-005",
+    "pilot-006",
+    "pilot-007",
+    "pilot-008",
+    "pilot-009",
+    "pilot-010"
+  ],
+  "non_null_plan_ids": [
+    "pilot-001",
+    "pilot-003",
+    "pilot-004",
+    "pilot-005",
+    "pilot-006",
+    "pilot-007",
+    "pilot-009",
+    "pilot-010"
+  ],
+  "null_plan_controls": [
+    "pilot-002",
+    "pilot-008"
+  ],
+  "blank_case_human_cells": 40,
+  "blank_cross_case_human_cells": 9,
+  "local_markdown_links_checked": 80,
+  "pre_existing_files_checked": 693,
+  "unchanged_files": 687,
+  "intentional_handoff_document_changes": [
+    "TODO.md",
+    "NEXT_ACTIONS.md",
+    "PROJECT_STATUS.md",
+    "README.md",
+    "CHANGELOG.md",
+    "docs/research_log.md"
+  ],
+  "history_append_only": true,
+  "experiment_manifest_files_verified": {
+    "restricted-codex": 120,
+    "conditional-plan-diagnostic": 129
+  },
+  "case_schema_code_packet_prediction_changes": 0,
+  "human_judgments_supplied": 0,
+  "scientific_decisions_made": 0,
+  "model_calls": 0,
+  "runtime_tests_run": false,
+  "test_rationale": "Markdown-only preparation; link, blank-field, coverage and artifact-preservation checks are appropriate.",
+  "record_sha256": "2d2d9e9b8a7a5f747f81ddebb2b33c63a78896de167e040468ac20df435fb0ba",
+  "next_action": "N-002: wait for real human evidence or Q19 direction; no further worksheet or experiment"
+}

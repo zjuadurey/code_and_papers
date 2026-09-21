@@ -1,0 +1,42 @@
+{
+  "items": [
+    {
+      "id": "item0",
+      "weight": 2,
+      "value": 3,
+      "active": true
+    },
+    {
+      "id": "item1",
+      "weight": 4,
+      "value": 3,
+      "active": true
+    },
+    {
+      "id": "item2",
+      "weight": 1,
+      "value": 1,
+      "active": true
+    },
+    {
+      "id": "item3",
+      "weight": 3,
+      "value": 1,
+      "active": true
+    },
+    {
+      "id": "item4",
+      "weight": 5,
+      "value": 5,
+      "active": true
+    }
+  ],
+  "windows": [
+    {
+      "id": "window",
+      "capacity": 7,
+      "current": [],
+      "mode": "select"
+    }
+  ]
+}

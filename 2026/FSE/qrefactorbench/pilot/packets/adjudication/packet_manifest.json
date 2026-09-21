@@ -1,0 +1,28 @@
+{
+  "case_ids": [
+    "pilot-001",
+    "pilot-002",
+    "pilot-003",
+    "pilot-004",
+    "pilot-005",
+    "pilot-006",
+    "pilot-007",
+    "pilot-008",
+    "pilot-009",
+    "pilot-010"
+  ],
+  "files_sha256": {
+    "INSTRUCTIONS.md": "7823764651fd776849a8c02e9f28b166b6ba880552b5a2b8cc29746692f9fdef",
+    "pilot-001/adjudication.json": "6b3d696e9146d1bc5eba4ce4a737e30fc3b85a1d3802b05cc9797023e1f0d53f",
+    "pilot-002/adjudication.json": "65737f12661027ae63162c8bf888b20c1a66a13db82ec2490c75585940aa01d6",
+    "pilot-003/adjudication.json": "07ff3ec751fdf2881fd240d6461147a6a38776ba83b55c5ac60a433ae648f55d",
+    "pilot-004/adjudication.json": "961d2b2745f91ffd1cc844c78096c619e43779fd625d6e0a274c8b38362d7322",
+    "pilot-005/adjudication.json": "df731cc1d81d3c7eaf5c7a5e8167320953d4d545abce5e7b1e61e8e4cd07bd27",
+    "pilot-006/adjudication.json": "dc545ec9be78d3c4129dfe4d88b701b2a0776fa1204115d8ad46c72d8fd301ab",
+    "pilot-007/adjudication.json": "6a060b3598254c10004bc37d9c6d09f9925ee23e0617242cace03f8fc2749b43",
+    "pilot-008/adjudication.json": "88819cf9de2a440754401290fe55916d582a582cb08b4d0927476f188a70a0c5",
+    "pilot-009/adjudication.json": "faff3e577364d0b69ece9fdbe9ad35f0fb2a1650be0ce232e184c8aa3b961220",
+    "pilot-010/adjudication.json": "f6ea37bb07cf6dea25560a1d6c99dd6ab51605048fa6a2ccdb3b5ca5980fd81a"
+  },
+  "packet_version": "phase1-v0"
+}

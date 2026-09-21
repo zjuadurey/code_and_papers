@@ -1,0 +1,9 @@
+{
+  "case_id": "source-core-007",
+  "title": "Signed pair assignment review",
+  "software_contract": "score(values,pairs)=sum(w if values[i]!=values[j] else -w). choose(size,pairs) maximizes this over all Boolean vectors; ties smallest numeric mask. Valid complete undirected pairs i<j with w in {-1,+1}; no mutation. Newly authored exact enumeration, not the upstream variational optimizer.",
+  "input_domain": "Valid kernel arguments as specified; application validation and reports are not part of this core view.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}

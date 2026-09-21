@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "context-001",
+  "title": "Maintenance assignment review",
+  "description": "review_schedule(request) validates the entire request or raises ValueError without mutating it; exception text is not fixed. It returns equipment_count (number of equipment items), requirement_count (number of raw requirement records), current, proposed and changes. Each of current/proposed contains windows, conflict_weight, separated_weight and conflicts. A conflict is a positive-total-weight equipment pair assigned to the same window. Repeated/reversed requirements add weights; zero-total pairs are omitted from conflict lists. conflict_weight sums same-window weights; separated_weight sums different-window weights. Proposed windows must globally minimize conflict_weight. Ties choose the smallest sum of 2**i over equipment input positions i in window 0, regardless of the current arrangement; minimum movement is NOT an objective. All output windows list names in equipment input order, even if input current_windows used another order. Conflict records have first, second and weight; endpoints and records are ordered by their equipment positions i<j, then increasing (i,j). changes contains moved_equipment (records with equipment, from_window, to_window, ordered by equipment input order; window indices are 0 and 1), conflict_reduction (current minus proposed conflict_weight), resolved_conflicts (current conflict records absent in proposed), and introduced_conflicts (proposed conflict records absent in current). The latter lists retain conflict ordering. Conflicts that remain are exactly proposed.conflicts. Zero improvement does not imply no moves. Empty equipment requires current_windows=[[],[]] and yields empty lists and zero scores/counts. The valid JSON CLI reads one request from stdin and prints one report; invalid input produces no successful report and a nonzero exit. No approximate score, arbitrary tie choice, input mutation or omitted reporting is permitted.",
+  "source": "AI-assisted second-context adaptation of lit-001 and C2|Q> pinned CSV data row 164. Original computational function retained; request validation, current-plan evaluation and change reports are new synthetic application code. See ../../provenance.json and ../../README.md. No deployed software origin or independent review claimed.",
+  "source_url": "https://huggingface.co/datasets/boshuai1/c2q-dataset/tree/c5b457cf425c31e91bae829503ece6e92646dd0a",
+  "license": "NOASSERTION",
+  "domain": "source_adapted_synthetic_context",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "maintenance.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "maintenance.py",
+      "function": "maxcut_bruteforce",
+      "start_line": 74,
+      "end_line": 89
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT full-report equality: independent small-domain enumeration, feasibility and score checks, ordered conflict/movement reports, exception and nonmutation tests. No automatic quantum semantic hook registered.",
+    "config": {
+      "test_artifact": "test_program.py",
+      "probabilistic_policy": null,
+      "approximation_permitted": false
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "This is a classical JSON-in/report-out program. Data arrive classically; no coherent data-access assumption is supplied.",
+      "No workload frequency, hardware backend, resource budget, latency target or deployment cost evidence is supplied.",
+      "The original exact selection and tie behavior is retained. Changes are reported for review, not automatically deployed."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT / AI-ASSISTED PROPOSAL \u2014 NOT GROUND TRUTH. Required positive category is a provisional sampling hypothesis. Candidate is a private nomination; all scientific judgment fields remain null. Same computational lineage as lit-001, not an independent problem family.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "Synthetic application; no real-user or deployed-software evidence.",
+    "The original function name remains visible; greater WHERE difficulty has not been demonstrated.",
+    "Source lineage shared with lit-001; do not count as an independently sourced algorithm or assume independence in future splits.",
+    "Minimum moves is not an objective. Exact/tie behavior may propose moves even for an already optimal current assignment.",
+    "Upstream function CC-BY-4.0; newly authored application/package release license remains NOASSERTION.",
+    "No quantum migration, practical benefit, reviewed oracle or scientific ground truth established."
+  ]
+}

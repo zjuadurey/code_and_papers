@@ -1,0 +1,11 @@
+{
+  "case_id": "lit-001",
+  "title": "Maintenance window assignment",
+  "software_contract": "schedule(request) returns separated_weight (an exact integer), windows (two lists of names), and equipment_count. Each equipment item appears exactly once, in its input order within its window. The score is the sum of requirement weights whose endpoints are in different windows; return the globally largest score. Repeated or reversed requirements contribute independently and therefore add their weights. For equal scores choose the smallest sum of 2**i over input positions i in the first window. Empty inputs return score 0 and two empty lists. Invalid requests raise ValueError; error message text is not part of the contract. Validate the entire request even after a valid prefix. Do not mutate the request. The program's JSON stdin/stdout entry point prints one response for valid requests; invalid input terminates with an error, not a success response.",
+  "input_domain": "A JSON object with exactly equipment and requirements. equipment is a list of 0–16 unique nonempty strings. requirements is a list of objects with exactly first, second, weight; endpoints must be distinct known equipment names; weight must be a nonnegative Python int, excluding bool. Arbitrary-size integer weights are allowed. The 16-item bound is a local enumeration/testing limit, not a measured operational workload.",
+  "execution_assumptions": [
+    "Input arrives as ordinary classical JSON; one request produces one response.",
+    "No measured workload distribution, hardware target, encoding budget, latency requirement or repeated-use model is supplied.",
+    "No tolerance for approximate scores or altered tie handling is granted."
+  ]
+}

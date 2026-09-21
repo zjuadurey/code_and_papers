@@ -1,0 +1,4 @@
+{
+  "code_snippet": "import itertools\\n\\n# Branch-and-bound style search for minimum vertex cover\\n\\ndef is_cover(cover, edges):\\n    for u, v in edges:\\n        if u not in cover and v not in cover:\\n            return False\\n    return True\\n\\ndef min_vertex_cover_bnb(edges, n):\\n    best = None\\n    nodes = list(range(n))\\n    for r in range(1, n + 1):\\n        for subset in itertools.combinations(nodes, r):\\n            cover = set(subset)\\n            if is_cover(cover, edges):\\n                best = cover\\n                return best\\n    return best\\n\\nedges = [(0, 1), (1, 2), (2, 5), (3, 5), (4, 6)]\\ncover = min_vertex_cover_bnb(edges, 7)\\nprint(sorted(cover))",
+  "labels": "9"
+}

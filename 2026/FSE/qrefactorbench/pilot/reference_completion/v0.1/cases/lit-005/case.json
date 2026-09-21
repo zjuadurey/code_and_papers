@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "lit-005",
+  "title": "Named feature requirements",
+  "description": "review(request) validates all fields before reporting. Each named rule has exactly three alternatives; at least one must match. Locked feature values must also match. Output failed_rules and locked_failures always describe current in input feature/rule order. inspect returns no proposal. complete retains a conforming current; otherwise returns the first conforming Boolean vector in feature order (False before True), or unavailable with null proposal. changes lists changed names in feature order. Repeated/contradictory literals within a rule are allowed. Empty rules are true. No mutation; invalid inputs raise ValueError, text unspecified. CLI reads one JSON request and prints the report.",
+  "source": "Source-task adaptation: QuanBench task 03; QuanBench+ Qiskit task 03 (same formula, not an independent source problem). New synthetic classical program; source and changes documented in ADAPTATION.md.",
+  "source_url": "https://github.com/GuoXiaoYu1125/Quanbench/blob/e6cbd58628366c7538cc5a27e9dbf9ebdfc38e1f/QuanBench44.jsonl",
+  "license": "NOASSERTION",
+  "domain": "source_adapted_synthetic_context",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "kernel.py",
+    "common.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "complete",
+      "start_line": 10,
+      "end_line": 14
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT classical contract tests; no quantum semantic threshold adopted.",
+    "config": {
+      "test_artifact": "test_program.py"
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT AI construction proposal, not ground truth. All scientific judgments remain null; category and span are review nominations only. A potentially rejected computation may still be nominated for WHERE.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "New synthetic classical application from an attributed problem or recurrence; not imported deployed software.",
+    "No quantum mapping, practical suitability or harder WHERE result established.",
+    "Classical tests support specified behavior on tested inputs, not complete migration correctness.",
+    "No new positive quantum families added."
+  ]
+}

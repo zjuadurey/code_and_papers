@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-010",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "contains_record",
+      "start_line": 4,
+      "end_line": 8
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Parse every JSON payload, propagating any parsing failure, and only after all parsing is complete return an exact Boolean indicating whether at least one record has a truthy active field and a key equal to the requested target.",
+  "migration_family": "unstructured_search",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": null,
+      "rationale": "The contains_record loop is structurally an existence search over a finite list with the predicate bool(record[\"active\"]) and record[\"key\"] == target. Applicability remains unresolved because arbitrary parsed JSON values and Python truthiness/equality would need bounded reversible encodings, a coherent representation must be rebuilt for every batch, and no exact success/no-solution error policy or reversible oracle construction is supplied."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The program performs an existence test and defines neither a binary optimization objective nor constraints whose optimum is a required output. Recasting the Boolean search as a QUBO would add an optimization problem without preserving an evident computational purpose."
+    }
+  ],
+  "assumptions": [
+    "Each payload list is finite.",
+    "Within the stated input domain, parsed records contain both key and active fields.",
+    "The required behavior includes parsing every payload before searching and propagating malformed-JSON exceptions.",
+    "The returned Boolean must preserve Python truthiness for active and Python equality against the string target."
+  ],
+  "risks": [
+    "Every fresh batch requires classical parsing and at least linear-size data preparation before any coherent search representation could be used.",
+    "Oracle construction and coherent loading may cost as much as or more than the simple classical scan.",
+    "Grover-style measurement is probabilistic, while the software contract requires an exact Boolean and supplies no acceptable error threshold.",
+    "Encoding general JSON-derived values may require substantial workspace and reversible logic to reproduce Python truthiness and equality.",
+    "There is no scale information, benchmark evidence, approved cost model, coherent-memory facility, or evidence of end-to-end advantage.",
+    "Line 12 may be an expensive hotspot for large payloads, but it is a required classical parsing stage rather than a supported quantum search or optimization candidate."
+  ],
+  "rationale": "Lines 4-8 admit an abstract Grover-style predicate-search formulation, so they are structurally eligible. They are not practically suitable under the supplied execution assumptions: all payloads must first be parsed even when an early record matches, malformed input must still raise, and a coherent representation must be constructed anew for every batch. Thus the complete operation retains unavoidable classical input work linear in the batch size, while the remaining predicate is a simple classical comparison. With no benchmark, scale, cost model, reusable oracle, or permitted probabilistic-error policy, no practical advantage or exact semantic preservation is established. The parsing comprehension is a potentially expensive but rejected hotspot because quantumizing it fits neither supported migration family and could violate required parsing effects.",
+  "plan": null
+}

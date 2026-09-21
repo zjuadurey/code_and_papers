@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "lit-010",
+  "title": "Sparse balance iteration review",
+  "description": "review(request) validates a symmetric strictly diagonally dominant sparse matrix with positive diagonal. Missing entries are zero, duplicates rejected, entries normalized by variable order. inspect reports only initial Euclidean residual norm. advance follows the supplied unpreconditioned conjugate-direction recurrence from current, up to steps while recurrent residual norm / initial norm exceeds relative_tolerance. Zero initial residual takes zero steps. Return full named iterate, per-step recurrent residual trace, iterations and final directly recomputed residual norm. Budget exhaustion is not exact convergence; do not replace the iterate/trace with an exact solution. Numerical breakdown/nonfinite detected results raise ValueError. No mutation. No multigrid/MPI/rating; not a compliant HPCG run.",
+  "source": "Source-task adaptation: HPCG CG_ref.cpp unpreconditioned branch and ComputeSPMV_ref.cpp; TestSymmetry.cpp diagnostic idea. New synthetic classical program; source and changes documented in ADAPTATION.md.",
+  "source_url": "https://github.com/hpcg-benchmark/hpcg/blob/114602d458d1034faa52b71e4c15aba9b3a17698/src/CG_ref.cpp",
+  "license": "NOASSERTION",
+  "domain": "source_adapted_synthetic_context",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "hard_negative",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "kernel.py",
+    "common.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "advance",
+      "start_line": 17,
+      "end_line": 40
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT classical contract tests; no quantum semantic threshold adopted.",
+    "config": {
+      "test_artifact": "test_program.py"
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+    ],
+    "limits": {}
+  },
+  "negative_reason": "Provisional scope/retention control for review; not an assertion that no conceivable quantum reformulation exists.",
+  "annotation_rationale": "DRAFT AI construction proposal, not ground truth. All scientific judgments remain null; category and span are review nominations only. A potentially rejected computation may still be nominated for WHERE.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "New synthetic classical application from an attributed problem or recurrence; not imported deployed software.",
+    "No quantum mapping, practical suitability or harder WHERE result established.",
+    "Classical tests support specified behavior on tested inputs, not complete migration correctness.",
+    "No new positive quantum families added."
+  ]
+}

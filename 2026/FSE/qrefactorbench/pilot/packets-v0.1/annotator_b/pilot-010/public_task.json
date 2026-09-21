@@ -1,0 +1,11 @@
+{
+  "case_id": "pilot-010",
+  "execution_assumptions": [
+    "One invocation for each fresh batch of serialized classical records; no state is reused across batches.",
+    "No preloaded coherent data oracle or QRAM is supplied; a plan must include building its representation from this batch.",
+    "Parsing, buffering, encoding and decoding costs belong to the complete software operation; no cost model has been approved."
+  ],
+  "input_domain": "payloads is a list of JSON strings representing dictionaries with key and active fields; all payloads are parsed even if the first one matches; malformed JSON raises.",
+  "software_contract": "Parse every classical JSON payload, then return whether any active record has the requested key.",
+  "title": "Fresh-data record request"
+}

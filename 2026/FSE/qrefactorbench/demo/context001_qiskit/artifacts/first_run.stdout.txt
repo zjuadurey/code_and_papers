@@ -1,0 +1,6 @@
+original_three_equipment_example execution= True full_report_equal= True
+optimal_current_swapped_tie execution= True full_report_equal= True
+duplicate_reversed_weights execution= True full_report_equal= True
+zero_weights execution= True full_report_equal= True
+empty execution= True full_report_equal= True
+{"fixtures": 5, "execution_successes": 5, "quantum_executions": 4, "complete_report_matches": 5}

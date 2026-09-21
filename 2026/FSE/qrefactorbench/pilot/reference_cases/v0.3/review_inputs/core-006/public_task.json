@@ -1,0 +1,7 @@
+{
+  "case_id": "core-006",
+  "title": "Binary charge calculation",
+  "software_contract": "minimum_energy(biases, couplings) returns the exact least value of sum(biases[i]*x[i]) + sum(w*x[i]*x[j] for (i,j,w) in couplings) over binary x. All bit vectors including all-zero are allowed. Repeated/reversed coupling entries and self-couplings are additive, not deduplicated. Empty biases and couplings return zero. Return only the value, not an assignment; do not mutate inputs. Only valid-domain behavior is specified; no new invalid-input validation is promised.",
+  "input_domain": "Finite list biases of signed Python integers (not bool); finite list couplings of triples of Python integers (not bool), indices in [0,len(biases)), signed weights. No length or integer cap. The paired catalogue context disallows self-adjustments as a business rule and adds a constant base charge; the full core domain is broader.",
+  "execution_assumptions": ["Ordinary classical coefficients; no hardware, runtime target or benefit evidence is supplied."]
+}

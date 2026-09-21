@@ -1,0 +1,32 @@
+{
+  "AGENTS.md": {
+    "archive": "artifacts/session_entry_20260921/before/AGENTS.md.txt",
+    "sha256": "0fb1155e03ec25f24d79d55ef2f9b611a3b361cde1c6facc04c29e6ac5e7ef40",
+    "lines": 73
+  },
+  "PROJECT_STATUS.md": {
+    "archive": "artifacts/session_entry_20260921/before/PROJECT_STATUS.md.txt",
+    "sha256": "2a992d65128435507f0907befb1b4fcde710f0f4029b2fbf8ff3c8fcbc32f631",
+    "lines": 527
+  },
+  "NEXT_ACTIONS.md": {
+    "archive": "artifacts/session_entry_20260921/before/NEXT_ACTIONS.md.txt",
+    "sha256": "7035c2f936a8a096cca7933db8e6b20e6353fb59a6ee3e61cb7ba1091268adb2",
+    "lines": 212
+  },
+  "README.md": {
+    "archive": "artifacts/session_entry_20260921/before/README.md.txt",
+    "sha256": "4ad51484438a75287f43bc8391ca006c8e6d1849dbee0b084928b4630ddd895e",
+    "lines": 160
+  },
+  "docs/RESEARCH_CHARTER.md": {
+    "archive": "artifacts/session_entry_20260921/before/docs__RESEARCH_CHARTER.md.txt",
+    "sha256": "00219550d62bd7005bd5c32885f79f429820b75bac828ed18f9ab262e043ac99",
+    "lines": 185
+  },
+  "docs/CODEX_WORKFLOW.md": {
+    "archive": "artifacts/session_entry_20260921/before/docs__CODEX_WORKFLOW.md.txt",
+    "sha256": "33bd66b01e8bb2a28fe7f0c5010361f0ae1f93d2f4c64550e0dc76fb93bc7a6e",
+    "lines": 148
+  }
+}

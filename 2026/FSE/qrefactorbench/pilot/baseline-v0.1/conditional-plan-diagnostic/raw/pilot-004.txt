@@ -1,0 +1,70 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-004",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "has_code",
+      "start_line": 4,
+      "end_line": 7
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Determine exactly whether target equals any of at most eight resident integer codes, returning a deterministic Boolean, handling duplicates and empty input, and preserving the ValueError for inputs longer than eight.",
+  "migration_family": "unstructured_search",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The bounded index domain admits a Boolean predicate marking indices whose resident code equals the target. Applicability is conditional on constructing a reversible exact-integer equality oracle and defining exact success and no-solution handling. All loading, oracle synthesis, and verification costs must be counted."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The program performs an existence test over independent candidates, not a binary optimization problem with an objective and constraints. A QUBO encoding would introduce an artificial optimization formulation without supporting evidence or benefit."
+    }
+  ],
+  "assumptions": [
+    "Each invocation contains at most eight codes already resident in classical memory.",
+    "There is only one invocation per process and no reusable coherent data state or oracle.",
+    "Python integer equality and the returned Boolean are required to retain their exact deterministic semantics."
+  ],
+  "risks": [
+    "Preparing coherent representations of the resident integers and target may cost more than the entire classical scan.",
+    "A reversible equality oracle must support the invocation's signed, arbitrary-precision Python integers; its width and construction cost are unspecified.",
+    "Ordinary Grover-style measurement does not by itself provide the exact deterministic false result required when no code matches.",
+    "Duplicates create an invocation-dependent number of marked indices and require an appropriate search schedule.",
+    "Classical verification and exact no-solution certification can eliminate any prospective query advantage.",
+    "No benchmark evidence establishes an advantage, and no claim of speedup or physical feasibility is justified."
+  ],
+  "rationale": "Lines 4-7 are structurally expressible as a Grover-style predicate search over code indices, but they are not an expensive hotspot under the stated case: the classical implementation performs at most eight exact comparisons and may return early. Each quantum invocation would require fresh encoding and oracle construction, followed by measurement, verification, and an exact no-solution policy. Those overheads and the tiny fixed domain make the proposal practically unsuitable. The region is therefore a structural candidate rather than a performance-motivated quantumization opportunity.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "bounded_exact_code_membership",
+    "migration_family": "unstructured_search",
+    "formulation": "Keep the length check classical. For a nonempty list, search an index domain containing the valid positions and mark index i exactly when i is valid and codes[i] equals target. Invalid padded indices remain unmarked. Empty input returns false without quantum execution. Duplicate matches are allowed. Exact false semantics require a justified no-solution certificate or an exact classical fallback; bounded-error absence must not silently replace the contract.",
+    "input_encoding": "Encode candidate indices in basis states and construct a reversible oracle implementing the validity and equality predicate. The resident codes and target require a per-invocation signed-integer representation wide enough for their exact values. State preparation, loading of classical values, reversible comparison workspace, uncomputation, and oracle synthesis are all charged resources.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Measure a candidate index and classically verify its bounds and exact equality before returning true. If no verified match is produced, preserve deterministic false semantics through a proven exact no-solution procedure or a complete classical scan. Continue to raise ValueError before quantum processing when the input length exceeds eight.",
+    "assumptions": [
+      "A finite-width reversible representation can be selected separately for each invocation without changing Python integer equality.",
+      "A reversible equality predicate and its uncomputation can be constructed.",
+      "The implementation retains the classical validation, candidate verification, and any fallback needed for exact semantics.",
+      "This conditional formulation is not an assertion of performance advantage or hardware feasibility."
+    ],
+    "risks": [
+      "Oracle and data-preparation costs dominate a domain of at most eight candidates.",
+      "Unknown marked-item count complicates Grover iteration selection.",
+      "Probabilistic sampling cannot directly certify absence under the exact software contract.",
+      "Using a complete classical fallback for certification makes the quantum portion operationally redundant.",
+      "Required integer widths, gate counts, error rates, and hardware resources are unresolved."
+    ],
+    "expected_resource_characteristics": {
+      "status": "unresolved unless justified"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "prompt.txt": "115386894065f8a1649f7e63956dff05c3722467add6db6624dd610e2d0b3866",
+  "SUMMARY.json": "90d3717dc9dca7ce7442e6213b826d8b8829756ac78440ce284866304db5b821",
+  "login-status.txt": "16118df3eb3595e44a4721878cef0f79910e6564e10ff0e78e451e7c4e478947",
+  "runner.py": "2973af83efe3b4ff89d49c84c4bf5f3bd7378a09362c89c8f10123cec7930ab5",
+  "gpt-6-astra/started.json": "9f3604cab80d0081a73cf8edffbe45dd17f40d3d22cdaa02a596b0d8e184c5d1",
+  "gpt-6-astra/events.jsonl": "5287742b355e6fa81b1ac2c9058cca132251cdbd1121a466f8f8ca3ac05581b1",
+  "gpt-6-astra/result.json": "337dba6ee0654e91396ce3435fa70d24506e8b8cfbfb7effeeb1a1bc4faabc09",
+  "gpt-6-astra/response.txt": "e53f215d9e7adeb2d24a3e27891092507cd47e99e717252013d43d58bcc39bb4",
+  "gpt-6-astra/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "gpt-5.6-sol/started.json": "2effbc6b04bde5a7a8ab705dd2316b1beca641128e0f37e9550aa7afa0f9214a",
+  "gpt-5.6-sol/events.jsonl": "bc68c67165ccb04051c4d485a99e84be13179c45c46b1cba2b2ae9db940e6d93",
+  "gpt-5.6-sol/result.json": "69076d79f15ef87720506e6a98dce7f94167f6ff3742c1bc14e63c13827c0beb",
+  "gpt-5.6-sol/response.txt": "e53f215d9e7adeb2d24a3e27891092507cd47e99e717252013d43d58bcc39bb4",
+  "gpt-5.6-sol/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "preflight_failed/prompt.txt": "115386894065f8a1649f7e63956dff05c3722467add6db6624dd610e2d0b3866",
+  "preflight_failed/login-status.txt": "ab8f8c6739424ab9076fa21618d76d08f9706fdee8c7be12690b65eec4abc88d"
+}

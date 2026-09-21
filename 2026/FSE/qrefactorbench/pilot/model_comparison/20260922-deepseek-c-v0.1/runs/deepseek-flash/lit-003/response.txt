@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-003",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "agenda.py",
+      "function": "complete",
+      "start_line": 28,
+      "end_line": 56
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "lexicographically_minimal_conflict_free_slot_assignment",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Encode each session v and slot s with binary x_{v,s}=1 iff session v is assigned slot s. Hard constraints: for every session v, sum_s x_{v,s}=1; for every participant-conflict edge (u,v) in neighbors and every slot s, x_{u,s}+x_{v,s} <= 1. Objective: minimize sum_{v,s} s * B^{n-1-v} x_{v,s}, or an equivalent hierarchical lexicographic objective, with B >= slot_count so the optimal feasible assignment matches the classical lexicographically smallest slot-index vector. QUBO penalties enforce exact-one and conflict constraints; QAOA-style execution is a possible heuristic, not an exactness guarantee.",
+    "input_encoding": "One-hot binary variables over n sessions and m=slot_count slots; conflict edges from catalog.relations neighbors dict. Coefficients include integer lexicographic weights and penalty weights that must be checked for sufficiency against those weights. Classical validation, description, status, moves, and exception handling remain outside the quantum kernel.",
+    "quantum_algorithm_family": "QUBO/Ising, potentially QAOA-style execution",
+    "output_decoding": "Measure the binary vector, decode one selected slot per session, and classically verify exactly-one assignment, zero participant conflicts, and lexicographic minimality under the classical objective. If no feasible assignment is found, distinguish verified infeasibility from sampler failure; preserve ValueError('no arrangement') only when classical no-solution is established. Recompute proposed description and moves in original session and slot order.",
+    "assumptions": [
+      "The neighbors graph and slot_count are fully available before search; no fixed assignments from a blocked preview or partial current arrangement are imposed.",
+      "The classical contract requires an exact lexicographically smallest feasible assignment; approximate or probabilistic weakening is not permitted.",
+      "Empty sessions and zero-slot edge cases, including the infeasibility of nonempty sessions with zero slots, must be preserved.",
+      "No free data loading, oracle construction, workspace, shot budget, hardware, or latency target is supplied.",
+      "All slots are available to all sessions; there are no duration, room-capacity, or availability constraints."
+    ],
+    "risks": [
+      "QAOA/Ising solvers do not guarantee the exact optimum required for lexicographic minimality.",
+      "One-hot encoding plus conflict penalties uses O(n*m) variables and O(|E|*m) constraints; lexicographic weights may be exponentially scaled and hard to represent.",
+      "No-solution detection remains classical; a quantum sampler's failure to find a solution cannot by itself justify status=unavailable.",
+      "Measurement noise and probabilistic success probability require repetitions; no threshold or resource budget is supplied.",
+      "Integration must preserve exact session input order, slot order, status transitions, preview blockage behavior, and moves semantics."
+    ],
+    "expected_resource_characteristics": {
+      "logical_variables": "n * slot_count binary one-hot variables",
+      "constraints": "n exact-one constraints plus one conflict penalty per conflict edge and slot",
+      "objective_scaling": "lexicographic weights require base at least slot_count and may be exponentially large in session count",
+      "exactness": "classical verification and exact optimum required; QAOA-style execution is not an exactness guarantee",
+      "unresolved": "qubit count, depth, shots, penalty coefficients, and backend are not supplied"
+    },
+    "rationale": "A structural encoding exists for the complete search as a constrained binary optimization. This plan is conditional only; exactness, no-solution semantics, and lexicographic ordering remain unresolved."
+  },
+  "rationale": "The only justified candidate is agenda.complete (lines 28-56). It is the combinatorial kernel: given neighbors and slot_count, it backtracks over sessions in input order, tries slots 0..slot_count-1, and returns the first complete assignment, which is the lexicographically smallest slot-index vector. It depends on the neighbors dict from catalog.relations, an internal assigned state, and the available predicate that checks already assigned conflicting sessions; it deliberately ignores preview partial choices and current partial assignments (program.py lines 29-33), so failed previews and partial current arrangements impose no fixed assignments. Activation occurs only in complete mode when current is not feasible and preview raises ValueError; success yields status=completed and a proposed description, failure raises ValueError and program.py maps it to status=unavailable with proposed=null. Surrounding behavior that must remain intact includes prepare validation and case-sensitive participant matching, the prescribed greedy preview and its blocked status, describe's assignment/unassigned/conflicts/feasible/slots reporting in session and slot order, moves generation only when a proposal exists, and the exact ValueError/no-solution and no-mutation semantics. Structurally, this finite discrete search can be encoded as a QUBO/Ising problem with one-hot session-slot variables, exact-one constraints, per-slot conflict constraints, and a weighted lexicographic objective; so structural_eligibility is true. Practically, however, the required output is the exact lexicographically smallest feasible assignment. QAOA/Ising is heuristic/probabilistic and supplies no exactness guarantee; no workload frequencies, hardware, encoding-cost, latency, shot, or benchmark evidence is supplied, and the contract forbids silently weakening exactness. Therefore practical suitability is assessed false and benchmark support is null; the supported family remains classical unless an exactness-preserving formulation and resource evidence are established. A conditional migration plan is provided despite REMAIN_CLASSICAL.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Find a conflict-free session-to-slot assignment that is lexicographically smallest by slot-index vector under participant-sharing constraints, preserving the classical exactness, ordering, and no-solution semantics.",
+  "assumptions": [
+    "The neighbors graph and slot_count are available before the search; no fixed assignments from a blocked preview or partial current arrangement are imposed.",
+    "The classical contract requires an exact lexicographically smallest feasible assignment; approximate or probabilistic weakening is not permitted.",
+    "No workload frequencies, hardware, encoding-cost, latency, shot, or benchmark data are supplied.",
+    "All slots are available to all sessions; no duration, room-capacity, or availability rules apply."
+  ],
+  "risks": [
+    "QAOA/Ising does not guarantee the exact optimum required for lexicographic minimality.",
+    "One-hot encoding, conflict penalties, and exponentially scaled lexicographic weights may be resource-intensive.",
+    "No-solution detection and ValueError semantics must remain classically verified.",
+    "Integration must preserve preview blockage behavior, current-retention behavior, statuses, and moves semantics."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The complete search is a finite constrained binary optimization: one-hot session-slot variables, exact-one and conflict penalties, and a weighted lexicographic objective can be represented. Applicability is structural only; exactness, coefficient/penalty sufficiency, decoding, and no-solution semantics remain unresolved."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "Grover-style marked-state search could test feasibility of an assignment, but the classical contract requires the lexicographically smallest feasible assignment. A single predicate search does not provide lexicographic minimization or a justified no-solution policy without an additional exact nested search, so this contract is not the appropriate primary formulation for the complete kernel."
+    }
+  ]
+}

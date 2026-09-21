@@ -1,0 +1,11 @@
+{
+  "features": ["sync", "encrypted", "offline"],
+  "requires": [["sync", "encrypted"]],
+  "excludes": [["sync", "offline"]],
+  "at_least_one": [["sync", "offline"]],
+  "profiles": [
+    {"profile_id": "connected", "enabled": ["sync"], "disabled": []},
+    {"profile_id": "conflicting", "enabled": ["sync", "offline"], "disabled": []},
+    {"profile_id": "offline-only", "enabled": ["offline"], "disabled": ["encrypted"]}
+  ]
+}

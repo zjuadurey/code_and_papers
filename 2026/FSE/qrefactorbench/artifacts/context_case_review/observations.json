@@ -1,0 +1,77 @@
+{
+  "kind": "original-code context illustrations, not ground truth",
+  "observations": {
+    "pilot-005": {
+      "input": [
+        {
+          "sku": "b",
+          "units": 2,
+          "price": 3,
+          "available": true
+        },
+        {
+          "sku": "a",
+          "units": 1,
+          "price": 1,
+          "available": true
+        },
+        {
+          "sku": "c",
+          "units": 3,
+          "price": 0,
+          "available": false
+        }
+      ],
+      "target": 3,
+      "budget": 3,
+      "public_handler_result": {
+        "feasible": false,
+        "considered": 2,
+        "target": 3
+      },
+      "kernel_on_unfiltered_input": true,
+      "prepared_skus": [
+        "a",
+        "b"
+      ],
+      "kernel_on_reversed_prepared_input": false,
+      "caller_input_unchanged": true,
+      "interpretation": "Filtering changes the answer. Reordering this valid prepared input does not."
+    },
+    "pilot-009": {
+      "input": [
+        {
+          "name": "b",
+          "left_cost": 0,
+          "right_cost": 2
+        },
+        {
+          "name": "a",
+          "left_cost": 0,
+          "right_cost": 2
+        }
+      ],
+      "links": [
+        [
+          0,
+          1,
+          5
+        ]
+      ],
+      "public_handler_result": {
+        "cost": 2,
+        "names": [
+          "b",
+          "a"
+        ],
+        "count": 2
+      },
+      "specified_error_observations": {
+        "non_string_name": "job names must be strings",
+        "out_of_range_link": "invalid placement link",
+        "negative_penalty": "invalid placement link"
+      },
+      "interpretation": "Public output contains exact cost and original name order, not an assignment."
+    }
+  }
+}

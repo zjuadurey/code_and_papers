@@ -1,0 +1,69 @@
+{
+  "scope": "Original trusted classical validation/kernel only; no model or quantum calls",
+  "initial_review_check_error": "First offline check used reversed positional arguments and raised TypeError before producing results; corrected to named edges/n arguments. This was not a model retry.",
+  "source": "pilot/reference_cases/v0.1/cases/context-002/inspection.py",
+  "source_sha256": "b3af442ac12d1470d5aaf1c68f8aeca76503b40770cec82bc89eb78f9d9acf10",
+  "source_bytes_match_C_packet": true,
+  "witnesses": [
+    {
+      "model_claim": "deepseek-flash",
+      "valid_public_request": {
+        "stations": [
+          "S0",
+          "S1"
+        ],
+        "connections": [
+          [
+            "S0",
+            "S1"
+          ]
+        ],
+        "current_stations": []
+      },
+      "original_kernel_selected": [
+        0
+      ],
+      "expected": [
+        0
+      ]
+    },
+    {
+      "model_claim": "deepseek-v4-pro",
+      "valid_public_request": {
+        "stations": [
+          "S0",
+          "S1",
+          "S2",
+          "S3"
+        ],
+        "connections": [
+          [
+            "S0",
+            "S1"
+          ],
+          [
+            "S0",
+            "S2"
+          ],
+          [
+            "S1",
+            "S3"
+          ],
+          [
+            "S2",
+            "S3"
+          ]
+        ],
+        "current_stations": []
+      },
+      "original_kernel_selected": [
+        0,
+        3
+      ],
+      "expected": [
+        0,
+        3
+      ]
+    }
+  ]
+}

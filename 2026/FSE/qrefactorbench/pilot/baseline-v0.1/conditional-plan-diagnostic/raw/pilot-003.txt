@@ -1,0 +1,70 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-003",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "best_partition_score",
+      "start_line": 2,
+      "end_line": 6
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Compute and return the exact maximum weighted cut value over every binary partition of the n vertices, counting repeated edges separately and assigning zero contribution to self loops, with no externally visible side effects.",
+  "migration_family": "combinatorial_optimization",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": null,
+      "rationale": "The finite set of 2^n partitions and a threshold predicate on their cut scores could in principle be represented, but the program requests an optimum value rather than a single predicate-search result. Applicability would require an explicit reversible weighted-score oracle, threshold or maximum-finding procedure, no-solution handling, exactness policy, and accounting for edge-data encoding and workspace; none is supplied."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "Weighted maximum cut has a direct unconstrained binary quadratic objective with one binary variable per vertex. Repeated edges add coefficients and self-loop terms cancel. The contract is structurally applicable, but its QAOA proposal does not guarantee the exact optimum required by the software contract."
+    }
+  ],
+  "assumptions": [
+    "All edge weights satisfy the stated nonnegative-integer input domain.",
+    "Repeated edges remain separate contributions or are equivalently aggregated without overflow.",
+    "Returning only the optimum score, rather than a maximizing partition, is intentional.",
+    "Regression inputs establish classical semantics only and provide no evidence about quantum resources or performance."
+  ],
+  "risks": [
+    "QAOA sampling may fail to produce a globally optimal partition and supplies no exactness certificate under the draft contract.",
+    "Classically recomputing a sampled partition's score verifies that score but does not prove that it is globally maximal.",
+    "Encoding arbitrary classical edge weights and graph connectivity may require substantial coefficient precision, circuit construction, routing, and data-loading resources.",
+    "Parameter optimization, circuit depth, shot count, noise tolerance, and success probability are unspecified.",
+    "Large integer weights may exceed available coefficient precision or classical and quantum accumulator widths.",
+    "The classical exhaustive loop is expensive for growing n, but that fact alone does not establish practical quantum suitability or advantage."
+  ],
+  "rationale": "Lines 2-6 implement exhaustive weighted maximum-cut optimization and admit a direct QUBO/Ising formulation, so the region is structurally quantumizable. Practical suitability is nevertheless false under the stated contract: the API requires the exact optimum, while the available QAOA-style draft contract provides neither deterministic exactness nor a global-optimality certificate. Input encoding, connectivity, coefficient precision, state preparation, parameter optimization, measurement, and decoding costs are unresolved. No quantum benchmark evidence is provided. The hotspot should therefore remain classical unless an exactness-preserving quantum execution and certification method, with acceptable resource requirements, is established.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_weighted_max_cut_value",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Introduce one bit x_u for each vertex and maximize C(x) = sum_(u,v,w) w*(x_u + x_v - 2*x_u*x_v). Equivalently minimize the QUBO -C(x). With x_u=(1-Z_u)/2, each edge contributes w*(1-Z_u*Z_v)/2 to the maximization Hamiltonian. Repeated edges contribute repeatedly, while u=v yields zero. The unresolved requirement is to obtain and certify the exact global maximum rather than merely a high-quality sampled cut.",
+    "input_encoding": "Represent a partition with n qubits in the computational basis. Construct classical Hamiltonian coefficients from every input edge, optionally aggregating parallel edges while preserving their total weight. Encoding is not free: coefficient construction is O(|edges|), all weights must be represented with sufficient precision, and implementing nonlocal ZZ interactions may require graph-dependent routing and gates. The n=0 case must return zero without quantum execution.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure candidate bit strings, compute each cut score classically using the original edge-list semantics, and return the greatest verified score only if an additional method certifies that it is the global optimum. Ordinary QAOA sampling and classical rescoring do not provide that certificate, so without an exact certification procedure the original API cannot be replaced.",
+    "assumptions": [
+      "Hamiltonian coefficients can represent all input weights exactly enough to preserve objective ordering.",
+      "A chosen circuit architecture can implement the required weighted ZZ interactions.",
+      "Any proposed deployment must define a finite exactness and certification policy consistent with the API; this is currently unresolved."
+    ],
+    "risks": [
+      "QAOA has no supplied guarantee of finding the exact optimum.",
+      "Certifying global optimality may require classical exponential work, eliminating practical value.",
+      "Hardware connectivity and coefficient precision may make the encoded instance infeasible.",
+      "Classical parameter optimization and repeated measurements may dominate execution cost.",
+      "No resource scaling, benchmark comparison, approximation ratio, or success threshold has been established."
+    ],
+    "expected_resource_characteristics": {
+      "status": "unresolved unless justified"
+    }
+  }
+}

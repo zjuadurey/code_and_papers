@@ -1,0 +1,139 @@
+--- pilot/revisions/pilot-v0.1/original_public_tasks/pilot-001/public_task.json
++++ cases/pilot/pilot-001/public_task.json
+@@ -1,11 +1,11 @@
+ {
+   "case_id": "pilot-001",
+-  "title": "Clause satisfaction",
++  "title": "Clause interface",
+   "software_contract": "Return whether at least one Boolean assignment satisfies every clause.",
+   "input_domain": "n >= 0; each literal is a nonzero signed integer with abs(literal) <= n; empty clause is false; empty clause list is true.",
+   "execution_assumptions": [
+-    "Explore growing finite Boolean domains, not only the tiny regression inputs.",
+-    "The predicate is pure and computable from classical clauses; reversible implementation cost must be included.",
++    "n and the clause list may grow beyond the regression inputs.",
++    "Clauses are supplied as classical data; the cost of representing them in a proposed implementation must be included.",
+     "No preloaded quantum memory or measured practical benefit is assumed."
+   ]
+ }
+--- pilot/revisions/pilot-v0.1/original_public_tasks/pilot-002/public_task.json
++++ cases/pilot/pilot-002/public_task.json
+@@ -6,6 +6,6 @@
+   "execution_assumptions": [
+     "The audit callback must run on the classical host, exactly in input order.",
+     "Every event affects the digest; each intermediate audit digest is observable.",
+-    "The one-pass full ledger is the required output contract; there is no hidden existential query."
++    "The final digest and all audit calls are required observable behavior."
+   ]
+ }
+--- pilot/revisions/pilot-v0.1/original_public_tasks/pilot-003/public_task.json
++++ cases/pilot/pilot-003/public_task.json
+@@ -1,10 +1,10 @@
+ {
+   "case_id": "pilot-003",
+-  "title": "Weighted partition score",
++  "title": "Graph interface",
+   "software_contract": "Return the exact maximum total weight crossing a binary partition.",
+   "input_domain": "n >= 0; edges are (u,v,nonnegative_integer_weight) with 0 <= u,v < n; self loops contribute zero; repeated edges count separately.",
+   "execution_assumptions": [
+-    "Analyze the family for increasing graph sizes; tiny regression inputs only check classical semantics.",
++    "Graph sizes may grow beyond the regression inputs, which only check classical semantics.",
+     "Edge weights are classical input data and their encoding cost must be stated.",
+     "The API requires the exact optimum; no approximation permission is given."
+   ]
+--- pilot/revisions/pilot-v0.1/original_public_tasks/pilot-004/public_task.json
++++ cases/pilot/pilot-004/public_task.json
+@@ -1,6 +1,6 @@
+ {
+   "case_id": "pilot-004",
+-  "title": "Small resident lookup",
++  "title": "Resident code request",
+   "software_contract": "Return whether a target is present among at most eight resident integer codes.",
+   "input_domain": "codes contains at most 8 integers; duplicates and empty input allowed; larger input raises ValueError.",
+   "execution_assumptions": [
+--- pilot/revisions/pilot-v0.1/original_public_tasks/pilot-005/public_task.json
++++ cases/pilot/pilot-005/public_task.json
+@@ -4,8 +4,8 @@
+   "software_contract": "Return a response describing whether some subset of available offers meets the exact unit target within budget, while preserving preprocessing and response metadata.",
+   "input_domain": "offers have sku, units, price, available; units/prices are nonnegative integers; target/budget are nonnegative integers; unavailable offers are ignored.",
+   "execution_assumptions": [
+-    "Only the Boolean feasibility result is required, not a particular witness or ordering.",
+-    "Filtering, sorting and response metadata remain classical; analyze the subset enumeration in context.",
++    "The response includes a Boolean result; it does not return a selected subset or its ordering.",
++    "Filtering, sorting and response metadata are part of the required behavior.",
+     "Offer data arrive classically; encoding and repeated-use assumptions are not settled."
+   ]
+ }
+--- pilot/revisions/pilot-v0.1/original_public_tasks/pilot-006/public_task.json
++++ cases/pilot/pilot-006/public_task.json
+@@ -1,11 +1,11 @@
+ {
+   "case_id": "pilot-006",
+-  "title": "Binary quadratic energy",
+-  "software_contract": "Return the exact minimum of a specified binary quadratic energy.",
++  "title": "Coefficient interface",
++  "software_contract": "Return the exact minimum value of the expression computed from biases and couplings over assignments with each entry 0 or 1.",
+   "input_domain": "biases are integers; couplings (i,j,w) refer to valid indices and count once per tuple; self couplings and repeated terms are allowed.",
+   "execution_assumptions": [
+-    "The specified energy, including signs and repeated terms, is the classical contract.",
++    "The specified expression, including signs and repeated terms, defines the required return value.",
+     "Inputs can grow; test inputs are finite correctness fixtures, not performance measurements.",
+-    "No approximation threshold, QAOA depth or classical optimizer budget is supplied."
++    "No approximation threshold or execution resource budget is supplied."
+   ]
+ }
+--- pilot/revisions/pilot-v0.1/original_public_tasks/pilot-007/public_task.json
++++ cases/pilot/pilot-007/public_task.json
+@@ -1,11 +1,11 @@
+ {
+   "case_id": "pilot-007",
+-  "title": "Subset total decision",
++  "title": "Integer list interface",
+   "software_contract": "Return whether any subset of the integer list has exactly the target sum.",
+   "input_domain": "values and target are integers; negative values and duplicates are allowed; the empty subset sums to zero.",
+   "execution_assumptions": [
+-    "Explore growing subset domains; compare against suitable classical methods in future cost analysis.",
+-    "Integer width, reversible arithmetic and workspace costs must be stated by the plan.",
++    "Input lists may grow beyond the regression inputs; future cost analysis must include suitable classical implementations.",
++    "Integer width, arithmetic and workspace costs must be stated by the plan.",
+     "Only existence is required; no particular subset must be returned."
+   ]
+ }
+--- pilot/revisions/pilot-v0.1/original_public_tasks/pilot-008/public_task.json
++++ cases/pilot/pilot-008/public_task.json
+@@ -4,8 +4,8 @@
+   "software_contract": "Normalize every row and materialize every element of every requested output copy.",
+   "input_domain": "rows is a list of integer lists; copies >= 0; rows with zero total absolute magnitude normalize to zeros.",
+   "execution_assumptions": [
+-    "The caller consumes the complete nested classical output, not a summary, sample or optimum.",
++    "The caller consumes the complete nested classical output.",
+     "All copies must be distinct mutable lists, in input order.",
+-    "The workload is large when rows/copies grow; no search predicate or optimization objective is specified."
++    "The workload grows with the number of rows and copies."
+   ]
+ }
+--- pilot/revisions/pilot-v0.1/original_public_tasks/pilot-009/public_task.json
++++ cases/pilot/pilot-009/public_task.json
+@@ -2,7 +2,7 @@
+   "case_id": "pilot-009",
+   "title": "Placement report",
+   "software_contract": "Return the minimum binary placement cost and a classical metadata report for a job batch.",
+-  "input_domain": "jobs have name,left_cost,right_cost integer fields; links are valid job index pairs with nonnegative same-side penalties.",
++  "input_domain": "jobs have a string name and integer left_cost/right_cost fields; links are valid job index pairs with nonnegative same-side penalties. Non-string names, out-of-range link indices and negative penalties raise ValueError.",
+   "execution_assumptions": [
+     "All jobs must receive one of two placements; any minimum-cost assignment is acceptable but the API returns only the exact cost.",
+     "Input validation and report formatting are required surrounding behavior.",
+--- pilot/revisions/pilot-v0.1/original_public_tasks/pilot-010/public_task.json
++++ cases/pilot/pilot-010/public_task.json
+@@ -1,10 +1,10 @@
+ {
+   "case_id": "pilot-010",
+-  "title": "Fresh-data record membership",
++  "title": "Fresh-data record request",
+   "software_contract": "Parse every classical JSON payload, then return whether any active record has the requested key.",
+   "input_domain": "payloads is a list of JSON strings representing dictionaries with key and active fields; all payloads are parsed even if the first one matches; malformed JSON raises.",
+   "execution_assumptions": [
+-    "One membership query for each fresh batch of serialized classical records; no state is reused across batches.",
++    "One invocation for each fresh batch of serialized classical records; no state is reused across batches.",
+     "No preloaded coherent data oracle or QRAM is supplied; a plan must include building its representation from this batch.",
+     "Parsing, buffering, encoding and decoding costs belong to the complete software operation; no cost model has been approved."
+   ]

@@ -1,0 +1,16 @@
+{
+  "component_count": 3,
+  "base_cost": 100,
+  "current": {
+    "selected": [
+      "cache",
+      "backup"
+    ],
+    "component_cost": 3,
+    "applied_adjustment_indices": [],
+    "adjustment_cost": 0,
+    "total_cost": 103
+  },
+  "lowest_cost": 97,
+  "avoidable_cost": 6
+}

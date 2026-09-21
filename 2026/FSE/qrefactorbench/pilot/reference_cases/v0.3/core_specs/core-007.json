@@ -1,0 +1,7 @@
+{
+  "case_id": "core-007",
+  "title": "Capacity-limited item selection",
+  "software_contract": "select_items(sizes, values, capacity) returns an increasing tuple of input indices with total size <= capacity and greatest summed value. Among tied feasible selections return the lexicographically smallest index tuple using Python tuple order. Each item appears at most once. Empty selection is allowed and wins when the greatest value is zero. No mutation. Only valid-domain behavior is specified; no extra validation is promised by this function.",
+  "input_domain": "sizes and values are finite equal-length lists of Python integers, not bool. Sizes are positive, values nonnegative; capacity is a nonnegative Python integer, not bool. Empty lists, zero capacity and zero values are valid. No imposed count or integer limit.",
+  "execution_assumptions": ["Ordinary classical data. Sizes and capacity share units; values are additive supplied priorities. No resource, hardware or practical-benefit evidence is specified."]
+}

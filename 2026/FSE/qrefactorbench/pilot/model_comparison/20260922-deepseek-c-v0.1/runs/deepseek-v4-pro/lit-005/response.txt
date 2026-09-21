@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-005",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "conforms",
+      "start_line": 5,
+      "end_line": 7
+    },
+    {
+      "file": "kernel.py",
+      "function": "complete",
+      "start_line": 10,
+      "end_line": 14
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "named_feature_satisfying_assignment_search",
+    "migration_family": "unstructured_search",
+    "formulation": "Encode the n feature values as n qubits, where feature order maps to qubit index and False=0, True=1. The marked set is all bit vectors satisfying the conjunction of locked single-feature equalities and the named rules, where each rule is a disjunction of three enabled/disabled feature literals. Grover-style search would mark exactly this conforms predicate. The no-solution case corresponds to complete() returning None and review() reporting status 'unavailable'.",
+    "input_encoding": "Use a length-n basis-state register for candidates. Rule clauses are known classically as ordered triples of (feature index, enabled bool); locked values are known as feature index to bool. The reversible oracle must explicitly evaluate each rule disjunction and the global conjunction. Ancillas and data-loading cost are not free.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Measure the candidate register and classically call conforms(candidate, clauses, locked) to verify. If verification passes, decode bits back to bools in feature order. The classical requirement to return the first conforming vector in product order, with False before True, is not satisfied by an arbitrary marked-state measurement and remains unresolved; a possible order-first wrapper would need an additional less-than predicate, not just plain Grover search.",
+    "assumptions": [
+      "A reversible oracle for the existing conforms predicate can be constructed from the validated clauses and locked map.",
+      "The surrounding review() validation, failure reporting, retain/completion branch, proposal dictionary order, and changes list order remain classical and unchanged.",
+      "No advantage or lower oracle cost is assumed; data loading, ancilla initialization, and verification are accounted for explicitly."
+    ],
+    "risks": [
+      "Generic Grover search returns an unspecified satisfying assignment, not the first one in Python's product-order enumeration.",
+      "The current contract is deterministic and exact; Grover measurement introduces probabilistic error and unresolved no-solution confidence semantics.",
+      "Constructing a reversible oracle for repeated and contradictory literals, plus locked constraints, may require substantial ancilla and depth.",
+      "For small or moderate n, quantum search is unlikely to improve over the classical product enumeration and may be dominated by encoding/oracle costs."
+    ],
+    "expected_resource_characteristics": {
+      "num_qubits": "n feature qubits plus ancillas for clause evaluation, locked checks, and any order-enforcing predicate",
+      "query_count": "O(sqrt(2^n)) Grover iterations for plain marked-state search, excluding any added first-in-order search predicate",
+      "measurement_count": "at least one candidate measurement plus classical conforms verification; no-solution policy unresolved"
+    },
+    "rationale": "Conditional migration plan only: the finite Boolean search structure is eligible, but this plan does not resolve exact ordering, determinism, advantage, or oracle-cost blockers and is not an adoption recommendation."
+  },
+  "rationale": "kernel.complete() enumerates all Boolean assignments via itertools.product and returns the first one for which kernel.conforms() is true. The predicate is finite, per-feature Boolean, and includes locked equality constraints plus each rule's three-literal disjunction, so a Grover-style unstructured search is structurally conceivable. However, review() has exact classical effects that must remain intact: validation raises ValueError on malformed input; failed_rules and locked_failures are always reported in input feature/rule order; complete mode retains an already-conforming current; otherwise it returns the first conforming vector in feature order with False before True; when none exists it returns unavailable with proposal null. A plain Grover oracle cannot preserve that first-solution ordering or deterministic no-solution behavior, and no supplied evidence shows size, workload, oracle-cost feasibility, or quantum advantage. Therefore the quantumization is not practically suitable and the decision is REMAIN_CLASSICAL.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Exact finite Boolean assignment search over named feature requirements: find, or verify current as, the first feature-order bit vector satisfying locked single-feature constraints and each named rule's disjunction of three alternatives, with ordered failure reporting and unavailable handling.",
+  "assumptions": [
+    "All inputs are finite classical JSON; no quantum hardware, workload, encoding-cost, or advantage evidence is supplied.",
+    "Exact deterministic Python semantics, exception behavior, output ordering, and first-solution ordering must be preserved.",
+    "The shared contract menu is DRAFT; applicability is assessed independently rather than treated as approval."
+  ],
+  "risks": [
+    "Replacing exhaustive product search with a quantum oracle could violate the required first-solution ordering and deterministic unavailable behavior.",
+    "Rule and locked constraint checking must be compiled to a reversible circuit, which may be costly with repeated or contradictory literals and arbitrary rule counts.",
+    "No benchmark workload or size distribution is supplied to support a practical quantum advantage claim."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The finite candidate domain and pure Boolean predicate conforms() can be explicitly represented, so the unstructured-search contract is structurally applicable for conditional planning; order/exactness, oracle construction, and no-solution handling remain unresolved."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The existing program asks for the first feasible assignment, not a minimum-cost objective. Constraints could be encoded as penalties, but QUBO/QAOA would not preserve the required exact, deterministic first-in-feature-order solution."
+    }
+  ]
+}

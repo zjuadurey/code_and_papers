@@ -1,0 +1,82 @@
+--- v0.1.0/demo/context001_qiskit/hybrid_program.py
++++ v0.1.1/demo/context001_qiskit/hybrid_program.py
+@@ -73,7 +73,7 @@
+ def solve(matrix: list[list[int]]) -> tuple[list[list[int]], dict[str, Any]]:
+     n = len(matrix)
+     if n > PROTOCOL["max_qubits"]:
+-        raise NotImplementedError("Local simulation prototype supports at most six equipment items")
++        raise ValueError("equipment must be a list of at most 16 names")
+     total = sum(matrix[i][j] for i in range(n) for j in range(i + 1, n))
+     if total > PROTOCOL["max_total_weight"]:
+         raise NotImplementedError("Weight precision exceeds this floating-point prototype's declared domain")
+--- v0.1.0/demo/context001_qiskit/protocol.json
++++ v0.1.1/demo/context001_qiskit/protocol.json
+@@ -1,5 +1,5 @@
+ {
+-  "version": "0.1.0",
++  "version": "0.1.1",
+   "purpose": "Local conversion execution check, not a model baseline or advantage experiment",
+   "solver": "one-layer QAOA with ideal Statevector expectation optimization",
+   "layers": 1,
+@@ -9,7 +9,7 @@
+   "optimizer_tolerance": 0.000001,
+   "shots": 256,
+   "seed": 7,
+-  "max_qubits": 6,
++  "max_qubits": 16,
+   "max_total_weight": 1099511627776,
+   "selection": "minimum (exact classical conflict cost, mask) among sampled masks only",
+   "exact_fallback": false,
+--- v0.1.0/demo/context001_qiskit/test_conversion.py
++++ v0.1.1/demo/context001_qiskit/test_conversion.py
+@@ -4,6 +4,7 @@
+ from copy import deepcopy
+ import json
+ from pathlib import Path
++from types import SimpleNamespace
+ 
+ import pytest
+ from qiskit.quantum_info import Statevector
+@@ -63,10 +64,40 @@
+     report, trace = hybrid.review_schedule_with_trace({"equipment": [], "requirements": [], "current_windows": [[], []]})
+     assert report["proposed"]["conflict_weight"] == 0
+     assert trace["quantum_executed"] is False
+-    with pytest.raises(NotImplementedError):
+-        hybrid.solve([[0] * 7 for _ in range(7)])
++    with pytest.raises(ValueError):
++        hybrid.solve([[0] * 17 for _ in range(17)])
+     with pytest.raises(NotImplementedError):
+         hybrid.solve([[0, 2**50], [2**50, 0]])
++
++
++@pytest.mark.parametrize("n", range(7, 17))
++def test_original_device_range_reaches_circuit_and_decoding(n, monkeypatch):
++    """Exercise real final circuits; optimizer convergence is not this regression."""
++    def fixed_optimizer(objective, initial, **_kwargs):
++        value = objective(initial)
++        return SimpleNamespace(x=initial, fun=value, nfev=1, success=False,
++                               message="Test fixture: fixed angles, no parameter optimization")
++
++    monkeypatch.setattr(hybrid, "minimize", fixed_optimizer)
++    names = [f"device-{i}" for i in range(n)]
++    payload = {"equipment": names, "requirements": [
++        {"first": names[i], "second": names[i + 1], "weight": i + 1}
++        for i in range(n - 1)], "current_windows": [names, []]}
++    before = deepcopy(payload)
++    report, trace = hybrid.review_schedule_with_trace(payload)
++    assert trace["quantum_executed"] and trace["resources"]["num_qubits"] == n
++    assert sum(trace["counts"].values()) == 256
++    assert all(len(bits) == n for bits in trace["counts"])
++    assert report["equipment_count"] == n and payload == before
++    assigned = report["proposed"]["windows"]
++    assert sorted(assigned[0] + assigned[1]) == sorted(names)
++
++
++def test_more_than_original_device_limit_rejected_before_solving(monkeypatch):
++    monkeypatch.setattr(hybrid, "solve", lambda *_args: pytest.fail("Must reject before solving"))
++    names = [f"device-{i}" for i in range(17)]
++    with pytest.raises(ValueError, match="at most 16"):
++        hybrid.review_schedule({"equipment": names, "requirements": [], "current_windows": [names, []]})
+ 
+ 
+ def test_recorded_first_attempt_counts_and_resource_accounting():

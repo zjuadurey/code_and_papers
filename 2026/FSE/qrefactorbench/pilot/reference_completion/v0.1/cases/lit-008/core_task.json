@@ -1,0 +1,9 @@
+{
+  "case_id": "source-core-008",
+  "title": "Ordered masking receipts",
+  "software_contract": "encode(a,b) accepts integers 0..255, returns (a XOR b, eight-bit most-significant-first string). Deterministic exact arithmetic, no mutation; valid inputs only.",
+  "input_domain": "Valid kernel arguments as specified; application validation and reports are not part of this core view.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}
