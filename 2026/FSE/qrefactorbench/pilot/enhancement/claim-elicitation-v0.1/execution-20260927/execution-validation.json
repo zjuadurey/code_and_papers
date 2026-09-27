@@ -1,0 +1,20 @@
+{
+  "utc": "2026-09-26T21:42:27.422086+00:00",
+  "planned_slots": 10,
+  "attempts": 10,
+  "valid_responses": 10,
+  "all_valid_evaluations_replayed_exactly": true,
+  "all_reviews_after_model_queue": true,
+  "all_bindings_before_evaluation": true,
+  "tool_events": 0,
+  "transport_errors": 0,
+  "operator_retries": 0,
+  "protected_files_unchanged": 3114,
+  "changed_protected_files": [],
+  "protocol_sha256": "dfec27c33f110f47aaa63d969d45622e1bd37861d27f2aded85a1a34ab2bedc2",
+  "paper_edited": false,
+  "qpu_calls": 0,
+  "evaluation_role": "known_regression_previously_inspected_not_unseen",
+  "model_seconds_sum": 434.62299999999993,
+  "call_window_seconds": 437.350537
+}

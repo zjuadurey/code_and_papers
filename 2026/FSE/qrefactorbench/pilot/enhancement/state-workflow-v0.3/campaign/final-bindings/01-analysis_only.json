@@ -1,0 +1,43 @@
+{
+  "response_sha256": "9765215db58b3badd7d14305ae170bc760b90d2fa039569f65f06dabf70c35c8",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 44.009,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:40:49.232951+00:00",
+  "review_submitted_utc": "2026-09-26T12:41:33.242349+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "9765215db58b3badd7d14305ae170bc760b90d2fa039569f65f06dabf70c35c8",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode each index in range(col, n) as a candidate and mark only the index that the existing Python max call would return under its ordered binary64 key evaluations. The oracle must reproduce first-index tie handling and Python's behavior for all reachable intermediate values, including order-sensitive comparisons if prior elimination has produced a nonfinite value. Run the search once per elimination column, verify the decoded index classically, and use a deterministic classical fallback whenever verification or the quantum failure policy cannot certify the exact required index."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the remaining row index using ceil(log2(n-col)) candidate qubits, with invalid basis states unmarked. Provide coherent access to col, n, and the current rows state created at line 11 and mutated at lines 16 and 20 during earlier iterations. Reversible key evaluation must implement abs(rows[i][col]) and the ordered selection semantics of Python max on binary64 values. Encoding and synchronizing the mutable augmented matrix, reversible floating-point comparison, nonfinite-value handling, workspace, and uncomputation are unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure an index and classically recompute the line-13 selection over the current ordered range. Accept only an exact match; otherwise retry under a specified policy or execute the original classical max operation. Then preserve the line-14 exact-zero check, its ValueError, the line-16 row swap, subsequent elimination and back substitution, overflow detection, and all report semantics."
+      },
+      {
+        "pointer": "/plan/assumptions/1",
+        "quote": "A reversible predicate can reproduce the ordered binary64 selection performed by Python max, rather than merely testing a mathematical real-valued global maximum."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The revision improves the specification by distinguishing ordered Python max from a mathematical maximum and requiring nonfinite handling. However, it defines the marked index by reference to the original operation and still leaves the reversible predicate/comparison construction unresolved. The explicit recomputation of line 13 occurs in classical verification/fallback, not as a separately specified replacement comparison rule. Encoding the original max itself as a reviewer-written > scan would check a restatement of the target rather than the proposed oracle. Retain insufficient evidence for the replacement predicate; record the clearer ordered/nonfinite specification qualitatively, not as a verified repair or a full-domain proof.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

@@ -1,0 +1,52 @@
+{
+  "response_sha256": "36d7f49afc07c14ebebda455f04e4095111a7418337b2276f76921aeb30b4c44",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 22.963,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:45:31.296426+00:00",
+  "review_submitted_utc": "2026-09-26T12:45:54.259388+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "36d7f49afc07c14ebebda455f04e4095111a7418337b2276f76921aeb30b4c44",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "For each elimination column, define a finite search over row indices i in [col,n). Mark exactly the first index whose absolute pivot value is maximal: P(i) holds when no candidate row has a larger abs(rows[k][col]) and no earlier candidate row has an equal value. A Grover-style subroutine could conditionally search for this unique marked index. The surrounding classical loop, exact-zero check, row swap, elimination, back substitution, overflow checks, and reporting remain unchanged."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode candidate row indices in a register and provide coherent read access to the current binary64 rows and column index. A reversible predicate must compare abs(rows[i][col]) against every eligible row, implement the first-index tie rule, handle the non-power-of-two index range, and uncompute all comparison workspace. The representation and reversible implementation of Python binary64 absolute values and comparisons, including signed zero behavior, remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a row index, reject out-of-range results, and classically verify that it is the first index attaining the largest absolute pivot value. If verification fails or the quantum procedure does not return a verified index, use the original classical max operation. After verification, preserve the exact-zero singularity check and deterministic row swap."
+      },
+      {
+        "pointer": "/plan/risks/3",
+        "quote": "Finite development checks would not prove full-domain equivalence for all validated binary64 inputs or evolving elimination states."
+      }
+    ],
+    "resolution": "transcribed",
+    "rationale": "This new plan explicitly defines P(i) by no larger active magnitude and no earlier equal magnitude. Transcribe the two negated existential comparisons literally, with no stated finite-only guard. The response's finite-proof caveat and classical verification/fallback do not supply a different predicate or exclude nonfinite states. Check this newly introduced local claim separately from the initial response, which contained no mapping; do not label an unknown-to-contradicted transition as a measured pass-to-fail regression.",
+    "interpretations": [
+      {
+        "id": "no_larger_no_earlier_equal",
+        "meaning": "The explicit P(i) definition using no greater magnitude and no earlier equal magnitude.",
+        "mode": "predicate",
+        "expression": "not any(values[k] > values[i] for k in indices) and not any(values[j] == values[i] for j in indices if j < i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

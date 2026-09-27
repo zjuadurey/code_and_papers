@@ -1,0 +1,409 @@
+{
+  "status": "DRAFT_OFFLINE_NOT_EXECUTABLE_PROTOCOL",
+  "run_authorization": null,
+  "maximum_new_calls_proposed": 16,
+  "model_proposed": "gpt-5.6-sol",
+  "reasoning_effort_proposed": "medium",
+  "timeout_seconds_proposed": 600,
+  "retries_proposed": 0,
+  "slots": [
+    {
+      "id": "01-self_review",
+      "initial": "01-initial",
+      "arm": "self_review",
+      "prompt": "01-self_review.txt",
+      "prompt_sha256": "edd407050cc5294f2aeca6241356bbbd019447927289466f7073c0f36fcef7e2",
+      "initial_sha256": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+      "observations": [],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "01-cue_only",
+      "initial": "01-initial",
+      "arm": "cue_only",
+      "prompt": "01-cue_only.txt",
+      "prompt_sha256": "5ac2b270b60efe13885c9763bb780ddb4cac33988d226db2444b3a4b1cfcbe8a",
+      "initial_sha256": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+      "observations": [
+        {
+          "kind": "scope_notice",
+          "scope": "Reviewer-transcribed pivot selection on finite development checks only"
+        }
+      ],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "01-assessment_summary",
+      "initial": "01-initial",
+      "arm": "assessment_summary",
+      "prompt": "01-assessment_summary.txt",
+      "prompt_sha256": "006f6c398b40e86577a17854024b9fc3eb2c8a0dae3bffc44b9475acfe9a2dc6",
+      "initial_sha256": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+      "observations": [
+        {
+          "kind": "scope_notice",
+          "scope": "Reviewer-transcribed pivot selection on finite development checks only"
+        },
+        {
+          "kind": "semantic_feedback",
+          "status": "insufficient_evidence",
+          "task_pass": null,
+          "prose_fidelity_automatically_proved": false,
+          "interpretations": [],
+          "limits": [
+            "Finite checks are not full-domain proof, whole-plan correctness or quantum execution.",
+            "Excluded states and a declared fallback are not verified repairs.",
+            "Ambiguous, withdrawn or unsupported claims are not automatic successes."
+          ]
+        }
+      ],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "02-with_witness",
+      "initial": "02-initial",
+      "arm": "with_witness",
+      "prompt": "02-with_witness.txt",
+      "prompt_sha256": "3002c8d0358bd6231ea4f1b21e86dbceea8c55344d18971503c306b72bd8013a",
+      "initial_sha256": "f9578a04847909601a2a2f236fce1aa9ee72a615cadc7dfc1c8363bc08a27f31",
+      "observations": [
+        {
+          "kind": "scope_notice",
+          "scope": "Reviewer-transcribed pivot selection on finite development checks only"
+        },
+        {
+          "kind": "semantic_feedback",
+          "status": "contradicted",
+          "task_pass": null,
+          "prose_fidelity_automatically_proved": false,
+          "interpretations": [
+            {
+              "id": "explicit_ge_all_gt_earlier",
+              "status": "contradicted",
+              "checked_states": 13,
+              "excluded_states": 0,
+              "outside_guard": "unresolved",
+              "first_counterexample": {
+                "request_id": "dev-archived-five",
+                "input": {
+                  "variables": [
+                    "a",
+                    "b",
+                    "c",
+                    "d",
+                    "e"
+                  ],
+                  "matrix": [
+                    [
+                      2.5e+307,
+                      0.0,
+                      0.0,
+                      2.5e+307,
+                      2.5e+307
+                    ],
+                    [
+                      -2.5e+307,
+                      2.5e+307,
+                      0.0,
+                      2.5e+307,
+                      2.5e+307
+                    ],
+                    [
+                      -2.5e+307,
+                      -2.5e+307,
+                      2.5e+307,
+                      2.5e+307,
+                      2.5e+307
+                    ],
+                    [
+                      -2.5e+307,
+                      -2.5e+307,
+                      -2.5e+307,
+                      2.5e+307,
+                      2.5e+307
+                    ],
+                    [
+                      -2.5e+307,
+                      -2.5e+307,
+                      -2.5e+307,
+                      2.5e+307,
+                      -2.5e+307
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4
+                  ],
+                  "values_repr": [
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              }
+            }
+          ],
+          "limits": [
+            "Finite checks are not full-domain proof, whole-plan correctness or quantum execution.",
+            "Excluded states and a declared fallback are not verified repairs.",
+            "Ambiguous, withdrawn or unsupported claims are not automatic successes."
+          ]
+        }
+      ],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "02-cue_only",
+      "initial": "02-initial",
+      "arm": "cue_only",
+      "prompt": "02-cue_only.txt",
+      "prompt_sha256": "c1471b2f726b94069875ba81f048f5953455328f5ef9def84e7eedc6f1eced28",
+      "initial_sha256": "f9578a04847909601a2a2f236fce1aa9ee72a615cadc7dfc1c8363bc08a27f31",
+      "observations": [
+        {
+          "kind": "scope_notice",
+          "scope": "Reviewer-transcribed pivot selection on finite development checks only"
+        }
+      ],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "02-assessment_summary",
+      "initial": "02-initial",
+      "arm": "assessment_summary",
+      "prompt": "02-assessment_summary.txt",
+      "prompt_sha256": "a3f12c09b3e46ef93f2b98011da285c0b989d814756c1a0a59a65a4659c1470f",
+      "initial_sha256": "f9578a04847909601a2a2f236fce1aa9ee72a615cadc7dfc1c8363bc08a27f31",
+      "observations": [
+        {
+          "kind": "scope_notice",
+          "scope": "Reviewer-transcribed pivot selection on finite development checks only"
+        },
+        {
+          "kind": "semantic_feedback",
+          "status": "contradicted",
+          "task_pass": null,
+          "prose_fidelity_automatically_proved": false,
+          "interpretations": [
+            {
+              "id": "explicit_ge_all_gt_earlier",
+              "status": "contradicted",
+              "checked_states": 13,
+              "excluded_states": 0,
+              "outside_guard": "unresolved"
+            }
+          ],
+          "limits": [
+            "Finite checks are not full-domain proof, whole-plan correctness or quantum execution.",
+            "Excluded states and a declared fallback are not verified repairs.",
+            "Ambiguous, withdrawn or unsupported claims are not automatic successes."
+          ]
+        }
+      ],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "02-self_review",
+      "initial": "02-initial",
+      "arm": "self_review",
+      "prompt": "02-self_review.txt",
+      "prompt_sha256": "08579fc246e12d2de6118ad8c3da4b3ea193f16e67faf8657a6ec38eb58e20ee",
+      "initial_sha256": "f9578a04847909601a2a2f236fce1aa9ee72a615cadc7dfc1c8363bc08a27f31",
+      "observations": [],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "03-assessment_summary",
+      "initial": "03-initial",
+      "arm": "assessment_summary",
+      "prompt": "03-assessment_summary.txt",
+      "prompt_sha256": "dd15bdb6ac92b5f2706930a7dbbe98e86a01a943850fd6924a2110d51b64eed6",
+      "initial_sha256": "4c65827a0d7e8204ea7fe0b42171537993f5950cf7109b92ce80db500083e9e8",
+      "observations": [
+        {
+          "kind": "scope_notice",
+          "scope": "Reviewer-transcribed pivot selection on finite development checks only"
+        },
+        {
+          "kind": "semantic_feedback",
+          "status": "insufficient_evidence",
+          "task_pass": null,
+          "prose_fidelity_automatically_proved": false,
+          "interpretations": [],
+          "limits": [
+            "Finite checks are not full-domain proof, whole-plan correctness or quantum execution.",
+            "Excluded states and a declared fallback are not verified repairs.",
+            "Ambiguous, withdrawn or unsupported claims are not automatic successes."
+          ]
+        }
+      ],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "03-self_review",
+      "initial": "03-initial",
+      "arm": "self_review",
+      "prompt": "03-self_review.txt",
+      "prompt_sha256": "d15c7af95b0a26f98d297b9b85a85ef56ca71271bff56f1a6dc20bd22691f512",
+      "initial_sha256": "4c65827a0d7e8204ea7fe0b42171537993f5950cf7109b92ce80db500083e9e8",
+      "observations": [],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "03-cue_only",
+      "initial": "03-initial",
+      "arm": "cue_only",
+      "prompt": "03-cue_only.txt",
+      "prompt_sha256": "bc5b15ac751987344b0d8abdb63227dd696d4084b5af3fe84893657068f3b39d",
+      "initial_sha256": "4c65827a0d7e8204ea7fe0b42171537993f5950cf7109b92ce80db500083e9e8",
+      "observations": [
+        {
+          "kind": "scope_notice",
+          "scope": "Reviewer-transcribed pivot selection on finite development checks only"
+        }
+      ],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "04-self_review",
+      "initial": "04-initial",
+      "arm": "self_review",
+      "prompt": "04-self_review.txt",
+      "prompt_sha256": "b6546c4983892ba7c135c1baaa0039589a56fd193dad0a783e239ec59fb0b281",
+      "initial_sha256": "b3363176a048b12e56e39c7b9ee772e24b9b50698a884260d1a2e618f9861a87",
+      "observations": [],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "04-cue_only",
+      "initial": "04-initial",
+      "arm": "cue_only",
+      "prompt": "04-cue_only.txt",
+      "prompt_sha256": "38be82721320a96e5b54a4fa93d62700bd001610b8b4e0eea34877299c5aefab",
+      "initial_sha256": "b3363176a048b12e56e39c7b9ee772e24b9b50698a884260d1a2e618f9861a87",
+      "observations": [
+        {
+          "kind": "scope_notice",
+          "scope": "Reviewer-transcribed pivot selection on finite development checks only"
+        }
+      ],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "04-assessment_summary",
+      "initial": "04-initial",
+      "arm": "assessment_summary",
+      "prompt": "04-assessment_summary.txt",
+      "prompt_sha256": "47a5c702680dd27c7c7f724e39f2b79159548c1ca6e12b98f6652c47f49bd5f3",
+      "initial_sha256": "b3363176a048b12e56e39c7b9ee772e24b9b50698a884260d1a2e618f9861a87",
+      "observations": [
+        {
+          "kind": "scope_notice",
+          "scope": "Reviewer-transcribed pivot selection on finite development checks only"
+        },
+        {
+          "kind": "semantic_feedback",
+          "status": "insufficient_evidence",
+          "task_pass": null,
+          "prose_fidelity_automatically_proved": false,
+          "interpretations": [],
+          "limits": [
+            "Finite checks are not full-domain proof, whole-plan correctness or quantum execution.",
+            "Excluded states and a declared fallback are not verified repairs.",
+            "Ambiguous, withdrawn or unsupported claims are not automatic successes."
+          ]
+        }
+      ],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "05-cue_only",
+      "initial": "05-initial",
+      "arm": "cue_only",
+      "prompt": "05-cue_only.txt",
+      "prompt_sha256": "c84448f52fb8e2ff7bac5d70498ec1a57d6712add4821c0ca7a0ee76ed4fef37",
+      "initial_sha256": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+      "observations": [
+        {
+          "kind": "scope_notice",
+          "scope": "Reviewer-transcribed pivot selection on finite development checks only"
+        }
+      ],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "05-assessment_summary",
+      "initial": "05-initial",
+      "arm": "assessment_summary",
+      "prompt": "05-assessment_summary.txt",
+      "prompt_sha256": "b81745a41403e9237ab030516d8cc295ccafc96289057666afadc6703a96480e",
+      "initial_sha256": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+      "observations": [
+        {
+          "kind": "scope_notice",
+          "scope": "Reviewer-transcribed pivot selection on finite development checks only"
+        },
+        {
+          "kind": "semantic_feedback",
+          "status": "insufficient_evidence",
+          "task_pass": null,
+          "prose_fidelity_automatically_proved": false,
+          "interpretations": [],
+          "limits": [
+            "Finite checks are not full-domain proof, whole-plan correctness or quantum execution.",
+            "Excluded states and a declared fallback are not verified repairs.",
+            "Ambiguous, withdrawn or unsupported claims are not automatic successes."
+          ]
+        }
+      ],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    },
+    {
+      "id": "05-self_review",
+      "initial": "05-initial",
+      "arm": "self_review",
+      "prompt": "05-self_review.txt",
+      "prompt_sha256": "b6c54c622f6099452c156eba38785aad37fe428e4eef62d6d2cf5c8b6e0292b4",
+      "initial_sha256": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+      "observations": [],
+      "state": "design_not_run",
+      "attempt_limit_proposed": 1
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "status": "offline_interface_audited",
+  "rows": [
+    {
+      "initial": "01-initial",
+      "initial_sha256": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+      "declared_regions": [
+        {
+          "file": "kernel.py",
+          "function": "solve",
+          "start_line": 12,
+          "end_line": 16
+        }
+      ],
+      "status": "nomination_routes",
+      "route_statuses": [
+        "region_outline"
+      ],
+      "packet_sha256": "14106124fb1aa5770d4496f5a644ac8929a4979542a629177641c2261e1cad08",
+      "analysis_seconds": 0.0020086279982933775
+    },
+    {
+      "initial": "02-initial",
+      "initial_sha256": "f9578a04847909601a2a2f236fce1aa9ee72a615cadc7dfc1c8363bc08a27f31",
+      "declared_regions": [
+        {
+          "file": "kernel.py",
+          "function": "solve",
+          "start_line": 13,
+          "end_line": 13
+        }
+      ],
+      "status": "nomination_routes",
+      "route_statuses": [
+        "statement_inventory"
+      ],
+      "packet_sha256": "7228c555083016eeb224f811d37419a10c5e1d705e2bf26c1389b0f8619d8638",
+      "analysis_seconds": 0.0035506260028341785
+    },
+    {
+      "initial": "03-initial",
+      "initial_sha256": "4c65827a0d7e8204ea7fe0b42171537993f5950cf7109b92ce80db500083e9e8",
+      "declared_regions": [],
+      "status": "no_nomination",
+      "route_statuses": [],
+      "packet_sha256": "da956996c3c8a388f39991f74c3c5f170f4e384c099ef6508ceb22d6d3972144",
+      "analysis_seconds": 0.0014253349945647642
+    },
+    {
+      "initial": "04-initial",
+      "initial_sha256": "b3363176a048b12e56e39c7b9ee772e24b9b50698a884260d1a2e618f9861a87",
+      "declared_regions": [
+        {
+          "file": "kernel.py",
+          "function": "solve",
+          "start_line": 9,
+          "end_line": 26
+        }
+      ],
+      "status": "nomination_routes",
+      "route_statuses": [
+        "function_outline"
+      ],
+      "packet_sha256": "7e1df833d7cff18062c8448b7cf244fbed1e7e343bff4f5a61140571070c6a44",
+      "analysis_seconds": 0.0016867709928192198
+    },
+    {
+      "initial": "05-initial",
+      "initial_sha256": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+      "declared_regions": [
+        {
+          "file": "kernel.py",
+          "function": "solve",
+          "start_line": 13,
+          "end_line": 13
+        }
+      ],
+      "status": "nomination_routes",
+      "route_statuses": [
+        "statement_inventory"
+      ],
+      "packet_sha256": "7228c555083016eeb224f811d37419a10c5e1d705e2bf26c1389b0f8619d8638",
+      "analysis_seconds": 0.003965360010624863
+    }
+  ],
+  "new_model_calls": 0,
+  "new_qpu_calls": 0,
+  "effect_on_model_quality": null,
+  "public_source_files": [
+    "program.py",
+    "kernel.py",
+    "common.py"
+  ],
+  "source_exactly_matches_public_task": true,
+  "protected_files_unchanged": 3298,
+  "limits": [
+    "Syntax-only, source-order inventory; no candidate ranking or eligibility verdict.",
+    "Declared regions are never silently expanded, narrowed, or replaced.",
+    "Function scope and complete statement spans are analysis context, not proposed migrations.",
+    "Top-level functions only; no alias/call-effect/range/reachability proof or sound slicing.",
+    "No candidate means no nomination, not evidence that no opportunity exists."
+  ]
+}

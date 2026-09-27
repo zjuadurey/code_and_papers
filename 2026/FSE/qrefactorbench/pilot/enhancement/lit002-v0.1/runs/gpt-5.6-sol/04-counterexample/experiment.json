@@ -1,0 +1,17 @@
+{
+  "replicate": 4,
+  "arm": "counterexample",
+  "folder": "runs/gpt-5.6-sol/04-counterexample",
+  "execution_success": true,
+  "usage": [
+    {
+      "input_tokens": 8356,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 593,
+      "reasoning_output_tokens": 178
+    }
+  ],
+  "model_seconds": 24.64,
+  "initial_sha256": "36eba2011e9d422a9c1db65889d97c006ed71f1da6b0000e0e8d250aa85ec0c6"
+}

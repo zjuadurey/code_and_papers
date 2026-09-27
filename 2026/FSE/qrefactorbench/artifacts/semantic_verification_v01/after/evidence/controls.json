@@ -1,0 +1,4374 @@
+[
+  {
+    "case_id": "lit-002",
+    "control": "correct",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "no_edges": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "4",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "single_edge": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "2",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "3",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "9",
+            "variables": []
+          },
+          {
+            "coefficient": "-9",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-9",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "9",
+            "variables": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "tuple_not_mask": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "12",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "14",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "15",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              2,
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              1,
+              3
+            ]
+          }
+        ]
+      },
+      "triangle": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "4",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "star": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "12",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "14",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "15",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              3
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-002",
+    "control": "equivalent",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "cover",
+        "sense": "max",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": [
+          {
+            "coefficient": "7",
+            "variables": []
+          }
+        ]
+      },
+      "no_edges": {
+        "kind": "cover",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            2,
+            1,
+            0
+          ],
+          "complement": [
+            1,
+            1,
+            1
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-12",
+            "variables": []
+          },
+          {
+            "coefficient": "12",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-18",
+            "variables": []
+          },
+          {
+            "coefficient": "18",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-21",
+            "variables": []
+          },
+          {
+            "coefficient": "21",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": []
+          }
+        ]
+      },
+      "single_edge": {
+        "kind": "cover",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            1,
+            0
+          ],
+          "complement": [
+            1,
+            1
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-6",
+            "variables": []
+          },
+          {
+            "coefficient": "6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-9",
+            "variables": []
+          },
+          {
+            "coefficient": "9",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-27",
+            "variables": []
+          },
+          {
+            "coefficient": "27",
+            "variables": []
+          },
+          {
+            "coefficient": "-27",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "27",
+            "variables": []
+          },
+          {
+            "coefficient": "-27",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-27",
+            "variables": []
+          },
+          {
+            "coefficient": "27",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "27",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-27",
+            "variables": [
+              1,
+              0
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": []
+          }
+        ]
+      },
+      "tuple_not_mask": {
+        "kind": "cover",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "complement": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-24",
+            "variables": []
+          },
+          {
+            "coefficient": "24",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "-36",
+            "variables": []
+          },
+          {
+            "coefficient": "36",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-42",
+            "variables": []
+          },
+          {
+            "coefficient": "42",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-45",
+            "variables": []
+          },
+          {
+            "coefficient": "45",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              3,
+              2
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              3,
+              1
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              1,
+              0
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              2,
+              0
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": []
+          }
+        ]
+      },
+      "triangle": {
+        "kind": "cover",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            2,
+            1,
+            0
+          ],
+          "complement": [
+            1,
+            1,
+            1
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-12",
+            "variables": []
+          },
+          {
+            "coefficient": "12",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-18",
+            "variables": []
+          },
+          {
+            "coefficient": "18",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-21",
+            "variables": []
+          },
+          {
+            "coefficient": "21",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": []
+          },
+          {
+            "coefficient": "75",
+            "variables": []
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "75",
+            "variables": []
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": []
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              2,
+              1
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": []
+          },
+          {
+            "coefficient": "75",
+            "variables": []
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "75",
+            "variables": []
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": []
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              2,
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": []
+          },
+          {
+            "coefficient": "75",
+            "variables": []
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "75",
+            "variables": []
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": []
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              1,
+              0
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": []
+          }
+        ]
+      },
+      "star": {
+        "kind": "cover",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "complement": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-24",
+            "variables": []
+          },
+          {
+            "coefficient": "24",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "-36",
+            "variables": []
+          },
+          {
+            "coefficient": "36",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-42",
+            "variables": []
+          },
+          {
+            "coefficient": "42",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-45",
+            "variables": []
+          },
+          {
+            "coefficient": "45",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              3,
+              2
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              3,
+              1
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": []
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": []
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "195",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-195",
+            "variables": [
+              3,
+              0
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-002",
+    "control": "numeric_mask",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "no_edges": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "9",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "10",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "12",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "single_edge": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "9",
+            "variables": []
+          },
+          {
+            "coefficient": "-9",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-9",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "9",
+            "variables": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "tuple_not_mask": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "17",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "18",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "20",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "24",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              2,
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              1,
+              3
+            ]
+          }
+        ]
+      },
+      "triangle": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "9",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "10",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "12",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "star": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "17",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "18",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "20",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "24",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              3
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-002",
+    "control": "positive_superincreasing",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "no_edges": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "12",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "10",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "9",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "single_edge": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "6",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "9",
+            "variables": []
+          },
+          {
+            "coefficient": "-9",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-9",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "9",
+            "variables": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "tuple_not_mask": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "24",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "20",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "18",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "17",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              2,
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              1,
+              3
+            ]
+          }
+        ]
+      },
+      "triangle": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "12",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "10",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "9",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "star": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "24",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "20",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "18",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "17",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              3
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-002",
+    "control": "omit_constraints",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "no_edges": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "4",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "single_edge": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "2",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "3",
+            "variables": [
+              1
+            ]
+          }
+        ]
+      },
+      "tuple_not_mask": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "12",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "14",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "15",
+            "variables": [
+              3
+            ]
+          }
+        ]
+      },
+      "triangle": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "4",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "star": {
+        "kind": "cover",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "12",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "14",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "15",
+            "variables": [
+              3
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-004",
+    "control": "correct",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "clique",
+        "sense": "min",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "no_edges": {
+        "kind": "clique",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-7",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "complete": {
+        "kind": "clique",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-7",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "path": {
+        "kind": "clique",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-7",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              2
+            ]
+          }
+        ]
+      },
+      "isolated": {
+        "kind": "clique",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-1",
+            "variables": [
+              0
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-004",
+    "control": "equivalent",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "clique",
+        "sense": "max",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": [
+          {
+            "coefficient": "7",
+            "variables": []
+          }
+        ]
+      },
+      "no_edges": {
+        "kind": "clique",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            2,
+            1,
+            0
+          ],
+          "complement": [
+            1,
+            1,
+            1
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "21",
+            "variables": []
+          },
+          {
+            "coefficient": "-21",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "18",
+            "variables": []
+          },
+          {
+            "coefficient": "-18",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "12",
+            "variables": []
+          },
+          {
+            "coefficient": "-12",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": []
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              2,
+              1
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": []
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              2,
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": []
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              1,
+              0
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": []
+          }
+        ]
+      },
+      "complete": {
+        "kind": "clique",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            2,
+            1,
+            0
+          ],
+          "complement": [
+            1,
+            1,
+            1
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "21",
+            "variables": []
+          },
+          {
+            "coefficient": "-21",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "18",
+            "variables": []
+          },
+          {
+            "coefficient": "-18",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "12",
+            "variables": []
+          },
+          {
+            "coefficient": "-12",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": []
+          }
+        ]
+      },
+      "path": {
+        "kind": "clique",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            2,
+            1,
+            0
+          ],
+          "complement": [
+            1,
+            1,
+            1
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "21",
+            "variables": []
+          },
+          {
+            "coefficient": "-21",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "18",
+            "variables": []
+          },
+          {
+            "coefficient": "-18",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "12",
+            "variables": []
+          },
+          {
+            "coefficient": "-12",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": []
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "75",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-75",
+            "variables": [
+              2,
+              0
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": []
+          }
+        ]
+      },
+      "isolated": {
+        "kind": "clique",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            1
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "3",
+            "variables": []
+          },
+          {
+            "coefficient": "-3",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-004",
+    "control": "omit_constraints",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "clique",
+        "sense": "min",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "no_edges": {
+        "kind": "clique",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-7",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "complete": {
+        "kind": "clique",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-7",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "path": {
+        "kind": "clique",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-7",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "isolated": {
+        "kind": "clique",
+        "sense": "min",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-1",
+            "variables": [
+              0
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-004",
+    "control": "wrong_direction",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "clique",
+        "sense": "max",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "no_edges": {
+        "kind": "clique",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-7",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "complete": {
+        "kind": "clique",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-7",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "path": {
+        "kind": "clique",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-7",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              2
+            ]
+          }
+        ]
+      },
+      "isolated": {
+        "kind": "clique",
+        "sense": "max",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-1",
+            "variables": [
+              0
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-005",
+    "control": "correct",
+    "claim_scope": "predicate_and_core_selection",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "marked": [
+          true
+        ],
+        "selected": []
+      },
+      "force_true": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          false,
+          true
+        ],
+        "selected": [
+          1
+        ]
+      },
+      "force_false": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          true,
+          false
+        ],
+        "selected": [
+          0
+        ]
+      },
+      "locked": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "marked": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "selected": [
+          1,
+          0
+        ]
+      },
+      "unsatisfiable": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          false,
+          false
+        ],
+        "selected": null
+      },
+      "lex": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "marked": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "selected": [
+          0,
+          1
+        ]
+      },
+      "tautology": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          true,
+          true
+        ],
+        "selected": [
+          0
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-005",
+    "control": "equivalent",
+    "claim_scope": "predicate_and_core_selection",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "marked": [
+          true
+        ],
+        "selected": []
+      },
+      "force_true": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            1
+          ]
+        },
+        "marked": [
+          true,
+          false
+        ],
+        "selected": [
+          0
+        ]
+      },
+      "force_false": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            1
+          ]
+        },
+        "marked": [
+          false,
+          true
+        ],
+        "selected": [
+          1
+        ]
+      },
+      "locked": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            1,
+            0
+          ],
+          "complement": [
+            1,
+            1
+          ]
+        },
+        "marked": [
+          true,
+          false,
+          true,
+          false
+        ],
+        "selected": [
+          1,
+          0
+        ]
+      },
+      "unsatisfiable": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            1
+          ]
+        },
+        "marked": [
+          false,
+          false
+        ],
+        "selected": null
+      },
+      "lex": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            1,
+            0
+          ],
+          "complement": [
+            1,
+            1
+          ]
+        },
+        "marked": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "selected": [
+          0,
+          1
+        ]
+      },
+      "tautology": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            1
+          ]
+        },
+        "marked": [
+          true,
+          true
+        ],
+        "selected": [
+          1
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-005",
+    "control": "ignore_locks",
+    "claim_scope": "predicate_and_core_selection",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "marked": [
+          true
+        ],
+        "selected": []
+      },
+      "force_true": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          false,
+          true
+        ],
+        "selected": [
+          1
+        ]
+      },
+      "force_false": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          true,
+          false
+        ],
+        "selected": [
+          0
+        ]
+      },
+      "locked": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "marked": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "selected": [
+          0,
+          0
+        ]
+      },
+      "unsatisfiable": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          false,
+          false
+        ],
+        "selected": null
+      },
+      "lex": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "marked": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "selected": [
+          0,
+          1
+        ]
+      },
+      "tautology": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          true,
+          true
+        ],
+        "selected": [
+          0
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-005",
+    "control": "wrong_polarity",
+    "claim_scope": "predicate_and_core_selection",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "marked": [
+          true
+        ],
+        "selected": []
+      },
+      "force_true": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          true,
+          false
+        ],
+        "selected": [
+          0
+        ]
+      },
+      "force_false": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          false,
+          true
+        ],
+        "selected": [
+          1
+        ]
+      },
+      "locked": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "marked": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "selected": [
+          1,
+          0
+        ]
+      },
+      "unsatisfiable": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          false,
+          false
+        ],
+        "selected": null
+      },
+      "lex": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "marked": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "selected": [
+          0,
+          0
+        ]
+      },
+      "tautology": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          true,
+          true
+        ],
+        "selected": [
+          0
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-005",
+    "control": "arbitrary_solution",
+    "claim_scope": "predicate_and_core_selection",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "marked": [
+          true
+        ],
+        "selected": []
+      },
+      "force_true": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          false,
+          true
+        ],
+        "selected": [
+          1
+        ]
+      },
+      "force_false": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          true,
+          false
+        ],
+        "selected": [
+          0
+        ]
+      },
+      "locked": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "marked": [
+          false,
+          false,
+          true,
+          true
+        ],
+        "selected": [
+          1,
+          1
+        ]
+      },
+      "unsatisfiable": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          false,
+          false
+        ],
+        "selected": null
+      },
+      "lex": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "marked": [
+          false,
+          true,
+          true,
+          true
+        ],
+        "selected": [
+          1,
+          1
+        ]
+      },
+      "tautology": {
+        "kind": "predicate",
+        "decode": {
+          "permutation": [
+            0
+          ],
+          "complement": [
+            0
+          ]
+        },
+        "marked": [
+          true,
+          true
+        ],
+        "selected": [
+          1
+        ]
+      }
+    }
+  },
+  {
+    "case_id": "lit-008",
+    "control": "correct",
+    "claim_scope": "full_receipt_examples",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 0,
+          "receipts": [],
+          "checksum": 0
+        }
+      },
+      "normal": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 3,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "00011110",
+              "set_bits": 4,
+              "counts": {
+                "00011110": 9
+              },
+              "prefix_checksum": 30
+            },
+            {
+              "id": "r1",
+              "bits": "00110100",
+              "set_bits": 3,
+              "counts": {
+                "00110100": 9
+              },
+              "prefix_checksum": 82
+            },
+            {
+              "id": "r2",
+              "bits": "00100111",
+              "set_bits": 4,
+              "counts": {
+                "00100111": 9
+              },
+              "prefix_checksum": 121
+            }
+          ],
+          "checksum": 121
+        }
+      },
+      "endian": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 1,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "00000001",
+              "set_bits": 1,
+              "counts": {
+                "00000001": 9
+              },
+              "prefix_checksum": 1
+            }
+          ],
+          "checksum": 1
+        }
+      },
+      "overflow": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 2,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "11111111",
+              "set_bits": 8,
+              "counts": {
+                "11111111": 9
+              },
+              "prefix_checksum": 255
+            },
+            {
+              "id": "r1",
+              "bits": "00000010",
+              "set_bits": 1,
+              "counts": {
+                "00000010": 9
+              },
+              "prefix_checksum": 1
+            }
+          ],
+          "checksum": 1
+        }
+      },
+      "inspect": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 2,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "00000010",
+              "set_bits": 1,
+              "counts": null,
+              "prefix_checksum": 2
+            },
+            {
+              "id": "r1",
+              "bits": "00000001",
+              "set_bits": 1,
+              "counts": null,
+              "prefix_checksum": 3
+            }
+          ],
+          "checksum": 3
+        }
+      }
+    }
+  },
+  {
+    "case_id": "lit-008",
+    "control": "equivalent",
+    "claim_scope": "full_receipt_examples",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "receipts",
+        "report": {
+          "checksum": 0,
+          "receipts": [],
+          "record_count": 0
+        }
+      },
+      "normal": {
+        "kind": "receipts",
+        "report": {
+          "checksum": 121,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "00011110",
+              "set_bits": 4,
+              "counts": {
+                "00011110": 9
+              },
+              "prefix_checksum": 30
+            },
+            {
+              "id": "r1",
+              "bits": "00110100",
+              "set_bits": 3,
+              "counts": {
+                "00110100": 9
+              },
+              "prefix_checksum": 82
+            },
+            {
+              "id": "r2",
+              "bits": "00100111",
+              "set_bits": 4,
+              "counts": {
+                "00100111": 9
+              },
+              "prefix_checksum": 121
+            }
+          ],
+          "record_count": 3
+        }
+      },
+      "endian": {
+        "kind": "receipts",
+        "report": {
+          "checksum": 1,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "00000001",
+              "set_bits": 1,
+              "counts": {
+                "00000001": 9
+              },
+              "prefix_checksum": 1
+            }
+          ],
+          "record_count": 1
+        }
+      },
+      "overflow": {
+        "kind": "receipts",
+        "report": {
+          "checksum": 1,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "11111111",
+              "set_bits": 8,
+              "counts": {
+                "11111111": 9
+              },
+              "prefix_checksum": 255
+            },
+            {
+              "id": "r1",
+              "bits": "00000010",
+              "set_bits": 1,
+              "counts": {
+                "00000010": 9
+              },
+              "prefix_checksum": 1
+            }
+          ],
+          "record_count": 2
+        }
+      },
+      "inspect": {
+        "kind": "receipts",
+        "report": {
+          "checksum": 3,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "00000010",
+              "set_bits": 1,
+              "counts": null,
+              "prefix_checksum": 2
+            },
+            {
+              "id": "r1",
+              "bits": "00000001",
+              "set_bits": 1,
+              "counts": null,
+              "prefix_checksum": 3
+            }
+          ],
+          "record_count": 2
+        }
+      }
+    }
+  },
+  {
+    "case_id": "lit-008",
+    "control": "wrong_endian",
+    "claim_scope": "full_receipt_examples",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 0,
+          "receipts": [],
+          "checksum": 0
+        }
+      },
+      "normal": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 3,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "01111000",
+              "set_bits": 4,
+              "counts": {
+                "01111000": 9
+              },
+              "prefix_checksum": 30
+            },
+            {
+              "id": "r1",
+              "bits": "00101100",
+              "set_bits": 3,
+              "counts": {
+                "00101100": 9
+              },
+              "prefix_checksum": 82
+            },
+            {
+              "id": "r2",
+              "bits": "11100100",
+              "set_bits": 4,
+              "counts": {
+                "11100100": 9
+              },
+              "prefix_checksum": 121
+            }
+          ],
+          "checksum": 121
+        }
+      },
+      "endian": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 1,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "10000000",
+              "set_bits": 1,
+              "counts": {
+                "10000000": 9
+              },
+              "prefix_checksum": 1
+            }
+          ],
+          "checksum": 1
+        }
+      },
+      "overflow": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 2,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "11111111",
+              "set_bits": 8,
+              "counts": {
+                "11111111": 9
+              },
+              "prefix_checksum": 255
+            },
+            {
+              "id": "r1",
+              "bits": "01000000",
+              "set_bits": 1,
+              "counts": {
+                "01000000": 9
+              },
+              "prefix_checksum": 1
+            }
+          ],
+          "checksum": 1
+        }
+      },
+      "inspect": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 2,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "01000000",
+              "set_bits": 1,
+              "counts": null,
+              "prefix_checksum": 2
+            },
+            {
+              "id": "r1",
+              "bits": "10000000",
+              "set_bits": 1,
+              "counts": null,
+              "prefix_checksum": 3
+            }
+          ],
+          "checksum": 3
+        }
+      }
+    }
+  },
+  {
+    "case_id": "lit-008",
+    "control": "sample_only",
+    "claim_scope": "full_receipt_examples",
+    "provenance": {
+      "kind": "synthetic_control",
+      "is_model_result": false,
+      "author": "Codex-authored finite evaluator control; not expert annotation"
+    },
+    "claims": {
+      "empty": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 0,
+          "receipts": [],
+          "checksum": 0
+        }
+      },
+      "normal": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 1,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "00011110",
+              "set_bits": 4,
+              "counts": {
+                "00011110": 9
+              },
+              "prefix_checksum": 30
+            }
+          ],
+          "checksum": 121
+        }
+      },
+      "endian": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 1,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "00000001",
+              "set_bits": 1,
+              "counts": {
+                "00000001": 9
+              },
+              "prefix_checksum": 1
+            }
+          ],
+          "checksum": 1
+        }
+      },
+      "overflow": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 1,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "11111111",
+              "set_bits": 8,
+              "counts": {
+                "11111111": 9
+              },
+              "prefix_checksum": 255
+            }
+          ],
+          "checksum": 1
+        }
+      },
+      "inspect": {
+        "kind": "receipts",
+        "report": {
+          "record_count": 1,
+          "receipts": [
+            {
+              "id": "r0",
+              "bits": "00000010",
+              "set_bits": 1,
+              "counts": null,
+              "prefix_checksum": 2
+            }
+          ],
+          "checksum": 3
+        }
+      }
+    }
+  }
+]

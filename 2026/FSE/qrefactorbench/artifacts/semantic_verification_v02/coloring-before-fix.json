@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/home/audrey/miniconda3/envs/palqo/bin/python",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_semantic_verification_v02.py::test_coloring_zero_set_alone_does_not_validate_minimization"
+  ],
+  "exit_code": 1
+}

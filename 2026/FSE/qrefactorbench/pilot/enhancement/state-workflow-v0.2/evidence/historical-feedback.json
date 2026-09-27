@@ -1,0 +1,204 @@
+{
+  "kind": "semantic_feedback",
+  "status": "all_interpretations_contradicted",
+  "task_pass": null,
+  "scope": "Reviewer-transcribed pivot selection on finite development checks only",
+  "prose_fidelity_automatically_proved": false,
+  "interpretations": [
+    {
+      "id": "including_self",
+      "status": "contradicted",
+      "checked_states": 13,
+      "excluded_states": 0,
+      "outside_guard": "unresolved",
+      "first_counterexample": {
+        "request_id": "dev-archived-five",
+        "input": {
+          "variables": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e"
+          ],
+          "matrix": [
+            [
+              2.5e+307,
+              0.0,
+              0.0,
+              2.5e+307,
+              2.5e+307
+            ],
+            [
+              -2.5e+307,
+              2.5e+307,
+              0.0,
+              2.5e+307,
+              2.5e+307
+            ],
+            [
+              -2.5e+307,
+              -2.5e+307,
+              2.5e+307,
+              2.5e+307,
+              2.5e+307
+            ],
+            [
+              -2.5e+307,
+              -2.5e+307,
+              -2.5e+307,
+              2.5e+307,
+              2.5e+307
+            ],
+            [
+              -2.5e+307,
+              -2.5e+307,
+              -2.5e+307,
+              2.5e+307,
+              -2.5e+307
+            ]
+          ],
+          "rhs": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "current": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mode": "solve",
+          "residual_limit": 1.0
+        },
+        "state": {
+          "indices": [
+            4
+          ],
+          "values_repr": [
+            "nan"
+          ],
+          "original": 4
+        },
+        "selected": [],
+        "original_outcome": {
+          "exception": "ValueError",
+          "message": "numerical overflow"
+        }
+      }
+    },
+    {
+      "id": "excluding_self",
+      "status": "contradicted",
+      "checked_states": 13,
+      "excluded_states": 0,
+      "outside_guard": "unresolved",
+      "first_counterexample": {
+        "request_id": "dev-reviewed-six",
+        "input": {
+          "variables": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f"
+          ],
+          "matrix": [
+            [
+              2.5e+307,
+              0.0,
+              0.0,
+              2.5e+307,
+              2.5e+307,
+              0.0
+            ],
+            [
+              -2.5e+307,
+              2.5e+307,
+              0.0,
+              2.5e+307,
+              2.5e+307,
+              0.0
+            ],
+            [
+              -2.5e+307,
+              -2.5e+307,
+              2.5e+307,
+              2.5e+307,
+              2.5e+307,
+              0.0
+            ],
+            [
+              -2.5e+307,
+              -2.5e+307,
+              -2.5e+307,
+              2.5e+307,
+              2.5e+307,
+              0.0
+            ],
+            [
+              -2.5e+307,
+              -2.5e+307,
+              -2.5e+307,
+              2.5e+307,
+              -2.5e+307,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "rhs": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "current": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mode": "solve",
+          "residual_limit": 1.0
+        },
+        "state": {
+          "indices": [
+            4,
+            5
+          ],
+          "values_repr": [
+            "nan",
+            "nan"
+          ],
+          "original": 4
+        },
+        "selected": [],
+        "original_outcome": {
+          "exception": "ValueError",
+          "message": "numerical overflow"
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Finite checks are not full-domain proof, whole-plan correctness or quantum execution.",
+    "Excluded states and a declared fallback are not verified repairs.",
+    "Ambiguous, withdrawn or unsupported claims are not automatic successes."
+  ]
+}

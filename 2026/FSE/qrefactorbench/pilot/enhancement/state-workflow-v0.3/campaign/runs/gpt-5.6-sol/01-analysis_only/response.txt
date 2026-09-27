@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 13,
+      "end_line": 13
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "deterministic-partial-pivot-selection",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditionally encode each index in range(col, n) as a candidate and mark only the index that the existing Python max call would return under its ordered binary64 key evaluations. The oracle must reproduce first-index tie handling and Python's behavior for all reachable intermediate values, including order-sensitive comparisons if prior elimination has produced a nonfinite value. Run the search once per elimination column, verify the decoded index classically, and use a deterministic classical fallback whenever verification or the quantum failure policy cannot certify the exact required index.",
+    "input_encoding": "Encode the remaining row index using ceil(log2(n-col)) candidate qubits, with invalid basis states unmarked. Provide coherent access to col, n, and the current rows state created at line 11 and mutated at lines 16 and 20 during earlier iterations. Reversible key evaluation must implement abs(rows[i][col]) and the ordered selection semantics of Python max on binary64 values. Encoding and synchronizing the mutable augmented matrix, reversible floating-point comparison, nonfinite-value handling, workspace, and uncomputation are unresolved.",
+    "quantum_algorithm_family": "Grover-style marked-state search over row indices",
+    "output_decoding": "Measure an index and classically recompute the line-13 selection over the current ordered range. Accept only an exact match; otherwise retry under a specified policy or execute the original classical max operation. Then preserve the line-14 exact-zero check, its ValueError, the line-16 row swap, subsequent elimination and back substitution, overflow detection, and all report semantics.",
+    "assumptions": [
+      "The changing augmented-row state can be made coherently available at every column without treating loading, synchronization, or reversible updates as free.",
+      "A reversible predicate can reproduce the ordered binary64 selection performed by Python max, rather than merely testing a mathematical real-valued global maximum.",
+      "Each nonempty range has exactly one required output index because ordered max selection returns one index even when keys tie.",
+      "Classical verification and fallback are permitted to preserve deterministic behavior when probabilistic search does not return the required index."
+    ],
+    "risks": [
+      "Certifying that an index is the exact ordered maximum can require examining every remaining pivot, making one predicate evaluation linear in the range size.",
+      "Line 12 is the header of the elimination loop whose body extends through line 20, and rows is mutated at lines 16 and 20; extracting line 13 therefore requires repeated interaction with sequential mutable classical state.",
+      "Finite validated inputs do not by themselves guarantee finite elimination intermediates, so a mathematical argmax predicate may disagree with the actual ordered Python max behavior.",
+      "A probabilistic wrong index can change all downstream floating-point operations, exception behavior, and reported values.",
+      "Classical verification or fallback performs the original scan and can eliminate any end-to-end benefit.",
+      "Pivot selection is not the dominant cubic work of dense elimination, and no useful problem scale or hardware evidence is supplied."
+    ],
+    "expected_resource_characteristics": {
+      "candidate_register": "O(log(n-col)) qubits per invocation, excluding matrix, arithmetic, comparison, and verification resources",
+      "data_access": "Coherent access to a mutable O(n^2) augmented binary64 data set, or repeated state preparation with its full cost accounted for",
+      "predicate_work": "O(n-col) ordered key evaluations or comparisons for a direct exact predicate",
+      "invocations": "Up to n sequential searches, each dependent on mutations from previous elimination columns",
+      "unresolved_obligations": [
+        "A reversible implementation of Python-compatible binary64 absolute value and ordered max semantics",
+        "Gate counts, depth, qubits, coherent-memory costs, and matrix-update costs",
+        "A failure, retry, and fallback policy preserving deterministic results and exceptions",
+        "Proof that verification and fallback preserve exact software behavior",
+        "Any end-to-end resource or performance advantage"
+      ]
+    },
+    "rationale": "This conditional plan records how the finite selection could be represented in the supported search family. It does not establish practical suitability, semantic equivalence, or quantum advantage."
+  },
+  "rationale": "The narrowly identifiable search-shaped operation is kernel.py line 13, which selects a pivot index from the finite range col through n-1. The lexical inventory confirms that its inputs depend on n from line 10, rows from line 11, the active col introduced by the loop at line 12, and rows mutations from prior loop iterations. It also shows that line 12 is a compound for statement extending through line 20, so lines 12-16 are not a self-contained loop region; the candidate is therefore restricted to the actual selection expression at line 13. The nomination is not an extraction boundary: line 13 executes once per column inside that loop, only when program.py line 22 enters solve mode, and it executes zero times for an empty system. Its result immediately controls the exact-zero singularity check at lines 14-15 and deterministic swap at line 16. Those effects, the elimination mutations at lines 17-20, back substitution at lines 21-23, overflow exception at lines 24-25, and all validation, residual, naming, ordering, delta, limit-comparison, and no-mutation behavior in program.py must remain intact. A finite Boolean predicate identifying the exact ordered result of line 13 can be specified in principle, so structural eligibility is true. However, the predicate requires access to the current mutable dense state and effectively a scan to certify the ordered maximum; exact binary64 and possible nonfinite-intermediate behavior, probabilistic failure, verification, and fallback remain costly. The small serial workload and nondominant pivot-selection cost make practical suitability false. The HPL attribution supports only the classical algorithm and residual diagnostic, while the supplied material explicitly says this is not a compliant HPL performance run and provides no quantum workload, hardware, resource, or advantage measurements; benchmark support is therefore false.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Select the deterministic partial-pivot row returned by the ordered Python binary64 key comparison at each Gaussian-elimination column.",
+  "assumptions": [
+    "The lexical inventory is used only as intraprocedural dependency and statement-boundary evidence, not as a sound slice or reachability proof.",
+    "The nomination concerns line 13's finite index selection and does not reinterpret dense linear solving or residual calculation as combinatorial optimization.",
+    "Structural eligibility means that an exact finite predicate can be described conditionally; it does not imply an efficient oracle or useful deployment."
+  ],
+  "risks": [
+    "Any pivot-index mismatch can alter subsequent row operations, floating-point values, exceptions, and final report fields.",
+    "The loop-carried mutation of rows prevents treating repeated pivot searches as independent searches over immutable input.",
+    "A bounded-error result cannot silently replace the deterministic selection required by the software contract.",
+    "Oracle construction, coherent data access, exact arithmetic semantics, verification, and fallback may exceed the original classical selection cost.",
+    "No supplied evidence establishes useful scale, hardware feasibility, benchmark relevance, or quantum advantage."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Conditionally applicable because the remaining row indices form a finite domain and one exact ordered-selection index can be marked. Applicability requires a reversible Python-compatible predicate, coherent access to the current mutable rows, classical verification, and a deterministic failure or fallback policy; it does not imply practical suitability."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The selected operation is deterministic pivot-index selection, not a supplied binary objective with constraint penalties. Recasting the exact binary64 linear solve as approximate QUBO or QAOA optimization would not preserve the stated solution, ordering, exception, and residual semantics."
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "utc": "2026-09-26T22:21:51.547480+00:00",
+  "role": "posthoc_auxiliary_classical_certificate_only_not_primary_campaign_score",
+  "slot": "04-catalog_only",
+  "response_sha256": "0d09b319ed21514ad94744b4c5f13ff357ae70bec1f65009600bb324ade48b24",
+  "pointer": "/plan/output_decoding",
+  "quote": "Measure a candidate pivot index, check that it is in range(col, n), and classically verify that no later index has a larger absolute value and no earlier index has an equal maximum. Only a verified index may feed the existing exact-zero test and row swap. A retry or failure policy must be defined for probabilistic failure; silently accepting a nonmaximal pivot is impermissible.",
+  "literal_rule": "no later larger value and no earlier equal value",
+  "witness_source": "Previously known regression state, already present in final-results",
+  "witness": {
+    "request_id": "reserved-three-diagonal",
+    "input": {
+      "variables": [
+        "x0",
+        "x1",
+        "x2"
+      ],
+      "matrix": [
+        [
+          2.0,
+          -0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          4.0
+        ]
+      ],
+      "rhs": [
+        2.0,
+        6.0,
+        8.0
+      ],
+      "current": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mode": "solve",
+      "residual_limit": 1.0
+    },
+    "state": {
+      "indices": [
+        0,
+        1,
+        2
+      ],
+      "values_repr": [
+        "2.0",
+        "0.0",
+        "0.0"
+      ],
+      "original": 0
+    },
+    "selected": [
+      0,
+      1
+    ],
+    "original_outcome": {
+      "report": {
+        "current_residual": {
+          "vector": [
+            -2.0,
+            -6.0,
+            -8.0
+          ],
+          "infinity_norm": 8.0,
+          "scaled_backward_error": 1501199875790165.2
+        },
+        "proposal": {
+          "x0": 1.0,
+          "x1": 2.0,
+          "x2": 2.0
+        },
+        "proposed_residual": {
+          "vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "infinity_norm": 0.0,
+          "scaled_backward_error": 0.0
+        },
+        "within_requested_limit": true,
+        "deltas": {
+          "x0": 1.0,
+          "x1": 2.0,
+          "x2": 2.0
+        }
+      }
+    }
+  },
+  "accepted_indices": [
+    0,
+    1
+  ],
+  "original_index": 0,
+  "conclusion": "The stated certificate accepts a nonmaximal index; missing exclusion for an earlier larger value. This does not instantiate or refute every unspecified maximum-finding alternative.",
+  "reviewer_status": "AI_REVIEW_PENDING"
+}

@@ -1,0 +1,43 @@
+{
+  "response_sha256": "6ce0363effeba6ddb20a7bcf406e6cc7684da5807badbfca562e80b968974f23",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 16.471,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:46:58.573602+00:00",
+  "review_submitted_utc": "2026-09-26T12:47:15.044903+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "6ce0363effeba6ddb20a7bcf406e6cc7684da5807badbfca562e80b968974f23",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally represent each pivot selection as a one-hot QUBO over row indices col through n-1. The objective must reproduce Python's selection of the first index attaining the greatest absolute current pivot value. A sufficient one-hot penalty and an exact magnitude-plus-index ordering must be derived and proved for every state admitted at the hybrid boundary. Only line 13 is replaced conditionally; singularity detection, swapping, elimination, back substitution, residual calculation, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the dynamically mutated values rows[i][col], together with row indices, rather than the original matrix alone. One binary decision variable denotes each eligible row. An order-preserving representation of Python binary64 absolute-value comparisons and first-index tie behavior is required. The handling of signed zero, NaN or infinity produced by intermediate arithmetic, coefficient precision and range, state preparation, and penalty sufficiency is unresolved. Any guarded classical path for states outside the encoding would require a full-domain proof that its classification and behavior preserve the original program."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Decode a one-hot row index and verify classically that it equals Python max(range(col, n), key=lambda i: abs(rows[i][col])). Invalid, infeasible, suboptimal, or uncertified samples cannot be used. A fallback or failure policy must preserve the same pivot, subsequent exact-zero check, exception behavior, floating-point operation order, and outputs; merely declaring fallback does not establish this equivalence."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The row indices form a finite domain, and a predicate identifying the first maximum can be described. However, it requires coherent access to every current pivot, exact binary64 comparisons and tie handling, a reversible construction, and a deterministic success or no-error policy. None of these resource or semantic obligations is demonstrated, so applicability remains unresolved."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The main one-hot QUBO still lacks concrete coefficients and penalty bounds; its all-state encoding and any admission guard are explicitly unresolved. The original Python max appears as the classical verification target, not as a new comparison recurrence. Grover applicability also remains unspecified. Neither a predicate/scan nor a concrete optimization is available for the frozen local checker; retain insufficient evidence and do not infer a finite guard or repair from the added caveats.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

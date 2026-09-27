@@ -1,0 +1,56 @@
+{
+  "response_sha256": "b9c815b6c3ff64b6e7e35e58e7bb31d272930473897cbd52e1a51cee8b268588",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 56.337,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:41:14.160089+00:00",
+  "review_submitted_utc": "2026-09-26T21:42:10.496908+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "b9c815b6c3ff64b6e7e35e58e7bb31d272930473897cbd52e1a51cee8b268588",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "A pure finite predicate can mark the unique row whose current absolute pivot is no smaller than every competitor and whose index is lower than every equally valued competitor. Structural applicability therefore exists, but a reversible exact binary64 comparator, coherent access to all current pivots, workspace accounting, deterministic error handling, and a justified probabilistic success policy are unresolved. Evaluating the predicate against all competitors and verifying the result also undermines practical value, so this contract is not selected for the conditional plan."
+      },
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally represent each execution of the pivot selection as a one-hot QUBO over row indices from col through n-1. The objective must select the greatest Python absolute pivot value and use the lowest row index when values compare equal. The one-hot penalty must be proven sufficient relative to the complete objective range. Only line 13 is replaced conditionally; singularity checking, swapping, elimination, back substitution, residual calculation, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the current values rows[i][col] produced by all preceding elimination steps, rather than the original matrix column. Use one binary decision variable per eligible row and an exact order-preserving representation of relevant Python binary64 absolute values, including an index tie-break term. Before offload, states not representable by the encoding, including nonfinite intermediate values, require a semantics-preserving classical path. Exact coefficient precision, signed-zero behavior, penalty bounds, state preparation, and coherent data access remain unresolved."
+      }
+    ],
+    "resolution": "ambiguous",
+    "rationale": "The primary one-hot QUBO still lacks coefficients, tie encoding and a penalty bound; it is not evaluated here. The separate Grover applicability paragraph supplies a secondary selector: no smaller than every competitor and lower index than every equal-valued competitor. As in prior audits, retain both >= and literal not-< readings of no-smaller; they differ for NaN. Competitors exclude the candidate itself. This separate Grover claim has no explicit finite guard; do not import the primary QUBO admission condition. Results concern only this secondary relation, not the primary QUBO or entire answer.",
+    "interpretations": [
+      {
+        "id": "competitor_ge_first_equal",
+        "meaning": "Conventional >= reading against all other candidates, and lower index than all equal competitors.",
+        "mode": "predicate",
+        "expression": "all(values[i] >= values[j] for j in indices if j != i) and all(i < j for j in indices if j != i and values[i] == values[j])",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      },
+      {
+        "id": "competitor_not_lt_first_equal",
+        "meaning": "Literal not-< reading against all other candidates, with the same equality tie rule.",
+        "mode": "predicate",
+        "expression": "not any(values[i] < values[j] for j in indices if j != i) and all(i < j for j in indices if j != i and values[i] == values[j])",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

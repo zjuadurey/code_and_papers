@@ -1,0 +1,39 @@
+{
+  "response_sha256": "567184d6c7fa1e7f556564a779ed4b4e9be59180b3e0b1fa91de4618669aeac2",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 56.782,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:18:18.321613+00:00",
+  "review_submitted_utc": "2026-09-26T22:19:15.103573+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "567184d6c7fa1e7f556564a779ed4b4e9be59180b3e0b1fa91de4618669aeac2",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally treat each execution of line 13 as a search over row indices col through n-1. A Grover-style maximum-finding procedure would repeatedly use a reversible predicate marking indices whose ordered key is better than the current candidate. The key must order greater absolute current pivot values first and, for equal values, lower row indices first. This covers only pivot selection; singularity checking, swapping, elimination, back substitution, residual calculation, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode an eligible row index and provide coherent access to the dynamically mutated binary64 value rows[i][col]. Reversible circuitry must compute Python-compatible absolute values and compare the pair (abs(rows[i][col]), -i) against the current candidate without changing signed-zero, equality, or first-index tie semantics. The costs of encoding the augmented rows, refreshing them after each elimination column, arithmetic workspace, and uncomputation must be included."
+      },
+      {
+        "pointer": "/contract_applicability/1/rationale",
+        "quote": "Pivot selection is directly an unstructured argmax over dynamically produced numeric data, not a native binary combinatorial objective. An artificial one-hot QUBO could encode the choice, but exact ordering of arbitrary binary64 magnitudes, first-index tie-breaking, sufficient penalties, and exact optimum recovery would introduce unsupported coefficient and precision requirements without establishing applicability as a scientifically justified migration."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "Catalog-only changes the primary family to Grover maximum finding, with a magnitude/index key and threshold comparisons but unresolved initialization, adaptive update/control and completion. These are not a complete ordered scan or global marking predicate. It also rejects QUBO applicability without constructing/refuting all alternatives; do not treat a family change or an unproven negative applicability assertion as correctness.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

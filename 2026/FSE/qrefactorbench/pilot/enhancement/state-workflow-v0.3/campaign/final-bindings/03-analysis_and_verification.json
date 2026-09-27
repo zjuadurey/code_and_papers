@@ -1,0 +1,43 @@
+{
+  "response_sha256": "bfce83085fc9c5d888609197f6e21cf549c064044cc2a07c7e098121760d625d",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 18.173,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:44:40.352828+00:00",
+  "review_submitted_utc": "2026-09-26T12:44:58.525699+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "bfce83085fc9c5d888609197f6e21cf549c064044cc2a07c7e098121760d625d",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally represent the row indices from col through n-1 as a finite search domain and search for the index whose binary64 absolute pivot value is maximal, resolving equal values to the smallest index. A Grover-style construction would require either thresholded maximum finding or a Boolean predicate proving that a candidate dominates every eligible row with the required first-index tie rule. This formulation is only structural: the exact reversible oracle and deterministic completion policy remain unresolved."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode col, n, candidate row indices, and the current augmented-row pivot-column values from rows into finite registers. The encoding must preserve every relevant Python binary64 value and abs/comparison behavior, including signed zero, without assuming free coherent memory or data loading. Workspace for comparisons, tie resolution, uncomputation, and any threshold or incumbent state must be included."
+      },
+      {
+        "pointer": "/plan/risks/5",
+        "quote": "No exact oracle, failure bound, feasibility demonstration, resource estimate, or end-to-end correctness proof is supplied."
+      },
+      {
+        "pointer": "/rationale",
+        "quote": "The only defensible candidate is kernel.py line 13, which selects a pivot from the finite domain range(col, n). It depends on n, the current elimination column col, and the evolving augmented-row state rows created at line 11 and modified by prior swaps and elimination updates. It activates once per column only when program.py enters solve mode at lines 22-27; the empty system never executes it. Its result controls the exact-zero singularity check at lines 14-15, row exchange at line 16, and elimination at lines 17-20. Those operations, back substitution at lines 21-25, named output and deltas, and both residual evaluations must remain intact. In particular, a replacement must preserve selection of the largest absolute pivot with the first index on ties, Python binary64 operation ordering, exception behavior, output ordering, inspect behavior, empty-system behavior, and absence of input mutation. This finite index selection is structurally eligible for conditional Grover-style analysis, but the broader linear solve and residual diagnostic are not themselves unstructured search or binary combinatorial optimization. Practical suitability is false: no reversible coherent access to the changing rows, exact comparison oracle, deterministic success mechanism, resource bounds, workload scale, or advantage evidence is supplied. The HPL attribution documents a classical algorithm and diagnostic, while the task expressly states that this is not a compliant HPL performance run. The observation reports only reviewer-transcribed finite development checks and insufficient evidence; it neither proves full-domain pivot fidelity nor validates an encoding, oracle, resource case, or whole migration plan. Accordingly, the program should remain classical."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The response adds a narrow pivot candidate and alternative threshold-search or dominance-oracle sketches, but no concrete dominance comparator, threshold recurrence or nonfinite selector is given. The exact oracle is explicitly unresolved. No unique executable interpretation can be bound without supplying missing construction. Record candidate/plan coverage separately from semantic evidence; the pivot-specific scope wording in the insufficient-evidence observation is a possible cue, and the empty initial analysis inventory supplies no independent discovery evidence.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

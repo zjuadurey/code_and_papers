@@ -1,0 +1,109 @@
+{
+  "slots": [
+    {
+      "id": "01-self_review",
+      "initial": "01-initial",
+      "arm": "self_review",
+      "initial_sha256": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+      "prompt_sha256": "edd407050cc5294f2aeca6241356bbbd019447927289466f7073c0f36fcef7e2"
+    },
+    {
+      "id": "01-catalog_only",
+      "initial": "01-initial",
+      "arm": "catalog_only",
+      "initial_sha256": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+      "prompt_sha256": "61d7381d2ad302a137ce0b0eadfce388fa95b32fab6c07738c264939e0ff11a3"
+    },
+    {
+      "id": "01-routed_analysis",
+      "initial": "01-initial",
+      "arm": "routed_analysis",
+      "initial_sha256": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+      "prompt_sha256": "2f3d6752afd73b27ae5edb0f30e845c303031461057f77f51fe9acb6023a17e6"
+    },
+    {
+      "id": "02-catalog_only",
+      "initial": "02-initial",
+      "arm": "catalog_only",
+      "initial_sha256": "f9578a04847909601a2a2f236fce1aa9ee72a615cadc7dfc1c8363bc08a27f31",
+      "prompt_sha256": "3c25dfffdde0edb17dde8b605ec13d409f6991d6c38b194c5f5858607dd1784e"
+    },
+    {
+      "id": "02-routed_analysis",
+      "initial": "02-initial",
+      "arm": "routed_analysis",
+      "initial_sha256": "f9578a04847909601a2a2f236fce1aa9ee72a615cadc7dfc1c8363bc08a27f31",
+      "prompt_sha256": "98c3c36b620aabca38090d2b3ee7ad29994c4815fe6d4d218892807c1f71541d"
+    },
+    {
+      "id": "02-self_review",
+      "initial": "02-initial",
+      "arm": "self_review",
+      "initial_sha256": "f9578a04847909601a2a2f236fce1aa9ee72a615cadc7dfc1c8363bc08a27f31",
+      "prompt_sha256": "08579fc246e12d2de6118ad8c3da4b3ea193f16e67faf8657a6ec38eb58e20ee"
+    },
+    {
+      "id": "03-routed_analysis",
+      "initial": "03-initial",
+      "arm": "routed_analysis",
+      "initial_sha256": "4c65827a0d7e8204ea7fe0b42171537993f5950cf7109b92ce80db500083e9e8",
+      "prompt_sha256": "993e646fdcdfaa03fe7824cd48dcd03e78f9154352782be327f47da4d82c22d6"
+    },
+    {
+      "id": "03-self_review",
+      "initial": "03-initial",
+      "arm": "self_review",
+      "initial_sha256": "4c65827a0d7e8204ea7fe0b42171537993f5950cf7109b92ce80db500083e9e8",
+      "prompt_sha256": "d15c7af95b0a26f98d297b9b85a85ef56ca71271bff56f1a6dc20bd22691f512"
+    },
+    {
+      "id": "03-catalog_only",
+      "initial": "03-initial",
+      "arm": "catalog_only",
+      "initial_sha256": "4c65827a0d7e8204ea7fe0b42171537993f5950cf7109b92ce80db500083e9e8",
+      "prompt_sha256": "69b02ee7fdc9de7a03b8c8662db448161c9f095ffd7e6a6dbaeb507576d7e718"
+    },
+    {
+      "id": "04-self_review",
+      "initial": "04-initial",
+      "arm": "self_review",
+      "initial_sha256": "b3363176a048b12e56e39c7b9ee772e24b9b50698a884260d1a2e618f9861a87",
+      "prompt_sha256": "b6546c4983892ba7c135c1baaa0039589a56fd193dad0a783e239ec59fb0b281"
+    },
+    {
+      "id": "04-catalog_only",
+      "initial": "04-initial",
+      "arm": "catalog_only",
+      "initial_sha256": "b3363176a048b12e56e39c7b9ee772e24b9b50698a884260d1a2e618f9861a87",
+      "prompt_sha256": "de01cd9b7cf8dd75742816dd3954ef2a568879bd1fe40126e1e95367133b9b13"
+    },
+    {
+      "id": "04-routed_analysis",
+      "initial": "04-initial",
+      "arm": "routed_analysis",
+      "initial_sha256": "b3363176a048b12e56e39c7b9ee772e24b9b50698a884260d1a2e618f9861a87",
+      "prompt_sha256": "07b5c3740fb7f485ab2857ed2d7f1e0ad16d2dc44b18b414562f6a6e580dc2a3"
+    },
+    {
+      "id": "05-catalog_only",
+      "initial": "05-initial",
+      "arm": "catalog_only",
+      "initial_sha256": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+      "prompt_sha256": "b9caa23a22516e8c23498aa19bfc3c9be5f81f18fcca6d6b762ab346624f4067"
+    },
+    {
+      "id": "05-routed_analysis",
+      "initial": "05-initial",
+      "arm": "routed_analysis",
+      "initial_sha256": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+      "prompt_sha256": "48e9544fa9211f26d08d8cf5388c044650dc02ced5807e1a8dfe4fed51b43fe9"
+    },
+    {
+      "id": "05-self_review",
+      "initial": "05-initial",
+      "arm": "self_review",
+      "initial_sha256": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+      "prompt_sha256": "b6c54c622f6099452c156eba38785aad37fe428e4eef62d6d2cf5c8b6e0292b4"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "input_sha256": "c1471b2f726b94069875ba81f048f5953455328f5ef9def84e7eedc6f1eced28",
+  "raw_output_sha256": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+  "exit_code": 0,
+  "timeout": false,
+  "errors": [],
+  "tool_items": [],
+  "turn_completed": true,
+  "usage": [
+    {
+      "input_tokens": 1,
+      "output_tokens": 1
+    }
+  ],
+  "elapsed_seconds": 0.01
+}

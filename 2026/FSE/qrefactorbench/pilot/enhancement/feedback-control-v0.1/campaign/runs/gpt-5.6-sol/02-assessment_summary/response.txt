@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 13,
+      "end_line": 13
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "ordered-python-pivot-selection",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditionally search the finite indices from col through n-1 for the unique index returned by Python's ordered max evaluation with key abs(rows[i][col]). The marking predicate must reversibly reproduce the sequential incumbent update performed by max: initialize the incumbent to col, visit later indices in order, and replace it exactly when the candidate key compares greater than the incumbent key under Python binary64 behavior. Mark an index only when that complete ordered fold returns it. A global predicate based merely on being greater than or equal to all values and greater than earlier values is not valid for every reachable floating-point state.",
+    "input_encoding": "Encode col, candidate indices, and the exact binary64 bit patterns of the dynamically updated rows[i][col]. The oracle must implement Python-compatible abs and greater-than behavior, ordered incumbent updates, equality of indices, signed zero, infinities, and NaNs, because elimination can create nonfinite intermediate row entries before the explicit solution overflow check. Coherent access, reversible floating-point operations, workspace cleanup, and gate costs are unresolved.",
+    "quantum_algorithm_family": "Grover-style marked-state predicate search",
+    "output_decoding": "Measure an index and classically recompute the original ordered Python max expression to verify it. On search failure, verification failure, or any unsupported encoded state, execute the original classical expression. Preserve the subsequent zero-pivot test, row swap, elimination order, back substitution, overflow detection, and report construction exactly.",
+    "assumptions": [
+      "The region executes once per elimination column when n is positive and is not entered for an empty system.",
+      "The oracle receives the augmented rows after all preceding swaps and elimination updates.",
+      "Structural eligibility depends on constructing a reversible simulation of the ordered Python max computation over every reachable binary64 state.",
+      "Classical verification and deterministic fallback are required because probabilistic search cannot change observable values, ordering, or exceptions."
+    ],
+    "risks": [
+      "The ordered-fold oracle scans the active column and therefore may require linear work per oracle evaluation, eliminating Grover-style benefit.",
+      "Finite development checks over ordinary states do not prove the predicate for all reachable states, especially states containing NaN or infinity.",
+      "Dynamically modified dense rows may require coherent loading costs greater than the original classical scan.",
+      "Any mismatch in comparison order, NaN behavior, signed-zero handling, or binary64 operations can change the pivot and all downstream arithmetic.",
+      "Exact classical verification repeats the original ordered scan, while finite-shot execution still requires retries or fallback."
+    ],
+    "expected_resource_characteristics": {
+      "qubits": "Unquantified; index registers, binary64 registers, coherent active-column storage or access, an incumbent register, comparison workspace, and cleanup ancillas are required.",
+      "depth": "Unquantified and at least dependent on a reversible ordered scan of the active column for each predicate evaluation.",
+      "oracle_calls": "Grover iteration count depends on active-domain size and the required failure policy; uniqueness follows only if the oracle exactly reproduces Python's deterministic ordered max.",
+      "overheads": "Account for repeated state preparation as rows change, reversible floating-point comparison, measurement, full classical verification, retries, and deterministic fallback."
+    },
+    "rationale": "This conditional plan repairs the contradicted global first-argmax predicate by defining the oracle through the actual ordered Python max computation. It remains an unresolved structural formulation, not evidence of correctness, suitability, or quantum advantage."
+  },
+  "rationale": "The defensible supported-family region is the pivot-selection expression at kernel.py line 13. It searches the finite range [col,n) and uses Python's ordered max behavior with abs(rows[i][col]); this cannot generally be replaced by the previously proposed global greater-than-or-equal and greater-than-earlier predicate. The supplied finite-check observation contradicts that predicate on its checked states and provides no evidence outside those checks, so the replacement formulation must emulate the sequential max fold itself. Required state includes col and the augmented rows created at lines 10-11 and modified by every prior swap and elimination update at lines 16-20. Although inputs are finite, those updates are not immediately checked for finiteness, so the oracle must cover all reachable binary64 states, including possible infinities and NaNs, or invoke a semantics-preserving classical fallback. The expression activates for each column when n is positive and is skipped when n is zero. Its result controls the exact-zero test at lines 14-15, the swap at line 16, subsequent elimination and back substitution, overflow behavior, and ultimately proposal, deltas, and residual reporting. These dependencies, ordering, exceptions, and no-mutation behavior must remain intact. Structural eligibility is true only in the limited sense that a finite-domain Boolean predicate can conditionally be defined by reversible simulation of the complete ordered classical selection. Practical suitability is false because that predicate entails an ordered scan, dynamic data loading, substantial exact floating-point machinery, and full classical verification or fallback. Benchmark support is false: the HPL attribution documents classical pivoting and residual checking, expressly disclaims a compliant HPL run, and supplies no quantum workload, resource, or advantage evidence. The residual calculation, validation, elimination arithmetic, and report assembly do not independently match either supported migration family.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Select on each elimination step exactly the row index produced by Python's ordered max over absolute active-column values, preserving all binary64 comparison and downstream exception semantics.",
+  "assumptions": [
+    "Eligibility is confined to kernel.py line 13 rather than the dense solve as a whole.",
+    "The candidate domain is finite, but its values come from dynamically updated elimination state and are not guaranteed to remain finite before line 13.",
+    "The supplied contradiction concerns finite development checks and does not establish a full-domain replacement predicate or whole-plan correctness.",
+    "No quantum hardware, coherent-memory facility, workload scale, encoding budget, or advantage evidence is supplied.",
+    "Deterministic singularity, overflow, solution, residual, naming, ordering, and no-mutation semantics are mandatory."
+  ],
+  "risks": [
+    "A reversible implementation of the actual ordered max fold may cost more than the original classical scan.",
+    "Testing only finite states can miss Python comparison behavior for reachable NaN or infinity values.",
+    "Probabilistic selection can alter the pivot unless every output is fully verified and failures use the classical path.",
+    "A single pivot mismatch can change rounding, later pivots, exceptions, solution values, deltas, and residual diagnostics.",
+    "The small serial workload offers no demonstrated way to amortize encoding, state preparation, verification, or fallback costs."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Conditionally applicable because the remaining row indices are a finite domain and a pure predicate can be defined by reversibly reproducing the complete ordered Python max fold and testing its returned index. The earlier global comparison predicate is contradicted and is not used. Applicability remains contingent on exact all-state binary64 semantics, dynamic coherent access, reversible construction, classical verification, and deterministic fallback, and does not imply practical suitability."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The code performs deterministic floating-point elimination and ordered pivot selection, not optimization over binary decision variables. No QUBO objective, sufficient constraint penalties, or exact decoding that preserves the required solver semantics is supplied."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "response": "pilot/enhancement/claim-elicitation-v0.1/campaign/runs/gpt-5.6-sol/05-formalization/response.txt",
+  "response_sha256": "5a9439d6788f6c721324550eaa9d8e1aa74e084941d446026df134e51ae4156d",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "method": "Manual mathematical transcription, not automated prose extraction",
+  "anchors": [
+    {
+      "pointer": "/plan/formulation",
+      "quote": "Conditionally replace only the pivot-index computation at kernel.py line 13 with an exact one-hot QUBO. Input domain for one activation: integer n, integer col with 0 <= col < n, and the current augmented row state rows containing at least n rows and a readable binary64 value rows[i][col] for every i in I={col,...,n-1}. These are the dynamically modified rows produced by line 11 and all preceding swaps and elimination updates, not merely the original matrix. Admission additionally requires every candidate pivot value to be finite, exact Python abs and equality/order behavior to be reproducible in objective construction, exact representation of the integer QUBO coefficients, and an execution-and-verification policy that never accepts a nonoptimal or infeasible sample. Outside these conditions, including nonfinite current pivot state, unavailable exact coefficient handling, failed execution, invalid decoding, or failed verification, line 13 must execute classically and unchanged. The operation is not activated in inspect mode, for n=0, or outside an reached solve-loop iteration. Concrete construction: let m=n-col and introduce z_i in {0,1} for each i in I, where z_i=1 means row i is selected. Initialize c_i=0 for all i. Traverse i through I in ascending order; for each i, traverse k through I in ascending order and increment c_i when abs(rows[k][col]) > abs(rows[i][col]), or when the magnitudes are exactly equal and k < i. Thus c_i is the number of candidates preceding i in the required ordering, and exactly one row has c_i=0: the first index attaining the greatest magnitude. Choose an exactly represented P>0 and minimize E(z)=sum_i(c_i*z_i)+P*(sum_i z_i-1)^2. Expanding the square gives constant P, linear coefficient c_i-P for z_i, and pair coefficient 2P for each z_i*z_k with i<k. Because all c_i are nonnegative integers, the unique feasible state with cost zero selects the required row; every other feasible state has positive rank cost, the all-zero state costs P, and every state with at least two selected variables has positive penalty and nonnegative rank cost. Therefore any exact P>0 is mathematically sufficient, although backend coefficient precision remains an admission obligation. If converted to Ising form, use z_i=(1-Z_i)/2 and preserve the resulting constants, fields, and couplings exactly. Execute the optimizer, terminate quantum attempts according to a predetermined finite shot/iteration budget, decode only a state having exactly one selected bit, and return that bit's row index only after exact classical verification. Verification initializes best=col, traverses i from col+1 through n-1, updates best only when abs(rows[i][col]) > abs(rows[best][col]), performs no update on equality, and accepts the decoded index only if it equals best. This verification traversal also specifies initialization, update, termination, and first-index tie handling. The returned output is one integer pivot index in I. Lines 14 onward remain classical."
+    },
+    {
+      "pointer": "/plan/input_encoding",
+      "quote": "Each eligible row index i is represented by one binary variable z_i. Objective construction reads n, col, and the current values rows[i][col]. The rank coefficient c_i is constructed by exact pairwise Python-style comparisons as specified in the formulation; this makes the objective inspectable but costs O((n-col)^2) classical comparisons and effectively exposes the classical answer during construction. The one-hot constraint is encoded by P*(sum_i z_i-1)^2 with exactly represented P>0. No concrete reversible loader, coherent memory layout, hardware embedding, QAOA parameterization, or finite-precision backend representation is supplied. If any required value or coefficient cannot be represented with the needed semantics, the instance is not admitted and classical pivot selection is used."
+    },
+    {
+      "pointer": "/plan/output_decoding",
+      "quote": "Decode measured bits in ascending row-index order. Require exactly one z_i=1 and take its associated row index as the tentative output. Independently recompute the classical first-maximum index by initializing best=col and replacing best only on a strictly greater absolute value while traversing later rows. Accept and return the tentative index only when it equals best. On no sample, no one-hot sample, a mismatching sample, exhausted execution budget, or any encoding/execution failure, run the original classical max expression at line 13. Equality never replaces the earlier index, preserving first-index ties. After return, the exact-zero check, exception, swap, elimination, and all downstream operations execute unchanged."
+    }
+  ],
+  "scope": "Primary abstract rank QUBO on finite active values; no backend or fallback execution",
+  "transcription": {
+    "rank": "count k where abs(v[k])>abs(v[i]) or (equal and k<i)",
+    "energy": "sum(c_i*z_i)+P*(sum(z_i)-1)^2",
+    "constant": "P",
+    "linear": "c_i-P",
+    "pair": "2*P",
+    "admission": "All active pivot values finite; exact coefficients and optimum"
+  }
+}

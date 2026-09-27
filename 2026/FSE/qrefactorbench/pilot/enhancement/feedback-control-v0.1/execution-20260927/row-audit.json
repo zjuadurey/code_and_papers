@@ -1,0 +1,338 @@
+[
+  {
+    "slot": "01-self_review",
+    "replicate": 1,
+    "arm": "self_review",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  },
+  {
+    "slot": "01-cue_only",
+    "replicate": 1,
+    "arm": "cue_only",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 12,
+        "end_line": 16
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  },
+  {
+    "slot": "01-assessment_summary",
+    "replicate": 1,
+    "arm": "assessment_summary",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 12,
+        "end_line": 16
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "finite_guarded_pass",
+    "task_pass": null
+  },
+  {
+    "slot": "02-with_witness",
+    "replicate": 2,
+    "arm": "with_witness",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "finite_scope_pass",
+    "task_pass": null
+  },
+  {
+    "slot": "02-cue_only",
+    "replicate": 2,
+    "arm": "cue_only",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  },
+  {
+    "slot": "02-assessment_summary",
+    "replicate": 2,
+    "arm": "assessment_summary",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "finite_scope_pass",
+    "task_pass": null
+  },
+  {
+    "slot": "02-self_review",
+    "replicate": 2,
+    "arm": "self_review",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "contradicted",
+    "task_pass": null
+  },
+  {
+    "slot": "03-assessment_summary",
+    "replicate": 3,
+    "arm": "assessment_summary",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  },
+  {
+    "slot": "03-self_review",
+    "replicate": 3,
+    "arm": "self_review",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 12,
+        "end_line": 16
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  },
+  {
+    "slot": "03-cue_only",
+    "replicate": 3,
+    "arm": "cue_only",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  },
+  {
+    "slot": "04-self_review",
+    "replicate": 4,
+    "arm": "self_review",
+    "status": "valid_response",
+    "has_plan": false,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 9,
+        "end_line": 26
+      }
+    ],
+    "structural_eligibility": false,
+    "migration_family": null,
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  },
+  {
+    "slot": "04-cue_only",
+    "replicate": 4,
+    "arm": "cue_only",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 9,
+        "end_line": 26
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  },
+  {
+    "slot": "04-assessment_summary",
+    "replicate": 4,
+    "arm": "assessment_summary",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  },
+  {
+    "slot": "05-cue_only",
+    "replicate": 5,
+    "arm": "cue_only",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "combinatorial_optimization",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  },
+  {
+    "slot": "05-assessment_summary",
+    "replicate": 5,
+    "arm": "assessment_summary",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "combinatorial_optimization",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  },
+  {
+    "slot": "05-self_review",
+    "replicate": 5,
+    "arm": "self_review",
+    "status": "valid_response",
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "combinatorial_optimization",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "task_pass": null
+  }
+]

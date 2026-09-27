@@ -1,0 +1,20 @@
+{
+  "slot": "05-initial",
+  "replicate": 5,
+  "arm": "initial",
+  "mother_case": "lit-009",
+  "usage": [
+    {
+      "input_tokens": 12937,
+      "cached_input_tokens": 2944,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3752,
+      "reasoning_output_tokens": 2153
+    }
+  ],
+  "model_seconds": 72.485,
+  "task_pass": null,
+  "response_sha256": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+  "status": "valid_response",
+  "validation_errors": []
+}

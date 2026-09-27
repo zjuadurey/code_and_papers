@@ -1,0 +1,282 @@
+{
+  "source_sha256": "65b97e560676f8003e34c15ebc77dd53901e1c84103e37980de265e6fb24f762",
+  "protocol_sha256": "b6f786199faf3449bcc9e20eb3985e2170a1b711f82213db52bff3d3cd68b568",
+  "attempts": 25,
+  "fixed_slots": 25,
+  "mother_cases": 1,
+  "arms": [
+    {
+      "arm": "initial",
+      "planned": 5,
+      "attempted": 5,
+      "response_status": {
+        "valid_response": 5
+      },
+      "evaluation_status": {
+        "insufficient_evidence": 4,
+        "contradicted": 1
+      },
+      "input_tokens": 64685,
+      "cached_input_tokens": 18688,
+      "output_tokens": 11117,
+      "reasoning_output_tokens": 4732,
+      "model_seconds": 235.653,
+      "review_wall_seconds": 153.364,
+      "development_tool_seconds": 0.053477151013794355,
+      "evaluation_tool_seconds": 0.004356485995231196
+    },
+    {
+      "arm": "self_review",
+      "planned": 5,
+      "attempted": 5,
+      "response_status": {
+        "valid_response": 5
+      },
+      "evaluation_status": {
+        "contradicted": 1,
+        "all_interpretations_contradicted": 1,
+        "insufficient_evidence": 3
+      },
+      "input_tokens": 80972,
+      "cached_input_tokens": 2944,
+      "output_tokens": 8877,
+      "reasoning_output_tokens": 2301,
+      "model_seconds": 209.227,
+      "review_wall_seconds": 93.711,
+      "development_tool_seconds": 0,
+      "evaluation_tool_seconds": 0.008674788012285717
+    },
+    {
+      "arm": "analysis_only",
+      "planned": 5,
+      "attempted": 5,
+      "response_status": {
+        "valid_response": 5
+      },
+      "evaluation_status": {
+        "insufficient_evidence": 3,
+        "contradicted": 1,
+        "ambiguous_interpretation": 1
+      },
+      "input_tokens": 83705,
+      "cached_input_tokens": 11776,
+      "output_tokens": 9291,
+      "reasoning_output_tokens": 2050,
+      "model_seconds": 205.407,
+      "review_wall_seconds": 130.248,
+      "development_tool_seconds": 0,
+      "evaluation_tool_seconds": 0.009906293009407818
+    },
+    {
+      "arm": "verification_only",
+      "planned": 5,
+      "attempted": 5,
+      "response_status": {
+        "valid_response": 5
+      },
+      "evaluation_status": {
+        "insufficient_evidence": 3,
+        "finite_scope_pass": 1,
+        "contradicted": 1
+      },
+      "input_tokens": 81864,
+      "cached_input_tokens": 2944,
+      "output_tokens": 11718,
+      "reasoning_output_tokens": 3105,
+      "model_seconds": 259.671,
+      "review_wall_seconds": 108.077,
+      "development_tool_seconds": 0,
+      "evaluation_tool_seconds": 0.004908669987344183
+    },
+    {
+      "arm": "analysis_and_verification",
+      "planned": 5,
+      "attempted": 5,
+      "response_status": {
+        "valid_response": 5
+      },
+      "evaluation_status": {
+        "finite_guarded_pass": 2,
+        "finite_scope_pass": 1,
+        "insufficient_evidence": 2
+      },
+      "input_tokens": 84593,
+      "cached_input_tokens": 37376,
+      "output_tokens": 12022,
+      "reasoning_output_tokens": 3673,
+      "model_seconds": 254.72,
+      "review_wall_seconds": 119.956,
+      "development_tool_seconds": 0,
+      "evaluation_tool_seconds": 0.0058592949935700744
+    }
+  ],
+  "pairs": [
+    {
+      "replicate": 1,
+      "arm": "self_review",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "contradicted",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 1,
+      "arm": "analysis_only",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "insufficient_evidence",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 1,
+      "arm": "verification_only",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "insufficient_evidence",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 1,
+      "arm": "analysis_and_verification",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "finite_guarded_pass",
+      "comparison": "conditional_scope",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 2,
+      "arm": "analysis_only",
+      "initial_status": "contradicted",
+      "revision_status": "contradicted",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 2,
+      "arm": "verification_only",
+      "initial_status": "contradicted",
+      "revision_status": "finite_scope_pass",
+      "comparison": "finite_local_repair_candidate",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 2,
+      "arm": "analysis_and_verification",
+      "initial_status": "contradicted",
+      "revision_status": "finite_scope_pass",
+      "comparison": "finite_local_repair_candidate",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 2,
+      "arm": "self_review",
+      "initial_status": "contradicted",
+      "revision_status": "all_interpretations_contradicted",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 3,
+      "arm": "verification_only",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "insufficient_evidence",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 3,
+      "arm": "analysis_and_verification",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "insufficient_evidence",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 3,
+      "arm": "self_review",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "insufficient_evidence",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 3,
+      "arm": "analysis_only",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "insufficient_evidence",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 4,
+      "arm": "analysis_and_verification",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "insufficient_evidence",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 4,
+      "arm": "self_review",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "insufficient_evidence",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 4,
+      "arm": "analysis_only",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "insufficient_evidence",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 4,
+      "arm": "verification_only",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "contradicted",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 5,
+      "arm": "self_review",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "insufficient_evidence",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 5,
+      "arm": "analysis_only",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "ambiguous_interpretation",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 5,
+      "arm": "verification_only",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "insufficient_evidence",
+      "comparison": "no_repair_regression_claim",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    },
+    {
+      "replicate": 5,
+      "arm": "analysis_and_verification",
+      "initial_status": "insufficient_evidence",
+      "revision_status": "finite_guarded_pass",
+      "comparison": "conditional_scope",
+      "note": "Candidate transitions still require prose/guard scope review; not whole-task outcomes."
+    }
+  ],
+  "task_pass": null,
+  "model_quality_effect_automatically_established": false,
+  "cost_notes": [
+    "Cached input is a subset of input; reasoning output is not added again to output.",
+    "Reviewer wall time includes coordination/tool latency; AI review is not independent human annotation.",
+    "Tool cost is measured wall time, not end-to-end quantum speedup or equal-token matching."
+  ]
+}

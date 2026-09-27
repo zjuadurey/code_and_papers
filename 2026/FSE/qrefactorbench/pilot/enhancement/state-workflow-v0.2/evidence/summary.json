@@ -1,0 +1,98 @@
+{
+  "development_requests": 3,
+  "reserved_requests": 12,
+  "development_states": 13,
+  "reserved_states": 44,
+  "requests_disjoint_by_canonical_json": true,
+  "independent_mother_case_holdout": false,
+  "new_model_calls": 0,
+  "historical_analysis_is_post_hoc": true,
+  "task_pass": null,
+  "control_statuses": {
+    "nan_aware_predicate": {
+      "development": "finite_scope_pass",
+      "evaluator_reserved": "finite_scope_pass"
+    },
+    "equivalent_ordered_scan": {
+      "development": "finite_scope_pass",
+      "evaluator_reserved": "finite_scope_pass"
+    },
+    "inclusive_bug": {
+      "development": "contradicted",
+      "evaluator_reserved": "contradicted"
+    },
+    "exclusive_bug": {
+      "development": "contradicted",
+      "evaluator_reserved": "contradicted"
+    },
+    "missing_tie": {
+      "development": "contradicted",
+      "evaluator_reserved": "contradicted"
+    },
+    "last_tie_scan": {
+      "development": "contradicted",
+      "evaluator_reserved": "contradicted"
+    },
+    "first_only": {
+      "development": "finite_scope_pass",
+      "evaluator_reserved": "contradicted"
+    },
+    "guarded_finite": {
+      "development": "finite_guarded_pass",
+      "evaluator_reserved": "finite_guarded_pass"
+    },
+    "guard_always_false": {
+      "development": "not_exercised",
+      "evaluator_reserved": "not_exercised"
+    },
+    "unsupported": {
+      "development": "insufficient_evidence",
+      "evaluator_reserved": "insufficient_evidence"
+    },
+    "withdrawn": {
+      "development": "claim_withdrawn",
+      "evaluator_reserved": "claim_withdrawn"
+    }
+  },
+  "prompts": [
+    {
+      "arm": "self_review",
+      "path": "self_review.txt",
+      "sha256": "9f802b1d901009eefd39dae68505a7bb713a5719565479a9b4b12a95751767d5",
+      "observation_kinds": [],
+      "state": "awaiting_model_not_run",
+      "new_model_calls": 0
+    },
+    {
+      "arm": "analysis_only",
+      "path": "analysis_only.txt",
+      "sha256": "b8dad458cea2e3490e9b16d5b61c97226baf385f9e0e2a058e18ae40c2ebdf8b",
+      "observation_kinds": [
+        "lexical_dependency_inventory"
+      ],
+      "state": "awaiting_model_not_run",
+      "new_model_calls": 0
+    },
+    {
+      "arm": "verification_only",
+      "path": "verification_only.txt",
+      "sha256": "a10181b3feee7ef86dca8465799c752f343c497933ac7f8e0edc5601f9958b62",
+      "observation_kinds": [
+        "semantic_feedback"
+      ],
+      "state": "awaiting_model_not_run",
+      "new_model_calls": 0
+    },
+    {
+      "arm": "analysis_and_verification",
+      "path": "analysis_and_verification.txt",
+      "sha256": "9ab663d5a16e0bc6fb901f35e26798432b66a017588d020cc107bf2cd85cd005",
+      "observation_kinds": [
+        "lexical_dependency_inventory",
+        "semantic_feedback"
+      ],
+      "state": "awaiting_model_not_run",
+      "new_model_calls": 0
+    }
+  ]
+}

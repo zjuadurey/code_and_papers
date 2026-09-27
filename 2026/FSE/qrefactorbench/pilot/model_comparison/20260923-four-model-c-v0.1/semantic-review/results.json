@@ -1,0 +1,485 @@
+{
+  "models": [
+    "gpt-5.6-sol",
+    "gpt-6-astra",
+    "deepseek-v4-pro",
+    "deepseek-flash"
+  ],
+  "planned_requests": 40,
+  "reviewed_responses": 7,
+  "local_test_executions": 38,
+  "task_pass": null,
+  "records": [
+    {
+      "model": "gpt-5.6-sol",
+      "case_id": "lit-001",
+      "recipe": "cut_negative",
+      "review_status": "AI_TRANSCRIPTION_PENDING_INDEPENDENT_REVIEW",
+      "scope": "direct_canonical_ground_state",
+      "parameters_source": "All coefficients and scale are explicit in the response.",
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "zero_weight",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "one_edge",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "weighted_triangle",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "large_integer",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 5,
+        "executed": 5,
+        "passed": 5
+      }
+    },
+    {
+      "model": "gpt-6-astra",
+      "case_id": "lit-001",
+      "recipe": "cut_conflict",
+      "review_status": "AI_TRANSCRIPTION_PENDING_INDEPENDENT_REVIEW",
+      "scope": "direct_canonical_ground_state",
+      "parameters_source": "Response explicitly defines B=2^n, C and M; retain the constant.",
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "zero_weight",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "one_edge",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "weighted_triangle",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "large_integer",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 5,
+        "executed": 5,
+        "passed": 5
+      }
+    },
+    {
+      "model": "deepseek-flash",
+      "case_id": "lit-001",
+      "recipe": "cut_conflict",
+      "review_status": "AI_TRANSCRIPTION_PENDING_INDEPENDENT_REVIEW",
+      "scope": "direct_canonical_ground_state",
+      "parameters_source": "Explicit scale and mask; conflict polynomial expanded by reviewer.",
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "zero_weight",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "one_edge",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "weighted_triangle",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "large_integer",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 5,
+        "executed": 5,
+        "passed": 5
+      }
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "case_id": "lit-001",
+      "recipe": "cut_primary",
+      "review_status": "AI_TRANSCRIPTION_PENDING_INDEPENDENT_REVIEW",
+      "scope": "primary_objective_only",
+      "parameters_source": "Response separates canonical postprocessing; do not add a tie term.",
+      "status": "passed",
+      "tests": [
+        {
+          "test_id": "empty",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "zero_weight",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "one_edge",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "weighted_triangle",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "large_integer",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        }
+      ],
+      "canonical_selection_pass": null,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "case_id": "lit-002",
+      "recipe": "cover_negative_tie",
+      "review_status": "AI_TRANSCRIPTION_PENDING_INDEPENDENT_REVIEW",
+      "scope": "direct_canonical_ground_state",
+      "parameters_source": "Reviewer instantiates C=2^n and P=n*C+1, satisfying stated strict ranges. These numbers are not quoted model output.",
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "no_edges",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "single_edge",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "tuple_not_mask",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "triangle",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "star",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 6,
+        "executed": 6,
+        "passed": 6
+      }
+    },
+    {
+      "model": "gpt-6-astra",
+      "case_id": "lit-002",
+      "recipe": "cover_primary",
+      "review_status": "AI_TRANSCRIPTION_PENDING_INDEPENDENT_REVIEW",
+      "scope": "primary_objective_only",
+      "parameters_source": "Penalty n+1 is explicit. Canonical classical certification is separate and not executed here.",
+      "status": "passed",
+      "tests": [
+        {
+          "test_id": "empty",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "no_edges",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "single_edge",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "tuple_not_mask",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "triangle",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "star",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        }
+      ],
+      "canonical_selection_pass": null,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null
+    },
+    {
+      "model": "deepseek-flash",
+      "case_id": "lit-002",
+      "recipe": "cover_primary",
+      "review_status": "AI_TRANSCRIPTION_PENDING_INDEPENDENT_REVIEW",
+      "scope": "primary_objective_only",
+      "parameters_source": "Reviewer instantiates lambda=n+1. Model explicitly leaves tie postprocessing unresolved.",
+      "status": "passed",
+      "tests": [
+        {
+          "test_id": "empty",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "no_edges",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "single_edge",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "tuple_not_mask",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "triangle",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        },
+        {
+          "test_id": "star",
+          "status": "passed",
+          "failures": [],
+          "scope": "primary_objective_only"
+        }
+      ],
+      "canonical_selection_pass": null,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null
+    }
+  ],
+  "limitations": [
+    "Purposive lit-001/002 review; not a performance denominator.",
+    "Finite classical enumeration, not quantum execution or whole-plan verification.",
+    "Reviewer-selected coefficients and prose transcription require independent review."
+  ]
+}

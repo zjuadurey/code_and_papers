@@ -1,0 +1,544 @@
+{
+  "development": {
+    "status": "passed",
+    "format_valid": true,
+    "finite_semantic_pass": true,
+    "task_pass": null,
+    "tests_planned": 6,
+    "tests_executed": 6,
+    "tests": [
+      {
+        "id": "empty",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "no_edges",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "single_edge",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "tuple_not_mask",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "triangle",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "star",
+        "status": "passed",
+        "failures": []
+      }
+    ],
+    "elapsed_seconds": 0.0029212379595264792
+  },
+  "final": {
+    "status": "passed",
+    "format_valid": true,
+    "finite_semantic_pass": true,
+    "task_pass": null,
+    "tests_planned": 98,
+    "tests_executed": 98,
+    "tests": [
+      {
+        "id": "final-000",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-001",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-002",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-003",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-004",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-005",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-006",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-007",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-008",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-009",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-010",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-011",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-012",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-013",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-014",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-015",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-016",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-017",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-018",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-019",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-020",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-021",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-022",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-023",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-024",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-025",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-026",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-027",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-028",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-029",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-030",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-031",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-032",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-033",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-034",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-035",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-036",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-037",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-038",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-039",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-040",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-041",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-042",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-043",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-044",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-045",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-046",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-047",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-048",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-049",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-050",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-051",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-052",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-053",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-054",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-055",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-056",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-057",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-058",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-059",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-060",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-061",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-062",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-063",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-064",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-065",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-066",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-067",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-068",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-069",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-070",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-071",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-072",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-073",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-074",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-075",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-076",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-077",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-078",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-079",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-080",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-081",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-082",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-083",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-084",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-085",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-086",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-087",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-088",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-089",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-090",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-091",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-092",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-093",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-094",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-095",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-096",
+        "status": "passed",
+        "failures": []
+      },
+      {
+        "id": "final-097",
+        "status": "passed",
+        "failures": []
+      }
+    ],
+    "elapsed_seconds": 0.148113107890822
+  }
+}

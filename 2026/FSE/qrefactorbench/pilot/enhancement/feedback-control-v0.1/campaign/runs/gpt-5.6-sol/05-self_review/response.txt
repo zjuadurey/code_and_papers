@@ -1,0 +1,85 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 13,
+      "end_line": 13
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact-partial-pivot-selection",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditionally represent each execution of pivot selection as a one-hot QUBO over row indices col through n-1. The objective must select the greatest absolute current pivot and resolve exact ties in favor of the lowest index. The one-hot constraint and lexicographic objective require coefficients and penalties proven sufficient for every permitted state. Only kernel.py line 13 is replaced; singularity checking, swapping, elimination, back substitution, diagnostics, and report construction remain classical.",
+    "input_encoding": "Encode the dynamically modified values rows[i][col], together with eligible row indices, using one selection bit per candidate row. The encoding must reproduce Python binary64 absolute-value ordering, equality, signed-zero behavior, and first-index tie resolution. Exact coefficient construction, representation of states containing nonfinite intermediate values, coherent or repeated state loading, and penalty bounds that preserve the lexicographic optimum are unresolved.",
+    "quantum_algorithm_family": "QUBO/Ising with a possible QAOA-style executor",
+    "output_decoding": "Decode a one-hot selected row and verify classically that it is exactly the first index attaining Python's maximum absolute pivot value. Invalid, infeasible, suboptimal, or uncertified samples cannot be accepted. A semantics-preserving implementation must fall back to the classical selection or otherwise provide an exact failure policy before executing the unchanged zero-pivot check and swap.",
+    "assumptions": [
+      "The solve branch is active, n is positive, and the current elimination column has at least one eligible row.",
+      "An exact QUBO-compatible representation of the current binary64 pivot values and their ordering can be constructed.",
+      "The hybrid boundary preserves the serial dependence through which each pivot, swap, and elimination update determines later pivot inputs.",
+      "Classical verification and any fallback are included in total resource and performance accounting."
+    ],
+    "risks": [
+      "QAOA-style execution does not guarantee the exact optimum required by the software contract.",
+      "Exact binary64 ordering, first-index tie-breaking, and sufficient one-hot penalties may require impractical coefficient range or precision.",
+      "Loading each newly mutated column, constructing its objective, and verifying its result can cost more than the original linear scan.",
+      "Intermediate infinities or NaNs produced during elimination may not admit the assumed ordering encoding and must not change eventual exception behavior.",
+      "A different pivot changes subsequent floating-point operation order and can alter rounding, singularity behavior, the solution, deltas, residuals, and overflow detection."
+    ],
+    "expected_resource_characteristics": {
+      "logical_variables_per_activation": "n-col one-hot variables, excluding ancillary and embedding overhead",
+      "coupling_structure": "The squared one-hot constraint generally creates dense pairwise couplings.",
+      "activations": "Up to n sequential activations in solve mode; zero in inspect mode and for an empty system.",
+      "precision_requirement": "Coefficients must distinguish all relevant binary64 magnitudes and enforce exact lowest-index tie resolution.",
+      "unquantified_overheads": [
+        "state preparation",
+        "coefficient construction",
+        "embedding",
+        "parameter optimization",
+        "shots",
+        "decoding",
+        "exact classical verification",
+        "fallback"
+      ],
+      "advantage_evidence": "None supplied."
+    },
+    "rationale": "This is a conditional structural formulation, not an adoption recommendation. It remains valid only if exact encoding, feasibility, optimum recovery, exception preservation, and end-to-end resource obligations can be resolved."
+  },
+  "rationale": "The defensible supported-family region is the pivot argmax at kernel.py line 13. It selects from the finite set range(col, n) using abs(rows[i][col]); because the range is ascending and Python max retains the first maximal item, this line also implements the required first-index tie rule. Its inputs are n, col, and the current augmented rows created at line 11 and modified by all preceding swaps and elimination updates at lines 16-20. It activates only when program.py lines 22-23 enter solve mode, n is nonzero, and the corresponding elimination-column iteration is reached. Any migration must preserve the exact-zero singularity check at lines 14-15, row swap at line 16, elimination at lines 17-20, back substitution at lines 21-25, overflow behavior, and the residual and report behavior at program.py lines 19-27. Structural eligibility is true because the finite exact pivot choice can conditionally be expressed as a one-hot discrete optimization. Practical suitability is false because this is a small linear scan within a small serial program, while exact binary64 encoding, dense constraints, repeated loading of dynamically changed state, probabilistic optimization, verification, and fallback introduce substantial overhead. Benchmark support is false: no workload, hardware, resource, or advantage evidence is supplied, and the notice explicitly says the program is not a compliant HPL performance run. The broader elimination, back-substitution, and residual calculations are dense numerical operations rather than supported unstructured-search or combinatorial-optimization candidates.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "For each elimination column, select the earliest row having the maximum absolute current pivot value while preserving exact singularity, binary64, exception, and downstream reporting semantics.",
+  "assumptions": [
+    "Only the supplied source, software contract, and draft migration contracts are considered.",
+    "No quantum memory, efficient data-loading mechanism, backend capability, workload distribution, or performance advantage is assumed.",
+    "Python binary64 ordering and the first-index tie rule are mandatory semantics rather than approximation targets.",
+    "Validation, inspect mode, empty-system behavior, residual computation, named output construction, and nonmutation remain classical."
+  ],
+  "risks": [
+    "A probabilistic, approximate, or incorrectly tie-broken pivot can violate exact output and exception semantics.",
+    "Objective construction and exact classical verification can duplicate or exceed the work of the original pivot scan.",
+    "Pivot selections cannot be independently batched because each selected pivot changes the state used by later columns.",
+    "The supplied material contains no benchmark evidence for useful scaling or quantum advantage.",
+    "The HPL attribution supports only the provenance of the classical algorithm and diagnostic, not the proposed migration."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": null,
+      "rationale": "The eligible row indices form a finite domain, and a predicate identifying the first maximum could be defined. However, evaluating that predicate requires exact comparisons against every competing current pivot plus exact tie handling. No reversible predicate construction, coherent data-access mechanism, resource bound, or deterministic error policy is supplied, so applicability is unresolved."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The finite pivot argmax has a conditional one-hot binary-optimization formulation with magnitude maximization and lowest-index tie resolution. This establishes structural applicability only. Exact coefficient encoding, penalty sufficiency, feasibility, backend precision, exact-optimum recovery, state-loading cost, and end-to-end resources remain unresolved obligations."
+    }
+  ]
+}

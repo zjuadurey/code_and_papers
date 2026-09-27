@@ -1,0 +1,15 @@
+{
+  "resolution": "transcribed",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/assumptions/1"],
+  "rationale": "Unlike the first draft, this formulation explicitly requires the candidate magnitude to be at least every candidate magnitude and strictly greater than each earlier-indexed candidate magnitude. Transcribe those exact >= and > quantifiers on the active indices; the stored values are absolute pivot magnitudes. Every candidate includes the candidate itself; earlier candidates are explicitly smaller indices. The response acknowledges unresolved intermediate nonfinite handling but supplies no operational domain guard, so the literal predicate is checked with guard True. This examines the proposed unique-marker relation only, not a completed oracle or the whole hybrid plan. The explicit classical verification/fallback is recorded in the prose anchors and is not disproved or executed by this local checker.",
+  "interpretations": [
+    {
+      "id": "explicit_ge_all_gt_earlier",
+      "meaning": "Candidate magnitude is >= every active candidate magnitude and > every earlier active magnitude, exactly as stated.",
+      "mode": "predicate",
+      "expression": "all(values[i] >= values[k] for k in indices) and all(values[i] > values[j] for j in indices if j < i)",
+      "guard": "True",
+      "outside_guard": "unresolved"
+    }
+  ]
+}

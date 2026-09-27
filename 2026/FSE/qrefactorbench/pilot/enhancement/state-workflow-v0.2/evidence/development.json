@@ -1,0 +1,400 @@
+{
+  "role": "development",
+  "requests": [
+    {
+      "id": "dev-normal",
+      "input": {
+        "variables": [
+          "a",
+          "b"
+        ],
+        "matrix": [
+          [
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0
+          ]
+        ],
+        "rhs": [
+          1.0,
+          2.0
+        ],
+        "current": [
+          0.0,
+          0.0
+        ],
+        "mode": "solve",
+        "residual_limit": 1.0
+      },
+      "input_sha256": "f6b573a77a59280f478ffba3a342396ea882d0b802613d81c577dbb7269d3d92",
+      "outcome": {
+        "report": {
+          "current_residual": {
+            "vector": [
+              -1.0,
+              -2.0
+            ],
+            "infinity_norm": 2.0,
+            "scaled_backward_error": 2251799813685248.0
+          },
+          "proposal": {
+            "a": 1.0,
+            "b": 2.0
+          },
+          "proposed_residual": {
+            "vector": [
+              0.0,
+              0.0
+            ],
+            "infinity_norm": 0.0,
+            "scaled_backward_error": 0.0
+          },
+          "within_requested_limit": true,
+          "deltas": {
+            "a": 1.0,
+            "b": 2.0
+          }
+        }
+      },
+      "input_unchanged": true,
+      "states": [
+        {
+          "indices": [
+            0,
+            1
+          ],
+          "values_repr": [
+            "1.0",
+            "0.0"
+          ],
+          "original": 0
+        },
+        {
+          "indices": [
+            1
+          ],
+          "values_repr": [
+            "1.0"
+          ],
+          "original": 1
+        }
+      ]
+    },
+    {
+      "id": "dev-archived-five",
+      "input": {
+        "variables": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ],
+        "matrix": [
+          [
+            2.5e+307,
+            0.0,
+            0.0,
+            2.5e+307,
+            2.5e+307
+          ],
+          [
+            -2.5e+307,
+            2.5e+307,
+            0.0,
+            2.5e+307,
+            2.5e+307
+          ],
+          [
+            -2.5e+307,
+            -2.5e+307,
+            2.5e+307,
+            2.5e+307,
+            2.5e+307
+          ],
+          [
+            -2.5e+307,
+            -2.5e+307,
+            -2.5e+307,
+            2.5e+307,
+            2.5e+307
+          ],
+          [
+            -2.5e+307,
+            -2.5e+307,
+            -2.5e+307,
+            2.5e+307,
+            -2.5e+307
+          ]
+        ],
+        "rhs": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "current": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mode": "solve",
+        "residual_limit": 1.0
+      },
+      "input_sha256": "bf62aaf4489f2a28fd2c899999822cbebcd2efab1cf4f429899d77a832b65d76",
+      "outcome": {
+        "exception": "ValueError",
+        "message": "numerical overflow"
+      },
+      "input_unchanged": true,
+      "states": [
+        {
+          "indices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "values_repr": [
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307"
+          ],
+          "original": 0
+        },
+        {
+          "indices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "values_repr": [
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307"
+          ],
+          "original": 1
+        },
+        {
+          "indices": [
+            2,
+            3,
+            4
+          ],
+          "values_repr": [
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307"
+          ],
+          "original": 2
+        },
+        {
+          "indices": [
+            3,
+            4
+          ],
+          "values_repr": [
+            "inf",
+            "inf"
+          ],
+          "original": 3
+        },
+        {
+          "indices": [
+            4
+          ],
+          "values_repr": [
+            "nan"
+          ],
+          "original": 4
+        }
+      ]
+    },
+    {
+      "id": "dev-reviewed-six",
+      "input": {
+        "variables": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f"
+        ],
+        "matrix": [
+          [
+            2.5e+307,
+            0.0,
+            0.0,
+            2.5e+307,
+            2.5e+307,
+            0.0
+          ],
+          [
+            -2.5e+307,
+            2.5e+307,
+            0.0,
+            2.5e+307,
+            2.5e+307,
+            0.0
+          ],
+          [
+            -2.5e+307,
+            -2.5e+307,
+            2.5e+307,
+            2.5e+307,
+            2.5e+307,
+            0.0
+          ],
+          [
+            -2.5e+307,
+            -2.5e+307,
+            -2.5e+307,
+            2.5e+307,
+            2.5e+307,
+            0.0
+          ],
+          [
+            -2.5e+307,
+            -2.5e+307,
+            -2.5e+307,
+            2.5e+307,
+            -2.5e+307,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "rhs": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "current": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mode": "solve",
+        "residual_limit": 1.0
+      },
+      "input_sha256": "ab5ebba31a829b25b7fc8c78848643938ce7c6df5df4a9171d68c0501e765f51",
+      "outcome": {
+        "exception": "ValueError",
+        "message": "numerical overflow"
+      },
+      "input_unchanged": true,
+      "states": [
+        {
+          "indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "values_repr": [
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307",
+            "0.0"
+          ],
+          "original": 0
+        },
+        {
+          "indices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "values_repr": [
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307",
+            "0.0"
+          ],
+          "original": 1
+        },
+        {
+          "indices": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "values_repr": [
+            "2.5e+307",
+            "2.5e+307",
+            "2.5e+307",
+            "0.0"
+          ],
+          "original": 2
+        },
+        {
+          "indices": [
+            3,
+            4,
+            5
+          ],
+          "values_repr": [
+            "inf",
+            "inf",
+            "0.0"
+          ],
+          "original": 3
+        },
+        {
+          "indices": [
+            4,
+            5
+          ],
+          "values_repr": [
+            "nan",
+            "nan"
+          ],
+          "original": 4
+        },
+        {
+          "indices": [
+            5
+          ],
+          "values_repr": [
+            "nan"
+          ],
+          "original": 5
+        }
+      ]
+    }
+  ],
+  "mother_case": "lit-009",
+  "sha256": "a4fe9d88f0126aa50afc0a223ba1aace02e338bb1848fd10e91db6fe811550e3"
+}

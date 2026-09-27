@@ -1,0 +1,47 @@
+{
+  "response_sha256": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 55.359,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:18:25.650756+00:00",
+  "review_submitted_utc": "2026-09-26T12:19:21.009529+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally represent each remaining row index as a search candidate. Mark exactly the first index whose pivot magnitude is maximal over rows col through n-1, reproducing Python's largest-absolute-value rule and first-index tie break. Invoke this selection once per elimination column, then classically verify the decoded index before applying the existing zero-pivot check and row swap."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode candidate indices in ceil(log2(n-col)) qubits and provide coherent access to the current mutable augmented rows, the active column, and exact binary64 value representations. The reversible predicate must compare abs(rows[i][col]) against every eligible row, enforce that no earlier equal maximum exists, and reproduce relevant binary64 comparison behavior. Coherent row-state preparation, updates between columns, invalid-index handling, and workspace uncomputation remain unresolved."
+      },
+      {
+        "pointer": "/plan/assumptions/2",
+        "quote": "There is one marked index for every nonempty remaining row range, including the all-zero case where the first remaining index is marked and the subsequent classical check raises ValueError."
+      },
+      {
+        "pointer": "/plan/risks/2",
+        "quote": "Finite inputs can produce nonfinite intermediates; reproducing Python comparison, exception, and overflow behavior in a reversible oracle is unresolved."
+      },
+      {
+        "pointer": "/plan/rationale",
+        "quote": "This is a conditional formulation for structural analysis only. It does not establish practical suitability, quantum advantage, or semantic equivalence."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The draft specifies the intended first maximum and a comparison-against-all oracle obligation, but gives neither a concrete comparison predicate nor an ordered scan rule. It explicitly says finite inputs can produce nonfinite intermediates and reproducing their comparison behavior remains unresolved; its rationale disclaims established semantic equivalence. Transcribing the historical universal >= formula would fill in an unspecified operator, while assigning an all-finite guard would invent a restriction not operationally stated. Keep the current local pivot mapping insufficiently specified, not contradicted or repaired. The claim of a unique marker is an unestablished assumption, not an implemented oracle. Other source, practical and whole-task claims are outside this checker.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

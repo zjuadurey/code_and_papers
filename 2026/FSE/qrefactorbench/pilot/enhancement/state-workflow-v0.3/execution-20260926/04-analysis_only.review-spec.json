@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/rationale", "/assumptions/4", "/contract_applicability/0/rationale"],
+  "rationale": "The revision moves the broad candidate boundary from the function definition to its first executable statement and correctly treats the inventory result as unknown. It still offers no migration plan or pivot replacement formula. Boundary adjustment is not a checked mapping or semantic repair; retain insufficient evidence and keep eligibility judgments separate.",
+  "interpretations": []
+}

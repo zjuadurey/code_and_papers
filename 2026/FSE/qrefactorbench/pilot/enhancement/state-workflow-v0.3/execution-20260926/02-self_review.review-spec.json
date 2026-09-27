@@ -1,0 +1,9 @@
+{
+  "resolution": "ambiguous",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/risks/4"],
+  "rationale": "The phrase 'not less than any candidate value' has two relevant transcriptions: conventional >=, or literal negation of <. They differ for NaN, which the response itself names without resolving its oracle treatment. Both retain the explicitly stated no-earlier-equal condition. The fallback mentions unsupported exceptional states but does not define which states are unsupported; do not invent an all-finite admission guard. Check both literal predicate readings while leaving classical verification/fallback and whole-task behavior unjudged.",
+  "interpretations": [
+    {"id": "not_less_as_ge", "meaning": "Conventional non-strict ordering interpretation of not-less, with first equal index.", "mode": "predicate", "expression": "all(values[i] >= values[k] for k in indices) and not any(values[j] == values[i] for j in indices if j < i)", "guard": "True", "outside_guard": "unresolved"},
+    {"id": "literal_not_lt", "meaning": "Negate strict less-than literally; retain no earlier equal value.", "mode": "predicate", "expression": "not any(values[i] < values[k] for k in indices) and not any(values[j] == values[i] for j in indices if j < i)", "guard": "True", "outside_guard": "unresolved"}
+  ]
+}

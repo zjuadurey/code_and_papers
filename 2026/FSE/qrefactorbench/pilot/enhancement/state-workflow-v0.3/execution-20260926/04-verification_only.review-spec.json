@@ -1,0 +1,6 @@
+{
+  "resolution": "transcribed",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/plan/risks/3"],
+  "rationale": "This new plan explicitly defines P(i) by no larger active magnitude and no earlier equal magnitude. Transcribe the two negated existential comparisons literally, with no stated finite-only guard. The response's finite-proof caveat and classical verification/fallback do not supply a different predicate or exclude nonfinite states. Check this newly introduced local claim separately from the initial response, which contained no mapping; do not label an unknown-to-contradicted transition as a measured pass-to-fail regression.",
+  "interpretations": [{"id": "no_larger_no_earlier_equal", "meaning": "The explicit P(i) definition using no greater magnitude and no earlier equal magnitude.", "mode": "predicate", "expression": "not any(values[k] > values[i] for k in indices) and not any(values[j] == values[i] for j in indices if j < i)", "guard": "True", "outside_guard": "unresolved"}]
+}

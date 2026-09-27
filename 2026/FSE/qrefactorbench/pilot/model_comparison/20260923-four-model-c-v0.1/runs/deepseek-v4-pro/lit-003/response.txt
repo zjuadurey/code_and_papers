@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-003",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "agenda.py",
+      "function": "complete",
+      "start_line": 28,
+      "end_line": 57
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact-lexicographic-agenda-coloring",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Binary one-hot variables x_{v,s}=1 when session v is assigned to slot s. Hard constraints: exactly one slot per session and x_{v,s}+x_{u,s}<=1 for every participant-derived conflict edge (v,u) and slot s. For lexicographically smallest slot-index vector, minimize sum_v s*x_{v,s}*slot_count^(n-v-1) with superincreasing weights. Infeasible iff no assignment satisfies hard constraints; QUBO penalties encode violations, but exact zero-penalty optimality is not guaranteed by QAOA.",
+    "input_encoding": "n*slot_count binary variables (one-hot) or Ising spins with x=(1-Z)/2. Input conflict graph from catalog.relations/neighbors is used to generate penalty coefficients; data loading and coefficient generation are not free. Empty slot_count or zero conflicts must reduce exactly.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure and decode candidate one-hot assignment, then classically verify one-slot, conflict-free, and lexicographic minimality. Sampled absence is not sufficient for unavailable; exact infeasibility proof or exhaustive search remains required. Do not relax ValueError/no-arrangement semantics.",
+    "assumptions": [
+      "A finite n and slot_count are available for encoding; no added session cap is assumed.",
+      "neighbors completely captures participant conflicts and all slots are symmetric.",
+      "A classical verifier can check decoded assignments exactly.",
+      "The migration is conditional and not an adoption recommendation."
+    ],
+    "risks": [
+      "QAOA/QUBO may not find the exact global optimum, so lexicographic smallest output may be wrong.",
+      "Infeasibility cannot be inferred reliably from sampled QAOA outcomes.",
+      "Superincreasing lexicographic weights can produce large coefficients and precision/resource blow-up.",
+      "Oracle/penalty data loading may exceed the cost of classical backtracking for ordinary agenda inputs."
+    ],
+    "expected_resource_characteristics": {
+      "binary_variables": "O(n*slot_count)",
+      "constraint_terms": "O(n + conflict_edges*slot_count)",
+      "objective_weight_range": "up to slot_count^(n-1) for lexicographic dominance",
+      "quantum_depth": "QAOA/layer dependent, unspecified",
+      "shots": "unspecified; not sufficient for exact infeasibility",
+      "classical_overhead": "relations already built; candidate verification O(n+conflicts)"
+    },
+    "rationale": "Graph coloring is structurally expressible as a QUBO/Ising and supported by the draft contract, but exact lexicographic ordering and infeasibility obligations are unresolved for QAOA."
+  },
+  "rationale": "The only plausible quantumization surface is agenda.py complete, the exact backtracking graph-coloring search. It is active only when mode=complete, current is infeasible, and greedy preview raises ValueError. It depends on the exact participant-conflict neighbors from catalog.relations, slot_count, and session order, and it returns the lexicographically smallest slot-index vector or raises ValueError. The surrounding contract must preserve validation, current feasible retention, blocked preview status, proposed/moves generation, and no fixed assignments from failed preview or partial current. Preview itself is deterministic greedy and not a quantum candidate. While structurally eligible as finite constraint search/QUBO, practical suitability is false because QAOA/Grover cannot safely preserve exact no-solution, lexicographic ordering, and deterministic exception behavior without an exact classical fallback; benchmark support is only at the supplied DRAFT contract-menu level.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": true,
+  "computational_intent": "Exact lexicographically-minimal graph coloring of the participant-conflict graph into declared slots, or a proven ValueError/no-arrangement when infeasible.",
+  "assumptions": [
+    "Complete remains callable only under the existing program.py control flow after preview blockage.",
+    "Any quantum formulation must represent all sessions and slots explicitly; no free oracle or data loading is assumed.",
+    "No workload frequency, hardware constraints, or latency targets are supplied, so practical resource comparison remains conditional.",
+    "The draft contracts describe families only; they do not certify exactness or quantum advantage."
+  ],
+  "risks": [
+    "Replacing exact backtracking with a heuristic quantum algorithm may violate the exact lexicographic ordering and infeasibility ValueError contract.",
+    "Input participant sets, session order, slot order, and current/preview state must remain unchanged.",
+    "Resource overhead from one-hot/QUBO encoding and oracle construction may dominate small agenda instances.",
+    "QAOA measurement outcomes are probabilistic; no-solution handling is unresolved in the supplied DRAFT contracts."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "A finite candidate set and a pure Boolean predicate for a complete conflict-free assignment can be represented. However exact lexicographic minimality and no-solution policy require additional machinery and remain unresolved."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The graph-coloring feasibility and lexicographic objective can be encoded as QUBO/Ising with penalties, but the draft contract does not guarantee exact global optimality or exact infeasibility detection."
+    }
+  ]
+}

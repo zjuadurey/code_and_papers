@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/rationale", "/contract_applicability/0/rationale"],
+  "rationale": "The broad solver-body nomination starts at line 10, but the response still offers no migration plan or replacement pivot selector. It correctly keeps unknown analysis and insufficient semantic evidence separate from proof. No predicate is available to check; retain insufficient evidence, not a pass or a claim withdrawal.",
+  "interpretations": []
+}

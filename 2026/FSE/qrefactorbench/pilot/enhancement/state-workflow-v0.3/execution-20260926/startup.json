@@ -1,0 +1,9 @@
+{
+  "utc": "2026-09-26T12:17:15.743419+00:00",
+  "protocol_verified": true,
+  "preflight_protocol_hash_matches": true,
+  "state_after_authorization": "ready_call",
+  "pinned_cli": "/home/audrey/.codex/packages/standalone/releases/0.156.1-x86_64-unknown-linux-musl/bin/codex",
+  "operator_script_sha256": "32844e88c1acbf352f66a55f4ae928b165c6d731304268b7835b1de8764a7700",
+  "snapshot_files": 2429
+}

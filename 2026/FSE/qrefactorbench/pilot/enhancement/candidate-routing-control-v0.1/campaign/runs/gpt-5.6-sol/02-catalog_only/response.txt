@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 13,
+      "end_line": 13
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "first-maximum-pivot-selection",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditionally encode the indices in range(col, n) and mark the unique index p that Python's max call would select: abs(rows[p][col]) is not less than any later candidate value and is strictly greater than every earlier candidate value. A Grover-style procedure would only propose this pivot index; it would not replace elimination, back substitution, residual computation, or reporting.",
+    "input_encoding": "Encode col, candidate indices, and the dynamically updated binary64 active-column values rows[i][col]. A reversible predicate must reproduce the relevant Python abs and comparison behavior, including first-index tie selection and any signed-zero or nonfinite intermediate behavior reachable during elimination. Coherent loading, floating-point representation, comparison circuits, workspace uncomputation, and their costs are unresolved.",
+    "quantum_algorithm_family": "Grover-style marked-state predicate search",
+    "output_decoding": "Measure a proposed index and classically verify that it is exactly the first index selected by Python's max(range(col, n), key=lambda i: abs(rows[i][col])). On failure, ambiguity, or unsuccessful search, execute the original classical max operation. Preserve the subsequent exact-zero pivot check, row swap, elimination order, back substitution, overflow detection, and caller-visible report construction.",
+    "assumptions": [
+      "The candidate statement executes once per elimination column when n is positive and is not reached for the empty system.",
+      "The oracle receives the augmented rows created at kernel.py line 11 after all swaps and elimination updates from preceding columns.",
+      "A finite reversible predicate matching the required Python binary64 ordering and first-tie behavior can be constructed.",
+      "Classical verification and deterministic fallback are required because the software contract does not permit probabilistic changes to results or exceptions."
+    ],
+    "risks": [
+      "Testing whether an index is the first global maximum requires access to the other active-column entries and may impose linear work inside each oracle evaluation.",
+      "Coherently loading dynamically modified dense rows may dominate execution; no QRAM or free data-loading assumption is supplied.",
+      "Finite-shot Grover execution does not independently guarantee the exact deterministic pivot.",
+      "Any mismatch in floating-point absolute value, comparison, equality, signed-zero, nonfinite, or tie behavior can change all downstream arithmetic and exceptions.",
+      "Verification strong enough to preserve exact first-argmax semantics can repeat the original classical scan and eliminate any plausible benefit."
+    ],
+    "expected_resource_characteristics": {
+      "qubits": "Unquantified; index and binary64 value registers, coherent active-column storage or access, comparison registers, and reversible workspace ancillas are required.",
+      "depth": "Unquantified; a global first-maximum predicate may require comparisons across the entire remaining column for each oracle evaluation.",
+      "oracle_calls": "Dependent on the active-domain size and the success policy; the intended predicate has one marked index when the classical max operation completes normally.",
+      "overheads": "State preparation or coherent data access must track every elimination update, with measurement, verification, retries, and deterministic fallback included."
+    },
+    "rationale": "This conditional plan establishes only an in-principle finite predicate formulation. It does not establish an efficient oracle, practical suitability, quantum advantage, or independent correctness."
+  },
+  "rationale": "The defensible supported-family region is the complete pivot-selection assignment at kernel.py line 13, as also delimited by the supplied syntax inventory. It selects from the finite range [col, n) using the absolute values of the active-column entries, with Python max choosing the first index on equal keys. Its dependencies are col, n, and the augmented rows initialized at line 11 and modified by every preceding swap and elimination update at lines 16-20. It activates during each iteration of the elimination loop at lines 12-20 when n is positive; the empty system does not execute it. The result controls the zero-pivot singularity check at lines 14-15, row interchange at line 16, subsequent elimination, back substitution, overflow behavior, and ultimately the named solution, deltas, and proposed residual produced by review. All of those surrounding semantics, along with input validation, inspect-mode behavior, ordering, exceptions, and no mutation, must remain intact. A unique first-argmax predicate over a finite index domain is representable in principle, so structural eligibility is true. Practical suitability is false because evaluating that predicate can require a global scan, the active data changes throughout elimination, exact classical verification duplicates the original work, and the program is explicitly small and serial. Benchmark support is false: the HPL attribution documents classical pivoting and residual checking, while the supplied material states that this is not a compliant HPL performance run and provides no quantum workload, hardware, encoding-cost, resource, or advantage evidence. The remaining elimination arithmetic, residual diagnostic, validation, and report assembly do not independently fit either supported migration family.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "For each elimination column, select the first row index whose absolute active-column entry is maximal while preserving the classical solver's deterministic floating-point behavior.",
+  "assumptions": [
+    "The nomination is limited to the pivot-selection assignment at kernel.py line 13 and does not treat the dense linear solve as a Grover-search problem.",
+    "Validated inputs begin as finite binary64 values, while the nominated statement consumes dynamically updated elimination state.",
+    "The supplied syntax inventory confirms statement and function boundaries but supplies no ranking, eligibility, reachability, or semantic proof.",
+    "No workload scale, coherent-memory mechanism, quantum hardware, encoding budget, or advantage evidence is supplied.",
+    "Singularity, overflow, residual, naming, ordering, inspect-mode, empty-system, and no-mutation semantics must remain unchanged."
+  ],
+  "risks": [
+    "Oracle construction and coherent data access may cost more than the original linear pivot scan.",
+    "A probabilistic or incorrectly encoded pivot can alter rounding, later pivots, exceptions, solution values, deltas, and residual diagnostics.",
+    "Exact verification and deterministic fallback can remove any prospective reduction in classical work.",
+    "Intermediate floating-point edge cases make exact reversible emulation more demanding than an abstract real-number maximum predicate.",
+    "The small serial execution setting offers no demonstrated way to amortize quantum setup and communication overhead."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Conditionally applicable only to kernel.py line 13: the remaining row indices form a finite domain and a unique first-argmax predicate can be stated. Applicability depends on unresolved reversible binary64 operations, dynamic data access, exact tie and edge-case handling, classical verification, and deterministic fallback; it does not imply practical suitability."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The program performs deterministic floating-point linear-system solution and residual reporting, not optimization over binary decision variables. No QUBO objective, constraint penalties, or exact binary formulation preserving the required solver semantics is supplied."
+    }
+  ]
+}

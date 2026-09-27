@@ -1,0 +1,25 @@
+{
+  "baseline": {
+    "command": "/home/audrey/miniconda3/envs/palqo/bin/python -m pytest -q tests/test_semantic_verification.py tests/test_semantic_verification_v02.py",
+    "passed": 126,
+    "seconds": 1.72
+  },
+  "new_engine_tests": {
+    "command": "/home/audrey/miniconda3/envs/palqo/bin/python -m pytest -q pilot/enhancement/lit002-v0.1/test_experiment.py",
+    "passed": 23,
+    "seconds": 0.48
+  },
+  "new_collector_tests": {
+    "command": "/home/audrey/miniconda3/envs/palqo/bin/python -m pytest -q pilot/enhancement/lit002-v0.1/test_collect.py",
+    "passed": 3,
+    "seconds": 0.03
+  },
+  "repository_tests": {
+    "command": "/home/audrey/miniconda3/envs/palqo/bin/python -m pytest -q tests",
+    "passed": 223,
+    "skipped": 15,
+    "seconds": 5.23,
+    "skip_reasons": "14 optional Qiskit checks and one optional PyYAML check; dependencies not installed"
+  },
+  "note": "Baseline tests are a subset of repository tests; do not add them to claim additional unique tests. New tests live in the experiment directory."
+}

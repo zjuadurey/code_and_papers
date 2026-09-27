@@ -1,0 +1,17 @@
+{
+  "responses_mapped": 25,
+  "categories": {
+    "missing_rule": 5,
+    "explicit_local_rule": 8,
+    "ambiguous_operator": 2,
+    "no_nomination": 3,
+    "broad_region_no_plan": 4,
+    "qubo_not_constructed": 3
+  },
+  "anchors_checked": 90,
+  "initial_routes": 5,
+  "draft_prompts": 16,
+  "new_model_calls": 0,
+  "effect_on_model_quality": null,
+  "source_files_hashed": 61
+}

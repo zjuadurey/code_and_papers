@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-007",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 12,
+      "end_line": 19
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "maximize_signed_pair_agreement",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Maximize the signed pair score over a binary group assignment. With b_i in {0,1} (False=0, True=1) and pair weights w_ij=+1 for relation 'apart' and -1 for relation 'together', the score is sum_{i<j} w_ij * (2*(b_i xor b_j) - 1). Using Ising spins z_i = 1 - 2*b_i, this is equivalent to score = -sum_{i<j} w_ij z_i z_j, so maximizing score is minimizing H = sum_{i<j} w_ij z_i z_j. In QUBO form, minimize -score = sum w_ij - 2*sum w_ij*(b_i+b_j) + 4*sum w_ij*b_i*b_j, with constants, linear terms, and quadratic coefficients checked for sign and scaling. There are no capacity or group-size constraints, so every 2^n assignment is feasible. The smallest numeric membership mask tie-break is a secondary exact objective over maximizers and is not directly represented by the primary QUBO/Ising energy.",
+    "input_encoding": "n = size classical bits b_i corresponding to members in members order. The pairs list supplies (i,j,w) with i<j, where w=+1 for 'apart' and w=-1 for 'together'. The classical choose function receives size and the already validated, sorted pairs list from program.review; no constraints beyond the binary domain are present. If using Ising, map b_i=(1-z_i)/2 and account for constants and linear coefficients carefully.",
+    "quantum_algorithm_family": "QAOA-style Ising/QUBO optimization; this is a conditional proposal, not an exactness guarantee.",
+    "output_decoding": "Measure or read a bitstring, decode b_i to the values list, recompute the classical score(values, pairs), and classically verify whether the decoded assignment is an exact optimum. If multiple optima exist, classically apply the smallest numeric membership mask tie-break before returning. Do not weaken the exact optimum or tie-break requirement in propose mode.",
+    "assumptions": [
+      "All unordered pairs are present exactly once, are symmetric, and have already been sorted by (i,j) before choose is called.",
+      "Weights are +1 for 'apart' and -1 for 'together'.",
+      "There are no capacity or group-size constraints and groups may be empty.",
+      "A classical verifier and exact tie-break comparator remain available outside the quantum routine.",
+      "No workload size, hardware, depth, shot, encoding-cost, or advantage evidence has been supplied."
+    ],
+    "risks": [
+      "QAOA/Ising heuristics do not guarantee the exact optimum required by propose.",
+      "The smallest-numeric-mask tie-break is lexicographic over optima and is not safely encoded by finite-precision epsilon penalties.",
+      "Mis-scaled or mis-signed QUBO/Ising constants, linear terms, or quadratic terms can change the optimum.",
+      "State preparation, parameter optimization, measurement, and decoding overheads may exceed classical 2^n enumeration for realistic n.",
+      "No benchmark or hardware evidence supports an advantage claim."
+    ],
+    "expected_resource_characteristics": {
+      "logical_qubits": "n for binary variables, plus encoding/ancilla overhead not specified",
+      "depth": "unknown; depends on QAOA layers, connectivity, and compilation",
+      "shots": "unknown; finite shots do not certify exact optimum or tie-break",
+      "classical_optimization": "required for QAOA parameter updates",
+      "verification": "classical score recomputation and exact tie-break comparison required"
+    },
+    "rationale": "kernel.choose is structurally an unconstrained binary pairwise optimization: it enumerates masks, constructs boolean values, calls score, and keeps the best value. That objective has a QUBO/Ising encoding, so structural eligibility for qubo-ising-v0 is true. However, practical suitability is false because propose requires an exact maximum and the smallest numeric membership mask among optima; a QAOA-style or heuristic Ising/QUBO workflow does not provide those guarantees. No benchmark or resource evidence supports adoption. Grover-style unstructured search is not directly applicable to the optimization contract without a fixed threshold predicate and an exact tie/no-solution policy."
+  },
+  "rationale": "Candidate region kernel.choose lines 12-19 is the exhaustive 2^size search that solves the signed pair assignment objective. Source evidence: choose loops over range(1 << size), builds values = [bool(mask & (1 << i))...], evaluates score(values, pairs), and keeps the best; score in kernel.py lines 8-9 contributes weight if values[i] != values[j] else -weight, with weight +1 for 'apart' and -1 for 'together'. This is a finite binary combinatorial optimization with pairwise weights and no constraints, so a QUBO/Ising formulation exists. Required dependencies: size = len(members); pairs is the sorted list of (i,j,weight) built in program.review, with one preference per unordered pair and duplicate rejection; member ordering defines bit i; current bits and proposed bits are ordered by members. Activation condition: choose is called only in program.review when request['mode'] == 'propose' (line 35). In inspect mode it is not called. Surrounding behavior that must remain intact if this region is replaced: validation in review (fields, names, bits, preferences, mode), pair validation and duplicate/full-pair checks, pairs.sort() ordering, describe() output for groups/score/violated in catalogue-pair order, current report computation, result keys current/proposed/gain/moves, gain = proposed score - current score, moves as member names whose bits changed, no mutation, ValueError for invalid inputs, and JSON CLI behavior. Exact optimum and smallest numeric mask tie-break are contract obligations; QAOA/Ising is not exact and the tie-break is not naturally quadratic. No workload, hardware, encoding-cost, or advantage evidence is supplied, so benchmark support is unknown. Decision remains classical. A conditional migration plan is included for qubo-ising-v0 because structural eligibility is true, but it is not an adoption recommendation.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Maximize signed pair-preference agreement by choosing a binary group assignment, with exact optimum and smallest numeric membership mask tie-break.",
+  "assumptions": [
+    "The target region is kernel.choose, not the trivial score evaluation or reporting code.",
+    "Inputs are classical and fully validated before choose is called.",
+    "The pair list is complete and sorted, with weights +1 for 'apart' and -1 for 'together'.",
+    "Exact optimum and smallest numeric mask tie-break are required for propose mode.",
+    "No workload, quantum hardware, encoding-cost, or advantage evidence is supplied."
+  ],
+  "risks": [
+    "Replacing choose with an approximate quantum/classical hybrid could return a suboptimal assignment or a different optimum than the smallest numeric mask.",
+    "Encoding the tie-break as a secondary objective may require exact integer/rational comparison or post-processing rather than a simple QUBO penalty.",
+    "Quantum resource estimates are unsupported by the supplied material.",
+    "The classical exhaustive method may be preferable for small n and has exact deterministic semantics.",
+    "Any changed return type or ordering from choose would break describe, gain, and moves reporting."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The choose objective is an explicit unconstrained binary pairwise function and has a QUBO/Ising encoding. Applicability is structural only; exactness, tie-break, resource, and advantage obligations remain unresolved."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The task is exact optimization, not a fixed Boolean decision predicate. A threshold predicate would require knowing or finding the optimum, handling no-solution cases, and preserving the smallest-mask tie-break; basic Grover-style search does not address those obligations."
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "response_sha256": "5bb326bee266c0c3f6d8758c14c066562ee6dd342e2021d9b28b3f0a045f5b72",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 25.165,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:40:24.616912+00:00",
+  "review_submitted_utc": "2026-09-26T21:40:49.781486+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "5bb326bee266c0c3f6d8758c14c066562ee6dd342e2021d9b28b3f0a045f5b72",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "No source region is structurally eligible for either supported migration family. kernel.py lines 9-26 implement deterministic dense Gaussian elimination with partial pivoting and back substitution over binary64 values, not finite-domain predicate search or binary combinatorial optimization. The solve depends on the validated matrix and rhs, maintains a mutable augmented-row elimination state, and is activated only by program.py lines 22-27 when mode is solve. Preserved behavior includes largest-absolute-value pivot selection with first-index tie resolution, exact-zero pivot rejection, floating-point operation order, nonfinite-solution rejection, named solution and delta construction, and proposed-residual reporting. kernel.py lines 29-38 compute Ax-b and the specified scaled backward error from matrix, rhs, and x; this diagnostic runs for current in both modes and for the proposal in solve mode. Validation, inspect-mode treatment of singular matrices, empty-system behavior, exceptions, report ordering, and non-mutation must remain intact. The source provides no finite search domain, pure Boolean predicate, binary objective, constraints, penalties, exact encoding, or acceptable probabilistic semantics. The HPL attribution supports only the provenance of the classical algorithm and diagnostic; the task explicitly excludes a compliant HPL performance run and supplies no workload, quantum hardware, resource, encoding-cost, benchmark, or advantage evidence."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "There is no explicit finite candidate domain or pure Boolean marked-state predicate. Creating one would require arbitrary encoding of solution vectors plus a reversible oracle preserving binary64 elimination, first-index pivot ties, exact-zero singularity rejection, overflow detection, and deterministic success or failure semantics."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "Candidate list is empty and plan/family are null. The prose describes classical behavior and rejects proposed replacements; it is not a supplied replacement selector or proof that no eligible subregion exists. Keep no nominated claim separate from correctness or an accepted structural-negative label.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

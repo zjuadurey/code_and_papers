@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/contract_applicability/0/rationale"],
+  "rationale": "The main one-hot QUBO still lacks concrete coefficients and penalty bounds; its all-state encoding and any admission guard are explicitly unresolved. The original Python max appears as the classical verification target, not as a new comparison recurrence. Grover applicability also remains unspecified. Neither a predicate/scan nor a concrete optimization is available for the frozen local checker; retain insufficient evidence and do not infer a finite guard or repair from the added caveats.",
+  "interpretations": []
+}

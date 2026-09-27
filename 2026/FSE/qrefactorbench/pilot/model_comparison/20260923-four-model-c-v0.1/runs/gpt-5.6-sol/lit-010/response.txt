@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-010",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "review",
+      "start_line": 26,
+      "end_line": 28
+    },
+    {
+      "file": "program.py",
+      "function": "review",
+      "start_line": 30,
+      "end_line": 32
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "detect-invalid-sparse-matrix-constraints",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditionally formulate two sequential marked-state searches after classical parsing and normalization: first search stored entry indices for an entry whose transposed value is absent or unequal, then, only if symmetry is certified, search row indices for a diagonal value that is not strictly greater than the ordered binary64 sum of absolute off-diagonal values. The searches must remain separate to preserve validation-stage exception precedence.",
+    "input_encoding": "Encode a finite index into the already validated classical matrix-entry sequence for symmetry checking or into 0..n-1 for row checking. Reversible access to indices, keys, normalized binary64 values, implicit zero entries, and each row's increasing-column order is required. The cost and implementation of coherent access to this caller-supplied sparse data are unresolved and cannot be assumed free.",
+    "quantum_algorithm_family": "Grover-style marked-state search with an exact-semantics classical fallback",
+    "output_decoding": "Measure a candidate index and verify its predicate classically. A verified symmetry violation raises ValueError(\"symmetric matrix required\"); a verified dominance violation raises ValueError(\"positive strict diagonal dominance required\"). Proceed only after a no-marked-state result has been established without weakening the deterministic contract; absent a justified error-free no-solution procedure, perform the original complete classical scan.",
+    "assumptions": [
+      "Lines 9-25 have already validated fields, names, vectors, mode, tolerance, entry structure, known variables, duplicates, and finite numeric conversion.",
+      "The matrix dictionary is immutable during each search and missing transposed or diagonal entries retain the specified 0.0 meaning.",
+      "A reversible oracle can reproduce Python binary64 comparisons and, for dominance, the exact increasing-column abs-and-sum evaluation order.",
+      "The classical construction of rows at line 29 remains available for dominance validation and subsequent residual or recurrence computation."
+    ],
+    "risks": [
+      "Ordinary Grover sampling does not by itself provide an error-free certificate that no violation exists, while the software contract permits no probabilistic acceptance of invalid input.",
+      "Coherent sparse-data loading, dictionary lookup, floating-point arithmetic, comparison, uncomputation, and workspace may dominate the linear classical checks.",
+      "A mandatory exhaustive classical fallback preserves exactness but removes a plausible query or runtime advantage.",
+      "The approach must not reorder symmetry and dominance failures or alter exception types and messages.",
+      "Quantumizing validation does not accelerate the sparse matrix-vector products or the stateful conjugate-direction recurrence.",
+      "No workload scale, hardware, oracle construction, qubit budget, depth, shot budget, or advantage evidence is supplied."
+    ],
+    "expected_resource_characteristics": {
+      "search_domains": "One domain contains the normalized stored entries and the other contains n row indices.",
+      "oracle_requirements": "Reversible indexed sparse lookup and exact emulation of the relevant Python binary64 operations, including ordered row reduction.",
+      "workspace": "Index, sparse-data access, floating-point arithmetic, comparison, and uncomputation registers; quantitative bounds are unresolved.",
+      "measurements_and_repetitions": "Depend on an unresolved success and no-solution policy; no justified shot count is supplied.",
+      "classical_overhead": "Input normalization, row construction, candidate verification, report construction, and potentially complete fallback scans remain classical."
+    },
+    "rationale": "This is a conditional structural formulation only. It neither establishes practical benefit nor recommends replacing the classical checks."
+  },
+  "rationale": "The only defensible supported-family candidates are the validation scans, not the numerical solver. Lines 26-28 test a finite collection of normalized stored entries with the pure violation predicate matrix.get((j, i), 0.0) != value. Lines 30-32 test a finite collection of rows with the predicate diagonal <= ordered sum(abs(off_diagonal)). Their required state is produced by lines 17-25 and, for dominance, line 29; it includes variable-order indices, duplicate-free finite binary64 values, implicit zeros, and rows ordered by increasing column index. They activate for every request after parsing and normalization, before either inspect or advance behavior. Symmetry must be resolved before dominance so the existing exception precedence remains intact. Row construction at line 29 must remain because lines 33-46 and kernel.advance consume it. All surrounding behavior must remain unchanged: strict input errors, initial residual computation, inspect-only reporting, the budget- and tolerance-controlled recurrence, recurrent trace order, directly recomputed final residual, numerical breakdown and overflow exceptions, named output ordering, and nonmutation. The stateful recurrence in kernel.py lines 17-40 is not naturally an unstructured search or binary combinatorial optimization: replacing it with a linear-system optimizer would fail to preserve the specifically budgeted binary64 iterate and per-step trace. Structural eligibility is therefore limited to a conditional Grover-style invalidity search. Practical suitability is false because exact rejection requires reliable no-solution handling, the predicates require costly coherent sparse lookup and reversible floating-point reduction, and a correctness-preserving fallback can erase any benefit. Benchmark support is false: the supplied material expressly says this is not a compliant HPCG run and supplies no quantum workload, encoding-cost, hardware, resource, or advantage evidence.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Detect violations of exact sparse-matrix symmetry and positive strict diagonal dominance before residual inspection or conjugate-direction iteration.",
+  "assumptions": [
+    "Structural eligibility means only that each validation phase has a finite indexed domain and a Boolean invalidity predicate that could conditionally be made reversible.",
+    "No coherent-memory capability, floating-point oracle, quantum hardware, or asymptotic advantage is assumed.",
+    "The original deterministic semantics remain authoritative, including exact float-converted symmetry, ordered binary64 dominance reduction, validation precedence, and exception behavior."
+  ],
+  "risks": [
+    "A probabilistic false-negative validation result would violate the contract.",
+    "Reversible implementation of sparse lookup and Python-compatible binary64 arithmetic may require prohibitive width, depth, and workspace.",
+    "The unbounded input sizes prevent deriving concrete resource limits from the supplied material.",
+    "Classical input loading, row creation, output production, and candidate verification remain necessary.",
+    "Treating the conjugate-direction calculation as QUBO minimization would silently change its budgeted recurrence, trace, and exact output semantics."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Conditionally applicable to the two finite invalidity scans because their predicates are Boolean after classical normalization. Applicability remains contingent on an explicit reversible sparse-data and binary64 oracle and an error-free or classical-fallback no-solution policy."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The required result is not an optimal binary assignment. It is a particular budgeted floating-point conjugate-direction trajectory with an ordered residual trace and explicit breakdown behavior. Discretizing the linear system or minimizing its quadratic energy would not preserve that contract."
+    }
+  ]
+}

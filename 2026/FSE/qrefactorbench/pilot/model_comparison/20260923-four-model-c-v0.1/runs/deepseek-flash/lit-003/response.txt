@@ -1,0 +1,73 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-003",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "agenda.py",
+      "function": "complete",
+      "start_line": 28,
+      "end_line": 56
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_lexicographic_conflict_free_agenda_completion",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Binary x[v,s] = 1 iff session v is assigned to slot s. Enforce exactly one slot per session with (sum_s x[v,s] - 1)^2 penalties. Enforce conflict constraints for each edge (u,v) in the participant-conflict graph and each slot s with x[u,s]*x[v,s] penalties. Minimize the lexicographic slot-index vector by adding weighted linear terms sum_v W_v * sum_s s * x[v,s], where W_v decreases with session index v (e.g., W_v = (slot_count+1)^(n-1-v)) so earlier session indices dominate; alternatively use iterative prefix constraints with feasibility queries. The no-arrangement case is a QUBO infeasibility or constraint-violation outcome that must be decoded and verified classically.",
+    "input_encoding": "Create n * slot_count logical qubits for x[v,s], indexed in session input order and slot declaration order. Encode the conflict graph from catalog.relations and slot_count from the length of slots. Penalty coefficients and lexicographic weights are classical inputs to the QUBO. If using Ising, substitute x=(1-Z)/2 and track constants and signs.",
+    "quantum_algorithm_family": "QUBO/Ising with QAOA-style or exact Ising optimization as a proposal; exactness is not guaranteed by QAOA. A hybrid classical-quantum loop may solve the QUBO and then classically verify and reject or repair samples.",
+    "output_decoding": "Measure bitstrings, decode x[v,s], and reconstruct the assignment list in session input order. Classically verify exactly-one-slot, all conflict edges, and lexicographic minimality against the original objective. Only report a completed arrangement if it is feasible and lexicographically no larger than any other feasible arrangement; otherwise return unavailable only under an exact no-solution policy.",
+    "assumptions": [
+      "The exact lexicographically smallest slot-index vector is required; approximate or merely feasible outputs are not accepted.",
+      "Penalty weights must be sufficient to make all feasible assignments lower than infeasible ones.",
+      "Lexicographic weights must avoid coefficient overflow and preserve exact ordering for the supported input sizes.",
+      "No free data loading or oracle construction is assumed; QUBO coefficients and the conflict graph must be built classically.",
+      "The classical preview, validation, description, status, moves, and ordering behavior remain outside the quantumized region."
+    ],
+    "risks": [
+      "QAOA and other heuristic Ising solvers do not provide exactness or a proven no-solution certificate.",
+      "Penalty and lexicographic weight scaling may require large coefficient ranges or ancilla overhead.",
+      "No workload frequencies, hardware, latency targets, or encoding costs were supplied, so practical advantage is unestablished.",
+      "The no-solution case must not be inferred from a failed probabilistic sample.",
+      "Energy landscape may have many infeasible low-energy states, complicating decoding and verification."
+    ],
+    "expected_resource_characteristics": {
+      "logical_qubits": "n_sessions * slot_count plus ancillas for penalty gadgets if used",
+      "depth": "unknown; depends on penalty gadgets and QUBO embedding",
+      "shots": "unknown; exact or no-solution policy unresolved",
+      "classical_overhead": "QUBO construction, coefficient scaling, decoding, feasibility and lexicographic verification"
+    },
+    "rationale": "The complete function is a finite-domain constraint satisfaction problem over session-to-slot assignments with a lexicographic objective. It is structurally expressible as a QUBO/Ising problem, but exact lexicographic minimality and no-solution behavior are not supplied by QAOA-style execution without additional exactness obligations."
+  },
+  "rationale": "Candidate region: agenda.py complete (lines 28-56). Evidence: complete is the backtracking search invoked by review_agenda only when mode is complete, current is not feasible, and preview raises ValueError. It builds an assignment list in session input order and returns the first complete assignment found by trying slots in increasing index order for sessions in input order; this is the lexicographically smallest slot-index vector satisfying the participant-conflict constraints. Dependencies: slot_count from len(slots); neighbors from catalog.relations over session input order; assigned state array; the conflict graph edges; and the requirement to raise ValueError('no arrangement') when no assignment exists. Activation conditions: only after preview blockage; preview blockage alone does not mean no arrangement. Surrounding behavior that must remain intact: prepare validation and no mutation; describe output fields and conflict ordering; preview's greedy earliest-slot policy; current feasible retention; status values retained, preview, completed, and unavailable; moves in session input order; exact lexicographic ordering; and the ValueError-to-unavailable mapping. Structural eligibility: true for combinatorial optimization because assignment variables and conflict constraints form a finite binary optimization problem with a lexicographic objective. Practical suitability: null because no workload frequencies, hardware, encoding costs, latency targets, or advantage evidence were supplied, and exact lexicographic minimality plus no-solution proof are strict. Benchmark support: null because no benchmark evidence is supplied. Decision remains REMAIN_CLASSICAL: the region is a candidate for further analysis, not a recommendation to deploy.",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Find a conflict-free slot assignment for all sessions that is lexicographically smallest by slot index, or determine exactly that no such arrangement exists.",
+  "assumptions": [
+    "The only candidate region is the complete search; preview and validation are deterministic and must remain classical.",
+    "The classical contract's exactness, ordering, and no-solution semantics are non-negotiable.",
+    "No quantum advantage, backend, encoding cost, or benchmark support is assumed."
+  ],
+  "risks": [
+    "A quantum or hybrid solver could return an infeasible or non-minimal assignment unless exactly verified.",
+    "Penalty weights and lexicographic weights may be difficult to calibrate exactly.",
+    "No-solution detection cannot be based on sampling alone.",
+    "The region may be too small or input sizes may be too modest for practical quantum benefit."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The complete search can be encoded with binary x[v,s] variables, exactly-one-slot and conflict penalties, and a lexicographic linear objective. Exactness and no-solution obligations remain unresolved and must be handled classically or by an exact solver."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "A finite domain and a feasibility predicate exist, but the required output is the lexicographically smallest feasible assignment, not an arbitrary marked feasible state. Grover-style search alone would still require an exact minimum-finding or repeated-prefix-query construction and a justified no-solution policy, so it is not the applicable contract for the full complete behavior."
+    }
+  ]
+}

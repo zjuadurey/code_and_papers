@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/plan/formulation", "/plan/output_decoding", "/plan/risks/2", "/contract_applicability/0/rationale"],
+  "rationale": "The broad function nomination is narrowed to the pivot statement and a conditional threshold-search plan appears. However, initialization, threshold updates, no-improvement and complete exact selection remain unresolved. A candidate-better-than-threshold predicate is not the full deterministic selector supported by the current checker. Keep nomination/plan change separate from semantic repair and retain insufficient evidence without inventing a scan.",
+  "interpretations": []
+}

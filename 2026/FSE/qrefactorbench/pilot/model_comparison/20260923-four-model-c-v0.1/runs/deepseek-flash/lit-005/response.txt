@@ -1,0 +1,63 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-005",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "complete",
+      "start_line": 10,
+      "end_line": 14
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "first_conforming_boolean_assignment_search",
+    "migration_family": "unstructured_search",
+    "formulation": "Grover-style amplitude amplification over n-bit assignments x in {0,1}^n (0=False, 1=True), with an oracle marking x exactly when conforms(x, clauses, locked) is true. The classical contract additionally requires the lexicographically first conforming assignment in feature order (False before True) or unavailable if none exists. Basic Grover returns a marked state but does not enforce first-in-order; a conditional plan must add prefix-existence searches or an equivalent lexicographic encoding, and a justified no-solution policy.",
+    "input_encoding": "One qubit per feature index i, in feature order; basis state |x> encodes values[i] with 0=False and 1=True. Clause and locked data are classical oracle data: each clause is a list of up to three (feature_index, bool) literals; locked is a map feature_index->bool. Oracle workspace/ancillas for reversible equality, OR, and AND are required. Feature order defines bit significance for lexicographic comparison.",
+    "quantum_algorithm_family": "grover_style amplitude amplification; optional nested prefix-existence Grover searches for lexicographic-first decoding, with quantum counting or classical fallback for no-solution certification.",
+    "output_decoding": "Measure the assignment register, classically verify conforms, and, if first-in-order is required, use prefix searches to confirm no smaller conforming assignment exists. For no-solution, require a justified certification method before returning None/unavailable; a single failed measurement is not sufficient. Decode chosen values into the same feature-name dict and changes list used by review.",
+    "assumptions": [
+      "Finite Boolean assignment domain of size 2^n with a pure predicate conforms(values, clauses, locked); no mutation.",
+      "Oracle data (clauses and locked) is available classically and can be loaded into a reversible oracle with accounted workspace; no free data loading or coherent memory is assumed.",
+      "Migration is activated only in review mode 'complete' when current does not already conform; inspect and retained-current paths remain classical.",
+      "The classical review contract must be preserved exactly: failed_rules and locked_failures ordering, status strings, proposal mapping, changes ordering, and ValueError behavior.",
+      "Exact lexicographic-first output (False before True in feature order) and no-solution/unavailable certification are binding; probabilistic error policy is unresolved."
+    ],
+    "risks": [
+      "Basic Grover/amplitude amplification returns a marked state, not necessarily the lexicographically first conforming assignment; a naive replacement violates the complete contract.",
+      "Grover alone cannot certify that no conforming assignment exists; returning unavailable on a failed measurement is not exact.",
+      "Nested prefix existence searches or amplitude estimation may multiply oracle calls and resource costs, potentially eroding any quadratic speedup.",
+      "Reversible oracle construction for clauses with repeated or contradictory literals and for empty rules must preserve the exact classical semantics.",
+      "No workload, hardware, encoding-cost, shot, or advantage evidence is supplied; resource estimates are speculative."
+    ],
+    "expected_resource_characteristics": {
+      "qubit_count": "n assignment qubits plus oracle ancilla/workspace; exact ancilla count depends on reversible clause and locked encoding.",
+      "oracle_depth": "Unknown; scales with number of clauses, clause width (up to 3), and locked entries.",
+      "query_complexity": "O(sqrt(2^n / k)) amplitude amplification iterations for k marked assignments; lexicographic-first may require up to n prefix-existence searches, each with its own oracle and success-probability analysis.",
+      "shots": "Unknown; repeated measurements or amplitude estimation needed to meet an unspecified success-probability threshold.",
+      "classical_overhead": "Oracle data loading, parameter/iteration selection, decoding, classical verification, and possible classical no-solution fallback."
+    },
+    "rationale": "Conditional migration plan only; not a recommendation to adopt and not a correctness certificate. Structural eligibility is supported by the finite Boolean domain and pure predicate conforms, but practical suitability and benchmark support are unproven. Any implementation must resolve exact lexicographic-first output, no-solution certification, reversible oracle construction, and resource accounting, and must preserve the full review contract."
+  },
+  "rationale": "Source evidence: kernel.py complete (lines 10-14) exhaustively enumerates itertools.product((False, True), repeat=size) and returns the first list satisfying conforms (kernel.py lines 5-7), else None. conforms is a pure Boolean predicate: all locked index/value pairs match and every clause has at least one literal match. In program.py, review builds clauses as triples (features.index(feature), enabled) in rule order and locked as index->bool, then calls complete only in mode 'complete' when conforms(current, clauses, locked) is false (lines 37-41); if current conforms it is retained, and if complete returns None the status is 'unavailable' with null proposal. Inspect mode and the failed_rules/locked_failures computations (lines 31-36) are linear and remain classical. Required dependencies: size = len(features), clause list and locked map (input/predicate data), feature order (lexicographic bit order, False before True), rule order (failed_rules), and no mutation. Activation requires mode == complete and nonconforming current; otherwise complete is not invoked. Surrounding behavior that must remain intact: all validation/ValueError behavior, output field names and ordering, status values, proposal mapping feature names to chosen booleans, changes in feature order, inspect's null proposal, and complete's retain/complete/unavailable semantics. Structural eligibility is true: the finite Boolean assignment domain and explicit pure predicate conforms match unstructured_search (Grover-style); the predicate can be built reversibly with ancilla. Practical suitability is null: no workload sizes, hardware, encoding-cost, shot, or advantage evidence is supplied; exact lexicographic-first and no-solution certification impose additional obligations beyond basic Grover. Benchmark support is null: the execution assumptions state that no workload, quantum hardware, encoding-cost or advantage evidence is supplied. The conditional migration plan is exploratory only and does not recommend adoption.",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Search for the lexicographically first Boolean feature assignment satisfying all named clause and locked-value requirements, or certify unavailable, while preserving review's validation, reporting, and ordering.",
+  "assumptions": [
+    "Finite Boolean assignment domain of size 2^n with a pure predicate conforms(values, clauses, locked); no mutation.",
+    "Oracle data (clauses and locked) is available classically and can be loaded into a reversible oracle with accounted workspace; no free data loading or coherent memory is assumed.",
+    "Migration is activated only in review mode 'complete' when current does not already conform; inspect and retained-current paths remain classical.",
+    "The classical review contract must be preserved exactly: failed_rules and locked_failures ordering, status strings, proposal mapping, changes ordering, and ValueError behavior.",
+    "Exact lexicographic-first output (False before True in feature order) and no-solution/unavailable certification are binding; probabilistic error policy is unresolved."
+  ],
+  "risks": [
+    "Basic Grover/amplitude amplification returns a marked state, not necessarily the lexicographically first conforming assignment; a naive replacement violates the complete contract.",
+    "Grover alone cannot certify that no conforming assignment exists; returning unavailable on a failed measurement is not exact.",
+    "Nested prefix existence searches or amplitude estimation may multiply oracle calls and resource costs, potentially eroding any quadratic speedup.",
+    "Reversible oracle construction for clauses with repeated or contradictory literals and for empty rules must preserve the exact classical semantics.",
+    "No workload, hardware, encoding-cost, shot, or advantage evidence is supplied; resource estimates

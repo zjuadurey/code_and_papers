@@ -1,0 +1,44 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-010",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "advance",
+      "start_line": 17,
+      "end_line": 40
+    }
+  ],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "Nominated kernel.py:17-40 (`advance`) as the only performance-relevant computational core: it implements the budgeted conjugate-direction recurrence and repeatedly calls `apply` (kernel.py:13-14) and `dot` (kernel.py:9-10). Its dependencies are the validated sparse `rows` representation built by `review` (program.py:17-32), initial `rhs`/`current`, integer `steps`, and nonnegative `relative_tolerance`; activation is `mode == \"advance\"` (program.py:39-46), with the while condition `len(trace) < steps and initial and norm / initial > tolerance` (kernel.py:24). Any replacement must preserve local-only mutation, recurrence trace order, direct final residual recomputation, zero-initial zero-step behavior, budget exhaustion not being exact convergence, and ValueError on non-finite or non-positive denominator. Structural eligibility is false: the computation is a real-valued linear-system residual reduction over Python binary64 vectors, not a finite Boolean predicate search nor a binary QUBO/Ising objective. `apply` and `dot` are continuous sparse-matrix/vector arithmetic; discretizing `x`, `rhs`, or matrix entries to qubits would not preserve the input domain or exactness contract. No supplied quantum data-loading/oracle construction or advantage evidence exists, so practical suitability is false and neither supported draft contract is independently applicable.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Validate a sparse symmetric strictly diagonally dominant linear system and perform budgeted unpreconditioned conjugate-direction residual reduction with trace reporting and final direct residual recomputation.",
+  "assumptions": [
+    "Classical Python binary64 float semantics and exact input validation must remain intact.",
+    "The matrix is already sparse, symmetric, positive diagonal, and strictly diagonally dominant; this guarantees the conjugate-direction denominator sign under exact arithmetic.",
+    "No quantum hardware, data-loading, oracle-construction, or encoding-cost evidence is supplied.",
+    "No finite qubit-register domain is defined by the input contract; variable count is unbounded."
+  ],
+  "risks": [
+    "Forcing a Grover search would require an explicit finite Boolean predicate and oracle, which the continuous residual recurrence does not provide.",
+    "Forcing a QUBO/Ising QAOA formulation would replace exact binary64 linear solves with probabilistic binary assignments, violating exactness, trace ordering, and final residual semantics.",
+    "Encoding sparse matrix-vector operations in a quantum oracle would add unaccounted data-loading and coherence costs and likely destroy practical benefit.",
+    "Replacing budgeted recurrence with an exact solution or approximate optimizer would violate the contract that budget exhaustion is not exact convergence."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "No finite domain and pure Boolean predicate are explicit in the contract; the core work is continuous sparse matrix-vector arithmetic and recurrence updates. Validation checks are already deterministic linear-time passes over the supplied entries, not an unstructured search problem requiring Grover-style marked-state amplification."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The problem has real-valued vectors and a symmetric strictly diagonally dominant matrix, not binary decision variables or a combinatorial objective. A QUBO/Ising or QAOA formulation cannot represent arbitrary Python binary64 values and exact residual/recurrence semantics without changing the contract."
+    }
+  ]
+}

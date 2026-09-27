@@ -18,12 +18,104 @@ Unchecked research items are not automatic implementation/model-run authorizatio
 
 ## P1 — Important next steps
 
+- [x] N-052: single generic claim-elicitation interface, paired ten-slot protocol;32 focused tests,
+  49 regressions and5 offline preflight checks pass. No checker/schema/gold changes.
+- [x] N-053: ten-call S/F diagnostic under D-035 complete; one F44-state pass and one guarded
+  31-pass/13-excluded result. S contains two contradicted local claims (one secondary).
+  F's explicit QUBO is outside the frozen checker; both arms still have3 insufficient rows.
+  Ten exact replays and3114 old hashes match; [report](pilot/enhancement/claim-elicitation-v0.1/execution-20260927/REPORT.md).
+- [x] N-054: quote-bound rank-QUBO audit;31 known finite states plus1704 post-hoc synthetic states
+  pass,13 excluded;72990 assignments checked,18 tests and exact replay pass,3285 old files unchanged.
+  Original N-053 result retained; mathematical P>0 argument is not hardware/benefit or gold evidence.
+- [x] N-055: neutral analysis entry for empty/function/region/statement nominations, preserving
+  declared region, analysis scope and seed.31 tests plus49 regressions pass; five historical packets
+  use only public source,3298 old files unchanged. No model effect claim.
+- [x] N-056: freeze S/C/R15-position control;112 combined tests and5 offline preflight checks pass.
+- [x] N-057: all15 positions complete and valid; nomination changes separated from correctness.
+  No clear R-over-C benefit; new contradicted and ambiguous claims retained. Exact replay and3312
+  protected hashes match. [Report](pilot/enhancement/candidate-routing-control-v0.1/execution-20260927/REPORT.md).
+- [x] D-036: researcher chose A; bounded candidate-dossier preparation authorized.
+- [x] N-058: three source-pinned dossiers, old-ten lineage comparison, classical reproduction and
+  review checklist complete;3555 old hashes unchanged. [Deliverable](pilot/new_mother_candidates/v0.1/README.md).
+- [ ] Review N-058 specific admission/contracts and reference/evaluation roles before formal cases,
+  gold or split; no model-based selection. C01/C02 proposed for DRAFT review, C03 boundary candidate.
+
+- [x] N-043 / D-031: implemented and ran the separate lit-002 structured-QUBO paired
+  pilot with GPT-5.6 Sol: 15/15 calls, initial/self-review/semantic-feedback each 5/5
+  finite passes. All initial answers correct; zero actual counterexamples, no evidence
+  of improvement or measured repair ability. 26 new tests; 223 repository tests pass,
+  15 optional skips. [Report](pilot/enhancement/lit002-v0.1/REPORT.md).
+- [x] N-044: reviewed Sol lit-009 transcription, reachable state and fallback scope;
+  replayed seven old pivots and six sensitivity-probe pivots. Prepared a bounded
+  [dynamic-state analysis proposal](pilot/enhancement/lit009-review-v0.1/README.md); no new model run.
+- [x] D-032: researcher delegated method/workflow progression and requested explanations of
+  next action, purpose and actual effect; no longer blocked on beginner architecture choices.
+- [x] N-045: offline single-model workflow with lexical state inventory, bound development
+  feedback and four revision branches; 12 checks pass, zero model calls.
+  [Implementation](pilot/enhancement/state-workflow-v0.1/README.md),
+  [learning notes](docs/AGENT_WORKFLOW_LEARNING.md).
+- [x] N-046: explicit new-response quote bindings, bounded predicate/scan interpretation,
+  ambiguity/guard/unknown/withdrawal handling and separate development/reserved checks.
+  37 new + 12 prior tests pass; two correct/equivalent and five erroneous controls discriminate.
+  [Report](pilot/enhancement/state-workflow-v0.2/README.md). Reviewer transcription remains necessary.
+- [x] N-047: wired the 25-slot protocol to isolated transport, verified recovery/failure retention,
+  final-binding barrier and model-visible allowlists. 26 new + 49 regression tests pass;
+  CLI 0.156.1 local request capture has zero tools after scoped catalog overrides.
+  [Protocol, preflight and handoff](pilot/enhancement/state-workflow-v0.3/README.md).
+- [x] N-048 / D-033: ran all25 approved Sol/medium subscription calls. One explicitly wrong initial
+  yields local V/AV repairs across44 reserved states; S/A still fail in that replicate. Unknowns,
+  ambiguity, guarded scope and newly wrong claims are separate; no whole-task or universal uplift.
+  [Results and audit](pilot/enhancement/state-workflow-v0.3/execution-20260926/REPORT.md).
+- [x] N-049: mapped25 responses/90 anchors, audited5 candidate entries and prepared16 offline S/C/E/W
+  prompts. Missing-rule, nomination, range, QUBO and ambiguity routes remain design-only; old44 states
+  are now known regression data. [Design](pilot/enhancement/state-workflow-design-v0.1/README.md).
+- [x] N-050: adapted16-slot feedback control with retained transport, failure handling and review gates.
+  32 new +49 relevant regression tests pass; complete fake-transport rehearsal and5 offline isolation
+  checks pass. [Ready configuration](pilot/enhancement/feedback-control-v0.1/README.md).
+- [x] N-051 / D-034: executed all16 feedback-control calls, all valid. E/W both pass44 known states
+  for the sole explicit initial error; no additional W benefit observed,12 responses insufficient.
+  [Results](pilot/enhancement/feedback-control-v0.1/execution-20260927/REPORT.md).
+- [x] D-035: researcher delegated same-direction existing-subscription model-call budget ("限额随便用").
+  Future concrete protocols may proceed under this delegation without repeated per-round budget requests.
+- [ ] Implement N-049's single-step missing-information elicitation with an equal-call self-review
+  control; validate offline before a new protocol. Preserve unknowns, alternate families and old results.
+- [x] N-042 / D-030: record the researcher-confirmed direction: diagnose weaknesses and
+  enhance the same LLM with program analysis and semantic verification. Harness is the
+  execution framework; mechanism choice and improvement evidence remain open.
+  [Canonical direction](docs/RESEARCH_CHARTER.md#same-model-enhancement).
+- [ ] Extend the N-043 local mapping prototype toward the broader weakness-to-method
+  study; distinguish stage improvement, overall outcome and added budget. Production-code
+  program analysis and migration remain unimplemented.
+
+- [x] N-041 / D-029: forty C repeat requests completed, 36 valid and four budget failures.
+  Seven quote-bound objectives pass 38 finite checks; a post-hoc reachable-NaN witness
+  contradicts Sol/Pro lit-009 predicates without refuting their fallback plans. 28 offline tests pass.
+  [Report](pilot/model_comparison/20260923-four-model-c-v0.1/REPORT.md).
+- [x] N-044: source-level review of N-041 witness and 009/010 validation-scan nominations;
+  recorded singleton transcription sensitivity and Sol010 missing-entry prose ambiguity.
+  Formal candidate acceptance, whole plans and deployment benefit remain unjudged.
+
+- [x] N-039: audit current task/loader/scoring and baseline tests; add ten private contract
+  sidecars and four scoped definition-based verifiers with 23 inputs, 8 passing correct/
+  equivalent controls and 10 rejected semantic mutants. 42 regression tests pass.
+  [Scope and evidence](pilot/semantic_verification/v0.1/README.md); not whole-case gold or migration success.
+- [x] N-040: extend scoped control verification to the remaining six cases. Ten mothers,
+  61 inputs, 22 accepted correct/equivalent controls and 30 rejected mutants; 84 new tests pass.
+  [Versioned extension](pilot/semantic_verification/v0.2/README.md); preserve the old four scopes.
+- [ ] Review transcription fidelity, other alternate mappings/boundaries and full context
+  obligations; scoped checks do not establish whole-task or quantum migration success.
 - [x] N-036: prepare HOW claim/obligation rubric, five-case four-model trial review
   (19 answers, one preserved budget failure), exact-response provenance and finite
   arithmetic evidence. [Review package](pilot/how_review/v0.1/README.md).
-- [ ] Researcher chooses next HOW operational policy: conditional-plan evidence and
-  completion records (recommended), or a new executable-encoding task. Individual
-  labels remain pending; no implicit new model execution. See NEXT_ACTIONS.
+- [x] D-026: researcher chose A, retaining conditional plans and separate correctness/
+  completion records, no scalar score. Individual labels remain pending.
+- [x] N-037: implement independent HOW v0.2, complete all 39 answer review records,
+  preserve the budget failure, prepare the reference-review packet and holdout draft.
+  [Package](pilot/how_review/v0.2/README.md). No new model run or gold promotion.
+- [x] N-038: archive user-supplied review concurring with both narrow lit-002 formula
+  refutations; preserve interpretation/fallback limits and unknown reviewer identity/
+  independence. [Feedback](pilot/how_review/adjudications/20260922-lit002/README.md).
+  This is not independently verified human annotation or whole-case gold; other judgments stay pending.
 
 - [x] N-035: add DeepSeek Pro/Flash under D-024, twenty first C requests, high/direct
   API. Pro 10/10 valid; Flash 9/10, with one output-budget exhaustion and no retry.

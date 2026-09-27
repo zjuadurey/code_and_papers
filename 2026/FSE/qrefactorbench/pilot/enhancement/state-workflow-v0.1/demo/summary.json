@@ -1,0 +1,149 @@
+{
+  "status": "offline_preparation_complete",
+  "experiment_completed": false,
+  "new_model_calls": 0,
+  "new_mother_cases": 0,
+  "analysis_seconds": 0.0019904280052287504,
+  "feedback_selection_seconds": 6.615000893361866e-05,
+  "total_seconds": 0.0050606380100362,
+  "timing_scope": "Offline source inventory and archived-feedback selection; excludes trace generation and model calls.",
+  "sources": {
+    "pilot/enhancement/lit009-review-v0.1/evidence/trace.json": "bd43f5259a4d4ced52e4a8acb996ffef4bc9403ac0c939288790c209ce8cabce",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/runs/gpt-5.6-sol/lit-009/response.txt": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+    "pilot/reference_completion/v0.1.1/cases/lit-009/kernel.py": "7bd7ab7a59d78bf064f14a3e97f60f80d91b9e6d42977952c1e5c21d795dd18f",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-009-C.txt": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e"
+  },
+  "records": [
+    {
+      "arm": "self_review",
+      "initial_origin": "historical_response_replay",
+      "initial_sha256": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+      "prompt_sha256": "9f802b1d901009eefd39dae68505a7bb713a5719565479a9b4b12a95751767d5",
+      "observation_kinds": [],
+      "prompt_bytes": 49456,
+      "revision_call_limit": 1,
+      "model_calls_executed": 0,
+      "state": "awaiting_model_not_run",
+      "task_pass": null,
+      "repair_success": null,
+      "events": [
+        {
+          "event": "historical_draft_loaded"
+        },
+        {
+          "event": "observations_selected",
+          "kinds": []
+        },
+        {
+          "event": "revision_prompt_prepared"
+        },
+        {
+          "event": "stopped",
+          "reason": "offline_demo_no_model_transport"
+        }
+      ]
+    },
+    {
+      "arm": "analysis_only",
+      "initial_origin": "historical_response_replay",
+      "initial_sha256": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+      "prompt_sha256": "b8dad458cea2e3490e9b16d5b61c97226baf385f9e0e2a058e18ae40c2ebdf8b",
+      "observation_kinds": [
+        "lexical_dependency_inventory"
+      ],
+      "prompt_bytes": 51769,
+      "revision_call_limit": 1,
+      "model_calls_executed": 0,
+      "state": "awaiting_model_not_run",
+      "task_pass": null,
+      "repair_success": null,
+      "events": [
+        {
+          "event": "historical_draft_loaded"
+        },
+        {
+          "event": "observations_selected",
+          "kinds": [
+            "lexical_dependency_inventory"
+          ]
+        },
+        {
+          "event": "revision_prompt_prepared"
+        },
+        {
+          "event": "stopped",
+          "reason": "offline_demo_no_model_transport"
+        }
+      ]
+    },
+    {
+      "arm": "verification_only",
+      "initial_origin": "historical_response_replay",
+      "initial_sha256": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+      "prompt_sha256": "b0d4fee1466b3898da2506d98bce34800aba6ae0a0bbd82e1da5fe174bcefc19",
+      "observation_kinds": [
+        "semantic_feedback"
+      ],
+      "prompt_bytes": 51027,
+      "revision_call_limit": 1,
+      "model_calls_executed": 0,
+      "state": "awaiting_model_not_run",
+      "task_pass": null,
+      "repair_success": null,
+      "events": [
+        {
+          "event": "historical_draft_loaded"
+        },
+        {
+          "event": "observations_selected",
+          "kinds": [
+            "semantic_feedback"
+          ]
+        },
+        {
+          "event": "revision_prompt_prepared"
+        },
+        {
+          "event": "stopped",
+          "reason": "offline_demo_no_model_transport"
+        }
+      ]
+    },
+    {
+      "arm": "analysis_and_verification",
+      "initial_origin": "historical_response_replay",
+      "initial_sha256": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+      "prompt_sha256": "a629896c2ee4679b64fd9a8185f49030f670bc283f669cb73092e3085f9de7e0",
+      "observation_kinds": [
+        "lexical_dependency_inventory",
+        "semantic_feedback"
+      ],
+      "prompt_bytes": 53342,
+      "revision_call_limit": 1,
+      "model_calls_executed": 0,
+      "state": "awaiting_model_not_run",
+      "task_pass": null,
+      "repair_success": null,
+      "events": [
+        {
+          "event": "historical_draft_loaded"
+        },
+        {
+          "event": "observations_selected",
+          "kinds": [
+            "lexical_dependency_inventory",
+            "semantic_feedback"
+          ]
+        },
+        {
+          "event": "revision_prompt_prepared"
+        },
+        {
+          "event": "stopped",
+          "reason": "offline_demo_no_model_transport"
+        }
+      ]
+    }
+  ],
+  "effect_on_model_quality": null
+}

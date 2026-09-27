@@ -1,0 +1,20 @@
+{
+  "slot": "02-with_witness",
+  "replicate": 2,
+  "arm": "with_witness",
+  "mother_case": "lit-009",
+  "usage": [
+    {
+      "input_tokens": 16954,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2375,
+      "reasoning_output_tokens": 435
+    }
+  ],
+  "model_seconds": 48.062,
+  "task_pass": null,
+  "response_sha256": "c1c38dc3f9922ac1869c8ccb34df54b90e5ff8196bf1d14ea78e2c62715c251f",
+  "status": "valid_response",
+  "validation_errors": []
+}

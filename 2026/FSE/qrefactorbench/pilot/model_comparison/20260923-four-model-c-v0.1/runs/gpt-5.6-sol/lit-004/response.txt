@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-004",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "review_releases",
+      "start_line": 25,
+      "end_line": 30
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact-maximum-compatible-release-subset",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "For one select-mode request with n eligible versions, introduce binary x_i indicating selection of eligible position i. Every failed or unverified pair is an incompatibility constraint x_i*x_j=0. An exact scalarization may minimize -C*sum_i(x_i)+sum_i(2**i*x_i)+P*sum_(i,j incompatible)(x_i*x_j), where C=2**n and P>C, so cardinality dominates the required smallest-mask tie break and constraint violations are penalized. If converted to Ising form, explicitly apply x_i=(1-Z_i)/2 and retain all constants and coefficients.",
+    "input_encoding": "Keep validation, latest-check reduction, active-member filtering, and relation construction classical. Encode one bit per entry of names, whose order is inherited from the global versions list. Derive incompatibility terms from matrix entries that are false; these include both explicitly failed and unknown pairs. Empty and singleton inputs require explicit handling. Coherent loading, coefficient precision, connectivity, and workspace costs remain unresolved.",
+    "quantum_algorithm_family": "QAOA-style QUBO/Ising optimization, conditionally followed by exact classical certification or fallback",
+    "output_decoding": "Measure candidate bit strings, map set bits back through names in index order, and classically verify pair compatibility, cardinality optimality, and the smallest-integer-mask tie rule. Populate chosen exactly as line 30 does. If exact optimality and tie selection cannot be certified, run the original classical enumeration; approximate or merely feasible output is not contract-equivalent.",
+    "assumptions": [
+      "prepare, latest_results, eligible, relation, preview, describe, report assembly, and request ordering remain classical and unchanged.",
+      "Each request is optimized independently only when mode is select.",
+      "The backend can represent the required penalty and exponentially scaled tie-breaking coefficients without changing their ordering.",
+      "Any probabilistic quantum result is hidden behind exact classical certification and fallback."
+    ],
+    "risks": [
+      "QAOA does not inherently guarantee the exact maximum or deterministic smallest-mask tie winner required by the contract.",
+      "The 2**i tie weights and cardinality-dominance coefficient create exponential coefficient range and precision demands.",
+      "An insufficient penalty can make an incompatible subset appear optimal; signs and penalty sufficiency require proof.",
+      "Encoding the pair matrix can require quadratically many interaction terms, plus routing, state preparation, measurements, and classical parameter optimization.",
+      "Exact certification may require solving the original hard optimization problem and can eliminate any practical benefit.",
+      "Per-request setup overhead may dominate, and no workload sizes, hardware budget, or advantage measurements are supplied."
+    ],
+    "expected_resource_characteristics": {
+      "logical_variables": "n binary variables for n eligible versions",
+      "pair_terms": "Up to n*(n-1)/2 incompatibility terms",
+      "coefficient_range": "At least exponential in n for the direct exact tie-break scalarization",
+      "execution_overhead": "Unspecified QAOA depth, shots, parameter-optimization work, routing, and classical exact-certification cost"
+    },
+    "rationale": "This is a conditional formulation only. It identifies the exhaustive maximum compatible-subset loop as structurally expressible as binary optimization, but it neither establishes a practical implementation nor recommends deployment."
+  },
+  "rationale": "The nominated region initializes the incumbent, enumerates every subset of eligible versions, tests pair compatibility, retains only strictly larger feasible subsets, and decodes the winning indices. Because masks are visited in increasing integer order and equal-sized subsets never replace best, lines 25-30 also implement the required smallest-sum(2**i) tie rule. Its required inputs are names from program.py line 18 and matrix from line 19; matrix in turn depends on validated versions, request members, and the last-record-wins undirected latest map. The region is activated only by mode=select at line 24. The surrounding behavior must remain intact: validation and nonmutation; last-record-wins check processing; active filtering and global catalogue order; failed and unknown pairs both preventing selection; independent requests in input order; unchanged greedy preview behavior; honest current/preview descriptions; inspect-mode null proposed/changes; empty and singleton behavior; global-order change lists; counts and report formatting. Structural eligibility is true because this is an explicit finite binary maximum-compatible-subset problem with a deterministic secondary objective. Practical suitability is null because no workload distribution, hardware, encoding budget, or demonstrated method for exact quantum optimization is supplied. Benchmark support is null because the supplied notice and source establish provenance but provide no performance measurements or quantum benchmark results. Accordingly, quantumization is not presently justified and the decision is REMAIN_CLASSICAL.",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Find, for each select-mode request, an exact maximum-cardinality subset of active requested versions whose every pair has a latest passed check, breaking ties by the smallest eligible-position bit mask.",
+  "assumptions": [
+    "Eligibility positions are fixed by global version input order.",
+    "A false matrix entry represents either a latest failed check or absence of a check and forbids selecting that pair.",
+    "No approximation of maximum size, feasibility, or tie ordering is permitted.",
+    "Classical preprocessing and all observable reporting semantics remain outside the candidate region."
+  ],
+  "risks": [
+    "Replacing enumeration with a probabilistic optimizer could return a suboptimal group or the wrong tied optimum.",
+    "Quantum input construction and pairwise interaction costs may offset any search benefit.",
+    "Exact post-verification of feasibility is easy, but exact certification of global optimality and the tie winner may be classically expensive.",
+    "Optimizing or reordering the preview would violate an independently observable greedy behavior.",
+    "Changes to request iteration, report construction, exception behavior, or input structures would violate the software contract."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The selection variables, pairwise incompatibility penalties, maximum-cardinality objective, and deterministic secondary mask objective admit an explicit conditional QUBO/Ising formulation. Applicability does not resolve coefficient precision, penalty proof, exactness, resources, or practical benefit."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Eligible-position masks form a finite domain, and compatibility plus a cardinality threshold can be expressed as a pure Boolean predicate. However, exact optimization and the mandated tie winner would require staged threshold search, reversible access to the matrix, justified no-marked-state handling, and exact certification; this is not the selected formulation and offers no supplied practical evidence."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/contract_applicability/0/rationale"],
+  "rationale": "The cue-only response adds a narrow candidate and lexicographic/threshold maximum-search sketch, but neither the global selector predicate nor the initialized update/termination procedure is constructed. Declaring a key and a desired first maximum is not enough to instantiate a full ordered scan or dominance predicate without adding reviewer choices, particularly for reachable nonfinite states. Retain insufficient local evidence; coverage and classical verification obligations are separate.",
+  "interpretations": []
+}

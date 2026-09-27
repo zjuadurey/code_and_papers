@@ -1,0 +1,2894 @@
+{
+  "development": [
+    {
+      "id": "empty",
+      "input": {
+        "n": 0,
+        "edges": []
+      },
+      "expected": [],
+      "source": "Original vertex-cover definition; existing v0.1 definition oracle",
+      "purpose": "coverage/cardinality/canonical tie"
+    },
+    {
+      "id": "no_edges",
+      "input": {
+        "n": 3,
+        "edges": []
+      },
+      "expected": [],
+      "source": "Original vertex-cover definition; existing v0.1 definition oracle",
+      "purpose": "coverage/cardinality/canonical tie"
+    },
+    {
+      "id": "single_edge",
+      "input": {
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Original vertex-cover definition; existing v0.1 definition oracle",
+      "purpose": "coverage/cardinality/canonical tie"
+    },
+    {
+      "id": "tuple_not_mask",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "source": "Original vertex-cover definition; existing v0.1 definition oracle",
+      "purpose": "coverage/cardinality/canonical tie"
+    },
+    {
+      "id": "triangle",
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Original vertex-cover definition; existing v0.1 definition oracle",
+      "purpose": "coverage/cardinality/canonical tie"
+    },
+    {
+      "id": "star",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Original vertex-cover definition; existing v0.1 definition oracle",
+      "purpose": "coverage/cardinality/canonical tie"
+    }
+  ],
+  "final": [
+    {
+      "id": "final-000",
+      "input": {
+        "n": 1,
+        "edges": []
+      },
+      "expected": [],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-001",
+      "input": {
+        "n": 2,
+        "edges": []
+      },
+      "expected": [],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-002",
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-003",
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-004",
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-005",
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-006",
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-007",
+      "input": {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-008",
+      "input": {
+        "n": 4,
+        "edges": []
+      },
+      "expected": [],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-009",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-010",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-011",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-012",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-013",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-014",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-015",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-016",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-017",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-018",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-019",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-020",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-021",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-022",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-023",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-024",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-025",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-026",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-027",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-028",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-029",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-030",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-031",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-032",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-033",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-034",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-035",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-036",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-037",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-038",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-039",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-040",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-041",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-042",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-043",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-044",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-045",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-046",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-047",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-048",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-049",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-050",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-051",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-052",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-053",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-054",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-055",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-056",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-057",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-058",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-059",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-060",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-061",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-062",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-063",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-064",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-065",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-066",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-067",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-068",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-069",
+      "input": {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Exhaustive small-graph coverage; all ground states must obey full contract"
+    },
+    {
+      "id": "final-070",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-071",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        4
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-072",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-073",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-074",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        2,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-075",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            3
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-076",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            2
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-077",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-078",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        4
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-079",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-080",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-081",
+      "input": {
+        "n": 5,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-082",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-083",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        4
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-084",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-085",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-086",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-087",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-088",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-089",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        3,
+        4
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-090",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        3,
+        4
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-091",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-092",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-093",
+      "input": {
+        "n": 6,
+        "edges": [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            5
+          ]
+        ]
+      },
+      "expected": [
+        1,
+        2
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Precommitted larger graphs: penalties, decoder, cardinality and canonical tie"
+    },
+    {
+      "id": "final-094",
+      "input": {
+        "n": 8,
+        "edges": []
+      },
+      "expected": [],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Empty-edge boundary"
+    },
+    {
+      "id": "final-095",
+      "input": {
+        "n": 8,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            3,
+            7
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            6
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Dense graph and tie boundary"
+    },
+    {
+      "id": "final-096",
+      "input": {
+        "n": 8,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        0
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Unique optimum, index-order discrimination"
+    },
+    {
+      "id": "final-097",
+      "input": {
+        "n": 8,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ],
+          [
+            6,
+            7
+          ]
+        ]
+      },
+      "expected": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "source": "Definition-based exhaustive subset oracle",
+      "purpose": "Path and multiple equal-cardinality covers"
+    }
+  ]
+}

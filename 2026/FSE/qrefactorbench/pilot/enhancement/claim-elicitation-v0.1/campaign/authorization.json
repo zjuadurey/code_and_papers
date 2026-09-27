@@ -1,0 +1,11 @@
+{
+  "protocol_sha256": "dfec27c33f110f47aaa63d969d45622e1bd37861d27f2aded85a1a34ab2bedc2",
+  "maximum_model_calls": 10,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "simulation": false,
+  "user_instruction": "限额随便用",
+  "decision": "D-035",
+  "approval_context": "Delegated existing-subscription budget in same research direction; coordinator selected this prospective ten-call elicitation diagnostic. No claim of new per-round user approval.",
+  "utc": "2026-09-26T21:32:03.711390+00:00"
+}

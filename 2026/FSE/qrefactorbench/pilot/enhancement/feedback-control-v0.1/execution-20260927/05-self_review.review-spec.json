@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/contract_applicability/0/rationale"],
+  "rationale": "The self-review retains an unconstructed one-hot QUBO with unresolved coefficients, penalty bounds and exceptional-state ordering. It supplies no explicit secondary pivot selector. Preserve the supported alternative family as an unverified conditional plan rather than inventing a Boolean relation or counting fallback language as correctness. No concrete local rule is available to this checker.",
+  "interpretations": []
+}

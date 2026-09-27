@@ -1,0 +1,7 @@
+{
+  "per_response_wall_seconds_sum": 593.539,
+  "nonoverlapping_review_interval_seconds": 199.326,
+  "first_inspection_to_last_submission_seconds": 200.344,
+  "intervals_overlap": true,
+  "limits": "Three responses per group inspected together; sum double-counts overlap. Union includes tools and coordination, not human labor."
+}

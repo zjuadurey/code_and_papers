@@ -1,0 +1,43 @@
+{
+  "response_sha256": "bf8fefc62e92e570b8c830c349ba560b2fd05d7a0079dacd5b9f4436636b96b7",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 24.481,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:17:08.808098+00:00",
+  "review_submitted_utc": "2026-09-26T22:17:33.289349+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "bf8fefc62e92e570b8c830c349ba560b2fd05d7a0079dacd5b9f4436636b96b7",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally replace only the pivot-index selection with a Grover-style finite-domain maximum-search procedure over indices i in [col,n). Candidate predicates would reversibly compare the binary64 magnitude abs(rows[i][col]) against an evolving threshold. The final decoded index must be classically verified against every eligible row and canonicalized to the smallest index attaining the maximum, preserving Python max's first-index tie rule. The surrounding row swap, elimination, back substitution, diagnostics, and exceptions remain classical and unchanged."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "For each elimination column, encode indices from range(col,n) and provide coherent, exact access to the current augmented-row entries rows[i][col]. A reversible representation of Python binary64 absolute values and comparisons is required, including signed zero and all finite values reachable from prior elimination. State-loading, updated-row access, threshold preparation, ancillas, and uncomputation costs must be counted; no coherent memory is assumed."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a candidate pivot index, verify classically that its absolute pivot value is maximal over range(col,n), and select the first index among all equal maxima. Any failed or inconclusive search must not alter results; an exact classical fallback is required unless a zero-error completion policy is established."
+      },
+      {
+        "pointer": "/plan/risks/2",
+        "quote": "Threshold-based maximum finding requires multiple adaptive searches and an explicit no-marked-state policy not supplied by the draft contract."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "Routed revision newly nominates line13 with an evolving-threshold maximum-finding sketch. Initialization, traversal/update and exact no-marked-state completion remain unspecified. Full-domain verification and first-tie canonicalization describe obligations rather than a constructed selector. Nomination growth is recorded separately; no ordered recurrence or finite guard is invented from the prose.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

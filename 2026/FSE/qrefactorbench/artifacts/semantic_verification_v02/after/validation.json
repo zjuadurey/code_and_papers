@@ -1,0 +1,167 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_semantic_verification_v02.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.3697561179287732,
+      "stdout": "0.stdout.txt",
+      "stderr": "0.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests"
+      ],
+      "exit_code": 0,
+      "seconds": 7.404936069971882,
+      "stdout": "1.stdout.txt",
+      "stderr": "1.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/source_adaptations/v0.2-where/cases/lit-003/test_program.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.2763798580272123,
+      "stdout": "2.stdout.txt",
+      "stderr": "2.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-006/test_program.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.24049246008507907,
+      "stdout": "3.stdout.txt",
+      "stderr": "3.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-007/test_program.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.25569611601531506,
+      "stdout": "4.stdout.txt",
+      "stderr": "4.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-009/test_program.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.3336242660880089,
+      "stdout": "5.stdout.txt",
+      "stderr": "5.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-010/test_program.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.2910790470195934,
+      "stdout": "6.stdout.txt",
+      "stderr": "6.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/context_adaptations/v0.1/cases/context-001/test_program.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.48672772001009434,
+      "stdout": "7.stdout.txt",
+      "stderr": "7.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/provisional_labels/v0.1/test_labels.py"
+      ],
+      "exit_code": 0,
+      "seconds": 1.1101382719352841,
+      "stdout": "8.stdout.txt",
+      "stderr": "8.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "pilot/semantic_verification/v0.2/run_verification.py",
+        "--output",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/artifacts/semantic_verification_v02/after/evidence"
+      ],
+      "exit_code": 0,
+      "seconds": 0.3595228480407968,
+      "stdout": "9.stdout.txt",
+      "stderr": "9.stderr.txt"
+    }
+  ],
+  "protected_files": 1646,
+  "changed_files": [],
+  "passed": true,
+  "model_calls": 0,
+  "qpu_runs": 0,
+  "installations": 0
+}

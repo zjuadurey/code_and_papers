@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-006",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 4,
+      "end_line": 15
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Independently select a maximum-value feasible subset for each select window, breaking ties by the smallest numeric mask in eligible catalogue order.",
+  "rationale": "kernel.py:4-15 implements exact 0/1 knapsack through a capacity-indexed dynamic program. Reading transitions from previous prevents item reuse; lines 13-14 preserve maximum value and minimum-mask ties. The whole function is the candidate boundary because initialization, recurrence and returned mask jointly implement that contract; individual table updates are not independent search opportunities. Inputs are the ordered active-item list from program.py:31 and the current window capacity, passed only for select mode at lines 36-37. Only weights, values, item positions and capacity affect optimization; current IDs and previous windows do not. Structural eligibility follows from an explicit binary constrained objective, not from assumed runtime expense. Keep program.py:17-30 validation of the entire batch before optimization, including strict integer/bool distinctions and ValueError behavior. Keep catalogue order, inactive items in current reports, current feasibility, inspect's null proposal and empty transfers, proposal reconstruction, contiguous weight-based transfer offsets, window independence, no mutation and JSON CLI behavior unchanged. Empty eligible lists and zero capacity return mask 0. Validation, reporting and serialization have no justified separate nomination. The classical algorithm performs O(n(C+1)) table work with O(C+1) entries, excluding arbitrary-precision arithmetic costs; no measured hotspot or deployment workload is supplied. NOTICE.txt provides task provenance and one instance, not comparative benchmark results, encoding costs or quantum advantage evidence. Consequently practical suitability and benchmark support remain unknown, and retaining the classical implementation is justified while considering the conditional plan.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_independent_capacity_subset_selection",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditional investigation only: let x_i be binary in eligible catalogue order, W=sum(w_i*x_i), V=sum(v_i*x_i), M=sum(2^i*x_i), n=len(items), and B=2^n. Maximize B*V-M subject to W<=C. This exactly encodes maximum integer value followed by minimum numeric mask. Introduce nonnegative binary-encoded slack s and minimize E=-B*V+M+P*(W+s-C)^2, with P=B*sum(v_i)+1. All feasible subsets admit zero penalty; any infeasible assignment has integer squared residual at least 1 and energy greater than 0, whereas the empty feasible subset has energy 0. Thus ground-state item bits have the required optimum and tie break. Expand the square and, if needed, substitute x=(1-Z)/2, retaining constants and checking coefficients and signs.",
+    "input_encoding": "Use n item bits plus k slack bits, where k is the smallest nonnegative integer with 2^k>=C+1; encode s=sum(2^j*y_j). This represents every required slack from 0 through C. For C=0 no slack bits are needed. Preserve original eligible bit positions even if preprocessing removes overweight items. Inputs have no fixed numeric cap, so coefficient precision and bit lengths must scale with each instance.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Decode item bits into the original numeric mask and recompute weight, value and mask using exact classical integers. Feasibility checking alone does not establish optimality or minimum-mask ties. Require an exact classical certificate or complete classical fallback before returning; finite-shot QAOA output alone cannot satisfy this deterministic contract. Leave proposal construction and transfers in program.py unchanged.",
+    "assumptions": [
+      "This is a conditional formulation, not an adoption recommendation or correctness certification.",
+      "Each select window is solved independently after validation of the whole request.",
+      "An exact certification or fallback mechanism remains available; approximate answers are not permitted.",
+      "Trivial empty-catalogue and zero-capacity cases can remain classical."
+    ],
+    "risks": [
+      "The tie-breaking multiplier and penalty produce large coefficient ranges; normalization on finite-precision hardware can erase distinctions required for exactness.",
+      "QAOA does not guarantee a global optimum, and repeated feasible samples do not certify optimality.",
+      "The slack penalty creates dense pairwise interactions and potentially costly routing.",
+      "Exact classical certification may retain the original computational burden."
+    ],
+    "expected_resource_characteristics": {
+      "logical_variables": "n+ceil(log2(C+1)), before hardware mapping or auxiliary implementation requirements.",
+      "interactions": "Up to quadratic in the number of logical variables after expanding the squared penalty.",
+      "precision": "Depends on n and the unrestricted integer weights, values and capacity; no uniform fixed-precision implementation is justified.",
+      "unresolved_costs": [
+        "Classical coefficient construction and input loading",
+        "State preparation, phase-separator synthesis and connectivity mapping",
+        "Circuit depth, noise tolerance and coefficient precision",
+        "Classical parameter optimization, measurements and decoding",
+        "Exact certification or fallback and end-to-end comparison against the existing dynamic program"
+      ]
+    },
+    "rationale": "The binary optimization structure supports investigating the draft QUBO contract. A Grover predicate oracle is not needed for this selected formulation, but the objective-phase circuit must still be constructed and costed. Encoding correctness, hardware feasibility, exact-output guarantees and practical benefit remain obligations."
+  },
+  "assumptions": [
+    "Only the supplied source, contract and attribution are evidence.",
+    "Classical inputs and outputs, unrestricted integer magnitudes and exact tie-breaking remain mandatory."
+  ],
+  "risks": [
+    "Changing eligible order changes mask ties and transfer ordering.",
+    "Starting optimization before complete validation can change invalid-batch behavior.",
+    "Treating windows as shared-stock allocation changes the problem.",
+    "Source-task attribution is not evidence of a successful quantum benchmark."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "Applicable structurally: explicit binary decisions, an exact lexicographic objective and a sufficient quadratic capacity penalty can be specified. This does not establish hardware suitability or an exact QAOA execution."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Applicable as an alternative structural investigation: the finite domain consists of n-bit masks, with a pure predicate W<=C and B*V-M>T. Reversible integer arithmetic, comparison, uncomputation and signed score widths would require construction and costing. Finding one feasible mask is insufficient; exact optimization and tie-breaking additionally require justified threshold progression and absence-of-better-solution handling, with exact certification or fallback. No probabilistic error policy is authorized."
+    }
+  ]
+}

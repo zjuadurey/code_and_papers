@@ -1,0 +1,17 @@
+{
+  "utc": "2026-09-26T22:25:54.437937+00:00",
+  "local_links_checked": 341,
+  "exact_main_quote_anchors": 48,
+  "nomination_records_verified": 15,
+  "auxiliary_certificate_replayed": true,
+  "protected_files_unchanged": 3312,
+  "artifact_files_hashed": 236,
+  "all15_slots_terminal": true,
+  "exact_main_result_replay_passed": true,
+  "next_scope_decision": "D-036 pending; no new-mother-problem authorization inferred",
+  "goal_boundary": "Authorized current local queue complete; objective was to progress until researcher confirmation is required. New case construction is the explicit scientific scope gate.",
+  "notes": [
+    "Local file targets checked; heading anchors not checked here.",
+    "No paper edit, dependencies, QPU or publication."
+  ]
+}

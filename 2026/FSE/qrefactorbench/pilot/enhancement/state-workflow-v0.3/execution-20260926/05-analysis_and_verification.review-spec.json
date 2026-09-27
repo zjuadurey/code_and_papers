@@ -1,0 +1,6 @@
+{
+  "resolution": "transcribed",
+  "anchor_pointers": ["/contract_applicability/0/rationale", "/plan/formulation", "/plan/input_encoding", "/plan/risks/3"],
+  "rationale": "The main finite order-key QUBO and its penalty/encoding remain outside this predicate checker. Separately, contract_applicability[0] explicitly states a finite-pivot Grover predicate: exceed every earlier magnitude and be at least every later magnitude. Bind only this conditional local relation, even though practical/reversible applicability remains unresolved. The finite guard is explicit; nonfinite states are sent to a declared classical path in the plan, which is not executed or proved here. A guarded finite pass must not be reported as validation of the QUBO, whole-domain repair or established Grover deployment.",
+  "interpretations": [{"id": "finite_strict_earlier_ge_later", "meaning": "The separately stated Grover comparison relation, on all-finite current pivot magnitudes only.", "mode": "predicate", "expression": "all(values[i] > values[j] for j in indices if j < i) and all(values[i] >= values[k] for k in indices if k > i)", "guard": "all(isfinite(values[k]) for k in indices)", "outside_guard": "classical_fallback_declared"}]
+}

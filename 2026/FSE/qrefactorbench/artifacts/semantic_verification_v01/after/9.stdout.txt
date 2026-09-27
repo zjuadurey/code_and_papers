@@ -1,0 +1,1 @@
+{"mother_cases": 10, "input_conditions": 30, "contract_sidecars": 10, "cases_with_scoped_oracle": 4, "cases_actually_checked": 4, "cases_controls_verified": 4, "cases_without_new_scoped_oracle": 6, "test_inputs": 23, "synthetic_controls": 18, "correct_controls_passed": 8, "wrong_controls_rejected": 10, "model_calls": 0, "whole_task_passed": null}

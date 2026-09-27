@@ -1,0 +1,22 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_________ test_coloring_zero_set_alone_does_not_validate_minimization __________
+
+    def test_coloring_zero_set_alone_does_not_validate_minimization():
+        case = CASES['lit-003']
+        candidate = submission(case, 'one_hot')
+        # Negating all penalties keeps precisely the same zeros but rewards violations.
+        for claim in candidate['claims'].values():
+            for term in claim['terms']:
+                term['coefficient'] = str(-v.base.rational(term['coefficient']))
+        report = v.evaluate(case, candidate)
+>       assert report['status'] == 'candidate_error'
+E       AssertionError: assert 'passed' == 'candidate_error'
+E         
+E         - candidate_error
+E         + passed
+
+tests/test_semantic_verification_v02.py:98: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_semantic_verification_v02.py::test_coloring_zero_set_alone_does_not_validate_minimization
+1 failed in 0.10s

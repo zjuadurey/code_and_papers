@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "errors": [],
+  "protected_files_unchanged": 863,
+  "replayed_responses": 15,
+  "definition_expectations_checked": 104,
+  "protocol_source_files_checked": 10,
+  "prompt_boundaries": "Reconstructed from public task + same initial + development-only feedback; final tests absent.",
+  "runtime_isolation": "Reused bwrap transport; tools disabled; private repository not mounted. Not a general security certification."
+}

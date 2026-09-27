@@ -1,0 +1,20 @@
+{
+  "slot": "02-verification_only",
+  "replicate": 2,
+  "arm": "verification_only",
+  "mother_case": "lit-009",
+  "usage": [
+    {
+      "input_tokens": 16947,
+      "cached_input_tokens": 2944,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2206,
+      "reasoning_output_tokens": 479
+    }
+  ],
+  "model_seconds": 49.467,
+  "task_pass": null,
+  "response_sha256": "3c4495e0db6bc0ec16a4706c9b6250f97c70c930894ec4c11d0a3be2b61e6a3d",
+  "status": "valid_response",
+  "validation_errors": []
+}

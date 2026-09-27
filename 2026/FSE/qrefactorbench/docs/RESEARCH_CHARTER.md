@@ -26,6 +26,29 @@ This is a research target, not a submission or contribution claim.
 Estimation、可逆计算、C/C++ 与大仓库迁移只是候选未来方向，不是当前已支持能力。
 以下章节是稳定的概念和已接受边界；最新进度、输入路径只查 PROJECT_STATUS。
 
+<a id="same-model-enhancement"></a>
+
+## 已确认的技术研究方向：增强同一个 LLM
+
+研究者于2026-09-23明确确认（[D-030](../DECISIONS.md#d-030-same-model-enhancement-through-classical-cs-methods)）：
+
+> 利用程序分析与语义验证，增强 LLM 对经典程序的量子机会识别与映射设计能力。
+
+研究路径是：**用benchmark诊断某个LLM在任务流程中的薄弱环节 → 针对该环节设计
+经典CS增强方法 → 集成进同一LLM的工作流 → 验证局部能力和整体任务完成质量是否改善。**
+多个模型用于检验瓶颈及方法的适用范围；核心比较固定被测模型，比较其原始流程与
+加入所提方法后的流程。跨模型排名或按模型专长分工不作为当前主要研究目标。
+
+程序分析、约束求解、小规模精确检查、测试与反例反馈等是可考虑的技术手段；
+具体选择必须由已观察的瓶颈及可核验依据支持。当前确认的是研究方向，尚未选定
+完整技术方案，也未证明增强有效。对照和消融需区分方法效果与增加调用/计算预算的
+效果，记录经典工具成本，并隔离开发反馈与最终评测依据。
+
+术语上，**harness是执行和评测工作流的承载框架**；研究贡献需要落在针对瓶颈的
+增强机制及其可验证效果上。工具增强的LLM工作流可以采用单模型，不以多Agent为前提。
+当前仍测机会识别与条件映射设计；可运行迁移、全合同正确性和量子收益是另外的证据层，
+不得把局部公式通过或经典回退正确直接计为这些目标已完成。
+
 ## The Software Engineering problem
 
 QRefactorBench studies **Automatic / Selective Quantumization of Existing Classical

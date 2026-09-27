@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/plan/risks/2", "/rationale"],
+  "rationale": "The revision abandons the explicit >=-all predicate and recognizes nonfinite-state mismatch, but states only the desired ordered max result or first finite maximum, with alternatives for simulation versus finite precheck/fallback. It gives neither a concrete comparison predicate nor the ordered update recurrence. Do not implement the target max on the model's behalf or choose an alternative admission policy. This is a clearer conditional specification with an unbound replacement, not a verified repair or complete withdrawal. Its interpretation of finite development checks as offering no nonfinite-state evidence is not warranted by the scope notice alone.",
+  "interpretations": []
+}

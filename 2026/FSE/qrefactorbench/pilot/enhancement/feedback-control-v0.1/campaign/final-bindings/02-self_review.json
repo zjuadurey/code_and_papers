@@ -1,0 +1,52 @@
+{
+  "response_sha256": "0cace4108912c66381a2405786f5a9d8fde2c97213dd4f057e3922f26f23b15d",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 20.112,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:14:23.266023+00:00",
+  "review_submitted_utc": "2026-09-26T21:14:43.378085+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "0cace4108912c66381a2405786f5a9d8fde2c97213dd4f057e3922f26f23b15d",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode the indices from col through n-1 as a finite search domain. For fixed augmented-row state, mark the unique index whose absolute active-column value is strictly greater than every earlier candidate's value and at least every later candidate's value, thereby reproducing Python max's first-index tie rule. Use Grover-style search only to propose that pivot index."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode col, candidate indices, and the dynamically updated binary64 values rows[i][col]. A reversible oracle must reproduce the relevant Python float absolute-value, comparison, equality, ordering, and first-tie behavior. Coherent access to the augmented rows, representation of signed zero and any nonfinite intermediate state, ancilla cleanup, and gate costs remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a proposed index and classically verify that it equals Python's first-index argmax under abs(rows[i][col]). On verification failure or unsuccessful quantum execution, use the original classical max expression. Preserve the exact-zero pivot check, row swap, elimination order, back substitution, overflow detection, exceptions, and caller-visible report construction."
+      },
+      {
+        "pointer": "/assumptions/1",
+        "quote": "Inputs begin as validated finite binary64 values, while the candidate consumes dynamically updated elimination state whose exact representational behavior must be preserved."
+      }
+    ],
+    "resolution": "transcribed",
+    "rationale": "This revision supplies strict greater-than against earlier candidates and at-least against later candidates, unlike the initial >=-all predicate that included self. Nonfinite encoding is unresolved but no executable finite-only admission condition is declared. Bind the literal earlier/later predicate with guard True; fixed row state does not mean finite-valued state. Declared verification and fallback do not establish the local predicate or complete migration.",
+    "interpretations": [
+      {
+        "id": "earlier_gt_later_ge",
+        "meaning": "Candidate strictly exceeds every earlier absolute pivot and is at least every later absolute pivot, with no stated state exclusion.",
+        "mode": "predicate",
+        "expression": "all(values[i] > values[j] for j in indices if j < i) and all(values[i] >= values[k] for k in indices if k > i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

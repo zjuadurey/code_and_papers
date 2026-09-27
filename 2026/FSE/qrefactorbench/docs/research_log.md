@@ -912,3 +912,520 @@ ambiguity still requires prospective clarification rather than retrospective gra
 conditional plans with separate correctness/completion evidence, or introduce executable
 encoding submissions in a new task version. The package recommends the former; neither
 choice is automatically gold approval, case/split freezing or new model authorization.
+## 2026-09-22 — Accepted A, full pending HOW review (N-037 / D-026)
+
+**RESEARCHER DECISION:** Explicit “A” accepts conditional-plan correctness and
+completion as separate records, with honest deferral and no scalar score. It does
+not approve all individual judgments or authorize new inference.
+
+**ARTIFACT:** [HOW v0.2](../pilot/how_review/v0.2/README.md) inherits nineteen previous
+answer reviews and completes twenty more. All forty requests remain visible: thirty-nine
+answers, 156 scoped claim records, 200 completion entries including five no_response
+entries for the existing Flash truncation. Completion is manually coded independently:
+the wrong DeepSeek002 formulas are provided content, while Astra002 defers its tie
+construction. None represents complete migration verification.
+
+**ADDITIONAL EVIDENCE:** Weighted MaxCut over 761 graphs confirms scalar tie and variable
+flip correspondence; 1100 complete signed graphs / 33867 assignments check score/Ising
+identities and GPT scalar tie; 6472 restricted SAT instances check predicates and
+classically certified prefix logic. DeepSeek core mappings can be sound while global
+selection/certification remain incomplete. Universal structural rejection of controls
+remains unresolved, not newly adjudicated NO. The initial MaxCut check had a wrong
+source path and failed before checking; it was corrected, with no model retry.
+
+**REVIEW PREPARATION:** Thirteen allowlisted payload files plus manifest contain unchanged
+public C inputs, contract obligations and empty human forms, excluding model outputs,
+private labels and coordinator verdicts. Checklists are still AI-authored guidance;
+no actual blind study, independent reviewer or human answer is invented. Holdout scope,
+source grouping, sample count, execution and statistical policy remain draft.
+
+**NEXT:** Researcher adjudication of the two narrow lit-002 formula witnesses, followed
+by remaining disputed boundaries and prospective data/experiment decisions. All prior
+scientific artifacts and HOW v0.1 are preserved; no new model/QPU run or release.
+## 2026-09-22 — Supplied review concurrence on lit-002 (N-038 / D-027)
+
+**RECEIVED:** User provided detailed review text confirming both counterexamples within
+the stated branch scope. Its analysis generalizes Flash's reverse ordering for positive
+superincreasing selected-bit costs and confirms that every positive Pro C preserves the
+numeric-mask preference in the witness. It reports independent enumeration but does not
+re-run the project's validator; no new executable evidence from that reviewer was supplied.
+
+**PROVENANCE:** Recorded as user-supplied review text, with author identity, human/AI
+status, credentials, independence and blinding unknown. Do not call this a completed
+independent expert annotation. A summary and exact claim bindings live in the separate
+[appendix](../pilot/how_review/adjudications/20260922-lit002/README.md); old snapshots are preserved.
+
+**SCOPE:** Both formulas produce a minimum cover with the wrong canonical tie, not an
+infeasible or larger cover. Flash's other branch and exact classical checking/repair/
+fallback remain potentially correct; none was implemented or verified by this feedback.
+Correctness contradicted and selection construction provided remain distinct records.
+Other case labels, scientific task acceptance and model ranking remain unresolved.
+
+**NEXT:** Move to remaining alternative-family/candidate-scope review questions without
+requesting the same lit-002 concurrence again. Supervisor summary now acknowledges the
+received feedback while retaining its provenance limits; no model or QPU was run.
+
+## 2026-09-22 — Scoped case verification and evaluator controls (N-039 / D-028)
+
+**REQUEST:** Implement the capability→task→artifact→oracle→test→score chain in the existing
+benchmark. Preserve conditional plans and pending labels; no new tasks, models or agent design.
+
+**AUDIT:** Current ten-mother inputs are loaded by the reference-completion manifest, not the
+fourteen old cases/ manifests. Existing scores already distinguish reference agreement/coverage
+from unknown plan correctness. Original-program tests and reviewer arithmetic checks do not execute
+model migrations. Missing pieces were systematic scoped contracts, evaluator controls and diagnostics.
+
+**IMPLEMENTED:** Ten private sidecars; definition oracles and declarative claim checks for 002/004/005,
+plus report obligations for unresolved-control 008. Four cases/23 inputs, 8 correct/equivalent controls
+pass and 10 semantic mutants fail. The two archived 002 formulas fail the canonical-selection check
+with pinned response text and disclosed reviewer coefficients; fallback/whole plans remain unjudged.
+Six cases retain catalogue-only status. All task_pass fields remain null; no main metric replacement.
+
+**VALIDATION:** Baseline main tests 97 passed/15 optional skips; new regression tests 42 passed;
+full main suite 139 passed/15 skips. Seven existing focused suites unchanged and passing. 1636 old
+files retain SHA256. No installation, model/QPU calls or historical response/score changes.
+[Report and commands](../pilot/semantic_verification/v0.1/README.md).
+
+**LIMITS:** Finite controls are development regression evidence, not independent held-out model tests,
+universal proof, scientific gold or quantum migration execution. Source hashes don't establish reviewer
+independence or an OS security boundary; future tool-enabled agents still need genuine isolation.
+
+## 2026-09-22 — Complete the remaining six scoped case verifiers (N-040)
+
+The researcher asked why the other six cases were not yet modified. Continued D-028's
+authorized implementation in a new version, retaining v0.1 and all historical inputs/results.
+001/003/006/007 now have explicit finite mapping controls; 009/010 have numerical behavior
+controls without asserting structural NO/YES. 003 admits binary predicate and one-hot QUBO
+routes; 006 checks slack decoding. Exact dyadic numerical fixtures avoid inventing tolerance.
+
+An additional adversarial test exposed an error in the newly developed coloring verifier:
+negating the penalties preserved the zero set while making minimization prefer violations.
+The failing test was run and saved before the fix. The final checker also requires the
+feasible energy level to be an extremum bound and admits declared energy shifts.
+
+Final evidence: all ten scoped case verifiers run on 61 named inputs; 22 correct/equivalent
+controls pass and 30 semantic mutants are rejected. New tests 84 passed; full main suite
+223 passed/15 optional skips; six original-program suites and provisional-label checks pass.
+1646 old files unchanged. No model/QPU calls, new cases, task replacement or gold promotion.
+[Report and exact commands](../pilot/semantic_verification/v0.2/README.md).
+
+These are evaluator controls, not fresh model answers or full migration certificates.
+Transcription fidelity, whole-context behavior, arbitrary floating equivalence, scientific
+labels, resource claims and genuine isolation for future tool-enabled agents remain open.
+
+## 2026-09-23 — Four-model repeat and reachable numerical-state witness (N-041 / D-029)
+
+The researcher explicitly requested ten cases again with Flash, Pro, Sol and GPT 6.
+Resolved to the same four IDs and unchanged C inputs. Forty first attempts completed:
+Sol/Astra 10/10 valid each, Pro 9/10, Flash 7/10. Pro002 and Flash004/005/009 exhausted
+the existing 16384 completion-token cap; no retry or output repair. GPT medium/subscription
+and DeepSeek high/API remain unmatched settings. Total wall time approximately 43.4 minutes.
+
+Seven explicit objective claims across 001/002 were quote/hash-bound and checked on 38
+fixed inputs: four direct canonical scopes and three primary-only scopes, all passing.
+Missing tie constructions were not silently filled in. These are finite classical claim
+checks, not plan execution or whole-task passes.
+
+Post-hoc inspection found that Sol/Pro 009 both identify the first maximum using a
+universal >= predicate plus no-earlier-equality. Valid finite inputs can overflow during
+the original elimination and produce NaN. Tracing the unchanged original program on a
+5x5 input reaches a NaN pivot column where Python max chooses row 4 but the proposed
+predicate marks nothing. Normal input passes, and an explicitly separate Python-order
+incumbent control agrees throughout. The original program raises numerical overflow;
+the proposed classical fallback may preserve that result. Only predicate equivalence
+is refuted, with reviewer interpretation/fallback limits retained. No frozen score changed.
+
+Astra009 nominates nonfinite-value checking, while both GPT models nominate validation
+scans in 010. DeepSeek010 focuses on the numerical core and declines nomination. This
+is evidence of an unresolved candidate-boundary criterion, not an automatic false-positive
+label. Pending references and single-repeat evidence do not support stable model rankings.
+
+28 offline transport/collector/transcription tests pass; final audit replays scoped checks
+and the new witness, verifies all ten inputs and 1654 old file hashes, and checks document
+links. No dependency installation, historical artifact edit, QPU, migration execution or Git
+publication. [Report and commands](../pilot/model_comparison/20260923-four-model-c-v0.1/REPORT.md).
+
+## 2026-09-23 — Researcher confirms same-model enhancement as the technique objective (N-042)
+
+The researcher clarified that the objective is to identify a particular LLM's weak
+workflow stages and strengthen them using classical CS methods, so the same model
+performs the overall task better. They explicitly endorsed and requested documenting:
+
+> 利用程序分析与语义验证，增强 LLM 对经典程序的量子机会识别与映射设计能力。
+
+[D-030](../DECISIONS.md#d-030-same-model-enhancement-through-classical-cs-methods) and the
+[charter](RESEARCH_CHARTER.md#same-model-enhancement) now record this direction. The main
+contrast is the same LLM with and without the proposed enhancement. Cross-model observations
+may inform generality; assigning different models to different roles is not the chosen
+research objective. Harness denotes the execution/evaluation framework, while the technical
+contribution must lie in the enhancement mechanism and evidence of its effect.
+
+Existing tie and floating-state witnesses motivate possible methods but do not establish
+their effectiveness. Specific mechanism selection, stage and overall evaluation, ablations,
+budget accounting and future run scope remain to be designed. This turn only synchronized
+documentation; no algorithm implementation, prediction, relabeling or new experiment.
+
+## 2026-09-23 — First same-model semantic-feedback pilot reaches a ceiling (N-043)
+
+The researcher explicitly selected a separate lit-002 direct structured-QUBO task and
+GPT-5.6 Sol with at most15 subscription invocations. D-031 records the scope: five fresh
+initial sessions, each forked as candidate text into one self-review and one development-
+feedback revision. Exact definition checks, restricted arithmetic data and instance-level
+separation implement the first local method prototype; old Phase-1 tasks remain unchanged.
+
+All15 calls completed. Initial, self-review and feedback each pass all98 reserved final
+instances in5/5 responses. All initial answers also pass the6 development instances;
+therefore the feedback arm receives only a finite-pass notice, no actual counterexample.
+The observed gain is zero and counterexample-driven repair remains unmeasured. This is
+a development-exposed one-mother-case ceiling result, not proof that feedback is ineffective
+or that quantum mapping is solved. No post-hoc model/case substitution or extra sampling.
+
+Two trusted/equivalent synthetic controls pass, five plausible semantic mutants fail;
+these validate the evaluator but are not counted as real model repairs. New26 tests pass;
+repository223 pass/15 optional-dependency skips. Offline replay checks all15 responses,
+104 definition expectations and863 protected old files. Actual model calls took about
+9min05s; the existing subscription transport, tools disabled and restricted mounts were used.
+Program analysis for extracting production-code contracts and full migration remain future work.
+
+[Result and exact commands](../pilot/enhancement/lit002-v0.1/REPORT.md).
+Next: review the same Sol's existing reachable-NaN predicate failure before designing a
+new bounded enhancement experiment. No further model execution authorized by this completed run.
+
+## 2026-09-25 — Reachable-state premise audit and method proposal (N-044)
+
+Continued the authorized offline queue. Sol009 correctly identifies the pivot site and evolving
+rows, but its universal maximum predicate assumes order properties that reachable binary64 NaN
+states do not satisfy. Traced unchanged original code: finite input passes validation and the
+initial residual, col=2 updates overflow, col=3 produces a NaN factor, and col=4 exposes the false
+unique-marker claim. The original exception occurs at kernel.py:25; fallback and whole plans
+remain unexecuted and unjudged. This does not automatically reverse a structural label.
+
+Transcription sensitivity matters: the old singleton-NaN witness fails the inclusive >= reading,
+but a self-excluding reading accepts its only candidate. A new reviewer-built 6x6 extension of
+the same input reaches two NaNs at col=4 and refutes both readings. Seven historical pivots were
+replayed and six sensitivity pivots traced; ordered-scan controls match all thirteen. These are
+post-hoc development states, not new mothers, model samples or frozen-suite scores.
+
+Source review of Astra009 and Sol/Astra010 confirms concrete validation-scan boundaries but
+does not resolve formal candidate inclusion. Sol010's "absent or unequal" wording conflicts
+with its explicit default-zero formula/assumption; preserve ambiguity rather than silently
+choosing a transcription and assigning whole-plan failure.
+
+Proposed next target: dynamic-state premise analysis plus reachable counterexample feedback,
+with the same model and a self-review control. The suggested five fresh drafts/two revision
+branches (15 calls) and measurement protocol are proposals only, not approved experiments.
+The automatic analysis mechanism remains unimplemented. Researcher selection is the next gate.
+Actual evidence, commands and limitations: [N-044](../pilot/enhancement/lit009-review-v0.1/README.md).
+
+## 2026-09-25 — Delegated single-model workflow development and teaching (N-045 / D-032)
+
+The researcher stated that this is their first benchmark/agent-workflow project and delegated
+progression while requesting clear explanations of the next action, purpose and observed effect.
+They supplied bojieli/ai-agent-book as a reference. Read chapters 1/7/9 and relevant experiment
+records at commit 04c88c53df962eb4375a0fad9ec041066529b358; no external code was executed.
+
+Chose an offline fixed workflow with a same-draft 2x2 analysis/verification ablation, including
+self-review as the no-tool-observation control. This distinguishes extra revision opportunity
+from tool-package evidence. It does not establish equal token budgets or isolate all cognitive
+content of analysis from validation. Five future drafts would imply 25 calls; this is a budget
+proposal, not a new authorized model campaign.
+
+Implemented a lexical AST inventory including mutable-state writes and loop context, selection
+of an exactly quote/hash-bound historical development witness, and four revision packets with
+event/outcome records. Inventory is neither a sound program slice nor range/reachability proof;
+the validator returns insufficient evidence for unbound new prose. No model revision or final
+evaluation was run. This is an offline workflow scaffold, not an autonomous agent effectiveness result.
+
+Twelve focused tests passed; four branches prepared from the same historical response with zero
+model calls and null quality effects. Prior 2347 protected artifacts unchanged. Next: explicit
+new-response claim bindings and independent evaluation interfaces before a bounded live protocol.
+[Implementation](../pilot/enhancement/state-workflow-v0.1/README.md),
+[Chinese learning guide](AGENT_WORKFLOW_LEARNING.md).
+
+## 2026-09-25 — Explicit new-response claims and feedback boundaries (N-046)
+
+Continued the delegated offline queue. v0.2 accepts a new response through exact prose anchors,
+its own hash and explicit reviewer interpretations instead of an allowlist of historical answers.
+Data-only Boolean/quantifier expressions and ordered scans are interpreted with budgets; no
+model code is executed. Guards, unexercised scope, multiple interpretations, unsupported mappings
+and withdrawal remain separate outcomes. Hash/quote consistency does not prove prose fidelity;
+coordinator review is still AI_REVIEW_PENDING, not autonomous or independently validated scoring.
+
+Traced unchanged original software on three development requests (13 pivots) and twelve reserved
+requests (44 pivots, plus empty-context output). Requests do not overlap by canonical JSON, but
+are all same-mother development variants. Two correct/equivalent controls pass; five erroneous
+controls fail the reserved checks. Always-first passes development because those requests all
+choose the first active row, then fails a reserved row-swap request. This documents a real finite
+coverage limitation; it is not a new model error or proof of counterexample-feedback efficacy.
+
+37 new and 12 prior tests pass, including 780 abstract comparator states, feedback-role integrity,
+new-response bindings, ambiguity/guard categories, exact evidence regeneration and proposal slots.
+2364 old files unchanged. Prepared 25 fixed D/S/A/V/AV slots with no run authorization and an
+offline review CLI. The live adapter and isolation preflight remain outstanding; read-only CLI
+inspection reports 0.156.1 instead of historical 0.155.1. No inference or credential access.
+[Report](../pilot/enhancement/state-workflow-v0.2/README.md).
+
+## 2026-09-25 — Recoverable ablations and request-level preflight (N-047)
+
+Implemented the prepared D/S/A/V/AV campaign using the existing transport with scoped additions.
+Durable attempt markers precede dispatch, a lock prevents simultaneous operators, and completed
+transport can be classified after interruption without another call. Unknown interrupted attempts
+stop. Invalid initials retain four skipped dependents; invalid revisions retain independent siblings;
+infrastructure failure stops remaining slots. All five slots per arm stay in the denominator.
+Initial bindings freeze before revisions; revision bindings freeze before final suite evaluation.
+Model usage/latency, development tool time, final tool time and reviewer time remain separate.
+
+26 new tests plus 49 prior tests pass. Fake responses complete all 25 slots; fault injection covers
+interruption, authorization denial, prompt tampering, early evaluation, invalid JSON/schema and
+tool/transport failure. This validates execution logic, not model quality or independent review.
+
+Actual CLI 0.156.1 inspection revealed that bundled Sol metadata forces code-mode/collaboration
+tools despite feature flags. A dummy-auth, network-isolated local HTTP sink captured those tools
+in input.additional_tools (not just top-level tools). Exported bundled Sol metadata and cleared only
+tool_mode, multi_agent_version and apply_patch_tool_type; disabled plan/question tools explicitly.
+Final capture has no tool schemas, still Sol/medium, original public input and restricted wrapper.
+Public catalog is separately read-only mounted; private repo/paper/canary are absent. Five offline
+preflight checks pass. Provider routing/compression differ in capture; no subscription availability
+or service behavior claim. Historical results remain unchanged; no retrospective tool claim made.
+
+2391 prior files unchanged. No real authentication reads, model/QPU calls, installs or paper edits.
+Next: obtain bounded authorization for the frozen 25-call protocol; retain AI_REVIEW_PENDING and
+same-mother scope. [Report and operation handoff](../pilot/enhancement/state-workflow-v0.3/README.md).
+
+## 2026-09-26 — Actual 25-call Sol ablation (N-048 / D-033)
+
+The user replied "继续吧" to the concrete 25-call approval request. Recorded protocol-bound
+authorization and executed the fixed queue. The default CLI had advanced to0.157.0; selected the
+already-installed0.156.1 whose hash matches the approved protocol, without changing frozen code,
+configuration, preflight or user setup. All25 calls produced valid Phase-1 responses with zero
+operator retries, transport errors or tool events. Original responses and failures policy retained.
+
+Initial reviews found one explicit false predicate (replicate2); the remaining four were an
+unspecified oracle, no nomination, broad solver nomination without a plan, and underspecified QUBO.
+Replicate2 V/AV explicitly replaced universal comparisons with first-element initialization and
+strict-greater ordered updates, including NaN. Both pass44 reserved states; S's two interpretations
+and A's retained initial predicate remain contradicted. This is one repair opportunity, not two
+independent samples. No evidence establishes AV superiority over V or general enhancement.
+
+Across fixed five-row arms, unguarded finite passes D/S/A/V/AV are0/0/0/1/1. AV additionally has two
+guarded claims (31 states checked,13 excluded), not full repairs. S and V each introduce one new
+contradicted claim from an unknown initial. A's replicate5 secondary Grover claim remains ambiguous:
+one reading fails3 states and another passes44. The primary QUBO is not checked. Plan coverage rises
+in V, but insufficient-evidence feedback explicitly names pivot selection, creating a static-cue
+confound. Empty/unsupported candidate inventories also limit the analysis mechanism.
+
+All20 revision bindings were frozen after the model queue and before final evaluation, with exact
+quotes, hashes, rationales and AI_REVIEW_PENDING provenance. All25 evaluations replay identically;
+2429 prior files unchanged, including paper. Usage395819 input/53025 output tokens; model time
+1164.678s and recorded reviewer wall605.356s kept separate, with cache/overlap caveats. No new code
+dependencies, QPU execution or manuscript claims. All25 authorized calls are consumed.
+
+Next safe work: offline design for missing formal information, candidate-boundary coverage and
+pivot-cue-only controls. Do not modify this completed protocol or start new calls without a new
+concrete scope. [Results and audit](../pilot/enhancement/state-workflow-v0.3/execution-20260926/REPORT.md).
+
+## N-049 — Offline design for feedback information and checkable claims
+
+Date: 2026-09-26. Continued D-032 delegated local development; no new model authorization.
+Mapped all25 N-048 responses and90 existing exact anchors into six design routes: missing rule5,
+no nomination3, broad region without plan4, unconstructed QUBO3, ambiguous operator2, explicit
+local rule8. These are coordinator-authored design categories, not revised correctness labels.
+Main QUBO and secondary Grover claims stay separate. Clarification text is prepared but not sent.
+
+Source audit confirms the old lexical adapter uses only start_line: replicate1's declared12–16
+range selects a compound statement ending20; replicate4's function-start9 is unsupported;
+replicate3's empty nomination prevents any inventory. A syntax-only public function/body outline
+was generated without executing source or ranking candidates. New routing remains proposed.
+
+Prepared16 exact offline revision prompts over all five retained initial drafts: self-review,
+scope-cue and assessment-summary each5; actual-witness1 on the sole development-counterexample
+opportunity. W differs from same-draft E only in first_counterexample data. Summary-vs-cue is a
+packet comparison, not a pure status-word effect. No clarification or new analysis is mixed in.
+All inputs remain DRAFT/design_not_run, without authorization or an online dispatcher.
+
+Because prior final results informed this design, the44 previously reserved states are now known
+regression data for future work, not new unseen evaluation evidence. Generalization still needs
+separate prospectively fixed cases and review. Next safe action is configuration adaptation and
+offline isolation/recovery preflight; only then request a concrete new16-call budget. No scientific
+labels, frozen artifacts, paper or dependencies changed. [Design](../pilot/enhancement/state-workflow-design-v0.1/README.md).
+
+## N-050 — Sixteen-slot feedback-control runner and offline rehearsal
+
+Date: 2026-09-27. Implemented the next local preparation step under D-032, without new model approval.
+The adapter consumes N-049's exact historical-draft prompts and reuses frozen transport, response
+validation, immutable records and the N-046 claim interpreter. S/C/E have five planned positions each,
+W only one; paired comparisons retain these distinct populations. Old44-state data are explicitly
+known regression data in both outer results and inner evaluation split, with source role retained.
+
+32 new tests and49 relevant semantic/analysis regressions passed. Checks cover fixed inputs, protocol
+and approval receipts, no fake-to-live fallthrough, missing/invalid responses, timeout/tool/transport
+stops, attempts recorded before dispatch, recovery without duplicate calls, concurrent locking,
+post-queue binding and all-bindings-before-evaluation. Retained a complete16-position simulation;
+its cloned historical responses and synthetic cost metadata are testing fixtures, not observations.
+
+Five actual offline checks passed with pinned installed CLI0.156.1. A dummy-auth local rejecting
+HTTP sink in an unshared network namespace captured the exact witness-prompt request: Sol/medium,
+no tools, private workspace/host config inaccessible. The expected local400 makes the CLI return1;
+capture verification itself succeeds. No real credential access or external inference was performed.
+The preflight samples the most informative witness input; all16 payloads are separately checked by
+tests. Account availability and server behavior remain untested. Frozen protocol has88 hashed sources.
+
+Current live queue is await_authorization, zero attempts, no receipt. All2764 prior protected files
+remain unchanged; no installation, QPU, paper edit or historical artifact mutation. Preparation is
+complete; request a new maximum16-call Sol/medium subscription scope before execution, rather than
+repeating offline preparation. [Implementation and evidence](../pilot/enhancement/feedback-control-v0.1/README.md).
+
+## N-051 — Feedback-information control executed; summary and witness tie locally
+
+Date: 2026-09-27. User explicitly approved the prepared16-call scope (D-034), then delegated same-
+direction existing-subscription quota with “限额随便用” (D-035). Executed exactly the frozen16 positions,
+without modifying inputs, conditions, ordering, old artifacts or sampling count. All16 responses valid;
+zero operator retries, transport errors or tools. The later quota delegation did not expand this run.
+
+All new responses were reviewed after the queue and all16 bindings frozen before known regression
+collection. In replicate2, both E assessment-summary and W concrete-witness responses explicitly
+specify first-incumbent, ordered strict-greater updates, passing44 known states. S replaces the initial
+formula with earlier-strict/later-nonstrict comparisons but still fails3; C acknowledges nonfinite risks
+without constructing the selector. No extra W-over-E finite-correctness benefit is observed in this
+single opportunity. E is an information packet, not an isolated error-status word. Results do not
+establish that concrete witnesses are generally useless or unnecessary across tasks.
+
+Replicate1 E gives a finite-valued guard:31 passes,13 exclusions, outside behavior unresolved. Twelve
+of16 responses remain insufficient. Replicate3 S/C/E all introduce pivot candidates without complete
+selectors, so nomination growth is not cue-specific. Replicate4 C wraps entire binary64 solver outputs
+as a formal search domain, while E narrows to a threshold-search sketch; neither is verified local repair.
+Replicate5 retains underspecified QUBO proposals. Some prose confuses finite test count with finite-
+valued states; record for prospective wording correction, never revise the observed prompts/results.
+
+All16 evaluations replay exactly;65 source anchors, chronological gates and2921 protected files
+verified. Input260561/output36815 tokens; model746.119s, coordinator review315.204s wall, evaluator
+0.01137s. Cache and reasoning tokens not double-counted; historical initial cost excluded. Current
+state all_slots_terminal. Paper, dependencies and QPU untouched; no new universal or whole-task claim.
+
+Next: implement the already designed missing-information elicitation interface with equal-call
+self-review, retaining abstention/unknown and alternative families. Offline-check before a new
+protocol; D-035 covers same-scope subscription budget without repeated quota requests. New channels,
+gold/scientific-scope changes and publication still retain their separate boundaries.
+[Results and audit](../pilot/enhancement/feedback-control-v0.1/execution-20260927/REPORT.md).
+
+## N-052 / N-053 — Single generic specification request, paired with self-review
+
+Date: 2026-09-27. Frozen all five original N-048 drafts, two new revisions each; no selection on
+N-051 outcomes. Same new wrapper, only null versus generic specification request differs; odd
+replicates S then F, even F then S. No evaluator verdict, witness, correct operator or new source
+outline. Existing families, null plans and unknowns permitted. D-035 covers the ten-call subscription
+protocol;32 focused tests plus49 regressions and5 offline isolation/wire checks passed before dispatch.
+
+All10 valid, zero retries/tool events/transport errors. Post-queue quote binding preceded known44-state
+collection. F1 explicitly constructs a strict-greater reference traversal and passes44. F2 explicitly
+admits finite values only, passes31 and excludes13; classical fallback is declared, not executed.
+S2's global comparison predicate fails8; S5's secondary no-smaller/tie predicate retains two readings,
+both fail3. Its main QUBO remains unconstructed. Both arms preserve no-plan responses in3/4.
+
+F5 provides an explicit one-hot rank QUBO with coefficient expansion, exact P>0 argument, finite-value
+guard, decoding and certification. This is now specified but outside the frozen checker. Do not score
+its classical verifier as the primary objective or force a Grover family. Both arms still have three
+insufficient statuses; this hides a changing reason, not an overall unknown-rate improvement. Primary
+and supplementary claims remain separate. No gold, main metric, software contract or paper changed.
+
+All10 evaluations replay exactly,3114 old files unchanged. Tokens input162484/output21096;
+model434.623s, call window437.351s. Per-row review intervals overlap because pairs were inspected
+together: sum321.440s, union161.909s, span163.350s. These include tool/coordination delays, not human
+annotation labor. This is a single-mother-case prompt-elicitation diagnostic, not new-test generalization.
+Next safe work: separate quote-bound local verification of F5's QUBO construction, retaining N-053's
+immutable result and its admission/cost limitations. [Report](../pilot/enhancement/claim-elicitation-v0.1/execution-20260927/REPORT.md).
+
+## N-054 — Explicit alternative-family construction receives its own audit
+
+Date:2026-09-27. Manually quote-bound N-053 F5's rank QUBO; no new model call and no revision of
+N-053 outcomes. Exact binary enumeration confirms original/expanded energy equality and unique
+correct one-hot minimizers in31 known finite states plus1704 post-hoc synthetic diagnostics;13 known
+nonfinite states remain excluded.72990 assignment checks for exact rational P=1/10,1,7. Fractional
+P tests the general algebraic positive-penalty statement, not integer-coefficient admission.
+
+18 tests include missing tie/zero penalty/negative penalty/wrong expansion controls. Exact replay
+matches and3285 protected hashes are unchanged. A separate coordinator mathematical argument uses
+the unique zero rank and nonnegative costs to show any exact P>0 suffices. This is not mechanized
+proof, independent human review, backend validation or entire-program equivalence. Quadratic rank
+construction reveals the optimum before quantum execution, so no benefit evidence follows.
+
+Next safe step: implement the already diagnosed neutral analysis-entry distinctions for empty and
+whole-function nominations, preserving original declared regions and not hard-coding a preferred
+pivot site. Offline scope/boundary tests before any new model integration.
+[Audit](../pilot/enhancement/rank-qubo-audit-v0.1/REPORT.md).
+
+## N-055 — Neutral candidate-analysis entry implemented offline
+
+Date:2026-09-27. Versioned source-map-only routing retains declared_region, enclosing analysis_scope
+and optional complete-statement seed separately. Empty nomination returns a source-order public
+catalog, not a negative verdict; whole-function and partial spans receive explicit outlines without
+silently selecting a preferred subregion. Exact unique statements reuse the old lexical inventory.
+Same-line ambiguity, malformed coordinates, unsupported nested/method scopes and unknown paths
+are preserved; source strings never execute and nomination paths never read disk.
+
+31 focused tests and49 regressions pass. Five original-draft packets give region_outline, statement
+inventory, no_nomination, function_outline and statement_inventory respectively. All three source
+files are checked against their numbered public-task text.3298 historical file hashes remain intact;
+zero new model/QPU calls, no quality improvement claim. Next prospective comparison: all five
+initials × S self-review/C catalog/R catalog plus routing, equal new calls, no verification feedback
+or formalization request mixed in. Freeze exact protocol and isolation before D-035 execution.
+[Implementation and audit](../pilot/enhancement/candidate-routing-v0.1/README.md).
+
+## N-056 / N-057 — Directory versus routed-analysis control completed
+
+Date:2026-09-27. All five original N-048 drafts retained; S/C/R each5, common revision wrapper,
+identical C/R catalog, route/inventory information only in R. No specification request or correctness
+feedback.31 entry tests plus32 runner tests plus49 regressions and5 offline preflight checks pass.
+A14-versus15 test assertion typo was fixed before freezing, then all32 runner tests rerun successfully.
+D-035 receipt binds the15-call protocol; all15 responses valid, zero retries/tools/transport errors.
+
+Replicate3's initially empty nomination becomes line13 plus a plan in C/R while S stays empty.
+Replicate4 also localizes in S, so its nomination change is not tool-specific. R1 supplies local
+conditions omitting earlier larger values; both retained readings fail16 known states, including11
+finite states. C2's not-less wording has >= and not-< readings: the former fails3 and the latter
+passes44. R2 reverts to an unspecified selector rather than a verified repair. S2 and S5 fail3 each.
+R5 retains the unconstructed primary QUBO and an explicit finite-guard secondary Grover condition;
+both interpretations pass31/exclude13, but ambiguity and primary/secondary roles remain explicit.
+No unambiguous finite-pass response. Primary-plan status counts S:3 insufficient/2 contradicted;
+C:4 insufficient/1 ambiguous;R:3 insufficient/1 all-contradicted/1 ambiguous.
+
+C4 additionally supplies a flawed classical certificate. A separate post-collection check accepts
+indices0 and1 on known state[2,0,0] where the original selects0. This does not instantiate the
+missing primary search or change its frozen insufficient result. Verification language alone is not
+evidence that the verifier is correct. All transcription remains AI_REVIEW_PENDING.
+
+15 exact replays,3312 prior hashes match; input286333/output36550 tokens, model746.619s, window
+750.988s. Review intervals overlap: sum593.539s, union199.326s, span200.344s, including tool latency.
+No clear extra correctness benefit of routing over catalog is established; one-mother diagnostic,
+not generalization. Safe local queue is complete. D-036 now proposes at most4 new mother-problem
+dossiers without gold/split/model-based selection, or existing independent reference review first.
+Await researcher scope choice; D-035 quota is not the blocker. [Results](../pilot/enhancement/candidate-routing-control-v0.1/execution-20260927/REPORT.md),
+[decision material](NEXT_RESEARCH_SCOPE.md).
+
+## N-058 — New mother-problem candidate dossiers after D-036 A
+
+Date:2026-09-27. Researcher answered “A”, accepting at most four dossiers, without formal
+admission/gold/split or model-based selection. Prepared three: CPython longest matching block,
+python-tsp closed-tour subset DP and NetworkX lazy simple-path enumeration. Three repositories,
+ten commit-pinned original source/document/license files; complete old-ten lineage table and
+pending reference-review checklist. Alternative TSP brute force and difflib callers share selected
+mother computations and were not counted as a fourth independent problem.
+
+Actual local checks:961 full binary-string pairs plus961 bounded matches;779 integer TSP matrices
+under three cache sizes (2337 calls);four nonnegative-integer QUBO instances and1552 assignments;
+64 directed graphs and2880 path-multiset comparisons. Targeted controls expose junk/autojunk/tie,
+missing return edge, zero penalty, sorted/one-witness/deduplicated path outputs; exception and
+state observations remain scoped. These are coordinator-authored checks, not model mistakes.
+
+Unchanged upstream modules used; installed NetworkX source matches pinned bytes. CPython source
+module was run on current3.10.21 rather than reproducing full3.10.14. TSP tag v0.5.0 points to a
+commit whose package metadata says0.4.2 and NumPy^2.0.0; local single-module checks use1.26.4.
+No installation/full-package reproduction claim. Source discrepancies retained, not silently fixed.
+
+3555 prior file hashes match and numerical results replay exactly. Package audit covers54 local
+link occurrences and22 artifact file hashes. Initial audit bootstrap rejected the not-yet-generated
+manifest link; fixed generation-only handling of its two known output paths, then reran audit.
+C01/C02 proposed for DRAFT source/contract review, C03 kept as a boundary candidate; final admission,
+contract profiles, gold/split and independent review all remain pending. Zero new predictive model
+or QPU calls. Public-source contamination unknown; all local probes are development-exposed.
+[Deliverable](../pilot/new_mother_candidates/v0.1/README.md).

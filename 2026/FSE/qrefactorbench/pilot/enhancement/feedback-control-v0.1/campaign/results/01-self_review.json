@@ -1,0 +1,20 @@
+{
+  "slot": "01-self_review",
+  "replicate": 1,
+  "arm": "self_review",
+  "mother_case": "lit-009",
+  "usage": [
+    {
+      "input_tokens": 16489,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2356,
+      "reasoning_output_tokens": 720
+    }
+  ],
+  "model_seconds": 47.418,
+  "task_pass": null,
+  "response_sha256": "fed1b1f2ee29649794b6ee3811c358d8865c6001f60fd3938874f83bf8a7a0b6",
+  "status": "valid_response",
+  "validation_errors": []
+}

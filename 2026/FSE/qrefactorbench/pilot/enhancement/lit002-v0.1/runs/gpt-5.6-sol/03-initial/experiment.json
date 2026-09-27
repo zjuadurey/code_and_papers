@@ -1,0 +1,17 @@
+{
+  "replicate": 3,
+  "arm": "initial",
+  "folder": "runs/gpt-5.6-sol/03-initial",
+  "execution_success": true,
+  "usage": [
+    {
+      "input_tokens": 7837,
+      "cached_input_tokens": 2304,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1279,
+      "reasoning_output_tokens": 888
+    }
+  ],
+  "model_seconds": 53.183,
+  "initial_sha256": null
+}

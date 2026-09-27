@@ -1,0 +1,84 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 13,
+      "end_line": 13
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "deterministic-pivot-index-selection",
+    "migration_family": "unstructured_search",
+    "formulation": "For each elimination column, define a finite search over row indices i in [col,n). Mark exactly the first index whose absolute pivot value is maximal: P(i) holds when no candidate row has a larger abs(rows[k][col]) and no earlier candidate row has an equal value. A Grover-style subroutine could conditionally search for this unique marked index. The surrounding classical loop, exact-zero check, row swap, elimination, back substitution, overflow checks, and reporting remain unchanged.",
+    "input_encoding": "Encode candidate row indices in a register and provide coherent read access to the current binary64 rows and column index. A reversible predicate must compare abs(rows[i][col]) against every eligible row, implement the first-index tie rule, handle the non-power-of-two index range, and uncompute all comparison workspace. The representation and reversible implementation of Python binary64 absolute values and comparisons, including signed zero behavior, remain unresolved.",
+    "quantum_algorithm_family": "Grover-style unique marked-state search",
+    "output_decoding": "Measure a row index, reject out-of-range results, and classically verify that it is the first index attaining the largest absolute pivot value. If verification fails or the quantum procedure does not return a verified index, use the original classical max operation. After verification, preserve the exact-zero singularity check and deterministic row swap.",
+    "assumptions": [
+      "The candidate domain is the finite set of eligible row indices for the current elimination column.",
+      "The evolving augmented rows and current column can be supplied coherently without changing their binary64 values.",
+      "The reversible predicate reproduces Python abs, comparisons, iteration-derived first-index tie breaking, and relevant signed-zero behavior.",
+      "Classical verification and an explicit classical fallback are retained because the software contract does not permit an unreported probabilistic failure.",
+      "No quantum advantage, free data loading, or efficient coherent memory is assumed."
+    ],
+    "risks": [
+      "The unique-mark predicate requires comparisons against all eligible rows, so oracle construction and data-access cost may erase any search benefit.",
+      "Repeated state preparation is required after each elimination column mutates the copied rows.",
+      "A probabilistic search cannot by itself guarantee the deterministic pivot selected by Python max.",
+      "Finite development checks would not prove full-domain equivalence for all validated binary64 inputs or evolving elimination states.",
+      "Incorrect handling of ties, signed zero, index bounds, or reversible floating-point comparisons could change singularity detection and all downstream results.",
+      "The small serial workload and fallback path make practical benefit unlikely."
+    ],
+    "expected_resource_characteristics": {
+      "candidate_count_per_column": "n-col",
+      "search_invocations": "Up to n, one for each elimination column.",
+      "oracle_structure": "A reversible unique-index predicate requiring coherent access to the current pivot column and comparisons with every eligible row.",
+      "unresolved_resources": [
+        "Logical qubits for row data, indices, binary64 comparison workspace, and uncomputation",
+        "Oracle depth and gate counts",
+        "Coherent memory and state-preparation cost",
+        "Repetitions or amplitude-amplification schedule needed for the required failure policy",
+        "Classical verification and fallback frequency"
+      ]
+    },
+    "rationale": "This is only a conditional structural formulation. The row-index domain is finite and a pure unique-mark predicate can be specified, but no reversible oracle, full-domain equivalence proof, resource bound, or deterministic success mechanism is supplied. It therefore does not support deployment."
+  },
+  "rationale": "The focused candidate is kernel.py line 13, where each elimination step selects the largest-absolute-value pivot and resolves ties by the first index. Unlike the complete continuous linear solve, this local operation has a finite candidate domain, range(col,n), and can be expressed structurally as a unique marked-state search. Its dependencies are the current col, n, and the evolving private augmented rows created at line 11; it is activated once per iteration of line 12. The selected index controls the exact-zero exception at lines 14-15 and deterministic swap at line 16, which in turn affect elimination, back substitution, overflow behavior, and every returned solution and residual. Strict validation, caller-data immutability, inspect mode, variable ordering, deltas, residual definitions, and the diagnostic limit comparison must remain intact. Structural eligibility is therefore true only for conditional analysis of pivot-index selection. Practical suitability is false: the oracle must inspect coherently supplied binary64 pivot values and enforce the first-index tie rule, rows change after every elimination step, probabilistic output requires verification and fallback, and no scale, hardware, resource, or advantage evidence is supplied. Benchmark support is false because the HPL attribution describes a classical algorithm while the notice expressly disclaims an HPL port or compliant performance run and supplies no quantum benchmark. The finite development-check observation neither proves full-domain pivot equivalence nor validates the migration plan; excluded states and fallback are unresolved obligations, not verified repairs.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Select, at each elimination column, the first row index attaining the largest absolute pivot value while preserving deterministic binary64 solver behavior.",
+  "assumptions": [
+    "Inputs and outputs remain classical Python binary64 values.",
+    "Only the pivot-index selection is considered for conditional quantumization; elimination and reporting remain classical.",
+    "No relaxation of pivot tie breaking, exact-zero exceptions, ordering, residual definitions, overflow behavior, or interface semantics is permitted.",
+    "No free coherent loading of the evolving augmented matrix is assumed.",
+    "Finite development checks do not establish correctness over the full validated input domain."
+  ],
+  "risks": [
+    "A reversible predicate may require a full scan of the pivot candidates for every tested index.",
+    "Binary64 comparison details, ties, and signed zeros may be encoded incorrectly.",
+    "Quantum sampling may fail to return the contractually required deterministic pivot.",
+    "State preparation and oracle rebuilding after each elimination step may dominate the small classical computation.",
+    "An incorrect pivot changes subsequent arithmetic, exceptions, solution values, deltas, and residual diagnostics.",
+    "Classical verification and fallback preserve a recovery path but do not prove the quantum path correct or useful."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Conditionally applicable to line 13 because the eligible row indices form a finite domain and the deterministic first-maximum rule defines a unique Boolean predicate. Applicability remains contingent on reversible binary64 comparison, coherent access to evolving rows, explicit verification and failure handling, and complete accounting for oracle and loading costs."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "Pivot selection and Gaussian elimination do not expose a binary optimization objective whose approximate minimization preserves the required deterministic pivot, exact-zero exception, and binary64 output semantics. Introducing one-hot variables and penalties would add an unnecessary encoding without an exactness or resource justification."
+    }
+  ]
+}

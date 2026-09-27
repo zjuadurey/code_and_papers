@@ -1,0 +1,20 @@
+{
+  "slot": "02-formalization",
+  "replicate": 2,
+  "arm": "formalization",
+  "mother_case": "lit-009",
+  "usage": [
+    {
+      "input_tokens": 16581,
+      "cached_input_tokens": 2944,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2736,
+      "reasoning_output_tokens": 632
+    }
+  ],
+  "model_seconds": 55.135,
+  "task_pass": null,
+  "response_sha256": "5205d4d68361de406c98b7ea223ffc8133261fc230409f1ff63545fed7c5b9ef",
+  "status": "valid_response",
+  "validation_errors": []
+}

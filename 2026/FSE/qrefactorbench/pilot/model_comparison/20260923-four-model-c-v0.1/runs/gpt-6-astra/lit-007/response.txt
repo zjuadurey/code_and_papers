@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-007",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 12,
+      "end_line": 19
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Find an exact maximum-score binary partition under signed pair preferences, selecting the smallest numeric membership mask among all optimal assignments.",
+  "rationale": "kernel.py:12-19 enumerates every membership mask, constructs its Boolean assignment, evaluates the pure signed objective through kernel.py:8-9, and retains only strict improvements. Ascending enumeration therefore implements exact optimization with smallest-mask tie-breaking. The boundary includes initialization and return because both optimum tracking and deterministic selection must be replaced together. The score helper is an objective dependency, not an independently justified quantum target. Required inputs are size and the complete validated indexed pair list; neither current membership nor names affect optimization. program.py:15-31 must remain classical and preserve validation, duplicate rejection including reversed pairs, complete-pair checks, weight construction, and catalogue-pair sorting. Activation occurs only for mode propose at program.py:34-35, after validation and current reporting. Inspect must not invoke optimization. Preserve program.py:8-11 and 32-39: False/True group order, member order, integer signed scores, violated pairs in sorted catalogue-pair order, gain, and moves in member order. Do not prefer an equally optimal current assignment over the smallest mask. Preserve no mutation, existing exception behavior, and JSON CLI behavior at program.py:42-43. Empty inputs and singletons must produce [] and [false], respectively, when proposing. The objective is explicitly quadratic and unconstrained, establishing structural eligibility independently of the draft menu. Exponential enumeration alone supplies neither practical suitability nor quantum advantage evidence. No workload, hardware results, or comparative benchmarks are supplied; SupermarQ attribution is not benchmark support for this new selection and reporting program. Retain classical execution pending exactness and resource evidence.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_signed_pair_partition_with_minimum_mask",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditional research plan only: let x_i be member i's Boolean group and w_ij be +1 for apart or -1 for together. Maximize S(x)=sum_{i<j} w_ij[2(x_i+x_j-2x_i*x_j)-1]. Equivalently minimize E(x)=-S(x)=sum w_ij[1-2x_i-2x_j+4x_i*x_j]. With x_i=(1-Z_i)/2, the Ising cost is H=sum w_ij Z_i Z_j. All assignments are feasible, so no capacity, balance, or preference-satisfaction penalties are appropriate. Preserve smallest-mask tie-breaking either through certified secondary optimization of M(x)=sum 2^i*x_i at the certified optimal score, or by minimizing 2^n*E(x)+M(x). The latter orders primary energies before masks exactly in integer arithmetic but introduces exponentially large coefficient range; hardware precision feasibility is unresolved.",
+    "input_encoding": "Keep validation and indexing classical. Encode n Boolean decisions in n logical qubits with bit i matching member i; compile all n(n-1)/2 signed pair coefficients from the validated list. Document qubit and measurement endianness, constants, signs, and any tie-breaking fields. No free loading or coherent storage is assumed. Handle n=0 and n=1 classically. Global complement symmetry preserves the primary score but does not by itself resolve all optimum ties.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Decode measured assignments as a length-n Python bool list, recompute score with the unchanged classical helper, and verify the exact global optimum and smallest-mask condition before accepting a replacement result. Feasibility and score recomputation alone do not certify optimality or tie-breaking. Use a sound exact classical certification or fallback path whenever those properties are unproved. Run the unchanged reporting and CLI code on the accepted assignment.",
+    "assumptions": [
+      "Only the validated propose path is eligible for substitution.",
+      "An explicit quadratic Hamiltonian can be constructed, but a compiled backend implementation has not been supplied or verified.",
+      "QAOA sampling is a candidate-generation mechanism, not an exact optimizer.",
+      "The score helper and original enumeration provide a classical comparison oracle on tractable instances; certification for larger instances remains unresolved.",
+      "No Grover predicate oracle is required for this formulation; implementing and validating the cost evolution, mixer, and decoding remains an obligation."
+    ],
+    "risks": [
+      "Finite-depth QAOA and finite sampling do not guarantee the exact optimum or required deterministic tie result.",
+      "A best observed sample or an assignment with a verified score cannot replace an exact optimum certificate.",
+      "Exact fallback may retain exponential cost and eliminate any prospective speedup.",
+      "Encoding ties in one Hamiltonian introduces large coefficient ratios; normalization does not remove precision obligations.",
+      "Dense couplings, device routing, noise, and classical parameter optimization may dominate runtime."
+    ],
+    "expected_resource_characteristics": {
+      "logical_decision_qubits": "n before any optional workspace; zero and singleton cases remain classical",
+      "pair_cost_terms": "n(n-1)/2",
+      "logical_pair_operations": "O(p*n^2) cost interactions for p QAOA layers before routing or synthesis overhead",
+      "unresolved": [
+        "Backend connectivity, physical qubits, compiled depth, gate accuracy, and coefficient precision",
+        "QAOA layer count, parameter-search evaluations, shots, and repeated-run requirements",
+        "Input compilation, state preparation, measurement, decoding, and exact certification costs",
+        "End-to-end comparison against exact classical solvers under identical score and tie semantics"
+      ]
+    },
+    "rationale": "The explicit signed quadratic objective supports conditional QUBO/Ising investigation. This plan neither certifies semantic equivalence nor recommends deployment; exact output preservation and practical resource feasibility remain mandatory."
+  },
+  "assumptions": [
+    "Only the supplied source and contract are evidence.",
+    "Inputs and outputs remain classical.",
+    "No approximation, probabilistic error allowance, workload distribution, or quantum resource budget is authorized."
+  ],
+  "risks": [
+    "Optimizing unsigned cut size would discard together preferences and change the task.",
+    "Adding group-size constraints or preserving an equally good current partition would change valid outputs.",
+    "Quantum provenance of an adapted score formula does not establish suitability or advantage for the surrounding application."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The signed objective has an explicit unconstrained binary quadratic representation with a checked Ising sign mapping. Applicability is structural and conditional; exact optimization, tie-breaking, precision, and execution costs remain unverified."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": null,
+      "rationale": "A finite threshold predicate S(x)>t can be defined over membership masks, so an alternative search-based investigation is conceivable. A single marked-state search does not implement exact maximization with minimum-mask ties. Reversible signed-score accumulation, comparison and uncomputation, repeated threshold search, justified no-solution handling, and exact tie certification are not supplied; full contract applicability is therefore unresolved."
+    }
+  ]
+}

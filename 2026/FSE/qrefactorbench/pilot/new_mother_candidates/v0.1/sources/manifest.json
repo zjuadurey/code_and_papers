@@ -1,0 +1,112 @@
+[
+  {
+    "project": "cpython",
+    "repository": "python/cpython",
+    "tag": "v3.10.14",
+    "revision": "976ea78599d71f22e9c0fefc2dc37c1d9fc835a4",
+    "upstream_path": "Lib/difflib.py",
+    "url": "https://raw.githubusercontent.com/python/cpython/976ea78599d71f22e9c0fefc2dc37c1d9fc835a4/Lib/difflib.py",
+    "file": "sources/cpython/Lib/difflib.py",
+    "bytes": 83308,
+    "sha256": "0c6afc23568d55b3e9ac914f9c5361e3033e778aa5b58d3cc82835fc5c638679"
+  },
+  {
+    "project": "cpython",
+    "repository": "python/cpython",
+    "tag": "v3.10.14",
+    "revision": "976ea78599d71f22e9c0fefc2dc37c1d9fc835a4",
+    "upstream_path": "Doc/library/difflib.rst",
+    "url": "https://raw.githubusercontent.com/python/cpython/976ea78599d71f22e9c0fefc2dc37c1d9fc835a4/Doc/library/difflib.rst",
+    "file": "sources/cpython/Doc/library/difflib.rst",
+    "bytes": 30474,
+    "sha256": "b34899f210d7e90a61b52a6a03d15a8452a3c1d6d4f68d70b2d6adf41f63b56f"
+  },
+  {
+    "project": "cpython",
+    "repository": "python/cpython",
+    "tag": "v3.10.14",
+    "revision": "976ea78599d71f22e9c0fefc2dc37c1d9fc835a4",
+    "upstream_path": "LICENSE",
+    "url": "https://raw.githubusercontent.com/python/cpython/976ea78599d71f22e9c0fefc2dc37c1d9fc835a4/LICENSE",
+    "file": "sources/cpython/LICENSE",
+    "bytes": 13936,
+    "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf"
+  },
+  {
+    "project": "python-tsp",
+    "repository": "fillipe-gsm/python-tsp",
+    "tag": "v0.5.0",
+    "revision": "b38179d06861e48a46c20c90a3d8162eb739795e",
+    "upstream_path": "python_tsp/exact/dynamic_programming.py",
+    "url": "https://raw.githubusercontent.com/fillipe-gsm/python-tsp/b38179d06861e48a46c20c90a3d8162eb739795e/python_tsp/exact/dynamic_programming.py",
+    "file": "sources/python-tsp/python_tsp/exact/dynamic_programming.py",
+    "bytes": 3640,
+    "sha256": "3a4183fc881a1281fae88ca26f572675add657d92e691c6e8232fdf7674dd29d"
+  },
+  {
+    "project": "python-tsp",
+    "repository": "fillipe-gsm/python-tsp",
+    "tag": "v0.5.0",
+    "revision": "b38179d06861e48a46c20c90a3d8162eb739795e",
+    "upstream_path": "python_tsp/exact/brute_force.py",
+    "url": "https://raw.githubusercontent.com/fillipe-gsm/python-tsp/b38179d06861e48a46c20c90a3d8162eb739795e/python_tsp/exact/brute_force.py",
+    "file": "sources/python-tsp/python_tsp/exact/brute_force.py",
+    "bytes": 1603,
+    "sha256": "19056fd4e1c87902779d1c306e12a82a81c0959b7b01322420436c52fc4c86b6"
+  },
+  {
+    "project": "python-tsp",
+    "repository": "fillipe-gsm/python-tsp",
+    "tag": "v0.5.0",
+    "revision": "b38179d06861e48a46c20c90a3d8162eb739795e",
+    "upstream_path": "LICENSE",
+    "url": "https://raw.githubusercontent.com/fillipe-gsm/python-tsp/b38179d06861e48a46c20c90a3d8162eb739795e/LICENSE",
+    "file": "sources/python-tsp/LICENSE",
+    "bytes": 1072,
+    "sha256": "87c2c90513535b1885e4b2c46af4ef45846bf3847863156a54ba43d95d8096e4"
+  },
+  {
+    "project": "python-tsp",
+    "repository": "fillipe-gsm/python-tsp",
+    "tag": "v0.5.0",
+    "revision": "b38179d06861e48a46c20c90a3d8162eb739795e",
+    "upstream_path": "pyproject.toml",
+    "url": "https://raw.githubusercontent.com/fillipe-gsm/python-tsp/b38179d06861e48a46c20c90a3d8162eb739795e/pyproject.toml",
+    "file": "sources/python-tsp/pyproject.toml",
+    "bytes": 961,
+    "sha256": "30bed97e79fc2bf02358f606f4276b6b5f8bcaaec8983f2085cb4e0e5524ce2d"
+  },
+  {
+    "project": "networkx",
+    "repository": "networkx/networkx",
+    "tag": "networkx-3.4.2",
+    "revision": "2acf1590f82757c01a57b81b8c5dfb79e60aa416",
+    "upstream_path": "networkx/algorithms/simple_paths.py",
+    "url": "https://raw.githubusercontent.com/networkx/networkx/2acf1590f82757c01a57b81b8c5dfb79e60aa416/networkx/algorithms/simple_paths.py",
+    "file": "sources/networkx/networkx/algorithms/simple_paths.py",
+    "bytes": 30320,
+    "sha256": "2c5745365b69b7ead123de31ec7543428a0d6e09bebab9331900b15477c84794"
+  },
+  {
+    "project": "networkx",
+    "repository": "networkx/networkx",
+    "tag": "networkx-3.4.2",
+    "revision": "2acf1590f82757c01a57b81b8c5dfb79e60aa416",
+    "upstream_path": "networkx/algorithms/tests/test_simple_paths.py",
+    "url": "https://raw.githubusercontent.com/networkx/networkx/2acf1590f82757c01a57b81b8c5dfb79e60aa416/networkx/algorithms/tests/test_simple_paths.py",
+    "file": "sources/networkx/networkx/algorithms/tests/test_simple_paths.py",
+    "bytes": 25181,
+    "sha256": "ed4f70097cf84872b45de62bb359362a3620ad85500e7b6cda08102f3535f29d"
+  },
+  {
+    "project": "networkx",
+    "repository": "networkx/networkx",
+    "tag": "networkx-3.4.2",
+    "revision": "2acf1590f82757c01a57b81b8c5dfb79e60aa416",
+    "upstream_path": "LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/networkx/networkx/2acf1590f82757c01a57b81b8c5dfb79e60aa416/LICENSE.txt",
+    "file": "sources/networkx/LICENSE.txt",
+    "bytes": 1763,
+    "sha256": "5b433b90f755eb9bbd06feff1d1a4f5f232c5208a185694199e45fa95d762792"
+  }
+]

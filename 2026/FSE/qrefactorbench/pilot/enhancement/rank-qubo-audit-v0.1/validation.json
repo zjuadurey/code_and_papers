@@ -1,0 +1,25 @@
+{
+  "protected_files_unchanged": 3285,
+  "quote_anchors": 3,
+  "focused_tests_passed": 18,
+  "source_hashes_valid": true,
+  "new_model_calls": 0,
+  "qpu_calls": 0,
+  "summary": {
+    "known_regression": {
+      "states": 44,
+      "passed": 31,
+      "excluded": 13,
+      "failed": 0,
+      "energy_assignments_checked": 1830
+    },
+    "posthoc_synthetic": {
+      "states": 1704,
+      "passed": 1704,
+      "excluded": 0,
+      "failed": 0,
+      "energy_assignments_checked": 71160
+    }
+  },
+  "elapsed_seconds": 2.842040839008405
+}

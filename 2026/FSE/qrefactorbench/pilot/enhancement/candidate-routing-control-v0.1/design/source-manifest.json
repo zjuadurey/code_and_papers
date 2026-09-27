@@ -1,0 +1,22 @@
+{
+  "pilot/reference_completion/v0.1.1/review_inputs/lit-009-C.txt": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+  "pilot/enhancement/state-workflow-v0.1/workflow.py": "71e29d349676e0f19b2330fc8f4e085f4db221a43de3b94a004904581c8a0834",
+  "pilot/enhancement/candidate-routing-v0.1/routing.py": "a0ad91e0a274b1130d385c4c72b758252794d3fe0d37f59a696369bf47e0edc6",
+  "pilot/enhancement/candidate-routing-v0.1/build.py": "c9d9bc6a9d59bc32784957731f8c40d80bd61344486ecb010a647e2fd28d5a41",
+  "pilot/enhancement/candidate-routing-v0.1/test_routing.py": "d1279fb9213513c10949272894eb34491bb7da3fdc493e251d8c168de571c39e",
+  "pilot/reference_completion/v0.1.1/cases/lit-009/program.py": "40b399f11a314c9f7eff3f3dd9a799defc8b4d63919fabb7bbb31c245281e46f",
+  "pilot/reference_completion/v0.1.1/cases/lit-009/kernel.py": "7bd7ab7a59d78bf064f14a3e97f60f80d91b9e6d42977952c1e5c21d795dd18f",
+  "pilot/reference_completion/v0.1.1/cases/lit-009/common.py": "d45402e6db3166b6f35c1a654c2470e1e9cef82e67bcefdd43275f49cd397966",
+  "pilot/enhancement/state-workflow-v0.3/campaign/runs/gpt-5.6-sol/01-initial/response.txt": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+  "pilot/enhancement/state-workflow-v0.3/campaign/runs/gpt-5.6-sol/02-initial/response.txt": "f9578a04847909601a2a2f236fce1aa9ee72a615cadc7dfc1c8363bc08a27f31",
+  "pilot/enhancement/state-workflow-v0.3/campaign/runs/gpt-5.6-sol/03-initial/response.txt": "4c65827a0d7e8204ea7fe0b42171537993f5950cf7109b92ce80db500083e9e8",
+  "pilot/enhancement/state-workflow-v0.3/campaign/runs/gpt-5.6-sol/04-initial/response.txt": "b3363176a048b12e56e39c7b9ee772e24b9b50698a884260d1a2e618f9861a87",
+  "pilot/enhancement/state-workflow-v0.3/campaign/runs/gpt-5.6-sol/05-initial/response.txt": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+  "pilot/enhancement/candidate-routing-v0.1/audit/01-initial.json": "14106124fb1aa5770d4496f5a644ac8929a4979542a629177641c2261e1cad08",
+  "pilot/enhancement/candidate-routing-v0.1/audit/02-initial.json": "7228c555083016eeb224f811d37419a10c5e1d705e2bf26c1389b0f8619d8638",
+  "pilot/enhancement/candidate-routing-v0.1/audit/03-initial.json": "da956996c3c8a388f39991f74c3c5f170f4e384c099ef6508ceb22d6d3972144",
+  "pilot/enhancement/candidate-routing-v0.1/audit/04-initial.json": "7e1df833d7cff18062c8448b7cf244fbed1e7e343bff4f5a61140571070c6a44",
+  "pilot/enhancement/candidate-routing-v0.1/audit/05-initial.json": "7228c555083016eeb224f811d37419a10c5e1d705e2bf26c1389b0f8619d8638",
+  "pilot/enhancement/candidate-routing-control-v0.1/design_inputs.py": "ed1732902752fa04e0fa6be16561f9454937b62540d756d540e96c5268b418eb",
+  "pilot/enhancement/candidate-routing-v0.1/audit/source-manifest.json": "47298ab8e33bb49cb77438205e8253e9e2bf7b705fd48d45ea4de99b75be4aef"
+}

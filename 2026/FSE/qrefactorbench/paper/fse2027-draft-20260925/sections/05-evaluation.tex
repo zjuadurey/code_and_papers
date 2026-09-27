@@ -1,0 +1,275 @@
+\section{Evaluation Design}
+\label{sec:evaluation}
+This section specifies a proposed confirmatory study and distinguishes it from
+available exploratory artifacts. The final sample size, model snapshots, budgets,
+reference policy, and split have not been approved or frozen. Writing the protocol
+does not mean these experiments have been run. The design emphasizes interpretable
+contrasts rather than a single overall leaderboard.
+
+\subsection{Research questions}
+\begin{description}
+\item[RQ1: Baseline limitations.] Which obligations do direct LLM predictions
+recognize, supply, and satisfy, and which failures are hidden by coarse labels?
+\item[RQ2: Context and localization.] How do location cues and surrounding
+behavior affect candidate identification and mapping quality?
+\item[RQ3: Same-model improvement.] Does source analysis plus semantic feedback
+improve checked claim correctness and obligation completion over direct prediction
+and self-review using the same model?
+\item[RQ4: Mechanism.] Which benefits depend on source facts, explicit obligation
+tracking, counterexample content, or simply additional inference budget?
+\item[RQ5: Trust and transfer.] Are the evaluators discriminating and
+tolerant of equivalent representations, and do any gains transfer to unseen source lineages and
+behavior-preserving variants?
+\item[RQ6: Cost and practical limits.] What model, analysis, checking, review,
+and fallback costs accompany any gain, and when should the method abstain?
+\end{description}
+
+\subsection{Population, grouping, and leakage control}
+The current corpus has already informed prompts, checks, and failure analysis.
+It is therefore development-exposed. Its unrun input views are not an independent
+holdout because they share a mother case with observed responses. The proposed
+confirmatory population comprises newly reviewed source lineages, selected for
+scope and contract coverage before inspecting the evaluated models' answers.
+Corpus sizes and group counts remain blank in Table~\ref{tab:population}.
+
+All views, renamings, parameter changes, and contract variants of one mother case
+stay in the same partition. Shared upstream tasks and substantially shared kernels
+form larger lineage groups. The split uses the larger dependency group where
+appropriate. Selection and exclusions are recorded with reasons; instances are
+not retained because they happen to separate models. Test generation and checker
+changes after seeing responses are explicitly post-hoc diagnostics, never
+retroactively part of the confirmatory score.
+
+\begin{table}[tb]
+\caption{Corpus and review report to complete after the population is fixed.
+Blank cells mean unfilled, not zero or an observed unknown.}
+\label{tab:population}
+\begin{tabularx}{\linewidth}{Yrrrr}
+\toprule
+Partition & Mothers & Lineages & Views & Reviewed \\
+\midrule
+Development-exposed & \blank & \blank & \blank & \blank \\
+Method validation & \blank & \blank & \blank & \blank \\
+Confirmatory holdout & \blank & \blank & \blank & \blank \\
+Search stratum & \blank & \blank & \blank & \blank \\
+Optimization stratum & \blank & \blank & \blank & \blank \\
+Scope / uncertain controls & \blank & \blank & \blank & \blank \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The model runtime receives a frozen input allowlist and no private references,
+prior responses, or final tests. For a tool-assisted run, accessible tool outputs
+are separately specified, and arbitrary repository access is prohibited. A
+fresh output directory, immutable raw responses, hashes, and event logs support
+replay. Hashes establish artifact identity rather than truth or evaluator security.
+Public pretraining contamination cannot be ruled out by local access restrictions;
+source exposure and robustness analyses address it only partially.
+
+\subsection{Experimental conditions and budget controls}
+The principal unit of comparison is a fixed model configuration on the same
+mother case. Direct prediction is compared with self-review, analysis-assisted
+revision, semantic-feedback revision, and their combination
+(Table~\ref{tab:arms}). The self-review baseline is motivated by work on iterative
+self-feedback~\cite{selfrefine}, but its exact prompt and budget are frozen for
+this task rather than assumed to reproduce a published implementation.
+
+For the main revision experiment, independent initial drafts are saved and cloned
+into the revision arms. Each branch receives the same initial answer, cannot see
+other branches, and is allowed the same number of revision calls. Arm order is
+balanced within each model and time block. A separate pre-generation analysis
+contrast measures whether facts help the \emph{initial} proposal; it is not mixed
+with the shared-initial-draft repair comparison.
+
+\begin{table}[tb]
+\caption{Proposed within-model conditions. All revision arms share the initial
+draft in the paired study. A common contract-oriented prompt is used throughout.}
+\label{tab:arms}
+\begin{tabularx}{\linewidth}{lYYY}
+\toprule
+Arm & Source analysis & External semantic evidence & Purpose \\
+\midrule
+D: Direct & None & None & One-shot reference \\
+S: Self-review & None & None & Extra-call control \\
+A: Analysis & Source facts & None & Fact contribution \\
+V: Verification & None & Development witness or finite-pass scope & Feedback contribution \\
+AV: Combined & Source facts & Development witness or finite-pass scope & Proposed integration \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Equal calls are not equal computation. We record prompt and completion tokens,
+reasoning tokens when available, cache use, wall time, tool time, and monetary cost
+when meaningful. The primary configuration uses matched call caps and declared
+output limits. Sensitivity analyses use a predeclared total token cap and a wall-time
+cap; realized usage remains visible. Padding prompts with irrelevant text would
+not establish equivalent useful computation. Different providers' effort labels
+are not treated as equivalent budgets.
+
+Models are chosen to assess whether the mechanism generalizes beyond one model,
+with exact identifiers, access path, date, revision when exposed, and configuration
+recorded. Unknown temperature, seed, or server snapshot stays unknown. Existing
+multi-provider pilot runs have different scaffolding and budgets and are reported
+as exploratory material, not a matched capability ranking. The new model count,
+replication count, timeout, and total call budget are deliberately unfilled:
+models \field; replicates per mother \field; timeout \field; total calls \field.
+
+\subsection{Outcome definitions}
+We report a vector of outcomes rather than a weighted aggregate. Delivery status
+distinguishes a valid final answer, schema failure, output-budget truncation,
+infrastructure failure, and not-run slot. All planned slots remain in the
+denominator inventory. A truncated answer supplies no successful plan, but is not
+invented evidence of a false mathematical claim.
+
+\paragraph{Localization and recognition.}
+Exact source-region agreement and merged-line intersection over union are
+descriptive localization diagnostics. The final scientific interpretation of
+alternative boundaries uses the frozen reference policy. Structural eligibility,
+intent, family, support, practical suitability, and adoption are recorded
+separately. For unresolved reference labels, report coverage and abstention
+without treating uncertainty as a negative class. If a stratum has no reviewed
+negative references, do not report negative-class accuracy for it.
+
+\paragraph{Claim correctness and obligation completion.}
+For an applicable obligation $o$ in case $i$, let $p_{io}$ indicate supplied
+content and let $v_{io}$ take supported, refuted, or unresolved values. With the
+reference obligation set $O_i$ fixed independently of the answer, report
+\begin{equation}
+ C_i=\frac{\sum_{o\in O_i}p_{io}}{|O_i|},\qquad
+ S_i=\frac{\sum_{o\in O_i}\mathbf{1}[v_{io}=\text{supported}]}{|O_i|},\qquad
+ F_i=\frac{\sum_{o\in O_i}\mathbf{1}[v_{io}=\text{refuted}]}{|O_i|}.
+ \label{eq:metrics}
+\end{equation}
+Also report the unresolved share and the evidence scope for each obligation.
+These are proposed descriptive coverage measures, not a replacement for the
+existing evaluator or a whole-plan correctness score. Multiple assertions within
+one obligation retain separate evidence records; one supported assertion cannot
+erase a contradiction or discharge unrelated requirements. The obligation-level
+aggregation rule must be frozen before use. A conditional accuracy among checked
+claims is accompanied by its checking coverage to prevent selective verification
+from appearing comprehensive.
+
+\paragraph{Revision transitions.}
+On each applicable checked claim or explicitly scoped local task, retain the
+before/after transition: refuted to supported, supported to refuted, unresolved
+to supported, unresolved to refuted, or unchanged. A claim removed from the answer
+may reduce false assertions while decreasing completion; it is not automatically
+a successful repair. Repair yield is reported on genuinely refuted initial drafts
+and alongside the full-population change. If no initial error occurs, conditional
+repair capability is unmeasured rather than perfect.
+
+\paragraph{Context obligations and fallback.}
+Report validation order, exact witness or optimum selection, no-solution handling,
+decoding, side effects, and caller-visible trajectories separately. A statement
+that a classical fallback exists is not an executed integration test. Where a
+reviewed implementation is available, report guard coverage, fallback frequency,
+and cost. Otherwise these remain plan obligations. Whole-program contract
+preservation and quantum resource feasibility are never imputed from local checks.
+
+\subsection{Experiments and ablations}
+\label{sec:experiments}
+\paragraph{E1: Direct prediction and failure characterization (RQ1).}
+Run the unhinted-context condition with first attempts preserved. Characterize
+delivery, region nomination, structural judgments, planning coverage, semantic
+refutations, and incomplete obligations. Compare coarse label agreement with
+content-level evidence on the same responses. Code failures by mechanism and
+report uncertainty rather than forcing all cases into a single error class.
+
+\paragraph{E2: Context and location cues (RQ2).}
+Run paired A/B/C views with new sessions and a balanced order. Compare B/C for
+location assistance, and compare shared core obligations across A/B. Report any
+change in candidate over-nomination on scope controls. Stratify descriptively by
+dependency distance, branch structure, and ordering obligations. The data may
+show no additional difficulty; that is a valid result.
+
+\paragraph{E3: Paired revision (RQ3).}
+Compare D, S, A, V, and AV using shared drafts for the revision arms. Measure
+supported obligations, refuted claims, unresolved obligations, regression, and
+completion under reserved checks. The main planned contrasts are AV versus S
+and V versus S, with A versus S and AV versus V isolating the added analysis.
+Select the confirmatory contrast before running the study; report all remaining
+contrasts as secondary. Include correct initial drafts so that regressions and
+ceiling effects remain visible.
+
+\paragraph{E4: Component and information ablations (RQ4).}
+Remove source facts, remove the obligation ledger while retaining task content,
+replace a witness with a verdict-only message, and omit the violated-obligation
+explanation. Each comparison changes one factor within its parent condition.
+Add the separate pre-generation fact condition and budget-matched self-review.
+No arm receives final-test answers. Assess whether richer feedback helps repair,
+merely elicits longer plans, or causes unjustified confidence. All ablations are
+proposals pending implementation and authorization.
+
+\paragraph{E5: Evaluator validity and transcription (RQ5).}
+Test independent task definitions against known-correct, equivalent, and faulty
+constructions. Cover variable permutation, bit complement, constant energy shifts,
+optimization-preserving scaling, and invalid-state extrema. Audit model-passage
+to claim transcription independently, including ambiguous formulas. Measure
+unsupported representations, disagreement, transcription time, and false acceptance
+or rejection on controls whose expected behavior is independently established.
+Never report a control mutation kill rate as model improvement.
+
+\paragraph{E6: Reachability and behavioral robustness (RQ5).}
+Vary input order, tied optima, empty/no-solution cases, invalid inputs, numerical
+boundaries, and caller budgets where the public contract allows them. Distinguish
+behavior-preserving transformations from contract-changing variants. For numerical
+counterexamples, provide a path from valid inputs to the tested intermediate
+state. Compare checking a local expression alone with checking it under the
+source-state conditions. These tests do not add unsupported quantum families.
+
+\paragraph{E7: Transfer and model sensitivity (RQ5).}
+Freeze the method on development lineages and evaluate unseen lineages without
+updating prompts, facts, or checkers from their responses. Report within-model
+gains separately for search, optimization, and unresolved controls. Repeat the
+same assistance contrasts across models, preserving provider-specific settings.
+Leave-one-lineage-out development analysis can guide uncertainty estimates, but
+it is not relabeled as an untouched final holdout.
+
+\paragraph{E8: Efficiency and adoption limits (RQ6).}
+Report model calls, tokens, wall time, analysis time, exact-checking time, peak
+memory when measured, human review effort, and fallback cost. Plot quality against
+the recorded call/token/time budgets only after results exist. Vary bounded
+enumeration size to expose checker scaling. Preserve timeout and unsupported
+outcomes. If circuit resource data are collected, report them separately with
+representation and backend assumptions; no hardware advantage is inferred.
+
+\subsection{Statistical analysis and stopping rules}
+The independent sampling unit is the mother problem or, when shared provenance
+requires it, the larger lineage group. Repeated drafts, context views, obligations,
+and individual checker instances are nested observations. For a per-mother metric
+$y$ and paired arms $a,b$, first average within the fixed replicate set to obtain
+$d_i=\overline{y}_{i,a}-\overline{y}_{i,b}$. Report the distribution of $d_i$ and
+the lineage-weighted contrast, giving each independent lineage equal weight.
+Do not multiply a formula's test instances by response count to enlarge sample size.
+
+The proposed interval procedure resamples whole independent lineage groups while
+retaining all paired arms and nested observations. The confidence level, bootstrap
+replications, minimum useful effect, and required interval precision are fixed
+before execution. If groups are too few for reliable interval inference, report
+the paired observations descriptively and state that limitation. A power or
+precision analysis may use development variability, but must not promise that a
+convenient case count is sufficient. Confirmatory multiplicity correction applies
+to the predeclared family of contrasts; exploratory strata remain labeled as such.
+
+Missing delivery contributes to the fixed-slot outcome inventory and cannot be
+removed to improve reported success. Analyses restricted to checkable responses
+state their reduced coverage. No mathematical correctness label is imputed for
+missing output. Collection stops at the fixed budget or a documented infrastructure
+stop rule. There are no selective retries, extra repetitions after disappointing
+results, or model substitutions within the registered experiment.
+
+\subsection{Reproducibility and research use of AI}
+The replication record should include protocol and source hashes, raw provider
+responses, timing and usage, tool events, parsing decisions, claim transcriptions,
+review provenance, environment locks, and derived-table scripts. Development
+feedback and reserved evaluation inputs are stored separately. Anonymous reviewer
+access must be tested before submission; this draft does not claim a deposited
+artifact.
+
+AI tools have assisted development of case proposals, code, checking infrastructure,
+review drafts, and this methodological draft. Models are also the experimental
+subjects. These roles are distinct: an AI-proposed reference is not an independent
+human annotation, and a generated checker is not trusted solely because it runs.
+The final methods record must identify the tools, versions where available,
+artifacts affected, human oversight, and validation for each research role. No
+independent expert agreement is inferred from an unattributed review response.

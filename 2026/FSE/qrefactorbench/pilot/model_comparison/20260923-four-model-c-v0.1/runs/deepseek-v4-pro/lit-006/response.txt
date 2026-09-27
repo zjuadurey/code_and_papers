@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-006",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 4,
+      "end_line": 15
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact-01-knapsack-select-per-window",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "For each select window, let n be the number of eligible items in catalogue order and x_i in {0,1} indicate selection for i=0..n-1. Let C be the capacity. Minimize H(x,s) = -sum_i value_i * x_i + lambda_c * (sum_i weight_i * x_i + S - C)^2 + optional tie-break term T(x), where S is encoded by auxiliary slack variables. The first term encodes the value objective, the second penalizes infeasible assignments, and T(x) must preserve the exact smallest numeric mask tie rule. Ising mapping is x_i = (1 - Z_i)/2. Choosing lambda_c and any tie-break coefficients sufficiently large without numerical corruption is unresolved.",
+    "input_encoding": "Each eligible catalogue position i becomes one binary variable/qubit. Capacity slack is encoded with binary expansion or one-hot auxiliary qubits; exact encoding is unresolved. Item weights, values, the window capacity, and any tie-break coefficients are loaded into QUBO/Ising coefficients.",
+    "quantum_algorithm_family": "QAOA",
+    "output_decoding": "Measure candidate bitstrings, decode to x_i, verify sum_i weight_i * x_i <= capacity, reconstruct the eligible-order mask, and recompute value. The original contract requires the exact maximum-value feasible mask and, on ties, the smallest numeric mask in eligible order. A QAOA sample is not an exactness certificate; exact deployment would require exact optimization or a classical fallback/verification and deterministic tie-break.",
+    "assumptions": [
+      "All weights and values fit reliably in QUBO/Ising coefficient representation.",
+      "Penalty lambda_c and any tie-break term can be made dominant without numerical issues.",
+      "Eligible item count and capacity are small enough for available qubits and connectivity.",
+      "The existing deterministic DP remains available as a verification/fallback."
+    ],
+    "risks": [
+      "QAOA is approximate and may miss the optimal assignment or return infeasible assignments.",
+      "The smallest numeric mask tie rule is not directly guaranteed by the natural QUBO objective.",
+      "Slack encoding and penalty tuning add qubits and connectivity overhead.",
+      "No quantum advantage evidence is supplied; classical DP is already exact and deterministic."
+    ],
+    "expected_resource_characteristics": {
+      "num_qubits": "O(n + log C) with binary slack, or O(n + C) with one-hot slack",
+      "depth": "QAOA depth depends on p and is not certified for exactness",
+      "measurement_count": "multiple shots required",
+      "exactness": "not guaranteed by QAOA alone"
+    },
+    "rationale": "Conditional migration plan only; it does not recommend adoption or certify correctness."
+  },
+  "rationale": "The optimality hotspot is kernel.choose at kernel.py:4-15. It implements exact 0/1 knapsack dynamic programming over the already filtered eligible active items. It is invoked only when a window has mode 'select' at program.py:37. Its required dependencies are: eligible items in request/catalogue order; each item's positive integer weight and nonnegative integer value; and the window capacity. It must return a bit mask whose value is maximized under capacity and whose numeric value is smallest among equal-value masks in eligible order. The surrounding program decodes that mask at program.py:38-44 into chosen IDs, a proposal, and transfers with selected catalogue order and contiguous offsets. Any replacement must preserve whole-batch validation first, inspect-mode behavior, current-report behavior for inactive or overweight current items, independent per-window selection with no shared stock, exceptions from common.py, and the exact tie semantics. QUBO/Ising formulation is structurally possible, so structural_eligibility is true, but practical_suitability is false because QAOA does not guarantee exact optima or the tie rule, penalty/slack encoding is unresolved, and there is no supplied quantum advantage or resource evidence. benchmark_supported is null because the notice only attributes a QuanBench source task and supplies DRAFT contracts; it does not establish executable benchmark support for this program.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Exact 0/1 knapsack selection over active eligible items for each independent select window, maximizing total value under capacity and returning the smallest numeric eligible-order mask on ties.",
+  "assumptions": [
+    "Analysis is conditional; no quantum hardware, workload, encoding-cost, or advantage evidence is supplied.",
+    "Any replacement of kernel.choose must preserve deterministic exact maximum-value selection and the smallest numeric mask tie rule.",
+    "Input validation, inspect mode, current reporting, proposal description, and transfers generation remain classical or must be explicitly preserved."
+  ],
+  "risks": [
+    "QAOA/QUBO approximations can violate the existing exact optimum and deterministic tie/order contract.",
+    "Capacity penalty coefficients and tie-break coefficients are unresolved and may be numerically problematic.",
+    "Classical O(n*capacity) DP is already exact and may be more practical at likely small scales.",
+    "No quantum advantage is demonstrated by the supplied material."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "kernel.choose is a constrained optimization returning a maximum-value subset with a deterministic tie rule, not a pure Boolean predicate search. Grover-style search would require an externally supplied target value or a max-finding wrapper not present in the code, and would complicate the exact tie/order semantics."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The binary selection variables, linear value objective, and capacity constraint can be represented as a QUBO/Ising instance with a penalty term. This is the natural supported family for the 0/1 knapsack selection performed by choose."
+    }
+  ]
+}

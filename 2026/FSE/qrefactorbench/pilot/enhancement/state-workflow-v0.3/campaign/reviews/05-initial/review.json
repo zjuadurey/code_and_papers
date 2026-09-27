@@ -1,0 +1,43 @@
+{
+  "response_sha256": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 22.642,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:35:59.664464+00:00",
+  "review_submitted_utc": "2026-09-26T12:36:22.306945+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate each activated pivot selection as a one-hot QUBO over rows col through n-1. The objective must select the greatest absolute pivot value and, among exactly equal values, the lowest row index. A one-hot penalty must be proven sufficient relative to the full objective range. This formulation covers only kernel.py line 13; singularity checking, row swapping, elimination, back substitution, diagnostics, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the current, dynamically modified values rows[i][col], not merely the original matrix. One binary variable represents selection of each eligible row. An exact order-preserving encoding of nonnegative Python binary64 absolute values plus an index tie-break component is required. Coefficient precision, signed zero, intermediate nonfinite values, state-loading cost, and a penalty bound that cannot change the lexicographic optimum remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Decode a one-hot row index and verify classically that it is exactly the first index attaining Python's maximum absolute pivot value. Invalid, suboptimal, or uncertified samples cannot be accepted. To preserve deterministic behavior, a failure path must perform the classical selection or raise the same applicable error; the subsequent exact-zero check and swap execute unchanged."
+      },
+      {
+        "pointer": "/contract_applicability/1/rationale",
+        "quote": "The finite pivot argmax admits a conditional one-hot binary optimization formulation with lexicographic magnitude/index scoring. Applicability is only structural: exact coefficient encoding, sufficient penalties, feasibility, backend precision, exact-optimum recovery, and end-to-end resources remain obligations, and practical adoption is not supported."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "This draft offers a different supported family: one-hot QUBO pivot optimization. It describes desired lexicographic magnitude/index ordering and a sufficient penalty as obligations but does not supply an objective, coefficient map or proven bound; nonfinite-state encoding is explicitly unresolved. The frozen checker interprets concrete Boolean pivot predicates or ordered comparison scans, not an unspecified QUBO. Translating the stated optimization goal into a reviewer-invented predicate or choosing coefficients would complete the model's missing construction. Keep insufficient evidence and retain the family change as a coverage observation; do not call the alternative family incorrect, passed, withdrawn or repaired. Verification/fallback and the full hybrid plan remain unexecuted.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

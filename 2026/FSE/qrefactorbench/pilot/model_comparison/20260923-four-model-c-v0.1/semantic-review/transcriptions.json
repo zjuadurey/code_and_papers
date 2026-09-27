@@ -1,0 +1,2610 @@
+[
+  {
+    "model": "gpt-5.6-sol",
+    "recipe": "cut_negative",
+    "case_id": "lit-001",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "reviewer_transcription",
+      "response_path": "pilot/model_comparison/20260923-four-model-c-v0.1/runs/gpt-5.6-sol/lit-001/response.txt",
+      "response_sha256": "3f58d6c624e87520baa482f49ab48bd2bc268f6e01ee6035dc442da509f66fb1",
+      "pointer": "/plan/formulation",
+      "quote": "Conditionally replace only the exhaustive partition search with a binary weighted-Max-Cut formulation. Let x_i=1 exactly when equipment position i is assigned to window 0, and define C(x)=sum_{i<j} w_ij(x_i+x_j-2*x_i*x_j). Minimizing conflict weight is equivalent to maximizing C because the aggregated total weight is assignment-independent. To preserve the required tie rule, minimize the QUBO E(x)=-(2^n)*C(x)+sum_i(2^i*x_i); the factor 2^n makes any integral one-unit cut improvement dominate the complete tie term. All bit strings are feasible because either window may be empty. If converted to Ising form, use x_i=(1-Z_i)/2 and explicitly retain the resulting constants, signs, linear terms, pair terms, and coefficient precision.",
+      "interpretation": "cut_negative; finite objective review only, not the fallback or whole plan.",
+      "parameters_source": "All coefficients and scale are explicit in the response."
+    },
+    "claims": {
+      "empty": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 0,
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "zero_weight": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "one_edge": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 2,
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-8",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "16",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          }
+        ]
+      },
+      "weighted_triangle": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-8",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "16",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "-40",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-40",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "80",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "-32",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-32",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "64",
+            "variables": [
+              1,
+              2
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "large_integer": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "18446744073709551616",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "18446744073709551616",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "-9223372036854775816",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-9223372036854775816",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "18446744073709551632",
+            "variables": [
+              1,
+              2
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "model": "gpt-6-astra",
+    "recipe": "cut_conflict",
+    "case_id": "lit-001",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "reviewer_transcription",
+      "response_path": "pilot/model_comparison/20260923-four-model-c-v0.1/runs/gpt-6-astra/lit-001/response.txt",
+      "response_sha256": "157caa6ed0276efdd57fde272d46d93b8d87de8020829d6ae1743e92999298f8",
+      "pointer": "/plan/formulation",
+      "quote": "Conditional investigation only. Let x_i=1 mean equipment i is in window 0, w_ij=adj[i][j] for i<j, and T=sum(w_ij). Conflict cost is C(x)=sum_{i<j} w_ij(1-x_i-x_j+2*x_i*x_j); separated weight is T-C(x). Let M(x)=sum_i 2^i*x_i and B=2^n. Minimize F(x)=B*C(x)+M(x). Since C is integer-valued and 0<=M<B, this exactly implements conflict minimization followed by the required smallest-mask tie break. No feasibility penalties or movement terms are needed. Under x_i=(1-Z_i)/2, F=B/2*sum_{i<j}w_ij*(1+Z_i*Z_j)+1/2*sum_i 2^i*(1-Z_i). Constants may be omitted during optimization but must be retained in score reconstruction.",
+      "interpretation": "cut_conflict; finite objective review only, not the fallback or whole plan.",
+      "parameters_source": "Response explicitly defines B=2^n, C and M; retain the constant."
+    },
+    "claims": {
+      "empty": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 0,
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "zero_weight": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "one_edge": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 2,
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "8",
+            "variables": []
+          },
+          {
+            "coefficient": "-8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-8",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "16",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          }
+        ]
+      },
+      "weighted_triangle": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "8",
+            "variables": []
+          },
+          {
+            "coefficient": "-8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-8",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "16",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "40",
+            "variables": []
+          },
+          {
+            "coefficient": "-40",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-40",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "80",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "32",
+            "variables": []
+          },
+          {
+            "coefficient": "-32",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-32",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "64",
+            "variables": [
+              1,
+              2
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "large_integer": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "9223372036854775808",
+            "variables": []
+          },
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "18446744073709551616",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "9223372036854775808",
+            "variables": []
+          },
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "18446744073709551616",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "9223372036854775816",
+            "variables": []
+          },
+          {
+            "coefficient": "-9223372036854775816",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-9223372036854775816",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "18446744073709551632",
+            "variables": [
+              1,
+              2
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "model": "deepseek-flash",
+    "recipe": "cut_conflict",
+    "case_id": "lit-001",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "reviewer_transcription",
+      "response_path": "pilot/model_comparison/20260923-four-model-c-v0.1/runs/deepseek-flash/lit-001/response.txt",
+      "response_sha256": "2b48e54e349eba3e981bd3d21cd60300e1b5e336eb2d565bc21ddf45bb9830e9",
+      "pointer": "/plan/formulation",
+      "quote": "MaxCut/QUBO formulation of the two-window assignment. For each equipment i define binary x_i=1 iff i is placed in window 0. The separated weight is sum_{i<j} w_ij (x_i XOR x_j); conflict_weight is total_weight minus separated_weight, so minimizing conflict_weight is maximizing the cut. Ising form uses s_i in {-1,+1} and minimizes sum_{i<j} w_ij s_i s_j up to constants. The secondary deterministic tie-break, smallest sum of 2**i over equipment input positions i in window 0 among all global minima, can be included as a lexicographic penalty term, for example minimize 2**n * conflict_weight + sum_i 2**i x_i for n<=16, provided coefficients are exact integers/rationals. QAOA is an approximate family and does not by itself guarantee the exact global optimum or tie-break.",
+      "interpretation": "cut_conflict; finite objective review only, not the fallback or whole plan.",
+      "parameters_source": "Explicit scale and mask; conflict polynomial expanded by reviewer."
+    },
+    "claims": {
+      "empty": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 0,
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "zero_weight": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "one_edge": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 2,
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "8",
+            "variables": []
+          },
+          {
+            "coefficient": "-8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-8",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "16",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          }
+        ]
+      },
+      "weighted_triangle": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "8",
+            "variables": []
+          },
+          {
+            "coefficient": "-8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-8",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "16",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "40",
+            "variables": []
+          },
+          {
+            "coefficient": "-40",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-40",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "80",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "32",
+            "variables": []
+          },
+          {
+            "coefficient": "-32",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-32",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "64",
+            "variables": [
+              1,
+              2
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "large_integer": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "9223372036854775808",
+            "variables": []
+          },
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "18446744073709551616",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "9223372036854775808",
+            "variables": []
+          },
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-9223372036854775808",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "18446744073709551616",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "9223372036854775816",
+            "variables": []
+          },
+          {
+            "coefficient": "-9223372036854775816",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-9223372036854775816",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "18446744073709551632",
+            "variables": [
+              1,
+              2
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "model": "deepseek-v4-pro",
+    "recipe": "cut_primary",
+    "case_id": "lit-001",
+    "claim_scope": "primary_objective_only",
+    "provenance": {
+      "kind": "reviewer_transcription",
+      "response_path": "pilot/model_comparison/20260923-four-model-c-v0.1/runs/deepseek-v4-pro/lit-001/response.txt",
+      "response_sha256": "2521188da1f7303cfbfaa4f7bb87249ce43369eec3432cb31d2f81af998ca6de",
+      "pointer": "/plan/formulation",
+      "quote": "For each equipment input position i (0..n-1), let x_i in {0,1}. Define x_i=1 as the first proposed window, window 0, and x_i=0 as the second window. For each pair i<j with validated symmetric weight w_ij, the separated-weight contribution is w_ij[x_i != x_j] = w_ij*(x_i+x_j-2*x_i*x_j). Maximize H(x)=sum_{i<j} w_ij*(x_i+x_j-2*x_i*x_j); equivalently minimize Q(x)=sum_{i<j} w_ij*(2*x_i*x_j-x_i-x_j). The original conflict_weight equals total_weight-H. No constraint penalties are required beyond the binary assignment domain. Ising conversion uses x_i=(1-Z_i)/2 after expanding Q.",
+      "interpretation": "cut_primary; finite objective review only, not the fallback or whole plan.",
+      "parameters_source": "Response separates canonical postprocessing; do not add a tie term."
+    },
+    "claims": {
+      "empty": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 0,
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "zero_weight": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": []
+      },
+      "one_edge": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 2,
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-2",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-2",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "weighted_triangle": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-1",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "2",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "10",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "8",
+            "variables": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "large_integer": {
+        "kind": "maxcut",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "-1152921504606846976",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-1152921504606846976",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "2305843009213693952",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "-1152921504606846976",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-1152921504606846976",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "2305843009213693952",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "-1152921504606846977",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-1152921504606846977",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "2305843009213693954",
+            "variables": [
+              1,
+              2
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "recipe": "cover_negative_tie",
+    "case_id": "lit-002",
+    "claim_scope": "direct_canonical_ground_state",
+    "provenance": {
+      "kind": "reviewer_transcription",
+      "response_path": "pilot/model_comparison/20260923-four-model-c-v0.1/runs/gpt-5.6-sol/lit-002/response.txt",
+      "response_sha256": "bff361c9b084bbe4f8a33a8edcd0ba2ba81657f9a0fb3a12ab2e669a3827b196",
+      "pointer": "/plan/formulation",
+      "quote": "Conditionally replace only the exhaustive subset search with a minimum-vertex-cover QUBO. For station variables x_i, penalize every uncovered edge with P*(1-x_u)*(1-x_v). Encode the primary objective of minimizing sum_i x_i and a strictly subordinate objective that selects the lexicographically smallest tuple of selected input positions. One possible exact hierarchy uses superincreasing input-order weights, minimizing C*sum_i x_i-sum_i 2^(n-1-i)*x_i with C greater than the entire secondary range and P greater than the entire possible nonconstraint objective range. The coefficient hierarchy, signs, constants, and sufficient bounds must be derived and checked for every n, including n=0 and graphs with no edges.",
+      "interpretation": "cover_negative_tie; finite objective review only, not the fallback or whole plan.",
+      "parameters_source": "Reviewer instantiates C=2^n and P=n*C+1, satisfying stated strict ranges. These numbers are not quoted model output."
+    },
+    "claims": {
+      "empty": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 0,
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "no_edges": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "4",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "single_edge": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 2,
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "2",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "3",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "9",
+            "variables": []
+          },
+          {
+            "coefficient": "-9",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-9",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "9",
+            "variables": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "tuple_not_mask": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 4,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "12",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "14",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "15",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              1,
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              2,
+              3
+            ]
+          }
+        ]
+      },
+      "triangle": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "4",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "6",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "7",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": []
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-25",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "25",
+            "variables": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "star": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 4,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "8",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "12",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "14",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "15",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": []
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-65",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "65",
+            "variables": [
+              0,
+              3
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "model": "gpt-6-astra",
+    "recipe": "cover_primary",
+    "case_id": "lit-002",
+    "claim_scope": "primary_objective_only",
+    "provenance": {
+      "kind": "reviewer_transcription",
+      "response_path": "pilot/model_comparison/20260923-four-model-c-v0.1/runs/gpt-6-astra/lit-002/response.txt",
+      "response_sha256": "8d6c4cfdf7e05dbffcdcfddae0016680977d2e747f5a5739a190215719c81f6d",
+      "pointer": "/plan/formulation",
+      "quote": "Conditional research plan only: introduce x_i in {0,1} for each station and minimize H(x)=sum_i x_i + P*sum_(u,v in edges)(1-x_u)(1-x_v), with P=n+1. Any infeasible assignment costs at least P, whereas selecting all stations costs n, so every global minimizer is a feasible minimum-cardinality cover. This objective alone does not enforce the required tie rule. Resolve ties through exact classical certification: for a decoded feasible cover of size k, enumerate all smaller cardinalities and all lexicographically earlier size-k subsets, returning the first feasible subset if one exists. Retain the original solver as an exact fallback. This certification can eliminate any proposed performance benefit.",
+      "interpretation": "cover_primary; finite objective review only, not the fallback or whole plan.",
+      "parameters_source": "Penalty n+1 is explicit. Canonical classical certification is separate and not executed here."
+    },
+    "claims": {
+      "empty": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 0,
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "no_edges": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "single_edge": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 2,
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "3",
+            "variables": []
+          },
+          {
+            "coefficient": "-3",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-3",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "3",
+            "variables": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "tuple_not_mask": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 4,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              1,
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              2,
+              3
+            ]
+          }
+        ]
+      },
+      "triangle": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": []
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": []
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": []
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "star": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 4,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              0,
+              3
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "model": "deepseek-flash",
+    "recipe": "cover_primary",
+    "case_id": "lit-002",
+    "claim_scope": "primary_objective_only",
+    "provenance": {
+      "kind": "reviewer_transcription",
+      "response_path": "pilot/model_comparison/20260923-four-model-c-v0.1/runs/deepseek-flash/lit-002/response.txt",
+      "response_sha256": "b60beec639687eae0262bb3f5ba62a8accf6214191204361bd3b7cb5b17ff26f",
+      "pointer": "/plan/formulation",
+      "quote": "Binary variables x_i for station i selected. Minimize sum_i x_i + lambda * sum_{(u,v) in E} (1 - x_u - x_v + x_u x_v), with lambda > n to penalize uncovered connections. The primary objective gives minimum station count. Lexicographically smallest tie-break among minimum covers requires a secondary objective or exact post-processing; a single QUBO penalty does not automatically enforce the required lexicographic order.",
+      "interpretation": "cover_primary; finite objective review only, not the fallback or whole plan.",
+      "parameters_source": "Reviewer instantiates lambda=n+1. Model explicitly leaves tie postprocessing unresolved."
+    },
+    "claims": {
+      "empty": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 0,
+        "decode": {
+          "permutation": [],
+          "complement": []
+        },
+        "terms": []
+      },
+      "no_edges": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              2
+            ]
+          }
+        ]
+      },
+      "single_edge": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 2,
+        "decode": {
+          "permutation": [
+            0,
+            1
+          ],
+          "complement": [
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "3",
+            "variables": []
+          },
+          {
+            "coefficient": "-3",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-3",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "3",
+            "variables": [
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "tuple_not_mask": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 4,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              1,
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              2,
+              3
+            ]
+          }
+        ]
+      },
+      "triangle": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 3,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2
+          ],
+          "complement": [
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": []
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": []
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": []
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "-4",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "4",
+            "variables": [
+              1,
+              2
+            ]
+          }
+        ]
+      },
+      "star": {
+        "kind": "cover",
+        "sense": "min",
+        "variable_count": 4,
+        "decode": {
+          "permutation": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "complement": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "terms": [
+          {
+            "coefficient": "1",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "1",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              1
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              2
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": []
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              0
+            ]
+          },
+          {
+            "coefficient": "-5",
+            "variables": [
+              3
+            ]
+          },
+          {
+            "coefficient": "5",
+            "variables": [
+              0,
+              3
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

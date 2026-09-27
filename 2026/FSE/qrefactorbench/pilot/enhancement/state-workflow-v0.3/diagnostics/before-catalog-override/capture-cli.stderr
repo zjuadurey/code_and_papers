@@ -1,0 +1,36 @@
+2026-09-25T02:07:22.812054Z ERROR codex_models_manager::manager: failed to refresh available models: unexpected status 501 Not Implemented: <!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            :root {
+                color-scheme: light dark;
+            }
+        </style>
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 501</p>
+        <p>Message: Unsupported method ('GET').</p>
+        <p>Error code explanation: 501 - Server does not support this operation.</p>
+    </body>
+</html>, url: http://127.0.0.1:45331/v1/models?client_version=0.156.1
+2026-09-25T02:07:22.825034Z ERROR codex_models_manager::manager: failed to refresh available models: unexpected status 501 Not Implemented: <!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style type="text/css">
+            :root {
+                color-scheme: light dark;
+            }
+        </style>
+        <title>Error response</title>
+    </head>
+    <body>
+        <h1>Error response</h1>
+        <p>Error code: 501</p>
+        <p>Message: Unsupported method ('GET').</p>
+        <p>Error code explanation: 501 - Server does not support this operation.</p>
+    </body>
+</html>, url: http://127.0.0.1:45331/v1/models?client_version=0.156.1

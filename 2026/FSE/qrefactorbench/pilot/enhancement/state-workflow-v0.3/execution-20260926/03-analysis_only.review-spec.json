@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/rationale", "/assumptions/4", "/contract_applicability/0/rationale"],
+  "rationale": "No candidate or pivot plan is introduced. The empty inventory came from the initial response's empty candidate list, so it is not independent evidence that no opportunity exists; the response does acknowledge its limited scope. There is still no replacement predicate to check. Retain insufficient evidence and leave broader candidate/structural judgments ungraded.",
+  "interpretations": []
+}

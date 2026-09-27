@@ -1,0 +1,87 @@
+% FSE 2027 Research Papers: acmsmall, single column, anonymous review.
+% Draft: all empirical results deliberately blank. Compile with pdfLaTeX/BibTeX.
+\documentclass[acmsmall,screen,review,anonymous]{acmart}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{tabularx}
+% Explicit local preview only. main.tex never silently substitutes ACM fonts.
+\ifdefined\localpreview
+  \usepackage{lmodern}
+\fi
+\input{macros}
+\setcopyright{none}
+\settopmatter{printacmref=false}
+\acmDOI{}
+\acmISBN{}
+\acmConference[FSE 2027]{The ACM International Conference on the Foundations of Software Engineering}{July 12--16, 2027}{Shenzhen, China}
+\acmYear{2027}
+\copyrightyear{2027}
+\title[Contract-Aware Quantum Opportunity Analysis]{Contract-Aware Quantum Opportunity Analysis: Enhancing LLMs with Program Analysis and Semantic Feedback}
+\author{Anonymous Author(s)}
+\renewcommand{\shortauthors}{Anonymous Author(s)}
+\begin{abstract}
+Identifying a quantum algorithm related to a classical computation is insufficient
+to justify replacing that computation in existing software. A useful replacement
+must respect input validation, exactness, ordering, exceptional behavior, and the
+observable consequences of surrounding code. We study how program analysis and
+semantic verification can strengthen a fixed large language model (LLM) in
+identifying candidate computations and designing conditional quantum mappings.
+QRefactorBench supplies source-traceable classical programs, controlled context
+variants, explicit behavioral obligations, and scoped semantic checks for search
+and combinatorial optimization. We formulate an evidence-producing workflow that
+links candidate regions to program facts, represents mapping claims independently
+of deployment recommendations, and returns reproducible counterexamples to the
+same model. The evaluation design separates claim correctness from obligation
+completion and compares direct prediction, self-review, analysis assistance, and
+semantic feedback under recorded budgets. It further addresses context sensitivity,
+checker validity, alternative encodings, transfer to unseen source lineages, and
+the cost of classical fallback. This manuscript is a research draft: empirical
+results are intentionally unfilled, and the proposed integrated method is not
+presented as an already validated implementation. The intended contribution is
+an auditable account of when classical analysis improves quantum mapping design,
+without equating a plausible plan, a passing local check, or an executable circuit
+with a correct migration or a quantum advantage.
+\end{abstract}
+\begin{CCSXML}
+<ccs2012>
+<concept><concept_id>10011007.10011006.10011041</concept_id><concept_desc>Software and its engineering~Software verification and validation</concept_desc><concept_significance>500</concept_significance></concept>
+<concept><concept_id>10011007.10011006.10011050</concept_id><concept_desc>Software and its engineering~Software maintenance tools</concept_desc><concept_significance>300</concept_significance></concept>
+<concept><concept_id>10010147.10010257</concept_id><concept_desc>Computing methodologies~Machine learning</concept_desc><concept_significance>300</concept_significance></concept>
+</ccs2012>
+\end{CCSXML}
+\ccsdesc[500]{Software and its engineering~Software verification and validation}
+\ccsdesc[300]{Software and its engineering~Software maintenance tools}
+\ccsdesc[300]{Computing methodologies~Machine learning}
+\keywords{quantum software engineering, program analysis, semantic verification, large language models, selective refactoring, benchmarking}
+\begin{document}
+\maketitle
+\ifdefined\localpreview
+  \noindent\textbf{LOCAL PREVIEW: substitute fonts; not a submission PDF.}\par
+  \noindent The standard ACM fonts are unavailable in this local environment.
+  Recompile \texttt{main.tex} in a complete TeX environment for final pagination.\par
+\fi
+\input{sections/01-introduction}
+\input{sections/02-problem}
+\input{sections/03-benchmark}
+\input{sections/04-method}
+\input{sections/05-evaluation}
+\input{sections/06-results}
+\input{sections/07-discussion}
+\input{sections/08-related}
+\input{sections/09-conclusion}
+\label{page:body-end}
+\clearpage
+\section*{Data Availability}
+\label{sec:data}
+The research artifact currently exists as a local development repository. An
+anonymous reviewer-accessible replication package has not yet been deposited.
+The intended package contains versioned public inputs, source and license records,
+protocols, raw responses, scoped annotations, trusted checkers, and regeneration
+instructions, with development feedback separated from final evaluation material.
+An anonymous access location and a statement of the authors' intended release
+policy will be supplied here before submission. No public availability or
+independent artifact evaluation is claimed in this draft.
+\clearpage
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+\end{document}

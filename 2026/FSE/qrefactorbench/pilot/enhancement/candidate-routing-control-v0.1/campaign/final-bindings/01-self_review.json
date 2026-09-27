@@ -1,0 +1,39 @@
+{
+  "response_sha256": "a538ace1c8ec986411025234045641e2f9caab226092ded5a9d465e92ec10c74",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 38.694,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:15:55.021601+00:00",
+  "review_submitted_utc": "2026-09-26T22:16:33.715907+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "a538ace1c8ec986411025234045641e2f9caab226092ded5a9d465e92ec10c74",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode each row index from col through n-1 as a candidate and mark exactly the first index whose absolute pivot value is maximal over that range. Perform one such search per elimination column, classically verify the decoded index, and only then apply the existing exact-zero pivot check and deterministic row swap."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Represent the remaining row indices with enough basis states for n-col candidates and provide coherent access to the active column of the current augmented rows. The reversible predicate must implement binary64 absolute-value comparison, establish global maximality, exclude later members of a maximum-value tie, reject unused basis states, and uncompute all comparison workspace. Encoding and updating the mutable augmented matrix between columns remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a candidate row index and verify classically that it is in range and is the first row attaining the largest absolute pivot. A defined retry or failure policy must prevent probabilistic errors from changing observable behavior. Preserve the subsequent singularity exception, row swap, elimination, back substitution, overflow handling, residual calculations, and named report construction."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The primary plan restates first global maximum and tie handling but gives neither a complete comparison predicate nor an initialized ordered recurrence. Verification/retry declarations do not supply the missing marking rule. Original12–16 nomination remains; no invented formula.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

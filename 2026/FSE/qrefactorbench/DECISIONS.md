@@ -840,3 +840,254 @@ OPEN: [next HOW operational policy](pilot/how_review/v0.1/DECISION_REQUEST.md).
 Recommended A retains conditional plans and separately records claim correctness and
 obligation completion; B would introduce an executable-encoding task. No researcher
 answer is inferred. This does not reopen D-014/D-017's accepted conceptual distinctions.
+
+## D-026: Adopt conditional-plan HOW correctness and completion records (A)
+
+Date: 2026-09-22
+Status: ACCEPTED (method/operational direction); case judgments remain PENDING
+
+The researcher replied “A” to N-036's explicit choice. Retain conditional plans as
+the HOW submission task; separately record correctness evidence and obligation
+completion. Allow explicitly unresolved obligations and do not combine them into a
+scalar score. A concrete but false formula is supplied content, not an omission;
+honest deferral is incomplete, not automatically a false mathematical assertion.
+
+This resolves D-025's OPEN methodological choice. It authorizes the independent
+protocol version, completion of the remaining response review, a reference-review
+preparation packet and holdout protocol draft described in that decision request.
+It does not adopt executable-encoding submissions, approve all AI judgments, freeze
+gold/case inclusion/splits, release the benchmark or authorize new model/QPU calls.
+
+N-037 implements [HOW v0.2](pilot/how_review/v0.2/README.md). All forty original requests
+remain visible; thirty-nine answers have 156 scoped evidence records and the forty
+requests have 200 completion entries, including five no_response entries for the
+single budget failure. These are record counts, not independent observations or scores.
+Nineteen prior reviews are inherited; twenty additional answers are reviewed now.
+Original inputs, labels, main evaluator and HOW v0.1 remain unchanged.
+
+Next human gate: [specific lit-002 formula adjudication](pilot/how_review/v0.2/REVIEW_HANDOFF.md).
+No response to that gate is implied by accepting A. Method agreement and individual
+scientific review remain separate; do not ask the A/B task question again.
+
+## D-027: Record supplied concurrence on two lit-002 formula refutations
+
+Date: 2026-09-22
+Status: RECORDED (user-supplied review concurrence, limited claim scope)
+
+Following the expert-review handoff, the user supplied a detailed response explicitly
+stating that both counterexamples hold in the specified scope. Record that feedback
+in a separate appendix, with no inferred reviewer name, credentials, human/AI identity,
+independence or blinded-review status. Its reported independent enumeration is a
+statement in the supplied text, not a newly observed local execution log.
+
+The Pro positive numeric-mask objective misimplements the required selected-index
+tuple ordering. Under the explicit interpretation of positive superincreasing weights
+added to selected bits in a minimization objective, the Flash branch reverses the
+required ordering. Both outputs remain minimum vertex covers; their violation is the
+contract's canonical tie selection. Positive scaling cannot fix these comparisons.
+
+Record both as contradicted/provided claims with USER_SUPPLIED_REVIEW_CONCURS provenance.
+Retain Flash's interpretation boundary, alternate two-stage route and validation caveat,
+and both answers' possible exact checking/repair/fallback. No whole-plan failure or
+success, structural-label promotion, model ranking, new metric, model/QPU run or release
+follows. All prior review snapshots remain unchanged. This resolves the narrow request
+for feedback in D-026; do not ask the user to reconfirm those same scoped conclusions.
+
+Artifacts: [feedback appendix](pilot/how_review/adjudications/20260922-lit002/README.md).
+
+## D-028: Strengthen existing cases with scoped executable verification evidence
+
+Date: 2026-09-22
+Status: ACCEPTED (user-authorized local audit, implementation and validation)
+
+The researcher explicitly requested repository changes linking measured capability, original task,
+submission, correctness basis, discriminating tests and meaningful evaluation. Start with a minimal
+representative subset, then reuse sound checks on similar cases. Preserve original task semantics,
+uncertain labels and historical results; do not generate labels or assume executable-code submissions.
+
+N-039 adds a private versioned contract/evidence layer and regression tests, leaving current public
+inputs, Phase-1 schema and prior evaluators unchanged. Four scoped verifiers are exercised with
+correct/equivalent and wrong controls. Six other case sidecars are catalogue/design only. Reports
+separate diagnostic states and denominators; no new composite metric or whole-task success is adopted.
+Reviewer-transcribed machine-checkable claims remain distinct from required model submissions.
+
+This is engineering validation authority, not approval of individual scientific labels, model reruns,
+new dataset cases, agent architecture, QPU work, dependency installation, publication or Git operations.
+Formal advantage, full migration, independent review and future tool isolation remain unresolved.
+
+Artifacts: [verification chain](pilot/semantic_verification/v0.1/README.md).
+
+## D-029: Repeat the ten C cases with the four previously tested models
+
+Date: 2026-09-23
+Status: ACCEPTED (explicit bounded model-run authorization)
+
+The researcher requested another run of the ten cases with DeepSeek Flash/Pro and
+GPT 5.6 Sol/6. Resolve these to the same four previously used IDs: deepseek-flash,
+deepseek-v4-pro, gpt-5.6-sol, gpt-6-astra. Each receives ten unchanged C inputs,
+one first attempt per case, at most forty case calls. Reuse GPT medium/subscription
+and DeepSeek high/direct API/16384 output cap; no automatic retry, repair or tools.
+Transport/account failures stop the affected provider. Record all failures and
+unattempted cases; no model substitution, label change or new quantum task follows.
+
+Private semantic-verification v0.2 materials stay outside prediction inputs.
+Collect format/reference diagnostics and separately scoped quote-bound evidence,
+never a new automatic whole-plan or migration pass score. This is a repeated
+sample of the development set, with unmatched provider configurations, not a holdout.
+
+Artifacts: [four-model repeat](pilot/model_comparison/20260923-four-model-c-v0.1/README.md).
+
+Execution completed under N-041: 40 attempts, 36 valid responses, four preserved token-budget
+failures. No retry/repair or provider halt. The bounded authorization is exhausted; additional
+calls require a new scope. Post-hoc scoped witnesses do not amend scientific labels or the
+frozen evaluation suite. See the [result report](pilot/model_comparison/20260923-four-model-c-v0.1/REPORT.md).
+
+## D-030: Same-model enhancement through classical CS methods
+
+Date: 2026-09-23
+Status: ACCEPTED (research direction explicitly confirmed by the researcher)
+
+研究者说明目标是先判断某种LLM在哪个环节薄弱，再用经典CS方法强化该步骤，
+让同一个LLM集成方法后的工作流更好地完成任务；随后明确要求记录：
+
+> 利用程序分析与语义验证，增强 LLM 对经典程序的量子机会识别与映射设计能力。
+
+据此，benchmark用于诊断瓶颈和检验增强效果。主比较为同一模型的原始流程与
+加入所提方法的流程；多个模型用于检验适用范围。此前讨论的跨模型角色分工
+不作为当前技术路线，也没有接受以Astra/Sol/Pro/Flash固定角色构建系统的决定。
+
+Harness指运行/评测的承载框架；研究贡献是针对瓶颈的增强机制及其经验证的效果。
+程序分析、语义验证、求解、测试及反例反馈是候选手段，具体机制待诊断后选择。
+应分别检验局部环节与整体任务的改善，并通过对照、消融和预算/工具成本记录
+解释改善来源；本决定不预设样本量、指标阈值或效果。
+
+当前机会识别、条件映射设计与未来可运行迁移继续分开。已有反例和局部检查提供
+设计动机，不构成增强方法有效的证据。本次授权为文档同步，不启动实现、模型实验
+或QPU任务，不更改既有输入、标签或冻结结果。
+
+Canonical statement: [研究纲领](docs/RESEARCH_CHARTER.md#same-model-enhancement).
+
+## D-031: lit002 paired semantic-feedback pilot
+
+Date: 2026-09-23
+Status: ACCEPTED (explicit task and bounded experiment authorization)
+
+研究者确认第一轮聚焦lit-002：给定核心和合同，提交包含规定排序的结构化直接QUBO。
+这是另建映射设计实验，不静默改变原Phase-1文字任务，不要求生产级程序转译。
+研究者选择GPT-5.6 Sol / 现有订阅，5次独立初稿，每份分出自检和反例反馈各一次修订，
+最多15次请求，无额外重试，并要求直接推进完成。沿用medium和现有隔离传输。
+
+开发反馈用精确小规模语义验证，最终检查实例在运行前固定且不反馈给模型。
+固定分母、保留所有结果，区分表示格式、有限映射正确性、基础设施与预算；不做加权总分。
+同模型B/C比较修订次数相同，token与工具开销分别报告；A只有一次调用。
+不因初稿全对或效果不佳更换任务、模型或筛选样本。新模型调用、增测、发布/QPU不在授权内。
+
+Artifacts: [N-043 protocol and implementation](pilot/enhancement/lit002-v0.1/README.md).
+
+Execution complete: all15 invocations finished without operator retries; initial/self-review/
+semantic-feedback each5/5 pass the98 reserved finite instances. All five initial answers already
+pass, so no counterexample was supplied and repair effectiveness was not exercised. The bounded
+authorization is exhausted. See [results](pilot/enhancement/lit002-v0.1/REPORT.md); no scope,
+threshold, task, model or sample substitution was made in response to the ceiling result.
+
+## D-032: Delegated workflow development with stepwise explanation
+
+Date: 2026-09-25
+Status: ACCEPTED (explicit delegation of direction and local progression)
+
+研究者说明是第一次做benchmark与agent workflow，希望借此学习，并明确要求：
+
+> 所以你按照你的思路推进就好，并且要告诉我你接下来想做啥，目的是？做完后效果如何？
+
+研究者提供 https://github.com/bojieli/ai-agent-book 作为工作流与消融设计参考。
+这一委托解除N-044“需要研究者先选择具体增强目标”的等待：由Codex选择和推进
+动态状态前提检查方向，先建单模型、有限步骤的分析/验证工作流及本地可审核证据。
+不再要求用户先掌握agent术语、逐项选择普通方法/工程细节；每阶段用中文解释
+下一动作、目的、实际效果以及尚未验证的部分。
+
+本轮代理方选择D初稿＋S自检／A分析／V验证／AV组合的消融布局，先离线实现与验证；
+这是委托范围内的设计选择，不冒充用户亲自确定每个实验参数。
+代码与实验草案可以继续本地推进；新模型调用的具体预算、外部付费/QPU、标签gold、
+研究范围变化、论文已证实主张或发布不从本次泛化委托中自动推导。
+若下一步产生这些影响，先完成可审核配置并说明影响，不重复询问已接受的方向。
+
+Artifacts: [N-045 offline workflow](pilot/enhancement/state-workflow-v0.1/README.md),
+[learning notes](docs/AGENT_WORKFLOW_LEARNING.md).
+
+## D-033: Bounded Sol state-workflow ablation execution
+
+Date: 2026-09-26
+Status: ACCEPTED / EXECUTED (25/25 calls; authorization exhausted)
+
+在展示N-047完成的运行器、75项离线测试、实际请求隔离检查及冻结配置后，
+Codex明确询问是否批准最多25次Sol/medium/现有订阅调用；研究者回复“继续吧”。
+该回复承接具体请求，授权本轮5份初稿×四个单次修订分支（共最多25次单轮调用），
+串行、600秒超时、运行器零重试；失败、未运行和审核成本均保留。
+既定局部主张范围、同母案例限制、AI_REVIEW_PENDING与最终评测隔离保持不变。
+这不是追加采样、其它模型、QPU、安装、发布或改标签的授权。
+
+启动时日常CLI已更新到0.157.0；使用本机已安装且SHA256与批准协议相符的0.156.1
+执行，未修改旧协议、系统配置或预检记录。认证仅由已授权隔离CLI使用，不打印凭据。
+
+Artifacts: [frozen protocol](pilot/enhancement/state-workflow-v0.3/campaign/protocol.json),
+[authorization receipt](pilot/enhancement/state-workflow-v0.3/campaign/authorization.json),
+[execution startup](pilot/enhancement/state-workflow-v0.3/execution-20260926/startup.json).
+
+Execution complete: 25 valid responses, zero operator retries or tool events. In the only
+explicitly contradicted initial-draft replicate, verification-only and combined revisions pass
+all44 reserved pivot states while self-review and analysis-only remain contradicted. Other rows
+retain insufficient evidence, ambiguity, conditional passes and newly contradicted claims.
+This is one paired local repair opportunity, not overall improvement or evidence that AV beats V.
+[Final report](pilot/enhancement/state-workflow-v0.3/execution-20260926/REPORT.md).
+
+## D-034: Bounded feedback-information control execution
+
+Date: 2026-09-27
+Status: ACCEPTED / EXECUTED (16/16 calls complete; frozen campaign has no remaining slots)
+
+在N-050的32项新测试、49项回归和5项断网隔离预检完成后，Codex明确询问是否批准
+最多16次Sol/medium、现有订阅调用，串行、每次600秒、零重试；研究者回复“批准”。
+本次批准覆盖冻结的S/C/E各5次、W仅1次历史初稿修订，不增加初稿，不改输入或顺序。
+全部有效新响应完成审核绑定后执行已知44状态回归；不称未见测试或普遍增强证据。
+失败及未运行位置保留，W−E只有第2组一次配对机会，审核成本单列。
+不包含追加调用、改标签、安装、QPU、论文新主张、提交/推送或发布。
+
+Artifacts: [frozen configuration](pilot/enhancement/feedback-control-v0.1/campaign/protocol.json),
+[authorization receipt](pilot/enhancement/feedback-control-v0.1/campaign/authorization.json).
+
+Execution complete: all16 responses valid, zero operator retries/tool events. In the sole explicit
+initial-error opportunity, assessment-summary E and witness W both pass44 known regression states;
+self-review still fails3 and cue-only has no concrete selector. Twelve responses remain insufficient;
+one E response passes only31 finite-valued states, excluding13. No additional W-over-E benefit was
+observed in this one pair; no generalization or whole-task claim. [Results](pilot/enhancement/feedback-control-v0.1/execution-20260927/REPORT.md).
+
+## D-035: Delegated subscription model-call budget for ongoing method work
+
+Date: 2026-09-27
+Status: ACCEPTED (explicit researcher instruction; supersedes repeated per-round budget questions)
+
+在批准D-034后，研究者追加：“限额随便用”。据当前上下文，这是对同方向研究中
+现有订阅模型调用额度的委托，不再要求每轮重复申请次数预算。Codex按证据需要安排
+后续实验，先形成明确协议、记录调用上限及用途、保留结果和实际成本，再执行。
+当前N-051仍完整遵循已经冻结的16位置设计，不因额度放开而事后加样、挑选重跑或改条件。
+这项委托不改变gold/科学标签、研究范围及论文已证实主张的决定边界，也不自动授权
+新付费渠道、购买额度、QPU、依赖安装或对外发布。未来同范围订阅实验的回执应引用
+本条真实指令和各自冻结协议，不伪造用户逐轮批准；预算不足等实际外部障碍如实报告。
+
+## D-036: Next independent mother-problem preparation scope
+
+Date:2026-09-27
+Status: ACCEPTED A / N-058 dossier preparation completed
+
+N-057已完成目录/路由对照及审核。现有开发案例上的结果不支持泛化，继续同题采样不能
+解决独立程序证据缺口。[具体工作包](docs/NEXT_RESEARCH_SCOPE.md)建议A：先准备最多4个
+新母问题候选档案，保留现有两类家族，核对来源、软件合同、谱系与可接受映射义务；不自动
+正式纳入、认可gold、冻结split、发布或用模型表现挑题。备选B先完成现有十例独立参考评审。
+研究者回复“A”，明确接受上述最多4份候选档案准备，执行工作包为N-058。
+授权包含正式来源固定、合同与谱系核查、最小经典复现及待审材料；不包含自动正式纳入、
+gold/split裁决或模型挑题。D-035预算委托仍有效，本工作包不调用模型。
+此前请求确认源于项目不默认扩案例及case inclusion/split科学决定边界；该准备范围现已授权。
+
+执行交付：[N-058三份档案](pilot/new_mother_candidates/v0.1/README.md)，来源、合同、谱系、
+最小经典复现和参考评审待决项齐备。前两份建议DRAFT参考评审，第三份保留边界候选；
+这是协调者提案，研究者尚未接受具体纳入/标签/split；零新预测模型调用。

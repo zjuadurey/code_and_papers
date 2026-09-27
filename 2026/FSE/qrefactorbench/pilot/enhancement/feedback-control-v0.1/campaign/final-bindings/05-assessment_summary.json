@@ -1,0 +1,43 @@
+{
+  "response_sha256": "92bd876d30d3a3cfbf7801699cab3f351c262a36f1d0f1ee31445142ecc970e4",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 13.928,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:16:39.949435+00:00",
+  "review_submitted_utc": "2026-09-26T21:16:53.877621+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "92bd876d30d3a3cfbf7801699cab3f351c262a36f1d0f1ee31445142ecc970e4",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally represent one activation of the pivot-selection expression as a one-hot QUBO over the eligible row indices col through n-1. The objective would have to select exactly the first index attaining the greatest Python abs(rows[i][col]) value. Any magnitude score, index tie-break term, and one-hot penalty must be proved to preserve that lexicographic result for every reachable state. Only line 13 is in scope; singularity checking, row swapping, elimination, back substitution, residual diagnostics, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode n, col, and the current augmented-column values after all preceding swaps and elimination updates. One binary variable denotes each eligible row. A complete encoding must reproduce Python binary64 absolute-value and max behavior, including equal magnitudes, signed zero, and any nonfinite intermediate values reachable from finite inputs. Required coefficient precision, dynamic range, reversible or Hamiltonian-compatible data access, ancillary storage, and a sufficient one-hot penalty are unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Decode a one-hot row index and verify it against the original Python selection rule using the current row state. The quantum result may be used only if exact equivalence, including first-index tie behavior, is established. Invalid, infeasible, suboptimal, ambiguous, or uncertified samples cannot replace line 13. A semantics-preserving treatment of all unsupported states and failures remains an implementation obligation; merely declaring a classical fallback does not prove preservation."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The row-index domain is finite and a conceptual predicate could assert that an index is the first maximum, but evaluating that predicate requires exact comparison against all competing current pivots and faithful treatment of every reachable floating-point state. No reversible oracle, coherent data-access construction, resource bound, or deterministic error policy is supplied, so applicability is unresolved."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The assessment summary elicits stronger caveats but no explicit QUBO coefficients, sufficient penalty construction, all-state encoding or concrete supplemental pivot predicate. The frozen checker has no uniquely supported replacement relation to evaluate. Retain insufficient evidence and do not treat acknowledging unknowns or rejecting uncertified samples as a proved encoding, fallback or repair.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

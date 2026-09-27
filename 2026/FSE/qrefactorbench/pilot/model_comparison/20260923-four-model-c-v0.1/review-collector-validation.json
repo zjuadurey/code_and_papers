@@ -1,0 +1,20 @@
+{
+  "command": [
+    "/home/audrey/miniconda3/envs/palqo/bin/python",
+    "-B",
+    "-m",
+    "pytest",
+    "--import-mode=importlib",
+    "-q",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/test_run.py",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/test_collect.py",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/test_review_formulas.py",
+    "pilot/model_comparison/20260922-deepseek-c-v0.1/test_run.py"
+  ],
+  "exit_code": 0,
+  "stdout": "review-collector-tests.stdout.txt",
+  "stderr": "review-collector-tests.stderr.txt",
+  "calls_to_models": 0,
+  "tests": "28 tests across runner, existing transport, collector and transcription plumbing",
+  "monitoring_note": "One ad-hoc monitor initially used system python, which lacks jsonschema; re-executed successfully with the existing palqo interpreter. Actual experiment always used palqo."
+}

@@ -1,0 +1,22 @@
+{
+  "utc": "2026-09-26T21:17:20.543327+00:00",
+  "final_results_exist": false,
+  "bindings_sha256": {
+    "01-self_review": "09a8784cf9c1bd33bc1566afee3e09637f42963a113a0a90cfbe5d1aee7f0faf",
+    "01-cue_only": "18287da14974d10e46e42f594b71e3e7b377dd4a8654a7b70e0ec6f0056ac16b",
+    "01-assessment_summary": "430f5106eb6e185dfa8be9c1dee69a8a4c3d2fe9b32348d587ddd120edef124d",
+    "02-with_witness": "e6255d656fb81afb7037cd214b5ab3e613393026db166ef6f35f0f287af8c17f",
+    "02-cue_only": "1ad42d8a62b61d6fc8d195ff70cd22411fc6556601b5037b2169587c35c48b38",
+    "02-assessment_summary": "7706b589998fd9f1e03ae217fe9b5cc7c22b50d3f4eb465d4bba90ad8b1ad5e1",
+    "02-self_review": "a32870cae9548bd96c7ddbe620f85be5dfe759c2fa2b44be4c5027552b37f40c",
+    "03-assessment_summary": "bf32e60552853f84e75fabc92808cde81359ddb6361f63395bab18391fa32d74",
+    "03-self_review": "cd65a4f4fd0d5d08abe91de918351ad55454723506666c00ecae023a99a5f797",
+    "03-cue_only": "ecde5e89ccd8344d6b678fed58bc23c3df4c62daee0c0775f0cb310505d39f01",
+    "04-self_review": "a19445af6617f67a84542dded48578ba08f3b1a8c0e22a1389c3e58a868d8385",
+    "04-cue_only": "52aa6903aa991637e02aa6bc9cbe539ff361a579473a79bc7267bcd0df7e89dc",
+    "04-assessment_summary": "4b8a37a1f0af1b0c850af1fa6b6f6b8081c976f248e5ce339568b14108e3d649",
+    "05-cue_only": "d9c72d749273d0f79e85fc4f7870911fb4bae5fa524fa585fb6d4f8d7730a951",
+    "05-assessment_summary": "04e6bbfd1b43cfc2310557ba75cbb3351f719c8178e51837fcc8316a62f742db",
+    "05-self_review": "c91dfdcb191cc3f6611820eb3cdf5bc8132b2fff2f2aa27520aed906ceabed5e"
+  }
+}

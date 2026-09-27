@@ -1,0 +1,1925 @@
+{
+  "protocol_sha256": "dfec27c33f110f47aaa63d969d45622e1bd37861d27f2aded85a1a34ab2bedc2",
+  "simulation": false,
+  "planned_slots": 10,
+  "denominators_by_arm": {
+    "self_review": 5,
+    "formalization": 5
+  },
+  "attempts": 10,
+  "task_pass": null,
+  "evaluation_role": "known_regression_previously_inspected_not_unseen",
+  "rows": [
+    {
+      "slot": "01-self_review",
+      "replicate": 1,
+      "arm": "self_review",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16471,
+          "cached_input_tokens": 2944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1921,
+          "reasoning_output_tokens": 272
+        }
+      ],
+      "model_seconds": 39.638,
+      "task_pass": null,
+      "response_sha256": "dc9e79b1da45d3fbd868f65c6d5e1dd0350b0dda926983f68c4268b2759fdc46",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "dc9e79b1da45d3fbd868f65c6d5e1dd0350b0dda926983f68c4268b2759fdc46",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "12f5d4e2d3e8978c20dccde4d543e33425e2a413443ce12e858a8e7682c03c69",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The primary search plan requests exactly Python's selection and mentions first/tie behavior but supplies no concrete comparison recurrence or predicate. Classical recomputation is a verification/fallback declaration, not a constructed oracle rule. No formula is inferred from the desired output.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.000580039995838888,
+      "review_seconds": 25.57,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "01-formalization",
+      "replicate": 1,
+      "arm": "formalization",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16615,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2850,
+          "reasoning_output_tokens": 616
+        }
+      ],
+      "model_seconds": 56.092,
+      "task_pass": null,
+      "response_sha256": "c2e374f902edc4e52194775df43678c09c82090afe6ac795fd1787980ef94d26",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "c2e374f902edc4e52194775df43678c09c82090afe6ac795fd1787980ef94d26",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "84185f239582199db8409ffcc59ed7f4ebd85db5286d71977582ceb6186326ce",
+        "origin": "model_response",
+        "status": "finite_scope_pass",
+        "interpretations": [
+          {
+            "id": "explicit_ordered_strict_gt",
+            "status": "finite_scope_pass",
+            "checked_states": 44,
+            "excluded_states": 0,
+            "outside_guard": "unresolved",
+            "failures": []
+          }
+        ],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.0008125570020638406,
+      "review_seconds": 25.864,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "02-formalization",
+      "replicate": 2,
+      "arm": "formalization",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16581,
+          "cached_input_tokens": 2944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2736,
+          "reasoning_output_tokens": 632
+        }
+      ],
+      "model_seconds": 55.135,
+      "task_pass": null,
+      "response_sha256": "5205d4d68361de406c98b7ea223ffc8133261fc230409f1ff63545fed7c5b9ef",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "5205d4d68361de406c98b7ea223ffc8133261fc230409f1ff63545fed7c5b9ef",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "b82abab72583375f492f6e4be2add2bc2c997f7ab46e1f5854fe2c794e73c3df",
+        "origin": "model_response",
+        "status": "finite_guarded_pass",
+        "interpretations": [
+          {
+            "id": "finite_ordered_strict_gt",
+            "status": "finite_guarded_pass",
+            "checked_states": 31,
+            "excluded_states": 13,
+            "outside_guard": "classical_fallback_declared",
+            "failures": []
+          }
+        ],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.001080584988812916,
+      "review_seconds": 30.307,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "02-self_review",
+      "replicate": 2,
+      "arm": "self_review",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16437,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2052,
+          "reasoning_output_tokens": 516
+        }
+      ],
+      "model_seconds": 41.696,
+      "task_pass": null,
+      "response_sha256": "9d3652d5531195236c02eee400067a558354b891513260ba9a531ebe0093ec45",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "9d3652d5531195236c02eee400067a558354b891513260ba9a531ebe0093ec45",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "56f1b31b731d80e9ee7d8f21aa8f6542b9f66a4abf1c8b3577144010d941ec41",
+        "origin": "model_response",
+        "status": "contradicted",
+        "interpretations": [
+          {
+            "id": "global_ge_earlier_gt",
+            "status": "contradicted",
+            "checked_states": 44,
+            "excluded_states": 0,
+            "outside_guard": "unresolved",
+            "failures": [
+              {
+                "request_id": "reserved-growth-0",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4"
+                  ],
+                  "matrix": [
+                    [
+                      2.3e+307,
+                      0.0,
+                      0.0,
+                      2.3e+307,
+                      2.3e+307
+                    ],
+                    [
+                      -2.3e+307,
+                      2.3e+307,
+                      0.0,
+                      2.3e+307,
+                      2.3e+307
+                    ],
+                    [
+                      -2.3e+307,
+                      -2.3e+307,
+                      2.3e+307,
+                      2.3e+307,
+                      2.3e+307
+                    ],
+                    [
+                      -2.3e+307,
+                      -2.3e+307,
+                      -2.3e+307,
+                      2.3e+307,
+                      2.3e+307
+                    ],
+                    [
+                      -2.3e+307,
+                      -2.3e+307,
+                      -2.3e+307,
+                      2.3e+307,
+                      -2.3e+307
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4
+                  ],
+                  "values_repr": [
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-1",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4"
+                  ],
+                  "matrix": [
+                    [
+                      2.7e+307,
+                      0.0,
+                      0.0,
+                      2.7e+307,
+                      2.7e+307
+                    ],
+                    [
+                      -2.7e+307,
+                      2.7e+307,
+                      0.0,
+                      2.7e+307,
+                      2.7e+307
+                    ],
+                    [
+                      -2.7e+307,
+                      -2.7e+307,
+                      2.7e+307,
+                      2.7e+307,
+                      2.7e+307
+                    ],
+                    [
+                      -2.7e+307,
+                      -2.7e+307,
+                      -2.7e+307,
+                      2.7e+307,
+                      2.7e+307
+                    ],
+                    [
+                      -2.7e+307,
+                      -2.7e+307,
+                      -2.7e+307,
+                      2.7e+307,
+                      -2.7e+307
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4
+                  ],
+                  "values_repr": [
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-2",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4"
+                  ],
+                  "matrix": [
+                    [
+                      2.9e+307,
+                      0.0,
+                      0.0,
+                      2.9e+307,
+                      2.9e+307
+                    ],
+                    [
+                      -2.9e+307,
+                      2.9e+307,
+                      0.0,
+                      2.9e+307,
+                      2.9e+307
+                    ],
+                    [
+                      -2.9e+307,
+                      -2.9e+307,
+                      2.9e+307,
+                      2.9e+307,
+                      2.9e+307
+                    ],
+                    [
+                      -2.9e+307,
+                      -2.9e+307,
+                      -2.9e+307,
+                      2.9e+307,
+                      2.9e+307
+                    ],
+                    [
+                      -2.9e+307,
+                      -2.9e+307,
+                      -2.9e+307,
+                      2.9e+307,
+                      -2.9e+307
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4
+                  ],
+                  "values_repr": [
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-3",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5"
+                  ],
+                  "matrix": [
+                    [
+                      2.4e+307,
+                      0.0,
+                      0.0,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      2.4e+307,
+                      0.0,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      -2.4e+307,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4,
+                    5
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-3",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5"
+                  ],
+                  "matrix": [
+                    [
+                      2.4e+307,
+                      0.0,
+                      0.0,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      2.4e+307,
+                      0.0,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      -2.4e+307,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    5
+                  ],
+                  "values_repr": [
+                    "nan"
+                  ],
+                  "original": 5
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-4",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5",
+                    "x6"
+                  ],
+                  "matrix": [
+                    [
+                      2.6e+307,
+                      0.0,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      -2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4,
+                    5,
+                    6
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-4",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5",
+                    "x6"
+                  ],
+                  "matrix": [
+                    [
+                      2.6e+307,
+                      0.0,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      -2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    5,
+                    6
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 5
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-4",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5",
+                    "x6"
+                  ],
+                  "matrix": [
+                    [
+                      2.6e+307,
+                      0.0,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      -2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    6
+                  ],
+                  "values_repr": [
+                    "nan"
+                  ],
+                  "original": 6
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              }
+            ]
+          }
+        ],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.0023359960032394156,
+      "review_seconds": 30.016,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "03-self_review",
+      "replicate": 3,
+      "arm": "self_review",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 15654,
+          "cached_input_tokens": 2944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 711,
+          "reasoning_output_tokens": 0
+        }
+      ],
+      "model_seconds": 17.772,
+      "task_pass": null,
+      "response_sha256": "5bb326bee266c0c3f6d8758c14c066562ee6dd342e2021d9b28b3f0a045f5b72",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "5bb326bee266c0c3f6d8758c14c066562ee6dd342e2021d9b28b3f0a045f5b72",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "6bdc927b578a70318c6c2c11b46073bf6a031a3d5b0089562fb4406e647419d7",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "Candidate list is empty and plan/family are null. The prose describes classical behavior and rejects proposed replacements; it is not a supplied replacement selector or proof that no eligible subregion exists. Keep no nominated claim separate from correctness or an accepted structural-negative label.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.00042142999882344157,
+      "review_seconds": 25.165,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "03-formalization",
+      "replicate": 3,
+      "arm": "formalization",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 15798,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1579,
+          "reasoning_output_tokens": 437
+        }
+      ],
+      "model_seconds": 34.78,
+      "task_pass": null,
+      "response_sha256": "17bc20799d3ea8c020a8c8d8df568f2cf714a40fed3dee8cc4114f86c4b1516f",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "17bc20799d3ea8c020a8c8d8df568f2cf714a40fed3dee8cc4114f86c4b1516f",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "1ef62ef3c5a60d8f1176f880871bead64d446a5cb97e2a8fa0eb429f4ea14897",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The response explicitly retains no replacement computation, an empty candidate list and null plan. Detailed narration of the existing classical solver is not a new proposed selector. Respect permitted abstention: do not turn the original source description into a positive plan or claim that structural ineligibility is proven.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.00042006600415334105,
+      "review_seconds": 25.477,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "04-formalization",
+      "replicate": 4,
+      "arm": "formalization",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 15934,
+          "cached_input_tokens": 2944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1684,
+          "reasoning_output_tokens": 448
+        }
+      ],
+      "model_seconds": 34.928,
+      "task_pass": null,
+      "response_sha256": "e05628dce0709b967b5ab6240c5204803acd13c7f9e45b6e7835da034c45f759",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "e05628dce0709b967b5ab6240c5204803acd13c7f9e45b6e7835da034c45f759",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "7777f62d93fbe19830b7f876a5b7306c50081bee75364432f3b4ac42bfbcd324",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The response explicitly nominates the whole solver for analysis while retaining no replacement and a null plan. Extra narration of classical execution is not a proposed local quantum selector and is not checked as one. The generic elicitation did not induce a narrower replacement candidate; do not turn missing nomination into a proven structural-negative label.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.0003933929983759299,
+      "review_seconds": 23.186,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "04-self_review",
+      "replicate": 4,
+      "arm": "self_review",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 15790,
+          "cached_input_tokens": 2944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1140,
+          "reasoning_output_tokens": 218
+        }
+      ],
+      "model_seconds": 26.397,
+      "task_pass": null,
+      "response_sha256": "0d2795b30d47e89ac198cae59edcc34c4d9ca16ae6d7959e745b6168e881d1aa",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "0d2795b30d47e89ac198cae59edcc34c4d9ca16ae6d7959e745b6168e881d1aa",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "c972a8c78f2a1a78fa9e11b1f56f377963ae35457d2596e7d3134123e5e24e39",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The whole solve function is nominated for focused analysis, but plan and migration family remain null. No replacement pivot selector is supplied. A whole-function nomination is not an implemented candidate discovery result or a concrete local mapping, and the structural-negative conclusion is not adjudicated here.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.00037526199594140053,
+      "review_seconds": 22.891,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "05-self_review",
+      "replicate": 5,
+      "arm": "self_review",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16530,
+          "cached_input_tokens": 2944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2526,
+          "reasoning_output_tokens": 898
+        }
+      ],
+      "model_seconds": 53.283,
+      "task_pass": null,
+      "response_sha256": "b9c815b6c3ff64b6e7e35e58e7bb31d272930473897cbd52e1a51cee8b268588",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "b9c815b6c3ff64b6e7e35e58e7bb31d272930473897cbd52e1a51cee8b268588",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "edbb99e3624ebfef3c82788206b1c000bd91aeda60988ac29ad128240f079d09",
+        "origin": "model_response",
+        "status": "all_interpretations_contradicted",
+        "interpretations": [
+          {
+            "id": "competitor_ge_first_equal",
+            "status": "contradicted",
+            "checked_states": 44,
+            "excluded_states": 0,
+            "outside_guard": "unresolved",
+            "failures": [
+              {
+                "request_id": "reserved-growth-3",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5"
+                  ],
+                  "matrix": [
+                    [
+                      2.4e+307,
+                      0.0,
+                      0.0,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      2.4e+307,
+                      0.0,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      -2.4e+307,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4,
+                    5
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-4",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5",
+                    "x6"
+                  ],
+                  "matrix": [
+                    [
+                      2.6e+307,
+                      0.0,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      -2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4,
+                    5,
+                    6
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-4",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5",
+                    "x6"
+                  ],
+                  "matrix": [
+                    [
+                      2.6e+307,
+                      0.0,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      -2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    5,
+                    6
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 5
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              }
+            ]
+          },
+          {
+            "id": "competitor_not_lt_first_equal",
+            "status": "contradicted",
+            "checked_states": 44,
+            "excluded_states": 0,
+            "outside_guard": "unresolved",
+            "failures": [
+              {
+                "request_id": "reserved-growth-3",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5"
+                  ],
+                  "matrix": [
+                    [
+                      2.4e+307,
+                      0.0,
+                      0.0,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      2.4e+307,
+                      0.0,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      -2.4e+307,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4,
+                    5
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [
+                  4,
+                  5
+                ],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-4",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5",
+                    "x6"
+                  ],
+                  "matrix": [
+                    [
+                      2.6e+307,
+                      0.0,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      -2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4,
+                    5,
+                    6
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [
+                  4,
+                  5,
+                  6
+                ],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-4",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5",
+                    "x6"
+                  ],
+                  "matrix": [
+                    [
+                      2.6e+307,
+                      0.0,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      -2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    5,
+                    6
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 5
+                },
+                "selected": [
+                  5,
+                  6
+                ],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              }
+            ]
+          }
+        ],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.006250695994822308,
+      "review_seconds": 56.337,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "05-formalization",
+      "replicate": 5,
+      "arm": "formalization",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16674,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3897,
+          "reasoning_output_tokens": 1346
+        }
+      ],
+      "model_seconds": 74.902,
+      "task_pass": null,
+      "response_sha256": "5a9439d6788f6c721324550eaa9d8e1aa74e084941d446026df134e51ae4156d",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "5a9439d6788f6c721324550eaa9d8e1aa74e084941d446026df134e51ae4156d",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "89f6195e2bd914f3307b87b8bd390bcb322c15c07926fe9c9aa130d43a8a2e7a",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The primary QUBO is now explicitly constructed: finite-value guard, pairwise magnitude/index rank c_i, E=sum(c_i*z_i)+P*(sum(z_i)-1)^2, expanded coefficients, argument for exact P>0, one-hot decoding and fallback. This is specified but outside the frozen predicate/ordered-scan checker, not the former missing-construction category and not a refutation. Its explicit strict-greater scan serves classical certification of QUBO samples; do not substitute that verifier for evaluating the QUBO objective or credit it as the primary migration. The separate Grover paragraph remains a conditional sketch with unresolved applicability and no concrete comparison rule. No QUBO enumeration or new checker is performed in this protocol.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.0005571200017584488,
+      "review_seconds": 56.627,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    }
+  ],
+  "paired_comparisons": {
+    "formalization_minus_self": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "limits": [
+    "S/F each5, all historical drafts retained; paired elicitation diagnostic, equal calls not equal tokens.",
+    "One known failure, one mother case; no independent generalization evidence.",
+    "Insufficient, ambiguous, guarded and contradicted claims remain separate.",
+    "Reviewer transcription is not independent human review or full-task correctness.",
+    "Offline preflight is not account availability or an effect measurement."
+  ]
+}

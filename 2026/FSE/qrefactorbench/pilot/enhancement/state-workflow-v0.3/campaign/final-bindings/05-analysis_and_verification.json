@@ -1,0 +1,52 @@
+{
+  "response_sha256": "3d2ea8fbd8934f9f63568e673907cbccf1cacd79a3d58defdf7dc9d5bb692eb6",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 46.965,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:47:15.432764+00:00",
+  "review_submitted_utc": "2026-09-26T12:48:02.397589+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "3d2ea8fbd8934f9f63568e673907cbccf1cacd79a3d58defdf7dc9d5bb692eb6",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "For finite comparable pivots, a predicate could mark index i when its magnitude exceeds every earlier magnitude and is at least every later magnitude. However, the supplied material does not demonstrate a reversible implementation of all required binary64 comparisons, coherent access to the dynamically mutated rows state, nonfinite-state handling, resource bounds, or a deterministic error policy. Applicability therefore remains unresolved."
+      },
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally replace each execution of the pivot argmax with a one-hot QUBO over indices col through n-1. For finite current pivot magnitudes, an exact order key K for each nonnegative Python binary64 abs(rows[i][col]) could define a lexicographic objective such as minimizing -(m+1)*K+i, where m=n-col, so magnitude dominates and the lowest index wins exact ties. Add a one-hot penalty proven larger than the complete feasible-objective range. This formulation covers only line 13; the zero-pivot check, swap, elimination, back substitution, overflow behavior, residual diagnostics, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode n, col, and the current augmented rows state produced at line 11 and mutated by earlier executions of lines 16-20. One binary variable denotes each eligible row. The implementation must define an exact order-preserving encoding of finite absolute binary64 values, including subnormals and signed-zero behavior, and must not round coefficients in a way that changes the selected index. Nonfinite intermediate candidate values require a semantics-preserving classical path because a total finite order encoding would not reproduce Python comparison behavior automatically. Coefficient construction, state loading, ancillary workspace, and a sufficient penalty bound remain unresolved."
+      },
+      {
+        "pointer": "/plan/risks/3",
+        "quote": "Intermediate infinities or NaNs are not covered by the finite order-key formulation and must not alter eventual exception behavior."
+      }
+    ],
+    "resolution": "transcribed",
+    "rationale": "The main finite order-key QUBO and its penalty/encoding remain outside this predicate checker. Separately, contract_applicability[0] explicitly states a finite-pivot Grover predicate: exceed every earlier magnitude and be at least every later magnitude. Bind only this conditional local relation, even though practical/reversible applicability remains unresolved. The finite guard is explicit; nonfinite states are sent to a declared classical path in the plan, which is not executed or proved here. A guarded finite pass must not be reported as validation of the QUBO, whole-domain repair or established Grover deployment.",
+    "interpretations": [
+      {
+        "id": "finite_strict_earlier_ge_later",
+        "meaning": "The separately stated Grover comparison relation, on all-finite current pivot magnitudes only.",
+        "mode": "predicate",
+        "expression": "all(values[i] > values[j] for j in indices if j < i) and all(values[i] >= values[k] for k in indices if k > i)",
+        "guard": "all(isfinite(values[k]) for k in indices)",
+        "outside_guard": "classical_fallback_declared"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

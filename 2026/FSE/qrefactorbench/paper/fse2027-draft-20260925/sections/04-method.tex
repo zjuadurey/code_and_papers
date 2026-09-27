@@ -1,0 +1,138 @@
+\section{Proposed Method: Source Facts and Semantic Feedback}
+\label{sec:method}
+\subsection{Design hypothesis and implementation boundary}
+The proposed method strengthens the same LLM by supplying evidence that it can
+use to revise a candidate and its mapping. It combines a source analysis stage,
+an obligation ledger, claim checking, and bounded revision. This is an integration
+proposal, not a claim that the full architecture is already implemented. The
+existing infrastructure supports source coordinates, structured predictions,
+private review records, and trusted local checks. A separate prototype accepts
+structured vertex-cover QUBO templates and returns development-test feedback.
+Automatic extraction of full program contracts, general numeric-state analysis,
+and production-program transformation remain outside that implemented prototype.
+
+The technical hypothesis is specific: errors in a mapping often arise because
+a mathematical pattern is detached from its source preconditions or observable
+selection rules. A dependency fact or a reachable counterexample can correct that
+detachment. This hypothesis is narrower than assuming that more tools or a longer
+prompt improve the entire task. The ablations in Section~\ref{sec:evaluation}
+are designed to isolate which evidence, if any, helps.
+
+\subsection{Candidate-centered program facts}
+Given a nominated region, the proposed analysis constructs a bounded dependency
+slice covering live inputs, state updates, guards, and uses of its result. A fact
+has a source location, an analysis origin, an assumption set, and a confidence
+status. Examples include a loop's iteration order, an explicit finite-value check,
+the use of a tuple in an ordered report, and a caller-selected iteration budget.
+The model sees these facts with their limitations; the analyzer must not label a
+heuristic inference as a theorem.
+
+For dynamic Python features outside the supported analysis, the method returns
+an unresolved dependency rather than assuming purity or a closed call graph.
+Alias-sensitive updates and exception paths require conservative treatment.
+Facts established at the program entry are not silently lifted to every later
+program point. In particular, finite numeric inputs do not imply that intermediate
+floating point operations remain finite. A dynamic witness can demonstrate a
+reachable state; a collection of successful traces cannot prove that an unobserved
+state is unreachable.
+
+An obligation ledger links these facts to the proposal. For each obligation it
+stores the required behavior, source anchors, proposed implementation or proof,
+available check, and status. The ledger is not a hidden answer key: public facts
+may be derived from the input, whereas evaluator-only reference judgments remain
+withheld. The full method is compared with both an identical prompt-only ledger
+and a fact-assisted workflow to avoid crediting the presentation format alone.
+
+\subsection{Checking mapping claims}
+The model first supplies the original conditional plan. Supported parts may then
+be expressed in a restricted claim representation: finite predicates, coefficient
+templates, variable mappings, optimization direction, decoding, and preconditions.
+For a plan originally written in prose, transcription is logged and checked against
+the source passage. If a reviewer must invent missing coefficients or assumptions,
+that addition is a separate proposal and not credited to the model.
+
+The vertex-cover prototype illustrates the representation boundary. It interprets
+a whitelist of arithmetic expressions, builds a quadratic polynomial, and uses
+exact rational arithmetic. Templates describe a family of graphs; they cannot
+select answers by looking up final-test instances. Variable permutation, bit
+complementation, constant offsets, and appropriate scaling may yield equivalent
+solutions and must be accepted. A formula outside the representation's expressivity
+receives a representation outcome, not a universal judgment that no valid mapping
+exists.
+
+For each supported claim $q$, the checker returns
+\begin{equation}
+ V(q)=(s,\mathcal{D},\alpha,w),\quad
+ s\in\{\text{supported},\text{refuted},\text{unknown}\},
+ \label{eq:verdict}
+\end{equation}
+where $\mathcal{D}$ is the checked domain, $\alpha$ the assumptions, and $w$ an
+evidence record. A refutation includes a witness and the violated obligation;
+finite support includes the actual test boundary. A universally quantified
+correctness claim requires a proof beyond a finite successful test run.
+
+\subsection{Bounded feedback to the same model}
+Feedback exposes the first failing development instance, the claimed output or
+decoded optimum, the required observation, and the violated obligation. It does
+not expose a replacement reference formula or any final-test result. When all
+development checks pass, feedback says only that the declared checks passed.
+The same model revises its whole plan within a fixed call budget, retaining the
+ability to narrow a claim, state an unresolved obligation, or recommend keeping
+the original classical routine.
+
+Table~\ref{tab:procedure} describes the proposed orchestration. The feedback loop
+resembles the candidate/verification separation of counterexample-guided
+synthesis~\cite{sketching}, but an LLM proposal plus bounded testing does not
+inherit synthesis completeness or termination guarantees. The workflow ends on
+the predetermined budget, not only when a favorable answer appears.
+
+\begin{table}[tb]
+\caption{Proposed bounded workflow. Evaluator-reserved checks never produce
+feedback within a measured run.}
+\label{tab:procedure}
+\begin{tabularx}{\linewidth}{lY}
+\toprule
+Step & Operation and retained evidence \\
+\midrule
+Input & Freeze public program, contract, model configuration, and budgets. \\
+Propose & Save raw candidate regions, eligibility, mapping, recommendation, and open obligations. \\
+Analyze & Derive source facts with assumptions and source anchors; record unsupported constructs. \\
+Check & Validate supported claims against development checks; retain scope and witnesses. \\
+Revise & Send allowed facts and feedback to the same model; save every revision. \\
+Stop & End at the fixed budget or protocol stopping condition, retaining failures. \\
+Evaluate & Run reserved checks and blinded review once on the designated final artifact. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Reachable states and classical fallback}
+A useful diagnostic concerns a proposed first-maximum predicate. Over ordinary
+totally ordered finite values, ``no smaller than every candidate, with no earlier
+equal value'' can characterize a first maximum. With NaN values, these comparisons
+do not reproduce a sequential incumbent-update rule. A counterexample is relevant
+to a program only if the state is permitted or reachable from a permitted input.
+The planned numeric analysis therefore binds a witness to the original program
+point and execution trace instead of testing an arbitrary impossible array.
+
+This distinction also constrains feedback scope. Refuting a predicate does not
+refute every conditional plan that mentions it. A plan may detect an exceptional
+state and fall back to the classical routine. Review must determine whether that
+guard is actually supplied, occurs before the incorrect operation, and preserves
+the full contract. A vague promise to ``verify and fall back'' is incomplete until
+the verification condition and fallback behavior are specified. Conversely, an
+exact but expensive fallback may preserve correctness while eliminating any
+practical benefit. The method records these dimensions separately.
+
+\subsection{Resources and adoption}
+Structural mapping and practical adoption use different evidence. A resource
+ledger records state preparation, reversible oracle construction, ancilla cleanup,
+logical and decomposed circuit resources, repeated measurements, classical
+optimization, data transfer, checking, and fallback. Unknown terms remain unknown.
+Any circuit counts name the representation and compilation target; they are not
+used as an unexplained profitability score.
+
+The method never turns simulator wall time into a quantum speedup claim. For this
+paper, its own usefulness is measured as improved analysis or mapping quality and
+the classical/model cost of obtaining it. An end-to-end advantage study would
+need implemented hybrid programs, appropriate classical competitors, hardware
+assumptions, and a separate experimental protocol.

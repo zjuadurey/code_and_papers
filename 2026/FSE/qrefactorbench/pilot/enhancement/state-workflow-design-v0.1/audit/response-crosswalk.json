@@ -1,0 +1,1066 @@
+[
+  {
+    "slot": "01-initial",
+    "arm": "initial",
+    "replicate": 1,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 12,
+        "end_line": 16
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "missing_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/reviews/01-initial/review.json",
+    "response_sha256": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally represent each remaining row index as a search candidate. Mark exactly the first index whose pivot magnitude is maximal over rows col through n-1, reproducing Python's largest-absolute-value rule and first-index tie break. Invoke this selection once per elimination column, then classically verify the decoded index before applying the existing zero-pivot check and row swap."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode candidate indices in ceil(log2(n-col)) qubits and provide coherent access to the current mutable augmented rows, the active column, and exact binary64 value representations. The reversible predicate must compare abs(rows[i][col]) against every eligible row, enforce that no earlier equal maximum exists, and reproduce relevant binary64 comparison behavior. Coherent row-state preparation, updates between columns, invalid-index handling, and workspace uncomputation remain unresolved."
+      },
+      {
+        "pointer": "/plan/assumptions/2",
+        "quote": "There is one marked index for every nonempty remaining row range, including the all-zero case where the first remaining index is marked and the subsequent classical check raises ValueError."
+      },
+      {
+        "pointer": "/plan/risks/2",
+        "quote": "Finite inputs can produce nonfinite intermediates; reproducing Python comparison, exception, and overflow behavior in a reversible oracle is unresolved."
+      },
+      {
+        "pointer": "/plan/rationale",
+        "quote": "This is a conditional formulation for structural analysis only. It does not establish practical suitability, quantum advantage, or semantic equivalence."
+      }
+    ],
+    "review_rationale": "The draft specifies the intended first maximum and a comparison-against-all oracle obligation, but gives neither a concrete comparison predicate nor an ordered scan rule. It explicitly says finite inputs can produce nonfinite intermediates and reproducing their comparison behavior remains unresolved; its rationale disclaims established semantic equivalence. Transcribing the historical universal >= formula would fill in an unspecified operator, while assigning an all-finite guard would invent a restriction not operationally stated. Keep the current local pivot mapping insufficiently specified, not contradicted or repaired. The claim of a unique marker is an unestablished assumption, not an implemented oracle. Other source, practical and whole-task claims are outside this checker.",
+    "proposed_clarification_not_sent": "若继续主张这份映射，请在既有plan字段写明候选域、读取的程序状态、实际比较规则或更新步骤、初始值、遍历与并列规则；仅重述原程序目标不等于给出构造。尚未解决的部分可明确保留未知。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "01-self_review",
+    "arm": "self_review",
+    "replicate": 1,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "contradicted",
+    "full_task_pass": null,
+    "design_category": "explicit_local_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/01-self_review.json",
+    "response_sha256": "374afcf9e04cc03f0c87f0fceda2a65192b9ceb5be4b81b26d70c0d29bcbe030",
+    "anchors": [
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode indices from col through n-1 in a basis-state register, with explicit rejection of unused states. Provide coherent access to the active column of the current augmented rows and reversible binary64-compatible absolute-value and comparison operations. The predicate must establish that no candidate has a larger magnitude and that no earlier candidate has an equal magnitude. Encoding and updating the mutable dense row state, handling intermediate nonfinite values, and uncomputing comparison workspace remain unresolved."
+      },
+      {
+        "pointer": "/plan/assumptions/2",
+        "quote": "For every nonempty remaining range there is exactly one marked first-maximum index, including an all-zero range whose selected pivot is subsequently rejected by the classical zero-pivot check."
+      },
+      {
+        "pointer": "/plan/risks/2",
+        "quote": "Python-compatible floating-point comparison, arithmetic, nonfinite-intermediate handling, and exception semantics are not supplied as reversible circuits."
+      },
+      {
+        "pointer": "/plan/rationale",
+        "quote": "This conditional plan records only structural representability as finite predicate search. It does not establish practical suitability, semantic equivalence, or quantum advantage."
+      }
+    ],
+    "review_rationale": "The revision now explicitly states two Boolean conditions: no candidate has a larger magnitude, and no earlier candidate has an equal magnitude. These are negated existential > and == comparisons, not the historical universal >= condition. Nonfinite handling remains unresolved but no executable guard restricts the domain. Check the literal relation with guard True; conditional future circuit feasibility and whole-plan equivalence remain unjudged.",
+    "proposed_clarification_not_sent": "已有可转录的局部规则；无需为提高覆盖而补问。保留其条件、反例或有限通过结果，并分别记录实现、回退和成本的未决义务。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "01-analysis_only",
+    "arm": "analysis_only",
+    "replicate": 1,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "missing_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/01-analysis_only.json",
+    "response_sha256": "9765215db58b3badd7d14305ae170bc760b90d2fa039569f65f06dabf70c35c8",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode each index in range(col, n) as a candidate and mark only the index that the existing Python max call would return under its ordered binary64 key evaluations. The oracle must reproduce first-index tie handling and Python's behavior for all reachable intermediate values, including order-sensitive comparisons if prior elimination has produced a nonfinite value. Run the search once per elimination column, verify the decoded index classically, and use a deterministic classical fallback whenever verification or the quantum failure policy cannot certify the exact required index."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the remaining row index using ceil(log2(n-col)) candidate qubits, with invalid basis states unmarked. Provide coherent access to col, n, and the current rows state created at line 11 and mutated at lines 16 and 20 during earlier iterations. Reversible key evaluation must implement abs(rows[i][col]) and the ordered selection semantics of Python max on binary64 values. Encoding and synchronizing the mutable augmented matrix, reversible floating-point comparison, nonfinite-value handling, workspace, and uncomputation are unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure an index and classically recompute the line-13 selection over the current ordered range. Accept only an exact match; otherwise retry under a specified policy or execute the original classical max operation. Then preserve the line-14 exact-zero check, its ValueError, the line-16 row swap, subsequent elimination and back substitution, overflow detection, and all report semantics."
+      },
+      {
+        "pointer": "/plan/assumptions/1",
+        "quote": "A reversible predicate can reproduce the ordered binary64 selection performed by Python max, rather than merely testing a mathematical real-valued global maximum."
+      }
+    ],
+    "review_rationale": "The revision improves the specification by distinguishing ordered Python max from a mathematical maximum and requiring nonfinite handling. However, it defines the marked index by reference to the original operation and still leaves the reversible predicate/comparison construction unresolved. The explicit recomputation of line 13 occurs in classical verification/fallback, not as a separately specified replacement comparison rule. Encoding the original max itself as a reviewer-written > scan would check a restatement of the target rather than the proposed oracle. Retain insufficient evidence for the replacement predicate; record the clearer ordered/nonfinite specification qualitatively, not as a verified repair or a full-domain proof.",
+    "proposed_clarification_not_sent": "若继续主张这份映射，请在既有plan字段写明候选域、读取的程序状态、实际比较规则或更新步骤、初始值、遍历与并列规则；仅重述原程序目标不等于给出构造。尚未解决的部分可明确保留未知。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "01-verification_only",
+    "arm": "verification_only",
+    "replicate": 1,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 12,
+        "end_line": 16
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "missing_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/01-verification_only.json",
+    "response_sha256": "bfd7aee5b9fd97434a21b8a424c779c5c2157664059901fc25e6b6ebbb4bed42",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode the remaining row indices for each elimination column as a finite search domain. A reversible predicate would mark exactly the first row whose absolute pivot is maximal over rows col through n-1, preserving Python's first-index tie behavior. The decoded index must be verified classically before the existing exact-zero check and row swap. This formulation is an analysis obligation, not a validated replacement."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode an eligible row offset using ceil(log2(n-col)) candidate qubits, with invalid basis states excluded or rejected. Provide coherent access to the active column, n, and the current augmented rows after all preceding elimination updates. Registers and reversible logic must represent binary64 values, absolute-value handling, comparisons, equality, first-index tie breaking, and uncomputation. The mechanism and cost for loading or maintaining the mutable dense row state remain unresolved."
+      },
+      {
+        "pointer": "/plan/risks/2",
+        "quote": "Exact reproduction of binary64 absolute values, comparisons, ties, exceptional intermediates, and uncomputation is unresolved."
+      },
+      {
+        "pointer": "/assumptions/2",
+        "quote": "Structural eligibility means that a finite marked-state predicate can be specified; it does not imply that the predicate is implemented, validated, efficient, or advantageous."
+      }
+    ],
+    "review_rationale": "The revision explicitly treats first-argmax as an analysis obligation, not a validated replacement. It lists comparison/equality/tie logic but does not specify a Boolean comparison formula or ordered update rule, and exceptional intermediates remain unresolved. The insufficient-evidence feedback has been acknowledged, but that acknowledgement is not a checked mapping or repair. Do not invent >=, a scan, or a finite-only guard.",
+    "proposed_clarification_not_sent": "若继续主张这份映射，请在既有plan字段写明候选域、读取的程序状态、实际比较规则或更新步骤、初始值、遍历与并列规则；仅重述原程序目标不等于给出构造。尚未解决的部分可明确保留未知。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "01-analysis_and_verification",
+    "arm": "analysis_and_verification",
+    "replicate": 1,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "finite_guarded_pass",
+    "full_task_pass": null,
+    "design_category": "explicit_local_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/01-analysis_and_verification.json",
+    "response_sha256": "9555feefd6562631351e60f505fdd51d5c360840f5d8e0a884d8601f4fa0979f",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode the remaining row indices for one elimination column as a finite search domain. A marked index must be exactly the index that Python's ordered max operation on abs(rows[i][col]) would select, including the first-index tie rule. For finite intermediate pivots this can be expressed by requiring the candidate magnitude to exceed every earlier magnitude and be at least every later magnitude. Search is invoked once per active column, and the decoded result is classically verified before the existing singularity check and row swap."
+      },
+      {
+        "pointer": "/plan/assumptions/2",
+        "quote": "For every nonempty range with finite pivot values, exactly one index is marked; in the all-zero case the first remaining index is marked and the unchanged line 14 check raises ValueError."
+      },
+      {
+        "pointer": "/plan/assumptions/3",
+        "quote": "Any reachable nonfinite intermediate state is either represented with behavior matching the original execution or routed through a verified classical fallback preserving required overflow behavior."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode indices col through n-1 in ceil(log2(n-col)) qubits, with invalid basis states unmarked. Supply coherent access to n, col, and the current augmented rows initialized at kernel.py line 11 and mutated by earlier elimination iterations at lines 17-20. Reversible binary64 absolute-value and comparison logic, ordered behavior for any nonfinite intermediate state, coherent loading or maintenance of mutable rows, invalid-state handling, and workspace uncomputation remain unresolved."
+      }
+    ],
+    "review_rationale": "The response explicitly supplies a comparison formula only for finite intermediate pivots: strictly exceed every earlier magnitude and be at least every later magnitude. Bind that stated finite-state guard instead of extending the formula to nonfinite states. The response declares matching behavior or a verified classical fallback outside the guard, but neither is implemented or checked here; mark fallback as declared only. A conditional finite pass would not establish whole-domain repair.",
+    "proposed_clarification_not_sent": "已有可转录的局部规则；无需为提高覆盖而补问。保留其条件、反例或有限通过结果，并分别记录实现、回退和成本的未决义务。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "02-initial",
+    "arm": "initial",
+    "replicate": 2,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "contradicted",
+    "full_task_pass": null,
+    "design_category": "explicit_local_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/reviews/02-initial/review.json",
+    "response_sha256": "f9578a04847909601a2a2f236fce1aa9ee72a615cadc7dfc1c8363bc08a27f31",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally represent the indices from col through n-1 as a finite search domain. Mark exactly the first index whose absolute active-column value is maximal: its value must be at least every candidate value and strictly greater than every earlier candidate value having a smaller index. Use Grover-style search only to propose that unique pivot index."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the current column index, candidate indices, and the dynamically updated binary64 values rows[i][col]. A reversible oracle would need exact implementations of Python-compatible absolute value, binary64 comparison, equality, and first-index tie handling. The representation, coherent loading method, handling of signed zero and intermediate nonfinite values, ancilla cleanup, and gate costs remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a candidate index and classically verify that it equals Python's first-index argmax under abs(rows[i][col]). If verification or quantum search fails, execute the original classical max operation. After verification, retain the exact zero-pivot check, row swap, elimination, back substitution, overflow behavior, and output construction unchanged."
+      },
+      {
+        "pointer": "/assumptions/1",
+        "quote": "Inputs are validated finite binary64 values, but the pivot oracle would consume dynamically updated elimination state."
+      }
+    ],
+    "review_rationale": "Unlike the first draft, this formulation explicitly requires the candidate magnitude to be at least every candidate magnitude and strictly greater than each earlier-indexed candidate magnitude. Transcribe those exact >= and > quantifiers on the active indices; the stored values are absolute pivot magnitudes. Every candidate includes the candidate itself; earlier candidates are explicitly smaller indices. The response acknowledges unresolved intermediate nonfinite handling but supplies no operational domain guard, so the literal predicate is checked with guard True. This examines the proposed unique-marker relation only, not a completed oracle or the whole hybrid plan. The explicit classical verification/fallback is recorded in the prose anchors and is not disproved or executed by this local checker.",
+    "proposed_clarification_not_sent": "已有可转录的局部规则；无需为提高覆盖而补问。保留其条件、反例或有限通过结果，并分别记录实现、回退和成本的未决义务。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "02-analysis_only",
+    "arm": "analysis_only",
+    "replicate": 2,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "contradicted",
+    "full_task_pass": null,
+    "design_category": "explicit_local_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/02-analysis_only.json",
+    "response_sha256": "080c243e6644dd9ce10a18ae88116d9679faa84d8ddd0bf13556a594acde5b6f",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally treat indices from col through n-1 as a finite search domain. Mark an index i exactly when abs(rows[i][col]) is at least every active-column candidate value and is strictly greater than each value at an earlier index in the domain, thereby specifying Python max's first-index tie behavior. Use Grover-style search only to propose the uniquely marked pivot."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode col, candidate indices, and the dynamically updated binary64 values rows[i][col]. A reversible oracle must exactly implement the relevant Python-compatible absolute-value, comparison, equality, and first-index tie semantics. Coherent loading, signed-zero behavior, intermediate nonfinite-state behavior, ancilla cleanup, and all gate and workspace costs remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a proposed index and classically verify that it equals Python's first-index argmax under abs(rows[i][col]). On failed verification, unsuccessful search, or inability to certify the result, execute the original classical max expression. Preserve the zero-pivot check, row swap, elimination order, back substitution, overflow behavior, and report construction unchanged."
+      },
+      {
+        "pointer": "/assumptions/1",
+        "quote": "Validated inputs begin as finite binary64 values, while the candidate consumes dynamically updated elimination state."
+      }
+    ],
+    "review_rationale": "The concrete predicate remains the initial >=-all and >-earlier rule for absolute pivot magnitudes. The lexical observations added dependency discussion, but no finite-state guard or nonfinite comparison correction is stated. Nonfinite semantics remain an unresolved obligation. Check the same literal local relation with guard True, while preserving the separately declared verification/fallback and unjudged whole-task semantics.",
+    "proposed_clarification_not_sent": "已有可转录的局部规则；无需为提高覆盖而补问。保留其条件、反例或有限通过结果，并分别记录实现、回退和成本的未决义务。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "02-verification_only",
+    "arm": "verification_only",
+    "replicate": 2,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "finite_scope_pass",
+    "full_task_pass": null,
+    "design_category": "explicit_local_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/02-verification_only.json",
+    "response_sha256": "3c4495e0db6bc0ec16a4706c9b6250f97c70c930894ec4c11d0a3be2b61e6a3d",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally search the finite indices from col through n-1 for the unique index produced by Python's sequential max operation with key abs. The marking predicate must reproduce the ordered fold exactly: initialize the incumbent to col, visit each later index in order, and replace the incumbent only when Python's comparison abs(rows[i][col]) > abs(rows[incumbent][col]) is true. This formulation, rather than a mathematical global-maximum predicate, must handle dynamically generated NaN or infinity values according to the original Python comparison behavior."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode col, candidate indices, traversal order, and the exact runtime binary64 bit patterns of rows[i][col]. Although request values are initially finite, elimination at lines 18-20 can create nonfinite intermediate entries before the later checks at lines 24-25, so the encoding and reversible operations must support finite values, signed zero, infinities, and NaNs. Exact Python-compatible abs and ordered greater-than behavior, coherent access to dynamically updated rows, reversible fold workspace, ancilla cleanup, and all loading and gate costs remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure an index and classically recompute the original ordered Python max expression on the current rows to verify it. On search failure or disagreement, use the original classical expression. Preserve the zero-pivot test, row swap, elimination order, back substitution, delayed overflow detection, exceptions, and all report construction unchanged."
+      },
+      {
+        "pointer": "/plan/rationale",
+        "quote": "This conditional plan repairs the contradicted global-maximum predicate by specifying the actual order-sensitive Python max semantics. It establishes neither implementation correctness nor practical benefit."
+      }
+    ],
+    "review_rationale": "The revision explicitly provides the ordered recurrence: initialize incumbent to col, traverse every later index in order, and replace it only if the new absolute value is strictly greater under Python comparison. This is a concrete update rule, unlike a bare obligation to reproduce max. The text explicitly includes NaN/infinity rather than an all-finite guard. Translate the rule directly into ordered_scan on the checker’s absolute pivot values. A finite local pass would support this pivot-selection relation only; reversible implementation, whole-plan verification/fallback, costs and quantum execution remain unresolved.",
+    "proposed_clarification_not_sent": "已有可转录的局部规则；无需为提高覆盖而补问。保留其条件、反例或有限通过结果，并分别记录实现、回退和成本的未决义务。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "02-analysis_and_verification",
+    "arm": "analysis_and_verification",
+    "replicate": 2,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "finite_scope_pass",
+    "full_task_pass": null,
+    "design_category": "explicit_local_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/02-analysis_and_verification.json",
+    "response_sha256": "824b6b608ffb524e54d2ebae77d6df56273300a1a18ebcc9c7ea87f73692ab4a",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally search the finite index domain range(col, n) for the unique index produced by Python's ordered max operation at line 13. The marking predicate must reproduce the sequential first-element initialization and replace the current best only when abs(rows[t][col]) compares greater than abs(rows[best][col]) for each later t in iteration order. It must not use a mathematical greater-than-or-equal-to-all characterization, because dynamically generated NaN values can make that characterization disagree with Python max."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode col, n, candidate indices, and the current binary64 bit patterns in rows[i][col], including signed zeros, infinities, and NaNs that elimination may generate before the later overflow check. A reversible oracle must emulate Python-compatible abs and ordered floating-point greater-than comparisons, the sequential max state transition, and equality of the resulting index with the candidate. Coherent loading, binary64 and NaN semantics, ancilla cleanup, and gate costs remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure an index and classically verify it against the original Python max expression or an exactly equivalent ordered fold. On failed verification or unsuccessful search, execute the original classical max operation. Preserve the subsequent exact zero-pivot test, row swap, elimination order, back substitution, overflow detection, exceptions, and report construction."
+      },
+      {
+        "pointer": "/plan/rationale",
+        "quote": "This conditional plan repairs the contradicted predicate by specifying Python's ordered max fold rather than a mathematical first-argmax predicate. It establishes neither practical suitability nor advantage, and exact reversible conformance remains unresolved."
+      }
+    ],
+    "review_rationale": "The combined revision explicitly states first-element initialization, later-index traversal order and replacement only on Python strict >, including NaN/infinity. It also identifies the marker as equality with that fold's resulting index. Transcribe the concrete ordered recurrence with no finite-only guard. This checks the local selector, not the unresolved reversible realization, resource benefit or complete fallback behavior.",
+    "proposed_clarification_not_sent": "已有可转录的局部规则；无需为提高覆盖而补问。保留其条件、反例或有限通过结果，并分别记录实现、回退和成本的未决义务。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "02-self_review",
+    "arm": "self_review",
+    "replicate": 2,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "ambiguous",
+    "evaluation_status": "all_interpretations_contradicted",
+    "full_task_pass": null,
+    "design_category": "ambiguous_operator",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/02-self_review.json",
+    "response_sha256": "1fe367c07b017914d6eb7aa4dc2c0ba2857b213465845b07fe4985ad358afc9b",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally search the finite index set range(col, n) for the unique index p satisfying the exact first-argmax rule used by Python max with key abs: abs(rows[p][col]) is not less than any candidate value, and no earlier index has an equal maximal value. The quantum subroutine may only propose p; it must not replace the surrounding singularity check or elimination."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode col, candidate indices, and the current augmented-row entries rows[i][col], which depend on every preceding pivot, swap, and elimination update. A reversible oracle must reproduce the relevant Python binary64 absolute-value, ordering, equality, signed-zero, infinity, NaN, and first-tie behavior. Coherent loading of dynamically updated rows, reversible floating-point representation, ancilla cleanup, and all associated costs are unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a proposed pivot index and verify classically that it is exactly the index Python's max expression would return for the current state. On failed verification, unsuccessful search, or an unsupported exceptional floating-point state, execute the original classical expression. Preserve the exact-zero test, exception behavior, row swap, elimination order, back substitution, overflow checks, and report construction."
+      },
+      {
+        "pointer": "/risks/4",
+        "quote": "Intermediate nonfinite values require exact handling consistent with the existing program and contract, but no reversible policy is supplied."
+      }
+    ],
+    "review_rationale": "The phrase 'not less than any candidate value' has two relevant transcriptions: conventional >=, or literal negation of <. They differ for NaN, which the response itself names without resolving its oracle treatment. Both retain the explicitly stated no-earlier-equal condition. The fallback mentions unsupported exceptional states but does not define which states are unsupported; do not invent an all-finite admission guard. Check both literal predicate readings while leaving classical verification/fallback and whole-task behavior unjudged.",
+    "proposed_clarification_not_sent": "请用明确运算符、量词范围和状态适用条件替代有多种解释的比较措辞；说明声明的是主要方案还是补充主张。不要由审核者代选一种解释。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "03-initial",
+    "arm": "initial",
+    "replicate": 3,
+    "has_plan": false,
+    "regions": [],
+    "structural_eligibility": false,
+    "migration_family": null,
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "no_nomination",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/reviews/03-initial/review.json",
+    "response_sha256": "4c65827a0d7e8204ea7fe0b42171537993f5950cf7109b92ce80db500083e9e8",
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "No source region is justified for either supported migration family. kernel.py lines 9-26 perform deterministic dense Gaussian elimination with partial pivoting and back substitution over binary64 values; this is neither finite-domain predicate search nor binary combinatorial optimization. Its inputs are the validated matrix and right-hand side, and its mutable elimination state is the augmented row array. It activates only through program.py lines 22-27 in solve mode. Exact surrounding behavior includes largest-absolute-value pivot selection with first-index tie behavior, exact-zero singularity rejection, Python floating-point operation ordering, overflow detection, named solution construction, delta calculation, and proposed residual reporting. kernel.py lines 29-38 deterministically compute Ax-b and the specified scaled backward error from the matrix, right-hand side, and selected vector; this diagnostic is required both before any solve and afterward in solve mode. Input validation, inspect-mode behavior, empty-system behavior, exception semantics, output ordering, and absence of input mutation must also remain intact. No finite candidate domain, pure Boolean predicate, binary objective, constraint penalties, exact encoding, or acceptable probabilistic replacement is supplied. The HPL attribution describes the classical algorithm and diagnostic only; the material explicitly says this small serial program is not a compliant HPL performance run and supplies no quantum benchmark, workload, hardware, encoding-cost, or advantage evidence."
+      },
+      {
+        "pointer": "/computational_intent",
+        "quote": "Validate and inspect a named dense linear system, optionally solving it by deterministic partial-pivoted elimination and reporting binary64 residual diagnostics."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The program exposes no finite candidate set or pure Boolean marked-state predicate. Constructing one would require an arbitrary finite encoding of binary64 solution vectors and a reversible oracle preserving elimination, pivot ties, exact-zero singularity checks, overflow behavior, and deterministic no-solution semantics."
+      }
+    ],
+    "review_rationale": "This initial response nominates no candidate and provides no conditional plan or pivot-selection predicate. Its retention decision and negative structural judgment do not constitute a checked pivot mapping. The local checker therefore has no claim to transcribe; this is insufficient evidence, not a local finite pass, repaired predicate, or withdrawal of a previously offered mapping. Whether the broad negative eligibility rationale misses a supported candidate belongs to separate WHERE/structural review, not this pivot semantics checker. The fixed policy still sends this delivered initial through all four revisions; the candidate-gated analysis inventory is empty by construction.",
+    "proposed_clarification_not_sent": "目前没有候选；如需进一步分析，可给出公开源码中的分析范围及理由，也可保留无候选和不确定性。分析请求不等于认可可迁移性，不要求补造映射。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "03-verification_only",
+    "arm": "verification_only",
+    "replicate": 3,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "missing_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/03-verification_only.json",
+    "response_sha256": "b03e4559208af3275d35596cd3a6f1d74ffad02ededfd5309599bff3c6ba8b1a",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate each pivot selection as exact argmax search over the finite row-index domain col through n-1. A Grover-based maximum-finding procedure would use reversible threshold predicates comparing the binary64 absolute pivot value and, for ties, the row index so that the smallest index is selected. If every candidate value is exactly zero, decoding must still select the first index and leave the existing singularity check to raise ValueError."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode candidate row indices and provide coherent access to rows[i][col] from the current augmented-row state. Reversibly implement binary64 absolute value, comparison, equality, and index tie-breaking. The costs of loading the changing column values, representing special states, and uncomputing all arithmetic and access workspace must be included."
+      },
+      {
+        "pointer": "/plan/rationale",
+        "quote": "This is a conditional analysis plan, not an adoption recommendation. Line 13 has a finite runtime domain and performs an unstructured extremum selection that can be decomposed into Grover-style marked-state searches. Eligibility depends on exact reversible realization of the predicate and deterministic recovery of Python's first-index argmax semantics, neither of which is established by the supplied material."
+      },
+      {
+        "pointer": "/rationale",
+        "quote": "The narrow candidate is kernel.py line 13, which selects the partial-pivot row from the finite index range col through n-1. Its required inputs are the current column number and the mutable augmented-row state created at line 11 and updated by prior swaps and elimination steps. It activates once per column through the loop at line 12; the empty system never activates it. Structurally, selecting the largest absolute pivot can be expressed conditionally as finite unstructured search using threshold predicates, including an index condition that preserves Python max's first-index tie rule. The candidate boundary excludes the exact-zero test and row swap at lines 14-16, which must remain intact: an all-zero candidate column must still select the first eligible row and then raise ValueError. Lines 17-25 must retain their binary64 operation ordering, back substitution, and overflow behavior. program.py lines 22-27 must retain solve-mode activation, named solution and delta ordering, residual reporting, and requested-limit comparison. Validation, inspect mode, pre-solve residual calculation, empty-system behavior, exception semantics, and nonmutation must also remain unchanged. The residual function at kernel.py lines 29-38 is deterministic arithmetic rather than supported search or binary optimization and is not nominated. Practical suitability is false because coherent access and exact reversible binary64 comparison are unresolved, pivot search is only a lower-order portion of dense elimination, the program is explicitly small and serial, and probabilistic selection cannot silently weaken exact behavior. Benchmark support is false: the HPL attribution documents a classical algorithm and diagnostic, while the supplied program is not a compliant HPL performance run and no quantum workload, hardware, resource, or advantage evidence is provided. The reviewer observation reports only insufficient evidence from finite pivot-selection checks; it does not prove full-domain semantics, validate a fallback, or support deployment. The decision therefore remains classical despite narrow structural eligibility."
+      }
+    ],
+    "review_rationale": "The revision adds a pivot candidate and a Grover threshold/maximum-finding plan, but does not specify a concrete threshold predicate with its update rule or an ordered full-state selector. Exact binary64, special-state and success-policy obligations remain open. Do not substitute a reviewer-written global-maximum formula or ordered scan. This is increased candidate/plan coverage, not a checked pivot repair. The supplied insufficient-evidence feedback itself named pivot selection, so any nomination change also has a task-specific cue confound and cannot be attributed solely to executing a semantic counterexample.",
+    "proposed_clarification_not_sent": "若继续主张这份映射，请在既有plan字段写明候选域、读取的程序状态、实际比较规则或更新步骤、初始值、遍历与并列规则；仅重述原程序目标不等于给出构造。尚未解决的部分可明确保留未知。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "03-analysis_and_verification",
+    "arm": "analysis_and_verification",
+    "replicate": 3,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "missing_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/03-analysis_and_verification.json",
+    "response_sha256": "bfce83085fc9c5d888609197f6e21cf549c064044cc2a07c7e098121760d625d",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally represent the row indices from col through n-1 as a finite search domain and search for the index whose binary64 absolute pivot value is maximal, resolving equal values to the smallest index. A Grover-style construction would require either thresholded maximum finding or a Boolean predicate proving that a candidate dominates every eligible row with the required first-index tie rule. This formulation is only structural: the exact reversible oracle and deterministic completion policy remain unresolved."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode col, n, candidate row indices, and the current augmented-row pivot-column values from rows into finite registers. The encoding must preserve every relevant Python binary64 value and abs/comparison behavior, including signed zero, without assuming free coherent memory or data loading. Workspace for comparisons, tie resolution, uncomputation, and any threshold or incumbent state must be included."
+      },
+      {
+        "pointer": "/plan/risks/5",
+        "quote": "No exact oracle, failure bound, feasibility demonstration, resource estimate, or end-to-end correctness proof is supplied."
+      },
+      {
+        "pointer": "/rationale",
+        "quote": "The only defensible candidate is kernel.py line 13, which selects a pivot from the finite domain range(col, n). It depends on n, the current elimination column col, and the evolving augmented-row state rows created at line 11 and modified by prior swaps and elimination updates. It activates once per column only when program.py enters solve mode at lines 22-27; the empty system never executes it. Its result controls the exact-zero singularity check at lines 14-15, row exchange at line 16, and elimination at lines 17-20. Those operations, back substitution at lines 21-25, named output and deltas, and both residual evaluations must remain intact. In particular, a replacement must preserve selection of the largest absolute pivot with the first index on ties, Python binary64 operation ordering, exception behavior, output ordering, inspect behavior, empty-system behavior, and absence of input mutation. This finite index selection is structurally eligible for conditional Grover-style analysis, but the broader linear solve and residual diagnostic are not themselves unstructured search or binary combinatorial optimization. Practical suitability is false: no reversible coherent access to the changing rows, exact comparison oracle, deterministic success mechanism, resource bounds, workload scale, or advantage evidence is supplied. The HPL attribution documents a classical algorithm and diagnostic, while the task expressly states that this is not a compliant HPL performance run. The observation reports only reviewer-transcribed finite development checks and insufficient evidence; it neither proves full-domain pivot fidelity nor validates an encoding, oracle, resource case, or whole migration plan. Accordingly, the program should remain classical."
+      }
+    ],
+    "review_rationale": "The response adds a narrow pivot candidate and alternative threshold-search or dominance-oracle sketches, but no concrete dominance comparator, threshold recurrence or nonfinite selector is given. The exact oracle is explicitly unresolved. No unique executable interpretation can be bound without supplying missing construction. Record candidate/plan coverage separately from semantic evidence; the pivot-specific scope wording in the insufficient-evidence observation is a possible cue, and the empty initial analysis inventory supplies no independent discovery evidence.",
+    "proposed_clarification_not_sent": "若继续主张这份映射，请在既有plan字段写明候选域、读取的程序状态、实际比较规则或更新步骤、初始值、遍历与并列规则；仅重述原程序目标不等于给出构造。尚未解决的部分可明确保留未知。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "03-self_review",
+    "arm": "self_review",
+    "replicate": 3,
+    "has_plan": false,
+    "regions": [],
+    "structural_eligibility": false,
+    "migration_family": null,
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "no_nomination",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/03-self_review.json",
+    "response_sha256": "4c65827a0d7e8204ea7fe0b42171537993f5950cf7109b92ce80db500083e9e8",
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "No source region is justified for either supported migration family. kernel.py lines 9-26 perform deterministic dense Gaussian elimination with partial pivoting and back substitution over binary64 values; this is neither finite-domain predicate search nor binary combinatorial optimization. Its inputs are the validated matrix and right-hand side, and its mutable elimination state is the augmented row array. It activates only through program.py lines 22-27 in solve mode. Exact surrounding behavior includes largest-absolute-value pivot selection with first-index tie behavior, exact-zero singularity rejection, Python floating-point operation ordering, overflow detection, named solution construction, delta calculation, and proposed residual reporting. kernel.py lines 29-38 deterministically compute Ax-b and the specified scaled backward error from the matrix, right-hand side, and selected vector; this diagnostic is required both before any solve and afterward in solve mode. Input validation, inspect-mode behavior, empty-system behavior, exception semantics, output ordering, and absence of input mutation must also remain intact. No finite candidate domain, pure Boolean predicate, binary objective, constraint penalties, exact encoding, or acceptable probabilistic replacement is supplied. The HPL attribution describes the classical algorithm and diagnostic only; the material explicitly says this small serial program is not a compliant HPL performance run and supplies no quantum benchmark, workload, hardware, encoding-cost, or advantage evidence."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The program exposes no finite candidate set or pure Boolean marked-state predicate. Constructing one would require an arbitrary finite encoding of binary64 solution vectors and a reversible oracle preserving elimination, pivot ties, exact-zero singularity checks, overflow behavior, and deterministic no-solution semantics."
+      }
+    ],
+    "review_rationale": "The complete response is byte-identical to this replicate's initial response. It still provides no candidate or pivot mapping. Retain insufficient evidence, not a success or a newly withdrawn claim; broader structural judgments remain outside the local checker.",
+    "proposed_clarification_not_sent": "目前没有候选；如需进一步分析，可给出公开源码中的分析范围及理由，也可保留无候选和不确定性。分析请求不等于认可可迁移性，不要求补造映射。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "03-analysis_only",
+    "arm": "analysis_only",
+    "replicate": 3,
+    "has_plan": false,
+    "regions": [],
+    "structural_eligibility": false,
+    "migration_family": null,
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "no_nomination",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/03-analysis_only.json",
+    "response_sha256": "123eec3de03b94f9b22b826237b57cc320424bd9e5fa6c48d7a5969b817b92d5",
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "No source region is justified for either supported migration family. The supplied lexical dependency inventory reports no regions, but because it is explicitly neither a sound slice nor a ranges or reachability proof, it is only consistent supporting evidence and does not establish ineligibility by itself. Independently, kernel.py lines 9-26 implement deterministic dense Gaussian elimination with partial pivoting and back substitution over binary64 values; this is neither finite-domain predicate search nor binary combinatorial optimization. The computation depends on the validated matrix and right-hand side and maintains an augmented-row elimination state. It activates through program.py lines 22-27 only in solve mode. Behavior that must remain intact includes largest-absolute-value pivot selection with first-index tie behavior, exact-zero singularity rejection, Python floating-point operation ordering, detected-overflow rejection, named solution construction, delta calculation, and proposed residual reporting. kernel.py lines 29-38 deterministically compute Ax-b and the specified scaled backward error from the matrix, right-hand side, and selected vector; this diagnostic runs for the current vector in both modes and for the proposed vector in solve mode. Input validation, inspect-mode handling, empty-system behavior, exception semantics, output ordering, and absence of input mutation must also remain intact. No finite candidate domain, pure Boolean predicate, binary objective, constraint penalties, exact encoding, or acceptable probabilistic replacement is supplied. The HPL attribution concerns the classical algorithm and diagnostic only; the task expressly states that this small serial program is not a compliant HPL performance run and provides no quantum benchmark, workload, hardware, encoding-cost, or advantage evidence."
+      },
+      {
+        "pointer": "/assumptions/4",
+        "quote": "The empty lexical inventory is not treated as a sound slicing or reachability result."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The program exposes no finite candidate set or pure Boolean marked-state predicate. Constructing one would require arbitrary finite bounds and encoding for solution vectors plus a reversible oracle preserving binary64 arithmetic, pivot ties, exact-zero singularity checks, overflow behavior, and deterministic success or failure semantics."
+      }
+    ],
+    "review_rationale": "No candidate or pivot plan is introduced. The empty inventory came from the initial response's empty candidate list, so it is not independent evidence that no opportunity exists; the response does acknowledge its limited scope. There is still no replacement predicate to check. Retain insufficient evidence and leave broader candidate/structural judgments ungraded.",
+    "proposed_clarification_not_sent": "目前没有候选；如需进一步分析，可给出公开源码中的分析范围及理由，也可保留无候选和不确定性。分析请求不等于认可可迁移性，不要求补造映射。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "04-initial",
+    "arm": "initial",
+    "replicate": 4,
+    "has_plan": false,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 9,
+        "end_line": 26
+      }
+    ],
+    "structural_eligibility": false,
+    "migration_family": null,
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "broad_region_no_plan",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/reviews/04-initial/review.json",
+    "response_sha256": "b3363176a048b12e56e39c7b9ee772e24b9b50698a884260d1a2e618f9861a87",
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "The only region warranting focused analysis is kernel.py lines 9-26, the dense linear-system solver. It contains the principal cubic work: construction of a private augmented matrix, deterministic partial-pivot selection, elimination, and back substitution. Its required inputs are the validated finite binary64 matrix and rhs; it depends on n=len(rhs), mutable copied rows, Python arithmetic and iteration order, largest-absolute-value pivot selection with the first index winning ties, exact-zero pivot detection, and a final finiteness check. It is activated only by program.py lines 22-27 when mode is solve. The surrounding behavior that must remain intact includes strict validation, no mutation of caller data, inspect mode not solving or necessarily rejecting singularity, ValueError behavior for exact zero pivots and detected nonfinite solutions, residual recomputation by kernel.py lines 29-38, variable-name ordering, delta calculation, and the caller's diagnostic limit comparison. Structurally, this region is not an instance of either supported family: it solves a continuous dense linear system through ordered floating-point elimination, not a finite-domain predicate search or an explicitly binary combinatorial objective. Turning binary64 solution values and pivot-state evolution into a finite search or QUBO would require an unresolved encoding and would not inherently preserve the specified arithmetic, pivot tie-breaking, exceptions, or exact output behavior. Practical suitability is false because the supplied program is small and serial, while no workload scale, coherent data-loading mechanism, hardware, resource budget, or advantage evidence is supplied. Benchmark support is independently false: the notice supplies only HPL algorithm attribution and explicitly states that this is not an HPL port, rating, or compliant performance run; it supplies no quantum benchmark."
+      },
+      {
+        "pointer": "/computational_intent",
+        "quote": "Solve a validated dense real linear system using deterministic partial-pivoted Gaussian elimination and back substitution, then support classical residual reporting."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The solver exposes no finite candidate domain or pure Boolean predicate. Constructing one would require discretizing all solution components and reversibly reproducing elimination or checking Ax=b under the specified binary64 semantics. No encoding, oracle, no-solution policy, exactness argument, or resource bounds are supplied."
+      }
+    ],
+    "review_rationale": "The response nominates the entire solve function for focused analysis but rejects both migration families and provides no mapping plan. It describes original first-tie pivot behavior only as a preservation obligation, not as a replacement predicate. There is no local pivot claim to formalize, so retain insufficient evidence rather than a finite pass or withdrawal. Its full-solver structural rejection does not decide the separate question of a narrower pivot-search candidate. The declared region begins at the function definition; the frozen lexical inventory may return unknown for that unsupported seed rather than changing the region to the reviewer-preferred line.",
+    "proposed_clarification_not_sent": "请区分供分析的函数范围与实际提出改写的计算。若尚无具体映射，可以只保留分析范围和未决问题；不要把函数边界调整计为语义修复。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "04-analysis_and_verification",
+    "arm": "analysis_and_verification",
+    "replicate": 4,
+    "has_plan": false,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 10,
+        "end_line": 26
+      }
+    ],
+    "structural_eligibility": false,
+    "migration_family": null,
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "broad_region_no_plan",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/04-analysis_and_verification.json",
+    "response_sha256": "d4643bd5a52722456ce500206cba07d134b5375c2a5d9d128698bf4b539b1a1c",
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "The region warranting focused analysis is the body of solve at kernel.py lines 10-26, beginning with the first executable statement rather than the function declaration. It performs the principal cubic work: copying the validated matrix and rhs into an augmented matrix, deterministic partial-pivot selection, elimination, back substitution, and a final solution-finiteness check. Required inputs are matrix and rhs, already validated by review as finite binary64 values with square dimensions; internal dependencies include n, the copied mutable rows, Python binary64 arithmetic and iteration order, largest-absolute-value pivot selection with first-index tie behavior from max over an ascending range, exact-zero pivot detection, and accumulated elimination state. The region is activated only through program.py lines 22-27 when mode is solve. Behavior outside the boundary that must remain intact includes strict request validation, no mutation of caller data, inspect mode avoiding solution and not necessarily rejecting singular matrices, ValueError behavior for exact zero pivots and detected nonfinite results, residual recomputation by kernel.py lines 29-38, variable-name ordering, delta calculation, and comparison of the proposed scaled diagnostic with residual_limit. The supplied observations do not establish a sound dependency slice or semantic correctness: the lexical inventory reports unknown status, and the finite development checks provide insufficient evidence for whole-domain pivot semantics or plan correctness. Accordingly, this assessment relies only on the supplied source and contract and does not treat those observations as verification. Structurally, the region is not an instance of either supported family. It solves a continuous dense linear system through ordered floating-point elimination rather than searching an explicitly represented finite domain with a Boolean predicate or optimizing an explicitly binary combinatorial objective. Recasting binary64 values and evolving pivot state as search or QUBO variables would introduce an unresolved encoding and would not inherently preserve arithmetic, tie-breaking, exceptions, ordering, or exact outputs. Practical suitability is false because this is a small serial program and no workload scale, coherent loading mechanism, hardware, resource budget, or advantage evidence is supplied. Benchmark support is independently false: the notice provides HPL algorithm attribution but expressly says the program is not an HPL port, rating, or compliant performance run, and it supplies no quantum benchmark evidence."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The source exposes no finite candidate domain or pure Boolean predicate constituting the solver task. Applying this contract would require an unresolved finite encoding of all solution and intermediate binary64 states, a reversible oracle reproducing elimination and contract-specific exceptions, exact classical verification, a no-solution and failure policy, and resource bounds. None is supplied, and the finite development checks do not establish such an oracle or full-domain correctness."
+      }
+    ],
+    "review_rationale": "The broad solver-body nomination starts at line 10, but the response still offers no migration plan or replacement pivot selector. It correctly keeps unknown analysis and insufficient semantic evidence separate from proof. No predicate is available to check; retain insufficient evidence, not a pass or a claim withdrawal.",
+    "proposed_clarification_not_sent": "请区分供分析的函数范围与实际提出改写的计算。若尚无具体映射，可以只保留分析范围和未决问题；不要把函数边界调整计为语义修复。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "04-self_review",
+    "arm": "self_review",
+    "replicate": 4,
+    "has_plan": false,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 9,
+        "end_line": 26
+      }
+    ],
+    "structural_eligibility": false,
+    "migration_family": null,
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "broad_region_no_plan",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/04-self_review.json",
+    "response_sha256": "17f5cbd5f5e3408efd7ab491faf8b0c8a97c4ff4e9ba242dba5939c15186f177",
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "The only region warranting focused analysis is kernel.py lines 9-26, the dense linear-system solver. It contains the principal cubic work: construction of a private augmented matrix, deterministic partial-pivot selection, elimination, and back substitution. Its required inputs are the validated finite binary64 matrix and rhs; it depends on n=len(rhs), mutable copied rows, Python arithmetic and iteration order, largest-absolute-value pivot selection with the first index winning ties, exact-zero pivot detection, and a final finiteness check. It is activated only by program.py lines 22-27 when mode is solve. Surrounding behavior that must remain intact includes strict validation, no mutation of caller data, inspect mode not solving or necessarily rejecting singularity, ValueError behavior for exact-zero pivots and detected nonfinite solutions, residual recomputation by kernel.py lines 29-38, variable-name ordering, delta calculation, and the caller's diagnostic limit comparison. Structurally, this region is not an instance of either supported family: it solves a continuous dense linear system through ordered floating-point elimination, not a finite-domain predicate search or an explicitly binary combinatorial objective. Turning binary64 solution values and pivot-state evolution into a finite search or QUBO would require an unresolved encoding and would not inherently preserve the specified arithmetic, pivot tie-breaking, exceptions, or exact output behavior. Practical suitability is false because the supplied program is small and serial, while no workload scale, coherent data-loading mechanism, quantum hardware, resource budget, or advantage evidence is supplied. Benchmark support is independently false: the notice provides HPL algorithm attribution but explicitly states that this is not an HPL port, rating, or compliant performance run, and it provides no quantum benchmark evidence."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The solver exposes no finite candidate domain with a pure Boolean predicate. Constructing one would require discretizing all solution components and reversibly reproducing elimination or checking Ax=b under the specified binary64 semantics. No encoding, oracle, no-solution policy, exactness argument, or resource bounds are supplied."
+      }
+    ],
+    "review_rationale": "The full-solver nomination and absence of a migration plan persist. Original pivot semantics are described as obligations but no replacement selector is offered. There is no local formula to check and no previously offered mapping has been withdrawn. Broader eligibility is ungraded.",
+    "proposed_clarification_not_sent": "请区分供分析的函数范围与实际提出改写的计算。若尚无具体映射，可以只保留分析范围和未决问题；不要把函数边界调整计为语义修复。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "04-analysis_only",
+    "arm": "analysis_only",
+    "replicate": 4,
+    "has_plan": false,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 10,
+        "end_line": 26
+      }
+    ],
+    "structural_eligibility": false,
+    "migration_family": null,
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "broad_region_no_plan",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/04-analysis_only.json",
+    "response_sha256": "267fa1d0fd020921e6678a5c908f62b8fa2f0b1e10d25a74e06baa8d1bd385fd",
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "The region warranting focused analysis is the body of solve at kernel.py lines 10-26. The boundary begins at the first executable statement within the function and includes the complete dense linear-system computation: dimension extraction, private augmented-matrix construction, deterministic partial-pivot selection, elimination, back substitution, the final solution-finiteness check, and return. The supplied lexical observation reports dependency inventory status as unknown because its declared region did not satisfy that inventory method's single-statement starting condition; within the observation's stated limits, this neither establishes nor refutes dependencies or reachability. Direct source evidence shows that the region requires the validated finite binary64 matrix and rhs and depends on n=len(rhs), copied mutable rows, Python arithmetic and iteration order, largest-absolute-value pivot selection with the first index winning ties, exact-zero pivot detection, and final finiteness validation. It is reached from program.py lines 22-27 only when mode is solve. Surrounding behavior that must remain intact includes strict request validation, no mutation of caller data, inspect mode not solving and not necessarily rejecting a singular matrix, ValueError on an exact zero pivot or detected nonfinite solution, residual recomputation by kernel.py lines 29-38, variable-name ordering, delta calculation, and comparison of the proposed scaled diagnostic with the caller's residual limit. Structurally, the region is not an instance of either supported migration family: it solves a continuous dense linear system through ordered floating-point elimination, rather than searching an explicitly represented finite domain with a Boolean predicate or optimizing an explicitly binary combinatorial objective. Recasting binary64 solution values and pivot-state evolution as search or QUBO would require unresolved encodings and would not inherently preserve arithmetic, tie-breaking, exceptions, ordering, or exact outputs. Practical suitability is false because this is a small serial program and no workload scale, coherent data-loading mechanism, quantum hardware, resource budget, or advantage evidence is supplied. Benchmark support is independently false: NOTICE.txt provides HPL algorithm attribution but explicitly says the program is not an HPL port, rating, or compliant performance run, and supplies no quantum benchmark evidence."
+      },
+      {
+        "pointer": "/assumptions/4",
+        "quote": "The lexical dependency observation is treated only as an unknown inventory result, not as a sound slice or reachability determination."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The source exposes no finite candidate domain paired with a pure Boolean predicate. Applying this contract would require discretizing every solution component and constructing a reversible oracle that reproduces or verifies the specified binary64 computation, deterministic pivot behavior, exceptions, and exact outputs. No such encoding, oracle, no-solution policy, exactness proof, or resource bounds are supplied."
+      }
+    ],
+    "review_rationale": "The revision moves the broad candidate boundary from the function definition to its first executable statement and correctly treats the inventory result as unknown. It still offers no migration plan or pivot replacement formula. Boundary adjustment is not a checked mapping or semantic repair; retain insufficient evidence and keep eligibility judgments separate.",
+    "proposed_clarification_not_sent": "请区分供分析的函数范围与实际提出改写的计算。若尚无具体映射，可以只保留分析范围和未决问题；不要把函数边界调整计为语义修复。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "04-verification_only",
+    "arm": "verification_only",
+    "replicate": 4,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "unstructured_search",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "contradicted",
+    "full_task_pass": null,
+    "design_category": "explicit_local_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/04-verification_only.json",
+    "response_sha256": "36d7f49afc07c14ebebda455f04e4095111a7418337b2276f76921aeb30b4c44",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "For each elimination column, define a finite search over row indices i in [col,n). Mark exactly the first index whose absolute pivot value is maximal: P(i) holds when no candidate row has a larger abs(rows[k][col]) and no earlier candidate row has an equal value. A Grover-style subroutine could conditionally search for this unique marked index. The surrounding classical loop, exact-zero check, row swap, elimination, back substitution, overflow checks, and reporting remain unchanged."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode candidate row indices in a register and provide coherent read access to the current binary64 rows and column index. A reversible predicate must compare abs(rows[i][col]) against every eligible row, implement the first-index tie rule, handle the non-power-of-two index range, and uncompute all comparison workspace. The representation and reversible implementation of Python binary64 absolute values and comparisons, including signed zero behavior, remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a row index, reject out-of-range results, and classically verify that it is the first index attaining the largest absolute pivot value. If verification fails or the quantum procedure does not return a verified index, use the original classical max operation. After verification, preserve the exact-zero singularity check and deterministic row swap."
+      },
+      {
+        "pointer": "/plan/risks/3",
+        "quote": "Finite development checks would not prove full-domain equivalence for all validated binary64 inputs or evolving elimination states."
+      }
+    ],
+    "review_rationale": "This new plan explicitly defines P(i) by no larger active magnitude and no earlier equal magnitude. Transcribe the two negated existential comparisons literally, with no stated finite-only guard. The response's finite-proof caveat and classical verification/fallback do not supply a different predicate or exclude nonfinite states. Check this newly introduced local claim separately from the initial response, which contained no mapping; do not label an unknown-to-contradicted transition as a measured pass-to-fail regression.",
+    "proposed_clarification_not_sent": "已有可转录的局部规则；无需为提高覆盖而补问。保留其条件、反例或有限通过结果，并分别记录实现、回退和成本的未决义务。",
+    "main_qubo_unverified": false,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "05-initial",
+    "arm": "initial",
+    "replicate": 5,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "combinatorial_optimization",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "qubo_not_constructed",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/reviews/05-initial/review.json",
+    "response_sha256": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate each activated pivot selection as a one-hot QUBO over rows col through n-1. The objective must select the greatest absolute pivot value and, among exactly equal values, the lowest row index. A one-hot penalty must be proven sufficient relative to the full objective range. This formulation covers only kernel.py line 13; singularity checking, row swapping, elimination, back substitution, diagnostics, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the current, dynamically modified values rows[i][col], not merely the original matrix. One binary variable represents selection of each eligible row. An exact order-preserving encoding of nonnegative Python binary64 absolute values plus an index tie-break component is required. Coefficient precision, signed zero, intermediate nonfinite values, state-loading cost, and a penalty bound that cannot change the lexicographic optimum remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Decode a one-hot row index and verify classically that it is exactly the first index attaining Python's maximum absolute pivot value. Invalid, suboptimal, or uncertified samples cannot be accepted. To preserve deterministic behavior, a failure path must perform the classical selection or raise the same applicable error; the subsequent exact-zero check and swap execute unchanged."
+      },
+      {
+        "pointer": "/contract_applicability/1/rationale",
+        "quote": "The finite pivot argmax admits a conditional one-hot binary optimization formulation with lexicographic magnitude/index scoring. Applicability is only structural: exact coefficient encoding, sufficient penalties, feasibility, backend precision, exact-optimum recovery, and end-to-end resources remain obligations, and practical adoption is not supported."
+      }
+    ],
+    "review_rationale": "This draft offers a different supported family: one-hot QUBO pivot optimization. It describes desired lexicographic magnitude/index ordering and a sufficient penalty as obligations but does not supply an objective, coefficient map or proven bound; nonfinite-state encoding is explicitly unresolved. The frozen checker interprets concrete Boolean pivot predicates or ordered comparison scans, not an unspecified QUBO. Translating the stated optimization goal into a reviewer-invented predicate or choosing coefficients would complete the model's missing construction. Keep insufficient evidence and retain the family change as a coverage observation; do not call the alternative family incorrect, passed, withdrawn or repaired. Verification/fallback and the full hybrid plan remain unexecuted.",
+    "proposed_clarification_not_sent": "若继续主张该QUBO，请给出变量域、目标及系数的构造、约束与罚项界、解码和并列规则、输入表示及适用条件；未构造的部分保持未知，不要求改成另一家族。",
+    "main_qubo_unverified": true,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "05-self_review",
+    "arm": "self_review",
+    "replicate": 5,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "combinatorial_optimization",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "qubo_not_constructed",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/05-self_review.json",
+    "response_sha256": "58ae268bdbd473062ff6fd15d2d4f83277426117f32c4a1b4767abd2e9b835a1",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally represent each execution of pivot selection as a one-hot QUBO over row indices col through n-1. The objective must select the row with greatest absolute current pivot value and select the lowest index when values are exactly equal. Feasibility penalties must be proven sufficient over the complete objective range. Only line 13 is replaced conditionally; singularity checking, swapping, elimination, back substitution, residual calculation, exceptions, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the dynamically updated binary64 values rows[i][col] and one binary selection variable for each eligible row. An exact order-preserving representation of Python absolute-value and comparison behavior is required, together with a lower-priority index term that cannot outrank any unequal magnitudes. The encoding must account for signed zero, coefficient precision, possible nonfinite intermediate state, data loading, ancillas, and embedding."
+      },
+      {
+        "pointer": "/plan/rationale",
+        "quote": "This is a conditional structural formulation, not an adoption recommendation. Exactness, feasibility, encoding precision, and resource obligations remain unresolved."
+      },
+      {
+        "pointer": "/contract_applicability/1/rationale",
+        "quote": "The finite pivot argmax conditionally admits a one-hot binary optimization with exact magnitude ordering and index tie-breaking. This establishes only structural applicability; coefficient construction, penalty sufficiency, feasibility, backend precision, exact-optimum recovery, and end-to-end resources remain unresolved."
+      }
+    ],
+    "review_rationale": "The one-hot QUBO remains an obligation-level sketch: exact ordering, lower-priority tie terms and sufficient penalties are required, but objective coefficients, bounds and nonfinite encoding are unspecified. The frozen pivot predicate/scan checker cannot verify this unconstructed optimization. Retain insufficient evidence without rejecting the allowed alternative family or supplying missing coefficients.",
+    "proposed_clarification_not_sent": "若继续主张该QUBO，请给出变量域、目标及系数的构造、约束与罚项界、解码和并列规则、输入表示及适用条件；未构造的部分保持未知，不要求改成另一家族。",
+    "main_qubo_unverified": true,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "05-analysis_only",
+    "arm": "analysis_only",
+    "replicate": 5,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "combinatorial_optimization",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "ambiguous",
+    "evaluation_status": "ambiguous_interpretation",
+    "full_task_pass": null,
+    "design_category": "ambiguous_operator",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/05-analysis_only.json",
+    "response_sha256": "3c9309bae95b8d7fde5a0b5cd7f5ea9b093de6d389a20631989482cd5e950a84",
+    "anchors": [
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "At a structural level, the finite row-index domain admits a unique Boolean predicate: index i is marked exactly when its magnitude is no smaller than every later candidate and strictly greater than every earlier candidate. A reversible oracle would have to load the current column, compare i against every competing row using exact binary64 absolute-value ordering, uncompute all workspace, and preserve signed-zero and tie semantics. Classical verification and a justified failure or fallback policy would remain mandatory. Because one oracle evaluation already requires comparisons against the full candidate set and no coherent-access construction or resource evidence is supplied, this applicability does not imply practical suitability."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the current augmented-row values rows[i][col] produced from matrix and rhs and mutated by all preceding swaps and elimination updates. Use one binary decision variable per eligible row. An exact encoding of Python binary64 absolute-value ordering, including equal values and signed zero, and an exact index tie-break are required. A possible abstract construction ranks each finite binary64 magnitude, scales that rank above the complete index range, and uses the row index as the secondary term. The realizability and cost of those integer ranges, coefficient precision, state loading, intermediate nonfinite handling, ancillary workspace, and a sufficient feasibility penalty are unresolved."
+      },
+      {
+        "pointer": "/plan/risks/3",
+        "quote": "A nonfinite intermediate may not have a valid proposed encoding and must not silently alter the program's eventual exception behavior."
+      }
+    ],
+    "review_rationale": "The main QUBO remains unspecified and is not scored. However, this revision newly claims Grover applicability and explicitly gives a secondary pivot predicate in contract_applicability[0]: no smaller than each later magnitude, and strictly greater than every earlier magnitude. Preserve two readings of 'no smaller': >= or literal not-<, which differ for NaN. The QUBO paragraph's finite magnitude ranking is not an admission guard for this separate Grover claim. No such guard is stated, so use True. Results apply only to this secondary explicit pivot relation, not to rejection of the QUBO plan or whole task.",
+    "proposed_clarification_not_sent": "请用明确运算符、量词范围和状态适用条件替代有多种解释的比较措辞；说明声明的是主要方案还是补充主张。不要由审核者代选一种解释。",
+    "main_qubo_unverified": true,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "05-verification_only",
+    "arm": "verification_only",
+    "replicate": 5,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "combinatorial_optimization",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "unsupported",
+    "evaluation_status": "insufficient_evidence",
+    "full_task_pass": null,
+    "design_category": "qubo_not_constructed",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/05-verification_only.json",
+    "response_sha256": "6ce0363effeba6ddb20a7bcf406e6cc7684da5807badbfca562e80b968974f23",
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally represent each pivot selection as a one-hot QUBO over row indices col through n-1. The objective must reproduce Python's selection of the first index attaining the greatest absolute current pivot value. A sufficient one-hot penalty and an exact magnitude-plus-index ordering must be derived and proved for every state admitted at the hybrid boundary. Only line 13 is replaced conditionally; singularity detection, swapping, elimination, back substitution, residual calculation, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the dynamically mutated values rows[i][col], together with row indices, rather than the original matrix alone. One binary decision variable denotes each eligible row. An order-preserving representation of Python binary64 absolute-value comparisons and first-index tie behavior is required. The handling of signed zero, NaN or infinity produced by intermediate arithmetic, coefficient precision and range, state preparation, and penalty sufficiency is unresolved. Any guarded classical path for states outside the encoding would require a full-domain proof that its classification and behavior preserve the original program."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Decode a one-hot row index and verify classically that it equals Python max(range(col, n), key=lambda i: abs(rows[i][col])). Invalid, infeasible, suboptimal, or uncertified samples cannot be used. A fallback or failure policy must preserve the same pivot, subsequent exact-zero check, exception behavior, floating-point operation order, and outputs; merely declaring fallback does not establish this equivalence."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The row indices form a finite domain, and a predicate identifying the first maximum can be described. However, it requires coherent access to every current pivot, exact binary64 comparisons and tie handling, a reversible construction, and a deterministic success or no-error policy. None of these resource or semantic obligations is demonstrated, so applicability remains unresolved."
+      }
+    ],
+    "review_rationale": "The main one-hot QUBO still lacks concrete coefficients and penalty bounds; its all-state encoding and any admission guard are explicitly unresolved. The original Python max appears as the classical verification target, not as a new comparison recurrence. Grover applicability also remains unspecified. Neither a predicate/scan nor a concrete optimization is available for the frozen local checker; retain insufficient evidence and do not infer a finite guard or repair from the added caveats.",
+    "proposed_clarification_not_sent": "若继续主张该QUBO，请给出变量域、目标及系数的构造、约束与罚项界、解码和并列规则、输入表示及适用条件；未构造的部分保持未知，不要求改成另一家族。",
+    "main_qubo_unverified": true,
+    "review_status": "AI_REVIEW_PENDING"
+  },
+  {
+    "slot": "05-analysis_and_verification",
+    "arm": "analysis_and_verification",
+    "replicate": 5,
+    "has_plan": true,
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "structural_eligibility": true,
+    "migration_family": "combinatorial_optimization",
+    "decision": "REMAIN_CLASSICAL",
+    "binding_resolution": "transcribed",
+    "evaluation_status": "finite_guarded_pass",
+    "full_task_pass": null,
+    "design_category": "explicit_local_rule",
+    "review_path": "pilot/enhancement/state-workflow-v0.3/campaign/final-bindings/05-analysis_and_verification.json",
+    "response_sha256": "3d2ea8fbd8934f9f63568e673907cbccf1cacd79a3d58defdf7dc9d5bb692eb6",
+    "anchors": [
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "For finite comparable pivots, a predicate could mark index i when its magnitude exceeds every earlier magnitude and is at least every later magnitude. However, the supplied material does not demonstrate a reversible implementation of all required binary64 comparisons, coherent access to the dynamically mutated rows state, nonfinite-state handling, resource bounds, or a deterministic error policy. Applicability therefore remains unresolved."
+      },
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally replace each execution of the pivot argmax with a one-hot QUBO over indices col through n-1. For finite current pivot magnitudes, an exact order key K for each nonnegative Python binary64 abs(rows[i][col]) could define a lexicographic objective such as minimizing -(m+1)*K+i, where m=n-col, so magnitude dominates and the lowest index wins exact ties. Add a one-hot penalty proven larger than the complete feasible-objective range. This formulation covers only line 13; the zero-pivot check, swap, elimination, back substitution, overflow behavior, residual diagnostics, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode n, col, and the current augmented rows state produced at line 11 and mutated by earlier executions of lines 16-20. One binary variable denotes each eligible row. The implementation must define an exact order-preserving encoding of finite absolute binary64 values, including subnormals and signed-zero behavior, and must not round coefficients in a way that changes the selected index. Nonfinite intermediate candidate values require a semantics-preserving classical path because a total finite order encoding would not reproduce Python comparison behavior automatically. Coefficient construction, state loading, ancillary workspace, and a sufficient penalty bound remain unresolved."
+      },
+      {
+        "pointer": "/plan/risks/3",
+        "quote": "Intermediate infinities or NaNs are not covered by the finite order-key formulation and must not alter eventual exception behavior."
+      }
+    ],
+    "review_rationale": "The main finite order-key QUBO and its penalty/encoding remain outside this predicate checker. Separately, contract_applicability[0] explicitly states a finite-pivot Grover predicate: exceed every earlier magnitude and be at least every later magnitude. Bind only this conditional local relation, even though practical/reversible applicability remains unresolved. The finite guard is explicit; nonfinite states are sent to a declared classical path in the plan, which is not executed or proved here. A guarded finite pass must not be reported as validation of the QUBO, whole-domain repair or established Grover deployment.",
+    "proposed_clarification_not_sent": "已有可转录的局部规则；无需为提高覆盖而补问。保留其条件、反例或有限通过结果，并分别记录实现、回退和成本的未决义务。",
+    "main_qubo_unverified": true,
+    "review_status": "AI_REVIEW_PENDING"
+  }
+]

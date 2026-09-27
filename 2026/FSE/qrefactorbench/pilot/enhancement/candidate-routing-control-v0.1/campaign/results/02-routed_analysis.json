@@ -1,0 +1,20 @@
+{
+  "slot": "02-routed_analysis",
+  "replicate": 2,
+  "arm": "routed_analysis",
+  "mother_case": "lit-009",
+  "usage": [
+    {
+      "input_tokens": 21501,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2213,
+      "reasoning_output_tokens": 655
+    }
+  ],
+  "model_seconds": 44.613,
+  "task_pass": null,
+  "response_sha256": "a96ad8d6081eafe0fb6b02afc92a4ee949ad4a58ee17137916610012d603a223",
+  "status": "valid_response",
+  "validation_errors": []
+}

@@ -1,0 +1,52 @@
+{
+  "response_sha256": "5205d4d68361de406c98b7ea223ffc8133261fc230409f1ff63545fed7c5b9ef",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 30.307,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:39:53.950696+00:00",
+  "review_submitted_utc": "2026-09-26T21:40:24.257733+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "5205d4d68361de406c98b7ea223ffc8133261fc230409f1ff63545fed7c5b9ef",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditional formulation for the pivot-selection expression only. Input domain: at elimination column col, integer indices col through n-1 and the corresponding current binary64 values rows[i][col]. Preconditions for quantum admission are n > 0, 0 <= col < n, every active-column value is finite, coherent access to the dynamically updated values is available, and reversible absolute-value and comparison operations exactly reproduce Python binary64 behavior. Define the reference reduction as: best = col; for i = col + 1, col + 2, ..., n - 1, if abs(rows[i][col]) > abs(rows[best][col]) then best = i; otherwise leave best unchanged; after the final index, return best. Equality therefore retains the earlier index, matching Python max's first-index tie rule, including ties between signed zeros. Define a Boolean predicate P(k) that is true exactly when k equals the result of that reduction. Prepare the valid index domain, use a reversible implementation of P as the unique-marked-state oracle, and apply a Grover-style search to propose k. Traversal terminates after index n-1; the oracle must uncompute all reduction workspace. This formulation may require linear comparisons inside every oracle call and therefore does not establish a speedup."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode col, n, a candidate index k, the active values rows[col:n][col], a best-index register initialized to col, binary64 value/work registers, and comparison ancillas. The relevant state is the augmented row array created at kernel.py line 11 after all swaps and elimination updates from earlier columns. Valid-index preparation for a non-power-of-two domain, coherent loading of changing row data, exact reversible IEEE-754 absolute value and ordered greater-than behavior, signed-zero handling, ancilla cleanup, and physical gate decomposition remain unspecified. Because elimination can produce nonfinite intermediate row entries, the quantum path is not admitted when any active value is nonfinite unless an exact reversible model of Python's order-sensitive NaN and infinity comparison behavior is supplied."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "The quantum output is one measured row index k. Classically compute verified_best using the exact reference reduction: initialize verified_best = col; traverse i from col + 1 through n - 1 in increasing order; replace verified_best only when abs(rows[i][col]) > abs(rows[verified_best][col]); return after the last index. Accept k only if k == verified_best. On failed measurement, failed verification, unavailable encoding, unmet precondition, nonfinite active data, insufficient resources, or any unsupported backend behavior, use verified_best from the classical reduction. The empty system performs no pivot selection because the surrounding range(n) loop has zero iterations. After an accepted or fallback index is obtained, preserve the exact-zero check, row swap, elimination order, back substitution, overflow exceptions, solution ordering, residual calculation, and report construction unchanged."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "Conditionally applicable to line 13 because the remaining row indices form a finite domain and the explicit increasing-index reduction defines a unique first-argmax predicate. Admission requires finite active values, exact reversible binary64 operations, coherent access to current row state, workspace uncomputation, deterministic classical verification, and fallback. Applicability does not imply suitability or advantage."
+      }
+    ],
+    "resolution": "transcribed",
+    "rationale": "The primary proposed quantum predicate is equality to an explicitly initialized, increasing-order, strict-greater recurrence. Its formulation and applicability explicitly require every active value finite, so retain that guard and exclusions. Output decoding separately gives the same classical reduction and fallback for nonfinite or unavailable cases; this is a declared fallback, not executed end-to-end verification or permission to remove the primary plan's guard.",
+    "interpretations": [
+      {
+        "id": "finite_ordered_strict_gt",
+        "meaning": "First-index strict-greater ordered scan on explicitly finite active values.",
+        "mode": "ordered_scan",
+        "expression": "values[candidate] > values[incumbent]",
+        "guard": "all(isfinite(values[j]) for j in indices)",
+        "outside_guard": "classical_fallback_declared"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

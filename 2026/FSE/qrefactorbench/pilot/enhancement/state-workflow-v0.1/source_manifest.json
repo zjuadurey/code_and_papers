@@ -1,0 +1,40 @@
+{
+  "repository": "https://github.com/bojieli/ai-agent-book",
+  "commit": "04c88c53df962eb4375a0fad9ec041066529b358",
+  "files": [
+    {
+      "path": "book/chapter1.md",
+      "sha256": "03f1c8e82fbb112758e0ed85b147b3aaef3083b7389c6d9aac0d5abe3c0474c5"
+    },
+    {
+      "path": "book/chapter7.md",
+      "sha256": "30bbc29c9826d0223bd9d10393378f3f01970d9af88b9f9d2115dfaca54218e8"
+    },
+    {
+      "path": "book/chapter9.md",
+      "sha256": "855e8b9af9cb72f891452542825fa5e2886e763af0429c715fc7d3a7f5a6592d"
+    },
+    {
+      "path": "chapter1/README.md",
+      "sha256": "6281b1af8d4c84f1e1ec2f2228a36a548056659881ec5f0efc44de318b919509"
+    },
+    {
+      "path": "chapter7/README.md",
+      "sha256": "b1b6f8bd5288566e1d82789239ea5f25ad2dbdc41aac9e26b2bf8f7348652039"
+    },
+    {
+      "path": "docs/EXPERIMENT_STATUS.md",
+      "sha256": "abce098d4dc286d91d22be10e28001753f1e3841ec37a73627b0837469cde456"
+    },
+    {
+      "path": "chapter1/context/README.md",
+      "sha256": "843876829fc0baa77766e227eccbe3a6ea274aaa6eacce9f015770088e1b934a"
+    },
+    {
+      "path": "chapter1/EXPERIMENT_LEDGER.md",
+      "sha256": "669f95916b031a285b31a569cb70fbefda095983196bbd7b9a9b2ad194e52ce7"
+    }
+  ],
+  "access_date": "2026-09-25",
+  "usage": "Read-only reference; no external implementation executed or copied."
+}

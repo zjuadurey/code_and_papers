@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 13,
+      "end_line": 13
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "pivot_selection_argmax",
+    "migration_family": "unstructured_search",
+    "formulation": "Grover-style marked-state search over row indices i in [col, n) for the unique index that satisfies P(i): abs(rows

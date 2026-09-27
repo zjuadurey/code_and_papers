@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/contract_applicability/1/rationale"],
+  "rationale": "This draft offers a different supported family: one-hot QUBO pivot optimization. It describes desired lexicographic magnitude/index ordering and a sufficient penalty as obligations but does not supply an objective, coefficient map or proven bound; nonfinite-state encoding is explicitly unresolved. The frozen checker interprets concrete Boolean pivot predicates or ordered comparison scans, not an unspecified QUBO. Translating the stated optimization goal into a reviewer-invented predicate or choosing coefficients would complete the model's missing construction. Keep insufficient evidence and retain the family change as a coverage observation; do not call the alternative family incorrect, passed, withdrawn or repaired. Verification/fallback and the full hybrid plan remain unexecuted.",
+  "interpretations": []
+}

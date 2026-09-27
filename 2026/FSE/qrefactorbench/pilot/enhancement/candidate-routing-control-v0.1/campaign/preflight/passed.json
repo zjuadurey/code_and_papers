@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "protocol_sha256": "c0f572881fe9ab3eb8d2b3c53fa7ca150b5365273acaf81ba21b613650abeb6d",
+  "cli_version": "codex-cli 0.156.1",
+  "cli_sha256": "0b2e9301d6100dddda3b9d5c80ebaeaa3a2f1962388f2f36f6b96a9f08b1f33f",
+  "checks": [
+    {
+      "check": "filesystem",
+      "exit_code": 0
+    },
+    {
+      "check": "features",
+      "exit_code": 0
+    },
+    {
+      "check": "prompt-input",
+      "exit_code": 0
+    },
+    {
+      "check": "request-capture",
+      "exit_code": 0
+    },
+    {
+      "check": "exec-help",
+      "exit_code": 0
+    }
+  ],
+  "model_inference_calls": 0,
+  "real_credentials_read": false,
+  "network": "unshare-net; no external interfaces mounted",
+  "filesystem": {
+    "work_files": [
+      "prompt.txt"
+    ],
+    "forbidden_visible": [],
+    "environment_keys": [
+      "HOME",
+      "LANG",
+      "PATH",
+      "PWD"
+    ],
+    "pwd": "/work",
+    "network_interfaces": []
+  },
+  "prompt_sha256": "2f3d6752afd73b27ae5edb0f30e845c303031461057f77f51fe9acb6023a17e6",
+  "model_visible_messages": 3,
+  "feature_overrides_not_reflected": [
+    "unified_exec"
+  ],
+  "request_capture": {
+    "captured": true,
+    "exit_code": 1,
+    "tools": [],
+    "model": "gpt-5.6-sol",
+    "reasoning": {
+      "effort": "medium",
+      "context": "all_turns"
+    },
+    "model_inference_calls": 0,
+    "endpoint": "local rejecting HTTP sink in unshared network namespace"
+  },
+  "limits": "Local sink replaces provider/auth routing and disables wire compression; no inference. Built-in instructions may remain. No account/service availability tested; live events still checked for tool use."
+}

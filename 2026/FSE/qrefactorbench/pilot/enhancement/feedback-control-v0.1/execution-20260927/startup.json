@@ -1,0 +1,8 @@
+{
+  "utc": "2026-09-26T20:58:49.516908+00:00",
+  "protocol_sha256": "9ae6879a5555d8f8abbeec001c0fdd873fa26b3e3cea48739b310804681095bb",
+  "protected_files": 2921,
+  "state": "ready_call",
+  "cli": "/home/audrey/.codex/packages/standalone/releases/0.156.1-x86_64-unknown-linux-musl/bin/codex",
+  "new_calls_so_far": 0
+}

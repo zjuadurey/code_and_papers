@@ -1,0 +1,39 @@
+{
+  "response_sha256": "ba04e2314ce14c94d2bda7735740aee3e8c08bd6190fb75ac4d8f42bdc138f4c",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 15.124,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:15:32.985933+00:00",
+  "review_submitted_utc": "2026-09-26T21:15:48.109471+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "ba04e2314ce14c94d2bda7735740aee3e8c08bd6190fb75ac4d8f42bdc138f4c",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "The region warranting focused analysis is kernel.py lines 9-26, which contains the dense linear-system solver and its principal cubic work: creation of a private augmented matrix, deterministic partial-pivot selection, elimination, and back substitution. It requires the already validated finite binary64 matrix and rhs and depends on n=len(rhs), the copied mutable rows, Python binary64 arithmetic and iteration order, largest-absolute-value pivot selection with the first index winning ties, exact-zero pivot detection, and the final solution-finiteness check. It is activated only by program.py lines 22-27 when mode is solve. Behavior outside the region that must remain intact includes strict request validation, preservation of caller inputs, inspect mode not invoking the solver or necessarily rejecting singular matrices, ValueError behavior for exact zero pivots and detected numerical overflow, residual computation in kernel.py lines 29-38, variable-name ordering, delta computation, and comparison of the proposed scaled backward error with residual_limit. The solver is not structurally an instance of either supported migration family: it performs ordered floating-point elimination for a continuous dense system, rather than searching an explicit finite candidate domain with a supplied Boolean predicate or optimizing an explicit binary combinatorial objective. Although binary64 has a finite representation, recasting every possible solution or execution trace as a search space would be an unresolved artificial reformulation, not evidence that the source computation has the required search structure. Likewise, discretizing the system into a QUBO would change or leave unproved the specified arithmetic, pivot tie-breaking, exact-zero and overflow exceptions, and output semantics. Practical suitability is false because this is a small serial program and no workload scale, coherent data-access mechanism, quantum hardware, resource budget, or advantage evidence is supplied. Benchmark support is independently false: NOTICE.txt provides HPL algorithm attribution but explicitly says the software is not an HPL port, rating, or compliant performance run, and no quantum benchmark evidence is supplied."
+      },
+      {
+        "pointer": "/computational_intent",
+        "quote": "Solve a validated dense real linear system using deterministic partial-pivoted Gaussian elimination and back substitution, enabling subsequent classical residual and proposal reporting."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The source exposes neither a candidate-search domain nor a pure Boolean predicate. Treating binary64 assignments as a finite domain would require an unresolved encoding and a reversible oracle that reproduces the specified solve semantics, together with exactness, no-solution, feasibility, verification, and resource arguments that are not supplied."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The broad function nomination and null plan persist. Original pivot behavior is mentioned only as a preservation requirement; no replacement selector is proposed. Keep insufficient evidence, not a pass or withdrawal of an earlier local mapping. Rejection of the whole solver does not settle the separate eligibility of its pivot subregion.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

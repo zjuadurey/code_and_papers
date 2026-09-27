@@ -1,0 +1,9 @@
+{
+  "focused_tests_passed": 31,
+  "regression_tests_passed": 49,
+  "five_packets_byte_identical_regeneration": true,
+  "overwrite_refused": true,
+  "protected_files_unchanged": 3298,
+  "local_links_checked": 219,
+  "new_model_calls": 0
+}

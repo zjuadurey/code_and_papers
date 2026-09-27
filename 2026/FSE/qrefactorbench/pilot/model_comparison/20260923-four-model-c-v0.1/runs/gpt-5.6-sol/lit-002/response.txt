@@ -1,0 +1,79 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "context-002",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "inspection.py",
+      "function": "min_vertex_cover_bruteforce",
+      "start_line": 77,
+      "end_line": 91
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact-minimum-vertex-cover-with-input-order-tiebreak",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditionally replace only the exhaustive subset search with a minimum-vertex-cover QUBO. For station variables x_i, penalize every uncovered edge with P*(1-x_u)*(1-x_v). Encode the primary objective of minimizing sum_i x_i and a strictly subordinate objective that selects the lexicographically smallest tuple of selected input positions. One possible exact hierarchy uses superincreasing input-order weights, minimizing C*sum_i x_i-sum_i 2^(n-1-i)*x_i with C greater than the entire secondary range and P greater than the entire possible nonconstraint objective range. The coefficient hierarchy, signs, constants, and sufficient bounds must be derived and checked for every n, including n=0 and graphs with no edges.",
+    "input_encoding": "After prepare_request has validated and normalized the request, encode one binary variable per station and construct edge-penalty terms from the sorted unique integer endpoint pairs. If converted to Ising form, explicitly apply x=(1-Z)/2 and retain all constants and coefficients. Graph loading, coefficient construction, parameter preparation, ancillas, and precision costs are not free.",
+    "quantum_algorithm_family": "QAOA-style QUBO/Ising sampling, conditionally followed by mandatory classical validation and an exact classical fallback",
+    "output_decoding": "Decode every measured bit string to a station-index set. Reject candidates that fail to cover every normalized edge, recompute selected cardinality, and compare input-position tuples classically. Return a candidate only if exact minimum cardinality and the required lexicographic tie rule are certified; otherwise invoke the existing exhaustive solver. Pass the resulting set unchanged to describe_plan so station ordering, earliest-selected-endpoint assignment, empty checklists, uncovered reporting, and comparison behavior remain classical and deterministic.",
+    "assumptions": [
+      "The quantum region receives only validated n and normalized, deduplicated, sorted edges produced by prepare_request.",
+      "At most 16 binary station variables are required by the supplied input domain.",
+      "The exact lexicographic tie rule can be represented with sufficient coefficient range and backend precision.",
+      "Classical verification and fallback are available because sampling alone does not certify an exact optimum.",
+      "All request validation, current-plan assessment, reporting, and CLI behavior remain outside the migrated region."
+    ],
+    "risks": [
+      "QAOA-style sampling supplies no stated guarantee of finding the exact optimum or the required unique tie-broken result.",
+      "Superincreasing tie-break coefficients and dominating constraint penalties may require unfavorable dynamic range or precision.",
+      "Certifying global optimality can require exhaustive classical work, eliminating any computational benefit.",
+      "State preparation, graph-dependent coefficient construction, variational optimization, measurements, and decoding may dominate this at-most-16-variable problem.",
+      "A failed or approximate sample must never produce an uncovered proposal, a nonminimum station count, or a changed tie rule."
+    ],
+    "expected_resource_characteristics": {
+      "logical_decision_variables": "n, with 0 <= n <= 16",
+      "additional_workspace": "Unknown; depends on the chosen Ising/QAOA implementation and connectivity mapping",
+      "interaction_terms": "At least one graph-dependent quadratic penalty term per unique connection, plus objective and tie-break terms",
+      "coefficient_range": "Potentially exponential in n for a direct superincreasing encoding of the lexicographic tie rule",
+      "circuit_depth": "Unknown",
+      "shots": "Unknown and necessarily greater than zero for sampling",
+      "classical_overhead": "QUBO construction, parameter optimization, feasibility and objective recomputation, tie verification, and exact fallback",
+      "hardware_backend": "Unspecified"
+    },
+    "rationale": "This is a conditional formulation only. It identifies how the binary optimization could be represented but does not establish practical suitability, exact QAOA behavior, adequate hardware precision, or an advantage over the existing bounded enumeration."
+  },
+  "rationale": "The defensible candidate is inspection.py lines 77-91. It enumerates station subsets by increasing cardinality and, through itertools.combinations over nodes in input-position order, returns the first covering subset. That implements both minimum vertex-cover cardinality and the contract's lexicographically smallest tuple tie rule. Its required inputs are n and the normalized unique edge list: prepare_request lines 7-38 validates the entire request, maps names to input positions, normalizes each edge to i<j, deduplicates it, sorts it, and supplies n through len(names). The candidate is activated unconditionally for every successfully validated review_inspections call at program.py line 14, including empty stations, empty edges, disconnected stations, and duplicate or reversed connection declarations after normalization. Structural eligibility is true because selection is a finite binary constrained optimization with an explicit coverage predicate and objective. Practical suitability is false: n is capped at 16, the current exact enumeration has a small absolute search space, the bound is expressly not a measured workload, and no latency, frequency, hardware, or deployment-cost evidence is supplied. Exact optimum and deterministic lexicographic tie-breaking are mandatory, while QAOA-style execution is probabilistic and would require verification or fallback. Benchmark support is false because the supplied material contains no timings, workload measurements, quantum resource estimates, backend results, or comparative benchmarks. The surrounding behavior must remain intact: validation must finish or raise ValueError without request mutation; current coverage must be assessed independently; describe_plan must preserve input-order selections, normalized connection order, earliest selected endpoint assignment, empty checklists, and honest uncovered lists; compare_plans must preserve additions, removals, deltas, newly covered connections, and every normalized-order reassignment; and CLI success and failure behavior must not change.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Find an exact minimum-cardinality set of station endpoints covering every normalized connection, breaking equal-cardinality ties by the lexicographically smallest tuple of station input positions.",
+  "assumptions": [
+    "Only the optimization kernel at inspection.py lines 77-91 is considered for migration.",
+    "prepare_request remains the authoritative source of validated station indices and normalized edges.",
+    "The software contract requires exact optimality and deterministic tie-breaking; approximation is not permitted.",
+    "No quantum hardware characteristics or performance targets may be inferred from the 16-station input limit."
+  ],
+  "risks": [
+    "Quantum sampling may return a feasible but nonoptimal cover or the wrong equal-cardinality cover.",
+    "A penalty chosen too small can make uncovered assignments energetically preferable.",
+    "Insufficient coefficient precision can destroy cardinality priority or the lexicographic tie rule.",
+    "Classical exact certification or fallback can erase any prospective speed benefit.",
+    "Moving validation, reporting, ownership assignment, or change calculation into the quantum boundary could alter exceptions, ordering, or effects."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The subset domain is finite and edge coverage is a pure Boolean predicate, so Grover-style primitives are structurally expressible. Preserving the complete contract would nevertheless require layered exact-cardinality existence searches, reversible access to every edge, explicit no-solution handling, and additional searches or classical logic to identify the lexicographically first optimum. Probabilistic failure and oracle/resource costs remain unresolved, so this is not the selected migration family or evidence of suitability."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "Station choices are binary, and uncovered-edge constraints, cardinality minimization, and an input-order tie objective can be written explicitly as QUBO/Ising terms. Applicability is conditional on proving penalty sufficiency, coefficient signs and constants, lexicographic encoding, backend precision, feasible decoding, and exact-optimum handling. QAOA does not itself satisfy the required exactness guarantee."
+    }
+  ]
+}

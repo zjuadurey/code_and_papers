@@ -1,0 +1,80 @@
+[
+  {
+    "initial": "01-initial",
+    "declared_region": {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 12,
+      "end_line": 16
+    },
+    "legacy_status": "inventory_returned",
+    "legacy_reason": null,
+    "syntax_at_start": [
+      {
+        "type": "For",
+        "end_line": 20
+      }
+    ],
+    "proposed_routing": "retain_original_span_and_offer_syntax_outline"
+  },
+  {
+    "initial": "02-initial",
+    "declared_region": {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 13,
+      "end_line": 13
+    },
+    "legacy_status": "inventory_returned",
+    "legacy_reason": null,
+    "syntax_at_start": [
+      {
+        "type": "Assign",
+        "end_line": 13
+      }
+    ],
+    "proposed_routing": "retain_original_span_and_offer_syntax_outline"
+  },
+  {
+    "initial": "03-initial",
+    "declared_region": null,
+    "legacy_status": "empty_inventory_from_empty_nomination",
+    "proposed_routing": "public_function_outline_only_no_automatic_nomination"
+  },
+  {
+    "initial": "04-initial",
+    "declared_region": {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 9,
+      "end_line": 26
+    },
+    "legacy_status": "unknown",
+    "legacy_reason": "Candidate must start at a single statement",
+    "syntax_at_start": [
+      {
+        "type": "FunctionDef",
+        "end_line": 26
+      }
+    ],
+    "proposed_routing": "retain_original_span_and_offer_syntax_outline"
+  },
+  {
+    "initial": "05-initial",
+    "declared_region": {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 13,
+      "end_line": 13
+    },
+    "legacy_status": "inventory_returned",
+    "legacy_reason": null,
+    "syntax_at_start": [
+      {
+        "type": "Assign",
+        "end_line": 13
+      }
+    ],
+    "proposed_routing": "retain_original_span_and_offer_syntax_outline"
+  }
+]

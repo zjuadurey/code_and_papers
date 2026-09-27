@@ -1,0 +1,6 @@
+{
+  "resolution": "transcribed",
+  "anchor_pointers": ["/plan/formulation", "/plan/assumptions/2", "/plan/output_decoding", "/risks/3"],
+  "rationale": "The formulation now gives strict comparison against earlier values and non-strict comparison against later values, explicitly separating nonfinite intermediate states as requiring a different, unresolved construction. Bind the stated finite-active-column relation only. The generic verification/retry/fallback declaration does not give an executable nonfinite admission/fallback branch, so outside-guard behavior stays unresolved. A conditional pass cannot be treated as whole-domain repair. The assertion that nonfinite states are not covered by reported finite checks is not established by the supplied insufficient-evidence summary; finite test count must not be confused with finite-valued states.",
+  "interpretations": [{"id": "finite_earlier_gt_later_ge", "meaning": "For finite active values, candidate strictly exceeds each earlier value and is at least each later value.", "mode": "predicate", "expression": "all(values[i] > values[j] for j in indices if j < i) and all(values[i] >= values[k] for k in indices if k > i)", "guard": "all(isfinite(values[k]) for k in indices)", "outside_guard": "unresolved"}]
+}

@@ -1,0 +1,44 @@
+{
+  "response_sha256": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 1.0,
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate each pivot selection as a finite search over row indices i in [col,n). Mark exactly the first index whose absolute pivot entry is maximal: abs(rows[i][col]) is at least every remaining candidate magnitude, and no earlier remaining index has the same magnitude. This produces the same unique index as Python max with its first-index tie rule."
+      }
+    ],
+    "resolution": "ambiguous",
+    "rationale": "Explicit reviewer transcription; no automatic prose-equivalence proof.",
+    "interpretations": [
+      {
+        "id": "including_self",
+        "meaning": "Execute the explicitly transcribed expression on absolute pivot values.",
+        "mode": "predicate",
+        "expression": "all(values[i] >= values[k] for k in indices) and not any(values[j] == values[i] for j in indices if j < i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      },
+      {
+        "id": "excluding_self",
+        "meaning": "Execute the explicitly transcribed expression on absolute pivot values.",
+        "mode": "predicate",
+        "expression": "all(values[i] >= values[k] for k in indices if k != i) and not any(values[j] == values[i] for j in indices if j < i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      }
+    ]
+  }
+}

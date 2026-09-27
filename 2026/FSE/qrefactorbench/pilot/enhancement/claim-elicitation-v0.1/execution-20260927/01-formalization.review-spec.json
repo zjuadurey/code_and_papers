@@ -1,0 +1,6 @@
+{
+  "resolution": "transcribed",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/plan/risks/2"],
+  "rationale": "The primary plan explicitly constructs reference_first_argmax: initialize at col, traverse remaining indices in increasing order and update only on strict greater-than; its predicate is equality to this traversal. Bind the reference selector on all archived pivot states, including nonfinite values explicitly discussed in input_encoding. Guard True concerns this local reference recurrence, not feasibility or admission of the quantum path: exact reversible construction and routing remain unspecified, and declared fallback is not executed here.",
+  "interpretations": [{"id": "explicit_ordered_strict_gt", "meaning": "First index initialization, increasing traversal, replace only on Python strict greater-than.", "mode": "ordered_scan", "expression": "values[candidate] > values[incumbent]", "guard": "True", "outside_guard": "unresolved"}]
+}

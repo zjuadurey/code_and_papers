@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding"],
+  "rationale": "The primary search plan requests exactly Python's selection and mentions first/tie behavior but supplies no concrete comparison recurrence or predicate. Classical recomputation is a verification/fallback declaration, not a constructed oracle rule. No formula is inferred from the desired output.",
+  "interpretations": []
+}

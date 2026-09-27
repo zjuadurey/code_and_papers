@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/rationale", "/contract_applicability/0/rationale"],
+  "rationale": "Candidate list is empty and plan/family are null. The prose describes classical behavior and rejects proposed replacements; it is not a supplied replacement selector or proof that no eligible subregion exists. Keep no nominated claim separate from correctness or an accepted structural-negative label.",
+  "interpretations": []
+}

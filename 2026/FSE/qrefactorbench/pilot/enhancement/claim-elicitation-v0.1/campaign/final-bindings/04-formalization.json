@@ -1,0 +1,43 @@
+{
+  "response_sha256": "e05628dce0709b967b5ab6240c5204803acd13c7f9e45b6e7835da034c45f759",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 23.186,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:40:50.626217+00:00",
+  "review_submitted_utc": "2026-09-26T21:41:13.811805+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "e05628dce0709b967b5ab6240c5204803acd13c7f9e45b6e7835da034c45f759",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "The nominated region is kernel.py lines 9-26 because it contains the principal cubic computation and therefore warrants focused analysis, although nomination does not imply eligibility for migration. Its input domain is the already validated n-by-n matrix and length-n rhs of finite Python binary64 values. Its preconditions are established by program.py lines 9-18, and it is admitted only when mode equals \"solve\" at program.py lines 22-23; inspect mode does not invoke it and need not detect singularity. Relevant local state consists of n, the private augmented rows copy, loop indices, factors, and the solution vector x, so caller-owned inputs are not mutated. Its concrete behavior is: initialize rows by appending each rhs value to a copied matrix row; for col from 0 through n-1, select the row index in col..n-1 having the largest absolute entry in that column, with Python max traversal preserving the first index on ties; raise ValueError if that selected pivot is exactly zero; swap it into row col; then traverse lower rows and augmented columns in increasing order, updating rows[i][j] by subtracting (rows[i][col]/rows[col][col])*rows[col][j]. Initialize x to n zeros, traverse rows from n-1 down to 0, and compute each x[i] by back substitution. Terminate by raising ValueError if any solution component is nonfinite, otherwise return x; n=0 returns an empty vector. Surrounding behavior that must remain intact includes strict validation, deterministic pivot and traversal order, exact-zero-pivot and detected-overflow exceptions, no input mutation, residual recomputation at kernel.py lines 29-38, variable-name ordering, finite delta calculation, and the diagnostic limit comparison. Structural eligibility is false because this is an ordered continuous dense linear-system calculation, not a source-level finite predicate search or binary combinatorial objective. Although binary64 has a finite representation, manufacturing a search over bit patterns would require an oracle that reproduces or embeds the entire classical solver and would not establish a supported computational formulation. A QUBO conversion would require an unprovided discretization and could alter exact arithmetic, pivot, exception, and output semantics. Practical suitability is separately false because this is a small serial program and no workload scale, coherent data access, hardware, resource budget, or advantage evidence is supplied. Benchmark support is separately false because NOTICE.txt provides only HPL algorithm attribution and expressly says this is not an HPL port, rating, or compliant performance run; no quantum benchmark is supplied. No replacement computation is retained, so plan is null and there are no quantum admission or outside-admission behaviors to specify. A future proposal would first need to establish one of the supported formulations and fully specify its encoding, oracle or objective, exactness, feasibility, tie handling, failure behavior, and resource costs before a non-null plan could be justified."
+      },
+      {
+        "pointer": "/assumptions/4",
+        "quote": "The candidate-region nomination identifies a hotspot for analysis and is not a recommendation to replace it."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The source exposes no candidate-domain search or pure Boolean predicate. Treating all binary64 vectors as candidates would still require an unresolved reversible predicate that reproduces the specified elimination result, including first-index pivot ties, exact-zero detection, arithmetic order, overflow behavior, and the empty-system case. No useful oracle, no-solution rule, exactness proof, or resource bounds are supplied."
+      },
+      {
+        "pointer": "/contract_applicability/1/rationale",
+        "quote": "The source defines no binary decision variables or combinatorial objective, so no applicable variable encoding, QUBO coefficients, constraints, or penalty bound can be constructed from the supplied material. A proposed conversion would have to specify binary encodings for solution and arithmetic state, derive all objective and constraint coefficients, prove a penalty bound sufficient to enforce feasibility, and decode exactly to the contractually required binary64 result and exceptions. Those elements are unspecified, and QAOA supplies no exact-solution guarantee."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The response explicitly nominates the whole solver for analysis while retaining no replacement and a null plan. Extra narration of classical execution is not a proposed local quantum selector and is not checked as one. The generic elicitation did not induce a narrower replacement candidate; do not turn missing nomination into a proven structural-negative label.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/home/audrey/miniconda3/envs/palqo/bin/python",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "pilot/enhancement/state-workflow-v0.2/test_claims.py",
+    "pilot/enhancement/state-workflow-v0.1/test_workflow.py"
+  ],
+  "exit_code": 0
+}

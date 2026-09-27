@@ -1,0 +1,90 @@
+{
+  "date": "2026-09-25",
+  "artifact": "FSE 2027 manuscript draft, empirical data blank",
+  "official_entrypoint": "main.tex",
+  "documentclass": "acmsmall,screen,review,anonymous",
+  "template_version": "acmart 2.16 (2025-08-27)",
+  "standard_font_build": {
+    "status": "blocked_by_missing_environment_dependencies",
+    "missing": [
+      "libertine.sty",
+      "zi4.sty",
+      "newtxmath.sty"
+    ],
+    "installed_dependencies": false,
+    "final_pagination_verified": false
+  },
+  "local_preview": {
+    "status": "compiled",
+    "entrypoint": "local-preview.tex",
+    "substitute_font": "Latin Modern, explicitly marked on first page",
+    "body_pages": 18,
+    "data_availability_pages": 1,
+    "reference_pages": 1,
+    "total_pages": 20,
+    "undefined_citations_or_references": 0,
+    "overfull_boxes": 0,
+    "remaining_warnings": [
+      "Missing standard ACM font packages",
+      "ACM reference-format block suppressed for anonymous draft; publisher metadata remains provisional"
+    ],
+    "not_a_submission_pdf": true
+  },
+  "fresh_directory_compile": {
+    "command": "latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error local-preview.tex",
+    "exit_code": 0
+  },
+  "source_checks": {
+    "referenced_inputs_exist": true,
+    "citation_keys_resolve": true,
+    "bibliographic_records": 13,
+    "conceptual_figure_placeholders": 3,
+    "tables": 11,
+    "research_questions": 6,
+    "experiment_groups": 8,
+    "result_template_rows": 0,
+    "experiment_configuration_unapproved": true
+  },
+  "protected_previous_files": {
+    "checked": 2527,
+    "unchanged": 2525,
+    "changed_only_for_delivery_links": [
+      "PROJECT_STATUS.md",
+      "CHANGELOG.md"
+    ]
+  },
+  "research_execution": {
+    "model_calls": 0,
+    "qpu_calls": 0,
+    "research_tests_rerun": false,
+    "scientific_labels_or_protocols_changed": false
+  },
+  "visual_review": [
+    "First page: anonymous heading, draft preview notice and standard single-column structure",
+    "Result-table page: blank cells, readable labels, no clipping"
+  ],
+  "source_sha256": {
+    "local-preview.tex": "141feb4abc6a825c38c4830033381b20548309506b27b41363dca02a0e820ee1",
+    ".latexmkrc": "752b7d8d751064495ced05b2498f131ee7f41f066f40cfd0baa45f9e11e1c00b",
+    "Makefile": "db8e3593b25e960173caf61c71b33cc3e0e645f7ac00bdff8b0c387b432e3a94",
+    "references.bib": "c4f4a33e99f537923fbcf57de6450d376c039256c801db0f530d68916ae08423",
+    "macros.tex": "56127f6194c054dd263348dc66cbb69f49b277aac344fa4b5750907f405dd35b",
+    "README.md": "ab1fe9eb1ab9fa009162c0688fd073e08205ba913047fafe9d4ae23140eeb4e3",
+    "main.tex": "bb9760f28ce17b86dc0171c538d0993b78f3162ae96f9c2009bf98400f71ebbf",
+    "data/protocol-draft.json": "2585808b5f7c777e3527479f7af2b78fcd7dcddb59ae00b939ea9fea84d28aad",
+    "data/results-template.csv": "e0b33b709f7357f97631338369cbc5520aee207865a786c33335d829b2edefb5",
+    "sections/07-discussion.tex": "574190c67e5f21125bd0e89abc990bc059b26364a66a734e7e3979fb4f316a83",
+    "sections/05-evaluation.tex": "792c2ef8f05f4b501f96654fddb6e08a9ddf03ff3471eec11460161fe75c5986",
+    "sections/01-introduction.tex": "bc1c3ec4f60589719d1ae078b658a244e6050d1736d8e76b7bd1f0f413d010e9",
+    "sections/06-results.tex": "bd5657e636e3d0d3b2077c210630ec8ad5451bbc2b80536f50442a89e64b6b87",
+    "sections/09-conclusion.tex": "ccbcf776ce7618b8ce08b32f6fde52d4a2948dccf99fafa9469a142726aa4b33",
+    "sections/04-method.tex": "d36652f70327c2b4f7e7507dc8755d7b53ba9d3ef311440fabc83e787249967d",
+    "sections/02-problem.tex": "857fd059e4c25e67b30b69a2e474732046f6248ae74906d78c943dc565c4c043",
+    "sections/08-related.tex": "8e5ffc44e7516347a6e13473737fd3634126052c9cf7234957a3ff0b43488621",
+    "sections/03-benchmark.tex": "a0a8afb221d9e8815b61c9c8255817cba8ab9bf78bad4608fd2fdff9484e84e5",
+    "notes/EXPERIMENT_MATRIX.md": "2aa0ece4c1538c8e49f62a6903c63dd96f2a707c116dac7a48f117e52b1c9f2c",
+    "notes/SOURCES.md": "25f8d68e794c1aa89a9e6e88b0b39b03ddba22b9a1917e386c09c50e282bab85",
+    "notes/EVIDENCE_MAP.md": "ab079343b0cfd71d82713625c7fee1fe389c1e5b3ddf85f9236d188b072cc882",
+    "notes/FORMAT_REQUIREMENTS.md": "ffb655a01400767ffcd6c94de0bc66099e29b9af0b5784f3c61f1053293e95b2"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "resolution": "transcribed",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/assumptions/1"],
+  "rationale": "The primary predicate explicitly requires at least every active magnitude and strictly greater than every earlier active magnitude. Translate both universal comparisons literally, including self in every active index. No finite-value admission guard is supplied; nonfinite representation is explicitly unresolved, not excluded. Do not substitute an ordered scan or use the classical verifier to repair this marking predicate.",
+  "interpretations": [{"id": "global_ge_earlier_gt", "meaning": "At least every active value and strictly greater than all earlier values.", "mode": "predicate", "expression": "all(values[i] >= values[j] for j in indices) and all(values[i] > values[j] for j in indices if j < i)", "guard": "True", "outside_guard": "unresolved"}]
+}

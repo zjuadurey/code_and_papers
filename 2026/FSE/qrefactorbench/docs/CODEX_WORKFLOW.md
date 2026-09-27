@@ -55,6 +55,17 @@ standing authorization to repeat an experiment whose approved run has completed.
 
 ## Autonomy and human decisions
 
+2026-09-25补充：[D-032](../DECISIONS.md#d-032-delegated-workflow-development-with-stepwise-explanation)
+记录用户委托Codex选择并推进当前同模型增强工作流与本地实验准备。普通方法/工程选择
+无需逐项交给首次学习agent的用户决定；按“接下来做什么—目的—实际效果”解释进展。
+该委托不改变下方gold/范围/外部状态边界；新调用先准备具体预算和可审核协议。
+
+2026-09-27补充：[D-035](../DECISIONS.md#d-035-delegated-subscription-model-call-budget-for-ongoing-method-work)
+记录用户在批准16次后追加“限额随便用”。后续同方向、现有订阅的模型调用额度已委托，
+不再逐轮请求次数批准；先形成具体协议与上限、验证输入/隔离并记录本条授权依据后执行。
+当前已冻结实验仍按原位置数完成，不事后加样或挑选重跑。下文“新实验需新授权”的要求
+在这一明确范围内由D-035满足；新付费渠道、QPU、gold/研究范围和发布等边界仍保持。
+
 Proceed without routine confirmation for reading, existing tests, schema checks,
 consistency/leakage/provenance audits under existing rules, evidence extraction,
 review preparation, post-hoc comparisons within an approved analysis scope,

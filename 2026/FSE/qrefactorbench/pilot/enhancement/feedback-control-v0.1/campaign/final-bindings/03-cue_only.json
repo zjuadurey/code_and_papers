@@ -1,0 +1,43 @@
+{
+  "response_sha256": "bd302d2ab811f600e5e4c3025ed878bb98f507faacab26af888a786dffea1553",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 14.674,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:15:17.882787+00:00",
+  "review_submitted_utc": "2026-09-26T21:15:32.556607+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "bd302d2ab811f600e5e4c3025ed878bb98f507faacab26af888a786dffea1553",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally replace the classical scan over row indices col through n-1 with a Grover-style maximum-finding procedure over the lexicographically ordered key (absolute pivot value, negative row index). The first-index tie rule requires selecting the smallest index among equal maximum absolute values. The result must be classically verified before the unchanged exact-zero check and row swap."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode each candidate row index in a finite basis-state register and provide coherent access to rows[i][col]. A reversible binary64 absolute-value and comparison oracle, including signed zero, must implement ordering by descending absolute value and then ascending index. The costs and feasibility of loading the mutable augmented rows for every elimination column remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a candidate pivot index, verify classically that it is in range and is the first index attaining the largest absolute pivot value, and use that verified index in the unchanged singularity check and row swap. Any failed or inconclusive quantum attempt must not silently alter the deterministic result; an exact classical fallback or another justified zero-error policy is required."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The pivot candidates form a finite index domain, and threshold predicates over abs(rows[i][col]) can conditionally support Grover-style maximum finding. Applicability depends on an unresolved reversible binary64 data-access and comparison oracle, explicit first-index tie handling, classical verification, and an exact no-failure or fallback policy."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The cue-only response adds a narrow candidate and lexicographic/threshold maximum-search sketch, but neither the global selector predicate nor the initialized update/termination procedure is constructed. Declaring a key and a desired first maximum is not enough to instantiate a full ordered scan or dominance predicate without adding reviewer choices, particularly for reachable nonfinite states. Retain insufficient local evidence; coverage and classical verification obligations are separate.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

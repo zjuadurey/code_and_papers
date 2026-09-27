@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-006",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 4,
+      "end_line": 15
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_weighted_subset_selection_with_tiebreak",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "For each select window, encode the eligible 0/1 knapsack as binary variables x_i for eligible items in catalogue order. Primary objective: maximize sum_i value_i * x_i subject to sum_i weight_i * x_i <= capacity. Secondary tie-break: minimize numeric mask sum_i 2^i * x_i among primary-optimal feasible assignments. A scalarized QUBO can use maximize B*sum_i value_i*x_i - sum_i 2^i*x_i minus a capacity penalty, with B larger than any possible mask difference; the capacity inequality requires slack variables or a penalty that is proven to exclude all overcapacity assignments. Ising mapping x_i = (1 - Z_i)/2 yields a Hamiltonian. Exact tie-break and penalty sufficiency are unresolved.",
+    "input_encoding": "Binary x_i for each eligible item, in the exact order produced by program.review line 31. Capacity is encoded via binary slack variables for sum_i weight_i*x_i + slack = capacity, or via a sufficiently large penalty. If using Ising, document x_i=(1-Z_i)/2, constants, and coefficients. Tie-break requires coefficients 2^i and a scaling B > max mask; precision limits must be stated.",
+    "quantum_algorithm_family": "QAOA-style QUBO/Ising",
+    "output_decoding": "Measure bitstrings, decode x_i to a subset, classically check sum weight <= capacity, recompute total value and numeric mask, and choose the best feasible assignment by (value descending, mask ascending). Only return a mask that matches the classical tie-break; otherwise fall back to classical DP or reject. Empty eligible set decodes to mask 0.",
+    "assumptions": [
+      "Finite eligible count and finite capacity permit a bounded binary encoding.",
+      "Penalty or slack encoding exactly represents sum weight <= capacity.",
+      "Scalarization precision is sufficient to enforce primary value maximization before the smallest-mask tie-break.",
+      "Classical verification and a classical fallback remain available.",
+      "No workload, hardware, encoding-cost, or advantage evidence is supplied."
+    ],
+    "risks": [
+      "QAOA is probabilistic and does not guarantee the exact optimum or the smallest-mask tie-break.",
+      "Penalty coefficients may admit infeasible states or suppress the true optimum.",
+      "Slack-variable encoding can require many qubits for large weights or capacity.",
+      "Numerical precision can break the lexicographic tie-break.",
+      "The existing classical DP is exact and may be adequate; no advantage is established."
+    ],
+    "expected_resource_characteristics": {
+      "qubits": "n_eligible decision qubits plus slack/ancilla qubits for the capacity inequality; unknown until slack encoding is fixed",
+      "depth": "unknown; depends on QAOA ansatz and penalty terms",
+      "shots": "unknown; must be sufficient to sample the exact optimum and tie-break with required probability",
+      "classical_overhead": "parameter optimization, decoding, feasibility checks, objective/tie-break recomputation, and fallback"
+    },
+    "rationale": "Conditional migration plan for kernel.choose. It is structurally aligned with combinatorial optimization but is not a recommendation. Exactness, tie-break precision, capacity-penalty sufficiency, and resource costs remain unresolved."
+  },
+  "rationale": "Source evidence: kernel.choose (kernel.py lines 4-15) is the only exact optimizer. It performs a capacity-indexed 0/1 knapsack DP over eligible items and returns a bitmask. program.review (program.py line 31) builds eligible as active items in catalogue order; for mode 'select' (lines 36-44) it calls choose(eligible, capacity), decodes the mask with bit i corresponding to eligible[i], builds the proposal via describe, and emits contiguous transfers in eligible catalogue order. inspect windows never call choose (line 36) and must stay classical. Dependencies: item weights/values/capacity, active filtering and eligible order, the mask tie-break 'smallest numeric mask in eligible order', and exact feasibility/value reporting in describe (program.py lines 8-13). Activation: any select window with a capacity; choose must still return mask 0 for empty eligible. Structural eligibility: true because a finite binary assignment, linear value objective, capacity inequality, and secondary smallest-mask objective can be represented in QUBO/Ising. Practical suitability: false because no workload, hardware, encoding-cost, or advantage evidence is supplied; QAOA is probabilistic and does not guarantee the exact optimum or the smallest-mask tie-break; capacity slack encoding can scale with weights/capacity; and the existing classical DP is exact and pseudo-polynomial. Benchmark support: true only as source attribution to QuanBench task 05 (values [3,3,1,1,5], weights [2,4,1,3,5], capacity 7); it does not establish quantum resource or advantage. Decision REMAIN_CLASSICAL; the attached plan is conditional and preserves all input validation, reporting, ordering, tie-break, no-mutation, and CLI behavior.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": true,
+  "computational_intent": "exact_weighted_subset_selection_with_tiebreak",
+  "assumptions": [
+    "Finite eligible count and finite capacity permit a bounded binary encoding.",
+    "Penalty or slack encoding exactly represents sum weight <= capacity.",
+    "Scalarization precision is sufficient to enforce primary value maximization before the smallest-mask tie-break.",
+    "Classical verification and a classical fallback remain available.",
+    "No workload, hardware, encoding-cost, or advantage evidence is supplied."
+  ],
+  "risks": [
+    "QAOA is probabilistic and does not guarantee the exact optimum or the smallest-mask tie-break.",
+    "Penalty coefficients may admit infeasible states or suppress the true optimum.",
+    "Slack-variable encoding can require many qubits for large weights or capacity.",
+    "Numerical precision can break the lexicographic tie-break.",
+    "The existing classical DP is exact and may be adequate; no advantage is established."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The per-window selection is a binary 0/1 knapsack with linear value objective, capacity inequality, and a lexicographic smallest-mask tie-break; these can be encoded in QUBO/Ising, though exactness and tie-break precision remain unresolved."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The task is exact optimization with a tie-break, not a single marked-state search. A Grover predicate would need a threshold or optimum search and still would not guarantee exact tie-break; it is less direct than the QUBO formulation."
+    }
+  ]
+}

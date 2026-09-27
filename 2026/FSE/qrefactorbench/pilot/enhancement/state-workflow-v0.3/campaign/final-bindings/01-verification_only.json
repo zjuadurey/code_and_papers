@@ -1,0 +1,43 @@
+{
+  "response_sha256": "bfd7aee5b9fd97434a21b8a424c779c5c2157664059901fc25e6b6ebbb4bed42",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 13.919,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:41:33.624704+00:00",
+  "review_submitted_utc": "2026-09-26T12:41:47.543417+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "bfd7aee5b9fd97434a21b8a424c779c5c2157664059901fc25e6b6ebbb4bed42",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode the remaining row indices for each elimination column as a finite search domain. A reversible predicate would mark exactly the first row whose absolute pivot is maximal over rows col through n-1, preserving Python's first-index tie behavior. The decoded index must be verified classically before the existing exact-zero check and row swap. This formulation is an analysis obligation, not a validated replacement."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode an eligible row offset using ceil(log2(n-col)) candidate qubits, with invalid basis states excluded or rejected. Provide coherent access to the active column, n, and the current augmented rows after all preceding elimination updates. Registers and reversible logic must represent binary64 values, absolute-value handling, comparisons, equality, first-index tie breaking, and uncomputation. The mechanism and cost for loading or maintaining the mutable dense row state remain unresolved."
+      },
+      {
+        "pointer": "/plan/risks/2",
+        "quote": "Exact reproduction of binary64 absolute values, comparisons, ties, exceptional intermediates, and uncomputation is unresolved."
+      },
+      {
+        "pointer": "/assumptions/2",
+        "quote": "Structural eligibility means that a finite marked-state predicate can be specified; it does not imply that the predicate is implemented, validated, efficient, or advantageous."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The revision explicitly treats first-argmax as an analysis obligation, not a validated replacement. It lists comparison/equality/tie logic but does not specify a Boolean comparison formula or ordered update rule, and exceptional intermediates remain unresolved. The insufficient-evidence feedback has been acknowledged, but that acknowledgement is not a checked mapping or repair. Do not invent >=, a scan, or a finite-only guard.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

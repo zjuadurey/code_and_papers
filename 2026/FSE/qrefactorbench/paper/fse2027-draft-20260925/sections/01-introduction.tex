@@ -1,0 +1,65 @@
+\section{Introduction}
+Quantum programming tools expose circuits, operators, and execution interfaces,
+whereas the maintainer of a classical application starts with program behavior.
+The maintainer needs to determine \emph{where} a candidate computation occurs,
+\emph{whether} a supported reformulation is justified, and \emph{how} the
+surrounding software contract can be retained. These questions arise before
+committing to a quantum implementation. Retaining the classical computation is
+a legitimate outcome, including when a conditional quantum mapping can be described.
+
+This problem resembles selective accelerator offloading: a computational kernel
+is only one component of a replacement. Dependencies, marshaling, selection rules,
+fallback, and externally visible behavior can dominate both correctness and cost.
+A graph optimization routine, for example, may return the first optimum according
+to a specified ordering. An optimizer that returns an arbitrary optimum can solve
+the mathematical problem while violating the application contract. Similarly,
+finding one satisfying assignment is not equivalent to returning a complete ordered
+report, and a failed randomized search does not certify the absence of a solution.
+
+Existing work provides important foundations. C2$|$Q$\rangle$ translates classical
+specifications into quantum programs through encoding, deployment, and decoding
+components~\cite{c2q}. Qiskit HumanEval and QuanBench evaluate quantum code
+generation using explicit programming tasks and executable
+checks~\cite{qhe,quanbench}. QuanBench+ also examines repair after execution
+feedback~\cite{quanplus}. These directions motivate a complementary question:
+can a fixed LLM reason more reliably about the obligations introduced when a
+quantum mapping is proposed \emph{inside an existing classical program}?
+We do not claim that feedback-based generation itself is new.
+
+The central difficulty is connecting a recognized mathematical pattern to the
+source program's obligations. Input validation, selection order, and intermediate
+states can invalidate an otherwise plausible mapping. A local formula can pass
+finite tests while certification and integration remain unresolved.
+
+\bench{} supports studying these distinctions. Its development material adapts
+traceable source tasks into classical programs with functionally relevant context.
+The supported positive families are deliberately limited to unstructured search
+and combinatorial optimization. Core-only, hinted-context, and unhinted-context
+views permit controlled diagnosis. Private reference proposals and semantic
+checks are kept separate from model-visible inputs. The current reference layer
+is provisional; it is not described as independently validated ground truth.
+
+Building on this foundation, we propose a workflow that attaches program facts
+and contract obligations to model claims, checks supported representations, and
+returns scoped feedback to the same model. Its central hypothesis is that
+\emph{evidence tied to the source program can improve mapping design beyond the
+benefit of another model call}. The relevant comparison therefore holds the
+model fixed and varies the assistance. Cross-model runs assess the reach of a
+finding; they do not replace this within-model comparison.
+
+The intended paper makes three contributions: (1) a task and benchmark design
+that separates candidate discovery, structural mapping, practical adoption, and
+behavioral obligations; (2) a proposed integration of program facts, structured
+claims, and semantic counterexamples into a fixed-model workflow; and (3) a
+controlled empirical study of correctness, completion, failure modes, and cost.
+Only the benchmark infrastructure and a bounded semantic-feedback prototype
+currently exist. The integrated analysis component and the confirmatory study
+remain proposed. This draft specifies the study and leaves all empirical result
+cells blank, rather than supplying hypothetical improvements.
+
+\figplaceholder{overview}{2.4cm}{Classical program and public contract $\rightarrow$
+candidate region $\rightarrow$ structural mapping and obligation ledger
+$\rightarrow$ conditional plan. Show program-fact and semantic-feedback loops
+to one LLM; keep adoption, migration validation, and resource evidence separate.}
+{Proposed workflow and evidence boundaries. The quantum component is a potential
+target of a conditional plan; the workflow does not require quantum execution.}

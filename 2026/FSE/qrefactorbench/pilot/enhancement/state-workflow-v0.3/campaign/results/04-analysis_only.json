@@ -1,0 +1,20 @@
+{
+  "slot": "04-analysis_only",
+  "replicate": 4,
+  "arm": "analysis_only",
+  "mother_case": "lit-009",
+  "usage": [
+    {
+      "input_tokens": 15896,
+      "cached_input_tokens": 2944,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1309,
+      "reasoning_output_tokens": 251
+    }
+  ],
+  "model_seconds": 30.608,
+  "task_pass": null,
+  "response_sha256": "267fa1d0fd020921e6678a5c908f62b8fa2f0b1e10d25a74e06baa8d1bd385fd",
+  "status": "valid_response",
+  "validation_errors": []
+}

@@ -1,0 +1,51 @@
+{
+  "authorization": "D-031: user explicitly selected lit-002 direct structured QUBO; GPT-5.6 Sol; max 15 subscription requests.",
+  "created_utc": "2026-09-22T18:08:14.260825+00:00",
+  "model": "gpt-5.6-sol",
+  "replicates": 5,
+  "arms": [
+    "initial",
+    "self_review",
+    "counterexample"
+  ],
+  "maximum_requests": 15,
+  "operator_retries": 0,
+  "wall_timeout_per_request_seconds": 600,
+  "cli_version": "codex-cli 0.155.1",
+  "reasoning_effort": "medium",
+  "temperature": null,
+  "seed": null,
+  "server_snapshot": null,
+  "max_output_tokens": null,
+  "max_response_bytes_for_evaluator": 32768,
+  "design": "Each independent initial answer is shared by two fresh-context one-revision branches; always run both, even if initial passes.",
+  "branch_order": "Odd replicates self_review then counterexample; even reverse. Serial calls.",
+  "feedback": "One first failing development example with exact optimum/decoded answer; if none, finite-pass notice. No reference formula.",
+  "primary_observable": "Per-arm count of responses passing every final finite semantic check, denominator five; format and failure categories separate.",
+  "comparison": "Paired self_review vs counterexample; two model turns per path. Initial has one. Tool and token costs recorded separately, not matched compute.",
+  "stop": "Stop all further requests on transport/account/tool/infrastructure errors. No retry. Invalid candidate data still permits the two planned revision branches.",
+  "limits": [
+    "One development-exposed mother case, five replicates, no model ranking or independent holdout.",
+    "New restricted mapping representation, not the unchanged Phase-1 benchmark.",
+    "Final graphs disjoint from development graphs, but same task and known failure mechanism.",
+    "Finite checks through n=8; no theorem for n<=16, quantum execution, production migration or speedup.",
+    "CLI/provider internal retries may be opaque; 15 bounds operator case invocations."
+  ],
+  "baseline_tests": {
+    "command": "/home/audrey/miniconda3/envs/palqo/bin/python -m pytest -q tests/test_semantic_verification.py tests/test_semantic_verification_v02.py",
+    "passed": 126,
+    "seconds": 1.72
+  },
+  "source_sha256": {
+    "pilot/enhancement/lit002-v0.1/engine.py": "f72ede0f27569c3183356ed82099b413388bfcc24795eb3f2838283e960c0dc7",
+    "pilot/enhancement/lit002-v0.1/build.py": "d6cb06cb3ee8184adc15edfa19bd3cc80620c931cb508b4cf8f3203bcc6d6464",
+    "pilot/enhancement/lit002-v0.1/run.py": "a225d1576c1aa84396db0b4fa8434cd6c091f7b4bf7be3ecf9917cec78cd6b27",
+    "pilot/enhancement/lit002-v0.1/prompt.txt": "df0b07c61ef101726f14c3962854ce907ebb6a651e878c089d6e5f906da40e53",
+    "pilot/enhancement/lit002-v0.1/tests.json": "69ebc0ea9f7111d7d4dae621ffa7715780937804e2dfee470f1ffa03febbaf91",
+    "pilot/enhancement/lit002-v0.1/controls.json": "b2e22c0ed547a7ec4ffc2122619688a9c733d140bc661553293a9cfd9fe3fed2",
+    "pilot/enhancement/lit002-v0.1/test_experiment.py": "656ed52032f3957ab08f4fcd08719440fc6c1543576e03bb67c7c5ee18f73591",
+    "pilot/model_comparison/20260922-c-v0.1/run.py": "63aab4e00a4adca7a25f2fd2813bb1b5a2c965bece04295efae3b3d71bd465ec",
+    "pilot/semantic_verification/v0.1/evaluate.py": "979ca7150c6f2b1af7c601bff89c8751d77e52549d89e54c46a7065c3a5b7c02",
+    "pilot/semantic_verification/v0.1/oracles.py": "f539cba1257e34b80149097f0183d70066f4e375aa2bbc34916e8987a194faf2"
+  }
+}

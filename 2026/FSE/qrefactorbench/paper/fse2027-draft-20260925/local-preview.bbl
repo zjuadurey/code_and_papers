@@ -1,0 +1,206 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{13}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Farhi et~al\mbox{.}(2014)]%
+        {qaoa}
+\bibfield{author}{\bibinfo{person}{Edward Farhi}, \bibinfo{person}{Jeffrey
+  Goldstone}, {and} \bibinfo{person}{Sam Gutmann}.}
+  \bibinfo{year}{2014}\natexlab{}.
+\newblock \bibinfo{title}{A Quantum Approximate Optimization Algorithm}.
+\newblock \bibinfo{howpublished}{arXiv:1411.4028}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.1411.4028}{doi:\nolinkurl{10.48550/arXiv.1411.4028}}
+
+
+\bibitem[Grover(1996)]%
+        {grover}
+\bibfield{author}{\bibinfo{person}{Lov~K. Grover}.}
+  \bibinfo{year}{1996}\natexlab{}.
+\newblock \bibinfo{title}{A Fast Quantum Mechanical Algorithm for Database
+  Search}.
+\newblock \bibinfo{howpublished}{arXiv:quant-ph/9605043}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.quant-ph/9605043}{doi:\nolinkurl{10.48550/arXiv.quant-ph/9605043}}
+
+
+\bibitem[Guo et~al\mbox{.}(2025)]%
+        {quanbench}
+\bibfield{author}{\bibinfo{person}{Xiaoyu Guo}, \bibinfo{person}{Minggu Wang},
+  {and} \bibinfo{person}{Jianjun Zhao}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{{QuanBench}: Benchmarking Quantum Code Generation
+  with Large Language Models}.
+\newblock \bibinfo{howpublished}{arXiv:2510.16779}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2510.16779}{doi:\nolinkurl{10.48550/arXiv.2510.16779}}
+
+
+\bibitem[{HPCG Benchmark Project}(nd)]%
+        {hpcg}
+\bibfield{author}{\bibinfo{person}{{HPCG Benchmark Project}}.}
+  \bibinfo{year}{n.d.}\natexlab{}.
+\newblock \bibinfo{title}{Official {HPCG} Benchmark Source Code}.
+\newblock
+\urldef\tempurl%
+\url{https://github.com/hpcg-benchmark/hpcg}
+\showURL{%
+\tempurl}
+
+
+\bibitem[{HPL Project}(nd)]%
+        {hpl}
+\bibfield{author}{\bibinfo{person}{{HPL Project}}.}
+  \bibinfo{year}{n.d.}\natexlab{}.
+\newblock \bibinfo{title}{{HPL} Algorithm}.
+\newblock
+\urldef\tempurl%
+\url{https://www.netlib.org/benchmark/hpl/algorithm.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Lucas(2013)]%
+        {lucas}
+\bibfield{author}{\bibinfo{person}{Andrew Lucas}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \bibinfo{title}{Ising Formulations of Many {NP} Problems}.
+\newblock \bibinfo{howpublished}{arXiv:1302.5843}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.1302.5843}{doi:\nolinkurl{10.48550/arXiv.1302.5843}}
+
+
+\bibitem[Madaan et~al\mbox{.}(2023)]%
+        {selfrefine}
+\bibfield{author}{\bibinfo{person}{Aman Madaan}, \bibinfo{person}{Niket
+  Tandon}, \bibinfo{person}{Prakhar Gupta}, \bibinfo{person}{Skyler Hallinan},
+  \bibinfo{person}{Luyu Gao}, \bibinfo{person}{Sarah Wiegreffe},
+  \bibinfo{person}{Uri Alon}, \bibinfo{person}{Nouha Dziri},
+  \bibinfo{person}{Shrimai Prabhumoye}, \bibinfo{person}{Yiming Yang},
+  \bibinfo{person}{Shashank Gupta}, \bibinfo{person}{Bodhisattwa~Prasad
+  Majumder}, \bibinfo{person}{Katherine Hermann}, \bibinfo{person}{Sean
+  Welleck}, \bibinfo{person}{Amir Yazdanbakhsh}, {and} \bibinfo{person}{Peter
+  Clark}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{title}{{Self-Refine}: Iterative Refinement with
+  Self-Feedback}.
+\newblock \bibinfo{howpublished}{arXiv:2303.17651}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2303.17651}{doi:\nolinkurl{10.48550/arXiv.2303.17651}}
+
+
+\bibitem[Quetschlich et~al\mbox{.}(2022)]%
+        {mqt}
+\bibfield{author}{\bibinfo{person}{Nils Quetschlich}, \bibinfo{person}{Lukas
+  Burgholzer}, {and} \bibinfo{person}{Robert Wille}.}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \bibinfo{title}{{MQT Bench}: Benchmarking Software and Design
+  Automation Tools for Quantum Computing}.
+\newblock \bibinfo{howpublished}{arXiv:2204.13719}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2204.13719}{doi:\nolinkurl{10.48550/arXiv.2204.13719}}
+
+
+\bibitem[Slim et~al\mbox{.}(2026)]%
+        {quanplus}
+\bibfield{author}{\bibinfo{person}{Ali Slim}, \bibinfo{person}{Haydar Hamieh},
+  \bibinfo{person}{Jawad Kotaich}, \bibinfo{person}{Yehya Ghosn},
+  \bibinfo{person}{Mahdi Chehimi}, \bibinfo{person}{Ammar Mohanna},
+  \bibinfo{person}{Hasan Abed Al~Kader Hammoud}, {and} \bibinfo{person}{Bernard
+  Ghanem}.} \bibinfo{year}{2026}\natexlab{}.
+\newblock \bibinfo{title}{{QuanBench+}: A Unified Multi-Framework Benchmark for
+  {LLM}-Based Quantum Code Generation}.
+\newblock \bibinfo{howpublished}{arXiv:2604.08570, version 2}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2604.08570}{doi:\nolinkurl{10.48550/arXiv.2604.08570}}
+
+
+\bibitem[Solar-Lezama(2008)]%
+        {sketching}
+\bibfield{author}{\bibinfo{person}{Armando Solar-Lezama}.}
+  \bibinfo{year}{2008}\natexlab{}.
+\newblock \emph{\bibinfo{title}{Program Synthesis By Sketching}}.
+\newblock \bibinfo{thesistype}{Ph.\,D. Dissertation}.
+  \bibinfo{school}{University of California, Berkeley}.
+\newblock
+\urldef\tempurl%
+\url{https://www2.eecs.berkeley.edu/Pubs/TechRpts/2008/EECS-2008-177.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Tomesh et~al\mbox{.}(2022)]%
+        {supermarq}
+\bibfield{author}{\bibinfo{person}{Teague Tomesh}, \bibinfo{person}{Pranav
+  Gokhale}, \bibinfo{person}{Victory Omole}, \bibinfo{person}{Gokul~Subramanian
+  Ravi}, \bibinfo{person}{Kaitlin~N. Smith}, \bibinfo{person}{Joshua Viszlai},
+  \bibinfo{person}{Xin-Chuan Wu}, \bibinfo{person}{Nikos Hardavellas},
+  \bibinfo{person}{Margaret~R. Martonosi}, {and} \bibinfo{person}{Frederic~T.
+  Chong}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \bibinfo{title}{{SupermarQ}: A Scalable Quantum Benchmark Suite}.
+\newblock \bibinfo{howpublished}{arXiv:2202.11045}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2202.11045}{doi:\nolinkurl{10.48550/arXiv.2202.11045}}
+
+
+\bibitem[Vishwakarma et~al\mbox{.}(2024)]%
+        {qhe}
+\bibfield{author}{\bibinfo{person}{Sanjay Vishwakarma},
+  \bibinfo{person}{Francis Harkins}, \bibinfo{person}{Siddharth Golecha},
+  \bibinfo{person}{Vishal~Sharathchandra Bajpe}, \bibinfo{person}{Nicolas
+  Dupuis}, \bibinfo{person}{Luca Buratti}, \bibinfo{person}{David Kremer},
+  \bibinfo{person}{Ismael Faro}, \bibinfo{person}{Ruchir Puri}, {and}
+  \bibinfo{person}{Juan Cruz-Benito}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{{Qiskit HumanEval}: An Evaluation Benchmark For
+  Quantum Code Generative Models}.
+\newblock \bibinfo{howpublished}{arXiv:2406.14712}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2406.14712}{doi:\nolinkurl{10.48550/arXiv.2406.14712}}
+
+
+\bibitem[Ye et~al\mbox{.}(2025)]%
+        {c2q}
+\bibfield{author}{\bibinfo{person}{Boshuai Ye}, \bibinfo{person}{Arif~Ali
+  Khan}, \bibinfo{person}{Teemu Pihkakoski}, \bibinfo{person}{Peng Liang},
+  \bibinfo{person}{Muhammad~Azeem Akbar}, \bibinfo{person}{Matti Silveri},
+  {and} \bibinfo{person}{Lauri Malmi}.} \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{{C2|Q>}: A Robust Framework for Bridging Classical
+  and Quantum Software Development}.
+\newblock \bibinfo{howpublished}{arXiv:2510.02854}.
+\newblock
+\href{https://doi.org/10.48550/arXiv.2510.02854}{doi:\nolinkurl{10.48550/arXiv.2510.02854}}
+
+
+\end{thebibliography}

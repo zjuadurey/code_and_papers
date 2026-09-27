@@ -1,0 +1,454 @@
+[
+  {
+    "slot": "01-self_review",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 12,
+        "end_line": 16
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 12,
+        "end_line": 16
+      }
+    ],
+    "changed_nomination": false,
+    "initial_family": "unstructured_search",
+    "family": "unstructured_search",
+    "initial_plan_present": true,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "a538ace1c8ec986411025234045641e2f9caab226092ded5a9d465e92ec10c74",
+    "evidence_pointer": "/rationale",
+    "quote": "The defensible supported-family candidate is the partial-pivot selection and its immediately coupled singularity and swap handling in kernel.py lines 12-16. Line 13 searches the finite remaining row-index range for the largest absolute pivot; Python's max behavior makes the first index decisive on ties. The operation depends on n, the active col, and the current augmented rows initialized at line 11 and mutated by all earlier elimination iterations. It activates once per column only when program.py line 22 selects solve mode; inspect mode does not call solve, and an empty system executes no pivot search. Lines 14-16 belong to the boundary because the selected index directly determines the exact-zero singularity exception and deterministic row swap. Any migration must leave lines 17-25, including elimination order, back substitution, and overflow behavior, intact. It must also preserve request validation, current and proposed residual calculations, variable ordering, deltas, residual-limit comparison, exceptions, and no-mutation behavior in program.py. Structural eligibility is true because a finite unique marked-state predicate can be specified. Practical suitability is false because certifying the first global maximum requires access to and comparison against the mutable dense column, exact binary64 semantics and deterministic failure behavior are mandatory, verification is linear, searches are sequential, and the application is small and serial. Benchmark support is false: the supplied HPL attribution describes the classical pivoting and residual concepts, while the software is explicitly not a compliant HPL performance run and no quantum workload, hardware, encoding-cost, or advantage evidence is supplied.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "01-catalog_only",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 12,
+        "end_line": 16
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": true,
+    "initial_family": "unstructured_search",
+    "family": "unstructured_search",
+    "initial_plan_present": true,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "ef47c3d0c721071e04043b025bc37dd5356e0cff9ec83128b48489741ab41324",
+    "evidence_pointer": "/rationale",
+    "quote": "The defensible candidate is the complete assignment at kernel.py line 13, which selects a pivot from the finite remaining row-index range. Its inputs are n, the active col, and the current augmented rows initialized at line 11 and mutated by earlier executions of lines 17-20. It activates once per column only when program.py line 22 enters solve mode; inspect mode does not call solve, and an empty system executes no pivot selection. Lines 12 and 14-20 define surrounding control flow and effects rather than the nominated replacement: the nonempty search range, exact-zero singularity exception, deterministic row swap, and elimination must remain intact. Back substitution and overflow checking at lines 21-25 must also remain unchanged, as must review validation, pre-solve residual reporting, named solution order, deltas, proposed residual, residual-limit comparison, exceptions, and nonmutation. Structurally, the deterministic selected index can be expressed as the unique marked element of a finite domain, so unstructured-search eligibility is true. Practical suitability is false because constructing that predicate requires a global ordered comparison over mutable dense binary64 state, exact verification repeats the classical scan, columns are sequential, and pivot selection is subordinate to the cubic elimination work. Benchmark support is false: the supplied attribution describes a classical HPL algorithm and diagnostic, explicitly says this program is not a compliant HPL performance run, and provides no quantum workload, hardware, resource, or advantage evidence.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "01-routed_analysis",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 12,
+        "end_line": 16
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": true,
+    "initial_family": "unstructured_search",
+    "family": "unstructured_search",
+    "initial_plan_present": true,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "354614462de5ce18bc063a6da309abe649b5f228c09ca96f46a1ae6274214208",
+    "evidence_pointer": "/rationale",
+    "quote": "The nominated region is the complete assignment at kernel.py line 13, which selects the pivot from the finite remaining-index range. The syntax inventory confirms that this assignment is inside the elimination loop spanning lines 12-20; the loop header and downstream statements are dependencies and surrounding behavior rather than part of the proposed search replacement. Selection depends on n and the active col, plus the mutable augmented rows created at line 11 and updated by prior executions of lines 17-20. It activates once per column only after program.py line 22 chooses solve mode and line 23 calls solve; inspect mode does not activate it, and n=0 executes no pivot selection. Python max supplies deterministic first-index tie behavior. The result controls the exact-zero singularity check at lines 14-15, row swap at line 16, elimination at lines 17-20, and therefore all back-substitution and overflow behavior at lines 21-25. Those effects must remain intact, as must validation, current-residual computation, proposal naming and ordering, deltas, proposed residual, scaled diagnostic, limit comparison, exceptions, empty-system behavior, and no mutation. Structurally, the finite index domain and deterministic first-maximum condition permit a unique Boolean predicate in principle, so structural eligibility is true. Practical suitability is false because a direct predicate must inspect the mutable dense column, exact binary64 and tie semantics are obligatory, verification repeats the classical scan, searches occur sequentially, and pivot selection is not the dominant elimination work. Benchmark support is false because the supplied attribution only identifies the classical HPL algorithm and diagnostic, explicitly disclaims a compliant HPL performance run, and provides no quantum workload, encoding-cost, hardware, resource, or advantage evidence.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "02-self_review",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": false,
+    "initial_family": "unstructured_search",
+    "family": "unstructured_search",
+    "initial_plan_present": true,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": null,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "6cbe1511c46bdf891a03d2f8af8328983136409af9d3a61e9c4a7a3ba9843b43",
+    "evidence_pointer": "/rationale",
+    "quote": "The defensible supported-family candidate is the pivot-selection expression at kernel.py line 13. It selects from the finite range [col,n) the first row having the largest absolute active-column value. Its dependencies are col and the augmented rows initialized at lines 10-11 and modified by all preceding swaps and elimination updates at lines 16-20. It activates during each iteration of the elimination loop at line 12 when n is positive; an empty system never evaluates it. The chosen index controls the exact-zero singularity check at lines 14-15, the swap at line 16, subsequent elimination and back substitution, overflow behavior, and ultimately the named solution, deltas, and residual report. All of those effects, their ordering, deterministic tie handling, exceptions, and no-mutation behavior must remain intact. The finite first-argmax condition can be expressed as a Boolean predicate, making this narrow region structurally eligible for conditional Grover-style analysis. Practical suitability is false because evaluating that predicate requires global active-column comparisons, the data changes after every elimination step, coherent loading is unsupported, and exact classical verification or fallback repeats the original linear scan. Benchmark support is null: the supplied HPL attribution concerns classical partial pivoting and residual checking, expressly disclaims a compliant HPL performance run, and supplies no quantum benchmark, workload, resource, or advantage evidence. The residual calculation, validation, elimination arithmetic, back substitution, and report assembly do not independently match either supported migration family.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "02-catalog_only",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": false,
+    "initial_family": "unstructured_search",
+    "family": "unstructured_search",
+    "initial_plan_present": true,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "96651c91e0bcb987825e4a70edb49a41d24e5da3af2864aa4a9603d37f81027b",
+    "evidence_pointer": "/rationale",
+    "quote": "The defensible supported-family region is the complete pivot-selection assignment at kernel.py line 13, as also delimited by the supplied syntax inventory. It selects from the finite range [col, n) using the absolute values of the active-column entries, with Python max choosing the first index on equal keys. Its dependencies are col, n, and the augmented rows initialized at line 11 and modified by every preceding swap and elimination update at lines 16-20. It activates during each iteration of the elimination loop at lines 12-20 when n is positive; the empty system does not execute it. The result controls the zero-pivot singularity check at lines 14-15, row interchange at line 16, subsequent elimination, back substitution, overflow behavior, and ultimately the named solution, deltas, and proposed residual produced by review. All of those surrounding semantics, along with input validation, inspect-mode behavior, ordering, exceptions, and no mutation, must remain intact. A unique first-argmax predicate over a finite index domain is representable in principle, so structural eligibility is true. Practical suitability is false because evaluating that predicate can require a global scan, the active data changes throughout elimination, exact classical verification duplicates the original work, and the program is explicitly small and serial. Benchmark support is false: the HPL attribution documents classical pivoting and residual checking, while the supplied material states that this is not a compliant HPL performance run and provides no quantum workload, hardware, encoding-cost, resource, or advantage evidence. The remaining elimination arithmetic, residual diagnostic, validation, and report assembly do not independently fit either supported migration family.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "02-routed_analysis",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": false,
+    "initial_family": "unstructured_search",
+    "family": "unstructured_search",
+    "initial_plan_present": true,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "a96ad8d6081eafe0fb6b02afc92a4ee949ad4a58ee17137916610012d603a223",
+    "evidence_pointer": "/rationale",
+    "quote": "The defensible supported-family region is the complete pivot-selection assignment at kernel.py line 13. The supplied syntax inventory confirms that this is an exact Assign statement inside the elimination loop, but provides no eligibility verdict; eligibility is assessed independently here. The expression searches the finite, nonempty range [col, n) and Python max selects the first index when absolute keys tie. It depends on n and rows from lines 10-11, the current col from line 12, and every prior mutation of rows at lines 16-20. It activates once per column for n>0 and never activates for n=0. Its result controls the exact-zero singularity check, row swap, subsequent elimination, back substitution, overflow outcome, solution, deltas, and residual report. Those effects, their ordering, no-mutation behavior, and all exception semantics must remain intact. A finite Boolean predicate identifying the uniquely selected index can be specified in principle, so structural eligibility is true. Practical suitability is false because the predicate may need the same linear comparisons as the original max, the data changes after each elimination step, coherent loading is unsupported, and exact verification or fallback repeats the classical work. Benchmark support is false: the HPL attribution documents classical partial pivoting and residual checking, while the supplied software expressly is not a compliant HPL performance run and provides no quantum workload, resource, hardware, or advantage evidence. Residual calculation, validation, elimination arithmetic, and report construction do not independently fit either supported family.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "03-self_review",
+    "initial_regions": [],
+    "regions": [],
+    "changed_nomination": false,
+    "initial_family": null,
+    "family": null,
+    "initial_plan_present": false,
+    "plan_present": false,
+    "structural_eligibility": false,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "934736648f55131f5befdea4711101a148828219dcc36c125487212c2aba18ba",
+    "evidence_pointer": "/rationale",
+    "quote": "No source region is justified for either supported migration family. kernel.py lines 9-26 implement deterministic dense Gaussian elimination with partial pivoting and back substitution over binary64 values, not finite-domain predicate search or binary combinatorial optimization. The region depends on the validated matrix and right-hand side, uses a mutable augmented-row array as internal state, and is activated only by program.py lines 22-27 when mode is solve. Preserved behavior includes selecting the largest absolute pivot with the first index winning ties, rejecting an exact zero pivot, retaining Python floating-point evaluation order, detecting nonfinite solutions, and returning the named solution, deltas, and proposed residual. kernel.py lines 29-38 compute Ax-b and the specified scaled backward error deterministically from the matrix, right-hand side, and selected vector; this behavior is required for the current vector in both modes and for the proposed vector in solve mode. Validation, inspect-mode handling, empty-system results, exception behavior, report ordering, and nonmutation must also remain intact. No finite candidate domain, pure Boolean predicate, binary objective, constraint encoding, exact solution encoding, or acceptable probabilistic replacement is supplied. The HPL attribution supports only the provenance of the classical algorithm and diagnostic; the software is explicitly not a compliant HPL performance run, and no quantum workload, hardware, resource, benchmark, or advantage evidence is provided.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "03-catalog_only",
+    "initial_regions": [],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": true,
+    "initial_family": null,
+    "family": "unstructured_search",
+    "initial_plan_present": false,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "20d94f4538db881d45ec81226d5c8d6d887ff17f841f417ee4d50652a4a07be4",
+    "evidence_pointer": "/rationale",
+    "quote": "The candidate is limited to kernel.py line 13, the complete assignment that scans rows col through n-1 and selects the largest absolute pivot. Its required inputs and state are col and the mutable augmented rows created at line 11 and updated at lines 16-20. It activates once per elimination column in kernel.py lines 12-20, and solve itself activates only from program.py lines 22-27 when mode is solve. The finite row-index domain and Boolean comparison against an incumbent make this expression structurally eligible for conditional Grover-style analysis. The surrounding classical behavior must remain intact: first-index tie selection, the exact-zero singularity check at lines 14-15, row swapping, elimination and back-substitution order, binary64 arithmetic, overflow rejection, empty-system behavior, named proposal and delta construction, both residual evaluations, inspect-mode behavior, validation, output ordering, and no mutation of caller inputs. Practical suitability is false because the program is explicitly small and serial, each pivot domain is at most n, row values change after every elimination step, coherent data access and reversible floating-point comparison are costly, and deterministic certification or fallback can require the original linear scan. Benchmark support is independently false: the HPL attribution documents the classical algorithm and residual diagnostic, while the supplied contract explicitly says this is not a compliant HPL performance run and supplies no quantum workload, hardware, encoding-cost, resource, or advantage evidence. The full dense solve and residual computation are not nominated: treating real-valued solution vectors as a Grover domain or QUBO variables would require unsupported bounds and precision and could not silently replace the specified elimination and diagnostic semantics.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "03-routed_analysis",
+    "initial_regions": [],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": true,
+    "initial_family": null,
+    "family": "unstructured_search",
+    "initial_plan_present": false,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "bf8fefc62e92e570b8c830c349ba560b2fd05d7a0079dacd5b9f4436636b96b7",
+    "evidence_pointer": "/rationale",
+    "quote": "A narrow candidate exists at kernel.py line 13: on each iteration of kernel.py lines 12-20, max searches the finite domain range(col,n) for the row whose current pivot-column entry has largest absolute value. Its required inputs and state are col and the current augmented rows array created at line 11 and mutated by swaps and elimination at lines 16-20. It activates only when program.py lines 22-27 enter solve mode, call solve at line 23, and the elimination loop reaches a column. Structural eligibility is therefore true for conditional Grover-style analysis of this finite index search, even though the complete dense linear solve is neither an unstructured-search task nor a binary combinatorial optimization problem. The boundary must remain line 13: row construction, exact-zero rejection, swapping, elimination, back substitution, and overflow detection are dependent surrounding classical behavior, not part of the nominated search. Any migration must return exactly the largest-absolute-value pivot and the first index on ties. A changed pivot would alter binary64 operation ordering and could change the solution, singularity or overflow exceptions, named proposal, deltas, and proposed residual. Validation, the unconditional current residual, inspect mode, empty-system behavior, scaled-backward-error rules, output ordering, and nonmutation must also remain intact. Practical suitability is false because the program is explicitly small and serial, rows change after every pivot, coherent loading and reversible binary64 comparison are uncosted, classical verification is needed, and probabilistic search cannot silently weaken deterministic behavior. Benchmark support is false: the HPL attribution describes only the classical algorithm and residual diagnostic, expressly disclaims a compliant HPL performance run, and supplies no quantum workload, hardware, resource, crossover, or advantage evidence. QUBO/Ising is inapplicable because no binary decision objective or penalty model represents the required elimination semantics.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "04-self_review",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 9,
+        "end_line": 26
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": true,
+    "initial_family": null,
+    "family": "unstructured_search",
+    "initial_plan_present": false,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "450b5d5731e4cecc0e5b7564169b23ddf3cbdf9a91c5bf426b4941e20311a80e",
+    "evidence_pointer": "/rationale",
+    "quote": "The focused candidate is kernel.py line 13, where each elimination column selects a row from the finite range col through n-1 by largest absolute pivot value with the first index winning ties. Its inputs and state dependencies are n, col, and the private augmented rows created at line 11 and modified by prior swaps and elimination at lines 16-20. It is reached only from solve mode through program.py line 23, once per nonempty elimination column; it is not reached in inspect mode or for an empty system. Structurally, the finite index domain and deterministic canonical-pivot predicate permit conditional Grover-style analysis. This does not make the surrounding dense linear solve a Grover problem: elimination and back substitution remain continuous, ordered binary64 computations and are not supported-family candidates. Behavior that must remain intact includes first-index tie-breaking, the exact-zero singularity check and swap at lines 14-16, subsequent elimination and back substitution, detected-overflow behavior, no mutation of caller data, variable ordering, residual recomputation, deltas, and the diagnostic limit comparison. Practical suitability is false because coherent access to the changing dense rows, reversible binary64 comparison, repeated state preparation, exact verification, and deterministic fallback are not supplied and may dominate the classical linear scan. Benchmark support is separately false: the HPL attribution describes a classical algorithm and the notice expressly says this program is not an HPL port, rating, or compliant performance run; no quantum benchmark or advantage evidence is provided.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "04-catalog_only",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 9,
+        "end_line": 26
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": true,
+    "initial_family": null,
+    "family": "unstructured_search",
+    "initial_plan_present": false,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "0d09b319ed21514ad94744b4c5f13ff357ae70bec1f65009600bb324ade48b24",
+    "evidence_pointer": "/rationale",
+    "quote": "The focused candidate is kernel.py line 13, not the full linear solver. At each iteration of the loop beginning on line 12, it selects an index from the finite range col through n-1 by maximizing abs(rows[i][col]); Python's max preserves the first index on ties. This finite extremum selection can be conditionally decomposed into Grover-style threshold searches, making it structurally eligible for further analysis under the supported unstructured-search family. Its required state is n, col, and the current augmented rows produced on line 11 and modified by lines 16-20. It is reached only when program.py lines 22-23 invoke solve in solve mode, then once per elimination column. The candidate boundary excludes the exact-zero pivot check on lines 14-15, row swap on line 16, elimination on lines 17-20, back substitution on lines 21-23, and final finiteness check on lines 24-25; all must remain behaviorally intact. Any replacement must return exactly the largest-magnitude pivot with the smallest index on ties because a different pivot can change binary64 rounding and all downstream outputs. Surrounding validation, nonmutation through the copied rows, inspect-mode behavior, singular and overflow exceptions, residual computation, variable ordering, deltas, and residual-limit comparison must also remain unchanged. Practical suitability is false: the program is small and serial, the pivot scans are not the cubic dominant work, the rows evolve after every column, and no coherent-memory mechanism, workload scale, hardware, resource budget, or advantage evidence is supplied. Exact classical verification and probabilistic-failure handling may eliminate any query reduction. Benchmark support is independently false because the notice provides HPL algorithm attribution while expressly denying that this program is an HPL port, rating, or compliant run, and supplies no quantum benchmark evidence.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "04-routed_analysis",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 9,
+        "end_line": 26
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": true,
+    "initial_family": null,
+    "family": "unstructured_search",
+    "initial_plan_present": false,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "ba73e54a26a70fee116469c53e736d8e49ecdbdc37eae4bf8309ae2b707f60bb",
+    "evidence_pointer": "/rationale",
+    "quote": "The focused candidate is kernel.py line 13, where each elimination column selects an index from the finite unsorted range col through n-1 by maximizing abs(rows[i][col]). This admits a conditional Grover-style search formulation, so structural eligibility is true even though the rest of the dense linear solve is not a supported search or QUBO problem. The selection depends on validated matrix and rhs values copied into rows at line 11, n from line 10, the current col from line 12, and all mutations performed by earlier elimination iterations. Its predicate or comparator must encode binary64 absolute values, ordering, equality, valid-index constraints, and the first-index tie rule. It activates once per column only when review is in solve mode through program.py lines 22-23. The nominated boundary excludes elimination and back substitution: lines 14-16 must still perform exact-zero detection and the selected row swap, lines 17-20 must retain ordered floating-point elimination, and lines 21-25 must retain back substitution and overflow detection. Caller-data immutability, inspect behavior, validation, exception behavior, variable ordering, residual calculations in kernel.py lines 29-38, deltas, and residual-limit reporting must also remain intact. Practical suitability is false because every pivot search is small, matrix state evolves after each column, coherent access and reversible binary64 comparison are unsupported, exact verification or fallback adds linear work, and no workload, hardware, resource, or advantage evidence is supplied. Benchmark support is independently false: the notice attributes classical HPL concepts while explicitly stating that this program is not an HPL port, rating, or compliant run, and it provides no quantum benchmark evidence. The conditional plan therefore does not alter the REMAIN_CLASSICAL decision.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "05-self_review",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": false,
+    "initial_family": "combinatorial_optimization",
+    "family": "unstructured_search",
+    "initial_plan_present": true,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "5aae543cedc1bc7f6088008a8cb60ae1d8ddded642aa5823353d9a9eeaae558a",
+    "evidence_pointer": "/rationale",
+    "quote": "The finite pivot-index search at kernel.py line 13 is the only narrowly bounded region with a plausible supported-family formulation. It searches range(col, n) using abs(rows[i][col]); because the range is ascending and Python max keeps the first equal-key item, the result must be the earliest row having the greatest absolute current pivot. Required dependencies are n, col, and the current augmented rows initialized at line 11 and modified by earlier swaps and elimination at lines 16-20. The region activates only in solve mode through program.py lines 22-23, only for a nonempty system, and once per reached elimination column. The exact-zero check at kernel.py lines 14-15, swap at line 16, elimination at lines 17-20, back substitution at lines 21-25, and all validation, residual, naming, delta, limit-comparison, exception, and nonmutation behavior must remain intact. Structural eligibility is true because the finite index domain and exact first-maximum condition can in principle be represented as a Boolean search predicate. Practical suitability is false: the classical operation is a small linear scan in a small serial program, while reversible access to dynamically changing binary64 data, exact comparisons, repeated state preparation, probabilistic search, verification, and fallback impose substantial overhead. Benchmark support is false because the supplied material provides no workload, resource, hardware, or advantage measurements and expressly states that the program is not a compliant HPL performance run. Dense elimination and residual evaluation are numerical linear algebra and do not independently match either supported migration family.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "05-catalog_only",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": false,
+    "initial_family": "combinatorial_optimization",
+    "family": "unstructured_search",
+    "initial_plan_present": true,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "567184d6c7fa1e7f556564a779ed4b4e9be59180b3e0b1fa91de4618669aeac2",
+    "evidence_pointer": "/rationale",
+    "quote": "The candidate is the complete pivot-selection assignment at kernel.py line 13. It examines the finite domain range(col, n), selecting the greatest abs(rows[i][col]); iteration in ascending index order supplies the required first-index tie rule. Its dependencies are n from line 10, col from the loop at line 12, and the current augmented rows created at line 11 and mutated by all earlier swaps and elimination updates at lines 16-20. It activates only when program.py lines 22-23 enter solve mode, n is nonzero, and the corresponding elimination iteration is reached. The boundary must preserve the exact-zero singularity check at kernel.py lines 14-15, the swap at line 16, elimination at lines 17-20, back substitution and overflow check at lines 21-25, and the validation, residuals, named proposal, limit comparison, deltas, exceptions, and nonmutation behavior surrounding program.py lines 8-28. Structural eligibility is true because the finite, comparison-based selection can conditionally be represented by Grover-style predicates. Practical suitability is false: this is a small linear scan embedded in serial elimination, while coherent access to repeatedly mutated binary64 data, reversible exact comparison, repeated searches, and mandatory verification or fallback impose substantial overhead. Benchmark support is false because the supplied material explicitly identifies the program as a small serial implementation rather than a compliant HPL performance run and supplies no workload, hardware, resource, or advantage measurements. The dense elimination and residual calculations are numerical linear algebra and are not independently justified candidates under either supported migration family.",
+    "scientific_label_adjudicated": false
+  },
+  {
+    "slot": "05-routed_analysis",
+    "initial_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "changed_nomination": false,
+    "initial_family": "combinatorial_optimization",
+    "family": "combinatorial_optimization",
+    "initial_plan_present": true,
+    "plan_present": true,
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "decision": "REMAIN_CLASSICAL",
+    "response_sha256": "b4dbee7ab36ffb552b03ff94d33a5242c391b7dcec12630736c74fb6738110b4",
+    "evidence_pointer": "/rationale",
+    "quote": "The nominated region is the complete pivot-selection assignment at kernel.py line 13. It operates on the finite index set range(col, n), selecting the greatest abs(rows[i][col]); because the range is ascending and Python max retains the first equal maximum, the lowest-index tie rule is part of the required semantics. Its inputs and state dependencies are n from line 10, col from the loop at line 12, and the current augmented rows created at line 11 and mutated by prior swaps and elimination at lines 16-20. It activates only when program.py lines 22-23 enter solve mode, n is nonzero, and the corresponding elimination iteration is reached. The observation supplies only syntax and lexical context; it confirms the declared line is an Assign inside the loop and inventories surrounding state writes, but it provides no eligibility verdict or sound dependency proof. The migration boundary must leave intact the exact-zero singularity check at lines 14-15, row swap at line 16, elimination at lines 17-20, back substitution at lines 21-25, and residual and report behavior in program.py lines 19-27. Structural eligibility is true because finite exact pivot selection can conditionally be represented as a one-hot discrete optimization. Practical suitability is false because this is a small linear scan in a small serial program, while exact dynamic binary64 encoding, dense constraints, repeated loading, probabilistic optimization, verification, and fallback impose substantial overhead. Benchmark support is false: no workload, hardware, resource, or advantage evidence is supplied, and the program is explicitly not a compliant HPL performance run. The surrounding dense elimination and residual arithmetic do not themselves present a justified instance of either supported migration family.",
+    "scientific_label_adjudicated": false
+  }
+]

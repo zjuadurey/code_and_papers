@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "attempted": 40,
+  "planned": 40,
+  "valid_submissions": 36,
+  "protected_files_unchanged": 1654,
+  "input_fingerprints_checked": 10,
+  "observed_tool_events": 0,
+  "operator_retries": 0,
+  "output_repairs": 0,
+  "semantic_transcriptions_replayed": 7,
+  "post_hoc_pivot_witness_replayed": true,
+  "post_hoc_pivot_claims_bound": 2,
+  "local_markdown_links_checked": 213,
+  "offline_tests": "review-collector-validation.json",
+  "initial_audit_failure": "The first audit reached link checking, then rejected its own not-yet-created validation.json. Self-output existence is now deferred until write; all other links remain checked.",
+  "source_sha256": {
+    "pilot/model_comparison/20260923-four-model-c-v0.1/pivot_counterexample.py": "7112aa23830b997fbf9ab62badf0f6a7f87ca27300852d2ef841c841999a5cd7",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/test_collect.py": "75a7505730b7a235c10934bf73fdad35b8e08d1fe1b594c8e0fd344c73786f8a",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/bind_pro_pivot.py": "a4820a543d705216d032b33aba8b1569004141870aa0ae1241ca0134cb0d62d6",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/test_review_formulas.py": "38a0a132242b40a599d471ba501da7545875d1a499fe8d3fbdbc492285cd029d",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/collect.py": "41c5d996510f366276ca8b2e3d8fd091a682e8d88aec2ee7bc1b79b63ad5df5b",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/test_run.py": "1dc96a6d99d1cc7388aeb3823bdb4636b294b7c8aadb5e77c3ffa4f494d0dbf8",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/review_formulas.py": "9c365e744a91ca656d5b577583b927f266b85694e9f8679ac216e22f0c171afe",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/audit.py": "3538d665f6178088836509f1446f03244608d809adbfc8f0bbf028abb2e13fcb",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/run.py": "ce7f301bd7f975088669b57e3d5168baae3d091c385a2de7a11a0e7ee92b934f"
+  },
+  "document_sha256": {
+    "PROJECT_STATUS.md": "f1cea443054dd450ab1dd5a1942a9d12af8c8d6e8847afc7e9a8b9707fb21607",
+    "NEXT_ACTIONS.md": "ae818d98863f9f85d045d3969f7718ae570e4905bae7a36798338134170b103a",
+    "CHANGELOG.md": "54004064f1317f11e0ed2b522635fb3ca26227bb8d63e7f6c74627b6eab5cd6e",
+    "TODO.md": "53cae5e8bc3f581c4dc682663ca0b441b1d778f551c45d544f7beaf5da110901",
+    "DECISIONS.md": "34d09d97f7b47e724418f5a127f1bf8b63660333acd3ab99cb8d7ee90700d2c4",
+    "docs/research_log.md": "a24e15acba1d1728a2b2b0b0142cb21502eb0ca5fbef04613d4ad6cc46b058a1",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/CONTENT_REVIEW.md": "e38bbea1f7f0b8e3f3fe196a078e5e974cbc528f277c3b8b509aa71a6e04bfec",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/REPORT.md": "2b752cfeb76af996b25876c6c8d622a8401fdee3d204f7cc8acff8b3ffe65338",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/README.md": "305e6a8bc6aefea47aa7666e38b8b5529b248e02cc485ddc8b0f29c18fb667bb"
+  },
+  "task_pass": null,
+  "new_inference_calls_by_audit": 0,
+  "limitations": [
+    "Replay is not independent human semantic review.",
+    "No quantum implementation or advantage tested."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "version": "0.1",
+  "authorization": "2026-09-28 side conversation: 能把这三块补上吗？",
+  "scope": "local engineering demonstration for lit-009; no new model evaluation, QPU, gold or paper claims",
+  "implementation_author": "Codex engineering implementation; NOT historical model output",
+  "max_active_rows": 8,
+  "grover_iterations": 1,
+  "shots_per_pivot": 4,
+  "semantic_seeds": [7, 19, 41],
+  "benchmark_seed": 7,
+  "benchmark_sizes": [2, 4, 8],
+  "benchmark_repeats": 7,
+  "classical_batch": 100,
+  "basis_gates": ["u", "cx"],
+  "optimization_level": 0,
+  "oracle": "enumerate finite active magnitudes against last-index threshold with earliest-index tie order; synthesize phase truth table, charge all classical work",
+  "completion": "sample candidates, then ALWAYS certify against original ordered max; mismatch falls back",
+  "guards": "single element, nonfinite magnitudes or more than 8 active rows delegate to original max",
+  "performance_scope": "warm-process local statevector end-to-end wall time; NOT QPU performance",
+  "classical_baselines": "original complete review; scipy/LAPACK solve in same report wrapper as quality-only competitor (not exact contract equivalent)",
+  "protected_scope": "all existing files under qrefactorbench before this package was created"
+}

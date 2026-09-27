@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "context-001",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "maintenance.py",
+      "function": "maxcut_bruteforce",
+      "start_line": 74,
+      "end_line": 89
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_two_window_maxcut_with_tiebreak",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "MaxCut/QUBO formulation of the two-window assignment. For each equipment i define binary x_i=1 iff i is placed in window 0. The separated weight is sum_{i<j} w_ij (x_i XOR x_j); conflict_weight is total_weight minus separated_weight, so minimizing conflict_weight is maximizing the cut. Ising form uses s_i in {-1,+1} and minimizes sum_{i<j} w_ij s_i s_j up to constants. The secondary deterministic tie-break, smallest sum of 2**i over equipment input positions i in window 0 among all global minima, can be included as a lexicographic penalty term, for example minimize 2**n * conflict_weight + sum_i 2**i x_i for n<=16, provided coefficients are exact integers/rationals. QAOA is an approximate family and does not by itself guarantee the exact global optimum or tie-break.",
+    "input_encoding": "Qubits or binary variables correspond to equipment input positions 0..n-1. The matrix w_ij from prepare_request supplies nonnegative arbitrary-precision integer weights. x_i=1 means window 0; x_i=0 means window 1. The mapping to Ising is x_i=(1-s_i)/2 if used. The classical input order names[0..n-1] must be preserved for decoding and for the tie-break sum 2**i.",
+    "quantum_algorithm_family": "QAOA",
+    "output_decoding": "Measure/decode a bitstring to window assignments, recompute conflict_weight, separated_weight and conflict lists classically, and compare against the exact classical objective. Only accept a decoded assignment if it is a global optimum and satisfies the deterministic tie-break; otherwise fall back to classical exact enumeration or reject. This preserves the contract that exactness, ordering and reporting are not weakened.",
+    "assumptions": [
+      "The classical validation in prepare_request has already produced names in input order and a symmetric nonnegative weight matrix.",
+      "The equipment count n is at most 16; n=0 and n=1 edge cases must still produce the exact classical result.",
+      "No capacity, duration, staff, availability, move-cost or deployment constraints are part of the optimization.",
+      "Quantum algorithm execution is only a conditional candidate; no coherent data-loading, oracle, workspace or resource budget is assumed.",
+      "Exact global minimization of conflict_weight and the deterministic tie-break are mandatory contract properties."
+    ],
+    "risks": [
+      "QAOA-style optimization is approximate and may return a suboptimal cut or the wrong optimal cut under the tie-break.",
+      "Arbitrary-precision weights and lexicographic tie-break can require large coefficients or penalties; encoding them exactly may be costly and must be validated.",
+      "The n<=16 cap is a local enumeration limit, not a measured workload, so practical scale does not justify quantum resources.",
+      "Decoding and classical verification are required; accepting an unverified quantum sample would violate the exactness and no-arbitrary-tie-choice contract.",
+      "Output ordering, conflict record ordering, changes reporting, empty-equipment handling and input non-mutation must remain unchanged."
+    ],
+    "expected_resource_characteristics": {
+      "num_qubits": "up to 16 for the equipment assignment variables, plus any auxiliary/tie-break workspace",
+      "depth": "unknown; no hardware or depth budget supplied",
+      "shots": "unknown; no statistical-confidence or shot budget supplied",
+      "classical_optimizer": "required for QAOA parameter optimization and for exact verification/fallback",
+      "exactness": "not guaranteed by the quantum family; classical verification or exact fallback is required"
+    },
+    "rationale": "Structural eligibility is based on the exact MaxCut core in maxcut_bruteforce. This is a combinatorial optimization problem with explicit binary variables and quadratic objective. The conditional plan does not recommend adoption: exactness, deterministic tie-breaking, arbitrary-precision integer weights and the small n<=16 scale keep the practical decision classical."
+  },
+  "rationale": "The only justified candidate region is maintenance.py maxcut_bruteforce lines 74-89. It is the exact combinatorial solver: it receives the validated adjacency matrix and enumerated input-order names from review_schedule and returns the first best two-way partition in ascending mask order. That ascending-mask, strict-greater update implements the required global minimum conflict_weight and the smallest sum 2**i over window-0 positions. The surrounding behavior that must remain intact includes prepare_request validation, non-mutation, equipment input-order windows, exact conflict_weight/separated_weight, conflict record ordering, empty-equipment handling, and compare_assignments reporting. Structurally, the core is a MaxCut/QUBO/Ising candidate. Practically, n<=16 gives only 2**16 classical candidates, the cap is explicitly not a measured workload, no frequency/hardware/budget/latency evidence is supplied, and no quantum advantage or exactness guarantee is provided. QAOA would be approximate and would still need exact classical verification and tie-break enforcement. Therefore the decision is REMAIN_CLASSICAL with a conditional combinatorial_optimization migration plan provided for further analysis.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Exact two-window maintenance assignment selection: globally minimize conflict_weight, equivalently maximize separated_weight / MaxCut, and deterministically minimize the sum of 2**i over equipment input positions i in window 0 among all global optima.",
+  "assumptions": [
+    "Data arrive classically through the supplied JSON-in/report-out interface.",
+    "No workload frequency, hardware backend, resource budget, latency target or deployment cost evidence is supplied.",
+    "The 16-item equipment cap is a local enumeration limit, not a measured operational workload.",
+    "Exactness, deterministic tie-breaking, input non-mutation, ordering and reporting semantics are contract requirements.",
+    "No free data loading, oracle construction, coherent memory or quantum resource budget is assumed."
+  ],
+  "risks": [
+    "Quantum optimization does not preserve the required exact global optimum or deterministic tie-break without additional classical verification/fallback.",
+    "Arbitrary-precision integer weights and the lexicographic tie-break may make exact QUBO/Ising coefficients and penalty validation nontrivial.",
+    "The small n<=16 domain leaves no practical scale argument for quantum resources.",
+    "Decoding and post-selection overhead could erase any hypothetical benefit and must not alter output ordering or conflict records.",
+    "Empty-equipment and zero-improvement cases must still produce the exact classical report."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The maxcut_bruteforce core explicitly solves a binary two-way partition problem with a quadratic pairwise objective. Binary variables x_i can represent window 0 membership, weights w_ij form the quadratic coefficients, and the MaxCut objective maps to QUBO/Ising. The contract is structurally applicable but does not establish exactness, tie-break preservation, resource feasibility or advantage; QAOA is approximate and would require classical verification/fallback."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "A Grover-style search could in principle range over the 2**n assignments, but the required task is exact global minimization plus a lexicographic tie-break. A pure Boolean predicate for 'is the global optimum with minimal tie-break mask' would require knowing the optimal value and minimal mask in advance, or an auxiliary threshold/optimization loop. That does not directly preserve the exact contract without classical preprocessing and verification, so this contract is not independently applicable here."
+    }
+  ]
+}

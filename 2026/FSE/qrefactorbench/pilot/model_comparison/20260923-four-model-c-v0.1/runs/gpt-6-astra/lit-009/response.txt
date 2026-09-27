@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 24,
+      "end_line": 25
+    },
+    {
+      "file": "kernel.py",
+      "function": "residual",
+      "start_line": 35,
+      "end_line": 36
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "detect_nonfinite_computed_values",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditional research plan only: for each nominated check, freeze its already-computed sequence V and search indices i in [0, len(V)) marked by not math.isfinite(V[i]). Existence must produce the existing ValueError; absence must resume the original control flow. These are separate searches at their original execution points.",
+    "input_encoding": "Encode indices in computational basis states and supply the exact computed binary64 bit patterns through an explicitly costed reversible lookup or compiled oracle. Mark a valid index when the stored value has an all-ones exponent field; mask padded indices. Handle an empty sequence classically. Reversible lookup, workspace cleanup and agreement with Python math.isfinite remain implementation obligations.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Measure a candidate index and verify its bounds and predicate classically. A verified witness permits the original numerical-overflow exception. An unsuccessful search is not evidence of absence: retain a complete classical check before normal continuation unless an exact alternative is established. Do not introduce probabilistic missed exceptions.",
+    "assumptions": [
+      "All arithmetic producing V remains classical and unchanged.",
+      "The oracle uses an immutable snapshot of the values at the original check location.",
+      "The original exception message and ordering relative to surrounding computations remain intact.",
+      "This conditional plan does not authorize approximate exception semantics."
+    ],
+    "risks": [
+      "Oracle preparation requires access to all classically computed values and can eliminate any query-complexity benefit.",
+      "Exact no-witness certification through classical fallback retains linear worst-case checking cost.",
+      "Padding, NaN/infinity classification or stale state could change exception behavior.",
+      "No supplied hardware or workload evidence establishes feasible or beneficial execution."
+    ],
+    "expected_resource_characteristics": {
+      "search_domain": "n values for solve; n+2 values for residual",
+      "index_qubits": "ceil(log2(m)) for a nontrivial domain of size m",
+      "oracle_queries": "Idealized Grover search can use O(sqrt(m/k)) queries when k>0 values are marked; this is not an end-to-end runtime claim.",
+      "unresolved_costs": [
+        "Binary64 data loading and reversible lookup",
+        "Predicate gates, ancillas, uncomputation and circuit depth",
+        "Unknown marked-count handling, repetitions and measurement",
+        "Classical verification and exact no-witness fallback"
+      ]
+    },
+    "rationale": "The existing any expressions are finite existential searches with pure Boolean predicates. Only their decision computation is a structural candidate; numerical solving and residual arithmetic are not replaced."
+  },
+  "rationale": "The two nominated spans explicitly search for a nonfinite computed value and then raise ValueError. In solve, kernel.py:24-25 depends on the complete x produced by lines 9-23, including copied augmented rows, largest-absolute partial pivot selection with first-index ties, exact-zero singularity checks, elimination and back substitution. It activates only after those computations complete, through program.py:22-23 in solve mode. For n=0 its domain is empty and it must return the existing empty solution without raising. In residual, kernel.py:35-36 depends on errors, norm and denominator computed at lines 30-34; it checks exactly those quantities, not every intermediate or the subsequently computed scaled value. It activates for the current residual in both modes and again for the proposed residual only after a successful solve. The latter domain has n+2 entries even for an empty system. The scanned values are ordinary computed floats and the predicate is pure, so changing internal search order need not alter observable effects, provided existence is decided exactly and the exception occurs at the same control-flow boundary. Structural eligibility does not imply practical suitability: these are inexpensive scans of already-classical data in a small serial program, and loading plus exact fallback supplies no justified benefit. Benchmark support is unknown; the HPL attribution supplies neither quantum measurements nor a compliant HPL performance result. Keep validation, no mutation, arithmetic order, singularity behavior, residual Ax-b, normalization and zero-denominator conventions, named output order, deltas and caller-limit comparison unchanged. Inspect must not start solving or acquire a singularity rejection. The dense elimination itself is not a supplied QUBO problem, and residual_limit is a reporting threshold, not permission to approximate the solution.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Detect whether computed solution or residual-check values contain a nonfinite binary64 value while preserving existing numerical-overflow exceptions.",
+  "assumptions": [
+    "Assessment uses only the supplied source and contract.",
+    "No coherent memory, free state preparation, quantum hardware or performance advantage is assumed.",
+    "Nomination is for further analysis, not deployment."
+  ],
+  "risks": [
+    "A probabilistic false negative would suppress a required exception.",
+    "Moving either check would change exception precedence or permit computations the original program never reaches.",
+    "Replacing elimination with residual minimization would not preserve the specified numerical algorithm or exact-zero singularity behavior."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The nominated any checks expose finite index domains and pure Boolean predicates. Applicability is structural and conditional; reversible construction, exact absence handling and full resource accounting remain unresolved."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The nominated checks have no binary optimization objective. The surrounding dense floating-point solve does not supply a discrete feasible set, coefficient encoding or objective preserving partial-pivoted elimination semantics."
+    }
+  ]
+}
