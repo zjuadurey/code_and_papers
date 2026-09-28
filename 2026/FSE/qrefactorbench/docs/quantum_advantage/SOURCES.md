@@ -2,6 +2,10 @@
 
 检索/核对日期：2026-09-28。用途：支持 [证据框架](EVIDENCE_FRAMEWORK.md)，不是系统综述或最新硬件调查。
 
+N-061后续阅读：三篇均已下载固定版本PDF并核查与lit-005有关章节，另补BBHT及量子minimum finding。
+准确范围与hash见[新来源记录](../../pilot/benefit_analysis/lit005-v0.1/SOURCES.md)；
+后文“仅摘要/未全文”的表述描述最初D-037轮次，不代表后续没有继续核查。
+
 ## 检索过程与阅读深度
 
 首次讨论检索式：`site.arxiv.org quantum advantage end to end input output overhead practical quantum advantage`。
@@ -60,3 +64,15 @@ PRX Quantum **2**, 010103 (2021)。
 
 “分层证据表”“逐候选证据卡”和论文措辞映射是本项目根据讨论整理的工作方案，
 不是上述论文原有分类或自动认可的 benchmark 标准。具体硬件参数、算法公式与优势阈值仍须另行核验。
+
+## S4：Microsoft资源估算器官方介绍（D-041讨论补充）
+
+研究者提供[介绍页面](https://learn.microsoft.com/en-us/azure/quantum/intro-to-resource-estimation)，
+2026-09-28读取正文，页面标注更新2026-06-17。此前讨论也引用其
+[overview入口](https://learn.microsoft.com/en-us/azure/quantum/overview-resources-estimator)。
+
+- 输入为量子应用模型、硬件架构、纠错/蒸馏工厂模型及错误预算。
+- 分层转换、配置搜索和Pareto筛选估计物理qubit、运行时间和累计错误；可使用假设架构。
+- 支持Q#、Cirq、OpenQASM、QIR、logical counts和自定义应用。
+- 项目判断：可考虑复用为量子资源估算后端；该页没有提供任意经典源码自动迁移、
+  原行为验证或强经典端到端收益比较的实现。尚未安装、执行或验证项目适配。

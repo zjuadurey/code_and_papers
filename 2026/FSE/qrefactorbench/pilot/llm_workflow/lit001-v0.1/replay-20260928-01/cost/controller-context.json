@@ -1,0 +1,46 @@
+{
+  "application_sha256": "d71e3988e0a7d4420ac57a48f360d449629a6245bdd42fc8dd227beb1c50eb00",
+  "comparison_id": "lit001-exact-steady-state",
+  "evidence_source": "verification.json plus local timing and explicit scenario assumptions",
+  "same_task": true,
+  "classical_seconds": {
+    "lower": 7.992004000698216e-06,
+    "upper": 1.019735999580007e-05,
+    "source": "Local 7x500 perf_counter batch means; descriptive interval, not confidence bound"
+  },
+  "overheads_seconds": {
+    "preparation": {
+      "lower": 6.179898002301343e-06,
+      "upper": 7.940348004922272e-06,
+      "source": "Local 7x500 perf_counter batch means; descriptive interval, not confidence bound"
+    },
+    "readout_decode": {
+      "lower": 6.732323992764577e-06,
+      "upper": 1.250757799425628e-05,
+      "source": "Local 7x500 perf_counter batch means; descriptive interval, not confidence bound"
+    },
+    "validation_fallback": {
+      "lower": 9.764388199255336e-05,
+      "upper": 0.00010846786599722691,
+      "source": "Observed certificate and always-fallback paths; no ideal success-rate discount"
+    },
+    "classical_control": {
+      "lower": 1e-06,
+      "upper": 1e-06,
+      "source": "SCENARIO ASSUMPTION: one microsecond dispatch per batch"
+    },
+    "communication": {
+      "lower": 1e-06,
+      "upper": 1e-06,
+      "source": "SCENARIO ASSUMPTION: one microsecond total transfer per batch"
+    },
+    "compilation_amortized": {
+      "lower": 0,
+      "upper": 0,
+      "source": "SCENARIO ASSUMPTION: steady-state fixed circuit, compiled offline; cold-start cost excluded"
+    }
+  },
+  "quantum_executions": 64,
+  "max_failure_probability": 0,
+  "algorithm_failure_bound": 0
+}

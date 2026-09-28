@@ -1,0 +1,26 @@
+{
+  "algorithm_failure_bound": 0,
+  "application_sha256": "42a814393ea70ebbeb6d962878764626227ee7d85c9f854ed35c375f2482632a",
+  "classical_seconds": {
+    "lower": 2.6841996994335203e-05,
+    "source": "7x1000 local perf_counter calls; descriptive range, not confidence bound",
+    "upper": 2.8659087998676113e-05
+  },
+  "comparison_id": "lit001-four-cycle-exact-task",
+  "evidence_source": "simulation.json and host-timings.json; finite engineering checks only",
+  "max_failure_probability": 0,
+  "overheads_seconds": {
+    "classical_control": null,
+    "communication": null,
+    "compilation_amortized": null,
+    "preparation": {
+      "lower": 1.8263324003783053e-05,
+      "source": "7x1000 local perf_counter calls; descriptive range, not confidence bound",
+      "upper": 2.1307176997652277e-05
+    },
+    "readout_decode": null,
+    "validation_fallback": null
+  },
+  "quantum_executions": 32,
+  "same_task": true
+}

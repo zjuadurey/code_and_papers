@@ -6,10 +6,28 @@ This is a research target, not a submission or contribution claim.
 
 ## 先读：原始研究意图与长期愿景
 
+**2026-09-28证据路线（[D-043](../DECISIONS.md#d-043-small-scale-validation-and-formula-derived-potential-quantum-advantage)）：**
+没有大规模量子机时，以小规模核验、结构/算法公式推导和大规模资源估算，研究潜在量子优势。
+完整模拟目标规模或拥有真机不是前置条件；结构推导与经验外推分开，未知成本/成功率反求门槛。
+交付明确假设下的端到端收益条件，不把小实例无收益当作研究终点，也不把条件预测当真机实测。
+首份[公式与大规模条件结果](../pilot/benefit_analysis/maxcut-formulas-v0.1/REPORT.md)已完成。
+
+**2026-09-28新表述（[D-041](../DECISIONS.md#d-041-infer-resource-conditions-for-beneficial-quantumization)，研究者认可）：**
+输入经典程序，推导保持原行为时采用何种量子方案、在什么规模和资源条件下值得量子化。
+输出资源条件集合，包含逻辑qubit、速度/可靠性及端到端成本，不默认唯一qubit阈值。
+用户现有设备成为条件集合中的一个待检查配置；有依据时生成可用程序的终极目标保持。
+详见[新方向记录](quantum_advantage/RESOURCE_CONDITIONS.md)；当前瞄准条件预测，未宣称实现或真机优势。
+
+**2026-09-28进一步纠正（[D-040](../DECISIONS.md#d-040-contract-and-end-to-end-benefit-as-core-decision-criteria)）：**
+行为合同与端到端收益是完整系统的核心判定依据，贯穿候选发现、方案选择、生成和验证，
+不能降为可有可无的候选机制。用户明确拒绝此前“保留为候选机制，不再预先锁定”的表述。
+具体算法、证明方式、成本模型及agent组织仍须比较；不因此预先宣称新颖性或实际优势。
+两份调研共同指导[具体推进](quantum_advantage/PROGRESSION.md)，不是择一替代。
+
 **2026-09-28目标纠正（[D-039](../DECISIONS.md#d-039-preserve-the-idea-and-compare-technical-routes)）：**
 用户明确“不可能放弃我们的idea”。完整目标始终保持，文献调研用于确定前沿起点与
 进一步推进的技术路线；复用已有能力、调整具体机制不等于放弃目标。
-不提前把“行为合同与成本”或任何agent流程锁定成唯一突破口。
+其中将合同/成本降为候选机制的路线解释已由D-040纠正；具体agent流程仍未冻结。
 当前调研结论见[完整目标下的前沿报告](frontier/v2/README.md)；该报告替代N-059路线建议，
 未将候选机制提升为已接受贡献，也未缩减终极软件目标。
 

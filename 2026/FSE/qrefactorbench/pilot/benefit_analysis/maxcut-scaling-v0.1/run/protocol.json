@@ -1,0 +1,43 @@
+{
+  "sizes": [
+    8,
+    16,
+    24,
+    32,
+    48,
+    64
+  ],
+  "seeds": [
+    20260928,
+    20260929,
+    20260930
+  ],
+  "depths": [
+    1,
+    4,
+    16
+  ],
+  "authorization": "2026-09-28 user asks to establish research effect and rejects tiny-instance no-benefit evidence; D-041 resource conditions.",
+  "classical_limit_seconds": 3,
+  "qdk_timeout_seconds": 60,
+  "profile": {
+    "id": "hypothetical-100ns",
+    "gate_time_ns": 100,
+    "measurement_time_ns": 500,
+    "error_rate": 0.0001,
+    "source": "Hypothetical scenario inherited from lit001 workflow; not hardware measurement"
+  },
+  "qdk_max_error_per_circuit": 0.01,
+  "source_sha256": {
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run.py": "3baa080cb4179db4e83badf7f21e5a4a6097d5269f20069d022cdb3198259998",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/README.md": "64528b7f04a694dd93d58b5f8492edadc9b61057b46782c43bf03e93fda0610a",
+    "qrefactorbench/resource_workflow.py": "1e3b3325f192a0178f717b011cc0f8151f37b8ef72eb9c90096b2bfa10b29348",
+    "qrefactorbench/_qdk_resource_worker.py": "aa4270f9706ad45bae7804101784f87424fd6e3168e6f787bd78b1ca69f5c642",
+    "pilot/source_adaptations/v0.1/cases/lit-001/program.py": "1190430f7b73ddf4a44ee38c5caa649a540faafe3418fcaddd3a531e6d3274e3",
+    "pilot/source_adaptations/v0.1/cases/lit-001/kernel.py": "2aa73675fc76452d16d2a016675e6367c3048d59fac893a9a9de846ffbd9f499"
+  },
+  "python": "3.10.21 | packaged by conda-forge | (main, Aug 21 2026, 22:42:31) [GCC 14.4.0]",
+  "scipy": "1.14.1",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "scope": "Exploratory kernel scaling; no formal case/gold change; no positive benefit claim from zero-overhead envelope"
+}

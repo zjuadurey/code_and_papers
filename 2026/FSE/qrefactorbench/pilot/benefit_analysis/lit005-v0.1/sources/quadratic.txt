@@ -1,0 +1,531 @@
+                                                    Focus beyond quadratic speedups for error-corrected quantum advantage
+
+                                                     Ryan Babbush,1, ∗ Jarrod R. McClean,1, † Craig Gidney,1 Sergio Boixo,1 and Hartmut Neven1
+                                                                   1
+                                                                       Google Quantum AI Team, Venice, CA 90291, United States of America
+                                                                                          (Dated: December 5, 2021)
+                                                           We discuss conditions under which it would be possible for a modest fault-tolerant quantum
+                                                        computer to realize a runtime advantage by executing a quantum algorithm with only a small
+                                                        polynomial speedup over the best classical alternative. The challenge is that the computation must
+                                                        finish within a reasonable amount of time while being difficult enough that the small quantum scaling
+                                                        advantage would compensate for the large constant factor overheads associated with error-correction.
+                                                        We compute several examples of such runtimes using state-of-the-art surface code constructions for
+                                                        superconducting qubits under a variety of assumptions. We conclude that quadratic speedups will
+                                                        not enable quantum advantage on early generations of such fault-tolerant devices unless there is a
+                                                        significant improvement in how we would realize quantum error-correction. While this conclusion
+
+
+
+
+arXiv:2011.04149v1 [quant-ph] 9 Nov 2020
+                                                        persists even if we were to increase the rate of logical gates in the surface code by more than an
+                                                        order of magnitude, we also repeat this analysis for speedups by other polynomial degrees and find
+                                                        that quartic speedups look significantly more practical.
+
+
+                                                                 Introduction
+
+                                              One of the most important goals of the field of quantum
+                                           computing is to eventually build a fault-tolerant quantum
+                                           computer. But what valuable and classically challeng-
+                                           ing problems could we actually solve on such a device?
+                                           Among the most compelling applications are quantum
+                                           simulation [1, 2] and prime factoring [3]. Quantum al-
+                                           gorithms for these tasks give exponential speedups over
+                                           known classical alternatives but would have limited im-
+                                           pact compared to significant improvements in our ability
+                                           to address problems in broad areas of industrial relevance
+                                           such as optimization and machine learning. However,                    (a) “Quantum nand”                 (b) “Classical nand”
+                                           while quantum algorithms exist for these applications,                   > 10 qubitseconds              < 10−9 transistorseconds
+                                           the most rigorous results have only been able to show a
+                                           large speedup in contrived settings or a smaller speedup         FIG. 1. The primary obstacle in realizing a runtime advan-
+                                           across a broad range of problems. For example, many              tage for low degree quantum speedups is the enormous slow-
+                                           quantum algorithms (often based on amplitude amplifica-          down when performing basic logic operations within quantum
+                                           tion [4]) give quadratic speedups for tasks such as search       error-correction. (a) A surface code Toffoli factory for distill-
+                                           [5], optimization [5–7], Monte Carlo [4, 8, 9] various ar-       ing Toffoli gates (which act as the nand gate when the target
+                                                                                                            bit is on) requires spacetime volume greater than ten qubit-
+                                           eas of machine learning [10, 11] and more. However, at-
+                                                                                                            seconds under reasonable assumptions on the capabilities of
+                                           tempts [7, 12] to assess the overheads of some such appli-       an error-corrected superconducting qubit platform [13]. (b)
+                                           cations within fault-tolerance have come up with discour-        A nand circuit realized in CMOS can be executed with just
+                                           aging predictions for what would be required to achieve          a few transistors in well under a nanosecond. Thus, there
+                                           practical advantage against classical algorithms.                is roughly a ten order of magnitude difference between the
+                                              The central issue is that quantum error-correction            spacetime volume required for comparable operations on an
+                                           and device operation time introduce significant constant         error-corrected quantum computer and a classical computer.
+                                           factor slowdowns to the algorithm runtime (see Fig-
+                                           ure 1). These large overheads present many challenges for
+                                           the practical realization of useful fault-tolerant devices.      even modest problem sizes. This is borne out through
+                                           However, for applications that benefit from an exponen-          numerous studies on the cost of error-correcting applica-
+                                           tial speedup relative to classical algorithms, the exponen-      tions with exponential scaling advantage in areas such as
+                                           tial scaling of the classical approach quickly catches up        quantum chemistry [14–16], quantum simulation of lat-
+                                           to the large constant factors of the quantum approach so         tice models [17, 18] and prime factoring [19].
+                                           that one can achieve a practical runtime advantage for              In this perspective we discuss when it would be prac-
+                                                                                                            tical for a modest fault-tolerant quantum computer to
+                                                                                                            realize a quantum advantage with quantum algorithms
+                                                                                                            giving only a small polynomial speedup over their classi-
+                                           ∗ Corresponding author: babbush@google.com
+                                                                                                            cal competition. We will see that with only a low order
+                                           † Corresponding author: jmcclean@google.com
+                                                                                                            (e.g., quadratic) speedup, exorbitantly long runtimes are
+                                                                                                                                            2
+
+sometimes required in order for the slightly worse scaling     evaluate a function of a trajectory of some security that
+of the classical algorithm to catch up to the slightly bet-    one is pricing with Monte Carlo [9], or to compute some
+ter scaling (but worse constant factors) of the quantum        classical criteria that flags a marked state for which one
+algorithm. We will argue that the problem is especially        might be searching [5]. We will define the runtime of the
+pronounced when the best classical algorithms for a prob-      quantum and classical algorithms as
+lem can also be easily parallelized.
+   Our analysis will emphasize current projections within                   TQ = M tQ                    TC = M d tC                       (1)
+the surface code [20] since it has the highest threshold
+error rate for a two-dimensional quantum computing ar-         where T gives the total runtime of the algorithm, M is
+chitecture and is generally regarded as the most practical     the number of primitive calls required, d is the order of
+quantum error-correcting code [21]. We will focus on a         the polynomial speedup the quantum computer achieves
+modest realization of the surface code that would involve      and t is the time required to perform a call. Through-
+enough resources to perform classically intractable calcu-     out this perspective the subscripts Q and C will denote
+lations but only support a few state distillation factories.   “quantum” and “classical” implementations.
+Our analysis differs from results such as [7, 12] by ad-         The condition for quantum advantage is
+dressing the prospects for achieving quantum advantage                                                                       1
+                                                                                                                            d−1
+via polynomial speedup for a broad class of algorithms,                                                               tQ
+rather than for specific problems. We will assume that               TQ < TC             and thus,        M>                         .     (2)
+                                                                                                                      tC
+there is some problem which can be solved by a classical
+computer that makes M d calls to a “classical primitive”       We see then that whenever a problem will require enough
+circuit or by a quantum computer which makes M calls           calls M that a quantum advantage is possible,
+to a “quantum primitive” circuit (which is often, but not
+                                                                                                                 1
+always, related to the classical primitive circuit). This                                            
+                                                                                                         tQ
+                                                                                                               d−1
+                                                                                             ?
+corresponds to an order d polynomial quantum speedup                               TQ > T ≡ t Q                                            (3)
+                                                                                                         tC
+in the number of queries to these subroutines. For d = 2,
+this is especially evocative of a common class of quantum      where T ? is the “breakeven time” which occurs when
+algorithms leveraging amplitude amplification. This gen-       TQ = TC , corresponding to onset of quantum advantage.
+erously assumes no prefactor overhead in a quantum im-         As emphasized in Figure 1, we will see that the fun-
+plementation of an algorithm with respect to the number        damental challenge in realizing this runtime advantage
+of calls required and along with other crude assumptions,      against classical computers (for small d) is that tQ  tC
+allows us to bound the crossover time.                         in error-corrected contexts, making T ? very large.
+   Our back-of-the-envelope analysis makes many as-               Rather than use a single CPU for the classical ap-
+sumptions which are overly optimistic towards the quan-        proach, one might instead parallelize the algorithm us-
+tum computer and yet we still conclude that the                ing P classical CPUs. This will reduce the total classical
+prospects look poor for quadratic speedups with cur-           runtime to
+rent error-correcting codes and architectures to outper-
+                                                                                                             −1
+form classical computers in time-to-solution. It seems                        M d tC
+                                                                                                
+                                                                                                      1−α
+that to realize a quantum advantage with reasonable                     TC =                S = α+                    (4)
+                                                                                 S                      P
+fault-tolerant resources, one must either focus beyond
+quadratic speedups, dramatically improve techniques for        where α is the fraction of the algorithm which must be
+error-correction, or do both. An encouraging finding is        executed in serial and S is the speedup factor due to
+that the prospects for error-corrected quantum advan-          parallelization consistent with the “Amdahl’s law” [22].
+tage look significantly better with quartic speedups. Of       Note that Amdahl’s law scaling is considered somewhat
+course, there might exist use cases involving quadratic        pessimistic as one can often adjust the size of prob-
+speedups that defy the framework of this analysis. Either      lems to fully exploit the computing power that becomes
+way, we hope this perspective will encourage the field to      available with more parallelism (e.g., see “Gustafson’s
+critically examine the prospects for quantum advantage         law” [23] for a more optimistic formula for S). But it
+with error-corrected quadratic speedups and either pro-        also seems that in most situations where one might hope
+duce examples where it is feasible, or focus more effort       to find a quadratic speedup with a quantum computer
+on algorithms with larger speedups.                            (e.g. applications such as search, optimization, Monte
+                                                               Carlo, regression, etc.) the corresponding classical ap-
+                                                               proach is embarrassingly parallel (suggesting that α is
+ Relationship between primitive times and runtime              small enough that S ≈ P for reasonable values of P ).
+                                                               Regardless of the form of S, classical parallelism leads to
+  Many quantum algorithms are built on coherent access         the following revised conditions for quantum advantage:
+to primitives implemented with classical logic. For exam-                          1
+                                                                                  d−1                                         1
+                                                                                                                              d−1
+ple, this classical logic might be required to compute the                tQ S                        ?               tQ S
+                                                                 M>                        and       T = tQ                              . (5)
+value of a classical cost function for optimization [12], to               tC                                          tC
+                                                                                                                        3
+
+   While parallel efficiency might be limited for some         where G is the number of Toffoli gates required to im-
+applications, any implementation of an error-correcting        plement the quantum primitive. On a very large surface
+code will also require substantial classical co-processing     code quantum computer one could instead use multiple
+in order to perform decoding, and this is likely to require    Toffoli factories (at a high cost in the number of physical
+thousands of classical cores. Although many quantum            qubits required) in order to reduce tQ by performing state
+algorithms can also benefit from various forms of par-         distillation in parallel. However, the Toffoli gates are
+allelism, we are considering an early fault tolerance set-     only about two orders of magnitude slower than the Clif-
+ting where there is likely an insufficient number of logical   ford gates and when using multiple factories one needs
+qubits to exploit a space-time tradeoff to the same extent.    to account for routing overhead. Thus, while tQ can be
+                                                               reduced at the cost of using many more qubits, only by
+                                                               a factor that is between about ten and one-hundred.
+ Implementing error-corrected quantum primitives                  If N is the number of qubits on which this problem
+                                                               is defined then a sensible lower bound would seem to
+   We will now explain the principle overheads believed        be G ≥ N and thus, tQ ≥ 170 µs · N . For example,
+to be required for the best candidate for quantum error-       in Grover’s algorithm [5] one must perform a reflection
+correction on a two-dimensional lattice: the surface code.     that requires O(N ) Toffoli gates. In order to achieve a
+Toffoli gates are required to implement classical logic        quantum advantage we would need to focus on problem
+on a quantum computer but cannot be implemented                sizes that are sufficiently large that enough calls can be
+transversely within practical implementations of the sur-      made so that Eq. (2) is satisfied. We find it difficult to
+face code. Instead, one must implement these gates by          imagine satisfying this condition for problem sizes less
+first distilling resource states. In particular, to imple-     than one-hundred qubits. Thus, an approximate “lower
+ment a Toffoli gate one requires a CCZ state (|CCZi =          bound” (using N = 100) would be
+CCZ |+ + +i) and these states are consumed during the
+implementation of the gate. Distilling CCZ states re-                                 tQ ≥ 17 ms .                    (8)
+quires a substantial amount of both time and hardware
+and thus, they are usually the bottleneck in realizing            In addition to this lower bound, we will also con-
+quantum algorithms within the surface code.                    sider a specific, realistic example to keep our estimates
+   Here, we will focus on the state-of-the-art Toffoli fac-    grounded. We will focus on the quantum accelerated sim-
+tory constructions of [13] which are based on applying the     ulated annealing by qubitized quantum walk algorithm
+lattice surgery constructions of [24] to the fault-tolerant    studied in [27, 28], which appears to provide a quadratic
+Toffoli protocols of [25, 26]. Using that approach one         speedup over classical simulated annealing (at least in
+Toffoli gate requires 5.5 × d surface code cycles, where d     terms of the best known bounds) in terms of the mixing
+is the code distance. The time per round of the surface        time of the Markov chain under certain assumptions [29].
+code, including decoding time is expected to be around         This is among the most efficient algorithms compiled in
+1 µs in superconducting qubits. Our analysis will assume       [12] and for the Sherrington-Kirkpatrick model [30], the
+a code distance in the vicinity of d = 30. This would be       implementation complexity is 5N + O(log N ) (neglecting
+sufficient for an algorithm with billions of gates and phys-   some subdominant scalings that depend on precision),
+ical gate error rates on the order of 10−3 (as our analysis    which is only worse than the scaling of our lower bound
+will reveal, even more than a billion gates would likely       by a factor of five. For example, for an N = 512 qubit
+be required to obtain quantum advantage with a mod-            instance, the work of [12] shows that only about 2.6×103
+est polynomial speedup). With these assumptions, our           Toffoli gates are required to make an update. Thus, for
+model predicts a Toffoli gate time of                          that problem size (which we choose to facilitate a com-
+                                                               parison to classical algorithms that we will discuss later)
+             tG = 30 × 5.5 × 1 µs ≈ 170 µs .            (6)    we have that
+This rough approximation matches the more detailed re-
+                                                                                     tQ = 440 ms .                    (9)
+source estimate of Ref. [13]. We discuss these estimates
+in more detail in Appendix A. Note that a potential ion
+trap physical gates are at least 100× slower than super-
+conducting qubits. Therefore, even assuming that they                    Implementing classical primitives
+operate physical gates in parallel with high fidelity, an
+ion trap surface code implementation of a Toffoli gate           Classical computers are very fast; a typical 3 GHz CPU
+would take time on the order of tG ≃ 17 ms.                    can perform several billion 64 bit operations (e.g., float-
+   Under the aforementioned assumptions which are spe-         ing point multiplications) per second. We might crudely
+cific to contemporary realizations of the surface code us-     write that the classical primitive time is tC = 330 ps · L
+ing superconducting qubits we could express the quan-          where L is the number of classical clock cycles required
+tum primitive runtime as                                       to implement the classical primitive. For our first exam-
+                                                               ple comparison of quantum and classical primitives we
+                tQ = tG · G = 170 µs · G ,              (7)    will assume that any classical logic operation that would
+                                                                                                                        4
+
+require one Toffoli in the quantum primitive can be ex-      We argued that any such primitive could likely be com-
+ecuted during one classical clock cycle in the classical     puted in tC = 33 ns on a single core. For this exam-
+primitive. This seems generous to the quantum computer       ple, T ? = t2Q /tC = 2.4 hours. One might object to this
+since many operations that would take a single clock cycle   minimal example on the grounds that it seems unlikely
+on a classical computer would actually require thousands     any interesting primitive would require only 100 Toffolis.
+of Toffolis. (Note that we are not assuming any scaling      While this is true, we point out that because quantum
+advantage for the quantum computer in the primitive im-      runtime is quadratic in the quantum primitive time and
+plementations.) One might worry about memory-bound           only inversely proportional the classical primitive time,
+classical primitives (since calls to main memory can take    the overall crossover time can only get worse by assuming
+hundreds of clock cycles) but since problems defined on      that more than 100 Toffolis would be required.
+more than thousands of logical bits would be infeasible to      Next, we will compare to the example of quantum ac-
+process on a small fault-tolerant quantum computer we        celerated simulated annealing. We focus on this example
+expect that the memory required for the corresponding        because the steps of the quantum algorithm have been
+classical primitives can be held in cache.                   concretely compiled, appear quite efficient, and have a
+   Thus, a corresponding bound on the time to realize a      clear classical analogue. Here, for an N = 512 qubit in-
+classical primitive for a problem where a quantum com-       stance we have that t2Q /tC = 320 days, reproducing the
+puter could realize a quantum primitive with anywhere        finding in [12]. We note that quantum advantage in this
+near the lower bound time given in the prior section         case would occur when M > tQ /tC = 6.3 × 107 . This
+(tQ ≥ 170 µs · N ) is tC ≤ 330 ps · N , and for N = 100,     means that 4.0 × 1015 calls would need to be required
+                                                             for the classical algorithm. However, most N = 512
+                       tC ≤ 33 ns .                  (10)
+                                                             Sherrington-Kirkpatrick model instances would require
+Even though the equivalence we make between Toffolis         many fewer calls to solve with classical simulated an-
+and classical compute cycles is seemingly generous to the    nealing and so one would need to focus on an even bigger
+quantum computer, the assumption of such a cheap prim-       system for which the numbers will look yet worse for the
+itive on the quantum side (only 100 Toffolis) results in     quantum computer. Notice that our simulated annealing
+what appears to be a fairly cheap primitive on the clas-     example gave a quantum runtime that is much longer
+sical side. However, because Eq. (5) scales worse with       than the resources required for the quantum primitive
+tQ than with tC , this assumption is ultimately optimistic   with N = 100 Toffolis. This is because the notion that it
+towards the overall crossover time.                          would take a classical computer an entire clock cycle to
+   Consistent with the prior section, we will also discuss   do what a quantum computer could accomplish with a
+the classical primitive time required to apply simulated     single Toffoli is very generous to the quantum computer.
+annealing to an instance of the Sherrington-Kirkpatrick         At first glance, the quantum runtime of 2.4 hours to
+model. Using the techniques developed in [31], a per-        achieve advantage for the primitive with just 100 Tof-
+formant implementation of classical simulated anneal-        folis seems encouraging. Unfortunately, this was just
+ing code for an N = 512 instance of the Sherrington-         for a single classical core. Even most laptops have on
+Kirkpatrick model can perform a simulated annealing          the order of ten cores these days and again, most of the
+step in roughly 7 CPU-nanoseconds [12] (this accounts        problems where quantum computers display a quadratic
+for the fact that most updates for the Sherrington-          advantage are classically embarrassingly parallel prob-
+Kirkpatrick model are rejected); thus in that case,          lems. Furthermore, error-corrected quantum computers
+                                                             are likely to use thousands of classical CPUs just for de-
+                       tC = 7 ns.                    (11)    coding. When using P different classical CPUs in par-
+But given the high costs of quantum computing it is un-      allel then the breakeven time is given by Eq. (5). Using
+clear that we should compare to a single classical core.     that equation, if we take P = 3,000 CPUs for the clas-
+                                                             sical task (rather than using them for error-correction),
+                                                             and if the classical algorithm is sufficiently parallelizable
+Minimum runtime for quadratic quantum advantage              (α−1  P so S ≈ P ), we see that the breakeven time
+                                                             even in this still quantum-generous example becomes one
+   Here we discuss the ramifications that the primitive      year. As we discuss in the next section there are also ways
+runtimes discussed in the prior two sections have for the    of parallelizing the quantum computations; e.g., by using
+minimum time to achieve advantage according to Eq. (3)       multiple quantum computers or distillation factories.
+in the case of a quadratic quantum speedup. Quadratic
+speedups are ubiquitous in quantum computing and ap-
+pear in many contexts such as Grover’s algorithm [5]              The viability of higher polynomial speedups
+(e.g., used for search) and its generalization, amplitude          and the impact of faster error-correction
+amplification [4] (e.g., used in Monte Carlo), as well as
+many other contexts such as optimization.                      We report values of both M and T ? assuming quantum
+   First, we will compare the example of a quantum prim-     speedups by different polynomial degrees under different
+itive requiring only N = 100 Toffolis and tQ = 17 ms.        amounts of classical parallelism in Table I. While the vi-
+                                                                                                                              5
+
+                                          parallelism resource “lower bound”     simulated annealing
+                    polynomial degree d
+                                          speedup S iterations M runtime T ? iterations M runtime T ?
+                                               1       5.2 × 105    2.4 hours  6.3 × 107     320 days
+                                                 3              8
+                     Quadratic, d = 2        10        5.2 × 10     100 days   6.3 × 1010    880 years
+                                             106       5.2 × 1011   280 years  6.3 × 1013 880 millennia
+                                                                2
+                                               1       7.2 × 10    12 seconds  7.9 × 103    58 minutes
+                                                 3              4
+                       Cubic, d = 3          10        2.3 × 10    6.4 minutes 2.5 × 105      1.3 days
+                                             106       7.2 × 105    3.4 hours  7.9 × 106      40 days
+                                               1       8.0 × 101 1.4 seconds 4.0 × 102      2.9 minutes
+                      Quartic, d = 4         103       8.0 × 102   14 seconds  4.0 × 103    29 minutes
+                                             106       8.0 × 103 2.3 minutes 4.0 × 105       4.9 hours
+
+TABLE I. Resources required to achieve quantum advantage assuming speedups of various polynomial degrees, d. We make this
+comparison against an adversary using distributed classical computing resources that achieve a speedup factor S and report the
+number of algorithm steps M and total runtime T ? before a quantum speedup is possible. We make this comparison for both
+the informal resource “lower bound” we argued for in the text (using tQ ≥ 17 ms and tC ≤ 33 ns), and for the specific example of
+quantum simulated annealing applied to the Sherrington-Kirkpatrick model using the quantum and classical implementations
+discussed in [12, 31] (giving tQ = 440 ms and tC = 7 ns).
+
+
+ability of quantum advantage with cubic speedups is still         to the equations for a quadratic quantum speedup
+a bit ambiguous, the prospects of achieving quantum ad-
+vantage given a quartic speedup are promising. Even the                            tQ S                       t2Q S
+                                                                             M>              and      T?=           .      (12)
+simulated annealing example run with a classical adver-                            tC R                      tC R 2
+sary with S = 106 parallelism would give quantum ad-
+                                                                    In Table II we compute Eq. (12) for our example prob-
+vantage after five hours of runtime if we assume a quartic
+                                                                  lems with R = 10, R = 102 and R = 103 , assuming
+speedup (while we do not expect a quartic speedup in
+                                                                  a classical adversary capable of achieving an S = 103
+that case, the comparison is still instructive).
+                                                                  parallelism. We restrict ourselves to S = 103 due to
+   It is rather surprising just how much of a difference          the general difficulty in achieving high parallel efficiency
+there is for this example between assuming a quadratic            described by Amdahl’s law. However, note that for sim-
+speedup (requiring 880 millennia of runtime for advan-            ulated annealing we can achieve S = 106 in practice (and
+tage) and a quartic speedup (requiring just 4.9 hours of          so these numbers are overly optimistic for that case).
+runtime for advantage). There are not as many exam-                 Unfortunately, even if Toffoli distillation rates improve
+ples of quartic speedups in quantum computing; how-               by an order of magnitude it would not be enough to make
+ever, perhaps if one can find a practical situation in which      quantum advantage with a quadratic speedup viable. If
+the quartic query complexity reductions of Ambainis et            Toffoli distillation rates improve by two orders magni-
+al. [32] and Aaronson et al. [33] can be realized, those          tude (making them essentially as cheap as Clifford gates)
+could lead to a practical advantage in the surface code.          then it would still be challenging to obtain quantum ad-
+We also expect that certain applications of quantum algo-         vantage with a quadratic speedup (it would take more
+rithms for linear systems [34] (such as for solving linear        than a month for the simulated annealing example de-
+differential equations in high dimension) might lead to           spite limiting the classical parallelism to S = 103 ) but
+modest polynomial speedups higher than quadratic. It is           we cannot categorically rule it out for all algorithms. At
+also possible that some heuristic quantum algorithms for
+optimization might give larger than quadratic improve-
+                                                                  speedup resource “lower bound”      simulated annealing
+ments, although this is still speculative.
+                                                                   factor iterations M runtime T ? iterations M runtime T ?
+   Another question we might ask is, what happens if              R = 101 5.2 × 107      1.0 day     6.3 × 109    8.8 years
+we were somehow able to implement Toffoli gates much              R = 10 2
+                                                                            5.2 × 10 6
+                                                                                       15 minutes 6.3 × 108        32 days
+faster in the surface code? For example, we might achieve         R = 103 5.2 × 105 8.8 seconds 6.3 × 107         7.7 hours
+this by fanning out and using more physical qubits per
+factory, more Toffoli factories, by inventing significantly       TABLE II. Resources required to achieve quantum advantage
+more efficient protocols for Toffoli state distillation, or       under a quadratic speedup assuming Toffoli distillation time
+even by switching to a different technology with an in-           of 170 µs/R and a classical adversary making use of classical
+trinsically faster cycle time. We will perform this analysis      parallelism with S = 103 . The speedup factor R can account
+for the case of quadratic speedups; there, the quantum            for improvements in error-correction implementations or in
+runtime is reduced to TQ = M tQ /R where R ≥ 1 is a               our estimates of their overheads. For example, R = 10 could
+speedup factor corresponding to performing Toffoli distil-        be reached by using ten Toffoli factories if routing were very
+lation in time 170 µs/R. In analogy to Eq. (5) this leads         efficient (at the cost of requiring many more qubits).
+                                                                                                                           6
+
+three orders of magnitude speedup the story would be            significantly improving the rate of an error-corrected pro-
+materially different but this would likely require a signif-    cessor to help the case of quadratic speedups, having a
+icant breakthrough. Even if classical processing and sig-       quartic speedup rather than a quadratic speedup is often
+nal propagation were instantaneous, and we could adapt          sufficient to restore the viability of achieving quantum
+measurements to take advantage feedforward single-qubit         advantage on a modest processor. Thus, we believe that
+gates only being applied half the time, a single layer of       these results suggest that the field should focus beyond
+non-Clifford gates would still take a hard limit of the         quadratic speedups to find viable applications that might
+measurement time plus half the single qubit gate time.          produce a quantum advantage on the first several gener-
+                                                                ations of fault-tolerant quantum computers.
+                                                                   We expect this conclusion will persist under a variety
+                        Conclusion                              of different cost models (e.g., were we to focus on the
+                                                                energy consumption of a computation rather than the
+   We have investigated simple conditions that must be          runtime). However, we also expect that the community
+satisfied to realize a quantum advantage through poly-          will make progress on some of the challenges described
+nomial speedups on a small fault-tolerant quantum com-          here, or perhaps identify circumstances under which the
+puter. Our ultimate finding is that the prospects are           assumptions of this analysis do not apply. Either way,
+generally poor for a quadratic speedup, consistent with         we hope that these arguments will foster further discus-
+folk knowledge in the error-correction community and re-        sion about how we might develop broadly applicable al-
+cent work such as [7, 12]. The comparison to parallel           gorithms that can achieve quantum advantage on small
+classical resources is particularly damning for quantum         error-corrected quantum computers.
+computing and unfortunately, many quadratic quantum
+speedups (especially those leveraging amplitude amplifi-
+cation) apply to problems that are highly parallelizeable.
+The strongest conclusions in this work assume that one                              Acknowledgments
+can achieve classical parallelism speedups on the order of
+103 or more. But if one can produce a quadratic speedup            The authors thank Dave Bacon, Eddie Farhi, Austin
+for a problem where that is not the case, the prospects         Fowler, Bill Huggins, Sergei Isakov, Evan Jeffrey, Cody
+of quantum advantage would be improved.                         Jones, John Platt, Michael Newman, Rolando Somma,
+   These findings do not apply to all polynomial                Nathan Wiebe and Will Zeng for helpful discussions and
+speedups. We found that while one would need to very            feedback on earlier drafts.
+
+
+
+
+ [1] R. P. Feynman, International Journal of Theoretical        [11] N. Wiebe, A. Kapoor, and K. M. Svore, Quantum Info.
+     Physics 21, 467 (1982).                                         Comput. 15, 316–356 (2015).
+ [2] S. Lloyd, Science 273, 1073 (1996).                        [12] Y. R. Sanders, D. W. Berry, P. C. S. Costa, N. Wiebe,
+ [3] P. W. Shor, Proceedings 35th Annual Symposium on                C. Gidney, H. Neven, and R. Babbush, arXiv:2007.07391
+     Foundations of Computer Science , 124 (1994).                   (2020).
+ [4] G. Brassard, P. Høyer, M. Mosca, and A. Tapp, in           [13] C. Gidney and A. G. Fowler, Quantum 3, 135 (2019).
+     Quantum Computation and Information, edited by Vi-         [14] I. D. Kivlichan, C. Gidney, D. W. Berry, N. Wiebe,
+     taly I Voloshin, Samuel J. Lomonaco, and Howard                 J. McClean, W. Sun, Z. Jiang, N. Rubin, A. Fowler,
+     E. Brandt (American Mathematical Society, Washington            A. Aspuru-Guzik, H. Neven, and R. Babbush, Quan-
+     D.C., 2002) Chap. 3, pp. 53–74.                                 tum 4, 296 (2020).
+ [5] L. K. Grover, in Proceedings of the Twenty-Eighth Annual   [15] V. von Burg, G. H. Low, T. Haner, D. Steiger, M. Reiher,
+     ACM Symposium on Theory of Computing, STOC ’96                  M. Roetteler, and M. Troyer, arXiv:2007.14460 (2020).
+     (ACM, New York, NY, USA, 1996) pp. 212–219.                [16] J. Lee, D. Berry, C. Gidney, W. Huggins, J. McClean,
+ [6] R. D. Somma, S. Boixo, H. Barnum, and E. Knill, Phys-           N. Wiebe, and R. Babbush, arXiv:2011.03494 (2020).
+     ical Review Letters 101, 130504 (2008).                    [17] J. Lemieux, G. Duclos-Cianci, D. Sénéchal,        and
+ [7] E. Campbell, A. Khurana, and A. Montanaro, (2018),              D. Poulin, (2020).
+     10.22331/q-2019-07-18-167.                                 [18] A. M. Childs, D. Maslov, Y. Nam, N. J. Ross, and Y. Su,
+ [8] A. Montanaro, Proceedings of the Royal Society A:               Proceedings of the National Academy of Sciences 115,
+     Mathematical, Physical and Engineering Sciences 471,            9456 (2018).
+     20150301 (2015).                                           [19] C. Gidney and M. Ekerå, (2019).
+ [9] P. Rebentrost, B. Gupt, and T. R. Bromley, Physical        [20] A. Y. Kitaev, (1997), 10.1016/s0003-4916(02)00018-0.
+     Review A 98, 022321 (2018).                                [21] A. G. Fowler, M. Mariantoni, J. M. Martinis, and A. N.
+[10] E. Aı̈meur, G. Brassard, and S. Gambs, in Advances              Cleland, Physical Review A 86, 32324 (2012).
+     in Artificial Intelligence, edited by L. Lamontagne and    [22] G. M. Amdahl, in AFIPS ’67 (Spring): Proceedings of the
+     M. Marchand (Springer Berlin Heidelberg, Berlin, Hei-           April 18-20, 1967, Spring Joint Computer Conference
+     delberg, 2006) pp. 431–442.                                     (1967) pp. 483–485.
+                                                                                                                            7
+
+[23] J. L. Gustafson, Communications of the ACM 31, 532          τm . Modern fault-tolerant error-correction proceeds via
+     (1988).                                                     rounds of syndrome extraction, processing, and correc-
+[24] A. G. Fowler and C. Gidney, arXiv:1808.06709 (2018).        tion in order to implement gates. The core physical op-
+[25] C. Jones, Physical Review A 87, 22328 (2013).               eration of these rounds on the device is measurement
+[26] B. Eastin, Physical Review A 87, 032321 (2013).             of syndromes, and we are hence lower bounded by the
+[27] R. D. Somma, S. Boixo, H. Barnum, and E. Knill, Phys-
+                                                                 measurement time τs in realistic settings. For context,
+     ical Review Letters 101, 130504 (2008).
+[28] J. Lemieux, B. Heim, D. Poulin, K. Svore,            and    estimates of these times for high fidelity superconduct-
+     M. Troyer, Quantum 4, 287 (2020).                           ing qubits that would be realistic upon improvement are
+[29] S. Boixo, E. Knill, and R. Somma, Quantum Information       roughly τ ≈ 10 ns and τm ≈ 100 ns. In comparison, for
+     & Computation 9, 0833 (2009).                               ion traps these numbers would be closer to τ ≈ 100 µs
+[30] S. Kirkpatrick, C. Gelatt Jr., and M. Vecchi, Science       and τm ≈ 10 µs [35, 36]. Furthermore, at present, parallel
+     220, 671 (1983).                                            operation is restricted in many-ion traps so a time com-
+[31] S. V. Isakov, I. N. Zintchenko, T. F. Ronnow, and           plexity in the distance of the code is also required making
+     M. Troyer, Computer Physics Communications 192, 265         a code cycle dramatically longer than this for large codes.
+     (2015).                                                     For optimistic comparisons, we will assume that parallel
+[32] A. Ambainis, K. Balodis, A. Belovs, T. Lee, M. Santha,      operation at high fidelities has been achieved near the
+     and J. Smotrovs, arXiv:1506.04719 (2015).
+[33] S. Aaronson, S. Ben-David, R. Kothari, and A. Tal,
+                                                                 current gate rates of 100 µs in the near future. If one had
+     arXiv:2004.13231 (2020).                                    perfect operations, but still performed gates via a syn-
+[34] A. W. Harrow, A. Hassidim, and S. Lloyd, Physical Re-       thesized and fault-tolerant protocol, this represents the
+     view Letters 103, 150502 (2009).                            achievable runtime for a gate.
+[35] C. Ballance, T. Harty, N. Linke, M. Sepiol, and D. Lucas,      As our operations are not perfect, however, we will
+     Physical Review Letters 117, 060504 (2016).                 need to encode in an error-correcting code with some
+[36] S. Crain, C. Cahall, G. Vrijsen, E. E. Wollman, M. D.       distance d which is chosen based on the error rate in our
+     Shaw, V. B. Verma, S. W. Nam, and J. Kim, Commu-            device, threshold of the code, and total number of oper-
+     nications Physics 2, 1 (2019).
+                                                                 ations we expect to perform. If one is allowed to use nu-
+[37] A. G. Fowler, arXiv:1210.4626 (2012).
+[38] C. Gidney and A. G. Fowler, arXiv preprint                  merous ancilla qubits, this need not expand the runtime
+     arXiv:1905.08916 (2019).                                    of individual operations by exploiting parallelism through
+[39] N. Delfosse, B. W. Reichardt, and K. M. Svore, arXiv        teleportation and spacetime optimization [37, 38]. How-
+     preprint arXiv:2002.05180 (2020).                           ever, more qubit spartan implementations must use d
+[40] B. Eastin and E. Knill, Physical Review Letters 102,        rounds of measurement and correction to protect against
+     110502 (2009).                                              measurement errors in the time direction, adding a factor
+[41] N. Cody Jones, J. D. Whitfield, P. L. McMahon, M.-H.        of O(d) in the time cost. Research into one-shot correc-
+     Yung, R. V. Meter, A. Aspuru-Guzik, and Y. Yamamoto,        tion techniques hopes to alleviate this time dependence
+     New Journal of Physics 14, 115023 (2012).                   on d without excessive space overhead [39], but current
+[42] A. G. Fowler, arXiv:1310.0863 (2013).
+                                                                 code constructions are not readily implementable.
+                                                                    On top of each round of these measurements, we must
+                                                                 account for the time for this information to leave the
+ Appendix A: Accounting for error-correction costs               device, be processed via decoding, and in some cases,
+                                                                 implement active recovery after a gate, where this time
+   In the main text, we provide an estimate for the time         depends on the hardware and complexity of the decod-
+that it takes to perform a single Toffoli gate with op-          ing. In order for error-correction to be efficient, it must
+timized factories within the surface code. The crux of           be possible to process the syndrome data without an ac-
+the argument in the main text, is that this time is so           cumulation of rounds that grows in time. If we denote
+much slower than the classical equivalent, there is a mas-       this processing latency as lr , then the time for processing
+sive overhead which must be first overcome. We believe           d rounds is lower bounded approximately by the time it
+that it is valuable in directing future research in error-       takes to produce those syndrome measurements on the
+correction and algorithms to break down the origin of            physical device plus this latency, or (dτs + lr ). Note that
+this overhead into its contributions from quantum error-         depending on the implementation details, lr is likely to
+correction and the physical device speed itself. Here we         depend on d, but with sufficient classical parallelization
+do so in some detail for the case of the surface code in         it may be possible to make it effectively d independent.
+superconducting qubits, and in passing for ion traps. We            On top of these costs, each gate has some associated
+hope that this discussion will elucidate several avenues         prefactor in number of rounds that depends on the type
+through which breakthroughs in error-correction might            of gate and its logical locality, CG . For easy, or Clifford,
+materially change the analysis of the main text.                 gates in most codes, CG can be made near 1. Unfortu-
+   To begin, we will assume that there is a physical two-        nately, in order to perform universal computation, one
+qubit operation and syndrome measurement speed, τ and            requires a gate which is not easy to implement [40], and
+τs , where τs > τ as τ is used to build measurement              common proposals center around state distillation where
+circuits along with a base physical measurement time             the prefactor CG is often on the order of 10. Moreover, if
+                                                                                                                       8
+
+one considers synthesis of arbitrary rotations into multi-     for the case of quadratic speedups) we will assume that
+ple of these hard gates, CG can multiply by a factor of 10     a code distance in the vicinity of d = 30 will be suffi-
+or more depending on the precision, leaving CG on the          cient (since errors are suppressed exponentially in code
+order of 100. Putting these together, we can approximate       distance this number will be approximately correct).
+a lower bound on the quantum gate time scaling in terms           With these assumptions, our model predicts a Toffoli
+of error-correction parameters as                              gate time of tG = CG (dτs + lr ) ≈ 5.5 × 30 µs ≈ 170 µs.
+                                                               This rough approximation matches the more detailed re-
+                    tG ∝ CG (dτs + lr )                (A1)    source estimate which shows the spacetime volume re-
+                                                               quired to implement one Toffoli gate is approximately 23
+   Now that we have a general picture of how the time
+                                                               qubit seconds [13]. We discuss the resources required
+overhead enters for quantum error-correction, we exam-
+                                                               for distillation in terms of qubitseconds because it is
+ine it in a specific gate and context. In particular, we
+                                                               generally possible to make tradeoffs between space and
+focus on superconducting qubits with feasible error rates
+                                                               time but the critical resource to minimize is actually the
+and operation times within the surface code. Toffoli gates
+                                                               product of the two. Under these assumptions we would
+are required to implement classical logic on a quantum
+                                                               be able to distill a Toffoli gate in about 170 µs using
+computer but cannot be implemented transversely within
+                                                               around 130,000 physical qubits (see the resource estima-
+practical implementations of the surface code. Instead,
+                                                               tion spreadsheet in [13] for detailed assumptions). Due
+one must implement these gates by first distilling resource
+                                                               to this large overhead we focus on estimates assuming
+states. To implement a Toffoli gate one requires a CCZ
+                                                               we distill CCZ states in series, which is likely how we
+state (|CCZi = CCZ |+ + +i) and these states are con-
+                                                               would operate early fault-tolerant surface code comput-
+sumed during the implementation of the gate. Distilling
+                                                               ers. For comparison, if ion trap implementations used a
+CCZ states requires a substantial amount of both time
+                                                               similar surface code implementation and error rates while
+and hardware and thus, they are usually the bottleneck
+                                                               dramatically improving syndrome measurement time to
+in realizing quantum algorithms within the surface code.
+                                                               τs = 100 µs in parallel, the gate time assuming CG ≈ 5.5
+   Here, we will focus on the state-of-the-art Toffoli fac-
+                                                               is tG ≈ 17,000 µs, or roughly a factor of 100 slower.
+tory constructions of [13] which are based on applying the
+lattice surgery constructions of [24] to the fault-tolerant       To make this more concrete, we can convert this to
+Toffoli protocols of [26, 41]. Using that approach one can     a unitless error-correction overhead for a particular gate
+distill one CCZ state using two levels of state distillation   of CG (dτs + lr )/τs . If we keep the 30 µs overall bound
+with 5.5 d + O(1) surface code cycles and a factory with       for (dτs + lr ), and make a reasonable estimate for the
+a data qubit footprint of about 12 d × 6 d where d is the      improvement of physical syndrome measurement times
+code distance (the total footprint includes measurement        for superconducting qubits to 100 ns, then the error-
+qubits as well, and is thus roughly double this number).       correction overhead at this distance is 1,700.
+Hence for the Toffoli gate, we take CG ≈ 5.5.                     This suggests that at present for superconducting
+   We will assume a correlated-error minimum weight            qubits, the most fruitful improvements with regards to
+perfect matching decoder capable of keeping pace with          algorithmic speed are the reduction of decoding time,
+1 µs rounds of surface code error detection [42], and          the minimization of time overheads in distillation facto-
+capable of performing with a similar latency of feedfor-       ries, and then the reduction of number of measurement
+ward in about 1 µs for d around 30, and conservatively         rounds required to protect in the time direction, perhaps
+lower bound the overall time for d rounds to then be           through improved gate fidelities for equivalent operation
+(dτs + lr ) ≤ 30 µs. We will also assume physical gate         times to result in lower required distances or through
+error rates in the vicinity of 10−3 , which we hope will       single shot protocols. If this can be achieved, the next
+be achievable at scale in the next decade. Since we ex-        milestones would be the reduction of physical syndrome
+pect to require on the order of billions of Toffoli gates      extraction time. However, even such advances would al-
+to achieve quantum advantage for practical applications        ready make prospects for realizing a quantum advantage
+(we will see this is actually a significant underestimate      with quadratic speedups considerably more enticing.
+

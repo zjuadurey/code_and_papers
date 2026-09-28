@@ -1,0 +1,45 @@
+{
+  "case": "lit-001",
+  "correct_output": {
+    "equipment_count": 4,
+    "separated_weight": 4,
+    "windows": [
+      [
+        "A",
+        "C"
+      ],
+      [
+        "B",
+        "D"
+      ]
+    ]
+  },
+  "decision": "positive quantum implementation smoke passed; practical benefit not established on this tiny instance",
+  "environment": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "pyqir": "0.12.5",
+    "python": "3.10.21 | packaged by conda-forge | (main, Aug 21 2026, 22:42:31) [GCC 14.4.0]",
+    "qdk": "1.32.3"
+  },
+  "fallback_used_in_actual_run": false,
+  "full_cost_status": "complete ledger; unavailable deployment costs remain null",
+  "instance": "four-node unit cycle",
+  "limitations": [
+    "Current-session authored workflow, not autonomous or held-out LLM evaluation.",
+    "Finite instance certificate; QAOA is not generally an exact MaxCut solver.",
+    "A cycle also has a linear-time classical solution; enumeration is not a competitive general baseline.",
+    "QDK failure union bound does not model classical certificate/fallback recovery.",
+    "Simulator wall time is not quantum device time."
+  ],
+  "logical_qubits": 4,
+  "profiles_with_quantum_subtotal_above_observed_classical_range": [
+    "hypothetical-100ns",
+    "hypothetical-1000ns"
+  ],
+  "quantum_implementation_verified": true,
+  "quantum_path": "QAOA p=1",
+  "resource_points": 2,
+  "shots": 32,
+  "unitary_gates": 20,
+  "workflow_status": "completed"
+}

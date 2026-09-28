@@ -1,0 +1,26 @@
+{
+  "algorithm_failure_bound": 0,
+  "application_sha256": "3f6a1f005c8c85dbf37bdcbbd710d5e88e1eb8629d90bea865a36547094b6439",
+  "classical_seconds": {
+    "lower": 2.013078199524898e-05,
+    "source": "perf_counter: 7 batch means, descriptive range not confidence bound",
+    "upper": 2.12525140013895e-05
+  },
+  "comparison_id": "lit005-source-example-exact-first",
+  "evidence_source": "semantics.json finite checks; host-timings.json; no calibrated deployment overhead",
+  "max_failure_probability": 0,
+  "overheads_seconds": {
+    "classical_control": null,
+    "communication": null,
+    "compilation_amortized": null,
+    "preparation": {
+      "lower": 8.04947349752183e-05,
+      "source": "perf_counter: 7 batch means, descriptive range not confidence bound",
+      "upper": 8.571696002036333e-05
+    },
+    "readout_decode": null,
+    "validation_fallback": null
+  },
+  "quantum_executions": 1,
+  "same_task": true
+}

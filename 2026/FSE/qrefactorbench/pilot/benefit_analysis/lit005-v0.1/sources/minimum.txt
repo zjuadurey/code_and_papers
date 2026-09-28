@@ -1,0 +1,143 @@
+                                             A Quantum Algorithm for Finding the Minimum
+                                                                   Christoph Dürr∗                                Peter Høyer‡
+                                                                                           †
+                                                                   Université Paris-Sud                         Odense University§
+
+                                                                                               18 July 1996
+
+
+                                          Let T [0..N − 1] be an unsorted table of N items,             Quantum Minimum Searching Algorithm
+                                       each holding a value from an ordered set. For simplic-
+                                       ity, assume that all values are distinct. The minimum             1. Let c ≥ 1 and m0 be given.
+
+
+
+
+arXiv:quant-ph/9607014v1 18 Jul 1996
+                                       searching problem is to find the index y of an item                  Choose threshold index y uniformly at random
+                                       such that T [y] is minimum. This clearly requires a                  from {0, . . . , N − 1}.
+                                       linear number of probes on a classical probabilistic              2. Repeat the following until the total
+                                                                                                                                              √ number of
+                                       Turing machine if the table is unsorted.                             applied iterations is more than c N .
+                                          In this note, we give a simple quantum
+                                                                             √       algorithm
+                                                                                                             (a) Initialize |Ψ0 i = i √1N |ii|yi. Consider an
+                                                                                                                                   P
+                                       which solves the problem using O( N ) probes. The
+                                       main subroutine is the quantum exponential search-                        item i marked if and only if T [i] < T [y].
+                                       ing algorithm of [2], which itself is a generalization                (b) Apply the quantum exponential searching
+                                       of Grover’s recent quantum searching algorithm [3].                       algorithm of [2] to the first register, with a
+                                       Due to a general lower bound of [1], this is within a                     time-out of 2m0 iterations.
+                                       constant factor of optimal.
+                                          Our algorithm calls this subroutine to find the in-                 (c) Observe the first register: let y ′ be the out-
+                                       dex of a smaller item than the value determined by a                       come. If T [y ′ ] < T [y], set threshold index y
+                                       particular threshold index. The result is then chosen                      to y ′ .
+                                       as the new threshold. This process is repeated un-                3. Return y
+                                       til the probability that the item with the threshold
+                                       index holds the minimum is sufficiently close to one.
+                                                                                                          For the analysis of the probability of success, let us
+                                          If there are t ≥ 1 such smaller table entries, the
+                                                                                                        assume that the algorithm runs long enough to find
+                                       subroutine will return one of them withpequal prob-
+                                                                                                        the minimum. We start by analyzing the expected
+                                       ability after an expected number of O( N/t) itera-
+                                                                                                        time used to find the minimum.
+                                       tions. We use the total number of iterations applied
+                                       as a measure for the running time of the minimum                 Lemma 2 At a particular execution of the algorithm
+                                       searching algorithm and obtain the following theo-               – searching the minimum among M items – some in-
+                                       rem.                                                             dexes will be chosen as a threshold index and some
+                                                                                                        not. Let p(M, t) be the probability that the index
+                                       Theorem 1 Let c ≥ 1 be any constant.√      By mea-               holding the item of rank t ∈ [1, M ] is chosen. Then
+                                       suring after a total number of O(c N ) iterations,               p(M, t) = 1/t.
+                                       the algorithm given below finds (the index of a item
+                                       holding) the minimum value with probability at least
+                                                                                        Proof by induction on M for a fixed t: The basis
+                                       1 − 21c .                                        case p(t, t) = 1/t is obvious. Assume that for all M
+                                                                                        between t and some k the equation is true. Then for
+                                         We first give the minimum searching algorithm, M = k + 1 at the first round, y is chosen uniformly
+                                       and then the proof of its optimality.            among all M indexes, and can hold an item of rank
+                                                                                        either t, greater than t, or less than t. Only the former
+                                                                                        two cases contribute to the summation:
+                                         ∗ Supported in part by the ISI Foundation.                                                       k+1
+                                         † LRI,  bât 490, F–91405 Orsay, France.    durr@lri.fr,
+                                                                                                                                1     1 X
+                                                                                                            p(k + 1, t) =          +          p(r − 1, t)
+                                       http://www.lri.fr/˜durr.                                                               k + 1 k + 1 r>t
+                                          ‡ Supported by the alcom-it Research Programme of the
+
+                                       EU and the ISI Foundation.                                                              1    k+1−t 1 1
+                                          § Department of Mathematics and Computer Science,
+                                                                                                                         =        +      · = .
+                                                                                                                              k+1    k+1  t  t
+                                       Odense University, Campusvej 55, DK–5230 Odense M, Den-
+                                       mark. u2pi@imada.ou.dk, http://www.imada.ou.dk/˜u2pi.
+
+
+                                                                                                    1
+   The expected number of iterations used by the ex- References
+ponential searching algorithm of [2] to find the index
+of a marked item (amongpN items where t − 1 items [1] Bennett, Charles H., Ethan Bernstein, Gilles
+                                                       Brassard and Umesh Vazirani, “Strengths and
+are marked) is at most 6 N/(t − 1) (see [2]). Thus,
+                                                       weaknesses of quantum computing”, manuscript
+this is also an upper bound for the expected number    (1995).
+of iterations used by our searching algorithm to find
+the index of an item with rank less than the item [2] Boyer, Michel, Gilles Brassard, Peter Høyer and
+                                                       Alain Tapp, “Tight bounds on quantum searching”,
+of rank t. We can now deduce the expected running
+                                                       manuscript quant–ph/9605034 (1996).
+time to find the minimum by our algorithm:
+                                                                 [3] Grover, Lov K., “A fast quantum mechanical algo-
+Lemma 3 The expected total number of iterations                      rithm for database search”, Proceedings of the 28th
+needed before √
+              y satisfies that T [y] is minimum is at                Annual ACM Symposium on Theory of Computing
+most m0 = 15 N .                                                     (1996), 212–219.
+
+Proof: The expected total number of iterations before
+T [y] holds the minimum value is at most
+     N
+                                   √ NX
+                                      −1
+                    r
+     X 1                 N                  1 1
+                6             =   6 N         √
+      t=2
+            t           t−1            t=1
+                                           t+1 t
+                                   √ 1 N X−1
+                              ≤   6 N( +     t−3/2 )
+                                       2 t=2
+                                    √
+                              ≤   15 N .
+
+
+  Finally, we prove theorem 1.
+Proof of theorem 1: By lemma 3, after at most 2m0
+iterations, T [y] holds the minimum value with proba-
+bility at least 1/2. Assume for a moment that we run
+the algorithm c times, each time for exactly 2m0 it-
+erations. Let y1 , . . . , yc be the outcomes. Let y be yi
+such that T [yi ] is minimum over all c outcomes. With
+probability at least 1 − 1/2c , T [y] holds the minimum
+value.
+   The probability of success is even better if we run
+the algorithm only once for exactly c2m0 iterations,
+because then we use the information provided by the
+previous iterations.
+   If the values in T are not distinct, we use the
+same algorithm as for the simplified case. The anal-
+ysis of the general case is unchanged, except that
+in lemma 2, the equation p(N, t) = 1/t now becomes
+an inequality, p(N, t) ≤ 1/t. Hence, the lower bound
+for the success probability given in theorem 1 for the
+simplified case is also a lower bound for the general
+case.
+
+
+Acknowledgments
+We wish to thank Stephane Boucheron for raising this
+problem to us and Richard Cleve for helpful discus-
+sions.
+
+                                                             2
+

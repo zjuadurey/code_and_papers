@@ -1,8 +1,71 @@
 # QRefactorBench 当前状态
 
-更新：2026-09-28（N-060完整目标前沿调研完成；N-058候选纳入仍待审）。历史过程见 CHANGELOG 和研究日志。
+**Mac接续（2026-09-28）：[跨机器交接](docs/MAC_HANDOFF.md)已保存。**
+用户提供LogicalQubit云平台用于小规模实验；公开资料确认AGate-100为100物理超导qubit，
+已核查lqcloud0.5.0接口/版本要求，尚未登录、安装SDK、查实际后端或提交QPU。
+Mac建议Python3.11独立环境；本地公式/QDK可准备复现，原bwrap模型runner不支持原生Mac。
+当前多项产物未跟踪，需同步完整工作目录而非仅git pull；本次未提交/推送/实际跨机器同步。
 
-**当前入口：[N-060前沿报告v2](docs/frontier/v2/README.md)。**
+**最新：D-043小规模验证＋公式推导已落实，[100/200/500逻辑qubit潜在优势条件](pilot/benefit_analysis/maxcut-formulas-v0.1/REPORT.md)。**
+用户要求没有大规模量子机时采用替代证据；真机或完整目标规模模拟不是研究前提。
+构造推导G=n+p(3m+n)、显式调度深度，45组小规模Hamiltonian/门级核验通过；
+11次QDK估算全部成功，未模拟大规模状态。100位p=1指定点13310物理比特/单shot1.6ms。
+含可靠证书/精确回退的公式已反解：在T=1s、A=10ms、v=0.1ms、S=64、F=T的显式条件下，
+单shot获证率s>0.197415%即有模型内期望收益；s=1%时预测0.644396s（约1.552倍）。
+T/A/v/s是条件坐标，非已测100位实例表现；实际证书/成功率仍需实例证据，不能声称已实现加速。
+8项专项测试通过，2376条件点保存、175旧文件未变；零新模型/QPU/安装/正式case或论文修改。
+该结果承接下方规模诊断，当前工作焦点以本段和[D-043](DECISIONS.md#d-043-small-scale-validation-and-formula-derived-potential-quantum-advantage)为准。
+
+**2026-09-28本轮纠正与实测：[MaxCut规模/资源条件诊断](pilot/benefit_analysis/maxcut-scaling-v0.1/REPORT.md)。**
+用户指出四节点无收益不能回答规模增长后的收益；未执行先前提议的模型判断对照。
+独立kernel诊断覆盖8–64节点：18次经典求解14完整/4超时，18次QDK估算成功。
+32节点指定模型点6009物理比特/单shot0.505ms，对照经典约579.076ms；
+64shots切片给其余全部开销留下546.756ms必要预算，未证明64shots够用或完整收益。
+现有all-edges证书在含正权三角形的图上必拒绝，当前通用精确验证/成功率仍缺；
+原wrapper上限16、解析器固定4qubit未改，超过16属于独立规模诊断而非正式case扩展。
+8小图独立枚举及64图原kernel对照通过；无新模型/QPU、安装、正式标签或论文修改。
+
+**2026-09-28侧线程补充：用户要求的 [lit-001 实际 LLM 闭环](pilot/llm_workflow/lit001-v0.1/README.md)已跑通。**
+同一 Sol/medium 实际4次调用：读源码、生成QAOA电路并验证、估算资源与完整成本、读取反馈给结论。
+4逻辑比特/20门/64shots，实际输出与原程序一致且无回退；21项测量结果检查通过。
+QDK两假设点均279物理比特；100ns点完整场景成本约2.411–2.431ms，因此模型建议此小实例保留经典。
+44项专项/资源回归通过；无模型重放的模拟和QDK估算完全一致。源码/正式案例/gold未修改。
+这是给定QAOA家族和可信证书工具的单案例闭环，替代先前“只有手写联调”的状态，
+不是跨案例效果实验；[原始模型终稿](pilot/llm_workflow/lit001-v0.1/run-20260928-01/conclusion.json)
+及[跨机器命令](docs/quantum_advantage/ENVIRONMENT.md)已保存。N-063通用资源后端保持不变。
+
+更新：2026-09-28（N-063资源工具及真实SDK联调完成；N-058候选纳入仍待审）。历史过程见 CHANGELOG 和研究日志。
+
+**最新实现：[N-063资源工作流](docs/quantum_advantage/RESOURCE_WORKFLOW.md)，[联调记录](pilot/resource_workflow/v0.1/README.md)。**
+D-042落实用户选择：复用Microsoft QDK开源库，我们实现接口、完整成本和工作流集成。
+新增Python/CLI工具调用本地qdk.qre 1.32.3，区分模型提案与控制端行为/成本证据；
+成本区间、重复调用、错误预算、未知/失败反馈已接通，未修改正式评测指标。
+真实两qubit工程电路联调通过：假设模型下177物理qubit/9000 ns，因证据缺失正确返回unknown类反馈；
+这些不是benchmark优势或设备测量。专项30通过；全套253通过/15可选依赖跳过。
+本线程未运行模型/QPU、未执行安装命令；QDK由另行授权的环境任务安装到palqo，
+授权和安装说明见[环境记录](docs/quantum_advantage/ENVIRONMENT.md)，本线程直接复用完成联调。
+N-063当时的后续是给case补齐行为/成本并接LLM；现lit-001单案例闭环已完成，见页首补充。
+
+以下N-062为已接受方向记录，最新实现指针以上文N-063为准：
+
+**研究者已认可D-041：[输入经典程序，推导值得量子化的资源条件](docs/quantum_advantage/RESOURCE_CONDITIONS.md)。**
+分析从给定设备的采用判断扩展为资源条件推导；原行为与端到端收益仍是核心依据。
+输出方案、逻辑qubit等资源、速度/可靠性、规模与收益预测，不默认唯一qubit门槛。
+本轮N-062仅文档同步，无实现或新实验。下一步准备首份资源条件—端到端收益分析，
+N-061的first/absence证明与方案成本比较作为子任务；正式版本指针不变。
+
+**案例分析入口：[N-061逐案例分析](pilot/benefit_analysis/lit005-v0.1/REPORT.md)与[推进说明](docs/quantum_advantage/PROGRESSION.md)。**
+[D-040](DECISIONS.md#d-040-contract-and-end-to-end-benefit-as-core-decision-criteria)落实用户纠正：
+行为合同与端到端收益是系统核心判定依据，不再降为候选机制。完整idea不变。
+lit-005的first/absence义务已落实到oracle、经典对照、四类方案和完整成本账本；
+普通Grover在源示例满足任意解概率1、所需first解概率1/2；特定串行前缀枚举修复方案无加速区间。
+8项专项＋11项wrapper测试、1809实例/4633基态/6442修复检查、精确重放通过。
+这不是Agent自动化或强经典硬件收益实验；物理profile和其他方案收益未知。
+N-061原后续：first/absence证明义务驱动的计划与成本比较，现纳入D-041资源条件分析。
+无模型/QPU、安装、正式case/gold/split/指标或论文修改；3675个受保护旧文件未变。
+
+以下N-060为历史记录；其“不预先锁定合同/成本”和优先级已由D-040/N-061纠正：
+
 [D-039](DECISIONS.md#d-039-preserve-the-idea-and-compare-technical-routes)落实用户纠正：
 完整idea保持不变；调研确定如何向目标推进，不决定是否放弃目标，也不预先锁定合同/成本。
 补充Yamato源码自动卸载、Road真实软件迁移研究及HPS验证线索，形成8项直接前沿对照、

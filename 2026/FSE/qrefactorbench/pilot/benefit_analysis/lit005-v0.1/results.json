@@ -1,0 +1,41 @@
+{
+  "all_checks_passed": true,
+  "counts": {
+    "formula_lock_instances": 1809,
+    "lex_dpll_checks": 1809,
+    "oracle_basis_checks": 4633,
+    "prefix_repair_checks": 6442
+  },
+  "kind": "finite coordinator diagnostic; no physical timing or model/QPU run",
+  "source_example": {
+    "classical_same_domain_calls": 3,
+    "domain_size": 8,
+    "one_ideal_grover_iteration_any_solution_probability": 1.0,
+    "one_ideal_grover_iteration_required_first_probability": 0.5,
+    "oracle": {
+      "constant_preprocessing_result": null,
+      "gate_counts": {
+        "CCX": 54,
+        "X": 48,
+        "Z": 1
+      },
+      "logical_qubits": 14,
+      "serialized_gate_count": 103
+    },
+    "probability_note": "analytic known-M diagnostic, not a measured run or freely available solution count",
+    "repair_calls_first_witness": 3,
+    "repair_calls_later_witness": 4,
+    "solutions": [
+      [
+        false,
+        true,
+        false
+      ],
+      [
+        false,
+        true,
+        true
+      ]
+    ]
+  }
+}

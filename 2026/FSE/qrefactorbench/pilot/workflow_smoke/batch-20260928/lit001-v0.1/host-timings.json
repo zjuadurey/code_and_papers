@@ -1,0 +1,44 @@
+{
+  "circuit_preparation": {
+    "batch_means": [
+      1.9345212000189348e-05,
+      1.9086453001364135e-05,
+      2.1307176997652277e-05,
+      1.8819571996573357e-05,
+      1.8779172001814004e-05,
+      1.8263324003783053e-05,
+      1.846172499790555e-05
+    ],
+    "lower": 1.8263324003783053e-05,
+    "source": "7x1000 local perf_counter calls; descriptive range, not confidence bound",
+    "upper": 2.1307176997652277e-05
+  },
+  "classical_full_schedule": {
+    "batch_means": [
+      2.839157500420697e-05,
+      2.6943835997371934e-05,
+      2.816369599895552e-05,
+      2.725200800341554e-05,
+      2.8659087998676113e-05,
+      2.7329053998982998e-05,
+      2.6841996994335203e-05
+    ],
+    "lower": 2.6841996994335203e-05,
+    "source": "7x1000 local perf_counter calls; descriptive range, not confidence bound",
+    "upper": 2.8659087998676113e-05
+  },
+  "decode_validate_observed_batch": {
+    "batch_means": [
+      5.356753599335207e-05,
+      5.459874000371201e-05,
+      5.77153560006991e-05,
+      5.569128000206547e-05,
+      5.632246000459418e-05,
+      5.744793699705042e-05,
+      5.674332800117554e-05
+    ],
+    "lower": 5.356753599335207e-05,
+    "source": "7x1000 local perf_counter calls; descriptive range, not confidence bound",
+    "upper": 5.77153560006991e-05
+  }
+}

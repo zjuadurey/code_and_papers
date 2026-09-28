@@ -1,0 +1,32 @@
+[
+  {
+    "file": "sources/bbht.pdf",
+    "url": "https://arxiv.org/pdf/quant-ph/9605034v1",
+    "bytes": 185341,
+    "sha256": "badd64e3db8079ee2428fc9f869e202d584412b0a003be64464437019d252fde"
+  },
+  {
+    "file": "sources/minimum.pdf",
+    "url": "https://arxiv.org/pdf/quant-ph/9607014v1",
+    "bytes": 83223,
+    "sha256": "b1684286671a1b8a45260b1ff95fbcb9d6f9da774c89e144e3a6b9291a3d6e8c"
+  },
+  {
+    "file": "sources/end-to-end.pdf",
+    "url": "https://arxiv.org/pdf/2310.03011v2",
+    "bytes": 2762236,
+    "sha256": "5d026bc38957ccc4f193a6fdf4c096dcf9e202c91a56b9f1cb57cbc8df903166"
+  },
+  {
+    "file": "sources/resources.pdf",
+    "url": "https://arxiv.org/pdf/2211.07629v1",
+    "bytes": 4047190,
+    "sha256": "61e443fac514aa7a1073b381e70da8795c7a3fb1a823b8f45bcd7186389ad5c8"
+  },
+  {
+    "file": "sources/quadratic.pdf",
+    "url": "https://arxiv.org/pdf/2011.04149v1",
+    "bytes": 559951,
+    "sha256": "66471e6ba2af3a8398657e19e42faa8d6b4963c22a7ab400a6383b0b08456254"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-28",
+  "focused_tests": {
+    "passed": 30,
+    "skipped": 0
+  },
+  "full_suite": {
+    "passed": 253,
+    "skipped": 15,
+    "skip_reason": "14 Qiskit, 1 YAML optional dependencies absent"
+  },
+  "real_qdk_integration": "passed, version 1.32.3",
+  "protected_files": 3676,
+  "changed_protected_files": [],
+  "local_links_checked": 439,
+  "missing_local_paths": [],
+  "diff_check": "passed",
+  "scope": "File targets checked, not external URL health or all historical anchors. No model/QPU or install command executed."
+}

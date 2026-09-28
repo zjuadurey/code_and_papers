@@ -1,5 +1,82 @@
 # Changelog
 
+## 2026-09-28 — Mac handoff and LogicalQubit platform reconnaissance
+
+- Saved [Mac handoff](docs/MAC_HANDOFF.md): current results, raw-artifact pointers, complete working-tree
+  transfer, Python3.11 environment proposal, local checks, and Linux-only bwrap runner limitation.
+- Recorded official AGate-100 physical-qubit/SDK information; live account/backend/calibration/budget
+  remain unchecked. Confirmed macOS wheels for pinnedQDK/pyqir and lqcloud0.5.0 Python constraints.
+- Synced status/queue/README/environment entries and corrected the stale QDK optional-dependency note.
+- Documentation only; no new tests/experiments, dependency install, credentials, QPU, commit/push or transfer.
+
+## 2026-09-28 — D-043 formula-derived potential advantage beyond simulation
+
+- Recorded the user's explicit small-validation/formula/resource-estimation evidence strategy;
+  owning a large QPU or simulating its entire state is not a prerequisite for conditional benefit research.
+- Derived QAOA gate counts/scheduled depth and exact-fallback expected-cost thresholds, checked
+  45 small states and 8 focused tests, and made 11 QDK resource calls for100/200/500logical qubits.
+- Added2376 parameter conditions, reproducible raw artifacts, derivations and a standalone plot.
+  100qubit example: under declared classical/certificate/cost assumptions, certified per-shot
+  success above0.197415% predicts benefit; these probabilities/costs are conditions, not observed outcomes.
+-175 protected files unchanged; no large state simulation, new LLM/QPU/install or formal case changes.
+- [Report](pilot/benefit_analysis/maxcut-formulas-v0.1/REPORT.md).
+
+## 2026-09-28 — MaxCut scaling and resource-budget diagnostic
+
+- Responded to the user's correction that a four-node negative result does not assess scaling benefit.
+  Added an isolated 8–64-node kernel diagnostic without changing the capped original API/cases.
+- Ran 18 classical instances (14 complete, four budget-limited) and 18 actual QDK estimates;
+  retained raw outputs, frozen configuration/hashes, and a standalone resource-budget plot.
+- Compared MILP/optimized enumeration with the original kernel on all 64 four-node graphs.
+  Identified the existing all-edges certificate's obstruction on positive triangles.
+- Positive remaining time budgets are necessary conditions only: exact certification, required shots,
+  and complete hybrid benefit remain unestablished. No new LLM/QPU/install or formal label changes.
+- [Report](pilot/benefit_analysis/maxcut-scaling-v0.1/REPORT.md).
+
+## 2026-09-28 — lit-001 actual LLM/tool/feedback workflow
+
+- Added a bounded single-model JSON action controller reusing the existing isolated subscription
+  inference transport and QDK backend. The model reads source, submits its own QASM, invokes behavior
+  and complete scenario-cost tools, then consumes feedback and concludes.
+- Actual run: four Sol/medium calls, one candidate, no revisions/retries; exact observed output without
+  fallback. 44 focused/regression tests passed. Offline replay matched simulation and QDK estimates.
+- Added cross-machine replay/live commands, six populated cost terms with explicit assumptions,
+  stronger classical comparison and resource/time conditions. [Evidence](pilot/llm_workflow/lit001-v0.1/README.md).
+- Preserved historical hand-authored smoke and raw runs; no formal case/gold/metric or backend changes.
+
+## 2026-09-28 — N-063 / D-042 callable QDK resource and cost workflow
+
+- Added a pinned local QDK subprocess adapter and Python/CLI resource-analysis entry; OpenQASM3
+  proposals and controller-owned comparison evidence are separate, with application hash binding.
+- Added complete declared serial overhead intervals, repeated execution/error accounting and
+  explicit unknown/quality/contract/backend-failure feedback. Formal case/scoring semantics unchanged.
+- Real QDK1.32.3 smoke passed;30 focused tests and full253 passed/15 optional skips.
+  No model/QPU or installation command executed. [Evidence](pilot/resource_workflow/v0.1/README.md).
+
+## 2026-09-28 — N-062 / D-041 infer beneficial resource conditions from classical programs
+
+- Recorded the accepted shift from evaluating a supplied device to inferring resource conditions
+  for beneficial quantumization, with plans, workload/scale, complete costs and uncertainty.
+- Added [RESOURCE_CONDITIONS](docs/quantum_advantage/RESOURCE_CONDITIONS.md); synchronized the
+  advantage-doc entry, progression, charter, decision, status and queue. N-061 remains the latest
+  implementation; its proof/cost tasks feed the new analysis rather than defining its whole scope.
+- Documentation only; no code, experimental results, formal cases/metrics or paper changes.
+  Local-link and protected-file checks are recorded in the advantage-doc validation addendum.
+
+## 2026-09-28 — N-061 / D-040 contract and benefit guide concrete plan analysis
+
+- Recorded the user's rejection of treating contract/cost as optional candidate mechanisms;
+  made them core decision criteria and integrated the two surveys in a concrete progression plan.
+- Analyzed existing lit-005 exact-first/absence behavior; constructed a source-derived reversible
+  CNF oracle, lex-DPLL comparator and serial prefix-repair diagnostic in a new artifact version.
+- Proved a scoped no-speedup result for that repair architecture; other plans and physical benefit
+  remain unknown. Saved five primary PDFs, complete cost terms, hardware unknowns and next comparisons.
+- Eight focused tests and eleven existing wrapper tests passed; 1809 formula/lock instances,
+  4633 basis checks and 6442 repairs passed with exact replay. Corrected and recorded one initial
+  hand-count test expectation; oracle unchanged. Protected 3675 old files unchanged.
+- No model/QPU calls, installations, case/gold/split/metric or paper edits.
+  [Report and verification](pilot/benefit_analysis/lit005-v0.1/README.md).
+
 ## 2026-09-28 — N-060 / D-039 complete the survey while preserving the full idea
 
 - Recorded the user's correction: preserve the complete classical-program / available-hardware /

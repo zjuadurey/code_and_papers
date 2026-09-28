@@ -1,0 +1,18 @@
+{
+  "base": "qrefactorbench project root",
+  "sha256": {
+    "docs/quantum_advantage/RESOURCE_WORKFLOW.md": "6074a429d8b36220a2c0dfae86b1cc7d51d787091e85f648721367883b205fae",
+    "examples/resource_workflow/context.json": "af58ca12ca0db3e4e55bfd2b4c792afd403c9a944d31a79e0574a61586f3d821",
+    "examples/resource_workflow/request.json": "3cbbdfeb620ce0792bd47d3941fc244b181a5385e587ad8f2d72bc36799c3123",
+    "pilot/resource_workflow/v0.1/README.md": "efe7dd2934ad494baa77f27ddf7f64cfc42801b695bc8d5454e4ab64d602a9ac",
+    "pilot/resource_workflow/v0.1/execution.json": "10fc1085d2860c719b852f22bbc88536e040a1c5c754227db3885f3f6ec6eaa0",
+    "pilot/resource_workflow/v0.1/smoke-result.json": "231a60931f2d00d65948d0f9b258af0ab7909ed4e8699847dfcc27080309e98f",
+    "pilot/resource_workflow/v0.1/smoke-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pilot/resource_workflow/v0.1/validation.json": "4219d8b3680ad475504de82462eac0d5e861878525f06bf9e19f309d1a3eaf3e",
+    "pyproject.toml": "50205ae127514a2c748d5f0362f3ef71dff2566dc03b3f36aab6431c89f6205f",
+    "qrefactorbench/_qdk_resource_worker.py": "aa4270f9706ad45bae7804101784f87424fd6e3168e6f787bd78b1ca69f5c642",
+    "qrefactorbench/cli.py": "6aadd233bd5ac53cff501be97f00d47f5ba406999ad6b66ca8e46d68531ba7cf",
+    "qrefactorbench/resource_workflow.py": "1e3b3325f192a0178f717b011cc0f8151f37b8ef72eb9c90096b2bfa10b29348",
+    "tests/test_resource_workflow.py": "847e340a0537cc194439b3834df777a0d48aa410dd91327daed2f723832aa421"
+  }
+}

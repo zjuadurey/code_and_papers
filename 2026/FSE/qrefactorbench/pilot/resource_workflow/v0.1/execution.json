@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/home/audrey/miniconda3/envs/palqo/bin/python",
+    "-B",
+    "-m",
+    "qrefactorbench",
+    "estimate-resources",
+    "examples/resource_workflow/request.json",
+    "--context",
+    "examples/resource_workflow/context.json",
+    "--json"
+  ],
+  "exit_code": 0,
+  "python": "3.10.21 | packaged by conda-forge | (main, Aug 21 2026, 22:42:31) [GCC 14.4.0]",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "packages": {
+    "qdk": "1.32.3",
+    "pyqir": "0.12.5",
+    "pandas": "2.2.3",
+    "numpy": "1.26.4",
+    "python-dateutil": "2.9.0.post0",
+    "pytz": "2026.3.post1",
+    "tzdata": "2026.4",
+    "six": "1.17.0"
+  },
+  "installation": "No install command executed by this assistant; QDK became available in existing palqo during this turn.",
+  "inputs_sha256": {
+    "examples/resource_workflow/request.json": "3cbbdfeb620ce0792bd47d3941fc244b181a5385e587ad8f2d72bc36799c3123",
+    "examples/resource_workflow/context.json": "af58ca12ca0db3e4e55bfd2b4c792afd403c9a944d31a79e0574a61586f3d821"
+  },
+  "sdk_wheel_sha256": "9a434491e284036d2fe4e32aec6db5f384114bcb59c913d10e8e6df8bf30cee9"
+}

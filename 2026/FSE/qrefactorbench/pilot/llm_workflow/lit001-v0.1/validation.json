@@ -1,0 +1,8 @@
+{
+  "run-20260928-01_files": 48,
+  "replay-20260928-01_files": 8,
+  "bound_sources": 10,
+  "old_smoke_files_unchanged": 55,
+  "local_links": 17,
+  "tests": "44 passed in 2.09s; actual focused plus resource regression run"
+}

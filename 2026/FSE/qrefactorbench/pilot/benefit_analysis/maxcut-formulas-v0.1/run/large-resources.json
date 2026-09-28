@@ -1,0 +1,409 @@
+[
+  {
+    "label": "n100-p1-g100",
+    "n": 100,
+    "depth": 1,
+    "profile": {
+      "id": "n100-p1-g100",
+      "gate_time_ns": 100,
+      "measurement_time_ns": 500,
+      "error_rate": 0.0001,
+      "source": "Hypothetical physical model; fixed physical error rate, not real-device calibration"
+    },
+    "resources": {
+      "logical_qubits": 100,
+      "counts": {
+        "h": 100,
+        "cx": 400,
+        "rz": 200,
+        "rx": 100,
+        "measure": 100
+      },
+      "unitary_gate_count": 800,
+      "scheduled_depth_with_measurement": 30,
+      "two_qubit_layers": 18,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "application_sha256": "fa929eaf3f634dcf1c4a54ddf225e69d38307334507e4dfdf067b69c5cc3a0bb",
+    "status": "ok",
+    "points": [
+      {
+        "physical_qubits": 13310,
+        "runtime_ns": 1600000.0,
+        "error_bound": 0.0068940076999999995
+      }
+    ],
+    "estimator_wall_seconds": 3.0994752810001955,
+    "large_state_simulation_performed": false
+  },
+  {
+    "label": "n100-p4-g100",
+    "n": 100,
+    "depth": 4,
+    "profile": {
+      "id": "n100-p4-g100",
+      "gate_time_ns": 100,
+      "measurement_time_ns": 500,
+      "error_rate": 0.0001,
+      "source": "Hypothetical physical model; fixed physical error rate, not real-device calibration"
+    },
+    "resources": {
+      "logical_qubits": 100,
+      "counts": {
+        "h": 100,
+        "cx": 1600,
+        "rz": 800,
+        "rx": 400,
+        "measure": 100
+      },
+      "unitary_gate_count": 2900,
+      "scheduled_depth_with_measurement": 114,
+      "two_qubit_layers": 72,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "application_sha256": "0adf83a0ae0b756c252bff1347aab08b172caabdedb6981e772425327abaa26e",
+    "status": "ok",
+    "points": [
+      {
+        "physical_qubits": 23030,
+        "runtime_ns": 4900000.0,
+        "error_bound": 0.0069494708
+      }
+    ],
+    "estimator_wall_seconds": 1.729657951000263,
+    "large_state_simulation_performed": false
+  },
+  {
+    "label": "n100-p16-g100",
+    "n": 100,
+    "depth": 16,
+    "profile": {
+      "id": "n100-p16-g100",
+      "gate_time_ns": 100,
+      "measurement_time_ns": 500,
+      "error_rate": 0.0001,
+      "source": "Hypothetical physical model; fixed physical error rate, not real-device calibration"
+    },
+    "resources": {
+      "logical_qubits": 100,
+      "counts": {
+        "h": 100,
+        "cx": 6400,
+        "rz": 3200,
+        "rx": 1600,
+        "measure": 100
+      },
+      "unitary_gate_count": 11300,
+      "scheduled_depth_with_measurement": 450,
+      "two_qubit_layers": 288,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "application_sha256": "3dc9aaab24600144eafae13832a802f017176fdb4073965c2e44acb339909ab1",
+    "status": "ok",
+    "points": [
+      {
+        "physical_qubits": 32110,
+        "runtime_ns": 25340000.0,
+        "error_bound": 0.0009996632
+      }
+    ],
+    "estimator_wall_seconds": 2.0612689159970614,
+    "large_state_simulation_performed": false
+  },
+  {
+    "label": "n200-p1-g100",
+    "n": 200,
+    "depth": 1,
+    "profile": {
+      "id": "n200-p1-g100",
+      "gate_time_ns": 100,
+      "measurement_time_ns": 500,
+      "error_rate": 0.0001,
+      "source": "Hypothetical physical model; fixed physical error rate, not real-device calibration"
+    },
+    "resources": {
+      "logical_qubits": 200,
+      "counts": {
+        "h": 200,
+        "cx": 800,
+        "rz": 400,
+        "rx": 200,
+        "measure": 200
+      },
+      "unitary_gate_count": 1600,
+      "scheduled_depth_with_measurement": 30,
+      "two_qubit_layers": 18,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "application_sha256": "af5d1cdb1ea12f91988b26eb45e7e9aae1bf3513473f62e32bd5f891bc105386",
+    "status": "ok",
+    "points": [
+      {
+        "physical_qubits": 30429,
+        "runtime_ns": 3100000.0,
+        "error_bound": 0.0082920747
+      }
+    ],
+    "estimator_wall_seconds": 1.787081174996274,
+    "large_state_simulation_performed": false
+  },
+  {
+    "label": "n200-p4-g100",
+    "n": 200,
+    "depth": 4,
+    "profile": {
+      "id": "n200-p4-g100",
+      "gate_time_ns": 100,
+      "measurement_time_ns": 500,
+      "error_rate": 0.0001,
+      "source": "Hypothetical physical model; fixed physical error rate, not real-device calibration"
+    },
+    "resources": {
+      "logical_qubits": 200,
+      "counts": {
+        "h": 200,
+        "cx": 3200,
+        "rz": 1600,
+        "rx": 800,
+        "measure": 200
+      },
+      "unitary_gate_count": 5800,
+      "scheduled_depth_with_measurement": 114,
+      "two_qubit_layers": 72,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "application_sha256": "58730588445bead587bd05afd90465020d6dc9ae6ba73e365b124fc22a5a1eaf",
+    "status": "ok",
+    "points": [
+      {
+        "physical_qubits": 51597,
+        "runtime_ns": 13160000.0,
+        "error_bound": 0.0006066228000000001
+      }
+    ],
+    "estimator_wall_seconds": 2.0739917429964407,
+    "large_state_simulation_performed": false
+  },
+  {
+    "label": "n200-p16-g100",
+    "n": 200,
+    "depth": 16,
+    "profile": {
+      "id": "n200-p16-g100",
+      "gate_time_ns": 100,
+      "measurement_time_ns": 500,
+      "error_rate": 0.0001,
+      "source": "Hypothetical physical model; fixed physical error rate, not real-device calibration"
+    },
+    "resources": {
+      "logical_qubits": 200,
+      "counts": {
+        "h": 200,
+        "cx": 12800,
+        "rz": 6400,
+        "rx": 3200,
+        "measure": 200
+      },
+      "unitary_gate_count": 22600,
+      "scheduled_depth_with_measurement": 450,
+      "two_qubit_layers": 288,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "application_sha256": "c4c1681a3996c17d62a5d9d3406205ebd1b314322e2778f48a06898bbb47d9f2",
+    "status": "ok",
+    "points": [
+      {
+        "physical_qubits": 52577,
+        "runtime_ns": 48440000.0,
+        "error_bound": 0.0023471112000000003
+      }
+    ],
+    "estimator_wall_seconds": 2.6773193549961434,
+    "large_state_simulation_performed": false
+  },
+  {
+    "label": "n500-p1-g100",
+    "n": 500,
+    "depth": 1,
+    "profile": {
+      "id": "n500-p1-g100",
+      "gate_time_ns": 100,
+      "measurement_time_ns": 500,
+      "error_rate": 0.0001,
+      "source": "Hypothetical physical model; fixed physical error rate, not real-device calibration"
+    },
+    "resources": {
+      "logical_qubits": 500,
+      "counts": {
+        "h": 500,
+        "cx": 2000,
+        "rz": 1000,
+        "rx": 500,
+        "measure": 500
+      },
+      "unitary_gate_count": 4000,
+      "scheduled_depth_with_measurement": 27,
+      "two_qubit_layers": 16,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "application_sha256": "6897f4c130be2e300a530e2d1f9e014a7ea4e2672eba8322e94954bc6cb9d21e",
+    "status": "ok",
+    "points": [
+      {
+        "physical_qubits": 110165,
+        "runtime_ns": 11053000.0,
+        "error_bound": 0.0007343552650000001
+      }
+    ],
+    "estimator_wall_seconds": 1.9012203040038003,
+    "large_state_simulation_performed": false
+  },
+  {
+    "label": "n500-p4-g100",
+    "n": 500,
+    "depth": 4,
+    "profile": {
+      "id": "n500-p4-g100",
+      "gate_time_ns": 100,
+      "measurement_time_ns": 500,
+      "error_rate": 0.0001,
+      "source": "Hypothetical physical model; fixed physical error rate, not real-device calibration"
+    },
+    "resources": {
+      "logical_qubits": 500,
+      "counts": {
+        "h": 500,
+        "cx": 8000,
+        "rz": 4000,
+        "rx": 2000,
+        "measure": 500
+      },
+      "unitary_gate_count": 14500,
+      "scheduled_depth_with_measurement": 102,
+      "two_qubit_layers": 64,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "application_sha256": "8ebafc696bfe1cffac1b41698dcb6ae6ccb07a4a99d3850ec92bab05ef87dcc7",
+    "status": "ok",
+    "points": [
+      {
+        "physical_qubits": 112125,
+        "runtime_ns": 33712000.0,
+        "error_bound": 0.00245817106
+      }
+    ],
+    "estimator_wall_seconds": 2.3651154760009376,
+    "large_state_simulation_performed": false
+  },
+  {
+    "label": "n500-p16-g100",
+    "n": 500,
+    "depth": 16,
+    "profile": {
+      "id": "n500-p16-g100",
+      "gate_time_ns": 100,
+      "measurement_time_ns": 500,
+      "error_rate": 0.0001,
+      "source": "Hypothetical physical model; fixed physical error rate, not real-device calibration"
+    },
+    "resources": {
+      "logical_qubits": 500,
+      "counts": {
+        "h": 500,
+        "cx": 32000,
+        "rz": 16000,
+        "rx": 8000,
+        "measure": 500
+      },
+      "unitary_gate_count": 56500,
+      "scheduled_depth_with_measurement": 402,
+      "two_qubit_layers": 256,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "application_sha256": "651ea9b31c68a766d1ae5cbaac8ef88a6ed4bd7ffb1803fd037a33ddcfa650a6",
+    "status": "ok",
+    "points": [
+      {
+        "physical_qubits": 113105,
+        "runtime_ns": 124348000.0,
+        "error_bound": 0.009353434240000002
+      }
+    ],
+    "estimator_wall_seconds": 3.7298223540055915,
+    "large_state_simulation_performed": false
+  },
+  {
+    "label": "n100-p1-g10",
+    "n": 100,
+    "depth": 1,
+    "profile": {
+      "id": "n100-p1-g10",
+      "gate_time_ns": 10,
+      "measurement_time_ns": 50,
+      "error_rate": 0.0001,
+      "source": "Hypothetical physical model; fixed physical error rate, not real-device calibration"
+    },
+    "resources": {
+      "logical_qubits": 100,
+      "counts": {
+        "h": 100,
+        "cx": 400,
+        "rz": 200,
+        "rx": 100,
+        "measure": 100
+      },
+      "unitary_gate_count": 800,
+      "scheduled_depth_with_measurement": 30,
+      "two_qubit_layers": 18,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "application_sha256": "fa929eaf3f634dcf1c4a54ddf225e69d38307334507e4dfdf067b69c5cc3a0bb",
+    "status": "ok",
+    "points": [
+      {
+        "physical_qubits": 13310,
+        "runtime_ns": 160000.0,
+        "error_bound": 0.0068940076999999995
+      }
+    ],
+    "estimator_wall_seconds": 1.985085808999429,
+    "large_state_simulation_performed": false
+  },
+  {
+    "label": "n100-p1-g1000",
+    "n": 100,
+    "depth": 1,
+    "profile": {
+      "id": "n100-p1-g1000",
+      "gate_time_ns": 1000,
+      "measurement_time_ns": 5000,
+      "error_rate": 0.0001,
+      "source": "Hypothetical physical model; fixed physical error rate, not real-device calibration"
+    },
+    "resources": {
+      "logical_qubits": 100,
+      "counts": {
+        "h": 100,
+        "cx": 400,
+        "rz": 200,
+        "rx": 100,
+        "measure": 100
+      },
+      "unitary_gate_count": 800,
+      "scheduled_depth_with_measurement": 30,
+      "two_qubit_layers": 18,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "application_sha256": "fa929eaf3f634dcf1c4a54ddf225e69d38307334507e4dfdf067b69c5cc3a0bb",
+    "status": "ok",
+    "points": [
+      {
+        "physical_qubits": 13310,
+        "runtime_ns": 16000000.0,
+        "error_bound": 0.0068940076999999995
+      }
+    ],
+    "estimator_wall_seconds": 1.9060596150011406,
+    "large_state_simulation_performed": false
+  }
+]

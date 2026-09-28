@@ -1,0 +1,18 @@
+{
+  "application_sha256": "19508728701efb24f8c9602060d4f1a600d1fbf24804d33d7ce9df20ceea3aed",
+  "comparison_id": "engineering-smoke-not-a-case",
+  "evidence_source": "Integration fixture; semantic and classical evidence absent",
+  "same_task": null,
+  "classical_seconds": null,
+  "overheads_seconds": {
+    "preparation": null,
+    "classical_control": null,
+    "communication": null,
+    "readout_decode": null,
+    "validation_fallback": null,
+    "compilation_amortized": null
+  },
+  "quantum_executions": 1,
+  "max_failure_probability": null,
+  "algorithm_failure_bound": null
+}

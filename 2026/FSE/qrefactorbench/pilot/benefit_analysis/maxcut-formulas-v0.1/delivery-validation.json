@@ -1,0 +1,14 @@
+{
+  "focused_pytest": "8 passed (actual run in this session)",
+  "small_state_checks": 45,
+  "qdk_successes": 11,
+  "condition_roundtrip_checks": 2376,
+  "condition_status_counts": {
+    "conditional": 1604,
+    "impossible_at_this_budget": 772
+  },
+  "protected_files_unchanged": 175,
+  "raw_manifest_verified": true,
+  "local_artifact_links_passed": true,
+  "large_state_simulations": 0
+}

@@ -1,0 +1,40 @@
+{
+  "version": "lit001-llm-workflow-v0.1",
+  "authorization": "2026-09-28 side conversation: user requests actual LLM/tool/feedback lit-001 workflow, then says 做.",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "max_model_calls": 8,
+  "transport": "Existing subscription, isolated tools=[] text inference; controller dispatches JSON actions.",
+  "retry": "No inference transport retries by runner; failed tool calls feed back within eight turns.",
+  "input_allowlist": [
+    "program.py",
+    "kernel.py",
+    "public_task.json",
+    "fixed instance",
+    "tool documentation",
+    "current tool observations"
+  ],
+  "excluded": "Prior generated circuits, model outputs, labels and private reference solutions",
+  "scope": "One workload engineering run; no comparison experiment or new benchmark labels",
+  "scenario": {
+    "dispatch_seconds": 1e-06,
+    "communication_seconds": 1e-06,
+    "compilation_seconds_per_request": 0,
+    "mode": "steady-state precompiled fixed workload"
+  },
+  "source_sha256": {
+    "pilot/llm_workflow/lit001-v0.1/run.py": "ffec240b5c8f642c90515483eb9793426264431999920ded94b2acc0d3676fb0",
+    "pilot/llm_workflow/lit001-v0.1/engine.py": "1bc46260fef0ca79a7a4eea925a2b064742c7945ea3720ef04f0cfcc35ed5ea0",
+    "pilot/enhancement/state-workflow-v0.3/tool-free-sol-catalog.json": "b1b4bcadd2fd8c6580a0685dc2e6d4f6ac79c683ec6047e3d29be8b64fa44b49",
+    "pilot/model_comparison/20260922-c-v0.1/run.py": "63aab4e00a4adca7a25f2fd2813bb1b5a2c965bece04295efae3b3d71bd465ec",
+    "pilot/enhancement/state-workflow-v0.3/capture_request.py": "c5c24f2a828baab817e5314b18bdbe4c3169a9971d4da9dce8d01afeb4063ca4",
+    "qrefactorbench/resource_workflow.py": "1e3b3325f192a0178f717b011cc0f8151f37b8ef72eb9c90096b2bfa10b29348",
+    "qrefactorbench/_qdk_resource_worker.py": "aa4270f9706ad45bae7804101784f87424fd6e3168e6f787bd78b1ca69f5c642",
+    "pilot/source_adaptations/v0.1/cases/lit-001/program.py": "1190430f7b73ddf4a44ee38c5caa649a540faafe3418fcaddd3a531e6d3274e3",
+    "pilot/source_adaptations/v0.1/cases/lit-001/kernel.py": "2aa73675fc76452d16d2a016675e6367c3048d59fac893a9a9de846ffbd9f499",
+    "pilot/source_adaptations/v0.1/cases/lit-001/public_task.json": "b0a3ccafeeb8280487e61310213889d70871a65ec6f35347883ce56f0d4cd6f5"
+  },
+  "cli_version": "codex-cli 0.157.1",
+  "cli_sha256": "3e2584f3f3829a43a0495011a1cecb2facbe64a2403e2b682351fd9c2983f970",
+  "created_utc": "2026-09-28T06:06:38.684829+00:00"
+}

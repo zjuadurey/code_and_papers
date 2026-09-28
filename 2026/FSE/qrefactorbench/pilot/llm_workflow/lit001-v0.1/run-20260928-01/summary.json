@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "actual_model_calls": 4,
+  "model": "gpt-5.6-sol",
+  "candidate_sha256": "d71e3988e0a7d4420ac57a48f360d449629a6245bdd42fc8dd227beb1c50eb00",
+  "verification": "passed",
+  "actual_fallback_used": false,
+  "decision": "REMAIN_CLASSICAL",
+  "cost_points": 2,
+  "model_generated_circuit": true,
+  "all_source_hashes_unchanged": true
+}

@@ -16,6 +16,9 @@ Codex 应按 [AGENTS.md](AGENTS.md) → [研究意图](docs/RESEARCH_CHARTER.md)
 此指令只读；说“继续”才推进已授权安全任务。无需重新粘贴研究 idea。
 改动前还须核对 [决策](DECISIONS.md)、[工作规程](docs/CODEX_WORKFLOW.md) 和相关源码/测试。
 
+2026-09-28跨机器接续：[Mac交接](docs/MAC_HANDOFF.md)，含最新公式结果、LogicalQubit公开核查、
+Python版本差异、本地验证命令与未跟踪文件同步要求；状态仍以PROJECT_STATUS为准。
+
 ## 现在做到哪里
 
 Phase 1：案例建设与任务验证。当前十组来源案例及30份 A/B/C 输入已准备，
@@ -37,6 +40,10 @@ Phase 1：案例建设与任务验证。当前十组来源案例及30份 A/B/C �
 [CA6000 作业](coursework/sat_case_study/README.md) 独立保留，默认不再推进。
 
 ## Commands
+
+资源估算工具现可由harness通过Python或CLI调用：复用本地Microsoft QDK，
+结合独立成本/行为上下文返回条件分析。[接口与边界](docs/quantum_advantage/RESOURCE_WORKFLOW.md)。
+它不改变下方正式静态评分，也不代表已有案例获得优势。
 
 Python >=3.10 is required. Installation below is an option for an environment where
 dependency installation has been authorized; initialization reused existing Conda

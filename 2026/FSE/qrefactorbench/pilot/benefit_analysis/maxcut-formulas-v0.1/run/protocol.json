@@ -1,0 +1,499 @@
+{
+  "created_utc": "2026-09-28T07:32:35.252719+00:00",
+  "authorization": "User requests small-scale validation and formula-derived potential advantage beyond simulation; then 照这个情况推进下; no requirement to own large QPU.",
+  "small_validation_grid": [
+    [
+      4,
+      20260928,
+      1
+    ],
+    [
+      4,
+      20260928,
+      2
+    ],
+    [
+      4,
+      20260928,
+      4
+    ],
+    [
+      4,
+      20260929,
+      1
+    ],
+    [
+      4,
+      20260929,
+      2
+    ],
+    [
+      4,
+      20260929,
+      4
+    ],
+    [
+      4,
+      20260930,
+      1
+    ],
+    [
+      4,
+      20260930,
+      2
+    ],
+    [
+      4,
+      20260930,
+      4
+    ],
+    [
+      6,
+      20260928,
+      1
+    ],
+    [
+      6,
+      20260928,
+      2
+    ],
+    [
+      6,
+      20260928,
+      4
+    ],
+    [
+      6,
+      20260929,
+      1
+    ],
+    [
+      6,
+      20260929,
+      2
+    ],
+    [
+      6,
+      20260929,
+      4
+    ],
+    [
+      6,
+      20260930,
+      1
+    ],
+    [
+      6,
+      20260930,
+      2
+    ],
+    [
+      6,
+      20260930,
+      4
+    ],
+    [
+      8,
+      20260928,
+      1
+    ],
+    [
+      8,
+      20260928,
+      2
+    ],
+    [
+      8,
+      20260928,
+      4
+    ],
+    [
+      8,
+      20260929,
+      1
+    ],
+    [
+      8,
+      20260929,
+      2
+    ],
+    [
+      8,
+      20260929,
+      4
+    ],
+    [
+      8,
+      20260930,
+      1
+    ],
+    [
+      8,
+      20260930,
+      2
+    ],
+    [
+      8,
+      20260930,
+      4
+    ],
+    [
+      10,
+      20260928,
+      1
+    ],
+    [
+      10,
+      20260928,
+      2
+    ],
+    [
+      10,
+      20260928,
+      4
+    ],
+    [
+      10,
+      20260929,
+      1
+    ],
+    [
+      10,
+      20260929,
+      2
+    ],
+    [
+      10,
+      20260929,
+      4
+    ],
+    [
+      10,
+      20260930,
+      1
+    ],
+    [
+      10,
+      20260930,
+      2
+    ],
+    [
+      10,
+      20260930,
+      4
+    ],
+    [
+      12,
+      20260928,
+      1
+    ],
+    [
+      12,
+      20260928,
+      2
+    ],
+    [
+      12,
+      20260928,
+      4
+    ],
+    [
+      12,
+      20260929,
+      1
+    ],
+    [
+      12,
+      20260929,
+      2
+    ],
+    [
+      12,
+      20260929,
+      4
+    ],
+    [
+      12,
+      20260930,
+      1
+    ],
+    [
+      12,
+      20260930,
+      2
+    ],
+    [
+      12,
+      20260930,
+      4
+    ]
+  ],
+  "large_resource_grid": [
+    [
+      100,
+      1,
+      100
+    ],
+    [
+      100,
+      4,
+      100
+    ],
+    [
+      100,
+      16,
+      100
+    ],
+    [
+      200,
+      1,
+      100
+    ],
+    [
+      200,
+      4,
+      100
+    ],
+    [
+      200,
+      16,
+      100
+    ],
+    [
+      500,
+      1,
+      100
+    ],
+    [
+      500,
+      4,
+      100
+    ],
+    [
+      500,
+      16,
+      100
+    ],
+    [
+      100,
+      1,
+      10
+    ],
+    [
+      100,
+      1,
+      1000
+    ]
+  ],
+  "physical_error_rate": 0.0001,
+  "measurement_time_over_gate_time": 5,
+  "max_error_per_shot": 0.01,
+  "qdk_timeout_seconds": 60,
+  "condition_grid": {
+    "classical_seconds": [
+      0.1,
+      1,
+      10,
+      100
+    ],
+    "fixed_seconds": [
+      0,
+      0.01,
+      0.1
+    ],
+    "per_shot_seconds": [
+      0,
+      0.0001,
+      0.001
+    ],
+    "shots": [
+      1,
+      4,
+      16,
+      64,
+      256,
+      1024
+    ]
+  },
+  "cost_interpretation": "All large classical/host costs are explicit condition coordinates, not extrapolated measurements.",
+  "protected_before": {
+    "pilot/benefit_analysis/maxcut-formulas-v0.1/test_formulas.py": "c9c9813777349007ec5b85b8ec2d818a83c38b8c561294cceec5119d70c3730d",
+    "pilot/benefit_analysis/maxcut-formulas-v0.1/formulas.py": "ecfadd306c57b27efa9020e179cc312f93122c280b394d40862bf0cea15b84f1",
+    "pilot/benefit_analysis/maxcut-formulas-v0.1/README.md": "6b51e87266d75c070b96722ab916d63422a7bcee03ea5a24695b9c2b4cfe9b8c",
+    "pilot/benefit_analysis/maxcut-formulas-v0.1/run.py": "8cc7009607e2259ee02edbd018820dd0fb627b372324dd1d291454843ed08ea3",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/resource-budget.png": "9bc8d4f8ef5610d9de19d0d2afdf6c402a37d650bbfd3edf9547923da74f80fb",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/REPORT.md": "386de66c35617d101db1e1ec31e2b84704376aa96bcec38ce3c01c6091f1e5e5",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/report.py": "714657e95e1b31bb6d2426b9b82c64262c6f82d5a0c925c5f2e1c9bc608e7dab",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/derived.json": "36e7380b20803d78da679e8cf027e8e295afc3169289f8d1caee8e9c4df7d511",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/audit.py": "dbbebbecb83b0bedc9dffe52d5c9ce765d07500f12df837ab8435e32bf831a50",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/delivery-validation.json": "7d1a1a67b8a78a08c0d038b65bd78278c4176512437468277fda1d82486179b1",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/resource-budget.pdf": "27b586f213439bd14d7f12f3a66e8655c501c8b4ff2a8ba8a7c711dee2a72966",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/README.md": "64528b7f04a694dd93d58b5f8492edadc9b61057b46782c43bf03e93fda0610a",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run.py": "3baa080cb4179db4e83badf7f21e5a4a6097d5269f20069d022cdb3198259998",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-24-20260928.json": "553310068c9b0a090b0dcccca79f8762b51add6421be51c77954e896e658998d",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-32-20260929.json": "d9141b9a2e5fc13f2741b3f8c6daf215a20849b86dd4035e011b1b4cede7c56e",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-48-1.qasm": "65db934c0cf83a3635beb867fb8b2edcf40603a761a77453dbfec421332c7b02",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-8-1.qasm": "7ff6f293b14984941b843140119855c9b25ca82ed65814df8aa97f8dcf584530",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-8-20260930.json": "446ea24747405792f7752cd698094a263ce0fdc90e02a0d139cb476a5f9c4b78",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-32-1.qasm": "f6c2036609f16fe5d68c29ce2f1a006b3ec0133e44d9a147ff76cb289f0059d0",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-24-4.json": "8f075333726cfcbcb3d27e487f4c8dc99cdc03068ae7f087d48af8a8db4c1c5a",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-24-20260930.json": "c3020f38f362f0623656c2c3c3b58b0a8ebc0257302dc01f1d34ed487e04f6ff",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-48-20260928.json": "e6a3b547c7ce80dae7ca6312597eaa8e5e3cd113e77d253f85abdd018083a8fc",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-24-16.json": "e956e4045c617dae2deff1d031429a472f265ef38e0df83ef478712d61a588a4",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-32-20260930.json": "8ca87476dc69519dc1af8f939aaa011abdbc236d61472fd7ed52e7c476819e1f",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-16-20260930.json": "66eaf3907d04010277e390e34d4627feadb1aaf419adf35db7f7b76b7159884f",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-8-20260929.json": "6392f08f33ee39ac90186dd15b78498b1d9e7fcc95446c52ad155fc771d9bdb9",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-32-16.json": "85b3fdbbbde9865f537217d1d9bb7de97125e42595702b1515dddc58041be9ff",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-48-1.json": "0181eca84131ba79586f1f6d30fce7f370c78ee92e36f0c81cc295d316d1aeca",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-64-4.qasm": "01662a3707ede09c007aa8ef79194793f120f752833e6c38aef1141075319574",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-48-20260929.json": "852071bb1f7e3ec6bbf90614f4cc58e53e1705691b06a24c07677504ffb78fad",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-8-4.json": "d0f1e44a4912ac10f252bfa290f40cde1a79e9752346f4d9ef8a1e656ad4f6d9",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-16-20260929.json": "a08638e3841dc17edaaffc32df09e5ccdaaf55568914fa61dc91655723bb3de4",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-24-20260929.json": "93ef15c651b1675c1eea4ba05b3286baa8ae53940891d867075edde133b54b02",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-8-20260929.json": "e007e4dd051fa7d77725cd126b6324fb2f7ecd803052c8eb5be173fa48c9e11f",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-48-4.qasm": "7305b0b6c2a26438406ecf64f3fd5f888ced2e2dac628a21b72e9d057604d465",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-32-16.qasm": "dd5297e3178f7ef9eb6de0ea2788e841fff9a30f0ffdd723ae6e8798c3da524d",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-24-1.json": "7cbeb07608265a49b33480e4f3da31c5767f92af1966ad3cd9e9332e18c37299",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-24-4.qasm": "4c20683215b73eddc9a758679c4f377b758f3bf13ddca21fd1fe24f13a87a0b8",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-32-20260928.json": "5cb6bfbb3611661d59c96f5a80a669f1e288c7f0502c0c26699c8c45d897719f",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-32-20260928.json": "f5f2fd7a16f26e964eb355195da6d20f23de57324f9c88988df11f69684c2f23",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-24-1.qasm": "aee6c15adc52309a472893d161c0b0af0f2d9d69f266e0bcb9f5954932c807e6",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-32-4.qasm": "42a7bc12502d0656a98689038f7e4a1370fdc25e04b7decff479c5af0b918103",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-8-1.json": "b08a380c882be9cea35579e7a9e08651670c992ddac68931e53350de8b4bcd93",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/results.json": "a4202cee7bdd13355a07dd9fdb5b241b747bc2b398600780dfde7c3fcd063f5d",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-64-1.json": "66378e2f97420b35ab2daf41183c29142e2aded2d39a3747c8ecdd1951f40bcc",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-48-4.json": "462897217d55a8e4139646e5d435060197bd3afb3b318a5dd971e557d918f3ff",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-16-4.qasm": "79bc85a04b9a82695b56a8b8e8ad3473ae43208491f8b8fcaf1b86ed755f14c6",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-8-20260928.json": "0cc1fe75b341c99eab213c2600ad7bd6a84d9ba69ca7490f384d1c49cab694af",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-32-20260929.json": "7afaaedc383a99cc76251ec7e8c86c01a8118c5cf363571da67360a6d74869d2",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-8-20260930.json": "be511740c5966b3e3f1971270625063add9bae95ecbba85090db2fbaf14386ca",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-48-16.json": "4508a3d42b80869189dfffe6ba9acce5b8ba4152b89ff89df50dd17b4389551f",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-48-20260928.json": "a2afc9c64e4643e099eecb165eb77d89284020fe6dacaff8b093ca6c5f65a8b8",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-48-16.qasm": "b22d022bbf094710d4d302eb61156e36f007edfdac3ab1e5f6a4f3d9f99574c9",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-24-20260928.json": "a3c658462de3decac8b8ad3969d8e81f8fd0ab717186f3a36e64cd7107120f5f",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-32-4.json": "c57b4487e9cd09be2a4dad6fd4b3e16ce10676cf2ccf39f2cb75266de8d8403b",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-16-20260930.json": "a4ce7be25a90e70ca07d3c43e39e875039f63aa337bd1e2461358aef8635e70d",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-48-20260929.json": "5d7ac15b1ed492a0e3da85952014bb64bbbb911ff3ad86000398cef99d8fa3ad",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-64-20260928.json": "d9b7624e2ab302802f88a59fff4f8126e9587152c0cdb13fbbc497b613f64393",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-16-1.qasm": "8b84d7c7764e6e131df98109a68dc632dfb3987df8bd55fbf120fd1a2544dcdf",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-16-4.json": "e55e68ba17d20a52e816cb04b531f128d700bce30388bc3a00a5e2350b6e3906",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-64-16.qasm": "466958d868ffacd81b28905d9ec1b637f8c7323b78e7c18864c689c8cce66539",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-64-20260928.json": "8df733481a9e037cbfef0a893ecce492cc52b8f3c7567b22aacdabf8ae3e46c9",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-48-20260930.json": "03f4a9fc813b12013036c0d4f2aa96a08742d5c56b5ae9559cdfea68e180dc58",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-8-16.json": "17edbe6df1be60802c484a63fdd6323565b3be18bf06af277aa2172e9f5ead63",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-48-20260930.json": "05484f11f039b4897b3b092afc0b27efa19c0553b057790aa07fb9a976e55e53",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-24-20260929.json": "786138e36e6c8cb1e975760daada56d12e1105ce7ca74a780f011475395e4d11",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-16-16.json": "62835006aea9b24b98209ac1d78215ebab08f37023526122f45e0107341562c3",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-8-20260928.json": "b2d9f4108f8f2976a69b55f4600c5d7c1d577a0c63088bbcd1cd826b2393477f",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-16-20260929.json": "40f564ee7028d2f1d5b8a950c3c3179f2705a4d3d429a0f01341efb86a7f47b7",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-64-4.json": "891d8f95764310ee15a789106b06298a769c073456bcd3b0cd6fc985e0fccb94",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/manifest.json": "a25d33d03d5dc9b9e4fb98a025801def3128d3f7c821c8341f4f7a70df953de2",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-64-20260930.json": "9135997cf98d617919c8df8230ebde5ac0c3a7b6b249bfb98e0d7dc7d362b1cf",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-64-1.qasm": "7c5a82b61fd568a8f9bfa97cffc2326a208abc1d4e5a3059171ce50357918693",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/validation.json": "0eb3a9a7930ccfe1cf6fd1cc2fccf8d082dff0a5ac07a85e4d93f731a868e178",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-24-20260930.json": "4f0c43919a3e2302d864c16c9ad00af630eae8c5dfb4f053186fb2f7711be84b",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-32-1.json": "95aacaf1a166c7a0db67388f0029d7e963d21834446dae347106870f1615c74c",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-64-20260930.json": "753ca5bf229f56fa2d4c2751876baf44c20263b65db6f4fb9653c6c3708990cc",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-16-20260928.json": "38a3feef8ab1167d11d75f7b0b78db1882b46dd3c9ad8b6f7240f478786d8b6c",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-32-20260930.json": "bc976a2416d1a2e4e071090753012c47e0287c5a2135e6387d3ad6e503096212",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-64-20260929.json": "98316488b5ecd78d36282ca11e496257bf1e0fed3f34e8aaddb6d65cac8c4c00",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-64-16.json": "94156e8e1f97138089482059ef97e9d965175e278ca002cd6513a73560d73fd6",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-24-16.qasm": "d41c9a6a95477baca95e2043c46bf23c8b529e8d224a510dac78db9258bd6711",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-8-4.qasm": "14682eddfa850f116daec482f0fa239c43ad9f71d05630139f53936fd1a616e4",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qdk-16-1.json": "3ed75abcb186c970c041b9696bb812011f4428672392c8f84609897a4752e2b2",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/graph-64-20260929.json": "1511e49be483c292a7b98218e9f7904f6d1e1b015c58721a8e83bcfed08b71de",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-8-16.qasm": "264ead9cd8193c6b28a5d22f1418099d1f8a3f93f972baa00e524766b6693a05",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/classical-16-20260928.json": "1d2c742f3bd6aec9b782fd4990eddf6b240fc1a3ab2b4b23d94f2997e757d462",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/qaoa-16-16.qasm": "f9cf72012bc583a74a735cfe6afe6e1289af6031d1dcf0162c37aca7d3c1ee9a",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/run/protocol.json": "700637c0c32d8c95cd0f834e05defa2b7bb778d7a32273640cecde82fbcd92ba",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/audit/manifest.json": "704cb2f8d7f639d32409435224fc7667500e4ac01c55855ad54a9003b7c98ec8",
+    "pilot/benefit_analysis/maxcut-scaling-v0.1/audit/validation.json": "68ea53236e4ab59a28dd6b582eb60646cf95925d57c9ee6ab46dfe5caf2d8ccc",
+    "pilot/llm_workflow/lit001-v0.1/replay.py": "5b7a7e3a799dbd8a5ef8df1dd0229e54a1f380dd02f623d3108554c404b22b79",
+    "pilot/llm_workflow/lit001-v0.1/test_workflow.py": "8b8747718647c0484900fd8e93f3baa938fd3fef29c2ed6aab938353459ba9f6",
+    "pilot/llm_workflow/lit001-v0.1/VALIDATION.md": "0379d7f1b718eafb96fd13a4f098d3acd37217e32c565ba808df5fdb89a8c6a3",
+    "pilot/llm_workflow/lit001-v0.1/validation.json": "0f4eb85f72cc80edad96286c8220b61772986c38ba60925e9cdcf2e825c0c4cb",
+    "pilot/llm_workflow/lit001-v0.1/engine.py": "1bc46260fef0ca79a7a4eea925a2b064742c7945ea3720ef04f0cfcc35ed5ea0",
+    "pilot/llm_workflow/lit001-v0.1/README.md": "ec85c4f65f1c485af8307815a1764665425188a9171a5398af907b3563092194",
+    "pilot/llm_workflow/lit001-v0.1/run.py": "ffec240b5c8f642c90515483eb9793426264431999920ded94b2acc0d3676fb0",
+    "pilot/llm_workflow/lit001-v0.1/replay-20260928-01/candidate.json": "26d06bf74f993e8d9edace41d98b0833c93144071bd3b0c48d0bb00b65bf6b72",
+    "pilot/llm_workflow/lit001-v0.1/replay-20260928-01/manifest.json": "2a57dce6240433fec9912dd2b19c42233b705e8664a12cf65f9afe5a1ad5bc37",
+    "pilot/llm_workflow/lit001-v0.1/replay-20260928-01/replay.json": "4d63d67353cc014d7f4d9ab8d8b525c0d9016fcbd3c3ce7fc3ff95671b3e3dca",
+    "pilot/llm_workflow/lit001-v0.1/replay-20260928-01/cost/resource-analysis.json": "424c4c41a898f139b66f9645b5c818017ffc3014573e6dad85187f14f596762c",
+    "pilot/llm_workflow/lit001-v0.1/replay-20260928-01/cost/controller-context.json": "cba62c6d4ec18f72fe4de9b9afa99fae7b40aacfd94eb5ddbbbc421a80472cc5",
+    "pilot/llm_workflow/lit001-v0.1/replay-20260928-01/cost/resource-request.json": "29ba2a2e1e496d566fc015f9f4f803d42e1bb82699de58a4a56dafc44dcc7b67",
+    "pilot/llm_workflow/lit001-v0.1/replay-20260928-01/cost/comparison.json": "1203281904e29568a75a97b80b2e678b61fc2718ed657fb2f4e7a7dbae945b13",
+    "pilot/llm_workflow/lit001-v0.1/replay-20260928-01/verification/verification.json": "81f6125f40335a1f9125d39cfacdb4a5ac09998467bca7657790e0a039f4e2e9",
+    "pilot/llm_workflow/lit001-v0.1/replay-20260928-01/verification/application.qasm": "d71e3988e0a7d4420ac57a48f360d449629a6245bdd42fc8dd227beb1c50eb00",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/transcript-03.json": "571481b514a3eaaa0cf53089eebe3e3a94be461ca26ecf28246e6e73a2e2f326",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/transcript-01.json": "e11bb93df2469369b303434fd0ff11e98243f6ef76f260fc432835f381332534",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/conclusion.json": "4a481eff2ee94c7a8d9b2cd5d7ddf66a250b04a355e5320e94b1cb342aee4768",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/transcript-02.json": "8ddd0f5e9736f0e57f66254a1a8dabee03c901ec107facbf2f4e7ac14aebf2dd",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/manifest.json": "a6f1a9371a64fa528bd974bde2c3b38774ab3251470d4512c70f48159504de5d",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/summary.json": "41b74f6fdd6131c3e2c87246e7a39e6e5b520f6c4d38856bfe583f7643bd1910",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/protocol.json": "d1805b82ae3f14a89718e0f023f558cfd68950f74709930cd392862d373d227a",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/transcript-04.json": "cfd1ea67b80e218bdf718c338cd05086d8c8f8ca34b3efbc1483175d04f5f6d2",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/tool-04/observation.json": "eab7cee30109b61198a9ab9b5bf396b842d68ca5396fa6161ada7ba0795511a2",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-03/started.json": "438aad7f8a72f515564f32496f2eaa660ba72fa29a162287e1b308ac3947f679",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-03/events.jsonl": "0f8e1aeaf79b2ebaba6a71e3f692739a6cf23af6d4d9e0ca615ed55f0b3e7ab2",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-03/metadata.json": "1a649a1dc4f4eb8e31e4b933a4b08dba3eaed26e87867ecc287208aa2e399f33",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-03/response.txt": "df24f454e582d64a1a28c1c1bd70568659bcb85458e74ea782fbd02de5ce67b3",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-03/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-01/started.json": "de2a2b34cd81cc09e851d081582334e0977c5a0486fa402b3cedb1f9a76138f3",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-01/events.jsonl": "e285f42c239e2ec1e46492123dab0c18160fc95b0acff54d99cb29427c51fd9b",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-01/metadata.json": "59227c280bf1522a70c3ddc1ae81e7996e56b44410723ee9641b412a5e90ef35",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-01/response.txt": "513794091bf23b4615f9a521505ef5f152f5fcaec159932e278dcd3152a43e3a",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-01/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-02/started.json": "6fd73020803addfe17464db166456736f890f64fd17428649ed0438c4e574753",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-02/events.jsonl": "0fc39fbf0e4d81184fde5f611a29e02758fcca994e83f5a04ee96ca7dee80488",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-02/metadata.json": "234e277fb60d00560a8dba84f0fe5c86842f1c0701c0aa5652b16a03572d247c",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-02/response.txt": "fe43c5fc0a798c4c23e0757c0dd396549439042aa500092cb11b48c37bf7fd6e",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-02/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-04/started.json": "2912e639b9e338a890ae4cb82e1b80a1a8d36ba5645095ff86cd97f29c994194",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-04/events.jsonl": "323ffba692d17b4191325f9a6d3c02c6d3d52f5052cf488060f9e8380a0d4422",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-04/metadata.json": "113635079aae6bdb4d77348a0196b662a85aea7c0924c13425aebba62ad4d661",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-04/response.txt": "5559b0a48a40568381ba19303aad2a499eb058652d2a5de04d82325bff3af388",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/runs/gpt-5.6-sol/turn-04/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/preflight/capture.stdout": "a890115b1256fb65b0e649adbbf4f590254748a23e1d7c96f6d2f74f49b5e6db",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/preflight/capture-cli.stdout": "f61f3a2098c9b764343497fb5d7eaae4fe51258fda47b30e29eff21d216bd3fd",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/preflight/passed.json": "e78674739a995bd48654a9b9ae25aa006b7b7b3020f530cd9b0dd118cdf3cd6c",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/preflight/capture.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/preflight/capture-cli.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/preflight/captured-request.json": "4bd6546a4323662c3c62b8293a2a9f462ad2ed9942a809fbe6eb62561aa01c74",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/tool-01/observation.json": "ac190c1943ab4ce61893d44f627e69450d51644e56141bae7c216091c2540850",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/tool-03/resource-analysis.json": "302538afd18cd6912875e76862c977331cc7d1e2cb693056d8363b2413c29ee0",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/tool-03/observation.json": "5555e3f5134b63b45e3d346a1ff43da7e3727166d19aa346cba6ba345c5d6d53",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/tool-03/controller-context.json": "fce5d1534e16b06e56beb727c8005335b45a27ea7aa51ee7e87c84d014ef0ad9",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/tool-03/resource-request.json": "29ba2a2e1e496d566fc015f9f4f803d42e1bb82699de58a4a56dafc44dcc7b67",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/tool-03/comparison.json": "5555e3f5134b63b45e3d346a1ff43da7e3727166d19aa346cba6ba345c5d6d53",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/tool-02/verification.json": "81f6125f40335a1f9125d39cfacdb4a5ac09998467bca7657790e0a039f4e2e9",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/tool-02/application.qasm": "d71e3988e0a7d4420ac57a48f360d449629a6245bdd42fc8dd227beb1c50eb00",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/tool-02/observation.json": "81f6125f40335a1f9125d39cfacdb4a5ac09998467bca7657790e0a039f4e2e9",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/tool-02/candidate.json": "26d06bf74f993e8d9edace41d98b0833c93144071bd3b0c48d0bb00b65bf6b72",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/inputs/turn-04.txt": "2d1a344253678c329cea4f0d760206686a43a93f8d569f273f606d2a7ad7e000",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/inputs/turn-03.txt": "5093b46248e1d44e97a4d4c11fd31477069d68a17d6c3cac7bc293f9298c334e",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/inputs/turn-02.txt": "364883f93e957b7daac671c1ff17fe046dc3087932180d006f312f5c10d327b4",
+    "pilot/llm_workflow/lit001-v0.1/run-20260928-01/inputs/turn-01.txt": "5c241b48200cfafb33695abbf4dfc8e320add247a9eb4488ef1e37a43822c442",
+    "qrefactorbench/_qdk_resource_worker.py": "aa4270f9706ad45bae7804101784f87424fd6e3168e6f787bd78b1ca69f5c642",
+    "qrefactorbench/validator.py": "e18caadcd3f3f5d26ac21a7aeef1fc032424146c510fcb7d460eefd95865f3e9",
+    "qrefactorbench/reproducibility.py": "dc9aa3fdb02dfd9353d80462a02d71ac24c13f146b3728ec63c8f19cc5022e3c",
+    "qrefactorbench/__init__.py": "c53081b4869f170a99826488e87e5cad7277aae8456680c9f681d856200b8174",
+    "qrefactorbench/schema.py": "e10e6ec441d8bd7d221d85145cef47740235d721f42779cdf519168557d41fd4",
+    "qrefactorbench/pilot.py": "eb4d9bfa693e5e93ee348fda023a8b090303c4df0f95192ff0ddbe36f7a46b63",
+    "qrefactorbench/cli.py": "6aadd233bd5ac53cff501be97f00d47f5ba406999ad6b66ca8e46d68531ba7cf",
+    "qrefactorbench/__main__.py": "76fa916e93e0ae1a6c1bb51dcc0bcf289c014e9f760a47165f8a84401ccf41d7",
+    "qrefactorbench/loader.py": "9b3489aaad30d52106bf0c22d32e288e1426ec10befa47be91299905e3537fd9",
+    "qrefactorbench/resource_workflow.py": "1e3b3325f192a0178f717b011cc0f8151f37b8ef72eb9c90096b2bfa10b29348",
+    "qrefactorbench/evaluator/pipeline.py": "ea9d114e0738053a7c8534deaee6bcdc9cd547a2a4be276530f9e5feea1851e6",
+    "qrefactorbench/evaluator/planning.py": "d9936924c6fb15fdb08a75c0740c401f998ad82e7c203ad1570685020934b9f1",
+    "qrefactorbench/evaluator/decision.py": "8d87c9f5c844413a966edcb82f273509add8a55bdcabd66a53b683b3b1987674",
+    "qrefactorbench/evaluator/candidate.py": "e4b9e9c52dc873df3fc3ce6f7a521b8742b8fba3940935ef273412fa85540448",
+    "qrefactorbench/evaluator/__init__.py": "593d208666981ced9a645e5545a275abb290ec68fc70afc795efa156324fcf52",
+    "qrefactorbench/evaluator/execution.py": "3f1693cda035a1b242f5a42653453b89594f8c04ad8df05d2f27b4ca713c51f0",
+    "qrefactorbench/evaluator/resources.py": "6bd9f23eec6a92dcfcdf9e9a986d171c25e0d2b539309230dc4cb22f136c0a8a",
+    "qrefactorbench/evaluator/semantics.py": "6eab399daba174753a725f26b9f7601e62d3787e83cda3bed6a0470ac28a5b63",
+    "qrefactorbench/evaluator/recognition.py": "02f1882fbc1aa272696309a418a28f451edaf3769670c20e55aeb0872beef70c"
+  },
+  "python": "3.10.21 | packaged by conda-forge | (main, Aug 21 2026, 22:42:31) [GCC 14.4.0]",
+  "numpy": "1.26.4",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43"
+}

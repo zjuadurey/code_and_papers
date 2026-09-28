@@ -12,6 +12,7 @@ dependencies = ["jsonschema==4.26.0", "referencing==0.37.0"]
 [project.optional-dependencies]
 yaml = ["PyYAML==6.0.3"]
 quantum = ["qiskit==2.5.2"]
+resources = ["qdk[qre]==1.32.3"]
 test = ["pytest==9.1.1"]
 
 [project.scripts]

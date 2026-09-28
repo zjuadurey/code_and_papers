@@ -1,0 +1,26 @@
+{
+  "application": {
+    "coverage": "one uniform preparation, one clause-derived oracle, one diffusion, data measurement",
+    "format": "openqasm3",
+    "source": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nqubit[14] q;\nbit[3] result;\nh q[0];\nh q[1];\nh q[2];\nx q[3];\nx q[0];\nx q[1];\nx q[2];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[3];\nccx q[0], q[1], q[10];\nx q[0];\nx q[1];\nx q[2];\nx q[4];\nx q[1];\nx q[2];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[4];\nccx q[0], q[1], q[10];\nx q[1];\nx q[2];\nx q[5];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[5];\nccx q[0], q[1], q[10];\nx q[6];\nx q[2];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[6];\nccx q[0], q[1], q[10];\nx q[2];\nx q[7];\nx q[0];\nx q[1];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[7];\nccx q[0], q[1], q[10];\nx q[0];\nx q[1];\nx q[8];\nx q[1];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[8];\nccx q[0], q[1], q[10];\nx q[1];\nccx q[3], q[4], q[10];\nccx q[10], q[5], q[11];\nccx q[11], q[6], q[12];\nccx q[12], q[7], q[13];\nccx q[13], q[8], q[9];\nccx q[12], q[7], q[13];\nccx q[11], q[6], q[12];\nccx q[10], q[5], q[11];\nccx q[3], q[4], q[10];\nz q[9];\nccx q[3], q[4], q[10];\nccx q[10], q[5], q[11];\nccx q[11], q[6], q[12];\nccx q[12], q[7], q[13];\nccx q[13], q[8], q[9];\nccx q[12], q[7], q[13];\nccx q[11], q[6], q[12];\nccx q[10], q[5], q[11];\nccx q[3], q[4], q[10];\nx q[1];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[8];\nccx q[0], q[1], q[10];\nx q[1];\nx q[8];\nx q[1];\nx q[0];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[7];\nccx q[0], q[1], q[10];\nx q[1];\nx q[0];\nx q[7];\nx q[2];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[6];\nccx q[0], q[1], q[10];\nx q[2];\nx q[6];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[5];\nccx q[0], q[1], q[10];\nx q[5];\nx q[2];\nx q[1];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[4];\nccx q[0], q[1], q[10];\nx q[2];\nx q[1];\nx q[4];\nx q[2];\nx q[1];\nx q[0];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[3];\nccx q[0], q[1], q[10];\nx q[2];\nx q[1];\nx q[0];\nx q[3];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[2];\nccx q[0], q[1], q[2];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nresult[0] = measure q[0];\nresult[1] = measure q[1];\nresult[2] = measure q[2];\n"
+  },
+  "max_error": 0.01,
+  "plan_id": "lit005-one-iteration-prefix-repair",
+  "profiles": [
+    {
+      "error_rate": 0.0001,
+      "gate_time_ns": 100,
+      "id": "hypothetical-100ns",
+      "measurement_time_ns": 500,
+      "source": "explicit hypothetical scenario; not calibrated user hardware"
+    },
+    {
+      "error_rate": 0.0001,
+      "gate_time_ns": 1000,
+      "id": "hypothetical-1000ns",
+      "measurement_time_ns": 5000,
+      "source": "explicit hypothetical scenario; not calibrated user hardware"
+    }
+  ],
+  "version": "resource-workflow-v0.1"
+}

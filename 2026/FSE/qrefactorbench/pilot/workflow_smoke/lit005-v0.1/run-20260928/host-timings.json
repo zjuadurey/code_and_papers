@@ -1,0 +1,30 @@
+{
+  "circuit_construction": {
+    "batch_means": [
+      8.110521001071902e-05,
+      8.957295001891907e-05,
+      8.533669999451377e-05,
+      8.507908998581115e-05,
+      8.952524502092273e-05,
+      8.796542999334634e-05,
+      8.630007501778891e-05
+    ],
+    "lower": 8.110521001071902e-05,
+    "source": "perf_counter: 7 batch means, descriptive range not confidence bound",
+    "upper": 8.957295001891907e-05
+  },
+  "classical_full_review": {
+    "batch_means": [
+      2.2965627002122346e-05,
+      2.4326614002347925e-05,
+      1.985889399657026e-05,
+      2.0037330999912227e-05,
+      2.1782777999760582e-05,
+      2.1263814000121783e-05,
+      1.9694994000019506e-05
+    ],
+    "lower": 1.9694994000019506e-05,
+    "source": "perf_counter: 7 batch means, descriptive range not confidence bound",
+    "upper": 2.4326614002347925e-05
+  }
+}

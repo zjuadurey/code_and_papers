@@ -116,9 +116,20 @@ def main(argv: list[str] | None = None) -> int:
     compare.add_argument("left", type=Path)
     compare.add_argument("right", type=Path)
     compare.add_argument("--json", action="store_true")
+    resources = sub.add_parser("estimate-resources", help="Analyze a proposed quantum application and controller-owned costs")
+    resources.add_argument("request", type=Path)
+    resources.add_argument("--context", type=Path, required=True)
+    resources.add_argument("--qdk-python", default=sys.executable)
+    resources.add_argument("--timeout", type=float, default=60)
+    resources.add_argument("--json", action="store_true")
     args = parser.parse_args(argv)
     try:
-        if args.command == "compare-annotations":
+        if args.command == "estimate-resources":
+            from .resource_workflow import analyze_resources
+            output = analyze_resources(load_document(args.request), load_document(args.context),
+                                       python=args.qdk_python, timeout=args.timeout)
+            code = 0 if all(r["status"] == "ok" for r in output["estimation_runs"]) else 2
+        elif args.command == "compare-annotations":
             output = compare_annotations(load_document(args.left), load_document(args.right))
             code = 0
         else:
@@ -131,7 +142,7 @@ def main(argv: list[str] | None = None) -> int:
                 output = summarize(report)
             else:
                 output = report.to_dict()
-        if args.json or args.command in {"evaluate", "compare-annotations"}:
+        if args.json or args.command in {"evaluate", "compare-annotations", "estimate-resources"}:
             print(json.dumps(output, indent=2, sort_keys=True, allow_nan=False))
         else:
             print(f"{'VALID' if output['valid'] else 'INVALID'}: {output['case_count']} structurally valid cases")

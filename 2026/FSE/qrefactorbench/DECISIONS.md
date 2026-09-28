@@ -1161,3 +1161,97 @@ N-059过早优先“行为合同与成本”的路线建议由[N-060/v2](docs/fr
 源码候选恢复、硬件约束下方案选择、可用迁移验证三条路线共同比较；排序是协调者建议，
 不冒充用户已冻结方法/贡献。已完成三份既有材料的静态诊断，不是外部系统实测失败。
 旧论文/源码证据及实验字节保留；无新模型/QPU、安装、正式案例/gold/split或论文结果变更。
+
+## D-040: Contract and end-to-end benefit as core decision criteria
+
+Date: 2026-09-28
+Status: ACCEPTED user correction / particular implementation and novelty remain unproven
+
+研究者指向docs/quantum_advantage后明确纠正：
+
+> 这是我另一个调研，我要你查看并看看如何推进，你说的““行为合同与成本”保留为候选机制，不再预先锁定”我不接受
+
+据此，保持原程序行为合同、在明确硬件/工作负载/质量下判断端到端收益，是完整系统的
+核心判定依据，应贯穿候选发现、方案选择、生成和验证，不能降为可有可无的候选机制。
+这一纠正取代D-039/N-060中相关措辞和独立源码候选恢复的优先级；保留其前沿事实与历史字节。
+量子优势框架和前沿调研共同支持原idea，不是互相替代的选题路线。
+
+具体算法、证明器、成本模型、agent组织、正式指标与硬件profile仍需证据和必要科学决定；
+用户没有因此认可某个未验证新机制、自动化成果或实际优势。具体技术须与强相关方法及合理
+工具组合比较，不能把“已有工具组合可做”当成放弃目标的理由。
+
+执行承接：N-061以已存在lit-005 v0.1.1完成首份[逐案例条件分析](pilot/benefit_analysis/lit005-v0.1/REPORT.md)。
+实际构造CNF oracle和本地经典诊断，保留exact-first/absence要求；对特定串行前缀枚举修复
+给出不加速论证。其他量子/证明路线与硬件收益未知，不改正式标签或主指标。
+下一步为first/absence证明义务驱动的计划比较，见[推进说明](docs/quantum_advantage/PROGRESSION.md)。
+本轮无模型/QPU、安装、外部写入、论文修改或新案例纳入；N-058参考评审仍待定。
+
+## D-041: Infer resource conditions for beneficial quantumization
+
+Date: 2026-09-28
+Status: ACCEPTED research direction / implementation and benefit evidence not yet established
+
+研究者提出将“输入原始程序和当前有的逻辑比特数，输出是否值得量子化”改为
+“输入原始程序，输出有多少逻辑比特数等量子资源时，值得量子化”。讨论明确资源条件
+集合、工作负载与规模依赖、完整成本及不确定性后，研究者确认：
+
+> 我觉得很合适，记录这些信息到quantum_advantage doc里
+
+据此，当前问题表述为：从经典程序出发，在保持原行为的前提下推导候选量子方案及
+预计具有端到端收益的资源条件。逻辑qubit、速度/可靠性等共同影响结论，不预设单一
+qubit门槛；缺失规模信息可输出参数化条件，缺失证据保留未知。
+具体设备成为条件集合中的一个待检查配置；有依据时生成可用程序的终极目标保持。
+D-040的合同和端到端收益依据完整保留，现阶段瞄准E4条件预测，不冒充E5实测。
+
+详细记录见[RESOURCE_CONDITIONS](docs/quantum_advantage/RESOURCE_CONDITIONS.md)。
+N-062仅同步文档与队列；最新实现仍是N-061。下一步准备资源条件—端到端收益分析，
+原first/absence证明与成本比较作为子任务。没有因此批准新家族、正式指标/标签/案例、
+论文贡献或实际优势结论，也未启动模型/QPU、安装或代码实现。
+
+## D-042: Reuse Microsoft QDK behind our resource workflow
+
+Date: 2026-09-28
+Status: ACCEPTED implementation direction / benchmark semantics unchanged
+
+研究者要求将资源估算用代码实现并与工作流耦合，而非独立操作厂商工具；进一步明确选择：
+
+> 复用微软开源估算库，由我们实现接口、完整成本和工作流集成（推荐）
+
+据此复用qdk.qre，不重新实现其纠错/蒸馏资源模型。我们负责方案接口、硬件配置、
+完整成本汇总、独立行为/经典对照证据、反馈及harness调用；case原行为不为工具改变。
+N-063实现Python/CLI入口，固定QDK 1.32.3，OpenQASM 3、GateBased/SurfaceCode/
+RoundBasedFactory及PSSPC/LatticeSurgery的首版范围；不是全部后端能力或自动迁移系统。
+
+接口和本地测试准备后，因已有环境最初缺QDK，按AGENTS规则提出隔离安装确认。
+确认尚未成为执行依据时，检查发现既有palqo已具备QDK 1.32.3及依赖，直接复用并完成
+真实SDK联调；本助手未执行安装命令，原安装确认已说明不再需要，安装来源未知。
+交付前补充：随后读取另行生成的[ENVIRONMENT](docs/quantum_advantage/ENVIRONMENT.md)，其中记录
+用户“那你安装啊”授权及palqo安装/验证。该环境任务解释了依赖出现；本线程未另行安装。
+没有Azure账号操作、付费服务、QPU或LLM调用；正式case/gold/split/指标与旧实验不变。
+工程结果与限制见[接口](docs/quantum_advantage/RESOURCE_WORKFLOW.md)和[归档](pilot/resource_workflow/v0.1/README.md)。
+
+## D-043: Small-scale validation and formula-derived potential quantum advantage
+
+Date: 2026-09-28
+Status: ACCEPTED evidence strategy / individual numerical assumptions remain explicit scenarios
+
+研究者提出：
+
+> 有时候你可以算几个小规模的，验证了发现符合公式规律，那能有量子优势的情况就用公式推导（比如需要100qubit 我的经典机器无法模拟 那得用这个办法看一下
+
+说明结构推导与经验外推的区别、成功率不足时可反求门槛后，研究者要求“照这个情况推进下”，
+并补充：
+
+> 因为你是要证明潜在的量子优势对吧？现在一般人比如我们没有这种机器，你就需要想这些替代方案
+
+据此，采用小规模模拟/精确检查核验实现、算法与资源公式推导、大规模跨层资源估算和
+端到端成本条件分析，研究潜在量子优势。拥有大规模量子机或可完整模拟目标规模不是前置条件；
+不再以小实例没有加速替代规模收益研究。结构公式的任意规模依据来自构造/数学论证，
+有限数据拟合则明确标作经验外推；二者不混同。未知概率与成本可保留参数并反求条件。
+
+本条接受证据路线，不宣称某个算法已经达到推导条件；100逻辑qubit/物理qubit分开，
+理论证明、模型预测与硬件实测分开，原行为合同和强经典对照要求继续成立。
+本轮MaxCut/QAOA的固定角度、假设硬件与条件网格是可复核开发场景，不是新正式gold或论文主指标。
+未授权QPU、付费服务、安装或发布。实际交付见
+[公式/条件研究](pilot/benefit_analysis/maxcut-formulas-v0.1/REPORT.md)与
+[推导](pilot/benefit_analysis/maxcut-formulas-v0.1/DERIVATION.md)。

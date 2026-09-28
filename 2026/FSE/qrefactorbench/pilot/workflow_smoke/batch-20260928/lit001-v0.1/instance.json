@@ -1,0 +1,30 @@
+{
+  "equipment": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "requirements": [
+    {
+      "first": "A",
+      "second": "B",
+      "weight": 1
+    },
+    {
+      "first": "B",
+      "second": "C",
+      "weight": 1
+    },
+    {
+      "first": "C",
+      "second": "D",
+      "weight": 1
+    },
+    {
+      "first": "D",
+      "second": "A",
+      "weight": 1
+    }
+  ]
+}

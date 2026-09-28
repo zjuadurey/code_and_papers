@@ -1,0 +1,48 @@
+{
+  "n": 48,
+  "edges": 96,
+  "complete": false,
+  "elapsed_seconds": 3.012686374997429,
+  "optimum": 230,
+  "minimum_mask": null,
+  "solver_calls": [
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": -229.99999999999972,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0000000000000278,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.9999999999996005,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 1,
+      "message": "Time limit reached. (HiGHS Status 13: model_status is Time limit reached; primal_status is At lower/fixed bound)",
+      "objective": null,
+      "gap": null
+    }
+  ],
+  "limit_seconds": 3,
+  "scope": "Kernel exact-value/minimum-mask target; floating solver status, not formal proof"
+}

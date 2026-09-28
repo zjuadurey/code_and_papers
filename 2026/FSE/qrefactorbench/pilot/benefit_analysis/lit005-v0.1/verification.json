@@ -1,0 +1,8 @@
+{
+  "protected_count": 3675,
+  "changed_protected": [],
+  "local_links_checked": 402,
+  "missing_paths": [],
+  "exact_replay": true,
+  "scope": "relative file targets only; not external URL or anchor validation"
+}

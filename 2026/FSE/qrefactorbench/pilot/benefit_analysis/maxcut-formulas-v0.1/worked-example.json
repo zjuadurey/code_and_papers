@@ -1,0 +1,22 @@
+{
+  "kind": "Conditional scenario, not measured advantage",
+  "physical_qubits": 13310,
+  "logical_qubits": 100,
+  "shot_seconds_qdk_estimated": 0.0016,
+  "classical_seconds_assumed": 1,
+  "fixed_seconds_assumed": 0.01,
+  "per_shot_seconds_assumed": 0.0001,
+  "fallback_seconds_assumed": 1,
+  "shots_assumed": 64,
+  "strict_threshold": {
+    "status": "conditional",
+    "s_strictly_greater_than": 0.0019741529175600694,
+    "batch_success_strictly_greater_than": 0.11880000000000002,
+    "paid_before_fallback_seconds": 0.1188
+  },
+  "certified_success_probability_assumed": 0.01,
+  "expected_seconds_predicted": 0.6443964875255623,
+  "predicted_speedup": 1.5518396194863358,
+  "ideal_pair_probability_sufficient_if_complete_certificate_and_error_event_bound": 0.008868160617560069,
+  "actual_large_instance_certified_success_probability": null
+}

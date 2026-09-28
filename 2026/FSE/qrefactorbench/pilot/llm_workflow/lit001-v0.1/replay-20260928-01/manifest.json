@@ -1,0 +1,10 @@
+{
+  "candidate.json": "26d06bf74f993e8d9edace41d98b0833c93144071bd3b0c48d0bb00b65bf6b72",
+  "cost/comparison.json": "1203281904e29568a75a97b80b2e678b61fc2718ed657fb2f4e7a7dbae945b13",
+  "cost/controller-context.json": "cba62c6d4ec18f72fe4de9b9afa99fae7b40aacfd94eb5ddbbbc421a80472cc5",
+  "cost/resource-analysis.json": "424c4c41a898f139b66f9645b5c818017ffc3014573e6dad85187f14f596762c",
+  "cost/resource-request.json": "29ba2a2e1e496d566fc015f9f4f803d42e1bb82699de58a4a56dafc44dcc7b67",
+  "replay.json": "4d63d67353cc014d7f4d9ab8d8b525c0d9016fcbd3c3ce7fc3ff95671b3e3dca",
+  "verification/application.qasm": "d71e3988e0a7d4420ac57a48f360d449629a6245bdd42fc8dd227beb1c50eb00",
+  "verification/verification.json": "81f6125f40335a1f9125d39cfacdb4a5ac09998467bca7657790e0a039f4e2e9"
+}

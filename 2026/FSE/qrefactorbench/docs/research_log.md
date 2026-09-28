@@ -1,5 +1,18 @@
 # Research notebook
 
+## 2026-09-28 — lit-001 actual single-model workflow integration
+
+User explicitly requested a real LLM/tool/feedback run after correcting a hand-authored smoke
+misreported as workflow completion. [New run](../pilot/llm_workflow/lit001-v0.1/README.md): four
+Sol/medium calls read source, generated QAOA QASM, invoked verification and QDK/cost tools, and
+concluded REMAIN_CLASSICAL. Actual quantum samples produced the exact output without fallback.
+The controller supplied the certificate/recovery helper and requested the QAOA family; this is a
+single supplied workload integration result, not autonomous algorithm discovery or an effect comparison.
+All six scenario cost terms were populated; dispatch/transfer/offline compilation are explicit
+assumptions. Strong classical coloring beat this tiny candidate under those assumptions.
+44 focused/regression tests passed, and replay reproduced simulation and QDK estimates exactly.
+No source-case/gold/metric, historical run, resource-backend implementation, or paper was modified.
+
 ## 2026-09-28 — Benefit objective and layers of evidence (D-037)
 
 **RESEARCHER DIRECTION:** Quantum benefit is central to whether migration is worthwhile; preserve the
@@ -1489,3 +1502,132 @@ Documented present techniques, conditional predictions, hardware/algorithm limit
 scoped theoretical restrictions. Mapped FSE evidence needs and survey completion requirements.
 No upstream code execution, model/QPU calls, installs, case/gold/split changes or paper edits.
 Old experiment and N-059 bytes are covered by the new integrity audit.
+
+## N-061 — Contract and end-to-end benefit drive the first concrete plan analysis
+
+Date:2026-09-28. D-040 records the user's rejection of relegating contract/cost to optional
+candidate mechanisms. They are core system decision criteria; specific implementation choices
+and novelty still require comparison. Both surveys remain useful under the unchanged full idea.
+
+Selected existing, development-exposed lit-005 v0.1.1, not a new benchmark case. Its exact-first
+requirement matters: in the source example, ideal one-iteration Grover succeeds on any witness
+with probability1 but on the required first witness with probability1/2. These are analytic values,
+not hardware observations. Built a clause-derived phase oracle:14 logical qubits,48 X/54 CCX/1 Z;
+preparation, diffusion and physical lowering remain separate costs, not claimed complete resources.
+
+For the specific serial arbitrary-witness proposal plus classical prefix-enumeration repair,
+all baseline enumeration work remains necessary. With identical predicate/domain and nonnegative
+quantum overhead, this architecture cannot speed up the baseline. This is not a lower bound against
+structured certificates, other quantum algorithms or all implementations of the original task.
+Minimum-finding and structured prefix-UNSAT proofs remain alternatives with unmeasured costs.
+
+Implemented local lex-DPLL as a correctness comparator, not a state-of-the-art SAT benchmark.
+Eight focused and eleven source-wrapper tests pass;1809 instance checks,4633 oracle basis checks,
+6442 repair checks and exact replay pass. First focused run failed one hand-count expectation
+(44 vs48 X gates); corrected by manual count and retained history, with oracle unchanged.
+3675 protected old file hashes match. Five primary source PDFs and hashes saved.
+
+Hardware profile, competitive classical timing and certificate costs remain unknown. No numerical
+positive-benefit region, autonomous agent capability, held-out generalization or universal impossibility
+claimed. No model/QPU calls, installs, formal labels/metrics/cases or paper edits.
+Next: first/absence obligations, reliable proof-checking boundary, complete plan costs and strong
+tool-composition/ablation protocol. [Report](../pilot/benefit_analysis/lit005-v0.1/REPORT.md),
+[progression](quantum_advantage/PROGRESSION.md).
+
+## N-062 — Accepted resource-condition formulation
+
+Date:2026-09-28. D-041 records the user's proposal and explicit approval to document it.
+Input a classical program; infer under what quantum resource and workload conditions a
+behavior-preserving migration is predicted to offer end-to-end benefit. The old supplied-device
+decision becomes a membership check against those conditions. Logical qubits alone are insufficient;
+include speed, reliability, complete costs, a competitive classical comparator and unknowns.
+
+Added [RESOURCE_CONDITIONS](quantum_advantage/RESOURCE_CONDITIONS.md), including the distinction
+between conditional prediction and actual hardware benefit, reuse of existing resource estimators,
+and the unproven research step of automatically deriving plans and benefit conditions from source.
+Updated handoff priorities; N-061 first/absence proof and cost work remains a subtask.
+Documentation only: no new implementation, model/QPU run, installation, formal metric/case or paper edit.
+
+## N-063 — Resource estimation integrated as a callable workflow tool
+
+Date:2026-09-28. D-042 records the explicit choice to reuse Microsoft's open-source QDK,
+with our own interface, full-cost aggregation and workflow integration. Added a Python function
+and CLI command; the model supplies an OpenQASM3 proposal while the controller supplies separately
+bound behavior/comparison evidence and cost intervals. Backend error is not a negative case label.
+
+Inspected the official API and pinned1.32.3 wheel source; explicit SurfaceCode/factory/trace stack,
+union-bound errors and use_graph=False. The latter avoids a documented incompleteness risk in the
+SDK's graph-pruning path but does not establish a globally optimal resource threshold.
+All data are model predictions; host preparation/communication/validation/fallback remain declared costs.
+
+Real SDK smoke on a tiny engineering circuit returned177 physical qubits and9000 ns under hypothetical
+hardware, with insufficient_evidence feedback because task/classical evidence is absent. No benefit
+claim follows.30 focused tests passed;full253 passed/15 optional dependency skips. QDK was initially
+absent and later present in existing palqo; no installation command was executed by this assistant.
+No model/QPU run or formal case/gold/split/metric/paper modification. Existing artifacts preserved.
+[Interface](quantum_advantage/RESOURCE_WORKFLOW.md), [execution](../pilot/resource_workflow/v0.1/README.md).
+
+Handoff clarification: the subsequently read [environment record](quantum_advantage/ENVIRONMENT.md)
+attributes QDK installation to a separately authorized environment task. This thread reused that
+installation; the earlier execution archive records what was known when the smoke run was saved.
+
+## 2026-09-28 — Scale/resource-condition diagnostic after user correction
+
+The user requested evidence for research effect and rejected four-node no-benefit results as an
+answer to the scale-dependent question. The initially proposed model decision comparison was not run.
+Instead an exploratory MaxCut kernel study fixed six sizes (8–64), three graph seeds, and three
+QAOA resource-template depths. This does not change the original wrapper's 16-node input cap.
+18 classical MILP value/minimum-mask solves yielded 14 completions and four budget limits;
+18 actual QDK estimates succeeded. The first 32-node graph completed classically in 0.579076s;
+a hypothetical p=1 resource point needs6009 physical qubits/0.505ms per shot. The64-shot slice
+leaves546.756ms for every remaining overhead, conditional on64shots actually sufficing.
+This is a necessary cost budget, not a verified benefit region or a measured QPU result.
+
+The existing all-edges-cut certificate cannot accept any partition of a positive triangle.
+All generated general graphs include such a triangle; simply scaling the previous helper cannot
+establish exact hybrid benefit. General optimum/tie certification and useful sampling probability
+remain unresolved. Fixed angles here are resource templates, not optimized valid migrations.
+Eight finite enumeration checks passed; post-run stronger-comparator audit matched MILP and Gray
+enumeration to the source kernel on all64 four-node graphs, and timed Gray enumeration on8/16nodes.
+No model calls, QPU, dependency installation, formal case/gold/metric changes, or paper edits.
+Raw protocol/results, explicit post-hoc audit, necessary-condition plot and limits:
+[report](../pilot/benefit_analysis/maxcut-scaling-v0.1/REPORT.md).
+
+## 2026-09-28 — D-043: potential advantage through validated formulas
+
+The researcher explicitly requested small-scale validation followed by formula-based analysis at
+100qubits and beyond, emphasizing that ordinary researchers do not own such quantum machines.
+Recorded this evidence strategy inD-043; no large-QPU prerequisite or small-instance rejection.
+Derived logical countsG=n+p(3m+n) and a constructive matching schedule; checked45 small weighted-graph
+instances using Hamiltonian and gate-level state calculations. Eight focused tests cover all64
+four-node graphs at three depths, a two-node closed-form probability, enumerated success/failure
+cost paths, strict inverse thresholds and large structural counts.
+
+Eleven actual QDK calls estimated100/200/500logical-qubit templates, without their statevectors.
+For100logical qubits,p=1, the specified100ns profile returned13310physical qubits and1.6ms/shot.
+DerivedA+S(t+v)+(1-s)^S F<T under iid reliable certified-success events, retaining a separate
+batch-q formula without iid. With explicitT=F=1s,A=10ms,v=.1ms,S=64 coordinates, s>0.197415%
+predicts expected advantage; s=1% predicts0.644396s. These are design conditions, not measured
+large-instance success rates or validated general-instance certificate costs.
+
+Saved2376 conditions, raw SDK results, small evidence, constructive derivation and standalone plot.
+No extrapolation of timed-out classical runs or small QAOA probabilities was used; ideal optimum
+probability and canonical minimum-mask pair probability are separated. Exactness still requires a
+sound certificate and exact fallback.175 previously bound files unchanged; no new model/QPU/install
+or formal case/metric/paper change. [Report](../pilot/benefit_analysis/maxcut-formulas-v0.1/REPORT.md).
+
+## 2026-09-28 — LogicalQubit access information and Mac continuation
+
+The user reported access to a100bit cloud platform and suppliedcloud.logicalqubit.com, then requested
+that current progress be saved for continuation onMac. Public official materials identifyAGate-100
+as physical superconducting qubits; lqcloud0.5.0 supports circuit submission/results and requires
+Python3.11/3.12. Account permissions, actual backend/calibration/fees were not inspected. No cloud
+jobs or installations were authorized by this documentation request or executed.
+
+Saved[Mac handoff](MAC_HANDOFF.md) with formula/scaling/LLM artifacts, original-contract and evidence
+boundaries, hypothetical future fault-tolerant versus current physical-hardware distinction,
+Python3.11 setup proposal, local-only verification commands and raw data transfer requirements.
+OfficialPyPI metadata confirmsmacOSarm64/x86_64 wheels forQDK1.32.3 andpyqir0.12.5; this is not
+Mac execution verification. The existingbwrap inference runner remainsLinux/WSL-only.
+Project working tree contains untracked artifacts, soGit history alone is not a complete transfer.
+This turn only updated documentation; no repeat tests/experiments, credentials, QPU, push or file transfer.

@@ -1,0 +1,156 @@
+{
+  "n": 24,
+  "edges": 48,
+  "complete": true,
+  "elapsed_seconds": 0.5289785720015061,
+  "optimum": 130,
+  "minimum_mask": 3499429,
+  "solver_calls": [
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": -130.00000000000279,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    }
+  ],
+  "limit_seconds": 3,
+  "scope": "Kernel exact-value/minimum-mask target; floating solver status, not formal proof"
+}

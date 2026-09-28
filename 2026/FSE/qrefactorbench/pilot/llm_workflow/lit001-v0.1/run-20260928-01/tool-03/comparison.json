@@ -1,0 +1,98 @@
+{
+  "status": "completed",
+  "classical_original_seconds": {
+    "lower": 2.8244382003322244e-05,
+    "upper": 3.2081076002214105e-05,
+    "source": "Local 7x500 perf_counter batch means; descriptive interval, not confidence bound"
+  },
+  "classical_strong_seconds": {
+    "lower": 7.808268012013286e-06,
+    "upper": 9.455624007387087e-06,
+    "source": "Local 7x500 perf_counter batch means; descriptive interval, not confidence bound"
+  },
+  "complete_cost_ledger_seconds": {
+    "preparation": {
+      "lower": 5.884965998120606e-06,
+      "upper": 7.3368699959246446e-06,
+      "source": "Local 7x500 perf_counter batch means; descriptive interval, not confidence bound"
+    },
+    "readout_decode": {
+      "lower": 6.69672799995169e-06,
+      "upper": 7.889601998613216e-06,
+      "source": "Local 7x500 perf_counter batch means; descriptive interval, not confidence bound"
+    },
+    "validation_fallback": {
+      "lower": 9.235139799420722e-05,
+      "upper": 0.00010995384999841917,
+      "source": "Observed certificate and always-fallback paths; no ideal success-rate discount"
+    },
+    "classical_control": {
+      "lower": 1e-06,
+      "upper": 1e-06,
+      "source": "SCENARIO ASSUMPTION: one microsecond dispatch per batch"
+    },
+    "communication": {
+      "lower": 1e-06,
+      "upper": 1e-06,
+      "source": "SCENARIO ASSUMPTION: one microsecond total transfer per batch"
+    },
+    "compilation_amortized": {
+      "lower": 0,
+      "upper": 0,
+      "source": "SCENARIO ASSUMPTION: steady-state fixed circuit, compiled offline; cold-start cost excluded"
+    }
+  },
+  "host_seconds": [
+    0.00010693309199227952,
+    0.00012718032199295702
+  ],
+  "points": [
+    {
+      "physical_qubits": 279,
+      "runtime_ns": 36000.0,
+      "error_bound": 0.00622000028,
+      "quantum_seconds_total": 0.002304,
+      "hybrid_seconds": [
+        0.0024109330919922798,
+        0.0024311803219929573
+      ],
+      "missing_cost_terms": [],
+      "timing_relation": "not_faster",
+      "failure_upper_bound": 0.39808001792,
+      "quality_bound_satisfied": false,
+      "decision": "quality_not_established",
+      "profile_id": "hypothetical-100ns"
+    },
+    {
+      "physical_qubits": 279,
+      "runtime_ns": 360000.0,
+      "error_bound": 0.00622000028,
+      "quantum_seconds_total": 0.02304,
+      "hybrid_seconds": [
+        0.02314693309199228,
+        0.02316718032199296
+      ],
+      "missing_cost_terms": [],
+      "timing_relation": "not_faster",
+      "failure_upper_bound": 0.39808001792,
+      "quality_bound_satisfied": false,
+      "decision": "quality_not_established",
+      "profile_id": "hypothetical-1000ns"
+    }
+  ],
+  "break_even": {
+    "formula": "S*t_shot + H < T_classical; physical_qubits >= estimated requirement",
+    "S": 64,
+    "H_seconds": [
+      0.00010693309199227952,
+      0.00012718032199295702
+    ],
+    "optimistic_max_shot_seconds_vs_original": -1.169562749844772e-06,
+    "optimistic_max_shot_seconds_vs_strong": -1.5230854372639442e-06,
+    "guaranteed_max_shot_seconds_vs_strong": -1.8651883434522458e-06,
+    "interpretation": "Nonpositive time budget means no feasible faster shot under this host-cost scenario; not a global impossibility."
+  },
+  "quality_composition": "Raw QDK decision conservatively counts shot errors. Exact certificate/fallback separately preserves output for every measurement; hardware availability/host faults outside scope.",
+  "cost_scope": "Steady-state per request, serial shots; offline LLM development and compilation not charged per invocation.",
+  "scenario": "Measured local host terms plus explicitly assumed dispatch/transfer and offline compilation."
+}

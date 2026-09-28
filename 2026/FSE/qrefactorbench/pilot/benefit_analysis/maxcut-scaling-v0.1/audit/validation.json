@@ -1,0 +1,74 @@
+{
+  "original_kernel_all_four_node_graphs": 64,
+  "milp_and_gray_both_match_source": true,
+  "gray_timings": [
+    {
+      "n": 8,
+      "seed": 20260928,
+      "seconds": [
+        9.827499889070168e-05,
+        8.975699893198907e-05,
+        8.757199975661933e-05
+      ],
+      "best_seconds": 8.757199975661933e-05,
+      "matches_milp": true
+    },
+    {
+      "n": 8,
+      "seed": 20260929,
+      "seconds": [
+        9.828199836192653e-05,
+        9.137799497693777e-05,
+        9.09549999050796e-05
+      ],
+      "best_seconds": 9.09549999050796e-05,
+      "matches_milp": true
+    },
+    {
+      "n": 8,
+      "seed": 20260930,
+      "seconds": [
+        0.00011598399578360841,
+        0.00010194599599344656,
+        9.967399819288403e-05
+      ],
+      "best_seconds": 9.967399819288403e-05,
+      "matches_milp": true
+    },
+    {
+      "n": 16,
+      "seed": 20260928,
+      "seconds": [
+        0.02527922100125579,
+        0.02810356500413036,
+        0.02623467599914875
+      ],
+      "best_seconds": 0.02527922100125579,
+      "matches_milp": true
+    },
+    {
+      "n": 16,
+      "seed": 20260929,
+      "seconds": [
+        0.035100695000437554,
+        0.031083836998732295,
+        0.026858601995627396
+      ],
+      "best_seconds": 0.026858601995627396,
+      "matches_milp": true
+    },
+    {
+      "n": 16,
+      "seed": 20260930,
+      "seconds": [
+        0.027073281999037135,
+        0.03272688399738399,
+        0.026134683001146186
+      ],
+      "best_seconds": 0.026134683001146186,
+      "matches_milp": true
+    }
+  ],
+  "posthoc_note": "Added optimized enumeration comparator after frozen scale run; only strengthens baseline.",
+  "certificate_obstruction": "Every generated graph includes positive triangle 0-1-2; all-edges-cut certificate cannot accept any mask."
+}

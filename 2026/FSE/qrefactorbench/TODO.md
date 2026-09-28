@@ -18,6 +18,18 @@ Unchecked research items are not automatic implementation/model-run authorizatio
 
 ## P1 — Important next steps
 
+- [x] N-063 / D-042: integrate pinned Microsoft QDK through a local callable/CLI resource tool,
+  controller-owned cost context and conditional feedback; real SDK smoke,30 focused tests,
+  full253 passed/15 optional skips. [Interface](docs/quantum_advantage/RESOURCE_WORKFLOW.md).
+- [x] N-062 / D-041: record the accepted shift to inferring resource conditions for beneficial
+  quantumization from classical programs; [specification](docs/quantum_advantage/RESOURCE_CONDITIONS.md).
+- [ ] Prepare the first resource-conditions / end-to-end-benefit analysis with workload assumptions,
+  competitive classical comparison, complete costs and uncertainty; no assumed single qubit threshold.
+- [x] N-061 / D-040: make contract and end-to-end benefit core decision criteria;
+  complete [lit-005 analysis](pilot/benefit_analysis/lit005-v0.1/REPORT.md), logical oracle,
+  finite exactness checks and scoped no-speedup proof for serial prefix-enumeration repair.
+- [ ] Prepare first/absence proof obligations, plan/certificate cost comparison and strong
+  incremental-SAT adapter protocol; subtask of D-041 [resource-condition analysis](docs/quantum_advantage/PROGRESSION.md).
 - [x] N-059: frontier audit with pinned public evidence and static source inspection complete;
   [report](docs/frontier/README.md). No performance reproduction or new model/QPU run.
 - [x] N-060 / D-039: preserve the full idea, extend the frontier audit, compare three technical routes,
@@ -25,6 +37,7 @@ Unchecked research items are not automatic implementation/model-run authorizatio
   Supersedes N-059 route priority; no external-system failures or new method efficacy demonstrated.
 - [ ] Prepare support-aligned C2Q / pattern-matching / QPipe-style adapters and a bounded diagnostic
   protocol for source-to-candidate identification; keep native versus adapted baselines explicit.
+  Retained downstream work; N-061 supersedes its isolated first priority.
 
 - [x] N-052: single generic claim-elicitation interface, paired ten-slot protocol;32 focused tests,
   49 regressions and5 offline preflight checks pass. No checker/schema/gold changes.

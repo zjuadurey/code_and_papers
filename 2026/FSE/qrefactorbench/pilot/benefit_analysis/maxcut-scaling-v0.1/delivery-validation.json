@@ -1,0 +1,9 @@
+{
+  "source_bindings_unchanged": true,
+  "raw_manifests_verified": true,
+  "classical_attempts": 18,
+  "classical_completed": 14,
+  "qdk_successes": 18,
+  "local_report_links": true,
+  "scope": "No shared implementation changes; local finite validation and actual integration run only"
+}
