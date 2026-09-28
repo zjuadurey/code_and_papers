@@ -1,0 +1,202 @@
+[
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/README.md",
+    "file": "sources/c2q/README.md",
+    "bytes": 21078,
+    "sha256": "abb6bae9fc55e849903d27d5cdcef3893b49eed5a20c49f43af17693b90cae30"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/LICENSE",
+    "file": "sources/c2q/LICENSE",
+    "bytes": 11344,
+    "sha256": "01ac572b55b0992f108f39d8f8627cae35f15d9b7d30bd7d31260d74c28984fa"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/docs/CLAIMS_MAP.md",
+    "file": "sources/c2q/docs/CLAIMS_MAP.md",
+    "bytes": 3959,
+    "sha256": "ab02d65f86f4d322164a9ff0963d25a90788a1846278ce5d2c89c54c2ad3adc5"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/docs/RCR_DRAFT.md",
+    "file": "sources/c2q/docs/RCR_DRAFT.md",
+    "bytes": 4024,
+    "sha256": "b66d35e5f9439d019630f39517aaaf72d8d328378abe2a36f01411a6023cfc0b"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/STATUS.md",
+    "file": "sources/c2q/STATUS.md",
+    "bytes": 2515,
+    "sha256": "330329271630f385fe706be0731e0d9dc3ea428fa2092a59cc095df149a2f783"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/REQUIREMENTS.md",
+    "file": "sources/c2q/REQUIREMENTS.md",
+    "bytes": 2838,
+    "sha256": "55eafeb40e132a46ef90b0be4c1feb405fe8835d7b5e26a0bce4ade09af80624"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/parser/parser.py",
+    "file": "sources/c2q/src/parser/parser.py",
+    "bytes": 17966,
+    "sha256": "6720f2a0ac4fb6f007fc4a58aea5e3ac1aef4487dddf7df0e14de65c0a9621bf"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/generator/generator.py",
+    "file": "sources/c2q/src/generator/generator.py",
+    "bytes": 1939,
+    "sha256": "3e625473b4cc74fd3b5dc05e6ac4b6cb48c86b94ae52ad2a91eb4189988fd3f2"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/json_engine.py",
+    "file": "sources/c2q/src/json_engine.py",
+    "bytes": 29743,
+    "sha256": "13a28caf3e8fca8737fdf994b16ae70031deab9ea0d9326173f82537dba11b75"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/recommender/recommender_engine.py",
+    "file": "sources/c2q/src/recommender/recommender_engine.py",
+    "bytes": 61052,
+    "sha256": "bac8db0538c2444cb30bf28588a571c92892879a3f567a1f689f1bd55cecf1f7"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/validation/implementation_validation.py",
+    "file": "sources/c2q/src/validation/implementation_validation.py",
+    "bytes": 13397,
+    "sha256": "33ddfb459eed1808cf5e394919e8e232fa0d517cc46ef65dbc60bacbc3d0b2d4"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/parser/algorithmic_structural_level_validation.py",
+    "file": "sources/c2q/src/parser/algorithmic_structural_level_validation.py",
+    "bytes": 530,
+    "sha256": "dd6392e1450d2f5864c62f65674b31189e22a1afd8c924d9bbe77a2e869de5a5"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/tools/reproduce_paper.py",
+    "file": "sources/c2q/tools/reproduce_paper.py",
+    "bytes": 10965,
+    "sha256": "b2e9a3051665b00676037bcc4c10dcffa9922dd5c29ef7d3ec8a03236b23201f"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/problems/tsp.py",
+    "file": "sources/c2q/src/problems/tsp.py",
+    "bytes": 7033,
+    "sha256": "50b35f1d5a0cc8c548bc0d7699c17306b7024114757ee6a53ef844f1110f764a"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/problems/minimum_vertex_cover.py",
+    "file": "sources/c2q/src/problems/minimum_vertex_cover.py",
+    "bytes": 4151,
+    "sha256": "01f41e41e6cf4df28a659bd7411cdc018fd6e19ad323fb86f6177e83cd365432"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/problems/max_cut.py",
+    "file": "sources/c2q/src/problems/max_cut.py",
+    "bytes": 9941,
+    "sha256": "28f5b0b82d5549fedd140732acdc463365400b1efe6a321776bdefec861c43a0"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/report.py",
+    "file": "sources/c2q/src/report.py",
+    "bytes": 2488,
+    "sha256": "16b5211c6893ca0d775dbe1d6383bfb47fd8b5f12ea1c62da9901ff53ee8e6fa"
+  },
+  {
+    "id": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/README.md",
+    "file": "sources/pqid/README.md",
+    "bytes": 18584,
+    "sha256": "7e10236dc2082c8364f13bb311d053a42187055f672207ca6e43882aa4d73f28"
+  },
+  {
+    "id": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/LICENSE.md",
+    "file": "sources/pqid/LICENSE.md",
+    "bytes": 1198,
+    "sha256": "8d2df3f87410782d800de5ae20aea026d5026d86641675494d4b0f8375bb144e"
+  },
+  {
+    "id": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/docs/user-manual/reproducibility-contract.md",
+    "file": "sources/pqid/docs/user-manual/reproducibility-contract.md",
+    "bytes": 7825,
+    "sha256": "a606f233589c028cdaebb22adec536e075cddf3e80917ae34b59b6b9af1edff0"
+  },
+  {
+    "id": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/artifacts/pqid_bench_2_prereg.json",
+    "file": "sources/pqid/artifacts/pqid_bench_2_prereg.json",
+    "bytes": 14597,
+    "sha256": "2fd457f12def6c4042e6badebcb8badbd21ffb654c3d6e82ab8cfd73fcfaeb59"
+  },
+  {
+    "id": "c2q-paper",
+    "revision": "2510.02854v3",
+    "url": "https://arxiv.org/pdf/2510.02854v3",
+    "file": "sources/c2q-paper.pdf",
+    "bytes": 1726365,
+    "sha256": "b93772dfcb2dcd55230684e8a4c962bbda96e4eaed6ae1b2ed5075ab1ae7af71"
+  },
+  {
+    "id": "quasar-paper",
+    "revision": "2510.00967v1",
+    "url": "https://arxiv.org/pdf/2510.00967v1",
+    "file": "sources/quasar-paper.pdf",
+    "bytes": 4180240,
+    "sha256": "c7a0566a190db6498bdeefb68d2abe22ae37a73fbb381f3086ad7ac2b02628a3"
+  },
+  {
+    "id": "qbridge-paper",
+    "revision": "2603.27836v1",
+    "url": "https://arxiv.org/pdf/2603.27836v1",
+    "file": "sources/qbridge-paper.pdf",
+    "bytes": 6379811,
+    "sha256": "0fc50b422845f8d902ab5df200a7ec03c85cad174a1924cb2795ad86d9f70c37"
+  },
+  {
+    "id": "quanplus-paper",
+    "revision": "2604.08570v2",
+    "url": "https://arxiv.org/pdf/2604.08570v2",
+    "file": "sources/quanplus-paper.pdf",
+    "bytes": 8535926,
+    "sha256": "792b1560244a0cbc8b8e74e4398a26243ce3f451358aa57b5f0a1d1ada69cedf"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "file": "sources/road.pdf",
+    "url": "https://arxiv.org/pdf/2503.11450v1",
+    "bytes": 862841,
+    "sha256": "11293d1c0eaf772c64a4f03b202e1a8254b4fb3d5e4c08a76d65a93d7c7a63ec"
+  },
+  {
+    "file": "sources/yamato.pdf",
+    "url": "https://jxiv.jst.go.jp/index.php/jxiv/preprint/download/2811/6858/6255",
+    "bytes": 975094,
+    "sha256": "6119749c4db077886aff3972d2ed15bae58acf9ff4547fcd8957a36c76ff1f7b"
+  },
+  {
+    "file": "sources/cork.pdf",
+    "url": "https://tuhat.helsinki.fi/ws/portalfiles/portal/159680541/Jon_Speer_Quantum_Offloading.pdf",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "sources/quast-project.json",
+    "url": "https://gitlab.cc-asp.fraunhofer.de/api/v4/projects/iks-quantum-computing-public%2Fquast-decisiontree",
+    "error": "<urlopen error timed out>"
+  }
+]

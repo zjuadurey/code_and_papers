@@ -1,0 +1,72 @@
+{
+  "commands": [
+    {
+      "name": "new_tests",
+      "command": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "demo/lit009_end_to_end/test_demo.py"
+      ],
+      "environment_overrides": {},
+      "exit_code": 0
+    },
+    {
+      "name": "original_tests",
+      "command": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/reference_completion/v0.1.1/cases/lit-009/test_program.py"
+      ],
+      "environment_overrides": {
+        "PYTHONPATH": "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/reference_completion/v0.1.1/cases/lit-009"
+      },
+      "exit_code": 0
+    },
+    {
+      "name": "replay",
+      "command": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-B",
+        "-m",
+        "demo.lit009_end_to_end.run",
+        "--output",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/demo/lit009_end_to_end/validation/replay"
+      ],
+      "environment_overrides": {},
+      "exit_code": 0
+    }
+  ],
+  "deterministic_replay": {
+    "semantics": true,
+    "resources": true,
+    "source_sha256": true,
+    "protocol": true,
+    "versions": true
+  },
+  "circuits_identical": {
+    "search-4.qasm": true,
+    "search-4.txt": true,
+    "search-2.txt": true,
+    "search-2.qasm": true,
+    "search-8.txt": true,
+    "search-8.qasm": true
+  },
+  "protected_count": 3775,
+  "changed_protected_files": [],
+  "timing_replay": "new raw timings retained; not expected byte-identical",
+  "scope": "finite local implementation validation, not independent scientific adjudication",
+  "qpu_calls": 0,
+  "new_model_calls": 0,
+  "dependencies_installed": 0,
+  "global_status_modified": false
+}

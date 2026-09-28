@@ -1,0 +1,16 @@
+[
+  {
+    "id": "quast-paper",
+    "url": "https://arxiv.org/html/2605.18539v1",
+    "file": "sources/quast-paper.html",
+    "bytes": 264946,
+    "sha256": "efc17058cbb049dce3f9d6177fc7b6259043cfa6e1fbd63fe0f2c87e2cccee93"
+  },
+  {
+    "id": "predict-paper",
+    "url": "https://arxiv.org/html/2507.06758v1",
+    "file": "sources/predict-paper.html",
+    "bytes": 934284,
+    "sha256": "594475db43190b25bf4e0c5472a8a89b1490a05ce0431389733ebe4e954fffda"
+  }
+]

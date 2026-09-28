@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://zenodo.org/api/records/21094837",
+    "file": "qpipe-tool-record.json",
+    "bytes": 3514,
+    "sha256": "73424e13c44ff874b20648103b6b24b007be5c98d0732907c76cc9793331c5b3"
+  },
+  {
+    "url": "https://zenodo.org/api/records/21094908",
+    "file": "qpipe-study-record.json",
+    "bytes": 3563,
+    "sha256": "da7e568cf364cdca433480ba401ce2c5d766b7f7a43bb3f877a57948b116648f"
+  },
+  {
+    "url": "https://arxiv.org/html/2606.16201v1",
+    "file": "sources/qready-paper.html",
+    "bytes": 439742,
+    "sha256": "7f2f6772ebdbf1ae57dbb1968e30c2cb286db1430ffefb55a2daf0ace48c447f"
+  }
+]

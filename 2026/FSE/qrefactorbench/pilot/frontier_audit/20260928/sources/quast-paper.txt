@@ -1,0 +1,831 @@
+                                              The QuaST Decision Tree: Achieving Automation
+                                                    With Data-Based Recommendations
+                                                                      Benedikt Poggel∗ , Lena Tokuhiro∗ , Georg Kruse† , Jeanette Miriam Lorenz∗
+                                                                                           ∗ Fraunhofer Institute for Cognitive Systems IKS
+                                                                           † Fraunhofer Institute for Integrated Systems and Device Technology IISB
+
+                                                       {benedikt.poggel, lena.tokuhiro, jeanette.miriam.lorenz}@iks.fraunhofer.de, georg.kruse@iisb.fraunhofer.de
+
+
+                                               Abstract—Quantum computers are increasingly powerful. Soft-                 computational complexity, bounded by Grover’s quadratic
+                                            ware tools for the development of quantum-enhanced algorithms
+
+
+
+
+arXiv:2605.18539v1 [quant-ph] 18 May 2026
+                                                                                                                           speedup [4]. Thus, for a real-world advantage, careful al-
+                                            are maturing. However, the software stack still lacks the con-                 gorithmic design is needed, accounting for overheads from
+                                            nection to applications that would enable hybrid algorithms
+                                            combining classical and quantum computing steps. End users                     error correction, latencies, and iterations between classical and
+                                            need to be assisted in choosing the best combination of pre-                   quantum computing. Even from the start, it must be deter-
+                                            processing, postprocessing, classical and quantum algorithms                   mined which problem instances classical algorithms struggle
+                                            options. The application-facing software stack is therefore re-                with since a general advantage for entire classes of NP-hard
+                                            quired to cover problem modeling, encoding, algorithm selection                problems is out of reach [3].
+                                            and hyperparameter tuning. A variety of tools exist for specific
+                                            recommendations. The QuaST Decision Tree reflects the com-                        Moreover, applying quantum algorithms to optimization
+                                            plexity in combining individual decisions in its modular network               problems requires hybrid algorithms with complementing clas-
+                                            structure, consisting of flexible computation nodes with modular               sical and quantum processing steps. The classical computer
+                                            recommendations. It can easily be configured to serve in an                    is not only required for data preprocessing and solution
+                                            industrial solver, an HPC software stack, or for rapid prototyping             extraction in postprocessing, but also for decomposition steps
+                                            in development. The key ingredient, automation, is delivered by
+                                            modules. We present one such module judging the feasibility of                 needed to handle industrially relevant problem sizes with
+                                            variational algorithms based on a robust scalability analysis and              104 and more variables. They divide the problem into parts
+                                            classification of problem instances. The automation improves the               to be treated classically and parts that benefit from QC. In
+                                            performance of end-to-end solutions, highlights the benefit to                 this setting, QC solves specialized tasks just as a graphics
+                                            be gained from the hybrid quantum solution, reduces expensive                  processing unit (GPU) would do in a traditional setup. Fi-
+                                            trial-and-error testing, and leads to an improved utilization of
+                                            quantum devices for a practical benefit.                                       nally, typical quantum algorithms themselves often require a
+                                               Index Terms—quantum computing, hybrid quantum-classical                     quantum-classical iteration rather than the execution of a mere
+                                            algorithms, applied optimization, abstraction layer, automation,               quantum circuit, e.g., variational quantum algorithms [5], or
+                                            application-facing software stack                                              Quantum Branch-and-Bound [6].
+                                                                                                                              Third, domain experts require abstraction software that
+                                                                      I. I NTRODUCTION
+                                                                                                                           allows them to turn their attention to the relevant parameters
+                                               With quantum computing (QC) maturing, an increasingly                       under their control and within their expertise: Modelling the
+                                            relevant practical question is how to leverage the technology                  problem, incorporating real-world constraints and objectives,
+                                            for the benefit of industrial applications. In particular, com-                and translating the solution of the mathematical model into the
+                                            binatorial optimization (CO) is enormously relevant to many                    control language for their company processes. The amount of
+                                            industries such as logistics, production, and finance. Classical               interdisciplinary expertise necessary to profit from quantum-
+                                            computing solutions typically employ a mixture of data pre-                    enhanced solutions is significant and needs to be reduced
+                                            processing, exact algorithms and heuristics to tackle the high                 through automation and abstraction.
+                                            problem complexities [1], with the recent addition of reinforce-                  The recent advances in QC hardware and improved ac-
+                                            ment learning methods [2]. Hope for further improvement lies                   cessibility have resulted in a wide variety of methods, tools
+                                            in QC with its inherent ability to represent large search spaces               and architectures aiming to provide abstractions to end users.
+                                            and to use quantum effects for a parallelized search, with                     High-level programming languages like Qrisp [7] or Qiskit [8]
+                                            advantages in solution quality (e. g., approximation ratios),                  simplify handling quantum circuits and even hybrid algo-
+                                            time-to-solution and resource efficiency [3].                                  rithms, translating them into lower-level representations like
+                                               However, using QC for optimization is no small challenge:                   OpenQASM [9] or QIR [10], and compiling and executing
+                                            Many algorithms promise only a polynomial advantage in                         them. Specialized tools and solvers allow automating steps in
+                                               This project was supported by the Federal Ministry for Economic Affairs     the design and implementation process of a quantum-enhanced
+                                            and Climate Action on the basis of a decision by the German Bundestag          solution, e.g., by automating QC device selection [11] or
+                                            through the project Quantum-enabling Services and Tools for Industrial         hyperparameter tuning for specific quantum algorithms [12].
+                                            Applications (QuaST). The project is also supported by the Bavarian Ministry
+                                            of Economic Affairs, Regional Development and Energy with funds from the          In existing tools, abstraction covers the mapping of a
+                                            Hightech Agenda Bayern.                                                        quantum algorithm to a QC hardware model [13]. With
+
+
+                                             This work has been submitted to the IEEE for possible publication. Copyright may be transferred without notice, after which this version may no longer be
+                                             accessible.
+the QuaST Decision Tree (QDT), the intention is to extend                        II. BACKGROUND AND P REVIOUS W ORK
+the quantum software stack to fully reach the end user at
+                                                                           For an overview on related work, section II-A starts with
+the application level by automating (quantum and classical)
+                                                                        practical QC for optimization, and section II-B reviews exist-
+algorithm selection and the tasks necessary for it – problem
+                                                                        ing approaches for application-facing abstraction. Section II-C
+encoding, hyperparameter tuning. Thus, the QDT goes beyond
+                                                                        summarizes the foundation for the scalability-based automa-
+reducing implementation overhead for quantum algorithms. It
+                                                                        tion module. Finally, section II-D identifies the research gap
+provides a framework for decision support which recommends
+                                                                        addressed by the QDT and its modules.
+combinations of quantum and classical algorithms suited to
+a specific use case. Automation tools with this purpose are             A. Practical Quantum Computing for Optimization
+currently constrained to specific types of quantum algorithms,
+e. g., optimizing hyperparameters like the depth of a pa-                  Due to its enormous relevance for industry, combinato-
+rameterized quantum circuit (PQC) in quantum approximate                rial optimization (CO) is an intensively researched field for
+optimization (QAOA) [12], or orchestrating a specific hybrid            quantum-enhanced algorithms. In the QC context, the standard
+algorithm, e. g. as Qiskit functions [14], [15]. An overarching         case is binary optimization, in particular quadratic uncon-
+framework with the ability to provide guidance across a wide            strained binary optimization
+                                                                                          Pn−1         (QUBO) formulation with x∗ =
+range of quantum-enhanced algorithmic options is not within             argminx∈{0,1}n i,j=0 xi Qij xj where Q is called QUBO
+their scope. To reach this kind of abstraction in a research            matrix. Many important CO problems can be mapped to
+field as active as quantum algorithm research, an extendable            QUBO, which can in turn be translated to an Ising model [19].
+framework is needed.                                                       However, finding a suitable formulation in terms of binary
+   With this goal, we present the QuaST Decision Tree (QDT),            variables is nontrivial especially in the presence of complex
+a framework able to provide high-level abstractions for solving         constraints, e. g. in vehicle routing [20] or scheduling [21].
+optimization problems, and demonstrate how automation can                  The interest in applying QC to CO stems from its ability
+be reached with a module assessing the potential of concrete            to explore large solution spaces in parallel, e. g. in Grover’s
+variational algorithms on specific problem instances. Our main          algorithm [22] with a quadratic scaling advantage in computa-
+contributions are                                                       tional complexity which is the best possible improvement for
+                                                                        this problem type under standard assumptions [4]. Whether
+  • the design principles, requirements and architecture lay-
+                                                                        such an advantage is enough to beat classical algorithms
+    out of the automation framework. An intermediate status
+                                                                        has to be investigated on a case-by-case basis for a specific
+    of these principles is available in [16].
+                                                                        combination of problem characteristics and algorithm [3]. For
+  • the implementation of the automation framework in the
+                                                                        this reason, applied research in QC-enhanced CO has led to
+    QDT core.
+                                                                        a large variety of algorithms, typically using hybrid quantum-
+  • an automation module assessing the potential of a set
+                                                                        classical approaches for specific problem instances [3].
+    of variational quantum algorithms (VQAs) by classifying
+                                                                           An important paradigm of hybrid QC for optimization are
+    the problem instance and using a scaling analysis [17]
+                                                                        VQAs [5], especially variants of Quantum Approximate Op-
+    from a database.
+                                                                        timization (QAOA) [23], [24]. They use a quantum-classical
+   The remainder of this paper is structured as follows: Sec-           iterative loop where a parameterized quantum circuit (PQC)
+tion II presents the necessary background and summarizes                repeatedly evaluates the loss function of the CO problem
+related work. Section III details design principles and re-             and a classical optimizer is tasked with finding the circuit
+quirements for the flexible automation framework. Then, its             parameters minimizing the loss function. However, they are
+realization and implementation in the QDT is described: its             plagued by trainability issues like barren plateaus [25] and
+structure (section IV), main components (section V), templates          local minima [26]. Specific issues have been addressed in
+and input/output formats (section VI) and usage scenarios               countless proposed variants [5].
+(section VII). Section VIII then describes the exemplary                   Beyond noisy QC devices, quantum-enhanced algorithms
+automation module based on a VQA scalability analysis [17].             for CO with error-corrected QC have been proposed where
+Finally, the implications and relevance of our contributions are        practical benchmarking is expected to become possible in the
+discussed, including next steps in developing the application-          next years, with approximately 200 logical qubits foreseen by
+facing abstraction layer (section IX).                                  several vendors [27], [28], [29]. Promising ideas include, e. g.,
+                                                                        those based on Grover Adaptive Search, a variant of the Grover
+A. Notes on Implementation
+                                                                        algorithm for CO [30], Quantum walk-based algorithms, and
+   The implementations are made in Python (Version                      a quantum-enhanced Branch-and-Bound algorithm [6].
+3.11) [18]. The notions of dictionaries, classes, instances,               In terms of practical implementations, D-Wave’s quantum
+methods, attributes and objects are to be understood within             annealer and hybrid solver offer solutions for hundreds and
+the Python language (although a generalization would be pos-            even thousands of binary variables [31]. On gate-based sys-
+sible). Abstract classes in this context refer to class templates       tems, commercial software implements algorithms, typically
+where the exact realization of some or all methods is left to so-       for a specific collection of backends (e. g., Qiskit functions
+called concrete subclasses inheriting from the abstract class.          for superconducting IBM backends [32]).
+
+
+
+                                                                    2
+   From an algorithmic side, central challenges are scaling to           setup and hyperparameter tuning, it leaves the fundamental
+problem sizes with hundreds or thousands of variables which              question of which algorithm to choose unanswered.
+often requires the combination with classical decomposition              C. Scalability Analysis of Variational Quantum Algorithms
+methods, providing clear resource estimates for classical and
+                                                                             A fundamental question for variational quantum algorithms
+QC resources, identifying promising applications, and manag-
+                                                                         (VQAs) is whether their resource requirements scale favorably
+ing the broad variety of algorithmic approaches outlined above
+                                                                         enough to achieve practical quantum advantage, in particular
+to evaluate their practical benefits.
+                                                                         taking into account the ability of the classical optimizer to find
+                                                                         the optimum. A systematic method characterizes the measure-
+B. Related Work in Abstraction Software
+                                                                         ment shot requirements of VQA/optimizer combinations [17]
+   Higher abstraction levels for QC are an active research               and provides the empirical foundation for data-driven algo-
+topic [13], [33], [34], [35]. Its primary focus is software devel-       rithm selection in the module presented in section VIII:
+opment environments and high-level programming languages                     Two competing effects determine the feasibility of a VQA-
+for convenient handling of quantum circuits. The diversity of            optimizer combination for a given problem size n: First, the
+applications, devices and stakeholders in the research field             finite sampling error εFS (n, nshots ) captures how measurement
+[36] is reflected in a large variety of QC-specific programming          noise affects loss function evaluation, where nshots denotes
+languages, some linked to specific vendors and technologies              the number of measurement shots (circuit executions) used to
+                                                                                                                                  √
+like the widely used Qiskit for superconducting QC [8],                  estimate expectation values. This error scales as 1/ nshots
+others following a more independent approach, e. g. Qrisp [7].           for fixed system size, and grows exponentially in n at fixed
+Common features are tools to define quantum circuits from                shot count. Second, the empirical optimizer tolerance threshold
+individual gates or larger building blocks, with subsequent              ε∗ (n) quantifies the maximum noise level under which the
+compilation for execution on hardware or simulated backends.             classical optimizer can still converge to a satisfactory solu-
+Often, these steps, including the mapping to a hardware                  tion. To extract it, optimizer success rates are measured and
+layout and circuit optimizations, are automated. However, end            fitted across noise levels and converted to a normalized error
+users still need the expertise to decide which algorithms and            measure using the variance of the CO loss function.
+which quantum circuits to implement in order to fulfill their                Crucially, the decline of ε∗ (n) with system size follows
+individual goals.                                                        VQA- and optimizer-dependent scaling laws. Across the tested
+   To support users in this regard, a recent push has come               configurations, exponential, power-law, and logarithmic de-
+from design automation [37], [38]. Tools are provided, e. g.,            cay functions are reasonable hypotheses. Additionally, prob-
+by the Munich Quantum Toolkit (MQT) comprising software                  lem structure influences the fitted parameters, necessitating
+for tasks like benchmarking, compilation, classical simulation,          problem-aware analysis. By combining both effects, the solv-
+error correction, device selection and more [39]. The MQT                ability condition εFS (n, nshots ) < ε∗ (n) can be inverted
+Quantum Auto Optimizer [40], [41] is its user-facing abstrac-            to obtain the minimum shot requirement nshots (n) for each
+tion tool for the CO domain. It employs supervised machine               VQA/optimizer combination under the different scaling hy-
+learning (ML) to select the best solver option from a given set          potheses, with full error propagation providing uncertainty
+based on QUBO input, combined with assistance in practical               bounds on the estimates.
+aspects like QUBO problem formulation.                                       Finally, a hard feasibility criterion comes from the quantum
+   Another approach handles the complexity of the selection of           disadvantage boundary: a quantum approach offers no benefit
+a quantum-enhanced solution by systematic exploration of the             if its total computational cost nshots · ncalls exceeds classical
+options. This meta-solving approach maps the task of selecting           brute-force enumeration at 2n evaluations. The number of
+a good solution strategy to an optimization problem itself [42].         quantum circuit calls ncalls depends on the optimizer. Any
+                                                                         configuration where shot requirements exceed this boundary
+   Apart from these and the earlier version of our QDT [43],
+                                                                         is outperformed by exhaustive classical search.
+no other approach exists, to our knowledge, for the challenge
+                                                                             This methodology [17], thus, produces data for each ana-
+of selecting the best available algorithmic approach for CO
+                                                                         lyzed VQA/optimizer combination: scaling parameters under
+problems from a general set (i. e., not variants of a single
+                                                                         all three hypotheses, shot requirement curves with propagated
+algorithm).
+                                                                         uncertainties, and feasibility classification across problem
+   Beyond the circuit level, the commercial availability of              sizes. These results form the database underlying the au-
+quantum-enhanced solvers increases, as outlined in sec-                  tomation module described in section VIII, enabling instance-
+tion II-A. Each relies on a specific algorithm for a fixed prob-         specific resource estimation and algorithm recommendation
+lem formulation (QUBO, HOBO, or Linear Programming).                     within the QuaST Decision Tree.
+The hyperparameter tuning is then performed automatically.
+Thus, end users do not need to concern themselves with as-               D. Missing Pieces for Reaching User-Level Abstraction
+pects such as the mapping problem of a quantum annealer [31],              In conclusion, the following shortcomings require further
+error suppression for a custom QAOA variant [44], or the                 advances, part of which are addressed in this work:
+discretization and counterdiabatic acceleration of an adiabatic            • The high complexity of the selection, setup and tuning of
+solution protocol [45]. While this greatly simplifies algorithm              a quantum-enhanced solution is an obstacle for ML-based
+
+
+
+                                                                     3
+     solutions relying on large amounts of experimental data           selection and compilation/hardware selection deferred to the
+     which is expensive to obtain. In this context, quantum-           lower-level software stack [43]. Since this approach lacks
+     enhanced refers to algorithms combining QC-based and              flexibility and imposes impractical constraints on the available
+     classical subroutines, both individually solving meaning-         algorithms, the final QDT in this work features a fully modular
+     ful problem parts.                                                setup for maximal flexibility and adaptivity. The backbone
+   • Applied QC is a highly active research field, producing           for this systematic approach remains a decision tree structure,
+     many algorithmic variants. However, individual results            capturing and organizing the rich options to be made in the
+     often cannot be easily combined without systematic                setup of a quantum-enhanced solution.
+     knowledge of their interplay.                                        The vision of the QDT is to assist users by automating the
+   • To realize the best solution for an optimization problem,         decision between these options and providing recommenda-
+     the broad selection of algorithmic variants needs to be           tions optimized for application-specific quantum-enhanced al-
+     accessible through a common abstraction layer.                    gorithm performance. For sustainable benefits, the framework
+   • The decision taking process needs to be made efficient,           needs to be efficiently usable, expandable and maintainable,
+     without the need for extensive benchmarking and trial-            covering the different usage scenarios in quantum-enhanced
+     and-error approaches.                                             optimization (see section VII). This vision leads to a set of
+   To address these issues, we build on the initial proposal           design principles:
+of a recommendation framework for quantum-enhanced op-                    1) Automation without Restriction: A convincing killer
+timization [43]. In comparison, we lay out a fundamental                      application [46] from the technology and business
+redesign of the QDT, replacing the layered architecture with                  perspective is lacking. Therefore, abstraction software
+a fully modular tree, including the Query mechanism to                        needs to stay open to innovation and avoid restricting
+enable configurable automation. To emphasize the automation                   the available exploration space for new algorithms and
+aspects, we demonstrate a concrete module to realize the                      methods. Expert users should be able to understand the
+vision of automated decisions based on a systematic scalability               framework, retrace its decisions, and implement solution
+analysis of VQAs [17].                                                        paths deviating from the recommendations.
+ III. D ESIGN P RINCIPLES OF THE Q UA ST D ECISION T REE                  2) Modularity: New modules can be inserted easily. The
+                                                                              primary types of modules are automation subroutines,
+   From the QC hardware, abstraction is built up in layers, with              third-party software and adapters for the different usage
+more and more of the underlying complexity being shielded                     scenarios.
+in order to allow users to focus on higher-level aspects. Thus,           3) Locality: To keep the maintenance of the framework
+a quantum software stack is manifesting. When moving to                       feasible, adding or removing modules should require
+higher abstraction levels and closer to the application, some                 modifications only in modules that interact directly (e.g.,
+challenges arise and become more pronounced:                                  by building on each other). Anticipating section IV,
+   1) Non-technical personnel without expertise in the hidden                 the locality will be realized by organizing the decision
+      complexity layers will increasingly come into contact                   tree into nodes performing the individual computing
+      with the quantum software stack. Even skilled develop-                  tasks. To capture the complexities and interdepencies
+      ers (e. g., at a company providing specialized software                 in the decision tree, locality cannot be entirely fulfilled
+      services) typically have no detailed knowledge on QC                    at every point – for example, even high-level nodes
+      devices and algorithms, hence this issue is amplified.                  often require information about the available hardware
+   2) With the broader target group of end users in various                   backends before deciding on a problem encoding.
+      industry sectors, reaching consensus on unified or even             4) Configurability: A central configuration source (e.g., a
+      standardized approaches and enforcing the use of spe-                   YAML file) should allow modifying the behavior of
+      cific workflows, templates, and formats becomes harder.                 individual decision tree nodes and the full decision
+      The software increasingly needs to be able to deal with                 tree, notably controlling the degree of automation, and
+      incomplete, faulty or imprecise input.                                  strategies used to derive recommendations.
+   3) Requirements from outside the quantum software stack                5) Efficiency: The entire quantum-enhanced workflow real-
+      increasingly influence which interfaces it needs to pro-                ized by the framework needs to come with minimal over-
+      vide. To generate a benefit, QC-enhanced optimization                   head. In applications, the end-to-end performance metric
+      solutions will need to integrate into diverse business                  will include the processing time within the framework.
+      workflows and professional software environments, cre-              6) Transparency: Data processing in the framework should
+      ating a wide set of industry-relevant usage scenarios                   be transparent, revealing what data is transmitted, where,
+      with business-related requirements to the data flow, data               how, and to what purpose it is modified.
+      availability, time constraints and desired output.
+   At the inception of the QDT, the different processing steps               IV. OVERVIEW OF THE Q UA ST D ECISION T REE
+from problem formulation to quantum algorithm execution                   The QDT is based on the design principles (section III). It
+were organized in layers: problem formulation and decom-               defines a framework that can be used for different purposes
+position, encoding, algorithm selection, classical optimizer           in the solution pipeline starting at the application. Its unique
+
+
+
+                                                                   4
+strengths are the ability to incorporate third-party software, and         •  Queries enable different levels of automation and serve
+to adapt to its execution environment, be it a QC software stack              as decision points. A global configuration flag enables ei-
+at a HPC centre, a commercial solver, or standalone. The im-                  ther the automated execution, or manual option selection.
+plementation in Python [18] is a compromise to simplify scien-              • Backends are integrated via specialized nodes tasked
+tific contributions at the expense of implementation efficiency.              with the communication with the backend (circuit def-
+This shortcoming can easily be mitigated by leveraging, e.g.,                 inition, submission, and result retrieval).
+C-based modules for performance-critical components.                        The detailed functioning of the QDT follows in section V,
+    The QDT is provided in the quast-decisiontree package                including the discussion on how the design principles from
+whose subpackage structure is shown in fig. 1. The cen-                  section III are satisfied. A no-code instance is available online
+tral Python object, the DecisionTree class and its compo-                for exploration and testing [48].
+nents are contained in the core subpackage. The remain-                     From a high-level standpoint, the intended workflow with
+ing subpackages algorithms, nodes, problems and utils                    the QuaST Decision Tree is:
+provide necessary ingredients for a basic instance of the                   1) Create an instance of the QDT by specifying the nodes
+DecisionTree class which can illustrate and demonstrate its                    to include and their order.
+functionality while serving as a starting point for automation              2) Configure the behavior of the instance via a configura-
+modules and concrete usage scenarios. The main automa-                         tion file or by setting flags manually.
+tion and recommendation capabilities as well as adapters for                3) Run the QDT instance on the desired problem in-
+different environments, e.g., the Munich Quantum Software                      stance with the given configuration, by invoking its
+Stack (MQSS) [47], are then provided as plugins. One such                      run method. This triggers a forward pass through the
+automation module is described in section VIII.                                decision tree, then reverses for a backward pass. The
+                                                                               typical breaking point between the passes is the sub-
+                                                                               mission and execution of the quantum algorithm, with
+                   quast_decisiontree                                          algorithm setup and preprocessing on the forward pass
+                                                                               and postprocessing, decoding and result interpretation
+             core:                     nodes:                                  on the backward pass.
+          DecisionTree              .root                                   The output of the QDT depends on its configuration. One
+          Node                      .formulation                         QDT instance can be used for multiple problem instances with
+          Backend                   .algorithm                           the same configuration. E.g., an administrator can create and
+          Query                     .optimizer                           configure the QDT instance and allow users to execute runs.
+          ProblemData               .backend
+                                                                          V. M AIN C OMPONENTS OF THE Q UA ST D ECISION T REE
+                                                                            The detailed workflow realized by the QDT is laid out
+           algorithms:               problems:
+                                                                         from the bottom up, first describing data handling and the
+           .classical             .classes
+                                                                         vital components Node and Query, then arriving at the central
+           .quantum               Optimization
+                                                                         orchestrator class DecisionTree.
+                                          Problem
+                                                                         A. Data Handling
+                                                                            The central data format of the QDT is a modified dictionary
+                                                                         ProblemData, gathering all information for the current run.
+                                                                         It is populated by the nodes, typically loading the problem
+Figure 1: Components of the quast-decisiontree package.                  instance first and subsequently adding additional processed
+core contains the framework, the DecisionTree base class                 data, e.g., a QUBO matrix or QASM-encoded quantum circuit.
+and its building blocks. nodes provides a basic instance                 Depending on the key of a particular entry, low-level data
+covering steps from problem loading to algorithm execution.              validation is performed, e.g., a "qubo_matrix" entry should
+algorithms and problems define templates for algorithms                  be a square two-dimensional array. The data is available in
+and problem classes, respectively.                                       human-readable dictionary format, and nodes are required to
+                                                                         indicate the entries they modify, which is essential in satisfying
+                                                                         the transparency requirement.
+   The core part comprises the following components, each
+realized as Python classes:                                              B. The Node class
+  • DecisionTree orchestrates the setup and execution of                    The atomic building block of the QDT and central enabler of
+    the QDT instances.                                                   modularity and locality is the Node. Nodes for specific tasks
+  • Nodes are the constituents of the decision tree, able to             are inherited from the abstract Node class with attributes in
+    flexibly execute atomic computational tasks.                         table I. When implementing a concrete Node for a specific
+  • ProblemData is the centralized data structure passed                 task, the relevant ProblemData entries are defined, both the
+    between the nodes of the decision tree.                              required ones and those that will be created or modified by
+
+
+
+                                                                     5
+the node. The QDT configuration then defines the children                          D. The DecisionTree class
+within the concrete QDT instance. During execution, the                               The overarching orchestration, data handling and execution
+QDT instance makes all required ProblemData available.                             is handled by the DecisionTree class whose important
+Furthermore, dynamic information can be requested during                           components are shown in table II. Its main functionalities are
+execution when necessary (e.g., queue lengths).                                    instance creation, configuration and execution.
+   At runtime, execute and interpret_result are invoked
+on the forward and backward passes respectively. For example,                      Table II: Methods and Attributes of the DecisionTree class.
+an encoding node translates an application-specific instance                        Method/Attribute   Important Param-    Description
+formulation to a QUBO format, and interprets the solution on                                           eters
+the backward pass.                                                                  __init__           config              Creates an instance based on the
+   The modularization of the QDT makes branching decisions                                                                 provided configuration file.
+                                                                                    validate                               Validates the setup during initial-
+challenging since the children of the nodes are only defined in                                                            ization.
+a specific QDT instance, and nodes should function in different                     run                problem_instance,   Execute a decision tree run (for-
+QDT instances. Specialized branching nodes therefore can                                               path                ward and backward pass) on the
+                                                                                                                           specified problem instance and
+define a set of known children, and select the correct one in                                                              path.
+their next_node method. It is only invoked when a node has                          load_backends                          Retrieve all available backends
+multiple children in a QDT instance. A typical example for                                                                 from the specialized backend
+                                                                                                                           provider nodes.
+branching are VQAs sharing parts of their setup such as the
+optimizer choice. A branching node can now realize non-local                          The instantiation of the DecisionTree class requires a
+behavior. After the optimizer has been chosen, the algorithm                       configuration object in YAML file format or as a dictionary. It
+setup and execution again depends on the particular VQA.                           defines the source packages of concrete nodes (in the QDT
+A branching node will now read out the type of algorithm                           core, this is quast_decisiontree.nodes), the names of
+selected by an upstream node from ProblemData, and direct                          the nodes, their children, and optionally arguments for their
+to the correct setup and execution nodes.                                          initialization. By defining children, the entire tree structure is
+                                                                                   fixed. The required structure is a directed acyclic graph (DAG).
+     Table I: Methods and Attributes of the Node class.                            Part of a QDT instance is shown in fig. 2.
+ Method             Important Param-     Description
+                    eters
+ __init__           requires, creates,   Executed      on   DecisionTree
+                    children             instantiation, defines necessary
+                                         ProblemData entries and children.
+ execute            problem_data,        Executed on the forward pass with
+                    path_info            the required problem data entries,
+                                         and optional information to select
+                                         a particular path.
+ next_node                               Executed on the forward pass if the
+                                         node has more than one child node.
+ interpret_result   result,              Executed on the backward pass
+                    problem_data         with the result and the relevant
+                                         problem data entries.
+ request_info                            Pipeline to request data from the
+                                         DecisionTree instance during run-         Figure 2: The algorithm selection part of a basic
+                                         time.
+                                                                                   DecisionTree instance. Based on the selected algorithms,
+                                                                                   different choices follow: the definition of an ansatz (e.g.,
+C. The Query class                                                                 variational quantum eigensolver [49]), a depth and mixer
+                                                                                   (QAOA [23]), or skipping for a direct solver setup. Multiple
+   Configurable automation is enabled by the Query class. A                        nodes take part in the hyperparameter definitions. In the VQA
+global flag sets the behavior of all queries in all nodes: On                      case, the paths converge for the optimizer selection, which is
+manual mode, users will be prompted for input, e.g., for algo-                     not required in other cases (here: linear ramp QAOA [50] and
+rithm selection. A default choice or recommendation based on                       a classical solver).
+the problem data can still be given. Query subclasses exist for
+various input types (various number formats, file paths, single-                      After instantiation, a validation step matches ProblemData
+choice selection, multiple input values). Additional versatility                   entries between nodes to verify that the setup is functional.
+is provided by combining queries into a QueryTree where                               The DecisionTree instance maintains a dictionary of QC
+subsequent queries can be executed conditionally on previous                       backends using a specialized BackendNode. This enables re-
+input. In the automatic mode, user prompts are skipped.                            trieving current backend information and submitting quantum
+Instead, default options, or recommendations computed from                         circuits through an external submission pipeline. The backend
+the problem data, are chosen. Queries are therefore essential                      nodes are adapters to enable abstraction across different ac-
+to the requirement of automation without restriction.                              cess modalities. During execution, all nodes can then request
+
+
+
+                                                                               6
+information on available backends, with the DecisionTree                JSON for problem instances and results. Run-specific and
+instance requesting and forwarding the data.                            persistent logs are created automatically.
+   Once the QDT instance is created, its structure (the nodes
+                                                                        A. Backends
+and their connections) is fixed, but the overall behavior can
+be configured – e.g., how detailed the logging output is,                  At the most basic level, QC backends accept a quantum
+and to what extent decisions should be taken without user               circuit, execute it, and return a set of measurement out-
+input. Thus, the DecisionTree satisfies the configurability             comes. They are typically embedded in a lower-level software
+requirement.                                                            stack handling compilation, optimization, and other pre- and
+   The run method then executes the DecisionTree. A                     postprocessing steps like error mitigation. The QDT aims to
+problem instance and further path specification can be passed           be device-agnostic and relies on specialized backend nodes
+directly. The problem instance in JSON format needs to match            to make the necessary data transformation to and from the
+a corresponding problem class as described in section VI-B,             backends. DecisionTree instances maintain a general list
+with a general QUBO class available next to application-                of available backends in a custom dictionary format, with
+specific instances. The path specification allows modifying             mandatory specifications being a unique identifier and the
+the solution path taken through the decision tree, e.g., forcing        provider node handling the backend communication. It is
+an algorithm or setting a hyperparameter. To this end, node             responsible for implementing the necessary data requests for
+classes define path keys: E.g., a QAOA node will accept a key           specific information such as qubit counts, connectivity maps,
+setting the depth of the ansatz.                                        calibration information etc.
+   On execution, the QDT iterates through the nodes, starting           B. Problem Classes
+from the root node and invoking the execute methods, mak-
+ing matching entries of the problem data, path specification,              CO problem classes are defined by a specification of how
+and on request dynamic information, available to the node.              to describe problem instances, and a way to evaluate the ob-
+After node execution, the modifications are written back to the         jective function. The QDT template OptimizationProblem
+ProblemData, and execution continues with the next node.                additionally demands a formulate_problem function used
+   The forward pass finishes when a final node is reached,              to translate the instance into a suitable format like QUBO.
+typically resulting in the execution of a hybrid algorithm.             Problem instances are defined in JSON files, or equivalently
+Once the result is available, the backward pass starts, iterating       Python dictionaries, with the application-specific definition in
+through the nodes in reverse for postprocessing, decoding               the from_dict method. Different formulation options can
+and result interpretation. Similar to the ProblemData on the            be included via formulation modes. The objective evaluation
+forward pass, a result dictionary is built on the backward pass.        is then required to be independent of the formulation, to
+The backward pass then finishes with the root node which                encourage a clear, application-specific performance metric. For
+concludes the full run. In summary, the working of the QDT              instance, a TSP class defines city-coordinate input, QUBO
+execution is shown in algorithm 1.                                      translation with selectable encodings, and a path-length objec-
+                                                                        tive. This interface allows the QDT nodes to load a problem
+Algorithm 1 QuaST Decision Tree                                         instance and transform it for further processing. Additional
+                                                                        problem classes can be integrated without directly modifying
+ 1: config ← load_config()
+                                                                        the node loading the problem.
+ 2: node ← init_root_node()
+ 3: path ← []                                                           C. Builders
+ 4: problem_data ← init()
+                                                                           The Builder template allows the QDT to efficiently access
+ 5: while node is not final do
+                                                                        options that are not available behind a common interface.
+ 6:     problem_data ← node.execute(problem_data)
+                                                                        The prototypical case is the selection of an optimizer in
+ 7:     append node to path
+                                                                        VQA setup. Optimizers provided, e.g., by scipy [51], differ
+ 8:     node ← node.next_node()
+                                                                        in the input to set them up: Gradient descent algorithms
+ 9: end while
+                                                                        might require step lengths whereas genetic algorithms require
+10: result ← node.execute(problem_data)
+                                                                        a population size.
+11: for node in reverse(path) do
+                                                                           For these cases, the Builder class provides a unified wrap-
+12:     result ← node.interpret_result(result)
+                                                                        per. HyperParam objects define the required input. Hence, a
+13: end for
+                                                                        node can dynamically provide a range of options by collecting
+                                                                        all builders of a certain type, obtaining a list of hyperpa-
+                                                                        rameters from the builders, and setting the required hyper-
+     VI. T EMPLATES , I NPUT AND O UTPUT F ORMATS
+                                                                        parameters via user prompt, class defaults, or by invoking an
+   The quast_decisiontree package contains templates for                automation module.
+backends and problem classes, as well as a Builder mechanic                Builders are central for achieving modularity and expand-
+to handle difference in the interfaces of, e.g., optimizers. The        ability: After a node for a specific task such as optimizer
+QDT uses YAML for configuration and tree definition, and                selection is implemented, the range of options it provides can
+
+
+
+                                                                    7
+be expanded without modifying the node itself, simply by                 the QDT instance itself or collected and submitted manually.
+providing an appropriate builder instance. Currently, the core           The required setup is:
+version uses builders for the creation of variational ansatzes              • A well-defined QDT configuration containing the neces-
+according to a given template, and for optimizer selection.                    sary solution paths (e.g., different algorithms, encoding
+         VII. U SAGE S CENARIOS AND VALIDATION                                 choices or hyperparameters).
+                                                                            • Nodes implementing the novel paths to be explored.
+   The flexibility of the modular QDT is highlighted by the
+                                                                            • Path files defining the experiment configurations, e.g. dif-
+intended usage scenarios it can be adapted to, briefly described
+                                                                               ferent encoding choices, a set of benchmarking instances
+in this section. Initial validation is provided for two scenarios,
+                                                                               or hyperparameter selections.
+with the commercial solver integration left as future work.
+                                                                            The researcher maintains full control over the QDT config-
+A. Upper Part of an HPC Software Stack                                   uration and the experiment workflow. The QDT simplifies the
+   Within an HPC software stack handling quantum circuit and             modification of the experimental setup and allows reproducing
+algorithm submission, the following setup is required:                   experiments. Furthermore, a specialized researcher does not
+   • A specialized backend provider node for circuit submis-
+                                                                         need to implement the entire solution pipeline from scratch,
+     sion and retrieval of backend information.                          but can use existing QDT nodes. Researchers benefit from
+   • A well-defined QDT configuration from problem loading
+                                                                         being able to investigate the full solution pipeline in an applied
+     to the available algorithms and hyperparameter choices.             setting, rather than isolated components.
+   • A server infrastructure running the QDT instance, with
+                                                                            For illustration, table IV shows the approximate lines of
+     submission formats mapping to the problem classes han-              code (LOC) to integrate a novel solution component under
+     dled by the instance.                                               the assumption that the component is available as a standard
+                                                                         Python object (class or function). Once implemented, the
+   The QDT instance is then set up by an administrator, with
+                                                                         end-to-end pipeline can be directly executed by providing
+free rein over the available algorithms, and what choices end
+                                                                         a file specifying a QDT path. The implementation effort is
+users are allowed to make. From an end user perspective, only
+                                                                         particularly low when Builder classes are used, since no
+the preparation of the problem instance in JSON format and,
+                                                                         nodes need to be modified.
+optionally, the path file in YAML format is required. Then, the
+QDT instance translates the input into a format suitable for the          Table IV: Estimated integration effort for new components.
+lower HPC software stack, submits the circuits and processes              Novel               Tasks for Integration                            Effort
+the results. The end user profits from an extension of software           Component                                                            (LOC)
+stack capabilities: Instead of submitting quantum circuits,               Encoding      for   add new formulation mode to problem class,       ~10
+they can directly submit their problem instances, trusting the            problem class       and adapters reading in problem class infor-
+automation of the QDT to provide the best solution.                                           mation
+                                                                          Optimizer           wrap optimizer in Builder class and define       ~5
+   As a first validation, a local instance of the QDT is                                      hyperparameters
+used to submit circuits for Linear-Ramp QAOA [50] to the                  Ansatz for varia-   wrap ansatz generator in Builder class and       ~5
+Munich Quantum Portal, offering access to QC backends                     tional algorithm    define hyperparameters
+                                                                          Quantum             implement nodes for hyperparameter selec-        ~50
+via the Munich Quantum Software Stack [47]. Overhead and                  algorithm           tion, and algorithm setup
+postprocessing times for random QUBO problems are shown                   Backend             implement node for backend circuit submis-       ~50
+in table III. The QDT handles the encoding, preprocessing and                                 sion and information retrieval
+                                                                          Automation          read relevant information from problem           ~50
+decoding steps with minimal overhead when compared with                   Module              data, insert into setup node, and characterize
+the wait time for the results of circuit execution (which are                                 the selected option in problem data
+dominated by the wait time between scheduling and execution               Custom pipeline     node including readout from result data, and     ~20
+                                                                          for information     executing the custom pipeline
+of the jobs, even with an empty queue as in the experiment).              extraction
+Each instance was repeated 5 times.
+
+Table III: Execution overhead (wall-clock times) on the sub-             C. Translation Component for Industrial Solvers
+mission of LR-QAOA circuits to the 20-qubit backend Euro-
+                                                                            Industrial solvers for optimization are deployed to end users
+QExa20 via the Munich Quantum Portal
+                                                                         in a customer-specific setup starting with data collection and
+  QUBO size        Local QDT     Wait Time for       Local QDT           preprocessing, then sending it to a commercial solver, and fi-
+                 Forward Pass           Result    Backward Pass
+                                                                         nally processing the result to provide the desired output. In this
+           4            < 1s     (11.8 ± 1.7) s           < 1s           context, the QDT serves as a pre- and postprocessing acceler-
+          12            < 2s     (33.4 ± 1.7) s           < 1s
+          20            < 2s     (39.4 ± 1.5) s           < 1s           ator for quantum-enhanced solutions. The manual overhead in
+                                                                         deploying solutions for industrial optimization is reduced by
+                                                                         including a QDT instance specialized in orchestrating hybrid
+B. Rapid Prototyping and Configuration                                   quantum-enhanced solutions. Furthermore, this modularization
+  In research and development, the QDT can be used to                    makes already deployed solutions easily reusable and adapt-
+quickly configure experiments. The circuits are either run by            able to new customers and solution pipelines. For providers
+
+
+
+                                                                     8
+of industrial solvers, this drastically reduces the effort in                      Additionally, a problem class can be declared (e.g., Knap-
+deploying quantum-enhanced solutions to end users.                              sack, MaxCut). In this case, the module uses the matching
+                                                                                subset of the database to capture problem-specific scaling.
+   VIII. A N AUTOMATION M ODULE : S CALABILITY OF
+                                                                                Without a specified class, an automatic matching is performed
+            VARIATIONAL Q UANTUM A LGORITHMS
+                                                                                based on size and density, using the general QUBO portion of
+   The purpose of the QDT is to provide abstraction by                          the benchmarks. The user may then request either estimates for
+automation. To illustrate this, the automation module described                 a specific VQA/optimizer combination or a recommendation
+in this section implements data-driven recommendations for                      among all available options.
+VQA’s. At its core sits a database of shot requirements nshots                     Output. Module output is written to two files:
+for various combinations of VQA and optimizer. Given a
+                                                                                   1) scalability_assessment.json contains a structured
+problem instance, the module then recommends the most
+                                                                                      analysis with the input problem characteristics, shot
+resource-efficient combination, or provides an estimate for the
+                                                                                      estimates including uncertainty bounds under the three
+user-selected configuration.
+                                                                                      scaling scenarios, and the indication whether the esti-
+A. Methodology and Database                                                           mate is feasible, i.e., falls outside the quantum disad-
+   The module is based on the rigorous methodology for de-                            vantage regime. The VQA/optimizer combination with
+termining the measurement shot requirements of VQA’s [17].                            the lowest shot requirement is then recommended, if any
+For a given VQA/optimizer combination, problem type, and                              fall below the quantum disadvantage threshold.
+QUBO density, it allows characterizing how the finite sampling                     2) recommended_config.yaml provides the QDT con-
+error and the optimizer noise resilience threshold scale with                         figuration specifying the necessary node configurations
+system size, yielding a shot requirement curve nshots (n) and a                       including algorithm selection, optimizer setup, circuit
+comparison against the quantum disadvantage boundary (see                             depth, and backend selection. Hyperparameters are set to
+section II-C). The automation module uses a database with                             the values used in benchmarking and database creation,
+precomputed fit parameters, scaling exponents, and uncertainty                        ensuring consistency between predicted shot require-
+estimates for the different configurations. The necessary data                        ments and execution.
+is obtained from precomputed benchmarking runs and can be                          This dual output design lends itself to a fully automated
+continuously updated with new VQA/optimizer combinations                        operation mode where the configuration file is passed directly
+and problem classes.                                                            to the QDT, or manual inspection of analysis results.
+   The database supports efficient queries, with the current
+                                                                                C. Architecture and Integration
+coverage shown in table V. It can be continuously expanded
+and updated with new VQA variants, optimizers, problem                           The module contains four components:
+classes, and combinations thereof. The extrapolated estimates                    • The QUBO Analyzer extracts problem size and density
+to n = 100 naturally carry substantial uncertainty. The prop-                      from the input QUBO and handles problem type match-
+agated error bounds quantify this. An expansion of the data                        ing.
+base is planned to reduce the uncertainties.                                     • The Scaling Database stores the scaling parameters ob-
+                                                                                   tained in previous benchmarking, organized by problem
+Table V: Current coverage of the scalability database. For                         type, density, VQA variant, and optimizer.
+each configuration, N = 100 random instances are sampled                         • The Shot Estimator computes predictions of nshots under
+to ensure statistical robustness of the scalability analysis.                      the three scaling scenarios.
+ Category                Coverage                                                • The Recommendation Engine evaluates the results,
+ VQA variants            VQE with hardware-efficient ansatz [49], vanilla          ranks combinations, and generates output files.
+                         QAOA [23], warm-start QAOA [52], ma-                    Integration modes. Depending on the usage scenario, the
+                         QAOA [53], QAOA+ [54], DC-QAOA [45]
+ Classical optimizers    NGD [55], COBYLA [56], SPSA [57], Pow-                 module is integrated into the QDT with one or two nodes:
+                         ell [58], NFT [59]                                      1) Recommendation mode: A node assessing scalability
+ Problem-specific parameters:                                                        is inserted between problem encoding and algorithm
+   Random QUBO         density ρ ∈ {0.1, 0.2, 0.3, 0.5, 0.7, 1.0}                    selection. The QUBO matrix is read from ProblemData,
+   MaxCut              density ρ ∈ {0.1, 0.2, 0.3, 0.5, 0.7, 1.0}
+   Knapsack            capacity ratio r ∈ {0.2, 0.4, 0.5, 0.6, 0.8}                  then the VQA/optimizer combinations are evaluated. If
+ System sizes (fitted)   n = 3 to 10
+                                                                                     feasible quantum combinations exist, the QDT proceeds
+ Extrapolation range     n = 10 to 100                                               with algorithm selection using the determined recom-
+                                                                                     mendations. If no quantum approach is feasible, the
+                                                                                     recommendation to choose a classical algorithm (or non-
+B. Functional Module Description                                                     variational QC algorithm) is passed on.
+   Input. The module requires a QUBO matrix Q ∈ Rn×n ,                           2) Estimation mode: A node to estimate scalability is
+supplied directly or via the QUBO problem class of the QDT.                          inserted after algorithm selection. The node computes
+Then, its size n (number of binary variables) and density                            estimates for the chosen combination, allowing users to
+(fraction of nonzero entries) are extracted.                                         make informed decisions about resource allocation.
+
+
+
+                                                                            9
+D. Demonstration on MaxCut                                             fail to produce characterizable scaling behavior, reflecting
+                                                                       the fundamental challenge posed by the rugged optimization
+   As a demonstration, a MaxCut instance with n = 60
+                                                                       landscapes that prevent reliable convergence even at small
+variables and graph density ρ = 0.4 is used. The mapping
+                                                                       system sizes, making extrapolation to larger instances infea-
+to QUBO is straightforward (see, e.g., [60]), therefore the
+                                                                       sible. The module’s ability to identify and flag such cases
+module directly queries the database and computes shot esti-
+                                                                       is essential for trustworthy recommendations. Based on this
+mates under three scaling hypotheses (exponential, power-law,
+                                                                       assessment, the module recommends VQE with NGD as the
+logarithmic). To ensure robust recommendations, a conserva-
+                                                                       optimal configuration and generates the corresponding QDT
+tive approach is adopted: for each configuration, the worst-
+                                                                       configuration. If no feasible configuration exists for a given
+case, i.e., highest, estimate among valid fits is reported and
+                                                                       problem instance, the module routes to a classical solver,
+compared to the quantum disadvantage threshold.
+                                                                       preventing resource usage on quantum-enhanced approaches
+   Table VI shows the resulting assessment. The module clas-
+                                                                       that cannot outperform brute-force search.
+sifies each configuration into one of three categories:
+   • Feasible: The worst-case shot estimate falls below the                          IX. D ISCUSSION AND O UTLOOK
+      quantum disadvantage boundary.                                      With the QDT, we present the concept and prototypical re-
+   • Infeasible: At least one scaling hypothesis yields a valid        alization of a framework providing abstraction to end users of
+      estimate, but all exceed the boundary.                           quantum-enhanced optimization. The central challenge is the
+   • Not characterizable: The VQA-optimizer combination                realization of useful automation modules in a rapidly evolving,
+      fails to produce consistent convergence behavior even at         diverse environment. The QDT, therefore, is designed with
+      small system sizes, preventing extraction of meaningful          maximum modularity and generality in mind to allow for
+      scaling parameters under any hypothesis.                         automation without restriction. The design principle outlined
+                                                                       in section III maximizes the usability of the QDT. Section IV
+Table VI: Worst-case shot estimates for a 60-variable weighted         and section V then describe the framework following a tree-
+MaxCut instance (density ρ = 0.4). “n.c.” indicates non-               like structure of computation nodes acting on a transparent
+characterizable configurations with inconsistent convergence.          problem data format. Thus, seemingly contradictory goals are
+ VQA         Optimizer         nshots                 Status           accomplished: hiding complex decisions behind an abstraction
+                                                                       layer for end users while allowing experts to overwrite recom-
+             NGD               1.9 × 106              feasible         mendations and explore novel paths. The resulting framework
+             Powell            6.5 × 1012             feasible         is useful in different situations (section VII): in the context
+ VQE
+             NFT               1.9 × 1015            infeasible        of an HPC software stack where it benefits end users by
+             COBYLA, SPSA      n.c.                      –             extending the software stack to their applications; as a tool for
+             Powell            5.8 × 1014            infeasible
+                                                                       applied research and development, and as a translation layer
+             COBYLA            1.4 × 1022            infeasible
+                                                                       to easily include quantum-enhanced solutions in commercial
+ ma-QAOA
+ p=1                                                                   solvers.
+             NGD               8.3 × 1051            infeasible
+                                                                          A concrete automation module based on a robust VQA
+             NFT, SPSA         n.c.                      –
+                                                                       scalability analysis [17] shows how abstraction is provided by
+ QAOA+       Powell            3.6 × 1080            infeasible        evaluating the problem-specific feasibility of VQA variants in
+ p=1         NGD, NFT,
+             SPSA, COBYLA      n.c.                      –
+                                                                       conjunction with the classical optimizer.
+                                                                          With the QDT, quantum-enhanced solutions for CO are one
+             Powell            1.6 × 1025            infeasible        step closer to adoption by end users. The design requirements
+ DC-QAOA
+ p=5         COBYLA            1.3 × 10145           infeasible        lead to a framework useful to researchers and users alike. At
+             NGD, NFT, SPSA    n.c.                      –             the current maturity of the rapidly evolving field of applied
+                                                                       QC research, this is crucial, for bridging the gap to industrial
+             Powell            9.1 × 1019            infeasible
+                                                                       adoption.
+ QAOA        SPSA              1.5 × 1062            infeasible
+ p=5                                                                      The crucial next development step in the QDT is its val-
+             COBYLA            2.6 × 10144           infeasible
+                                                                       idation at increasing technology readiness, moving towards
+             NGD, NFT          n.c.                      –
+                                                                       productive environments. The envisioned usage scenarios (sec-
+ WS-QAOA     NFT               2.5 × 1050            infeasible        tion VII) will lead to an iterative refinement and improvement
+ p=5         NGD, SPSA,                                                of the framework. Additionally, further automation modules
+             COBYLA, Powell    n.c.                      –
+                                                                       will be included in analogy to section VIII, or by integrating
+                                                                       third-party software tools.
+  Of all configurations evaluated, only VQE with the opti-
+mizers NGD and Powell produce feasible options. All QAOA-              Note On Code Availability
+based variants, including vanilla QAOA, ma-QAOA, QAOA+,                  The source code for the QuaST Decision Tree framework
+DC-QAOA, and WS-QAOA, either exhibit extreme shot re-                  without the automation module described in section VIII will
+quirements or cannot be characterized. Most QAOA variants              be provided as open source software in summer 2026.
+
+
+
+                                                                  10
+                        R EFERENCES                                    [16]   B. Poggel, X. Runge, A. Bärligea, and J. M. Lorenz,
+ [1]   J. M. Weinand, K. Sörensen, P. San Segundo, M.                         Creating Automated Quantum-Assisted Solutions for
+       Kleinebrahm, and R. McKenna, “Research trends in                       Optimization Problems, arXiv: 2409.20496, 2024.
+       combinatorial optimization,” International Transactions         [17]   A. Bärligea, B. Poggel, and J. M. Lorenz, “Scala-
+       in Operational Research, vol. 29, no. 2, pp. 667–705,                  bility challenges in variational quantum optimization
+       2022.                                                                  under stochastic noise,” Phys. Rev. A, vol. 112, no. 3,
+ [2]   N. Mazyavkina, S. Sviridov, S. Ivanov, and E. Burnaev,                 p. 032 407, 2025.
+       “Reinforcement learning for combinatorial optimiza-             [18]   G. Van Rossum and F. L. Drake, Python 3 Reference
+       tion: A survey,” Computers & Operations Research,                      Manual. CreateSpace, 2009.
+       vol. 134, p. 105 400, 2021.                                     [19]   A. Lucas, “Ising formulations of many NP problems,”
+ [3]   A. Abbas et al., “Challenges and opportunities in quan-                Frontiers in Physics, vol. 2, 2014.
+       tum optimization,” Nature Reviews Physics, vol. 6,              [20]   M. Schnaus et al., “Efficient Encodings of the Trav-
+       no. 12, pp. 718–735, 2024.                                             elling Salesperson Problem for Variational Quantum
+ [4]   C. H. Bennett, E. Bernstein, G. Brassard, and U. Vazi-                 Algorithms,” in 2024 IEEE International Conference
+       rani, “Strengths and Weaknesses of Quantum Com-                        on Quantum Software (QSW), 2024, pp. 81–87.
+       puting,” SIAM Journal on Computing, vol. 26, no. 5,             [21]   M. Schmid, S. Braun, R. Sollacher, and M. J. Hart-
+       pp. 1510–1523, 1997.                                                   man, “Highly efficient encoding for job-shop scheduling
+ [5]   M. Cerezo et al., “Variational quantum algorithms,”                    problems and its application on quantum computers,”
+       Nature Reviews Physics, vol. 3, no. 9, pp. 625–644,                    Quantum Science and Technology, vol. 10, no. 1,
+       2021.                                                                  p. 015 051, 2025.
+ [6]   A. Montanaro, “Quantum speedup of branch-and-bound              [22]   L. K. Grover, “A Fast Quantum Mechanical Algorithm
+       algorithms,” Phys. Rev. Res., vol. 2, no. 1, p. 013 056,               for Database Search,” in Proceedings of the Twenty-
+       2020.                                                                  Eighth Annual ACM Symposium on Theory of Comput-
+ [7]   R. Seidel et al., Qrisp: A Framework for Compil-                       ing, 1996, pp. 212–219.
+       able High-Level Programming of Gate-Based Quantum               [23]   E. Farhi, J. Goldstone, and S. Gutmann, “A quantum
+       Computers, arXiv: 2406.14792, 2024.                                    approximate optimization algorithm,” arXiv preprint
+ [8]   Qiskit contributors, Qiskit: An Open-source Framework                  arXiv:1411.4028, 2014.
+       for Quantum Computing, Zenodo: 2573505, 2023.                   [24]   K. Blekos et al., “A review on Quantum Approximate
+ [9]   A. Cross et al., “OpenQASM 3: A Broader and Deeper                     Optimization Algorithm and its variants,” Physics Re-
+       Quantum Assembly Language,” ACM Transactions on                        ports, vol. 1068, pp. 1–66, 2024.
+       Quantum Computing, vol. 3, no. 3, 12:1–12:50, 2022.             [25]   J. R. McClean, S. Boixo, V. N. Smelyanskiy, R. Bab-
+[10]   QIR Alliance, QIR Specification, 2021. [Online]. Avail-                bush, and H. Neven, “Barren plateaus in quantum neural
+       able: https://github.com/qir-alliance/qir-spec                         network training landscapes,” Nature Communications,
+[11]   N. Quetschlich, L. Burgholzer, and R. Wille, “MQT                      vol. 9, no. 1, p. 4812, 2018.
+       Predictor: Automatic Device Selection with Device-              [26]   E. R. Anschuetz and B. T. Kiani, Beyond Bar-
+       Specific Circuit Compilation for Quantum Computing,”                   ren Plateaus: Quantum Variational Algorithms Are
+       ACM Transactions on Quantum Computing, vol. 6,                         Swamped With Traps, arXiv: 2205.05786, 2022.
+       no. 1, 2025.                                                    [27]   IBM Quantum, IBM Quantum Roadmap. [Online].
+[12]   R. Coelho, G. Kruse, and J. M. Lorenz, QAOA-                           Available: https://www.ibm.com/quantum/hardware#
+       Predictor: Forecasting Success Probabilities and Mini-                 roadmap
+       mal Depths for Efficient Fixed-Parameter Optimization,          [28]   IonQ | Roadmap. [Online]. Available: https://www.ionq.
+       arXiv:2603.02990 [quant-ph], 2026.                                     com/roadmap
+[13]   O. Di Matteo, S. Núñez-Corrales, M. St˛echły, S. P.             [29]   Roadmap – IQM Quantum Computers, 2025. [Online].
+       Reinhardt, and T. Mattson, “An Abstraction Hierarchy                   Available: https://meetiqm.com/technology/roadmap/
+       Toward Productive Quantum Programming,” in 2024                 [30]   A. Gilliam, S. Woerner, and C. Gonciulea, “Grover
+       IEEE International Conference on Quantum Computing                     Adaptive Search for Constrained Polynomial Binary
+       and Engineering (QCE), vol. 01, 2024, pp. 979–989.                     Optimization,” Quantum, vol. 5, p. 428, 2021.
+[14]   Iskay Quantum Optimizer – A Qiskit Function by Kipu             [31]   The Advantage™ Quantum Computer | D-Wave. [On-
+       Quantum. [Online]. Available: https://quantum.cloud.                   line]. Available: https://www.dwavesys.com/solutions-
+       ibm.com/docs/en/guides/kipu-optimization                               and-products/systems/
+[15]   Optimization Solver – A Qiskit Function by Q-CTRL               [32]   Functions | IBM Quantum Platform. [Online]. Avail-
+       Fire Opal. [Online]. Available: https://quantum.cloud.                 able: https://quantum.cloud.ibm.com/functions
+       ibm.com/docs/en/guides/q-ctrl-optimization-solver               [33]   A. Cobb, J.-G. Schneider, and K. Lee, “Towards Higher-
+                                                                              Level Abstractions for Quantum Computing,” in Pro-
+                                                                              ceedings of the 2022 Australasian Computer Science
+                                                                              Week, 2022, pp. 115–124.
+
+
+
+                                                                  11
+[34]   H. Fürntratt, P. Schnabl, F. Krebs, R. Unterberger,              [47]   L. Burgholzer et al., “The Munich Quantum Soft-
+       and H. Zeiner, “Towards Higher Abstraction Levels in                    ware Stack: Connecting End Users, Integrating Diverse
+       Quantum Computing,” in Service-Oriented Computing                       Quantum Technologies, Accelerating HPC,” in Pro-
+       – ICSOC 2023 Workshops, 2023, pp. 162–173.                              ceedings of the Supercomputing Asia and International
+[35]   O. Di Matteo, “The Art of Abstraction in Quantum Soft-                  Conference on High Performance Computing in Asia
+       ware,” in 2025 IEEE/ACM International Workshop on                       Pacific Region, 2026, pp. 55–67.
+       Quantum Software Engineering (Q-SE), 2025, pp. 25–               [48]   DecisionTree. [Online]. Available: https://www.quast-
+       26.                                                                     decisiontree.com/
+[36]   B. Heim et al., “Quantum programming languages,”                 [49]   A. Peruzzo et al., “A variational eigenvalue solver on a
+       Nature Reviews Physics, vol. 2, no. 12, pp. 709–722,                    photonic quantum processor,” Nature Communications,
+       2020.                                                                   vol. 5, no. 1, p. 4213, 2014.
+[37]   A. Zulehner and R. Wille, Introducing Design Automa-             [50]   J. A. Montañez-Barrera and K. Michielsen, “Toward
+       tion for Quantum Computing. Springer, 2020.                             a linear-ramp QAOA protocol: Evidence of a scaling
+[38]   M. Soeken, T. Haener, and M. Roetteler, “Programming                    advantage in solving some combinatorial optimization
+       quantum computers using design automation,” in 2018                     problems,” npj Quantum Information, vol. 11, no. 1,
+       Design, Automation & Test in Europe Conference &                        p. 131, 2025.
+       Exhibition (DATE), 2018, pp. 137–146.                            [51]   P. Virtanen et al., “SciPy 1.0: Fundamental Algorithms
+[39]   R. Wille et al., “The MQT Handbook: A Summary of                        for Scientific Computing in Python,” Nature Methods,
+       Design Automation Tools and Software for Quantum                        vol. 17, pp. 261–272, 2020.
+       Computing,” in 2024 IEEE International Conference on             [52]   D. J. Egger, J. Mareček, and S. Woerner, “Warm-starting
+       Quantum Software (QSW), 2024, pp. 1–8.                                  quantum optimization,” Quantum, vol. 5, p. 479, 2021.
+[40]   D. Volpe, N. Quetschlich, M. Graziano, G. Turvani, and           [53]   R. Herrman, P. C. Lotshaw, J. Ostrowski, T. S. Humble,
+       R. Wille, “A Predictive Approach for Selecting the Best                 and G. Siopsis, “Multi-angle quantum approximate op-
+       Quantum Solver for an Optimization Problem,” in 2024                    timization algorithm,” Scientific Reports, vol. 12, no. 1,
+       IEEE International Conference on Quantum Computing                      p. 6781, 2022.
+       and Engineering (QCE), vol. 01, 2024, pp. 1014–1025.             [54]   M. Chalupnik, H. Melo, Y. Alexeev, and A.
+[41]   D. Volpe, N. Quetschlich, M. Graziano, G. Turvani, and                  Galda, Augmenting QAOA Ansatz with Multiparameter
+       R. Wille, “Towards an Automatic Framework for Solv-                     Problem-Independent Layer, 2022. arXiv: 2205.01192
+       ing Optimization Problems with Quantum Computers,”                      [quant-ph].
+       in 2024 IEEE International Conference on Quantum                 [55]   N. Kuete Meli, F. Mannel, and J. Lellmann, “A uni-
+       Software (QSW), 2024, pp. 46–57.                                        versal quantum algorithm for weighted maximum cut
+[42]   D. Eichhorn, M. Schweikart, N. Poser, F. Fiand, B.                      and ising problems,” Quantum Information Processing,
+       Poggel, and J. M. Lorenz, “Hybrid Meta-Solving for                      vol. 22, no. 7, p. 279, 2023.
+       Practical Quantum Computing,” in 2024 IEEE Interna-              [56]   M. J. Powell, “A direct search optimization method
+       tional Conference on Quantum Computing and Engi-                        that models the objective and constraint functions by
+       neering (QCE), vol. 01, 2024, pp. 421–431.                              linear interpolation,” in Advances in Optimization and
+[43]   B. Poggel, N. Quetschlich, L. Burgholzer, R. Wille, and                 Numerical Analysis, Springer, 1994, pp. 51–67.
+       J. M. Lorenz, “Recommending Solution Paths for Solv-             [57]   J. Spall, “Multivariate stochastic approximation using
+       ing Optimization Problems with Quantum Computing,”                      a simultaneous perturbation gradient approximation,”
+       in 2023 IEEE International Conference on Quantum                        IEEE Transactions on Automatic Control, vol. 37, no. 3,
+       Software (QSW), 2023.                                                   pp. 332–341, 1992.
+[44]   N. Sachdeva et al., Integrated error-suppressed pipeline         [58]   M. J. Powell, “An efficient method for finding the
+       for quantum optimization of nontrivial binary combina-                  minimum of a function of several variables without
+       torial optimization problems on gate-model hardware                     calculating derivatives,” The Computer Journal, vol. 7,
+       at the 156-qubit scale, arXiv:2406.01743 [quant-ph],                    no. 2, pp. 155–162, 1964.
+       2026.                                                            [59]   K. M. Nakanishi, K. Fujii, and S. Todo, “Sequential
+[45]   P. Chandarana et al., “Digitized-counterdiabatic quan-                  minimal optimization for quantum-classical hybrid al-
+       tum approximate optimization algorithm,” Physical Re-                   gorithms,” Phys. Rev. Res., vol. 2, p. 043 158, 2020.
+       view Research, vol. 4, no. 1, p. 013 141, 2022.                  [60]   F. Barahona, M. Jünger, and G. Reinelt, “Experiments
+[46]   P. R. Hegde et al., “Beyond the Buzz: Strategic Paths for               in quadratic 0–1 programming,” Mathematical Pro-
+       Enabling Useful NISQ Applications,” in Proceedings of                   gramming, vol. 44, no. 1, pp. 127–137, 1989.
+       the 21st ACM International Conference on Computing
+       Frontiers, 2024, pp. 310–313.
+
+
+
+
+                                                                   12
+

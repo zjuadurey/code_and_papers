@@ -18,6 +18,14 @@ Unchecked research items are not automatic implementation/model-run authorizatio
 
 ## P1 — Important next steps
 
+- [x] N-059: frontier audit with pinned public evidence and static source inspection complete;
+  [report](docs/frontier/README.md). No performance reproduction or new model/QPU run.
+- [x] N-060 / D-039: preserve the full idea, extend the frontier audit, compare three technical routes,
+  and complete static diagnostics on N-054 and N-058 C01/C02. [Current report](docs/frontier/v2/README.md).
+  Supersedes N-059 route priority; no external-system failures or new method efficacy demonstrated.
+- [ ] Prepare support-aligned C2Q / pattern-matching / QPipe-style adapters and a bounded diagnostic
+  protocol for source-to-candidate identification; keep native versus adapted baselines explicit.
+
 - [x] N-052: single generic claim-elicitation interface, paired ten-slot protocol;32 focused tests,
   49 regressions and5 offline preflight checks pass. No checker/schema/gold changes.
 - [x] N-053: ten-call S/F diagnostic under D-035 complete; one F44-state pass and one guarded

@@ -1,5 +1,19 @@
 # Research notebook
 
+## 2026-09-28 — Benefit objective and layers of evidence (D-037)
+
+**RESEARCHER DIRECTION:** Quantum benefit is central to whether migration is worthwhile; preserve the
+discussion and current search in layered documentation spanning implementation and paper writing.
+**CODE OBSERVATION:** `extract_resources` reports supplied-circuit counts; the strict
+`end_to_end_quantumization_success` conjunction contains no classical/quantum cost comparison.
+**SOURCE REVIEW:** Checked official abstracts/metadata for Dalzell et al. (2310.03011v2),
+Beverland et al. (2211.07629v1) and Babbush et al. (PRX Quantum 2, 010103). No full-paper audit.
+**WORKING PROPOSAL:** Separate mapping, semantics, resource feasibility, conditional benefit predictions
+and measured task benefit; record theoretical claims with their computational model and assumptions.
+Hardware profiles, main benefit metric, thresholds and a concrete protocol remain open.
+No new empirical result, label, experiment or paper contribution is asserted.
+[Layered record](quantum_advantage/README.md).
+
 ## 2026-09-18 — infrastructure initialization
 
 **OBSERVATION (artifact inspection):** The starting workspace was empty. The four
@@ -1429,3 +1443,49 @@ C01/C02 proposed for DRAFT source/contract review, C03 kept as a boundary candid
 contract profiles, gold/split and independent review all remain pending. Zero new predictive model
 or QPU calls. Public-source contamination unknown; all local probes are development-exposed.
 [Deliverable](../pilot/new_mother_candidates/v0.1/README.md).
+
+## N-059 — Frontier-relative audit and a falsifiable next question
+
+Date:2026-09-28. Researcher said “做” after clarifying D-038. Completed targeted literature,
+public-artifact retrieval and static source inspection; not a systematic review or performance replication.
+C2Q already joins supported classical inputs to generated quantum code/device recommendations;
+QPipe already implements agent generation, repair, requirement review and classical reference checking;
+QuaST and Predict already address selection/cost/quality; CORK and QSynth preclude broad novelty for
+semantic checking/synthesis. Q-READY also articulates the requirements-to-feasibility vision.
+
+Static evidence: C2Q parser has a random-graph fallback on an unsupported extraction path;
+its inspected recommender compares quantum devices. QPipe's numerical oracle receives the generated
+combined instance, while a separate agent reviews the original requirement. Predict includes classical
+approximation benchmarks. These observations delimit claims, not measured failure rates.
+QuaST code retrieval failed; current availability of its automation module remains unknown.
+
+Hypothesis: source-behavior obligations may need to change both replacement plans and their full cost.
+Neither novelty nor benefit is established. Next diagnose three existing materials against reasonable
+tool composition, including generic contract checking and cost estimation; abandon this mechanism
+claim if straightforward composition suffices. N-054 and N-058 probes remain development-exposed,
+not new formal cases or held-out evidence. No upstream execution, model/QPU calls, installations,
+paper edits, label/score changes or practical-advantage claims.
+[Report](frontier/README.md), [evidence](frontier/EVIDENCE.md), [next diagnostic](frontier/NEXT_STUDY.md).
+
+## N-060 — Preserve the full idea; finish the frontier and route survey
+
+Date:2026-09-28. D-039 records the explicit user correction and goal “完成这个调研并文档化”.
+The ultimate software objective is unchanged. N-059 evidence is retained, but its premature
+contract/cost priority is superseded by [v2](frontier/v2/README.md).
+
+Additional primary evidence: Yamato's source-pattern offloading implementation/evaluation and
+Road's six-month expert migration study; scoped HPS verification context. The eight-work matrix
+distinguishes generated-code completion, source replacement, expert migration, selection and cost
+prediction. Actual Azure service timing in a paper is not a demonstrated strong-classical advantage
+or our independent QPU reproduction. QuaST code remains inaccessible after another timed request.
+
+Compared three candidate routes: source-to-computation recovery; hardware-aware joint plan selection;
+and usable hybrid migration with cross-boundary validation. Source recovery is the recommended
+first diagnostic, not an accepted novel mechanism. Static inspection of N-054 and N-058 C01/C02
+finds that ordinary cost analysis can already expose the rank-QUBO redundancy; text/TSP materials
+motivate source/model fidelity tests but do not establish failures of external systems.
+
+Documented present techniques, conditional predictions, hardware/algorithm limits and narrowly
+scoped theoretical restrictions. Mapped FSE evidence needs and survey completion requirements.
+No upstream code execution, model/QPU calls, installs, case/gold/split changes or paper edits.
+Old experiment and N-059 bytes are covered by the new integrity audit.

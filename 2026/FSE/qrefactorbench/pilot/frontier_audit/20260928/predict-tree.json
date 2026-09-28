@@ -1,0 +1,823 @@
+{
+  "repository": "lfd/qce2025-design-automation",
+  "revision": "4b4490a6abfdebfe8a8801becad343dd733fa326",
+  "commit_date": "2025-04-24T09:52:26Z",
+  "tree": {
+    "sha": "4b4490a6abfdebfe8a8801becad343dd733fa326",
+    "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/trees/4b4490a6abfdebfe8a8801becad343dd733fa326",
+    "tree": [
+      {
+        "path": ".gitattributes",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0e4b47ceb22a4ff34b3773620b88882a15e43beb",
+        "size": 84,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/0e4b47ceb22a4ff34b3773620b88882a15e43beb"
+      },
+      {
+        "path": ".gitignore",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cd976d6804e237cf097cd2df8e27d200c9426f8d",
+        "size": 83,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/cd976d6804e237cf097cd2df8e27d200c9426f8d"
+      },
+      {
+        "path": ".gitmodules",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d21d5ed44d888c66188446168c5156a95eab2d58",
+        "size": 76,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/d21d5ed44d888c66188446168c5156a95eab2d58"
+      },
+      {
+        "path": "IEEEtran.cls",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8d2b1c6478f81e0e2f65cb62debabbf236fb0304",
+        "size": 281957,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/8d2b1c6478f81e0e2f65cb62debabbf236fb0304"
+      },
+      {
+        "path": "LICENSE",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f49a4e16e68b128803cc2dcea614603632b04eac",
+        "size": 11356,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/f49a4e16e68b128803cc2dcea614603632b04eac"
+      },
+      {
+        "path": "Makefile",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "96fd0ee119342d3feb6e3c3a4787c70ebd143006",
+        "size": 2322,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/96fd0ee119342d3feb6e3c3a4787c70ebd143006"
+      },
+      {
+        "path": "README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "db243ead40bbb01a478683e588452eb5429ec911",
+        "size": 3817,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/db243ead40bbb01a478683e588452eb5429ec911"
+      },
+      {
+        "path": "algorithm_selection_framework.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b4e5d978cb27a17ae5485ee537fa03e2a9c7e9eb",
+        "size": 35026,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/b4e5d978cb27a17ae5485ee537fa03e2a9c7e9eb"
+      },
+      {
+        "path": "architecture.pdf",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c81c80d94228bbc61f1d14946972d737a742f6fe",
+        "size": 41021,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/c81c80d94228bbc61f1d14946972d737a742f6fe"
+      },
+      {
+        "path": "architecture.svg",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9dd5015103da7f28d8f2884601d1509159e57c0c",
+        "size": 862084,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/9dd5015103da7f28d8f2884601d1509159e57c0c"
+      },
+      {
+        "path": "create_optimized_qaoa_circuit.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "515bf4711730e912baedb69fb8cc35d3a39af775",
+        "size": 7757,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/515bf4711730e912baedb69fb8cc35d3a39af775"
+      },
+      {
+        "path": "csvs",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "5c3263acd916c46251fb02e7d1a68be467632ed9",
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/trees/5c3263acd916c46251fb02e7d1a68be467632ed9"
+      },
+      {
+        "path": "csvs/circuit_optimization_benchmark.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3820cd397b890813475431cdc0ce7ca27869a5e8",
+        "size": 132,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/3820cd397b890813475431cdc0ce7ca27869a5e8"
+      },
+      {
+        "path": "csvs/circuit_optimization_benchmark.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f11f4853e81d2eb6b808d3bf8639d6ee35621425",
+        "size": 2482,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/f11f4853e81d2eb6b808d3bf8639d6ee35621425"
+      },
+      {
+        "path": "csvs/classical_approximation_benchmark.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c922e6f8de4847ade926217f655b21c489461706",
+        "size": 131,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/c922e6f8de4847ade926217f655b21c489461706"
+      },
+      {
+        "path": "csvs/classical_approximation_benchmark.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1b00792d14d8b8b852fdd008de6244574f65cff0",
+        "size": 2115,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/1b00792d14d8b8b852fdd008de6244574f65cff0"
+      },
+      {
+        "path": "csvs/compress_learning_curve_data.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "eb51bb7cb506fe2b28b5d2bf0558f1603ea281f8",
+        "size": 492,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/eb51bb7cb506fe2b28b5d2bf0558f1603ea281f8"
+      },
+      {
+        "path": "csvs/ideal-learning-curve-compressed.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9868532e8c9d37aafafcc4d9f2ee706e9354e362",
+        "size": 133,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/9868532e8c9d37aafafcc4d9f2ee706e9354e362"
+      },
+      {
+        "path": "csvs/ideal-predicted.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bcb9a26a46c673ef79eab3c804d02ccb3b97dbc5",
+        "size": 133,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/bcb9a26a46c673ef79eab3c804d02ccb3b97dbc5"
+      },
+      {
+        "path": "csvs/ideal-runtime.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e0010eac3b9fed5d0cc6085a80637d0d1e634307",
+        "size": 133,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/e0010eac3b9fed5d0cc6085a80637d0d1e634307"
+      },
+      {
+        "path": "csvs/ideal.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "75ddc6844cf069719adc6589def378821314be1f",
+        "size": 133,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/75ddc6844cf069719adc6589def378821314be1f"
+      },
+      {
+        "path": "csvs/ideal.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3b0f4595d370b1be04924640f5c83b2ef2f44010",
+        "size": 7158,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/3b0f4595d370b1be04924640f5c83b2ef2f44010"
+      },
+      {
+        "path": "csvs/ideal_annotations_input.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0ccfe7f9ca43a5dd71e7c33d8a0cd586088acdc8",
+        "size": 133,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/0ccfe7f9ca43a5dd71e7c33d8a0cd586088acdc8"
+      },
+      {
+        "path": "csvs/ideal_cobyla_1000_iterations_tol_1e-4-predicted.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "52b2433a35fc3541239b7295756e9031ecf76107",
+        "size": 133,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/52b2433a35fc3541239b7295756e9031ecf76107"
+      },
+      {
+        "path": "csvs/ideal_cobyla_1000_iterations_tol_1e-4.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8b5b7f417fc1bc861b2d36d811e482523cc17596",
+        "size": 133,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/8b5b7f417fc1bc861b2d36d811e482523cc17596"
+      },
+      {
+        "path": "csvs/ideal_learning_curve.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6cb9732e5432238da2028ded960173121c28796e",
+        "size": 5369,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/6cb9732e5432238da2028ded960173121c28796e"
+      },
+      {
+        "path": "csvs/noisy-learning-curve-compressed.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "995e57c3e64629bf6e518409cdf3338ae9a7e41b",
+        "size": 134,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/995e57c3e64629bf6e518409cdf3338ae9a7e41b"
+      },
+      {
+        "path": "csvs/noisy-predicted.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0346f76965a1e79e0aafb78046391e5b07387196",
+        "size": 134,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/0346f76965a1e79e0aafb78046391e5b07387196"
+      },
+      {
+        "path": "csvs/noisy-runtime.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2c66bdde6a6e7125dbde06091573c8e0938d477d",
+        "size": 133,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/2c66bdde6a6e7125dbde06091573c8e0938d477d"
+      },
+      {
+        "path": "csvs/noisy.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7c290d5e02f6be2d54c59b5960777ce6fca67776",
+        "size": 133,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/7c290d5e02f6be2d54c59b5960777ce6fca67776"
+      },
+      {
+        "path": "csvs/noisy.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8cee8e61b60e17f15f7e32e926f3a9e56c3c43de",
+        "size": 7767,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/8cee8e61b60e17f15f7e32e926f3a9e56c3c43de"
+      },
+      {
+        "path": "csvs/noisy_annotations_input.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "279073dd8540144a63f197a0c59ac5d915c47c21",
+        "size": 132,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/279073dd8540144a63f197a0c59ac5d915c47c21"
+      },
+      {
+        "path": "csvs/noisy_learning_curve.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e2dff467d6666375ac19b1dfb1ec713cf85a003c",
+        "size": 6087,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/e2dff467d6666375ac19b1dfb1ec713cf85a003c"
+      },
+      {
+        "path": "csvs/optimizer_comparison.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3abb9037f5a0f29e2f7bdec19446438357a260e2",
+        "size": 130,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/3abb9037f5a0f29e2f7bdec19446438357a260e2"
+      },
+      {
+        "path": "csvs/performance_by_runtime.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2e22906c40e4a093c872aec39acb75824ac88e8b",
+        "size": 133,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/2e22906c40e4a093c872aec39acb75824ac88e8b"
+      },
+      {
+        "path": "csvs/performance_by_runtime.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9554b33aee5662a10a6d99caa63ef9a1e0ed88a1",
+        "size": 8465,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/9554b33aee5662a10a6d99caa63ef9a1e0ed88a1"
+      },
+      {
+        "path": "csvs/prepare_annotations_input.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "b17470b0299246b70a40977bc11377544657a5d1",
+        "size": 622,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/b17470b0299246b70a40977bc11377544657a5d1"
+      },
+      {
+        "path": "csvs/shots_comparison.csv",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3cde40fd5ce6e2b3c167e8be4550f15098e3f8c5",
+        "size": 132,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/3cde40fd5ce6e2b3c167e8be4550f15098e3f8c5"
+      },
+      {
+        "path": "filter_results.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "8256c888e80c022e054b2b9ef01c2e60612211a9",
+        "size": 4540,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/8256c888e80c022e054b2b9ef01c2e60612211a9"
+      },
+      {
+        "path": "generate_param_sets.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f208545c04b5661aa7380a70c86614d284c527dc",
+        "size": 4309,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/f208545c04b5661aa7380a70c86614d284c527dc"
+      },
+      {
+        "path": "get_results_statistics.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2ed6864abccbf633e4408cdf3a15a974bb650ae8",
+        "size": 3201,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/2ed6864abccbf633e4408cdf3a15a974bb650ae8"
+      },
+      {
+        "path": "ideal_model_fitting.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "864a0bc34955473096c650cab959f05cd97ee2ef",
+        "size": 13727,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/864a0bc34955473096c650cab959f05cd97ee2ef"
+      },
+      {
+        "path": "img-pdf",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "14a6e5acd8d987567b9374ab0dbb87c130e916ae",
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/trees/14a6e5acd8d987567b9374ab0dbb87c130e916ae"
+      },
+      {
+        "path": "img-pdf/ideal_residuals.pdf",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "0c1099b391a5ab9857cc22a4ac0e989ed608e46d",
+        "size": 267770,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/0c1099b391a5ab9857cc22a4ac0e989ed608e46d"
+      },
+      {
+        "path": "img-pdf/learning_curve.pdf",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2b931b15780f2c0050c904c6da2af15f7f4ca220",
+        "size": 12162,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/2b931b15780f2c0050c904c6da2af15f7f4ca220"
+      },
+      {
+        "path": "img-pdf/noisy_residuals.pdf",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "79fd6e4b2e7bba60ff4aec74f5267f675c6374b8",
+        "size": 45908,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/79fd6e4b2e7bba60ff4aec74f5267f675c6374b8"
+      },
+      {
+        "path": "img-pdf/optimizer_comparison.pdf",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "9672e3bf79a5dd0fa9db3330af1c238e3c166c99",
+        "size": 50328,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/9672e3bf79a5dd0fa9db3330af1c238e3c166c99"
+      },
+      {
+        "path": "img-pdf/performance_by_runtime.pdf",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "803063b599be7fc016999f818d2161be7630e8cf",
+        "size": 62551,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/803063b599be7fc016999f818d2161be7630e8cf"
+      },
+      {
+        "path": "img-pdf/runtime.pdf",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d7d04e2abfa414fd459f2565e08563215d0a6acb",
+        "size": 4474757,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/d7d04e2abfa414fd459f2565e08563215d0a6acb"
+      },
+      {
+        "path": "img-pdf/runtime_noisy.pdf",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "bd108580a79f97f6a36b1d3e8be688aed1d32e50",
+        "size": 10863267,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/bd108580a79f97f6a36b1d3e8be688aed1d32e50"
+      },
+      {
+        "path": "img-pdf/shots_comparison.pdf",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7c91bec4c20a25f1b0d36236a2bfd5bb4b76fa3a",
+        "size": 78060,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/7c91bec4c20a25f1b0d36236a2bfd5bb4b76fa3a"
+      },
+      {
+        "path": "img-tikz",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "ec7f8429ca593fe1fc0c3cb6c66ec199454555ae",
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/trees/ec7f8429ca593fe1fc0c3cb6c66ec199454555ae"
+      },
+      {
+        "path": "img-tikz/ideal_residuals.tex",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6d6e7ca86e776c1a52d0b0ce59e067e4366a3ff4",
+        "size": 561541,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/6d6e7ca86e776c1a52d0b0ce59e067e4366a3ff4"
+      },
+      {
+        "path": "img-tikz/learning_curve.tex",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2af1a15667dfeaf36a3a06fec6067df2eeb96786",
+        "size": 57793,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/2af1a15667dfeaf36a3a06fec6067df2eeb96786"
+      },
+      {
+        "path": "img-tikz/noisy_residuals.tex",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3ab597acd4087f1355ccee7c6f38410399506006",
+        "size": 186291,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/3ab597acd4087f1355ccee7c6f38410399506006"
+      },
+      {
+        "path": "img-tikz/noisy_residuals_ras1.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a8ffdb85a628c3e57c7b7358a400408eaabce8a1",
+        "size": 248,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/a8ffdb85a628c3e57c7b7358a400408eaabce8a1"
+      },
+      {
+        "path": "img-tikz/optimizer_comparison.tex",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4aa9e1aa4cf56f00a5c90dfb6923923728b27610",
+        "size": 172883,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/4aa9e1aa4cf56f00a5c90dfb6923923728b27610"
+      },
+      {
+        "path": "img-tikz/optimizer_comparison_ras1.png",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "57ac5fe7ff71d5c34c7292f1275d16e04b8728f9",
+        "size": 242,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/57ac5fe7ff71d5c34c7292f1275d16e04b8728f9"
+      },
+      {
+        "path": "img-tikz/performance_by_runtime.tex",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "5bd24303acdcf7311eed67093a2163f0af3e91bf",
+        "size": 356367,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/5bd24303acdcf7311eed67093a2163f0af3e91bf"
+      },
+      {
+        "path": "img-tikz/runtime.tex",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6c6849d392a86b3d591af35b3a042f33d715ee80",
+        "size": 12851957,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/6c6849d392a86b3d591af35b3a042f33d715ee80"
+      },
+      {
+        "path": "img-tikz/runtime_noisy.tex",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "03a8449a9d29742b5dbec5d980927ef2153b7207",
+        "size": 27248659,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/03a8449a9d29742b5dbec5d980927ef2153b7207"
+      },
+      {
+        "path": "img-tikz/shots_comparison.tex",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d1a22b7b8ec077f8ea8d6ef700273cadb9af64ad",
+        "size": 366085,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/d1a22b7b8ec077f8ea8d6ef700273cadb9af64ad"
+      },
+      {
+        "path": "img.tex",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "19d1fbed8fab562e3012a73bbf90f0846fab6122",
+        "size": 277,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/19d1fbed8fab562e3012a73bbf90f0846fab6122"
+      },
+      {
+        "path": "install_packages.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1150e48dde7c9415313d09e12521c6c53379cd92",
+        "size": 175,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/1150e48dde7c9415313d09e12521c6c53379cd92"
+      },
+      {
+        "path": "main.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a732fe690835b1dd8bc229e3e7625d34ff11bd5b",
+        "size": 2408,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/a732fe690835b1dd8bc229e3e7625d34ff11bd5b"
+      },
+      {
+        "path": "noisy_model_fitting.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c4c24301114ea18d38f302789d527279e0caa95f",
+        "size": 19503,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/c4c24301114ea18d38f302789d527279e0caa95f"
+      },
+      {
+        "path": "params.schema.json",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a1febf0848a5c65c95c6338ef7539f1850e3f0f0",
+        "size": 8272,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/a1febf0848a5c65c95c6338ef7539f1850e3f0f0"
+      },
+      {
+        "path": "parse_params.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "059fc4b37a03bbd8e7355f1abcfe0199d4e8c0ed",
+        "size": 14769,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/059fc4b37a03bbd8e7355f1abcfe0199d4e8c0ed"
+      },
+      {
+        "path": "r",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "63159bef046fb39140c55c997d14952f105403dc",
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/trees/63159bef046fb39140c55c997d14952f105403dc"
+      },
+      {
+        "path": "r/all_plots.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d6413f8bcbdb407c991331cd818350902802da2d",
+        "size": 288,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/d6413f8bcbdb407c991331cd818350902802da2d"
+      },
+      {
+        "path": "r/base.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2698ade8c31248d795d73c1ce22ddfeecfbc6428",
+        "size": 2343,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/2698ade8c31248d795d73c1ce22ddfeecfbc6428"
+      },
+      {
+        "path": "r/cobyla_1000_iterations_tol_1e-4.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3fabe0cca9a145a574a1189a08e2a6dd321c509e",
+        "size": 2135,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/3fabe0cca9a145a574a1189a08e2a6dd321c509e"
+      },
+      {
+        "path": "r/ideal_residuals.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ddb5a96286cea1f8a0fd35fb8fe898c30f9a0d74",
+        "size": 4911,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/ddb5a96286cea1f8a0fd35fb8fe898c30f9a0d74"
+      },
+      {
+        "path": "r/learning_curve.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "2a891bcd925942022cfe808793ac77543b249847",
+        "size": 7347,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/2a891bcd925942022cfe808793ac77543b249847"
+      },
+      {
+        "path": "r/noisy_residuals.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cea50a127ef7456f9ca07d8bc8f28fc8b2135b25",
+        "size": 4806,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/cea50a127ef7456f9ca07d8bc8f28fc8b2135b25"
+      },
+      {
+        "path": "r/optimizer_comparison.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "40f6c9f77bcd8b801cc89b587507792170224de0",
+        "size": 1412,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/40f6c9f77bcd8b801cc89b587507792170224de0"
+      },
+      {
+        "path": "r/performance_by_runtime.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "cb3871698bbaf1ecf72f155650653f011ac58d46",
+        "size": 2310,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/cb3871698bbaf1ecf72f155650653f011ac58d46"
+      },
+      {
+        "path": "r/runtime.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ed5ef94f3482a1ea06680a38c1e396d8e3e09abe",
+        "size": 2021,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/ed5ef94f3482a1ea06680a38c1e396d8e3e09abe"
+      },
+      {
+        "path": "r/runtime_noisy.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "1a1dd0770300aee65ccae658df380169de578822",
+        "size": 3386,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/1a1dd0770300aee65ccae658df380169de578822"
+      },
+      {
+        "path": "r/shots_comparison.r",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ce77124fd14dae98a094ce4235c610c0935a69cd",
+        "size": 2149,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/ce77124fd14dae98a094ce4235c610c0935a69cd"
+      },
+      {
+        "path": "requirements.txt",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f529cde1007d6c3fc214f86bbdc5c927ce0d8d3a",
+        "size": 316,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/f529cde1007d6c3fc214f86bbdc5c927ce0d8d3a"
+      },
+      {
+        "path": "results",
+        "mode": "040000",
+        "type": "tree",
+        "sha": "7ef16e226a757c03f0a5a1041b7cbcdf92762a1f",
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/trees/7ef16e226a757c03f0a5a1041b7cbcdf92762a1f"
+      },
+      {
+        "path": "results/absolute_upper_bounds.bash",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "61461c640cdc6e0e8c6592b3819f40b722f05790",
+        "size": 367,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/61461c640cdc6e0e8c6592b3819f40b722f05790"
+      },
+      {
+        "path": "results/absolute_upper_bounds.out",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "7dabf58c8f77f4433e5e9c6e68f07af722d87f17",
+        "size": 131,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/7dabf58c8f77f4433e5e9c6e68f07af722d87f17"
+      },
+      {
+        "path": "results/bounds.bash",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "4603ee6235583fe034863aa3a1bf4282d16cff72",
+        "size": 353,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/4603ee6235583fe034863aa3a1bf4282d16cff72"
+      },
+      {
+        "path": "results/bounds.out",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "39d1804408fd3b54078d548b9de9c230b8781a9e",
+        "size": 131,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/39d1804408fd3b54078d548b9de9c230b8781a9e"
+      },
+      {
+        "path": "results/cnot_metrics.bash",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "71054942946ff93867db9a1715b4905683be726a",
+        "size": 447,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/71054942946ff93867db9a1715b4905683be726a"
+      },
+      {
+        "path": "results/cnot_metrics.out",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "d1fe011fe26348dd7d9a3fcf81cfa06704286464",
+        "size": 131,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/d1fe011fe26348dd7d9a3fcf81cfa06704286464"
+      },
+      {
+        "path": "results/fidelity.bash",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "a44af002fc113639163c746bd562c2091a6f5aa9",
+        "size": 833,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/a44af002fc113639163c746bd562c2091a6f5aa9"
+      },
+      {
+        "path": "results/fidelity.out",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "90f55050a91cf6d5a0774080f45cf548c839e048",
+        "size": 133,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/90f55050a91cf6d5a0774080f45cf548c839e048"
+      },
+      {
+        "path": "results/large_ideal.bash",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "acb3eb0ce3c33f80d3af196dbb21f7b1c85cf32c",
+        "size": 683,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/acb3eb0ce3c33f80d3af196dbb21f7b1c85cf32c"
+      },
+      {
+        "path": "results/large_ideal.out",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f04a29c69e93095646e3c4041c1fbb92c1dd250c",
+        "size": 134,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/f04a29c69e93095646e3c4041c1fbb92c1dd250c"
+      },
+      {
+        "path": "results/small_ideal_noisy.bash",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "134e84100f81cd4bce2e5ac708b391fc5fcb1ea2",
+        "size": 1156,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/134e84100f81cd4bce2e5ac708b391fc5fcb1ea2"
+      },
+      {
+        "path": "results/small_ideal_noisy.out",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "e91cb6741c66718eac8d44147795c26fb3d1532b",
+        "size": 134,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/e91cb6741c66718eac8d44147795c26fb3d1532b"
+      },
+      {
+        "path": "results/upper_bounds.bash",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "384301fc124772844bb06bf5ebc0aa57c391870c",
+        "size": 349,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/384301fc124772844bb06bf5ebc0aa57c391870c"
+      },
+      {
+        "path": "results/upper_bounds.out",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "135b8deb7c488c0f0e296a30cadd4cf5bdbaca81",
+        "size": 131,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/135b8deb7c488c0f0e296a30cadd4cf5bdbaca81"
+      },
+      {
+        "path": "rqaoa.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "02e54fbd3f9f17b0adc01c05e0d80656b2decc31",
+        "size": 4059,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/02e54fbd3f9f17b0adc01c05e0d80656b2decc31"
+      },
+      {
+        "path": "run_simulations.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "12e55dd5dc593680a17f211db2c3f61bd57f2f88",
+        "size": 57143,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/12e55dd5dc593680a17f211db2c3f61bd57f2f88"
+      },
+      {
+        "path": "runtime_fit.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3fc018f37265ae3347a4cb8e8d75bc4f9c12b455",
+        "size": 4916,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/3fc018f37265ae3347a4cb8e8d75bc4f9c12b455"
+      },
+      {
+        "path": "search_backends.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "65a772bc941ac3de45c7add0b6332c60688c5b5f",
+        "size": 8605,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/65a772bc941ac3de45c7add0b6332c60688c5b5f"
+      },
+      {
+        "path": "terms.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "007cf67ff8da0cb53c0daeed2e4bc5152712d0ff",
+        "size": 8926,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/007cf67ff8da0cb53c0daeed2e4bc5152712d0ff"
+      },
+      {
+        "path": "transpile_to_sx_rz.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "c298fa3ecd6ace5e20754e69b7e64d7455230f19",
+        "size": 6327,
+        "url": "https://api.github.com/repos/lfd/qce2025-design-automation/git/blobs/c298fa3ecd6ace5e20754e69b7e64d7455230f19"
+      }
+    ],
+    "truncated": false
+  }
+}

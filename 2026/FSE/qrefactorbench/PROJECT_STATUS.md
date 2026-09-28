@@ -1,6 +1,38 @@
 # QRefactorBench 当前状态
 
-更新：2026-09-27（D-036已接受A；N-058三份候选档案已完成）。历史过程见 CHANGELOG 和研究日志。
+更新：2026-09-28（N-060完整目标前沿调研完成；N-058候选纳入仍待审）。历史过程见 CHANGELOG 和研究日志。
+
+**当前入口：[N-060前沿报告v2](docs/frontier/v2/README.md)。**
+[D-039](DECISIONS.md#d-039-preserve-the-idea-and-compare-technical-routes)落实用户纠正：
+完整idea保持不变；调研确定如何向目标推进，不决定是否放弃目标，也不预先锁定合同/成本。
+补充Yamato源码自动卸载、Road真实软件迁移研究及HPS验证线索，形成8项直接前沿对照、
+现有技术边界和A源码候选恢复/B硬件方案选择/C可用迁移验证三条路线比较。
+N-054与N-058 C01/C02三项静态诊断已完成；不是新模型结果或外部工具失败率。
+建议先准备源码到候选计算的强基线适配与诊断，保留完整系统目标；具体新机制未冻结。
+本轮无上游执行/模型/QPU、安装或论文编辑。证据限制、FSE差距与完成核对均已文档化。
+交付与核验见[归档](pilot/frontier_audit/20260928-goal-review/README.md)。
+
+以下N-059为历史阶段，其路线排序及“下一步三项诊断”已由N-060取代/完成：
+
+N-059已完成：[前沿核查](docs/frontier/README.md)、[来源/代码锚点](docs/frontier/EVIDENCE.md)
+及[下一步诊断](docs/frontier/NEXT_STUDY.md)。C2Q、QPipe、QuaST、Predict and Conquer、
+Q-READY及早期等价卸载使“自动生成/agent修复/成本选择/语义检查”的宽泛创新主张不足。
+固定C2Q/Predict/PQID源码，下载QPipe工具包并静态核查；QuaST代码获取失败保留未知。
+推荐先检验“原程序行为义务如何改变替换方案及完整成本”能否超越现成工具的合理组合；
+这是候选假设，未证明新颖性或效果。零新模型/QPU、零性能复现、未改论文或正式案例。
+下一步仅做N-054及N-058 C01/C02的三项静态诊断，不重跑旧模型实验或扩正式数据集。
+归档与完整性核验见[本次交付](pilot/frontier_audit/20260928/README.md)。
+
+研究定位补充（2026-09-28，[D-038](DECISIONS.md#d-038-frontier-relative-research-framing)）：
+“推进”须相对当前最先进工作与现有技术边界，而非仅相对本仓库增加功能。
+先以文献、实现和实验核查前沿及真实缺口，再选择新技术；已有benchmark和增强原型
+用于检验该判断，不预先限定贡献。N-059已完成有边界的前沿核查；具体RQ和方法仍待诊断收敛，
+不是穷尽综述或已证明新颖性。
+
+文档补充：2026-09-28，[D-037](DECISIONS.md#d-037-quantum-advantage-as-the-long-term-objective-and-layered-evidence-documentation)
+确认端到端收益作为长期目标，并完成[讨论/证据/实现/文献/论文分层记录](docs/quantum_advantage/README.md)。
+仅文档更新；具体优势指标、硬件profile和协议待定，无新增优势结果或运行任务。
+当前资源计数和`end_to_end_quantumization_success`均不构成经典/量子收益对照。
 
 N-058已完成：[三份新母问题候选档案](pilot/new_mother_candidates/v0.1/README.md)。
 研究者回复“A”授权最多4份准备，本批形成CPython文本匹配、python-tsp闭合旅行商、

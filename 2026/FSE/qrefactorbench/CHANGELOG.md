@@ -1,5 +1,51 @@
 # Changelog
 
+## 2026-09-28 — N-060 / D-039 complete the survey while preserving the full idea
+
+- Recorded the user's correction: preserve the complete classical-program / available-hardware /
+  benefit-decision / usable-migration objective; adjust mechanisms without abandoning the idea.
+- Added source-offloading and real-software migration evidence (Yamato and Road), plus scoped
+  hybrid-verification context. Compared eight direct works and three possible technical routes.
+- Completed static diagnostics on three existing materials and documented technology boundaries,
+  strong-baseline requirements, FSE evidence gaps and requirement-by-requirement survey completion.
+- Added a v2 report and new immutable evidence package; N-059 bytes remain intact. Updated current
+  charter, decision, status, queue and backlog. No upstream execution, model/QPU calls, installations,
+  case/score changes or paper edits. See [delivery verification](pilot/frontier_audit/20260928-goal-review/README.md).
+
+## 2026-09-28 — N-059 frontier-relative evidence audit
+
+- Audited classical-to-quantum generation, agent verification, algorithm selection and feasibility;
+  added C2Q, QPipe, QuaST, Predict and Conquer, Q-READY and early equivalence-based offloading.
+- Archived versioned papers and pinned public source; inspected C2Q/Predict code and selected
+  QPipe tool-package files. Recorded unavailable sources instead of inferring absent capabilities.
+- Rejected overly broad novelty framing and proposed a falsifiable contract/total-cost diagnostic
+  against reasonable tool composition. Concrete method/contribution remains provisional.
+- Updated current handoff and finite next task. No upstream execution, models/QPU, installs,
+  performance reproduction, case/score changes or paper edits. Integrity checks are in
+  [the evidence package](pilot/frontier_audit/20260928/README.md).
+
+## 2026-09-28 — D-038 research progress relative to the state of the art
+
+- Recorded the researcher's clarification: locate the current frontier toward hardware-aware
+  classical-to-quantum benefit assessment and migration, identify its limits, then develop and
+  evaluate a new technique beyond that frontier. Repository feature completion is not the reference.
+- Added the clarification to the charter, decision ledger, status and next-action handoff;
+  existing benchmark/feedback prototypes remain evidence and candidate approaches, not fixed contributions.
+- Concrete research questions and methods remain open. Documentation only; no new experiments,
+  scientific label changes or paper edits. Prior uncommitted documentation additions preserved.
+
+## 2026-09-28 — D-037 quantum-advantage discussion and evidence documentation
+
+- Recorded the researcher's confirmed long-term benefit objective and request to preserve the discussion/search.
+- Added layered evidence, code/evaluation guidance, primary-source reading notes and paper claim guidance.
+  Distinguishes structural mapping, semantics, resources, conditional prediction and measured benefit;
+  theoretical proof retains its own model/assumption scope. Detailed protocols remain open.
+- Inspected existing resource/pipeline code: circuit counts and strict success do not compare classical/quantum costs.
+- Synchronized charter, decision ledger, status, queue and paper notes/entry points. Corrected the stale D-036
+  blocker to reflect completed preparation; admission/contract review remains pending.
+- Documentation-only checks and protected-file comparison are recorded in
+  [validation](docs/quantum_advantage/VALIDATION.md). No model/QPU runs, tests, installs or LaTeX compilation.
+
 ## 2026-09-27 — N-058 candidate dossiers under accepted D-036 A
 
 - Researcher answered A. Prepared three dossiers within the four-dossier cap: CPython text matching,
