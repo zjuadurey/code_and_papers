@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 13,
+      "end_line": 13
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "select-partial-pivot",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditionally replace the classical scan over row indices col through n-1 with a Grover-style maximum-finding procedure over the lexicographically ordered key (absolute pivot value, negative row index). The first-index tie rule requires selecting the smallest index among equal maximum absolute values. The result must be classically verified before the unchanged exact-zero check and row swap.",
+    "input_encoding": "Encode each candidate row index in a finite basis-state register and provide coherent access to rows[i][col]. A reversible binary64 absolute-value and comparison oracle, including signed zero, must implement ordering by descending absolute value and then ascending index. The costs and feasibility of loading the mutable augmented rows for every elimination column remain unresolved.",
+    "quantum_algorithm_family": "Grover-style maximum finding using threshold predicates",
+    "output_decoding": "Measure a candidate pivot index, verify classically that it is in range and is the first index attaining the largest absolute pivot value, and use that verified index in the unchanged singularity check and row swap. Any failed or inconclusive quantum attempt must not silently alter the deterministic result; an exact classical fallback or another justified zero-error policy is required.",
+    "assumptions": [
+      "The finite search domain is range(col, n) for each elimination column.",
+      "A reversible oracle can access the current mutable row state and exactly reproduce the relevant Python binary64 absolute-value and comparison behavior.",
+      "The required deterministic first-index tie behavior and exception semantics are preserved.",
+      "Quantum state preparation, coherent row access, oracle construction, verification, and fallback costs are included."
+    ],
+    "risks": [
+      "The supplied program provides no coherent-memory mechanism, reversible binary64 comparator, oracle implementation, or resource bounds.",
+      "Ordinary Grover-style execution is probabilistic, while the software contract requires deterministic pivot selection and exact observable failure behavior.",
+      "Repeatedly encoding the changing augmented matrix after each elimination step may dominate the pivot scan.",
+      "Incorrect handling of ties, signed zero, or binary64 comparisons could change the selected row and all subsequent floating-point results.",
+      "Even a correct pivot-selection subroutine would leave the cubic elimination and back substitution classical and serial."
+    ],
+    "expected_resource_characteristics": {
+      "searches": "One finite maximum search for each elimination column.",
+      "index_qubits": "At least ceil(log2(n-col)) candidate-index qubits per search, plus workspace.",
+      "oracle_requirements": "Coherent access to the current pivot-column entries and reversible binary64 absolute-value, comparison, threshold, and tie-breaking logic.",
+      "query_scaling": "Potential square-root reduction in pivot-candidate queries under idealized oracle assumptions.",
+      "unresolved_costs": "Data loading, mutable-state refresh, arithmetic workspace, circuit depth, repetitions, verification, and exactness or fallback overhead."
+    },
+    "rationale": "This is a conditional structural plan only. The pivot scan has a finite index domain and can be expressed as thresholded predicate search, but no practical or benchmark evidence supports replacing it in this small serial program."
+  },
+  "rationale": "kernel.py line 13 is a narrowly defensible candidate because, for each col established by line 12, it searches the finite domain range(col, n) for the row maximizing abs(rows[i][col]); Python max also imposes the contract's first-index tie rule. Required dependencies are the current elimination column and mutable augmented rows produced at line 11 and updated at lines 17-20. The candidate activates once per column only in solve mode, reached through program.py lines 22-27. Lines 14-16 must remain behaviorally intact: the selected pivot undergoes an exact-zero singularity check and then the row swap. All following elimination, back substitution, finite-result checking, residual computation, named output construction, deltas, exceptions, ordering, empty-system behavior, and non-mutation requirements must also remain unchanged. Structural eligibility does not extend to the overall dense linear solve or residual diagnostic, which are not supplied as finite predicate search or binary combinatorial optimization. Practical suitability is false because the workload is explicitly small and serial, rows change after every elimination step, exact binary64 comparison and deterministic tie semantics are required, and no coherent data-access or reversible-oracle mechanism is supplied. Benchmark support is false: the HPL attribution documents only the classical algorithm and residual concept, and the program is explicitly not a compliant HPL performance run. The observation is limited to reviewer-transcribed pivot selection on finite development checks; it supplies neither general correctness evidence nor quantum performance or resource evidence.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Select, at each elimination column, the first row index having the largest absolute pivot entry while preserving deterministic binary64 partial-pivoting semantics.",
+  "assumptions": [
+    "Only the pivot-selection expression at kernel.py line 13 is nominated; the surrounding linear solve and residual calculation remain classical.",
+    "The stated binary64 operation behavior, first-index tie rule, exceptions, output ordering, and report semantics cannot be weakened.",
+    "Classical data loading, coherent memory, reversible arithmetic, oracle construction, measurement, verification, and fallback are not free.",
+    "The supplied material and the scope-limited observation are the complete evidence base."
+  ],
+  "risks": [
+    "A probabilistic or approximate maximum search could choose a different pivot and thereby change every subsequent floating-point result.",
+    "A reversible oracle matching Python binary64 absolute-value and comparison behavior is unspecified and potentially expensive.",
+    "The augmented rows mutate after each elimination column, requiring repeated coherent-state preparation or another unsupported memory model.",
+    "Classical verification of the maximum and first-index tie can restore semantics but may erase any query benefit.",
+    "The candidate scan is only quadratic across the solve, while elimination remains cubic, and the explicitly small workload offers no supplied benefit evidence."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The pivot candidates form a finite index domain, and threshold predicates over abs(rows[i][col]) can conditionally support Grover-style maximum finding. Applicability depends on an unresolved reversible binary64 data-access and comparison oracle, explicit first-index tie handling, classical verification, and an exact no-failure or fallback policy."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "Neither pivot selection nor the required linear solve is presented as a binary objective with explicit constraints and sufficient penalties. No QUBO encoding is supplied that preserves exact binary64 pivot ordering, first-index ties, singularity and overflow exceptions, or the deterministic solution and residual outputs."
+    }
+  ]
+}

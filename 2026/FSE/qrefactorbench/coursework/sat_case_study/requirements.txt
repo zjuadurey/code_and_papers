@@ -1,0 +1,7 @@
+# Tested Python: 3.10.21. Training uses CPU, no GPU/QPU/API service required.
+numpy==1.26.4
+pandas==2.2.3
+torch==2.7.1
+matplotlib==3.9.4
+Pillow==12.3.0
+pytest==9.1.1

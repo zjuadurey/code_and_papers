@@ -1,0 +1,17 @@
+{
+  "all_checks_passed": true,
+  "schema_valid": 10,
+  "raw_parsed_external_bytes_identical": 10,
+  "approved_prompt_diff_only": 10,
+  "frozen_schema_copies_identical": 4,
+  "package_schema_json_equivalent": 4,
+  "review_rubric_prefix_hash_matches": true,
+  "local_report_links_checked": 35,
+  "first_attempts": 10,
+  "fresh_threads": 10,
+  "turns_per_case": 1,
+  "operator_retries": 0,
+  "observed_tools": 0,
+  "existing_validation_commands_exit_zero": 5,
+  "reference_scoring_performed": false
+}

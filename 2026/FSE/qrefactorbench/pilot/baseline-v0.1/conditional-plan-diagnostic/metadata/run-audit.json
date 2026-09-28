@@ -1,0 +1,187 @@
+{
+  "cases": [
+    {
+      "case_id": "pilot-001",
+      "exit_code": 0,
+      "parse_status": "json_object",
+      "turns_started": 1,
+      "final_messages": 1,
+      "raw_matches_event": true,
+      "unexpected_items": [],
+      "tool_items": [],
+      "errors": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/runner/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "retry_count": 0,
+      "argv_matches_except_temp_paths": true,
+      "only_approved_prompt_addition": true
+    },
+    {
+      "case_id": "pilot-002",
+      "exit_code": 0,
+      "parse_status": "json_object",
+      "turns_started": 1,
+      "final_messages": 1,
+      "raw_matches_event": true,
+      "unexpected_items": [],
+      "tool_items": [],
+      "errors": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/runner/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "retry_count": 0,
+      "argv_matches_except_temp_paths": true,
+      "only_approved_prompt_addition": true
+    },
+    {
+      "case_id": "pilot-003",
+      "exit_code": 0,
+      "parse_status": "json_object",
+      "turns_started": 1,
+      "final_messages": 1,
+      "raw_matches_event": true,
+      "unexpected_items": [],
+      "tool_items": [],
+      "errors": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/runner/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "retry_count": 0,
+      "argv_matches_except_temp_paths": true,
+      "only_approved_prompt_addition": true
+    },
+    {
+      "case_id": "pilot-004",
+      "exit_code": 0,
+      "parse_status": "json_object",
+      "turns_started": 1,
+      "final_messages": 1,
+      "raw_matches_event": true,
+      "unexpected_items": [],
+      "tool_items": [],
+      "errors": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/runner/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "retry_count": 0,
+      "argv_matches_except_temp_paths": true,
+      "only_approved_prompt_addition": true
+    },
+    {
+      "case_id": "pilot-005",
+      "exit_code": 0,
+      "parse_status": "json_object",
+      "turns_started": 1,
+      "final_messages": 1,
+      "raw_matches_event": true,
+      "unexpected_items": [],
+      "tool_items": [],
+      "errors": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/runner/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "retry_count": 0,
+      "argv_matches_except_temp_paths": true,
+      "only_approved_prompt_addition": true
+    },
+    {
+      "case_id": "pilot-006",
+      "exit_code": 0,
+      "parse_status": "json_object",
+      "turns_started": 1,
+      "final_messages": 1,
+      "raw_matches_event": true,
+      "unexpected_items": [],
+      "tool_items": [],
+      "errors": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/runner/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "retry_count": 0,
+      "argv_matches_except_temp_paths": true,
+      "only_approved_prompt_addition": true
+    },
+    {
+      "case_id": "pilot-007",
+      "exit_code": 0,
+      "parse_status": "json_object",
+      "turns_started": 1,
+      "final_messages": 1,
+      "raw_matches_event": true,
+      "unexpected_items": [],
+      "tool_items": [],
+      "errors": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/runner/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "retry_count": 0,
+      "argv_matches_except_temp_paths": true,
+      "only_approved_prompt_addition": true
+    },
+    {
+      "case_id": "pilot-008",
+      "exit_code": 0,
+      "parse_status": "json_object",
+      "turns_started": 1,
+      "final_messages": 1,
+      "raw_matches_event": true,
+      "unexpected_items": [],
+      "tool_items": [],
+      "errors": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/runner/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "retry_count": 0,
+      "argv_matches_except_temp_paths": true,
+      "only_approved_prompt_addition": true
+    },
+    {
+      "case_id": "pilot-009",
+      "exit_code": 0,
+      "parse_status": "json_object",
+      "turns_started": 1,
+      "final_messages": 1,
+      "raw_matches_event": true,
+      "unexpected_items": [],
+      "tool_items": [],
+      "errors": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/runner/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "retry_count": 0,
+      "argv_matches_except_temp_paths": true,
+      "only_approved_prompt_addition": true
+    },
+    {
+      "case_id": "pilot-010",
+      "exit_code": 0,
+      "parse_status": "json_object",
+      "turns_started": 1,
+      "final_messages": 1,
+      "raw_matches_event": true,
+      "unexpected_items": [],
+      "tool_items": [],
+      "errors": [],
+      "startup_warnings": [
+        "Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/runner/.codex/config.toml.",
+        "Code Mode is unavailable because code-mode host is disabled. Code mode will fail closed; enable `features.code_mode_host` and install `codex-code-mode-host`."
+      ],
+      "retry_count": 0,
+      "argv_matches_except_temp_paths": true,
+      "only_approved_prompt_addition": true
+    }
+  ],
+  "unique_threads": 10,
+  "all_ten_thread_ids_distinct": true,
+  "audit_note": "No gold/reference correctness comparisons. Native bounded transport retries not fully observable; startup warnings retained."
+}

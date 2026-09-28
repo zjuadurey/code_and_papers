@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/home/audrey/miniconda3/envs/palqo/bin/python",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--import-mode=importlib",
+    "pilot/model_comparison/20260923-four-model-c-v0.1/test_run.py",
+    "pilot/model_comparison/20260922-deepseek-c-v0.1/test_run.py"
+  ],
+  "exit_code": 0,
+  "initial_collection_issue": "First combined command used default import mode and failed because both files were named test_run.py; no tests ran in that initial collection. Resolved by importlib mode, no source deletion."
+}

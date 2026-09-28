@@ -1,0 +1,12 @@
+{
+  "version": "lit005-v0.1",
+  "kind": "coordinator-authored retrospective diagnostic, not a benchmark/model run",
+  "input": "pilot/reference_completion/v0.1.1/cases/lit-005",
+  "contract": "exact original complete/review behavior; no newly allowed error",
+  "primary_question": "Does arbitrary-witness Grover plus serial classical prefix repair save work over the same-domain enumeration?",
+  "domain": "all 64 source-clause subsets times 27 lock maps; all single three-literal multisets for n=1..3; empty n=0",
+  "checks": ["source predicate versus constructed phase oracle on every free assignment", "source complete versus lexicographic unit-propagating DPLL", "prefix repair for every free assignment and None versus source complete", "original wrapper tests with DPLL injected"],
+  "metrics": ["exact output equality", "clean scratch and exact phase", "predicate-call count for identical predicate and domain", "logical gate counts for the specified oracle"],
+  "excluded_claims": ["hardware speedup", "competitive SAT benchmark", "agent automation", "held-out generalization", "universal quantum impossibility"],
+  "execution": "local Python only; no dependency installation, model or QPU calls"
+}

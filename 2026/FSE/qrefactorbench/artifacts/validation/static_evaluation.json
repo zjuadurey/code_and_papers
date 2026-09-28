@@ -1,0 +1,419 @@
+{
+  "aggregate": {
+    "candidate_exact_micro": {
+      "f1": 1.0,
+      "precision": 1.0,
+      "predicted": 3,
+      "recall": 1.0,
+      "reference": 3,
+      "true_positives": 3
+    },
+    "decision": {
+      "counts": {
+        "false_quantumize": 0,
+        "missed_quantumize": 1,
+        "scored": 4,
+        "true_quantumize": 1,
+        "true_remain_classical": 2,
+        "unscored": 0
+      },
+      "false_quantumization_rate": 0.0,
+      "overall_decision_accuracy": 0.75,
+      "quantumize_precision": 1.0,
+      "quantumize_recall": 0.5,
+      "remain_classical_accuracy": 1.0
+    },
+    "end_to_end_quantumization_success": {
+      "applicable": 2,
+      "failed": 1,
+      "passed": 0,
+      "unknown": 1
+    }
+  },
+  "demonstration_only": true,
+  "excluded_draft_case_ids": [],
+  "execution_mode": "static_no_code_execution",
+  "protocol": "static-v0.1-provisional",
+  "reproducibility": {
+    "cases": {
+      "toy-hard-negative-001": {
+        "annotation_status": "DRAFT",
+        "artifacts_sha256": {
+          "main.py": "85b8d893490d756d1d7f67879ebc09b48f6c567343801233fd9cc7ab3a77ebe1",
+          "program.py": "63f2c000270bff1c49c4b6606dccc9e324cfce92128cce48768009bf5be06153",
+          "test_program.py": "ba2e76c7b13a746348cea84d842b3b0ea8457458defbaf30496e14089913732d"
+        },
+        "manifest_sha256": "c0566ea63885880e665dd1e06bbaa5bd915fac87ddc3b9c3558752089bd35506",
+        "version": "0.1.0"
+      },
+      "toy-negative-001": {
+        "annotation_status": "DRAFT",
+        "artifacts_sha256": {
+          "program.py": "c517169697ca6ce57f10bbb71689b2505b790ac850039e7079e5c12ade0ec240",
+          "test_program.py": "71f2347e014b7ce1c79586ff0f749af4eb4cc707f1d1ac38c457d80acaf14cf4"
+        },
+        "manifest_sha256": "8500d25450c2735dec08dd1e4f64ee975b1bc78cac8f2265b9a4f5720c384dc0",
+        "version": "0.1.0"
+      },
+      "toy-optimization-001": {
+        "annotation_status": "DRAFT",
+        "artifacts_sha256": {
+          "program.py": "3d152b34fb36e60a0bea8a075616d5504999364093a35c5e5f40f8350be3718a",
+          "test_program.py": "8fb38be00bef808924e88649154546e729a366c4bb0b11188657da595d7030b4"
+        },
+        "manifest_sha256": "91e5a933bf3db3d6526bad2e753529227b931291012f9c74c987f36226104e18",
+        "version": "0.1.0"
+      },
+      "toy-search-001": {
+        "annotation_status": "DRAFT",
+        "artifacts_sha256": {
+          "program.py": "58e7840c9f51e67e664d7f4fcf61e8a2b1445b801e1522ba410668b1fadb4bd5",
+          "test_program.py": "3ace0fe85ec9ff1aa3919cdaa6c2e7d2c384597e6e408a390b211ad5766afa85"
+        },
+        "manifest_sha256": "798264c1de20ad9f41cf8af15a9d7078446431671f607bcc36da2709210a57cc",
+        "version": "0.1.0"
+      }
+    },
+    "dependencies": {
+      "PyYAML": null,
+      "jsonschema": "4.26.0",
+      "pytest": "9.1.1",
+      "qiskit": null,
+      "referencing": "0.37.0"
+    },
+    "implementation_sha256": {
+      "__init__.py": "bd823dec317112ab5f2d3491e064d1863bded5d154cedf4a2d3597f6b6a4ba4a",
+      "__main__.py": "76fa916e93e0ae1a6c1bb51dcc0bcf289c014e9f760a47165f8a84401ccf41d7",
+      "cli.py": "df1d14962ea5efce6393795c8bc4584819c706fcc3a5de90aa64bda0f64f3558",
+      "evaluator/__init__.py": "593d208666981ced9a645e5545a275abb290ec68fc70afc795efa156324fcf52",
+      "evaluator/candidate.py": "e4b9e9c52dc873df3fc3ce6f7a521b8742b8fba3940935ef273412fa85540448",
+      "evaluator/decision.py": "8d87c9f5c844413a966edcb82f273509add8a55bdcabd66a53b683b3b1987674",
+      "evaluator/execution.py": "3f1693cda035a1b242f5a42653453b89594f8c04ad8df05d2f27b4ca713c51f0",
+      "evaluator/pipeline.py": "84d9ae6a3e9878e63828880b15ffe6a337f89688804d040d33f853c47c896789",
+      "evaluator/planning.py": "038ad05239c626986248e18740eaf006f6ae5787c461b66e399c8ce53e7c99d5",
+      "evaluator/resources.py": "6bd9f23eec6a92dcfcdf9e9a986d171c25e0d2b539309230dc4cb22f136c0a8a",
+      "evaluator/semantics.py": "6eab399daba174753a725f26b9f7601e62d3787e83cda3bed6a0470ac28a5b63",
+      "loader.py": "9b3489aaad30d52106bf0c22d32e288e1426ec10befa47be91299905e3537fd9",
+      "reproducibility.py": "dc9aa3fdb02dfd9353d80462a02d71ac24c13f146b3728ec63c8f19cc5022e3c",
+      "schema.py": "23f7f06cc603b108247f167b68dc7e30297275bbbe3f01e5089da3bdfa013eb4",
+      "validator.py": "e18caadcd3f3f5d26ac21a7aeef1fc032424146c510fcb7d460eefd95865f3e9"
+    },
+    "package_version": "0.1.0",
+    "predictions_sha256": "aa0a82a12fecc9a5df90ce53659614011375220d8985ae847a4b12a104e2067c",
+    "python": "3.10.21",
+    "randomness": "Static evaluators use no random sampling; execution seeds belong in case configuration.",
+    "schema_sha256": {
+      "case": "d4acb0d51843fbf92b1ac34308c136c62a27d54e817bc450a94236f448dbce25",
+      "migration_plan": "0dacf5bd537ff0562f91650fbea701754a6e0cac2187fbe61532cbaf252fff35",
+      "prediction": "082045ec277c440bef96b3409f1c72a859e83e2042b0ea26bf883ae1cc4ddfa1"
+    },
+    "schema_version": "0.1.0"
+  },
+  "result_schema_version": "0.1.0",
+  "results": [
+    {
+      "abstention_correct": true,
+      "annotation_status": "DRAFT",
+      "candidate": {
+        "candidate_correct": true,
+        "exact": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "predicted": 1,
+          "recall": 1.0,
+          "reference": 1,
+          "true_positives": 1
+        },
+        "line_overlap": {
+          "correctness_threshold": null,
+          "intersection": 6,
+          "iou": 1.0,
+          "precision": 1.0,
+          "predicted_lines": 6,
+          "recall": 1.0,
+          "reference_lines": 6
+        }
+      },
+      "case_id": "toy-hard-negative-001",
+      "components": {
+        "admissible_plan": null,
+        "candidate_correct": true,
+        "decision_correct": true,
+        "execution_success": null,
+        "imports_valid": null,
+        "interface_preserved": null,
+        "quantum_constraints_pass": null,
+        "resource_limits_pass": null,
+        "semantic_oracle_pass": null,
+        "syntax_valid": null
+      },
+      "decision_correct": true,
+      "end_to_end_quantumization_success": null,
+      "execution": {
+        "execution": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "imports": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "interface": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "syntax": {
+          "passed": null,
+          "reason": "No generated files; patches are not automatically applied"
+        }
+      },
+      "planning": {
+        "admissible_plan": null,
+        "computational_intent_correct": null,
+        "contract_membership": null,
+        "migration_family_correct": null,
+        "reason": "No quantumization plan to evaluate"
+      },
+      "quantum_constraints": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      },
+      "resources": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      },
+      "semantics": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      }
+    },
+    {
+      "abstention_correct": true,
+      "annotation_status": "DRAFT",
+      "candidate": {
+        "candidate_correct": true,
+        "exact": {
+          "f1": null,
+          "precision": null,
+          "predicted": 0,
+          "recall": null,
+          "reference": 0,
+          "true_positives": 0
+        },
+        "line_overlap": {
+          "correctness_threshold": null,
+          "intersection": 0,
+          "iou": null,
+          "precision": null,
+          "predicted_lines": 0,
+          "recall": null,
+          "reference_lines": 0
+        }
+      },
+      "case_id": "toy-negative-001",
+      "components": {
+        "admissible_plan": null,
+        "candidate_correct": true,
+        "decision_correct": true,
+        "execution_success": null,
+        "imports_valid": null,
+        "interface_preserved": null,
+        "quantum_constraints_pass": null,
+        "resource_limits_pass": null,
+        "semantic_oracle_pass": null,
+        "syntax_valid": null
+      },
+      "decision_correct": true,
+      "end_to_end_quantumization_success": null,
+      "execution": {
+        "execution": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "imports": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "interface": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "syntax": {
+          "passed": null,
+          "reason": "No generated files; patches are not automatically applied"
+        }
+      },
+      "planning": {
+        "admissible_plan": null,
+        "computational_intent_correct": null,
+        "contract_membership": null,
+        "migration_family_correct": null,
+        "reason": "No quantumization plan to evaluate"
+      },
+      "quantum_constraints": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      },
+      "resources": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      },
+      "semantics": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      }
+    },
+    {
+      "abstention_correct": null,
+      "annotation_status": "DRAFT",
+      "candidate": {
+        "candidate_correct": true,
+        "exact": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "predicted": 1,
+          "recall": 1.0,
+          "reference": 1,
+          "true_positives": 1
+        },
+        "line_overlap": {
+          "correctness_threshold": null,
+          "intersection": 6,
+          "iou": 1.0,
+          "precision": 1.0,
+          "predicted_lines": 6,
+          "recall": 1.0,
+          "reference_lines": 6
+        }
+      },
+      "case_id": "toy-optimization-001",
+      "components": {
+        "admissible_plan": null,
+        "candidate_correct": true,
+        "decision_correct": false,
+        "execution_success": null,
+        "imports_valid": null,
+        "interface_preserved": null,
+        "quantum_constraints_pass": null,
+        "resource_limits_pass": null,
+        "semantic_oracle_pass": null,
+        "syntax_valid": null
+      },
+      "decision_correct": false,
+      "end_to_end_quantumization_success": false,
+      "execution": {
+        "execution": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "imports": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "interface": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "syntax": {
+          "passed": null,
+          "reason": "No generated files; patches are not automatically applied"
+        }
+      },
+      "planning": {
+        "admissible_plan": null,
+        "computational_intent_correct": null,
+        "contract_membership": null,
+        "migration_family_correct": null,
+        "reason": "No quantumization plan to evaluate"
+      },
+      "quantum_constraints": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      },
+      "resources": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      },
+      "semantics": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      }
+    },
+    {
+      "abstention_correct": null,
+      "annotation_status": "DRAFT",
+      "candidate": {
+        "candidate_correct": true,
+        "exact": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "predicted": 1,
+          "recall": 1.0,
+          "reference": 1,
+          "true_positives": 1
+        },
+        "line_overlap": {
+          "correctness_threshold": null,
+          "intersection": 3,
+          "iou": 1.0,
+          "precision": 1.0,
+          "predicted_lines": 3,
+          "recall": 1.0,
+          "reference_lines": 3
+        }
+      },
+      "case_id": "toy-search-001",
+      "components": {
+        "admissible_plan": null,
+        "candidate_correct": true,
+        "decision_correct": true,
+        "execution_success": null,
+        "imports_valid": null,
+        "interface_preserved": null,
+        "quantum_constraints_pass": null,
+        "resource_limits_pass": null,
+        "semantic_oracle_pass": null,
+        "syntax_valid": true
+      },
+      "decision_correct": true,
+      "end_to_end_quantumization_success": null,
+      "execution": {
+        "execution": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "imports": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "interface": {
+          "passed": null,
+          "reason": "Not run: CLI performs static evaluation only"
+        },
+        "syntax": {
+          "passed": true,
+          "reason": "All supplied Python artifacts parse"
+        }
+      },
+      "planning": {
+        "admissible_plan": null,
+        "computational_intent_correct": true,
+        "contract_membership": true,
+        "migration_family_correct": true,
+        "reason": "Contract selected; conformity requires a trusted contract verifier"
+      },
+      "quantum_constraints": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      },
+      "resources": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      },
+      "semantics": {
+        "passed": null,
+        "reason": "Not evaluated: requires trusted case-specific evidence"
+      }
+    }
+  ]
+}

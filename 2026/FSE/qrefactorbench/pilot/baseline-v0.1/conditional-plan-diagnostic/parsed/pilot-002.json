@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-002",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Sequentially consume every byte-string event, update a rolling SHA-256 digest from the preceding digest and current event, invoke the host audit callback exactly once per event in input order with each observable intermediate digest, propagate any callback exception according to normal Python execution, and return the final digest if processing completes.",
+  "migration_family": null,
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The program does not search a candidate domain or evaluate a pure Boolean predicate. Lines 7-9 perform a deterministic, order-dependent hash chain with externally visible callbacks. Recasting some unrelated SHA-256 problem as predicate search would not implement the supplied software contract."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "There are no binary decision variables, objective function, constraints, or optimum to encode as a QUBO or Ising model. Introducing an approximate optimization problem would change the computation and would not preserve the exact digest and audit behavior."
+    }
+  ],
+  "assumptions": [
+    "The supplied source and execution assumptions fully define the relevant behavior.",
+    "The audit callback may depend on every argument, may perform irreversible external effects, and may raise on any invocation.",
+    "No alternative batch interface, omitted audits, reordered effects, probabilistic digest, or approximate result is permitted."
+  ],
+  "risks": [
+    "The rolling dependency requires digest update i to use the exact digest from update i-1.",
+    "Every intermediate digest is externally observable, so audit calls cannot be elided, reordered, deferred, or replaced by final-result verification.",
+    "Callback exceptions affect how many events are consumed and which effects occur, further constraining any transformation.",
+    "Quantum state preparation, reversible SHA-256 construction, measurement, and host interaction would add unresolved overhead without mapping the task to either supported migration family.",
+    "No benchmark evidence is supplied for a quantum advantage or even a competitive implementation."
+  ],
+  "rationale": "The loop at lines 7-9 may be costly for a large event list, but it is a rejected hotspot rather than a supported quantumization candidate. Its purpose is deterministic sequential state evolution plus mandatory ordered host-side effects, not unstructured predicate search or combinatorial optimization. The exact dependency chain and per-event observable audits prevent treating the work as independent parallel evaluations, and neither catalog contract matches the computation. Therefore structural eligibility under the supported families is false, practical suitability is false, and no migration plan applies.",
+  "plan": null
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "lit-007",
+  "title": "Signed pair assignment review",
+  "description": "review(request) validates one together/apart preference for every unordered pair, rejecting duplicates. current and proposed describe ordered False/True groups, signed score and violated pairs in catalogue-pair order. A satisfied preference contributes +1, an unsatisfied preference -1. inspect reports current only. propose maximizes signed score, ties use smallest numeric membership mask (member i is bit i); report gain and moved members. It need not retain another equally good current. No capacity or group-size constraint, groups may be empty. No mutation; invalid inputs raise ValueError. CLI reads/prints JSON.",
+  "source": "Source-task adaptation: SupermarQ QAOAVanillaProxy._get_energy_for_bitstring / _gen_sk_hamiltonian / _get_opt_angles. New synthetic classical program; source and changes documented in ADAPTATION.md.",
+  "source_url": "https://github.com/Infleqtion/client-superstaq/blob/4207004d95490315e519c9d5b07f523367f4b21e/supermarq-benchmarks/supermarq/benchmarks/qaoa_vanilla_proxy.py",
+  "license": "NOASSERTION",
+  "domain": "source_adapted_synthetic_context",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "kernel.py",
+    "common.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 12,
+      "end_line": 19
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT classical contract tests; no quantum semantic threshold adopted.",
+    "config": {
+      "test_artifact": "test_program.py"
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT AI construction proposal, not ground truth. All scientific judgments remain null; category and span are review nominations only. A potentially rejected computation may still be nominated for WHERE.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "New synthetic classical application from an attributed problem or recurrence; not imported deployed software.",
+    "No quantum mapping, practical suitability or harder WHERE result established.",
+    "Classical tests support specified behavior on tested inputs, not complete migration correctness.",
+    "No new positive quantum families added."
+  ]
+}

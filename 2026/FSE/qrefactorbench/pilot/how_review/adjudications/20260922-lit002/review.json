@@ -1,0 +1,64 @@
+{
+  "record_version": "1",
+  "received_date": "2026-09-22",
+  "source_type": "review_text_supplied_by_user_in_conversation",
+  "source_locator": "User message beginning: 在你明确限定的审查范围内，两组反例都成立。",
+  "source_summary": "SOURCE_SUMMARY.md",
+  "verbatim_full_message_archived": false,
+  "reviewer_name": null,
+  "reviewer_human_or_ai": null,
+  "reviewer_credentials": null,
+  "independence": null,
+  "blinding": null,
+  "reported_external_enumeration": {
+    "status": "reported_in_supplied_text_only",
+    "assignments": {
+      "flash": 4,
+      "pro": 16
+    },
+    "original_project_validator_rechecked_by_reviewer": false,
+    "execution_artifacts_supplied": false
+  },
+  "prior_review_path": "pilot/how_review/v0.2/review.json",
+  "prior_review_sha256": "26a5bc1c8606c5118180b540361f45911c56b52a2285cabe55e218273458fa8c",
+  "claims": [
+    {
+      "model": "deepseek-flash",
+      "mother_case": "lit-002",
+      "dimension": "C",
+      "claim_pointer": "/plan/formulation",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-002/response.txt",
+      "response_sha256": "a31f772e4d734776c0609c27fab0726e74c99d39a417997c1d86f01ec94ebd18",
+      "claim_text_verbatim": "Binary x_i=1 when station i is selected. Primary objective: minimize sum_i x_i subject to x_u + x_v >= 1 for every normalized edge (u,v). QUBO form: minimize A * sum_i x_i + B * sum_{(u,v)} (1 - x_u)(1 - x_v), with B chosen strictly larger than the maximum possible cardinality difference so infeasible selections cannot beat feasible ones. The lexicographic tie-break among minimum-cardinality covers requires either superincreasing secondary weights w_i (w_i > sum_{j>i} w_j) added to x_i, or a hierarchical two-stage solve: first fix the minimum cardinality, then minimize the lexicographic rank. The exact penalty dominance, weight scaling and tie-break encoding must be validated.",
+      "correctness_evidence_state": "contradicted",
+      "selection_completion_state": "provided",
+      "review_feedback_status": "USER_SUPPLIED_REVIEW_CONCURS",
+      "interpretation_condition": "Positive superincreasing selected-bit weights added to a minimization objective; reviewer formalization of one textual branch.",
+      "scope": "Specific formula branch only; not whole-plan execution.",
+      "task_pass": null,
+      "structural_label_change": null,
+      "whole_migration_verified": false
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "mother_case": "lit-002",
+      "dimension": "C",
+      "claim_pointer": "/plan/formulation",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-002/response.txt",
+      "response_sha256": "23ffd9fe67472287f38fa501285d9f78a190180c3d56821cf64203dda4e617bb",
+      "claim_text_verbatim": "Conditional QUBO/Ising formulation for minimum vertex cover. For each station index i = 0..n-1, binary variable x_i = 1 if selected and 0 otherwise. Objective: minimize A * sum_i x_i + P * sum_{(u,v) in edges} (1 - x_u)(1 - x_v) + C * sum_i 2^i x_i. The second term penalizes uncovered edges and must dominate cost so feasible covers are preferred; the third term is a small lexicographic tie-break term such that 0 < C < A/(2^n), so cardinality remains primary and among equal-cardinality covers the lexicographically smallest selected-position tuple is preferred. The strict software contract still requires classical verification/fallback.",
+      "correctness_evidence_state": "contradicted",
+      "selection_completion_state": "provided",
+      "review_feedback_status": "USER_SUPPLIED_REVIEW_CONCURS",
+      "interpretation_condition": "Explicit positive numeric-mask term claimed to implement selected-index tuple lexicographic order.",
+      "scope": "Specific formula branch only; not whole-plan execution.",
+      "task_pass": null,
+      "structural_label_change": null,
+      "whole_migration_verified": false
+    }
+  ],
+  "new_model_calls": 0,
+  "new_quantum_runs": 0,
+  "new_mathematical_execution": false,
+  "unchanged_scope": "All other case labels, review judgments and whole-task scores remain as before."
+}

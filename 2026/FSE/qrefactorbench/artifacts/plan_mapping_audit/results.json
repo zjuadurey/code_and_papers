@@ -1,0 +1,300 @@
+{
+  "status": "BOUNDED AI-ASSISTED EVIDENCE \u2014 NOT GROUND TRUTH",
+  "python": "3.10.21 | packaged by conda-forge | (main, Aug 21 2026, 22:42:31) [GCC 14.4.0]",
+  "cases": [
+    {
+      "case_id": "pilot-003",
+      "fixtures": 103,
+      "assignment_comparisons": 393,
+      "original_optimum_comparisons": 103,
+      "mapping_checks": "PASS",
+      "mutation_and_certification_witnesses": {
+        "drop_ising_constant": {
+          "input": {
+            "n": 2,
+            "terms": [
+              [
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          "bits": [
+            0,
+            0
+          ],
+          "correct_energy": "0",
+          "mutant_energy": "1/2"
+        },
+        "reverse_optimization_direction": {
+          "input": {
+            "n": 2,
+            "terms": [
+              [
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          "bits": [
+            0,
+            1
+          ],
+          "correct_energy": "-1",
+          "mutant_energy": "1"
+        },
+        "sample_only_is_not_exact": {
+          "input": {
+            "n": 2,
+            "terms": [
+              [
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          "sampled_bits": [
+            0,
+            0
+          ],
+          "verified_sample_value": 0,
+          "exact_api_value": 1
+        },
+        "drop_repeated_terms": {
+          "input": {
+            "n": 2,
+            "terms": [
+              [
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          "bits": [
+            0,
+            1
+          ],
+          "correct_energy": "-2",
+          "mutant_energy": "-1"
+        }
+      },
+      "source_of_formulas": "saved plan.formulation; manual AI-assisted transcription",
+      "full_contract_preservation": "NOT ESTABLISHED",
+      "quantum_execution_and_resources": "NOT TESTED"
+    },
+    {
+      "case_id": "pilot-006",
+      "fixtures": 851,
+      "assignment_comparisons": 3345,
+      "original_optimum_comparisons": 851,
+      "mapping_checks": "PASS",
+      "mutation_and_certification_witnesses": {
+        "drop_ising_constant": {
+          "input": {
+            "n": 1,
+            "terms": [],
+            "biases": [
+              -2
+            ]
+          },
+          "bits": [
+            0
+          ],
+          "correct_energy": "0",
+          "mutant_energy": "1"
+        },
+        "sample_only_is_not_exact": {
+          "input": {
+            "n": 1,
+            "terms": [],
+            "biases": [
+              -2
+            ]
+          },
+          "sampled_bits": [
+            0
+          ],
+          "verified_sample_value": 0,
+          "exact_api_value": -2
+        },
+        "drop_self_terms": {
+          "input": {
+            "n": 1,
+            "terms": [
+              [
+                0,
+                0,
+                -2
+              ]
+            ],
+            "biases": [
+              -2
+            ]
+          },
+          "bits": [
+            1
+          ],
+          "correct_energy": "-4",
+          "mutant_energy": "-2"
+        },
+        "drop_repeated_terms": {
+          "input": {
+            "n": 1,
+            "terms": [
+              [
+                0,
+                0,
+                -2
+              ],
+              [
+                0,
+                0,
+                -2
+              ]
+            ],
+            "biases": [
+              -2
+            ]
+          },
+          "bits": [
+            1
+          ],
+          "correct_energy": "-6",
+          "mutant_energy": "-4"
+        }
+      },
+      "source_of_formulas": "saved plan.formulation; manual AI-assisted transcription",
+      "full_contract_preservation": "NOT ESTABLISHED",
+      "quantum_execution_and_resources": "NOT TESTED"
+    },
+    {
+      "case_id": "pilot-009",
+      "fixtures": 851,
+      "assignment_comparisons": 3345,
+      "original_optimum_comparisons": 851,
+      "mapping_checks": "PASS",
+      "mutation_and_certification_witnesses": {
+        "drop_ising_constant": {
+          "input": {
+            "n": 1,
+            "terms": [],
+            "jobs": [
+              {
+                "name": "job-0",
+                "left_cost": 0,
+                "right_cost": 2
+              }
+            ]
+          },
+          "bits": [
+            0
+          ],
+          "correct_energy": "0",
+          "mutant_energy": "-1"
+        },
+        "sample_only_is_not_exact": {
+          "input": {
+            "n": 1,
+            "terms": [],
+            "jobs": [
+              {
+                "name": "job-0",
+                "left_cost": 0,
+                "right_cost": 2
+              }
+            ]
+          },
+          "sampled_bits": [
+            1
+          ],
+          "verified_sample_value": 2,
+          "exact_api_value": 0
+        },
+        "drop_self_terms": {
+          "input": {
+            "n": 1,
+            "terms": [
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "jobs": [
+              {
+                "name": "job-0",
+                "left_cost": 0,
+                "right_cost": 0
+              }
+            ]
+          },
+          "bits": [
+            0
+          ],
+          "correct_energy": "1",
+          "mutant_energy": "0"
+        },
+        "drop_repeated_terms": {
+          "input": {
+            "n": 1,
+            "terms": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "jobs": [
+              {
+                "name": "job-0",
+                "left_cost": 0,
+                "right_cost": 0
+              }
+            ]
+          },
+          "bits": [
+            0
+          ],
+          "correct_energy": "2",
+          "mutant_energy": "1"
+        }
+      },
+      "source_of_formulas": "saved plan.formulation; manual AI-assisted transcription",
+      "full_contract_preservation": "NOT ESTABLISHED",
+      "quantum_execution_and_resources": "NOT TESTED"
+    }
+  ],
+  "inputs_sha256": {
+    "artifacts/plan_mapping_audit/check_mappings.py": "085f3008260b163745108c07bd9dd5d86dd8a226946be328ebc87106170e71c6",
+    "pilot/packets-v0.1/baseline/prompts/pilot-003.md": "d463fd05052be4afc558254b9e6dc2e295cd0add3b6b1548b8ad7c66971787d6",
+    "pilot/baseline-v0.1/conditional-plan-diagnostic/parsed/pilot-003.json": "608fd44f1d1301b7fc38b7656772fd15a62cea49dfe3fc84e71bc6e79b0fa15f",
+    "pilot/baseline-v0.1/conditional-plan-diagnostic/raw/pilot-003.txt": "608fd44f1d1301b7fc38b7656772fd15a62cea49dfe3fc84e71bc6e79b0fa15f",
+    "cases/pilot/pilot-003/program.py": "23816c83494efe20b0209d253529ff666bd23b0c89d1494aadd7956551a71680",
+    "cases/pilot/pilot-003/public_task.json": "946996b2fdf2b5b977fe2cc0751a6dd58e8b41a0390046917ef6ba647c1ee6ef",
+    "pilot/packets-v0.1/baseline/prompts/pilot-006.md": "33403a2e5a2461b295460b24b09fcdcecc37cac05e942161c5c97183956d3fed",
+    "pilot/baseline-v0.1/conditional-plan-diagnostic/parsed/pilot-006.json": "59738fe27b23a29670503c247522ad29f3bcebdf2d205b335eef1c2e62074291",
+    "pilot/baseline-v0.1/conditional-plan-diagnostic/raw/pilot-006.txt": "59738fe27b23a29670503c247522ad29f3bcebdf2d205b335eef1c2e62074291",
+    "cases/pilot/pilot-006/program.py": "d1895555a136ee69daef2769991310c6729af33defeae08966ff142c295b8798",
+    "cases/pilot/pilot-006/public_task.json": "a4f4fa6e31f935d40ff3658a1a9fd89463b78a9f42b5d7a957a38e9e33c09242",
+    "pilot/packets-v0.1/baseline/prompts/pilot-009.md": "f9bb3230cc37fbb856c833a2251e61dcba18d32ff6a7c4710305bdb75da22a6d",
+    "pilot/baseline-v0.1/conditional-plan-diagnostic/parsed/pilot-009.json": "8322aaec8588c45c499b6aa0b78d2cf356c062be8ce62778980504c064e07503",
+    "pilot/baseline-v0.1/conditional-plan-diagnostic/raw/pilot-009.txt": "8322aaec8588c45c499b6aa0b78d2cf356c062be8ce62778980504c064e07503",
+    "cases/pilot/pilot-009/program.py": "c5e97dc7d5efd5c58b8dd1ab175ae4033e989d9b2375e363e63759ee63948d26",
+    "cases/pilot/pilot-009/public_task.json": "72790e04859610dc6debba1bd36c32ac222512c1bbe7298a809cf6bc371f4d07",
+    "cases/pilot/pilot-009/support.py": "a828462bf6dd86c25a4437d36563eac3ec42cc444050ab196dc506ffb6af3076"
+  }
+}

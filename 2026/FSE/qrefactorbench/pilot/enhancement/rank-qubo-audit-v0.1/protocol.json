@@ -1,0 +1,24 @@
+{
+  "version": "rank-qubo-posthoc-0.1",
+  "penalties": [
+    "1/10",
+    "1",
+    "7"
+  ],
+  "enumeration_dimension_limit": 12,
+  "new_model_calls": 0,
+  "qpu_calls": 0,
+  "source_sha256": {
+    "pilot/enhancement/claim-elicitation-v0.1/campaign/runs/gpt-5.6-sol/05-formalization/response.txt": "5a9439d6788f6c721324550eaa9d8e1aa74e084941d446026df134e51ae4156d",
+    "pilot/enhancement/state-workflow-v0.2/evidence/evaluator-reserved.json": "febe10ea0de1d81e0366dd25d119999ae75c641fbec19e0843d750e1e76fcf4e",
+    "pilot/enhancement/rank-qubo-audit-v0.1/binding.json": "119ff4315a0859d129676c9b6d7fc5f2dc2cfaf07f199bd66fbe4ffa5220ed11",
+    "pilot/enhancement/rank-qubo-audit-v0.1/inputs.json": "abd412c924c9e2ab6107026cf1afb7e28715aff0d39eb4988d5d68111d383a8b",
+    "pilot/enhancement/rank-qubo-audit-v0.1/README.md": "127013b3120eb260598b10290d9d77840a3eb74dfe4ec58682821553185a8c88",
+    "pilot/enhancement/rank-qubo-audit-v0.1/test_check.py": "3e026b2aedd7fa53375d8467a6f63769e03b962c53fb5c8b945bcd9583bd7d2c",
+    "pilot/enhancement/rank-qubo-audit-v0.1/check.py": "1f90159f871b6e37bfdb3a6f703128719a7d4f87211eee814bc528b2d5de5c3b",
+    "pilot/enhancement/rank-qubo-audit-v0.1/run.py": "dbb80812176ef84ead3c493833836987b3e408d01d1566324a3272eea74fe0e9"
+  },
+  "changes_n053_result": false,
+  "independent_mother_cases": 0,
+  "role": "Post-hoc local formula audit; not a new benchmark outcome or holdout"
+}

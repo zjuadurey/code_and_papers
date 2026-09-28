@@ -1,0 +1,74 @@
+[
+  {
+    "name": "collection",
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "scripts/prepare_pilot.py",
+      "collect",
+      "--responses",
+      "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/baseline-v0.1/conditional-plan-diagnostic/parsed",
+      "--output",
+      "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/baseline-v0.1/conditional-plan-diagnostic/predictions.json"
+    ],
+    "cwd": "/home/audrey/code_and_papers/2026/FSE/qrefactorbench",
+    "exit_code": 0,
+    "stdout": "collection.stdout",
+    "stderr": "collection.stderr"
+  },
+  {
+    "name": "pytest-core",
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-m",
+      "pytest",
+      "-q"
+    ],
+    "cwd": "/home/audrey/code_and_papers/2026/FSE/qrefactorbench",
+    "exit_code": 0,
+    "stdout": "pytest-core.stdout",
+    "stderr": "pytest-core.stderr"
+  },
+  {
+    "name": "pytest-optional",
+    "command": [
+      "/home/audrey/miniconda3/envs/htp-static/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_optional.py"
+    ],
+    "cwd": "/home/audrey/code_and_papers/2026/FSE/qrefactorbench",
+    "exit_code": 0,
+    "stdout": "pytest-optional.stdout",
+    "stderr": "pytest-optional.stderr"
+  },
+  {
+    "name": "dataset-validation",
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-m",
+      "qrefactorbench",
+      "validate",
+      "cases/"
+    ],
+    "cwd": "/home/audrey/code_and_papers/2026/FSE/qrefactorbench",
+    "exit_code": 0,
+    "stdout": "dataset-validation.stdout",
+    "stderr": "dataset-validation.stderr"
+  },
+  {
+    "name": "dataset-summary",
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-m",
+      "qrefactorbench",
+      "summarize",
+      "cases/",
+      "--json"
+    ],
+    "cwd": "/home/audrey/code_and_papers/2026/FSE/qrefactorbench",
+    "exit_code": 0,
+    "stdout": "dataset-summary.stdout",
+    "stderr": "dataset-summary.stderr"
+  }
+]

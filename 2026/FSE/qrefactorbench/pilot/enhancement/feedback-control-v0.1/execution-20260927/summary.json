@@ -1,0 +1,178 @@
+{
+  "source_sha256": "09a2993fe91ed82ed46f10bfd43e60286e91007e72aa58a41c1a73f8f1fa5b3f",
+  "protocol_sha256": "9ae6879a5555d8f8abbeec001c0fdd873fa26b3e3cea48739b310804681095bb",
+  "attempts": 16,
+  "planned_slots": 16,
+  "mother_cases": 1,
+  "arms": [
+    {
+      "arm": "self_review",
+      "planned": 5,
+      "response_status": {
+        "valid_response": 5
+      },
+      "evaluation_status": {
+        "insufficient_evidence": 4,
+        "contradicted": 1
+      },
+      "input_tokens": 80972,
+      "cached_input_tokens": 5888,
+      "output_tokens": 10822,
+      "reasoning_output_tokens": 3247,
+      "model_seconds": 215.256,
+      "review_wall_seconds": 103.448,
+      "evaluation_seconds": 0.00416643699281849
+    },
+    {
+      "arm": "cue_only",
+      "planned": 5,
+      "response_status": {
+        "valid_response": 5
+      },
+      "evaluation_status": {
+        "insufficient_evidence": 5
+      },
+      "input_tokens": 81087,
+      "cached_input_tokens": 34816,
+      "output_tokens": 10659,
+      "reasoning_output_tokens": 2303,
+      "model_seconds": 223.52,
+      "review_wall_seconds": 88.784,
+      "evaluation_seconds": 0.002156167000066489
+    },
+    {
+      "arm": "assessment_summary",
+      "planned": 5,
+      "response_status": {
+        "valid_response": 5
+      },
+      "evaluation_status": {
+        "finite_guarded_pass": 1,
+        "finite_scope_pass": 1,
+        "insufficient_evidence": 3
+      },
+      "input_tokens": 81548,
+      "cached_input_tokens": 34944,
+      "output_tokens": 12959,
+      "reasoning_output_tokens": 4362,
+      "model_seconds": 259.281,
+      "review_wall_seconds": 106.241,
+      "evaluation_seconds": 0.004137886004173197
+    },
+    {
+      "arm": "with_witness",
+      "planned": 1,
+      "response_status": {
+        "valid_response": 1
+      },
+      "evaluation_status": {
+        "finite_scope_pass": 1
+      },
+      "input_tokens": 16954,
+      "cached_input_tokens": 0,
+      "output_tokens": 2375,
+      "reasoning_output_tokens": 435,
+      "model_seconds": 48.062,
+      "review_wall_seconds": 16.731,
+      "evaluation_seconds": 0.0009080029994947836
+    }
+  ],
+  "pairs": [
+    {
+      "replicate": 1,
+      "left": "self_review",
+      "right": "cue_only",
+      "left_status": "insufficient_evidence",
+      "right_status": "insufficient_evidence",
+      "scope": "known_regression_local_claim_not_whole_task"
+    },
+    {
+      "replicate": 2,
+      "left": "self_review",
+      "right": "cue_only",
+      "left_status": "contradicted",
+      "right_status": "insufficient_evidence",
+      "scope": "known_regression_local_claim_not_whole_task"
+    },
+    {
+      "replicate": 3,
+      "left": "self_review",
+      "right": "cue_only",
+      "left_status": "insufficient_evidence",
+      "right_status": "insufficient_evidence",
+      "scope": "known_regression_local_claim_not_whole_task"
+    },
+    {
+      "replicate": 4,
+      "left": "self_review",
+      "right": "cue_only",
+      "left_status": "insufficient_evidence",
+      "right_status": "insufficient_evidence",
+      "scope": "known_regression_local_claim_not_whole_task"
+    },
+    {
+      "replicate": 5,
+      "left": "self_review",
+      "right": "cue_only",
+      "left_status": "insufficient_evidence",
+      "right_status": "insufficient_evidence",
+      "scope": "known_regression_local_claim_not_whole_task"
+    },
+    {
+      "replicate": 1,
+      "left": "cue_only",
+      "right": "assessment_summary",
+      "left_status": "insufficient_evidence",
+      "right_status": "finite_guarded_pass",
+      "scope": "known_regression_local_claim_not_whole_task"
+    },
+    {
+      "replicate": 2,
+      "left": "cue_only",
+      "right": "assessment_summary",
+      "left_status": "insufficient_evidence",
+      "right_status": "finite_scope_pass",
+      "scope": "known_regression_local_claim_not_whole_task"
+    },
+    {
+      "replicate": 3,
+      "left": "cue_only",
+      "right": "assessment_summary",
+      "left_status": "insufficient_evidence",
+      "right_status": "insufficient_evidence",
+      "scope": "known_regression_local_claim_not_whole_task"
+    },
+    {
+      "replicate": 4,
+      "left": "cue_only",
+      "right": "assessment_summary",
+      "left_status": "insufficient_evidence",
+      "right_status": "insufficient_evidence",
+      "scope": "known_regression_local_claim_not_whole_task"
+    },
+    {
+      "replicate": 5,
+      "left": "cue_only",
+      "right": "assessment_summary",
+      "left_status": "insufficient_evidence",
+      "right_status": "insufficient_evidence",
+      "scope": "known_regression_local_claim_not_whole_task"
+    },
+    {
+      "replicate": 2,
+      "left": "assessment_summary",
+      "right": "with_witness",
+      "left_status": "finite_scope_pass",
+      "right_status": "finite_scope_pass",
+      "scope": "known_regression_local_claim_not_whole_task"
+    }
+  ],
+  "task_pass": null,
+  "evaluation_role": "known_regression_previously_inspected_not_unseen",
+  "cost_notes": [
+    "Cached tokens are part of input; reasoning tokens are not added again to output.",
+    "Reviewer wall time includes coordination; not independent human annotation time.",
+    "Historical initial-draft cost is excluded from these incremental revision costs.",
+    "Different lengths and caches; no equal-token or latency causal comparison."
+  ]
+}

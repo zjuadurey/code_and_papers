@@ -1,0 +1,4 @@
+{
+  "code_snippet": "def clique_bitmask(n, edges):\\n    max_clique = []\\n    for mask in range(1 << n):\\n        subset = [i for i in range(n) if mask & (1 << i)]\\n        if all((u, v) in edges or (v, u) in edges for u in subset for v in subset if u != v):\\n            if len(subset) > len(max_clique):\\n                max_clique = subset\\n    return max_clique",
+  "labels": "3"
+}

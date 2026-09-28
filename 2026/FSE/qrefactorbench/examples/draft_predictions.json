@@ -1,0 +1,72 @@
+[
+  {
+    "schema_version": "0.1.0",
+    "case_id": "toy-search-001",
+    "decision": "QUANTUMIZE",
+    "candidate_regions": [
+      {
+        "file": "program.py",
+        "function": "exists_marked",
+        "start_line": 1,
+        "end_line": 3
+      }
+    ],
+    "plan": {
+      "schema_version": "0.1.0",
+      "contract_id": "draft-marked-existence",
+      "computational_intent_id": "finite_marked_existence",
+      "migration_family": "unstructured_search",
+      "formulation": "DRAFT marked-state search",
+      "input_encoding": "OPEN QUESTION: explicit reversible Boolean oracle",
+      "quantum_algorithm_family": "grover_style",
+      "output_decoding": "Boolean existence, including no marked states",
+      "assumptions": [
+        "Pedagogical local simulation only"
+      ],
+      "risks": [
+        "State loading and zero-solution behavior unresolved"
+      ],
+      "expected_resource_characteristics": {
+        "status": "not_estimated"
+      }
+    },
+    "generated_files": [
+      {
+        "path": "program.py",
+        "content": "def exists_marked(flags: list[bool]) -> bool:\n    return any(flags)\n"
+      }
+    ]
+  },
+  {
+    "schema_version": "0.1.0",
+    "case_id": "toy-optimization-001",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [
+      {
+        "file": "program.py",
+        "function": "max_cut_score",
+        "start_line": 5,
+        "end_line": 10
+      }
+    ]
+  },
+  {
+    "schema_version": "0.1.0",
+    "case_id": "toy-negative-001",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": []
+  },
+  {
+    "schema_version": "0.1.0",
+    "case_id": "toy-hard-negative-001",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [
+      {
+        "file": "program.py",
+        "function": "inspect_flags",
+        "start_line": 1,
+        "end_line": 6
+      }
+    ]
+  }
+]

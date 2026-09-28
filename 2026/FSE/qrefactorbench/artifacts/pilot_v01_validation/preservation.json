@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-20",
+  "formal_baseline_run": false,
+  "handoff_links_valid": true,
+  "original_public_tasks_preserved": 10,
+  "pilot_cases_still_draft": 10,
+  "previous_225_file_snapshot_changes": [
+    "cases/pilot/pilot-001/public_task.json",
+    "cases/pilot/pilot-002/public_task.json",
+    "cases/pilot/pilot-003/public_task.json",
+    "cases/pilot/pilot-004/public_task.json",
+    "cases/pilot/pilot-005/public_task.json",
+    "cases/pilot/pilot-006/public_task.json",
+    "cases/pilot/pilot-007/public_task.json",
+    "cases/pilot/pilot-008/public_task.json",
+    "cases/pilot/pilot-009/public_task.json",
+    "cases/pilot/pilot-010/public_task.json"
+  ],
+  "production_code_schema_source_and_labels_unchanged": true,
+  "protected_files_changed": [],
+  "protected_files_checked": 206,
+  "revision_and_packet_hashes_match": true
+}

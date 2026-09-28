@@ -1,0 +1,39 @@
+{
+  "response_sha256": "ef47c3d0c721071e04043b025bc37dd5356e0cff9ec83128b48489741ab41324",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 38.895,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:15:55.113109+00:00",
+  "review_submitted_utc": "2026-09-26T22:16:34.008464+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "ef47c3d0c721071e04043b025bc37dd5356e0cff9ec83128b48489741ab41324",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode each row index in range(col, n) as a candidate and mark only the index that line 13 would select under Python binary64 abs and max behavior, including the first-index tie rule. A reversible predicate would need to compare the candidate against the complete active pivot sequence or reversibly reproduce its ordered max reduction. Run this selection once per elimination column, decode an index, and verify it classically before continuing with the unchanged singularity check, row swap, and elimination."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the nonempty candidate range col through n-1 in an index register, with invalid basis states excluded or explicitly unmarked. Supply coherent access to col and the current mutable augmented rows produced by line 11 and all preceding elimination iterations. Represent pivot entries and comparison state sufficiently to reproduce relevant Python binary64 absolute-value and ordered-comparison semantics. The mechanisms and costs for loading, updating, synchronizing, and uncomputing this state are unresolved."
+      },
+      {
+        "pointer": "/rationale",
+        "quote": "The defensible candidate is the complete assignment at kernel.py line 13, which selects a pivot from the finite remaining row-index range. Its inputs are n, the active col, and the current augmented rows initialized at line 11 and mutated by earlier executions of lines 17-20. It activates once per column only when program.py line 22 enters solve mode; inspect mode does not call solve, and an empty system executes no pivot selection. Lines 12 and 14-20 define surrounding control flow and effects rather than the nominated replacement: the nonempty search range, exact-zero singularity exception, deterministic row swap, and elimination must remain intact. Back substitution and overflow checking at lines 21-25 must also remain unchanged, as must review validation, pre-solve residual reporting, named solution order, deltas, proposed residual, residual-limit comparison, exceptions, and nonmutation. Structurally, the deterministic selected index can be expressed as the unique marked element of a finite domain, so unstructured-search eligibility is true. Practical suitability is false because constructing that predicate requires a global ordered comparison over mutable dense binary64 state, exact verification repeats the classical scan, columns are sequential, and pivot selection is subordinate to the cubic elimination work. Benchmark support is false: the supplied attribution describes a classical HPL algorithm and diagnostic, explicitly says this program is not a compliant HPL performance run, and provides no quantum workload, hardware, resource, or advantage evidence."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "Nomination narrows to line13 and the prose distinguishes surrounding control, but the plan only requests comparisons over the full sequence or a reversible ordered max reduction. It does not specify initialization and update rule or a complete predicate. More precise location is not a verified mapping.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

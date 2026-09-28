@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "context-002",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "inspection.py",
+      "function": "min_vertex_cover_bruteforce",
+      "start_line": 77,
+      "end_line": 91
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_min_vertex_cover_lexicographic_tiebreak",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Binary variables x_i for station i selected. Minimize sum_i x_i + lambda * sum_{(u,v) in E} (1 - x_u - x_v + x_u x_v), with lambda > n to penalize uncovered connections. The primary objective gives minimum station count. Lexicographically smallest tie-break among minimum covers requires a secondary objective or exact post-processing; a single QUBO penalty does not automatically enforce the required lexicographic order.",
+    "input_encoding": "One qubit per station (n <= 16); edges E are the normalized sorted (i,j) pairs from prepare_request. QUBO linear coefficients: +1 for each x_i and -lambda on endpoints for each incident edge; quadratic coefficients: +lambda for x_u x_v for each edge; constant: +lambda per edge. Ising mapping x=(1-Z)/2 if needed. Station input order must be retained for tie-break.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure bitstring, decode selected station indices, verify every edge has a selected endpoint. Recompute the classical objective and station count. Because exactness and lexicographic tie-break are required, any heuristic result must be classically checked and, if not exact, rejected or repaired; QAOA alone does not guarantee the contract.",
+    "assumptions": [
+      "Penalty lambda > n makes feasible covers cheaper than infeasible assignments, but exact penalty sufficiency must be checked.",
+      "The lexicographically smallest tie-break is preserved by a secondary encoding or classical post-processing; this is unresolved.",
+      "The quantum subroutine returns a set of station indices compatible with describe_plan's station input order.",
+      "No free state preparation, oracle, measurement, or decoding overhead is assumed."
+    ],
+    "risks": [
+      "QAOA/Ising may return an approximate or different valid cover, violating exact station count or tie-break.",
+      "Lexicographic tie-break is not naturally encoded by the primary cardinality QUBO.",
+      "n<=16 classical brute force is already trivial; quantum resource overhead is not justified without benchmark evidence.",
+      "Integration with describe_plan and compare_plans requires preserving ordering, earliest-endpoint assignment, uncovered lists, and changes semantics."
+    ],
+    "expected_resource_characteristics": {
+      "qubit_count": "n <= 16 binary station variables",
+      "penalty_terms": "one quadratic penalty per connection plus linear endpoint terms",
+      "depth_and_shots": "not specified; QAOA depth, parameter optimization, and shot count are unresolved",
+      "classical_overhead": "QUBO construction, QAOA parameter loop, measurement decoding, feasibility verification, and exact tie-break post-processing"
+    },
+    "rationale": "Conditional QUBO/Ising plan only; structural eligibility is true, but practical suitability is false and the decision remains classical. Exact minimum and lexicographic tie-break are unresolved obligations."
+  },
+  "rationale": "The only combinatorial-optimization region is inspection.py:77-91, min_vertex_cover_bruteforce. It enumerates subsets by increasing cardinality r and lexicographic itertools.combinations order, returning the first subset that covers every edge. That exactly implements the required 'fewest stations, then lexicographically smallest tuple of station input positions' rule for unit-cost minimum vertex cover. Inputs are edges normalized in prepare_request (u,v with i<j, duplicates removed, sorted) and n=len(names), where names order defines tie-break. Activation is unconditional for every valid request, including empty edges (r=0 yields empty set). Downstream describe_plan and compare_plans must remain classical and exact: selected_stations in station input order, covered assignments to earliest selected endpoint, uncovered connections separate, empty checklists retained, changes/reassignments in normalized connection order with null for unassigned. Validation, JSON report shape, station_count, connection_count, and ValueError behavior are outside the candidate region and must not be altered. Structural eligibility is true because the binary objective minimize sum x_i subject to x_u+x_v>=1 has an explicit QUBO/Ising form; however exact optimum and lexicographic tie-break are strict. Practical suitability is false: n<=16 makes classical brute force trivial and the 16-station bound is a local enumeration limit, not a measured workload; no hardware, latency, frequency, or cost evidence is supplied. Benchmark support is null. A conditional QUBO/QAOA plan is provided only because structural eligibility is true; it does not recommend adoption and leaves penalty sufficiency, exact tie-break encoding, probabilistic error policy, and resource overhead unresolved.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Exact minimum vertex cover over station subsets with lexicographically smallest tie-break by station input positions.",
+  "assumptions": [
+    "Input JSON is ordinary classical JSON; the report is a proposal for human review, not inspection execution or deployment.",
+    "n <= 16 and unit selection cost mean the classical brute-force search space is at most 2^16 subsets.",
+    "The candidate region is only the exact minimum-vertex-cover search; validation, normalization, reporting, ordering, and change comparison remain classical.",
+    "Quantum advantage, resource budgets, and benchmark evidence are not assumed.",
+    "Any quantum subroutine must return the exact minimum station set and the lexicographically smallest tie-break, not an approximation."
+  ],
+  "risks": [
+    "QAOA/Ising heuristics do not guarantee exact minimum vertex cover or lexicographic tie-break; decoding could return an approximate or different valid cover.",
+    "Penalty weights and tie-break secondary objectives are unresolved and may alter feasibility or selection.",
+    "Resource overhead (qubits, depth, shots, parameter optimization, decoding) is likely unjustified at n<=16 without benchmark evidence.",
+    "Integration risk: describe_plan expects station indices in input order and assigns connections to earliest selected endpoint; a different cover representation could change checklists, uncovered connections, or changes output.",
+    "Probabilistic error policy is unresolved; the classical contract forbids approximate station count and altered tie rule."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "Minimum vertex cover is a binary optimization: minimize sum x_i subject to x_u+x_v>=1 for each edge. QUBO/Ising can encode objective plus penalty; unit costs and n<=16 fit. Exact optimum and lexicographic tie-break remain unresolved and must be preserved."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "A pure Boolean cover predicate over 2^n subsets exists, but the full contract requires exact minimum cardinality and lexicographically smallest tie-break. Grover could search for covers of size r, but it does not naturally return the lexicographically smallest minimum cover without nested searches or post-selection, and no-solution/resource policy is unresolved. Thus not applicable as a complete migration for this region."
+    }
+  ]
+}

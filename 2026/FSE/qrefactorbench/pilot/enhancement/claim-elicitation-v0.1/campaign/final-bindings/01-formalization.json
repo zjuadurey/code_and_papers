@@ -1,0 +1,52 @@
+{
+  "response_sha256": "c2e374f902edc4e52194775df43678c09c82090afe6ac795fd1787980ef94d26",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 25.864,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:39:27.617140+00:00",
+  "review_submitted_utc": "2026-09-26T21:39:53.481601+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "c2e374f902edc4e52194775df43678c09c82090afe6ac795fd1787980ef94d26",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditional replacement for the pivot-index computation at line 13 only. For each elimination column col, let D={col,...,n-1}. Define reference_first_argmax by: best=col; best_key=abs(rows[col][col]); for k=col+1 through n-1 in increasing order, compute key=abs(rows[k][col]); if key > best_key, set best=k and best_key=key; otherwise make no update; terminate after k=n-1 and return best. Strict greater-than means equal keys retain the earlier index, matching Python max's first-index tie behavior. Define the unique Grover predicate P(i) as true exactly when i is in D and i equals the result of this traversal. Initialize an index register over D, evaluate P reversibly for each basis candidate using the current augmented rows, apply a Grover-style marked-state search under a separately established exact or contract-safe execution policy, measure candidate q, and decode q as a row index. Independently recompute reference_first_argmax classically. If q equals that result, output q; otherwise output the classically recomputed result. Then execute the unchanged exact-zero check and row swap at lines 14-16. The quantum path is admitted only if coherent access, reversible comparisons, index encoding, uncomputation, and the wrapper's fallback preserve the specified behavior. Outside those conditions, including unsupported numeric states or unavailable resources, execute the original classical max computation."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Input domain for one invocation: integer n>=1; integer col with 0<=col<n; and the current n augmented rows, each containing n+1 Python binary64 values produced from line 11 and all preceding elimination updates. Relevant state includes the order and exact bit patterns of rows, the active column, and the mutable row arrangement. Encode offsets 0 through n-col-1 in ceil(log2(n-col)) index qubits, mapping offset d to row i=col+d; basis states outside that range are unmarked. Oracle data must expose rows[k][col] coherently and must reproduce Python abs and strict greater-than behavior, including any nonfinite intermediate bit patterns that can occur before the existing overflow detection. The predicate workspace initializes best=col and best_key=abs(rows[col][col]), traverses k in increasing order, conditionally updates both registers only when key>best_key, compares the final best with candidate i, copies that equality to the mark qubit, and reverses the traversal to uncompute workspace. How to implement exact reversible Python binary64 comparison semantics, coherent loading of changing rows, and reversible state updates is unspecified."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "The quantum computation outputs a measured offset, decoded as q=col+offset. Recompute the deterministic traversal classically and accept q only when q equals its result; on an invalid basis state, a measurement failure, or a mismatch, use the classical result. This produces exactly one pivot index because D is nonempty. For equal maximum magnitudes it returns the smallest row index; for an all-zero pivot column it returns col, after which the unchanged line-14 check raises ValueError. After decoding, preserve the original row swap, elimination order, back substitution, overflow handling, residual calculations, named output ordering, deltas, limit comparison, and no-mutation behavior."
+      },
+      {
+        "pointer": "/plan/risks/2",
+        "quote": "Exact Python behavior for signed zero, infinities, NaNs, absolute value, and comparisons may require substantial reversible circuitry and remains unspecified."
+      }
+    ],
+    "resolution": "transcribed",
+    "rationale": "The primary plan explicitly constructs reference_first_argmax: initialize at col, traverse remaining indices in increasing order and update only on strict greater-than; its predicate is equality to this traversal. Bind the reference selector on all archived pivot states, including nonfinite values explicitly discussed in input_encoding. Guard True concerns this local reference recurrence, not feasibility or admission of the quantum path: exact reversible construction and routing remain unspecified, and declared fallback is not executed here.",
+    "interpretations": [
+      {
+        "id": "explicit_ordered_strict_gt",
+        "meaning": "First index initialization, increasing traversal, replace only on Python strict greater-than.",
+        "mode": "ordered_scan",
+        "expression": "values[candidate] > values[incumbent]",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

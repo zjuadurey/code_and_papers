@@ -1,0 +1,170 @@
+{
+  "version": "resource-workflow-v0.1",
+  "plan_id": "llm-lit001",
+  "request_sha256": "19b8cbbd09400f57b2ff75f4b86245620f41a3c38243c9705098219cacae95d2",
+  "context_sha256": "83fc7930c6e46bc2bc1530e0623480db5e925c3fc8c3fad12d8917856074589b",
+  "application_sha256": "d71e3988e0a7d4420ac57a48f360d449629a6245bdd42fc8dd227beb1c50eb00",
+  "comparison_id": "lit001-exact-steady-state",
+  "estimation_runs": [
+    {
+      "profile_id": "hypothetical-100ns",
+      "status": "ok",
+      "rows": [
+        {
+          "physical_qubits": 279,
+          "runtime_ns": 36000.0,
+          "error_bound": 0.00622000028
+        }
+      ],
+      "backend": "qdk.qre",
+      "backend_version": "1.32.3",
+      "model": "GateBased/SurfaceCode/RoundBasedFactory; PSSPC/LatticeSurgery",
+      "use_graph": false,
+      "stats": {
+        "num_traces": 32,
+        "num_isas": 1284,
+        "total_jobs": 41088,
+        "successful_estimates": 8320,
+        "pareto_results": 1
+      }
+    },
+    {
+      "profile_id": "hypothetical-1000ns",
+      "status": "ok",
+      "rows": [
+        {
+          "physical_qubits": 279,
+          "runtime_ns": 360000.0,
+          "error_bound": 0.00622000028
+        }
+      ],
+      "backend": "qdk.qre",
+      "backend_version": "1.32.3",
+      "model": "GateBased/SurfaceCode/RoundBasedFactory; PSSPC/LatticeSurgery",
+      "use_graph": false,
+      "stats": {
+        "num_traces": 32,
+        "num_isas": 1284,
+        "total_jobs": 41088,
+        "successful_estimates": 8320,
+        "pareto_results": 1
+      }
+    }
+  ],
+  "points": [
+    {
+      "physical_qubits": 279,
+      "runtime_ns": 36000.0,
+      "error_bound": 0.00622000028,
+      "quantum_seconds_total": 0.002304,
+      "hybrid_seconds": [
+        0.002416556103987619,
+        0.0024349157919964057
+      ],
+      "missing_cost_terms": [],
+      "timing_relation": "not_faster",
+      "failure_upper_bound": 0.39808001792,
+      "quality_bound_satisfied": false,
+      "decision": "quality_not_established",
+      "profile_id": "hypothetical-100ns"
+    },
+    {
+      "physical_qubits": 279,
+      "runtime_ns": 360000.0,
+      "error_bound": 0.00622000028,
+      "quantum_seconds_total": 0.02304,
+      "hybrid_seconds": [
+        0.023152556103987622,
+        0.023170915791996406
+      ],
+      "missing_cost_terms": [],
+      "timing_relation": "not_faster",
+      "failure_upper_bound": 0.39808001792,
+      "quality_bound_satisfied": false,
+      "decision": "quality_not_established",
+      "profile_id": "hypothetical-1000ns"
+    }
+  ],
+  "conditional_benefit_points": [],
+  "assumptions": {
+    "request": {
+      "version": "resource-workflow-v0.1",
+      "plan_id": "llm-lit001",
+      "application": {
+        "format": "openqasm3",
+        "source": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nqubit[4] q;\nbit[4] r;\nh q[0];\nh q[1];\nh q[2];\nh q[3];\ncx q[0], q[1];\nrz(-pi/4) q[1];\ncx q[0], q[1];\ncx q[1], q[2];\nrz(-pi/4) q[2];\ncx q[1], q[2];\ncx q[2], q[3];\nrz(-pi/4) q[3];\ncx q[2], q[3];\ncx q[3], q[0];\nrz(-pi/4) q[0];\ncx q[3], q[0];\nrx(pi/4) q[0];\nrx(pi/4) q[1];\nrx(pi/4) q[2];\nrx(pi/4) q[3];\nr[0] = measure q[0];\nr[1] = measure q[1];\nr[2] = measure q[2];\nr[3] = measure q[3];",
+        "coverage": "One complete model-generated shot including preparation and measurement"
+      },
+      "profiles": [
+        {
+          "id": "hypothetical-100ns",
+          "gate_time_ns": 100,
+          "measurement_time_ns": 500,
+          "error_rate": 0.0001,
+          "source": "Hypothetical architecture, not a calibrated QPU"
+        },
+        {
+          "id": "hypothetical-1000ns",
+          "gate_time_ns": 1000,
+          "measurement_time_ns": 5000,
+          "error_rate": 0.0001,
+          "source": "Hypothetical architecture, not a calibrated QPU"
+        }
+      ],
+      "max_error": 0.01
+    },
+    "controller_context": {
+      "application_sha256": "d71e3988e0a7d4420ac57a48f360d449629a6245bdd42fc8dd227beb1c50eb00",
+      "comparison_id": "lit001-exact-steady-state",
+      "evidence_source": "verification.json plus local timing and explicit scenario assumptions",
+      "same_task": true,
+      "classical_seconds": {
+        "lower": 7.992004000698216e-06,
+        "upper": 1.019735999580007e-05,
+        "source": "Local 7x500 perf_counter batch means; descriptive interval, not confidence bound"
+      },
+      "overheads_seconds": {
+        "preparation": {
+          "lower": 6.179898002301343e-06,
+          "upper": 7.940348004922272e-06,
+          "source": "Local 7x500 perf_counter batch means; descriptive interval, not confidence bound"
+        },
+        "readout_decode": {
+          "lower": 6.732323992764577e-06,
+          "upper": 1.250757799425628e-05,
+          "source": "Local 7x500 perf_counter batch means; descriptive interval, not confidence bound"
+        },
+        "validation_fallback": {
+          "lower": 9.764388199255336e-05,
+          "upper": 0.00010846786599722691,
+          "source": "Observed certificate and always-fallback paths; no ideal success-rate discount"
+        },
+        "classical_control": {
+          "lower": 1e-06,
+          "upper": 1e-06,
+          "source": "SCENARIO ASSUMPTION: one microsecond dispatch per batch"
+        },
+        "communication": {
+          "lower": 1e-06,
+          "upper": 1e-06,
+          "source": "SCENARIO ASSUMPTION: one microsecond total transfer per batch"
+        },
+        "compilation_amortized": {
+          "lower": 0,
+          "upper": 0,
+          "source": "SCENARIO ASSUMPTION: steady-state fixed circuit, compiled offline; cold-start cost excluded"
+        }
+      },
+      "quantum_executions": 64,
+      "max_failure_probability": 0,
+      "algorithm_failure_bound": 0
+    }
+  },
+  "limitations": [
+    "Predictions under supplied models, not hardware observations or benchmark scores.",
+    "Controller evidence is consumed, not independently verified by this tool.",
+    "Serial schedule; all costs aggregated per request; no implicit overlap/amortization.",
+    "Failure bound uses a union bound; exceeding it does not prove actual failure rate.",
+    "Sampled profiles and backend frontier do not establish a globally minimal threshold."
+  ]
+}

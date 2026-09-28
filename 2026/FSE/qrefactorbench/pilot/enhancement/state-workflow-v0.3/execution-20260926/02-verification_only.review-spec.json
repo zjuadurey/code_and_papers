@@ -1,0 +1,6 @@
+{
+  "resolution": "transcribed",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/plan/rationale"],
+  "rationale": "The revision explicitly provides the ordered recurrence: initialize incumbent to col, traverse every later index in order, and replace it only if the new absolute value is strictly greater under Python comparison. This is a concrete update rule, unlike a bare obligation to reproduce max. The text explicitly includes NaN/infinity rather than an all-finite guard. Translate the rule directly into ordered_scan on the checker’s absolute pivot values. A finite local pass would support this pivot-selection relation only; reversible implementation, whole-plan verification/fallback, costs and quantum execution remain unresolved.",
+  "interpretations": [{"id": "explicit_ordered_strict_gt", "meaning": "Initialize to first active index, then replace only on strict > while scanning in increasing index order, including nonfinite magnitudes.", "mode": "ordered_scan", "expression": "values[candidate] > values[incumbent]", "guard": "True", "outside_guard": "unresolved"}]
+}

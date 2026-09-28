@@ -1,0 +1,6 @@
+{
+  "initial_focused_test": {"passed": 7, "failed": 1, "failure": "test expected 44 X and 99 total gates; actual 48 X and 103 total"},
+  "resolution": "Corrected hand-count expectation: six clause flags computed/uncomputed give 12 X; nine positive literals wrapped on both computation directions give 36 X. Oracle construction unchanged.",
+  "initial_wrapper_test": {"passed": 11, "failed": 0},
+  "initial_diagnostic": "all checks passed; results.json preserved; final tests and exact replay recorded in VALIDATION.md"
+}

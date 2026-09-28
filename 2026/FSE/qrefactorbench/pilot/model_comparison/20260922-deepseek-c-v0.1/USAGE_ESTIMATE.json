@@ -1,0 +1,26 @@
+{
+  "source": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "currency": "USD",
+  "rates_per_million_off_peak": {
+    "deepseek-v4-pro": {
+      "miss": 0.66,
+      "hit": 0.022,
+      "output": 1.98
+    },
+    "deepseek-flash": {
+      "miss": 0.15,
+      "hit": 0.003,
+      "output": 0.6
+    }
+  },
+  "started_utc": "2026-09-21T17:08:33.681972+00:00",
+  "finished_utc": "2026-09-21T17:34:49.447770+00:00",
+  "utc_intervals_outside_documented_peak_windows": true,
+  "estimates_by_model": {
+    "deepseek-v4-pro": 0.29698187200000004,
+    "deepseek-flash": 0.08036791800000001
+  },
+  "estimated_total": 0.37734979,
+  "actual_billed_amount": null,
+  "note": "Estimate from public rates and API usage; no account bill retrieved. Completion includes reasoning; do not add reasoning again."
+}

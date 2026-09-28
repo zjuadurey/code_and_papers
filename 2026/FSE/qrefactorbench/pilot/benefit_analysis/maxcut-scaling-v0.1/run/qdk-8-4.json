@@ -1,0 +1,26 @@
+{
+  "status": "ok",
+  "rows": [
+    {
+      "physical_qubits": 3945,
+      "runtime_ns": 420000.0,
+      "error_bound": 0.00168180266
+    },
+    {
+      "physical_qubits": 4845,
+      "runtime_ns": 252000.0,
+      "error_bound": 0.007918802660000002
+    }
+  ],
+  "backend": "qdk.qre",
+  "backend_version": "1.32.3",
+  "model": "GateBased/SurfaceCode/RoundBasedFactory; PSSPC/LatticeSurgery",
+  "use_graph": false,
+  "stats": {
+    "num_traces": 32,
+    "num_isas": 1284,
+    "total_jobs": 41088,
+    "successful_estimates": 37024,
+    "pareto_results": 2
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "status": "explicit_predicate_equivalence_contradicted",
+  "review_status": "AI_REVIEW_PENDING",
+  "case_id": "lit-009",
+  "model": "gpt-5.6-sol",
+  "post_hoc": true,
+  "provenance": {
+    "response_path": "pilot/model_comparison/20260923-four-model-c-v0.1/runs/gpt-5.6-sol/lit-009/response.txt",
+    "response_sha256": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+    "pointer": "/plan/formulation",
+    "quote": "Conditionally formulate each pivot selection as a finite search over row indices i in [col,n). Mark exactly the first index whose absolute pivot entry is maximal: abs(rows[i][col]) is at least every remaining candidate magnitude, and no earlier remaining index has the same magnitude. This produces the same unique index as Python max with its first-index tie rule.",
+    "interpretation": "At-least is >= over the actual Python binary64 values, with no earlier equal magnitude."
+  },
+  "normal_control": {
+    "input": {
+      "variables": [
+        "a",
+        "b"
+      ],
+      "matrix": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "rhs": [
+        1.0,
+        2.0
+      ],
+      "current": [
+        0.0,
+        0.0
+      ],
+      "mode": "solve",
+      "residual_limit": 1.0
+    },
+    "inspection": {
+      "current_residual": {
+        "vector": [
+          -1.0,
+          -2.0
+        ],
+        "infinity_norm": 2.0,
+        "scaled_backward_error": 2251799813685248.0
+      },
+      "proposal": null,
+      "proposed_residual": null,
+      "within_requested_limit": null,
+      "deltas": null
+    },
+    "original_result": {
+      "report": {
+        "current_residual": {
+          "vector": [
+            -1.0,
+            -2.0
+          ],
+          "infinity_norm": 2.0,
+          "scaled_backward_error": 2251799813685248.0
+        },
+        "proposal": {
+          "a": 1.0,
+          "b": 2.0
+        },
+        "proposed_residual": {
+          "vector": [
+            0.0,
+            0.0
+          ],
+          "infinity_norm": 0.0,
+          "scaled_backward_error": 0.0
+        },
+        "within_requested_limit": true,
+        "deltas": {
+          "a": 1.0,
+          "b": 2.0
+        }
+      }
+    },
+    "pivot_trace": [
+      {
+        "column": 0,
+        "active_rows": [
+          0,
+          1
+        ],
+        "absolute_values_repr": [
+          "1.0",
+          "0.0"
+        ],
+        "has_nonfinite": false,
+        "original_pivot": 0,
+        "model_predicate_marked": [
+          0
+        ],
+        "corrected_control_pivot": 0,
+        "model_claim_matches": true,
+        "corrected_control_matches": true
+      },
+      {
+        "column": 1,
+        "active_rows": [
+          1
+        ],
+        "absolute_values_repr": [
+          "1.0"
+        ],
+        "has_nonfinite": false,
+        "original_pivot": 1,
+        "model_predicate_marked": [
+          1
+        ],
+        "corrected_control_pivot": 1,
+        "model_claim_matches": true,
+        "corrected_control_matches": true
+      }
+    ]
+  },
+  "counterexample": {
+    "input": {
+      "variables": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ],
+      "matrix": [
+        [
+          2.5e+307,
+          0.0,
+          0.0,
+          2.5e+307,
+          2.5e+307
+        ],
+        [
+          -2.5e+307,
+          2.5e+307,
+          0.0,
+          2.5e+307,
+          2.5e+307
+        ],
+        [
+          -2.5e+307,
+          -2.5e+307,
+          2.5e+307,
+          2.5e+307,
+          2.5e+307
+        ],
+        [
+          -2.5e+307,
+          -2.5e+307,
+          -2.5e+307,
+          2.5e+307,
+          2.5e+307
+        ],
+        [
+          -2.5e+307,
+          -2.5e+307,
+          -2.5e+307,
+          2.5e+307,
+          -2.5e+307
+        ]
+      ],
+      "rhs": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "current": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mode": "solve",
+      "residual_limit": 1.0
+    },
+    "inspection": {
+      "current_residual": {
+        "vector": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "infinity_norm": 1.0,
+        "scaled_backward_error": 900719925474099.2
+      },
+      "proposal": null,
+      "proposed_residual": null,
+      "within_requested_limit": null,
+      "deltas": null
+    },
+    "original_result": {
+      "exception": "ValueError",
+      "message": "numerical overflow"
+    },
+    "pivot_trace": [
+      {
+        "column": 0,
+        "active_rows": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "absolute_values_repr": [
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307"
+        ],
+        "has_nonfinite": false,
+        "original_pivot": 0,
+        "model_predicate_marked": [
+          0
+        ],
+        "corrected_control_pivot": 0,
+        "model_claim_matches": true,
+        "corrected_control_matches": true
+      },
+      {
+        "column": 1,
+        "active_rows": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "absolute_values_repr": [
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307"
+        ],
+        "has_nonfinite": false,
+        "original_pivot": 1,
+        "model_predicate_marked": [
+          1
+        ],
+        "corrected_control_pivot": 1,
+        "model_claim_matches": true,
+        "corrected_control_matches": true
+      },
+      {
+        "column": 2,
+        "active_rows": [
+          2,
+          3,
+          4
+        ],
+        "absolute_values_repr": [
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307"
+        ],
+        "has_nonfinite": false,
+        "original_pivot": 2,
+        "model_predicate_marked": [
+          2
+        ],
+        "corrected_control_pivot": 2,
+        "model_claim_matches": true,
+        "corrected_control_matches": true
+      },
+      {
+        "column": 3,
+        "active_rows": [
+          3,
+          4
+        ],
+        "absolute_values_repr": [
+          "inf",
+          "inf"
+        ],
+        "has_nonfinite": true,
+        "original_pivot": 3,
+        "model_predicate_marked": [
+          3
+        ],
+        "corrected_control_pivot": 3,
+        "model_claim_matches": true,
+        "corrected_control_matches": true
+      },
+      {
+        "column": 4,
+        "active_rows": [
+          4
+        ],
+        "absolute_values_repr": [
+          "nan"
+        ],
+        "has_nonfinite": true,
+        "original_pivot": 4,
+        "model_predicate_marked": [],
+        "corrected_control_pivot": 4,
+        "model_claim_matches": false,
+        "corrected_control_matches": true
+      }
+    ]
+  },
+  "source_sha256": {
+    "pilot/model_comparison/20260923-four-model-c-v0.1/pivot_counterexample.py": "7112aa23830b997fbf9ab62badf0f6a7f87ca27300852d2ef841c841999a5cd7",
+    "pilot/reference_completion/v0.1.1/cases/lit-009/kernel.py": "7bd7ab7a59d78bf064f14a3e97f60f80d91b9e6d42977952c1e5c21d795dd18f",
+    "pilot/reference_completion/v0.1.1/cases/lit-009/program.py": "40b399f11a314c9f7eff3f3dd9a799defc8b4d63919fabb7bbb31c245281e46f",
+    "pilot/reference_completion/v0.1.1/cases/lit-009/common.py": "d45402e6db3166b6f35c1a654c2470e1e9cef82e67bcefdd43275f49cd397966"
+  },
+  "task_pass": null,
+  "migration_execution_success": null,
+  "limits": [
+    "Counterexample to the stated unique-marker predicate only.",
+    "The proposed exact classical fallback can still preserve the final exception.",
+    "Corrected scan is a reviewer control, not model output or a quantum speedup.",
+    "Post-hoc witness, not part of the frozen 61-input suite or a held-out score."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "utc": "2026-09-26T12:58:42.642095+00:00",
+  "protected_files_unchanged": 2429,
+  "frozen_protocol_verified": true,
+  "local_file_links_checked": 268,
+  "missing_links": [],
+  "scoped_git_diff_check": "passed",
+  "docs": [
+    "PROJECT_STATUS.md",
+    "NEXT_ACTIONS.md",
+    "DECISIONS.md",
+    "TODO.md",
+    "CHANGELOG.md",
+    "docs/research_log.md",
+    "docs/AGENT_WORKFLOW_LEARNING.md",
+    "pilot/enhancement/state-workflow-v0.3/execution-20260926/README.md",
+    "pilot/enhancement/state-workflow-v0.3/execution-20260926/REPORT.md"
+  ],
+  "checks_scope": "Delivery integrity and documentation; execution evidence in execution-validation.json. No additional model calls or shared test-suite rerun."
+}

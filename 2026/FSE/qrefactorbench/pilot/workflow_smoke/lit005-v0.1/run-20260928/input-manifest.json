@@ -1,0 +1,12 @@
+{
+  "pilot/benefit_analysis/lit005-v0.1/analysis.py": "b968a4fee2eb5ef29c425fdd7961fefeb0b0024f92551911430de4a5bf7eebd2",
+  "pilot/reference_completion/v0.1.1/cases/lit-005/common.py": "d45402e6db3166b6f35c1a654c2470e1e9cef82e67bcefdd43275f49cd397966",
+  "pilot/reference_completion/v0.1.1/cases/lit-005/example_request.json": "d4881b2591e1846d0a2485f20a5f7b5a7316552036bdb35b2337ec1c00c0184f",
+  "pilot/reference_completion/v0.1.1/cases/lit-005/kernel.py": "02b63e5ce9bb379b8e61f1b0917bc75e139e54e6cdca5bbc64e39ec2aa21f3d7",
+  "pilot/reference_completion/v0.1.1/cases/lit-005/program.py": "7d314210f99a968711754eb9cca9aff29b149f19278539e0f52531eadbdaaaa8",
+  "pilot/reference_completion/v0.1.1/cases/lit-005/public_task.json": "d0465e09611b9d4a03b5c6d932d399a08e9631a268782313a3cbb5fae5d30c8d",
+  "pilot/workflow_smoke/lit005-v0.1/protocol.json": "7fa6395f2a3c238925fbe75eb46d269c8e52ab6d57c0176b58bdbf6ae91017aa",
+  "pilot/workflow_smoke/lit005-v0.1/run.py": "a565fa3661bd30e217411a5d5448c60d9563fb941a8c183a6668b2580561cb09",
+  "qrefactorbench/_qdk_resource_worker.py": "aa4270f9706ad45bae7804101784f87424fd6e3168e6f787bd78b1ca69f5c642",
+  "qrefactorbench/resource_workflow.py": "1e3b3325f192a0178f717b011cc0f8151f37b8ef72eb9c90096b2bfa10b29348"
+}

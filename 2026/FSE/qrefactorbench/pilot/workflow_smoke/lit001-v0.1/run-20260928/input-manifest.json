@@ -1,0 +1,9 @@
+{
+  "pilot/source_adaptations/v0.1/cases/lit-001/kernel.py": "2aa73675fc76452d16d2a016675e6367c3048d59fac893a9a9de846ffbd9f499",
+  "pilot/source_adaptations/v0.1/cases/lit-001/program.py": "1190430f7b73ddf4a44ee38c5caa649a540faafe3418fcaddd3a531e6d3274e3",
+  "pilot/source_adaptations/v0.1/cases/lit-001/public_task.json": "b0a3ccafeeb8280487e61310213889d70871a65ec6f35347883ce56f0d4cd6f5",
+  "pilot/workflow_smoke/lit001-v0.1/protocol.json": "14a23ce592c2826baa8796be1e979c10241f3f3fd45f934916d0856ef7d0d46a",
+  "pilot/workflow_smoke/lit001-v0.1/run.py": "89c7c9fc947405d96543567295cb836d41b9329a968d452efdfadf7eb828b55a",
+  "qrefactorbench/_qdk_resource_worker.py": "aa4270f9706ad45bae7804101784f87424fd6e3168e6f787bd78b1ca69f5c642",
+  "qrefactorbench/resource_workflow.py": "1e3b3325f192a0178f717b011cc0f8151f37b8ef72eb9c90096b2bfa10b29348"
+}

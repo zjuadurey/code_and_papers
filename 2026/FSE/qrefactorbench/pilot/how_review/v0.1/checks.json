@@ -1,0 +1,114 @@
+{
+  "review_status": "AI_PENDING",
+  "model_calls": 0,
+  "quantum_runs": 0,
+  "vertex_cover": {
+    "graphs": 1100,
+    "n_range": [
+      0,
+      5
+    ],
+    "sol_exact_tuple": true,
+    "astra_all_minimum_covers": true,
+    "counterexamples": [
+      {
+        "model_branch": "flash",
+        "n": 2,
+        "edges": [
+          [
+            0,
+            1
+          ]
+        ],
+        "expected": [
+          0
+        ],
+        "energy_minimizers": [
+          [
+            1
+          ]
+        ],
+        "full_input_validation": true
+      },
+      {
+        "model_branch": "pro",
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "expected": [
+          0,
+          3
+        ],
+        "energy_minimizers": [
+          [
+            1,
+            2
+          ]
+        ],
+        "full_input_validation": true
+      }
+    ]
+  },
+  "clique": {
+    "graphs": 1100,
+    "n_range": [
+      0,
+      5
+    ],
+    "three_formulas_checked": true,
+    "pro_flash_scales": "reviewer instances of response conditions; not model-supplied numbers",
+    "limit": "Core subset contract only; no full program or quantum execution."
+  },
+  "knapsack": {
+    "instances": 4100,
+    "n_range": [
+      0,
+      3
+    ],
+    "weight_range": [
+      1,
+      3
+    ],
+    "value_range": [
+      0,
+      2
+    ],
+    "capacity_range": [
+      0,
+      4
+    ],
+    "astra_formula_matches_original_kernel": true,
+    "limit": "Reviewer-chosen standard slack encoding; response does not supply an implementation."
+  },
+  "coloring_order": {
+    "assignment_vectors": 499,
+    "n_and_k_range": [
+      0,
+      4
+    ],
+    "two_lex_objectives": true,
+    "limit": "Ordering only; QUBO penalties, one-hot enforcement and whole-program behavior unresolved."
+  },
+  "pivot": {
+    "finite_columns": 3905,
+    "all_start_indices": true,
+    "limit": "Classical predicate/termination witness, not Grover execution or performance; excludes NaN/Inf."
+  },
+  "script_sha256": "151fb6fa82337208fd77411cba4dcb56da9527f7f9f75c4f8cff1ccd25486197"
+}

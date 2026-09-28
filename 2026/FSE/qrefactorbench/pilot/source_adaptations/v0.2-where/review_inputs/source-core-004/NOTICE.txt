@@ -1,0 +1,13 @@
+Portions of these inputs derive from C2|Q> Dataset, maintained at
+https://huggingface.co/datasets/boshuai1/c2q-dataset
+revision c5b457cf425c31e91bae829503ece6e92646dd0a.
+Associated paper: C2|Q>: A Robust Framework for Bridging Classical and Quantum
+Software Development, https://doi.org/10.1145/3803018 .
+The pinned dataset card declares CC BY 4.0:
+https://creativecommons.org/licenses/by/4.0/ .
+No endorsement by the source authors is implied.
+Source-function views remove top-level demonstrations. Application views adapt
+identifiers/control integration and add new functional input/output requirements,
+validation and reporting. Detailed changes and original excerpts are retained in
+the curator package. Newly authored project material has no declared distribution
+license (NOASSERTION); this notice is not a blanket license for the entire package.

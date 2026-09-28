@@ -1,0 +1,9 @@
+{
+  "case_id": "lit-008",
+  "title": "Ordered masking receipts",
+  "software_contract": "review(request) validates all records first. For each input row compute the bitwise exclusive-or of left and right, encode exactly eight bits (most significant first), count set bits and update a running sum modulo 256. Return ordered receipts with id/bits/set_bits/counts/prefix_checksum plus record_count and final checksum. counts mode maps the one deterministic bitstring to repetitions; inspect uses null counts but still produces every receipt. Do not replace full output by a sample/aggregate. No mutation; invalid input raises ValueError. CLI reads/prints JSON.",
+  "input_domain": "Exactly records list of {id:unique nonempty string,left:int 0..255,right:int 0..255}, repetitions:positive int, mode inspect|counts. Bool excluded from integers. Empty records allowed. repetitions denotes an exact repeated-outcome count, not random sampling or QPU execution.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "case_id": "source-core-005",
+  "title": "Named feature requirements",
+  "software_contract": "complete(size,clauses,locked) returns the first Boolean vector in False/True product order satisfying every indexed three-literal clause and fixed-index value; None if absent. conforms evaluates that relation. Valid arguments only: nonnegative size, triples of (index,bool), known indices, and fixed-index mapping. No mutation.",
+  "input_domain": "Valid kernel arguments as specified; application validation and reports are not part of this core view.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}

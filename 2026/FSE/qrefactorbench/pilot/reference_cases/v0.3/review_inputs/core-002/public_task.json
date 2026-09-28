@@ -1,0 +1,7 @@
+{
+  "case_id": "core-002",
+  "title": "Endpoint selection for declared connections",
+  "software_contract": "Call min_vertex_cover_bruteforce(edges, n). Return a set of indices containing at least one endpoint of each edge. Minimize the number of selected indices; ties choose the lexicographically smallest sorted tuple of selected indices. Empty edges return the empty set. Do not mutate inputs. Only valid-domain inputs are specified; no extra invalid-input validation requirement is added in this core view.",
+  "input_domain": "n is a Python int (not bool), 0–16. edges is a list of distinct (u,v) integer tuples with 0<=u<v<n. All indices are available at unit selection cost, with no capacity or scheduling restrictions. The bound is a local testing limit, not workload evidence.",
+  "execution_assumptions": ["Ordinary classical input; no hardware, latency or benefit assumptions supplied."]
+}

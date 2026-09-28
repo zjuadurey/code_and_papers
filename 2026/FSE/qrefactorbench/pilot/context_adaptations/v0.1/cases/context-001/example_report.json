@@ -1,0 +1,81 @@
+{
+  "equipment_count": 3,
+  "requirement_count": 3,
+  "current": {
+    "windows": [
+      [
+        "pump",
+        "fan",
+        "chiller"
+      ],
+      []
+    ],
+    "conflict_weight": 8,
+    "separated_weight": 0,
+    "conflicts": [
+      {
+        "first": "pump",
+        "second": "fan",
+        "weight": 4
+      },
+      {
+        "first": "pump",
+        "second": "chiller",
+        "weight": 1
+      },
+      {
+        "first": "fan",
+        "second": "chiller",
+        "weight": 3
+      }
+    ]
+  },
+  "proposed": {
+    "windows": [
+      [
+        "fan"
+      ],
+      [
+        "pump",
+        "chiller"
+      ]
+    ],
+    "conflict_weight": 1,
+    "separated_weight": 7,
+    "conflicts": [
+      {
+        "first": "pump",
+        "second": "chiller",
+        "weight": 1
+      }
+    ]
+  },
+  "changes": {
+    "moved_equipment": [
+      {
+        "equipment": "pump",
+        "from_window": 0,
+        "to_window": 1
+      },
+      {
+        "equipment": "chiller",
+        "from_window": 0,
+        "to_window": 1
+      }
+    ],
+    "conflict_reduction": 7,
+    "resolved_conflicts": [
+      {
+        "first": "pump",
+        "second": "fan",
+        "weight": 4
+      },
+      {
+        "first": "fan",
+        "second": "chiller",
+        "weight": 3
+      }
+    ],
+    "introduced_conflicts": []
+  }
+}

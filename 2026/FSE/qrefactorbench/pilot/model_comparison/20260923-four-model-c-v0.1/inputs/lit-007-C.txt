@@ -1,0 +1,1583 @@
+Analyze the supplied existing classical Python software for selective quantumization.
+Use only the supplied material. Return one response; do not use tools, execute code,
+browse, retrieve other material, or request feedback. Do not generate a patch.
+
+Identify candidate region(s) for further analysis, or [] if none is justified.
+Coordinates are 1-based, inclusive, in the supplied source files. A nomination may
+subsequently be rejected: it is not a recommendation to deploy. Explain the source
+evidence, required input/predicate/state dependencies, activation conditions, and
+surrounding behavior that must remain intact in rationale. Multiple defensible
+regions are possible; a supplied location cue is a starting point, not an exhaustive
+answer or proof of eligibility. Do not infer that every input has a suitable candidate.
+
+Assess structural eligibility, practical suitability and benchmark support separately.
+An expensive hotspot is not automatically a quantumization opportunity. Supported
+families are only unstructured_search (Grover-style) and combinatorial_optimization
+(QUBO/Ising, potentially QAOA). Unknown evidence stays null. REMAIN_CLASSICAL is valid.
+Do not assume quantum advantage or relax exactness, exceptions, ordering or effects.
+
+Whenever structural_eligibility is true, provide a conditional migration plan even
+if practical suitability is false/null or decision is REMAIN_CLASSICAL. State the
+formulation and unresolved encoding, oracle, exactness, feasibility and resource
+obligations. A conditional plan does not recommend adoption or certify correctness.
+
+Return exactly one JSON object conforming to the supplied phase1_prediction schema
+(schema_version 0.2.0); use the public_task case_id. Use true/false/null for labels,
+the existing candidate_regions field for spans and rationale for boundary/dependency
+evidence. Do not invent extra fields or private intent identifiers. Use your own
+descriptive computational intent. The shared contract menu is DRAFT: independently
+assess applicability, rather than treating inclusion as approval. No human review
+judgments or correctness scores are requested from you.
+
+PUBLIC TASK
+{
+  "case_id": "lit-007",
+  "title": "Signed pair assignment review",
+  "software_contract": "review(request) validates one together/apart preference for every unordered pair, rejecting duplicates. current and proposed describe ordered False/True groups, signed score and violated pairs in catalogue-pair order. A satisfied preference contributes +1, an unsatisfied preference -1. inspect reports current only. propose maximizes signed score, ties use smallest numeric membership mask (member i is bit i); report gain and moved members. It need not retain another equally good current. No capacity or group-size constraint, groups may be empty. No mutation; invalid inputs raise ValueError. CLI reads/prints JSON.",
+  "input_domain": "Exactly members (distinct nonempty names), preferences ({left,right,relation:together|apart} for all distinct pairs), current (bool list matching members), mode inspect|propose. Empty/singleton groups allowed. Relation symmetry is explicit; no missing-pair defaults.",
+  "execution_assumptions": [
+    "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+  ]
+}
+
+FILE program.py
+1: """Review two-group assignments under signed pair preferences."""
+2: import json
+3: import sys
+4: from common import bits, fields, names
+5: from kernel import choose, score
+6: 
+7: 
+8: def describe(members, values, pairs):
+9:     return {"groups": [[n for n, v in zip(members, values) if v == side] for side in (False, True)],
+10:             "score": score(values, pairs),
+11:             "violated": [[members[i], members[j]] for i, j, w in pairs if (values[i] != values[j]) != (w == 1)]}
+12: 
+13: 
+14: def review(request):
+15:     fields(request, ("members", "preferences", "current", "mode"))
+16:     members = names(request["members"])
+17:     current = bits(request["current"], len(members))
+18:     if not isinstance(request["preferences"], list) or request["mode"] not in ("inspect", "propose"):
+19:         raise ValueError("invalid preferences or mode")
+20:     pairs, seen = [], set()
+21:     for row in request["preferences"]:
+22:         fields(row, ("left", "right", "relation"))
+23:         if row["left"] not in members or row["right"] not in members or row["left"] == row["right"] or row["relation"] not in ("together", "apart"):
+24:             raise ValueError("invalid pair")
+25:         i, j = sorted((members.index(row["left"]), members.index(row["right"])))
+26:         if (i, j) in seen:
+27:             raise ValueError("duplicate pair")
+28:         seen.add((i, j)); pairs.append((i, j, 1 if row["relation"] == "apart" else -1))
+29:     if len(pairs) != len(members) * (len(members) - 1) // 2:
+30:         raise ValueError("one preference for every pair required")
+31:     pairs.sort()
+32:     current_report = describe(members, current, pairs)
+33:     result = {"current": current_report, "proposed": None, "gain": None, "moves": []}
+34:     if request["mode"] == "propose":
+35:         selected = choose(len(members), pairs)
+36:         result["proposed"] = describe(members, selected, pairs)
+37:         result["gain"] = result["proposed"]["score"] - current_report["score"]
+38:         result["moves"] = [name for name, a, b in zip(members, current, selected) if a != b]
+39:     return result
+40: 
+41: 
+42: if __name__ == "__main__":
+43:     print(json.dumps(review(json.load(sys.stdin)), indent=2))
+
+FILE kernel.py
+1: """Signed pair score; formula adapted from SupermarQ.
+2: 
+3: Source copyright 2026 Infleqtion, Inc., Apache-2.0; see NOTICE.txt.
+4: Enumeration/selection is newly authored; attribution retained in NOTICE.txt.
+5: """
+6: 
+7: 
+8: def score(values, pairs):
+9:     return sum(weight if values[i] != values[j] else -weight for i, j, weight in pairs)
+10: 
+11: 
+12: def choose(size, pairs):
+13:     best, best_score = None, None
+14:     for mask in range(1 << size):
+15:         values = [bool(mask & (1 << i)) for i in range(size)]
+16:         value = score(values, pairs)
+17:         if best_score is None or value > best_score:
+18:             best, best_score = values, value
+19:     return best
+
+FILE common.py
+1: """Small strict input checks shared verbatim by the draft public programs."""
+2: import math
+3: 
+4: 
+5: def fields(value, expected):
+6:     if not isinstance(value, dict) or set(value) != set(expected):
+7:         raise ValueError("unexpected fields")
+8:     return value
+9: 
+10: 
+11: def integer(value, minimum=0):
+12:     if type(value) is not int or value < minimum:
+13:         raise ValueError("invalid integer")
+14:     return value
+15: 
+16: 
+17: def finite(value):
+18:     if type(value) not in (int, float):
+19:         raise ValueError("invalid number")
+20:     try:
+21:         result = float(value)
+22:     except OverflowError as exc:
+23:         raise ValueError("number outside float range") from exc
+24:     if not math.isfinite(result):
+25:         raise ValueError("nonfinite number")
+26:     return result
+27: 
+28: 
+29: def names(value):
+30:     if (not isinstance(value, list) or any(not isinstance(v, str) or not v for v in value)
+31:             or len(set(value)) != len(value)):
+32:         raise ValueError("distinct names required")
+33:     return list(value)
+34: 
+35: 
+36: def vector(value, size):
+37:     if not isinstance(value, list) or len(value) != size:
+38:         raise ValueError("wrong vector size")
+39:     return [finite(v) for v in value]
+40: 
+41: 
+42: def bits(value, size):
+43:     if not isinstance(value, list) or len(value) != size or any(type(v) is not bool for v in value):
+44:         raise ValueError("boolean vector required")
+45:     return list(value)
+
+FILE NOTICE.txt
+Source attribution: SupermarQ, Infleqtion, Inc.; adapted signed pair score.
+https://github.com/Infleqtion/client-superstaq
+Source copyright 2026 Infleqtion, Inc. Changes: classical selection and reporting.
+New Codex-assisted classical implementation/context, not an upstream classical application or author endorsement.
+New material/package license NOASSERTION; original rights retained.
+
+Source license text:
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "{}"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright {yyyy} {name of copyright owner}
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+SHARED DRAFT CONTRACTS
+{
+  "catalog_version": "phase1-v0",
+  "status": "DRAFT",
+  "notice": "Identical menu for all annotators and models. Inclusion is not per-case applicability or an admissibility judgment.",
+  "contracts": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "status": "DRAFT",
+      "applicability_conditions": [
+        "A finite domain and pure Boolean predicate can be explicitly represented.",
+        "Preserve required classical effects and input/output semantics; demonstrate reversible predicate construction."
+      ],
+      "input_encoding": "Finite basis-state encoding of candidates; predicate data and workspace costs must be accounted for.",
+      "formulation": "Grover-style marked-state predicate search; define success/no-solution handling explicitly.",
+      "algorithm_families": [
+        "grover_style"
+      ],
+      "output_decoding": "Classically verify decoded candidates; existence decisions also require a justified no-solution policy.",
+      "semantic_relation": "Preserve the classical task contract; probabilistic error policy is unresolved, not silently accepted.",
+      "resource_assumptions": [
+        "No free data loading, oracle construction, workspace or coherent memory is assumed."
+      ],
+      "known_limitations": [
+        "Shared candidate contract for planning, not a validated implementation.",
+        "No universal suitability or advantage claim; statistical semantics require human review."
+      ]
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "status": "DRAFT",
+      "applicability_conditions": [
+        "The binary objective and any constraint penalties can be represented explicitly.",
+        "Check coefficients, signs, penalty sufficiency and decoding against the original objective."
+      ],
+      "input_encoding": "Binary decision variables; document the x=(1-Z)/2 mapping, constants and coefficients if using Ising.",
+      "formulation": "QUBO/Ising encoding; QAOA-style execution is a possible proposal, not an exactness guarantee.",
+      "algorithm_families": [
+        "qaoa"
+      ],
+      "output_decoding": "Decode feasible assignments and recompute the classical objective.",
+      "semantic_relation": "Preserve the required solution quality and software interface. An exact optimum cannot be silently weakened to an approximate one.",
+      "resource_assumptions": [
+        "State preparation, classical optimization, measurement and decoding overheads must be stated."
+      ],
+      "known_limitations": [
+        "No depth, parameter-optimization budget, approximation ratio or probability threshold is prescribed.",
+        "Shared DRAFT planning contract; conformity and scientific admissibility remain unverified."
+      ]
+    }
+  ]
+}
+
+SCHEMA case
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_url": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "uri"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "migration_family": {
+      "enum": [
+        "unstructured_search",
+        "combinatorial_optimization",
+        null
+      ]
+    },
+    "context_level": {
+      "enum": [
+        "kernel",
+        "function_with_distractors",
+        "small_program"
+      ]
+    },
+    "case_type": {
+      "enum": [
+        "positive",
+        "hard_negative",
+        "negative"
+      ]
+    },
+    "difficulty": {
+      "enum": [
+        "easy",
+        "medium",
+        "hard",
+        "unknown"
+      ]
+    },
+    "classical_program": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+      }
+    },
+    "candidate_regions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "file": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+          },
+          "function": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "start_line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "end_line": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "file",
+          "start_line",
+          "end_line"
+        ]
+      }
+    },
+    "structural_eligibility": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "practical_suitability": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "benchmark_supported": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "expected_decision": {
+      "enum": [
+        "QUANTUMIZE",
+        "REMAIN_CLASSICAL",
+        null
+      ]
+    },
+    "computational_intent": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "id",
+            "description"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "admissible_migration_contracts": {
+      "type": "array",
+      "items": {
+        "$ref": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json#/$defs/contract"
+      }
+    },
+    "reference_plan": {
+      "anyOf": [
+        {
+          "$ref": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reference_hybrid_implementation": {
+      "anyOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "classical_tests": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+      }
+    },
+    "semantic_oracle": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "deterministic_equality",
+                "property",
+                "optimization_feasibility",
+                "optimization_objective",
+                "probabilistic"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "config": {
+              "type": "object"
+            },
+            "hook_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "description",
+            "config"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "resource_expectations": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "assumptions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "limits": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "num_qubits": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "depth": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "operation_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "gate_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "two_qubit_gate_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "measurement_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "shots": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "execution_config": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "shots": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "seed": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "backend": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": []
+            }
+          },
+          "required": [
+            "assumptions",
+            "limits"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "negative_reason": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "annotation_rationale": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "annotators": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "annotation_status": {
+      "enum": [
+        "DRAFT",
+        "REVIEWED",
+        "ADJUDICATED",
+        "FROZEN"
+      ]
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "independent_annotations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "annotator_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "artifact": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+              }
+            },
+            "required": [
+              "annotator_id",
+              "artifact"
+            ]
+          },
+          "minItems": 2
+        },
+        "disagreements": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+        },
+        "adjudicator_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+        }
+      },
+      "required": [
+        "independent_annotations",
+        "disagreements"
+      ]
+    },
+    "benchmark_release": {
+      "type": "string",
+      "minLength": 1
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "title",
+    "description",
+    "source",
+    "source_url",
+    "license",
+    "domain",
+    "version",
+    "migration_family",
+    "context_level",
+    "case_type",
+    "difficulty",
+    "candidate_regions",
+    "structural_eligibility",
+    "practical_suitability",
+    "benchmark_supported",
+    "expected_decision",
+    "annotation_status"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrefactorbench.example/schemas/0.1.0/case.schema.json",
+  "$defs": {
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+        },
+        "function": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "start_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "file",
+        "start_line",
+        "end_line"
+      ]
+    }
+  },
+  "oneOf": [
+    {
+      "required": [
+        "classical_program"
+      ],
+      "not": {
+        "required": [
+          "files"
+        ]
+      }
+    },
+    {
+      "required": [
+        "files"
+      ],
+      "not": {
+        "required": [
+          "classical_program"
+        ]
+      }
+    }
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "case_type": {
+            "const": "positive"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "candidate_regions": {
+            "minItems": 1
+          },
+          "structural_eligibility": {
+            "enum": [
+              true,
+              null
+            ]
+          },
+          "practical_suitability": {
+            "enum": [
+              true,
+              null
+            ]
+          },
+          "benchmark_supported": {
+            "enum": [
+              true,
+              null
+            ]
+          },
+          "expected_decision": {
+            "enum": [
+              "QUANTUMIZE",
+              null
+            ]
+          },
+          "negative_reason": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "case_type": {
+            "enum": [
+              "negative",
+              "hard_negative"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "expected_decision": {
+            "enum": [
+              "REMAIN_CLASSICAL",
+              null
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_status": {
+            "enum": [
+              "REVIEWED",
+              "ADJUDICATED",
+              "FROZEN"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "computational_intent",
+          "admissible_migration_contracts",
+          "classical_tests",
+          "semantic_oracle",
+          "resource_expectations",
+          "annotation_rationale",
+          "annotators",
+          "review"
+        ],
+        "properties": {
+          "structural_eligibility": {
+            "type": "boolean"
+          },
+          "practical_suitability": {
+            "type": "boolean"
+          },
+          "benchmark_supported": {
+            "type": "boolean"
+          },
+          "expected_decision": {
+            "enum": [
+              "QUANTUMIZE",
+              "REMAIN_CLASSICAL"
+            ]
+          },
+          "computational_intent": {
+            "type": "object"
+          },
+          "classical_tests": {
+            "minItems": 1
+          },
+          "semantic_oracle": {
+            "type": "object"
+          },
+          "resource_expectations": {
+            "type": "object"
+          },
+          "annotation_rationale": {
+            "type": "string",
+            "minLength": 1
+          },
+          "annotators": {
+            "minItems": 2
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "case_type": {
+                  "const": "positive"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "structural_eligibility": {
+                  "const": true
+                },
+                "practical_suitability": {
+                  "const": true
+                },
+                "benchmark_supported": {
+                  "const": true
+                },
+                "admissible_migration_contracts": {
+                  "minItems": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "case_type": {
+                  "enum": [
+                    "negative",
+                    "hard_negative"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "negative_reason"
+              ],
+              "properties": {
+                "negative_reason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "anyOf": [
+                {
+                  "properties": {
+                    "structural_eligibility": {
+                      "const": false
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "practical_suitability": {
+                      "const": false
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "benchmark_supported": {
+                      "const": false
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "case_type": {
+                  "const": "hard_negative"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "candidate_regions": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_status": {
+            "enum": [
+              "ADJUDICATED",
+              "FROZEN"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "required": [
+              "adjudicator_id",
+              "resolution"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_status": {
+            "const": "FROZEN"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "benchmark_release"
+        ]
+      }
+    }
+  ]
+}
+
+SCHEMA prediction
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]+$"
+    },
+    "decision": {
+      "enum": [
+        "QUANTUMIZE",
+        "REMAIN_CLASSICAL"
+      ]
+    },
+    "candidate_regions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "https://qrefactorbench.example/schemas/0.1.0/case.schema.json#/$defs/region"
+      }
+    },
+    "computational_intent_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "migration_family": {
+      "enum": [
+        "unstructured_search",
+        "combinatorial_optimization",
+        null
+      ]
+    },
+    "plan": {
+      "anyOf": [
+        {
+          "$ref": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "generated_patch": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "generated_files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "decision",
+    "candidate_regions"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "QUANTUMIZE"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "plan"
+        ],
+        "properties": {
+          "candidate_regions": {
+            "minItems": 1
+          },
+          "plan": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  ]
+}
+
+SCHEMA migration_plan
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "computational_intent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "migration_family": {
+      "enum": [
+        "unstructured_search",
+        "combinatorial_optimization"
+      ]
+    },
+    "formulation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_encoding": {
+      "type": "string",
+      "minLength": 1
+    },
+    "quantum_algorithm_family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "output_decoding": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "expected_resource_characteristics": {
+      "type": "object"
+    },
+    "rationale": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "contract_id",
+    "computational_intent_id",
+    "migration_family",
+    "formulation",
+    "input_encoding",
+    "quantum_algorithm_family",
+    "output_decoding",
+    "assumptions",
+    "risks",
+    "expected_resource_characteristics"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json",
+  "$defs": {
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "contract_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "DRAFT",
+            "REVIEWED"
+          ]
+        },
+        "applicability_conditions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "input_encoding": {
+          "type": "string",
+          "minLength": 1
+        },
+        "formulation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "algorithm_families": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "output_decoding": {
+          "type": "string",
+          "minLength": 1
+        },
+        "semantic_relation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resource_assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "known_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "contract_id",
+        "status",
+        "applicability_conditions",
+        "input_encoding",
+        "formulation",
+        "algorithm_families",
+        "output_decoding",
+        "semantic_relation",
+        "resource_assumptions",
+        "known_limitations"
+      ]
+    }
+  }
+}
+
+SCHEMA phase1_prediction
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrefactorbench.example/schemas/0.2.0/phase1_prediction.schema.json",
+  "title": "Phase-1 T1/T2/T3 prediction; shared fields reference the unchanged v0.1 format",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.2.0"
+    },
+    "case_id": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/case_id"
+    },
+    "decision": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/decision"
+    },
+    "candidate_regions": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/candidate_regions"
+    },
+    "migration_family": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/migration_family"
+    },
+    "plan": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/plan"
+    },
+    "rationale": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/rationale"
+    },
+    "structural_eligibility": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "practical_suitability": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "benchmark_supported": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "computational_intent": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "description": "Free description; private reference intent IDs are not a grading vocabulary."
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "contract_applicability": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contract_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "applicable": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "contract_id",
+          "applicable",
+          "rationale"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "decision",
+    "candidate_regions",
+    "migration_family",
+    "plan",
+    "rationale",
+    "structural_eligibility",
+    "practical_suitability",
+    "benchmark_supported",
+    "computational_intent",
+    "assumptions",
+    "risks",
+    "contract_applicability"
+  ],
+  "allOf": [
+    {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/allOf/0"
+    }
+  ]
+}

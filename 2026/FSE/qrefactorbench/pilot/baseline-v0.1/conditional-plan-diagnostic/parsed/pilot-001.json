@@ -1,0 +1,78 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-001",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "satisfies",
+      "start_line": 1,
+      "end_line": 6
+    },
+    {
+      "file": "program.py",
+      "function": "has_assignment",
+      "start_line": 9,
+      "end_line": 13
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Decide exactly whether any of the 2^n Boolean assignments satisfies every supplied clause, returning a Boolean with no other required effects. Empty clauses must make the result false, while an empty clause list must make it true.",
+  "migration_family": "unstructured_search",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The assignment space is finite and satisfies is a pure Boolean predicate, so a Grover-style formulation is structurally available. Applicability is conditional on constructing a reversible clause predicate, accounting for the classically supplied clause data and workspace, and resolving exact no-solution certification."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": null,
+      "rationale": "SAT can in principle be reduced to minimizing an unsatisfied-clause objective, with auxiliary variables and sufficiently strong penalties for higher-order clauses. No explicit QUBO reduction, coefficient bounds, penalty proof, resource accounting, or exact-optimum certification is supplied, and ordinary QAOA sampling would not by itself preserve the exact Boolean decision contract."
+    }
+  ],
+  "assumptions": [
+    "The input-domain guarantees hold for all calls.",
+    "The clause list is ordinary classical data and must be incorporated into any reversible predicate at nonzero cost.",
+    "Positive quantum outputs can be checked by the existing classical predicate.",
+    "No coherent clause memory, fault-tolerant hardware, or practical speedup evidence is available."
+  ],
+  "risks": [
+    "Reversible evaluation of all clauses may require substantial gate depth, ancillary workspace, and uncomputation.",
+    "Loading or hardwiring a growing classical clause list may dominate the proposed search.",
+    "Grover-style measurement is probabilistic, while the software contract requires an exact Boolean answer.",
+    "Classical verification certifies satisfying assignments but does not certify that no satisfying assignment exists.",
+    "An exhaustive classical fallback for exact negative answers can eliminate the intended search benefit.",
+    "The search space remains exponential and no end-to-end resource or advantage benchmark is supplied.",
+    "Physical feasibility and useful problem scale are unresolved."
+  ],
+  "rationale": "Lines 10-13 perform exhaustive assignment search, and lines 1-6 define the predicate that a quantum search oracle would need to reproduce. This is structurally compatible with unstructured search, but the expensive loop alone does not establish practical suitability. The clauses arrive as classical data, reversible oracle construction and workspace are uncosted, and the exact false result requires a justified no-solution procedure. No benchmark or measured practical benefit is provided. The conditional plan therefore records the possible formulation without recommending deployment.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "exact_cnf_satisfiability_existence",
+    "migration_family": "unstructured_search",
+    "formulation": "Encode each n-bit assignment as a basis state and mark it exactly when every clause contains at least one literal whose sign agrees with the corresponding assignment bit. A reversible oracle must reproduce the empty-clause and empty-clause-list semantics. The procedure must distinguish at least one marked assignment from no marked assignments without silently replacing the exact decision contract by bounded-error behavior.",
+    "input_encoding": "Use n assignment qubits for the candidate mask. Incorporate the classical clause list by synthesizing clause-controlled reversible logic or by another explicitly costed coherent representation. Compute literal truth values, reversible clause OR results, and their conjunction into a phase or flag qubit, then uncompute all temporary values. Gate count, clause-data representation, ancillary qubits, and synthesis cost remain unresolved.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Measure a candidate assignment and verify it with the classical satisfies predicate before returning true. Return false only after an exact or otherwise contract-approved no-solution certification; absent such a method, an exhaustive classical fallback is required and its cost must be included. Handle n=0, empty clauses, and an empty clause list explicitly.",
+    "assumptions": [
+      "A reversible implementation of the predicate can be constructed for the supplied clauses.",
+      "The implementation can recognize or search without prior knowledge of the number of satisfying assignments.",
+      "Any probabilistic error policy requires explicit approval because it changes the exact software contract.",
+      "All data preparation, oracle calls, repetitions, verification, and fallback work are included in evaluation."
+    ],
+    "risks": [
+      "Unknown solution count complicates amplitude-amplification scheduling and no-solution handling.",
+      "Exact negative certification may require enough work to remove any prospective advantage.",
+      "Oracle synthesis can scale with the total number of literals and require many ancillary operations.",
+      "Repeated state preparation and measurements add overhead.",
+      "No practical resource estimate, hardware feasibility evidence, or end-to-end benchmark is available."
+    ],
+    "expected_resource_characteristics": {
+      "status": "unresolved unless justified"
+    }
+  }
+}

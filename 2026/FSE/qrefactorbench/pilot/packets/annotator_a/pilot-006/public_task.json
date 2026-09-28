@@ -1,0 +1,11 @@
+{
+  "case_id": "pilot-006",
+  "execution_assumptions": [
+    "The specified energy, including signs and repeated terms, is the classical contract.",
+    "Inputs can grow; test inputs are finite correctness fixtures, not performance measurements.",
+    "No approximation threshold, QAOA depth or classical optimizer budget is supplied."
+  ],
+  "input_domain": "biases are integers; couplings (i,j,w) refer to valid indices and count once per tuple; self couplings and repeated terms are allowed.",
+  "software_contract": "Return the exact minimum of a specified binary quadratic energy.",
+  "title": "Binary quadratic energy"
+}

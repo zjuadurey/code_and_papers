@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-003",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "agenda.py",
+      "function": "complete",
+      "start_line": 28,
+      "end_line": 57
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_lexicographic_conflict_free_slot_assignment",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditionally encode the fallback completion problem with binary variables x[v,s] indicating that session vertex v receives slot index s. Add exact-one-slot constraints for each session and exclusion constraints x[u,s]x[v,s] for every participant-conflict edge and slot. Among feasible assignments, minimize the slot-index vector lexicographically, potentially using positional weights whose dominance is proven, or a sequence of exact prefix-feasibility solves. Treat an empty session set as the classical empty assignment and a nonempty set with zero slots as infeasible.",
+    "input_encoding": "Encode the ordered vertices and adjacency lists supplied to complete, together with slot_count. A direct QUBO needs n times slot_count binary assignment variables, one-hot penalties, conflict penalties, and an exact lexicographic objective. If mapped to Ising, document x=(1-Z)/2, all constants and coefficients. Session indices and slot indices must retain their original orders. Current assignments are not encoded as fixed decisions because failed previews and partial current arrangements impose no completion constraints.",
+    "quantum_algorithm_family": "QUBO/Ising with a possible QAOA-style candidate generator, subject to exact classical verification and an exact fallback",
+    "output_decoding": "Decode one slot index per session in session order. Classically verify index bounds, one-hot assignment, every conflict edge, and lexicographic minimality before returning. Convert indices to declared slot names only in program.py. If no verified exact optimum is obtained, use the classical completion procedure; only proven infeasibility may produce the existing ValueError and unavailable result.",
+    "assumptions": [
+      "relations has already produced the participant-conflict graph with vertex order equal to session input order.",
+      "The candidate is activated only in complete mode after the current arrangement is found infeasible and the prescribed greedy preview raises ValueError.",
+      "Penalty magnitudes and any lexicographic weights can be represented with sufficient precision and are proven to make every infeasible state worse than every feasible state.",
+      "A classical verifier or exact fallback remains available because the software contract does not permit probabilistic, approximate, or non-minimal output."
+    ],
+    "risks": [
+      "Straight positional weights for lexicographic minimization grow exponentially with the number of sessions and can create impractical coefficient ranges.",
+      "QAOA-style sampling supplies no stated guarantee of finding a feasible assignment, the lexicographically smallest assignment, or proving that none exists.",
+      "Embedding, state preparation, parameter optimization, repeated measurements, and decoding may dominate the small Python search.",
+      "Incorrect penalty strengths, coefficient precision, or decoding could silently return a conflicting or non-minimal arrangement.",
+      "A failure to sample a solution cannot be interpreted as the classical no-arrangement exception."
+    ],
+    "expected_resource_characteristics": {
+      "logical_variables": "Approximately session_count times slot_count for a direct one-hot encoding, plus any ancillas required by the selected constraint implementation.",
+      "couplings": "One-hot couplings within each session and same-slot couplings for every conflict edge.",
+      "coefficient_range": "Potentially exponential under a single positional lexicographic objective; an iterative prefix-feasibility formulation trades that range for multiple solves.",
+      "execution_overheads": "Unknown state-preparation, embedding, circuit-depth, classical-optimization, measurement, verification, and fallback costs; no bounds are supplied."
+    },
+    "rationale": "This is a conditional formulation only. The classical routine is an exact ordered graph-coloring search, but preserving its lexicographically smallest result and definitive no-solution behavior requires exact optimization or an exact classical fallback. The supplied material does not establish that a QUBO/QAOA realization can meet those obligations economically or reliably."
+  },
+  "rationale": "agenda.py lines 28-57 are the defensible candidate boundary because complete owns the entire fallback search: its inputs are the participant-derived neighbors graph and slot_count; its mutable assigned vector is shared by available and recursive place; vertices are processed in session order and slots in increasing declared order, so the first successful leaf is the required lexicographically smallest slot-index vector. Lines 55-57 also define the exact no-arrangement exception. The region is activated from program.py lines 28-29 only when validation has succeeded, mode is complete, the current description is infeasible, and preview has raised ValueError. Quantum analysis must not alter validation, inspect behavior, retention of a feasible current arrangement, or the greedy preview and its blocked report. It must also preserve that current and failed-preview assignments impose no fixed completion choices. After successful completion, program.py lines 34-37 must still translate indices through the declared slot order, call describe, and produce moves in session input order; catalog.py must continue deriving conflicts from shared participants and formatting descriptions unchanged. Structurally, the region is a finite constrained graph-coloring optimization and therefore admits a conditional QUBO/Ising formulation. Practically, exact lexicographic optimality, conclusive infeasibility, potentially extreme objective coefficients, encoding overhead, and the lack of any input-size or hardware assumptions make quantum migration unsuitable on the supplied evidence. Benchmark support is unknown because no comparative measurements, workloads, resource estimates, or quantum experiments are supplied.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Find an exact conflict-free assignment of ordered sessions to ordered slots, returning the lexicographically smallest slot-index vector or conclusively reporting that no assignment exists.",
+  "assumptions": [
+    "All request validation and conflict-graph construction remain classical and unchanged.",
+    "A conflict edge means the two sessions share at least one case-sensitive participant name.",
+    "All slots are available to every session, and session and slot orders are semantically significant.",
+    "Empty sessions and zero-slot edge cases retain the specified classical behavior.",
+    "No workload frequency, useful problem-size distribution, latency target, quantum backend, or resource budget is known."
+  ],
+  "risks": [
+    "Replacing the whole review flow would disturb required validation, preview, reporting, ordering, or exception behavior outside the candidate kernel.",
+    "Returning any feasible coloring instead of the lexicographically smallest one violates the contract.",
+    "Treating unsuccessful probabilistic sampling as proof of infeasibility would incorrectly produce unavailable.",
+    "QUBO penalties or finite-precision coefficients may fail to enforce feasibility or exact lexicographic priority.",
+    "Quantum data-loading and execution overhead may exceed the cost of the existing depth-first search."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "A finite assignment domain and conflict predicate exist, but the draft contract's marked-state search does not by itself preserve the required lexicographically smallest assignment or provide an exact no-solution conclusion. Adding ordered minimum-finding, repeated threshold searches, and an exact error policy would exceed the stated predicate-search contract."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "One-hot assignment variables, participant-conflict penalties, and a lexicographic objective can be written explicitly, so the contract is structurally applicable. Applicability remains conditional on proven penalty sufficiency, coefficient precision, exact decoding and verification, lexicographic optimality, and conclusive infeasibility handling; it does not establish practical suitability or quantum advantage."
+    }
+  ]
+}

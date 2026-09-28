@@ -1,0 +1,122 @@
+{
+  "version": "conditional-plan-v1",
+  "case_ids": [
+    "pilot-001",
+    "pilot-002",
+    "pilot-003",
+    "pilot-004",
+    "pilot-005",
+    "pilot-006",
+    "pilot-007",
+    "pilot-008",
+    "pilot-009",
+    "pilot-010"
+  ],
+  "files": [
+    {
+      "destination": "inputs/pilot-001/prompt.md",
+      "source_packet_path": "prompts/pilot-001.md",
+      "sha256": "054563843e75844365e7d994ef286057f910f2563899d05b425b3bb2645c7756",
+      "original_prompt_sha256": "c8b44c86eb90bed775022355b159ec0b5a245fd22ce7c631d35d64e620c861d6",
+      "frozen_case_input_sha256": "c8b44c86eb90bed775022355b159ec0b5a245fd22ce7c631d35d64e620c861d6",
+      "transformation": "original bytes + two LF bytes + approved instruction bytes"
+    },
+    {
+      "destination": "inputs/pilot-002/prompt.md",
+      "source_packet_path": "prompts/pilot-002.md",
+      "sha256": "5f4cda4eb3fc2577e746f85d03fd9907f2fe0fd91f6fea30b12c44ad9cbc4903",
+      "original_prompt_sha256": "9498274754eb97d7e086243a3209623cf9e3898bc47a6c953ef7b558d62a47ad",
+      "frozen_case_input_sha256": "9498274754eb97d7e086243a3209623cf9e3898bc47a6c953ef7b558d62a47ad",
+      "transformation": "original bytes + two LF bytes + approved instruction bytes"
+    },
+    {
+      "destination": "inputs/pilot-003/prompt.md",
+      "source_packet_path": "prompts/pilot-003.md",
+      "sha256": "45547e32ecfba1249b53bb3e1d29598663dce1282b4ff5652f6c03eeb4d7badb",
+      "original_prompt_sha256": "d463fd05052be4afc558254b9e6dc2e295cd0add3b6b1548b8ad7c66971787d6",
+      "frozen_case_input_sha256": "d463fd05052be4afc558254b9e6dc2e295cd0add3b6b1548b8ad7c66971787d6",
+      "transformation": "original bytes + two LF bytes + approved instruction bytes"
+    },
+    {
+      "destination": "inputs/pilot-004/prompt.md",
+      "source_packet_path": "prompts/pilot-004.md",
+      "sha256": "d64753ad103b790e5c828fe98ca678cdb2d20e40006332ebd7dd1df6afa7c316",
+      "original_prompt_sha256": "3d8532585f688cb94dc5ca9bc938c7243ecbab7be92b11f6aba8a906e1b2cad7",
+      "frozen_case_input_sha256": "3d8532585f688cb94dc5ca9bc938c7243ecbab7be92b11f6aba8a906e1b2cad7",
+      "transformation": "original bytes + two LF bytes + approved instruction bytes"
+    },
+    {
+      "destination": "inputs/pilot-005/prompt.md",
+      "source_packet_path": "prompts/pilot-005.md",
+      "sha256": "9a780a625b1f1e4240a0c39fd4124febff48eaf9c7647c9ccde2bd011389d546",
+      "original_prompt_sha256": "f12792b29fae04abbe4a8f27b7a04d74f0f7bd0b7e8c48272912c71ae1f030da",
+      "frozen_case_input_sha256": "f12792b29fae04abbe4a8f27b7a04d74f0f7bd0b7e8c48272912c71ae1f030da",
+      "transformation": "original bytes + two LF bytes + approved instruction bytes"
+    },
+    {
+      "destination": "inputs/pilot-006/prompt.md",
+      "source_packet_path": "prompts/pilot-006.md",
+      "sha256": "28389cfda8765eee77007a92ec3e50024252c4b81e9b27d662295df697c97572",
+      "original_prompt_sha256": "33403a2e5a2461b295460b24b09fcdcecc37cac05e942161c5c97183956d3fed",
+      "frozen_case_input_sha256": "33403a2e5a2461b295460b24b09fcdcecc37cac05e942161c5c97183956d3fed",
+      "transformation": "original bytes + two LF bytes + approved instruction bytes"
+    },
+    {
+      "destination": "inputs/pilot-007/prompt.md",
+      "source_packet_path": "prompts/pilot-007.md",
+      "sha256": "2871f2a6ae17ef2c9040e9b8f36f269736025f13158fc2338f4b93d979fc8bea",
+      "original_prompt_sha256": "e8a39d8c98cc7425eda6a89aebb432ef0b6666c08123b49528c2617cc41e9e88",
+      "frozen_case_input_sha256": "e8a39d8c98cc7425eda6a89aebb432ef0b6666c08123b49528c2617cc41e9e88",
+      "transformation": "original bytes + two LF bytes + approved instruction bytes"
+    },
+    {
+      "destination": "inputs/pilot-008/prompt.md",
+      "source_packet_path": "prompts/pilot-008.md",
+      "sha256": "3c07d179451329f7d27db8ecd002a17f99f6edb5c446bdbca3bdb15931790c26",
+      "original_prompt_sha256": "ae861bf2c912b6ba95b6fcb7a6666bfbedfd6f6d8dcf1fbbb337d8c2c63f07a2",
+      "frozen_case_input_sha256": "ae861bf2c912b6ba95b6fcb7a6666bfbedfd6f6d8dcf1fbbb337d8c2c63f07a2",
+      "transformation": "original bytes + two LF bytes + approved instruction bytes"
+    },
+    {
+      "destination": "inputs/pilot-009/prompt.md",
+      "source_packet_path": "prompts/pilot-009.md",
+      "sha256": "bb484a9879caf90f928868d0ebbada5532b855e11cbf4562a0b3cf84710800b4",
+      "original_prompt_sha256": "f9bb3230cc37fbb856c833a2251e61dcba18d32ff6a7c4710305bdb75da22a6d",
+      "frozen_case_input_sha256": "f9bb3230cc37fbb856c833a2251e61dcba18d32ff6a7c4710305bdb75da22a6d",
+      "transformation": "original bytes + two LF bytes + approved instruction bytes"
+    },
+    {
+      "destination": "inputs/pilot-010/prompt.md",
+      "source_packet_path": "prompts/pilot-010.md",
+      "sha256": "9f2d4babbfb7cb5bf7af1049bad9c6253320f2015344f4e77b50e5611153046a",
+      "original_prompt_sha256": "50d47f2d71bd2d107f0aa0a1412a0d1649424a25dd0338985968623ccefb82dd",
+      "frozen_case_input_sha256": "50d47f2d71bd2d107f0aa0a1412a0d1649424a25dd0338985968623ccefb82dd",
+      "transformation": "original bytes + two LF bytes + approved instruction bytes"
+    },
+    {
+      "destination": "schema/case.schema.json",
+      "source_packet_path": "schemas/case.schema.json",
+      "sha256": "c5a78bf44c0e86e48c64c482b5bdb99d4d9b03860cbe970b1cb8089060cde127"
+    },
+    {
+      "destination": "schema/migration_plan.schema.json",
+      "source_packet_path": "schemas/migration_plan.schema.json",
+      "sha256": "2b3a7fc52558cc8b6ba3d32ee6e9e23d8f51f0bb87b5b97eeb0c3d96e3aa3be2"
+    },
+    {
+      "destination": "schema/phase1_prediction.schema.json",
+      "source_packet_path": "schemas/phase1_prediction.schema.json",
+      "sha256": "83930dc89b7cd3b7a9c62e34abc3797315a1f76ab1fbc5951bb17ad4018cb28d"
+    },
+    {
+      "destination": "schema/prediction.schema.json",
+      "source_packet_path": "schemas/prediction.schema.json",
+      "sha256": "3332f30e433b294ebadd1969a6b7599ec7f681a93e1a00e48e1c3412a4a39a78"
+    }
+  ],
+  "instruction_sha256": "8fa0dda0259770cda9f5914666eb6b781948be3ffd8718a1916edc36c633b564",
+  "model_visible_files_per_case": [
+    "/work/prompt.md"
+  ],
+  "audit": "Only frozen public rendered prompts, the approved appended instruction and generic schemas copied. No responses, reference annotations or retrospective diagnosis copied."
+}

@@ -1,0 +1,11 @@
+{
+  "case_id": "pilot-008",
+  "execution_assumptions": [
+    "The caller consumes the complete nested classical output, not a summary, sample or optimum.",
+    "All copies must be distinct mutable lists, in input order.",
+    "The workload is large when rows/copies grow; no search predicate or optimization objective is specified."
+  ],
+  "input_domain": "rows is a list of integer lists; copies >= 0; rows with zero total absolute magnitude normalize to zeros.",
+  "software_contract": "Normalize every row and materialize every element of every requested output copy.",
+  "title": "Full sample materialization"
+}

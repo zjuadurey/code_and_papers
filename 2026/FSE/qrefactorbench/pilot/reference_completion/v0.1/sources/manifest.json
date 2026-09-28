@@ -1,0 +1,178 @@
+[
+  {
+    "project": "quanbench",
+    "revision": "e6cbd58628366c7538cc5a27e9dbf9ebdfc38e1f",
+    "url": "https://raw.githubusercontent.com/GuoXiaoYu1125/Quanbench/e6cbd58628366c7538cc5a27e9dbf9ebdfc38e1f/QuanBench44.jsonl",
+    "file": "quanbench.jsonl",
+    "bytes": 99127,
+    "sha256": "1feb9d632c8a5cbb0a0f7802f544163a897800cd40af7c1d4ef8fe49ef1fe9cd"
+  },
+  {
+    "project": "quanbench",
+    "revision": "e6cbd58628366c7538cc5a27e9dbf9ebdfc38e1f",
+    "url": "https://raw.githubusercontent.com/GuoXiaoYu1125/Quanbench/e6cbd58628366c7538cc5a27e9dbf9ebdfc38e1f/Quanbench_eval/evaluation.py",
+    "file": "quanbench_evaluation.py",
+    "bytes": 3343,
+    "sha256": "7c2de0a33cf9e8c8d5a07cdbf10eac27b3c1f54cbdc030dc169dbe7bb9334b3b"
+  },
+  {
+    "project": "quanbench",
+    "revision": "e6cbd58628366c7538cc5a27e9dbf9ebdfc38e1f",
+    "url": "https://raw.githubusercontent.com/GuoXiaoYu1125/Quanbench/e6cbd58628366c7538cc5a27e9dbf9ebdfc38e1f/LICENSE",
+    "file": "quanbench.LICENSE",
+    "bytes": 1079,
+    "sha256": "9db52f9aa63ca4ea57249d4fdc6b5837e46ab3ce16df865f4e822fad98740d1b"
+  },
+  {
+    "project": "quanplus",
+    "revision": "2dfd1a863b13d3762a734ed96742adb39e65e34b",
+    "url": "https://raw.githubusercontent.com/JawadKotaichh/quanbench-plus/2dfd1a863b13d3762a734ed96742adb39e65e34b/prompts/qiskit.jsonl",
+    "file": "quanplus_qiskit.jsonl",
+    "bytes": 47354,
+    "sha256": "ba928cd3eb81010a9cbb5852908b5c6de0023f116e039245f4e6f603f77d6542"
+  },
+  {
+    "project": "quanplus",
+    "revision": "2dfd1a863b13d3762a734ed96742adb39e65e34b",
+    "url": "https://raw.githubusercontent.com/JawadKotaichh/quanbench-plus/2dfd1a863b13d3762a734ed96742adb39e65e34b/utils/get_kl_div.py",
+    "file": "quanplus_kl.py",
+    "bytes": 285,
+    "sha256": "f7e532bf2108043f47c1ab4c7affda90afbd048d9fb3b78dbbdc6ae548fa3485"
+  },
+  {
+    "project": "quanplus",
+    "revision": "2dfd1a863b13d3762a734ed96742adb39e65e34b",
+    "url": "https://raw.githubusercontent.com/JawadKotaichh/quanbench-plus/2dfd1a863b13d3762a734ed96742adb39e65e34b/LICENSE",
+    "file": "quanplus.LICENSE",
+    "bytes": 1070,
+    "sha256": "cbe1765423f58f8b76abce98ea1c72791d5f99aafc6d9b861def6b9de9797bc0"
+  },
+  {
+    "project": "qhe",
+    "revision": "c98ba538239fcfd554aa89627ee8026f4b5de450",
+    "url": "https://raw.githubusercontent.com/qiskit-community/qiskit-human-eval/c98ba538239fcfd554aa89627ee8026f4b5de450/dataset/dataset_qiskit_test_human_eval.json",
+    "file": "qhe.json",
+    "bytes": 206424,
+    "sha256": "c9c87bd30bb600821f1385c9f8fc31205302823385f84966d32afd5d82c6e0f0"
+  },
+  {
+    "project": "qhe",
+    "revision": "c98ba538239fcfd554aa89627ee8026f4b5de450",
+    "url": "https://raw.githubusercontent.com/qiskit-community/qiskit-human-eval/c98ba538239fcfd554aa89627ee8026f4b5de450/LICENSE",
+    "file": "qhe.LICENSE",
+    "bytes": 11357,
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  {
+    "project": "supermarq",
+    "revision": "4207004d95490315e519c9d5b07f523367f4b21e",
+    "url": "https://raw.githubusercontent.com/Infleqtion/client-superstaq/4207004d95490315e519c9d5b07f523367f4b21e/supermarq-benchmarks/supermarq/benchmarks/qaoa_vanilla_proxy.py",
+    "file": "supermarq.py",
+    "bytes": 7136,
+    "sha256": "4d165d4cc2bb217a2653008342e2d4be461876ed29fba2c38bef07f5c576ac5c"
+  },
+  {
+    "project": "supermarq",
+    "revision": "4207004d95490315e519c9d5b07f523367f4b21e",
+    "url": "https://raw.githubusercontent.com/Infleqtion/client-superstaq/4207004d95490315e519c9d5b07f523367f4b21e/LICENSE",
+    "file": "supermarq.LICENSE",
+    "bytes": 11357,
+    "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+  },
+  {
+    "project": "mqt",
+    "revision": "c05b1966274d8a8488bf777d3cc78a39ea9d7857",
+    "url": "https://raw.githubusercontent.com/munich-quantum-toolkit/bench/c05b1966274d8a8488bf777d3cc78a39ea9d7857/src/mqt/bench/benchmarks/qaoa.py",
+    "file": "mqt_qaoa.py",
+    "bytes": 2056,
+    "sha256": "2a388ae495e5685a3b2580b10fe1b88a9a774c4b46fd20d0d72a667b26b2070a"
+  },
+  {
+    "project": "mqt",
+    "revision": "c05b1966274d8a8488bf777d3cc78a39ea9d7857",
+    "url": "https://raw.githubusercontent.com/munich-quantum-toolkit/bench/c05b1966274d8a8488bf777d3cc78a39ea9d7857/LICENSE",
+    "file": "mqt.LICENSE",
+    "bytes": 1159,
+    "sha256": "42c32f77c8dcde761998d41ff3c05384dc468dee388866c5876a94966a5f9236"
+  },
+  {
+    "project": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/scripts/run_pqid_bench_executable_validity_check.py",
+    "file": "pqid_worker.py",
+    "bytes": 26634,
+    "sha256": "d71f8f68032c0c43e8a17d02fb62e5b65e73e58411d293d6e56db35260753abd"
+  },
+  {
+    "project": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/LICENSE.md",
+    "file": "pqid.LICENSE.md",
+    "bytes": 1198,
+    "sha256": "8d2df3f87410782d800de5ae20aea026d5026d86641675494d4b0f8375bb144e"
+  },
+  {
+    "project": "hpcg",
+    "revision": "114602d458d1034faa52b71e4c15aba9b3a17698",
+    "url": "https://raw.githubusercontent.com/hpcg-benchmark/hpcg/114602d458d1034faa52b71e4c15aba9b3a17698/src/CG_ref.cpp",
+    "file": "hpcg_CG.cpp",
+    "bytes": 5116,
+    "sha256": "182dffd13bbce6c1170514f4b80fe7ebee3c6457709e9c63f67982d97fa2285e"
+  },
+  {
+    "project": "hpcg",
+    "revision": "114602d458d1034faa52b71e4c15aba9b3a17698",
+    "url": "https://raw.githubusercontent.com/hpcg-benchmark/hpcg/114602d458d1034faa52b71e4c15aba9b3a17698/src/ComputeSPMV_ref.cpp",
+    "file": "hpcg_SPMV.cpp",
+    "bytes": 1747,
+    "sha256": "6e94f28af5217321ea58e192f248cc5fec178b067f98d285ddc5130528a002a3"
+  },
+  {
+    "project": "hpcg",
+    "revision": "114602d458d1034faa52b71e4c15aba9b3a17698",
+    "url": "https://raw.githubusercontent.com/hpcg-benchmark/hpcg/114602d458d1034faa52b71e4c15aba9b3a17698/src/TestSymmetry.cpp",
+    "file": "hpcg_symmetry.cpp",
+    "bytes": 5150,
+    "sha256": "bb6b1e5da2efb7dde541be7554cbe35534352f0cfa3d44742b087591ab139a2a"
+  },
+  {
+    "project": "hpcg",
+    "revision": "114602d458d1034faa52b71e4c15aba9b3a17698",
+    "url": "https://raw.githubusercontent.com/hpcg-benchmark/hpcg/114602d458d1034faa52b71e4c15aba9b3a17698/LICENSE",
+    "file": "hpcg.LICENSE",
+    "bytes": 1482,
+    "sha256": "556711b6466cf016d6e09702f7addd17a52c034005896f0fab20ca691d13aa75"
+  },
+  {
+    "url": "https://www.netlib.org/benchmark/hpl/algorithm.html",
+    "file": "hpl_algorithm.html",
+    "revision": null,
+    "bytes": 14327,
+    "sha256": "5f3ee4f6c5feac4d3990b186fe8175d5522b2a7dc6039fcd832ffbd53b17cb9e",
+    "note": "Fetched page snapshot; URL not an immutable git object."
+  },
+  {
+    "url": "https://arxiv.org/html/2604.08570v2",
+    "file": "quanplus_paper.html",
+    "revision": null,
+    "bytes": 192802,
+    "sha256": "3af60dd050f4dfe7f8e39672fd99f71098e44b0418263beb27eb65cb7db92442",
+    "note": "Fetched page snapshot; URL not an immutable git object."
+  },
+  {
+    "project": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/LICENSES/MIT.txt",
+    "file": "pqid.MIT.txt",
+    "bytes": 1078,
+    "sha256": "14cb714257c45a5b3bf70788d4dbaff9d31305fd892610e5fe243c0cb17bc64e"
+  },
+  {
+    "project": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/LICENSES/CC-BY-4.0.txt",
+    "file": "pqid.CC-BY-4.0.txt",
+    "bytes": 17099,
+    "sha256": "5e9ae21254a0a6e9b431bd796c92454639bb5bd7c135f456dc0e38bee2d37ada"
+  }
+]

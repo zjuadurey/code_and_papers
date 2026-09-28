@@ -1,0 +1,21 @@
+Whenever structural quantumizability = YES, always provide a
+conditional migration plan describing HOW the computation could be
+quantumized, even if practical suitability = NO or UNCERTAIN.
+
+The conditional migration plan describes a technically plausible
+quantum reformulation under stated assumptions. It does NOT imply a
+recommendation to deploy the quantum version.
+
+Therefore:
+
+    Structural = YES
+    Practical = NO / UNCERTAIN
+    Decision = REMAIN_CLASSICAL
+
+is still compatible with:
+
+    plan != null
+
+Any unresolved semantic, exactness, resource, encoding, oracle,
+certification, or feasibility requirement must remain explicitly
+identified inside the plan rather than being silently assumed away.

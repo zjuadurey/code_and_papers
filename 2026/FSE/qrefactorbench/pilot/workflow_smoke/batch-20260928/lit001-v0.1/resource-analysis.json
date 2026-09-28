@@ -1,0 +1,156 @@
+{
+  "application_sha256": "42a814393ea70ebbeb6d962878764626227ee7d85c9f854ed35c375f2482632a",
+  "assumptions": {
+    "controller_context": {
+      "algorithm_failure_bound": 0,
+      "application_sha256": "42a814393ea70ebbeb6d962878764626227ee7d85c9f854ed35c375f2482632a",
+      "classical_seconds": {
+        "lower": 2.6841996994335203e-05,
+        "source": "7x1000 local perf_counter calls; descriptive range, not confidence bound",
+        "upper": 2.8659087998676113e-05
+      },
+      "comparison_id": "lit001-four-cycle-exact-task",
+      "evidence_source": "simulation.json and host-timings.json; finite engineering checks only",
+      "max_failure_probability": 0,
+      "overheads_seconds": {
+        "classical_control": null,
+        "communication": null,
+        "compilation_amortized": null,
+        "preparation": {
+          "lower": 1.8263324003783053e-05,
+          "source": "7x1000 local perf_counter calls; descriptive range, not confidence bound",
+          "upper": 2.1307176997652277e-05
+        },
+        "readout_decode": null,
+        "validation_fallback": null
+      },
+      "quantum_executions": 32,
+      "same_task": true
+    },
+    "request": {
+      "application": {
+        "coverage": "one QAOA p=1 shot including uniform initialization, edge cost phases, mixers, measurement",
+        "format": "openqasm3",
+        "source": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nqubit[4] q;\nbit[4] result;\nh q[0];\nh q[1];\nh q[2];\nh q[3];\ncx q[0], q[1];\nrz(-0.78539816339744828) q[1];\ncx q[0], q[1];\ncx q[0], q[3];\nrz(-0.78539816339744828) q[3];\ncx q[0], q[3];\ncx q[1], q[2];\nrz(-0.78539816339744828) q[2];\ncx q[1], q[2];\ncx q[2], q[3];\nrz(-0.78539816339744828) q[3];\ncx q[2], q[3];\nrx(0.78539816339744828) q[0];\nrx(0.78539816339744828) q[1];\nrx(0.78539816339744828) q[2];\nrx(0.78539816339744828) q[3];\nresult[0] = measure q[0];\nresult[1] = measure q[1];\nresult[2] = measure q[2];\nresult[3] = measure q[3];\n"
+      },
+      "max_error": 0.01,
+      "plan_id": "lit001-qaoa-p1-cycle4",
+      "profiles": [
+        {
+          "error_rate": 0.0001,
+          "gate_time_ns": 100,
+          "id": "hypothetical-100ns",
+          "measurement_time_ns": 500,
+          "source": "hypothetical gate-based configuration; not calibrated physical device"
+        },
+        {
+          "error_rate": 0.0001,
+          "gate_time_ns": 1000,
+          "id": "hypothetical-1000ns",
+          "measurement_time_ns": 5000,
+          "source": "hypothetical gate-based configuration; not calibrated physical device"
+        }
+      ],
+      "version": "resource-workflow-v0.1"
+    }
+  },
+  "comparison_id": "lit001-four-cycle-exact-task",
+  "conditional_benefit_points": [],
+  "context_sha256": "943f4da7d9193373158e5c2a39b85e625817c8a496bb5ad9a3cc681321053347",
+  "estimation_runs": [
+    {
+      "backend": "qdk.qre",
+      "backend_version": "1.32.3",
+      "model": "GateBased/SurfaceCode/RoundBasedFactory; PSSPC/LatticeSurgery",
+      "profile_id": "hypothetical-100ns",
+      "rows": [
+        {
+          "error_bound": 0.00622000028,
+          "physical_qubits": 279,
+          "runtime_ns": 36000.0
+        }
+      ],
+      "stats": {
+        "num_isas": 1284,
+        "num_traces": 32,
+        "pareto_results": 1,
+        "successful_estimates": 8320,
+        "total_jobs": 41088
+      },
+      "status": "ok",
+      "use_graph": false
+    },
+    {
+      "backend": "qdk.qre",
+      "backend_version": "1.32.3",
+      "model": "GateBased/SurfaceCode/RoundBasedFactory; PSSPC/LatticeSurgery",
+      "profile_id": "hypothetical-1000ns",
+      "rows": [
+        {
+          "error_bound": 0.00622000028,
+          "physical_qubits": 279,
+          "runtime_ns": 360000.0
+        }
+      ],
+      "stats": {
+        "num_isas": 1284,
+        "num_traces": 32,
+        "pareto_results": 1,
+        "successful_estimates": 8320,
+        "total_jobs": 41088
+      },
+      "status": "ok",
+      "use_graph": false
+    }
+  ],
+  "limitations": [
+    "Predictions under supplied models, not hardware observations or benchmark scores.",
+    "Controller evidence is consumed, not independently verified by this tool.",
+    "Serial schedule; all costs aggregated per request; no implicit overlap/amortization.",
+    "Failure bound uses a union bound; exceeding it does not prove actual failure rate.",
+    "Sampled profiles and backend frontier do not establish a globally minimal threshold."
+  ],
+  "plan_id": "lit001-qaoa-p1-cycle4",
+  "points": [
+    {
+      "decision": "quality_not_established",
+      "error_bound": 0.00622000028,
+      "failure_upper_bound": 0.19904000896,
+      "hybrid_seconds": null,
+      "missing_cost_terms": [
+        "classical_control",
+        "communication",
+        "readout_decode",
+        "validation_fallback",
+        "compilation_amortized"
+      ],
+      "physical_qubits": 279,
+      "profile_id": "hypothetical-100ns",
+      "quality_bound_satisfied": false,
+      "quantum_seconds_total": 0.001152,
+      "runtime_ns": 36000.0,
+      "timing_relation": "unknown"
+    },
+    {
+      "decision": "quality_not_established",
+      "error_bound": 0.00622000028,
+      "failure_upper_bound": 0.19904000896,
+      "hybrid_seconds": null,
+      "missing_cost_terms": [
+        "classical_control",
+        "communication",
+        "readout_decode",
+        "validation_fallback",
+        "compilation_amortized"
+      ],
+      "physical_qubits": 279,
+      "profile_id": "hypothetical-1000ns",
+      "quality_bound_satisfied": false,
+      "quantum_seconds_total": 0.01152,
+      "runtime_ns": 360000.0,
+      "timing_relation": "unknown"
+    }
+  ],
+  "request_sha256": "991bd4d1ae4f3e99202314e2d32202433b54354b802140891bca200a9ce32e63",
+  "version": "resource-workflow-v0.1"
+}

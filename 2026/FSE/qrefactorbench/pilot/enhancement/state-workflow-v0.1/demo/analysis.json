@@ -1,0 +1,144 @@
+{
+  "kind": "lexical_dependency_inventory",
+  "function": "solve",
+  "candidate_line": 13,
+  "source_sha256": "7bd7ab7a59d78bf064f14a3e97f60f80d91b9e6d42977952c1e5c21d795dd18f",
+  "mentioned_names": [
+    "ValueError",
+    "abs",
+    "b",
+    "col",
+    "factor",
+    "i",
+    "j",
+    "len",
+    "list",
+    "matrix",
+    "max",
+    "n",
+    "pivot",
+    "range",
+    "rhs",
+    "row",
+    "rows",
+    "sum",
+    "x",
+    "zip"
+  ],
+  "statements": [
+    {
+      "line": 10,
+      "end_line": 10,
+      "syntax": "Assign",
+      "writes_or_mutates": [
+        "n"
+      ],
+      "source_line": "n = len(rhs)"
+    },
+    {
+      "line": 11,
+      "end_line": 11,
+      "syntax": "Assign",
+      "writes_or_mutates": [
+        "rows"
+      ],
+      "source_line": "rows = [list(row) + [b] for row, b in zip(matrix, rhs)]"
+    },
+    {
+      "line": 12,
+      "end_line": 20,
+      "syntax": "For",
+      "writes_or_mutates": [
+        "col"
+      ],
+      "source_line": "for col in range(n):"
+    },
+    {
+      "line": 13,
+      "end_line": 13,
+      "syntax": "Assign",
+      "writes_or_mutates": [
+        "pivot"
+      ],
+      "source_line": "pivot = max(range(col, n), key=lambda i: abs(rows[i][col]))"
+    },
+    {
+      "line": 16,
+      "end_line": 16,
+      "syntax": "Assign",
+      "writes_or_mutates": [
+        "rows"
+      ],
+      "source_line": "rows[col], rows[pivot] = rows[pivot], rows[col]"
+    },
+    {
+      "line": 17,
+      "end_line": 20,
+      "syntax": "For",
+      "writes_or_mutates": [
+        "i"
+      ],
+      "source_line": "for i in range(col + 1, n):"
+    },
+    {
+      "line": 18,
+      "end_line": 18,
+      "syntax": "Assign",
+      "writes_or_mutates": [
+        "factor"
+      ],
+      "source_line": "factor = rows[i][col] / rows[col][col]"
+    },
+    {
+      "line": 19,
+      "end_line": 20,
+      "syntax": "For",
+      "writes_or_mutates": [
+        "j"
+      ],
+      "source_line": "for j in range(col, n + 1):"
+    },
+    {
+      "line": 20,
+      "end_line": 20,
+      "syntax": "AugAssign",
+      "writes_or_mutates": [
+        "rows"
+      ],
+      "source_line": "rows[i][j] -= factor * rows[col][j]"
+    },
+    {
+      "line": 21,
+      "end_line": 21,
+      "syntax": "Assign",
+      "writes_or_mutates": [
+        "x"
+      ],
+      "source_line": "x = [0.0] * n"
+    },
+    {
+      "line": 22,
+      "end_line": 23,
+      "syntax": "For",
+      "writes_or_mutates": [
+        "i"
+      ],
+      "source_line": "for i in range(n - 1, -1, -1):"
+    },
+    {
+      "line": 23,
+      "end_line": 23,
+      "syntax": "Assign",
+      "writes_or_mutates": [
+        "x"
+      ],
+      "source_line": "x[i] = (rows[i][n] - sum(rows[i][j] * x[j] for j in range(i + 1, n))) / rows[i][i]"
+    }
+  ],
+  "limits": [
+    "Intraprocedural lexical evidence, not a sound program slice or proof.",
+    "No interprocedural alias/call-effect analysis, type/range or reachability proof.",
+    "Compound statements can include unrelated names; later writes are retained for loop state.",
+    "No validity verdict about the proposed mapping is produced by this tool."
+  ]
+}

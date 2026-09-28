@@ -1,0 +1,9 @@
+{
+  "source_run": "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/llm_workflow/lit001-v0.1/run-20260928-01",
+  "model_calls": 0,
+  "behavior_passed": true,
+  "simulation_identical": true,
+  "resource_estimates_identical": true,
+  "local_host_costs": "remeasured; expected to vary by machine/load",
+  "complete_cost_points": 2
+}

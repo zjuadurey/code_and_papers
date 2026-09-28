@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-010",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "review",
+      "start_line": 26,
+      "end_line": 28
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Detect an asymmetric sparse-matrix entry before performing the caller-budgeted conjugate-direction recurrence.",
+  "rationale": "The symmetry-validation loop at program.py:26-28 is a bounded existential search over the stored matrix entries. Each candidate has the pure predicate matrix.get((j, i), 0.0) != value. Every witness produces the same ValueError, so witness ordering is not observable. Its inputs depend on program.py:10-25 having completed unchanged: variable validation and indexing, vector and scalar validation, entry validation, duplicate rejection, and finite float conversion. The check runs in both inspect and advance modes; an empty matrix has no witnesses and passes. These properties justify a narrow structural nomination, not deployment. Practical suitability and benchmark support remain unknown because no workload, oracle implementation, hardware costs, or measurements are supplied. The surrounding numerical computation must remain classical: kernel.py:9-14 performs ordered arithmetic reductions, and kernel.py:17-40 implements a state-dependent recurrence, not combinatorial optimization or marked-candidate search. It depends on rows, rhs, current, steps, tolerance, and evolving x, r, p, previous and norm. Updates activate only in advance mode while the iteration budget permits, the initial norm is nonzero, and the recurrent relative residual exceeds tolerance. Solving the linear system or minimizing its continuous quadratic would not reproduce the budgeted iterate and trace. Preserve row normalization and strict diagonal dominance checks at program.py:29-32, binary64 arithmetic ordering, all exception precedence, inspect reporting, zero-step behavior, full named output, recurrent trace, directly recomputed final residual, and absence of input mutation. HPCG attribution supplies provenance, not performance evidence.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "detect_sparse_symmetry_violation",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditionally index the m stored matrix entries and search for an index k whose entry (i_k, j_k, v_k) satisfies matrix.get((j_k, i_k), 0.0) != v_k. Mask unused basis states as unmarked. Handle m=0 classically. A verified witness raises ValueError(\"symmetric matrix required\"); acceptance requires an exact no-witness policy.",
+    "input_encoding": "Construct a read-only indexed snapshot after the existing entry-validation loop. Encode candidate indices, coordinate data, finite binary64 values, and reverse-coordinate lookup with an explicit missing-entry default of 0.0. Equality must reproduce Python numeric equality, including equality of positive and negative zero. Reversible lookup, comparison, workspace cleanup, and data-loading costs remain to be designed; coherent memory is not assumed.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Measure a candidate index and verify its predicate classically before raising the existing error. A failed search cannot establish symmetry. Under the unchanged exact contract, use the original complete classical symmetry scan before accepting any unconfirmed no-witness outcome, unless an alternative exact procedure is proved. Continue existing validation and reporting unchanged.",
+    "assumptions": [
+      "This is a conditional exploration of the symmetry check only, not authorization to replace the recurrence.",
+      "The matrix snapshot is immutable throughout the search.",
+      "Unknown marked-state count and the empty domain are handled explicitly.",
+      "No probabilistic false acceptance or false rejection is permitted by the supplied contract."
+    ],
+    "risks": [
+      "Ordinary bounded-error Grover search does not certify absence of asymmetric entries.",
+      "Exact classical fallback can eliminate any search advantage, particularly for valid symmetric inputs.",
+      "Building reverse-lookup data or coherent access may cost as much as the original validation.",
+      "Bitwise float comparison would mishandle signed zero unless corrected.",
+      "Feasibility of a faithful reversible oracle and preservation of exception ordering remain unverified."
+    ],
+    "expected_resource_characteristics": {
+      "candidate_count": "m = number of stored entries",
+      "index_qubits": "ceil(log2(m)) for m >= 2, with trivial domains handled classically",
+      "oracle_queries": "Idealized Grover search has square-root query scaling for witness discovery under an appropriate unknown-solution-count procedure; this excludes exact fallback and oracle implementation costs.",
+      "loading_and_workspace": "Snapshot preparation processes O(m) entries. Lookup circuitry, value registers, ancillas, uncomputation and coherent-memory requirements are unresolved.",
+      "exact_fallback": "Up to m classical predicate checks before accepting symmetry.",
+      "gate_count": null,
+      "depth": null,
+      "hardware_feasibility": null,
+      "end_to_end_advantage": null
+    },
+    "rationale": "The finite pure violation predicate fits the draft search formulation structurally. Adoption remains unjustified until encoding, exactness, feasibility and end-to-end resource obligations are resolved and benchmarked."
+  },
+  "assumptions": [
+    "Only the supplied source and public contract are evidence.",
+    "Classical inputs and outputs, binary64 semantics and the unrestricted input-size domain remain unchanged.",
+    "No quantum memory, data-loading speedup or acceptable error probability is assumed."
+  ],
+  "risks": [
+    "An approximate or exact linear-system solution is not a substitute for the specified finite recurrence.",
+    "Reordered reductions can change stopping decisions, traces, final iterates and numerical exceptions.",
+    "The source provides no basis for a quantum advantage or compliant HPCG benchmark claim."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Structurally applicable to the nominated finite symmetry-violation search, conditional on faithful reversible construction and an exact no-solution policy. This does not certify a quantum implementation or practical benefit."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The contract requires a specific binary64 recurrence and its intermediate trace, not a binary assignment minimizing an objective. Recasting the continuous linear system as an optimization problem would not preserve those outputs."
+    }
+  ]
+}

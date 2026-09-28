@@ -1,0 +1,43 @@
+{
+  "response_sha256": "b03e4559208af3275d35596cd3a6f1d74ffad02ededfd5309599bff3c6ba8b1a",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 30.902,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:44:09.061018+00:00",
+  "review_submitted_utc": "2026-09-26T12:44:39.963314+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "b03e4559208af3275d35596cd3a6f1d74ffad02ededfd5309599bff3c6ba8b1a",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate each pivot selection as exact argmax search over the finite row-index domain col through n-1. A Grover-based maximum-finding procedure would use reversible threshold predicates comparing the binary64 absolute pivot value and, for ties, the row index so that the smallest index is selected. If every candidate value is exactly zero, decoding must still select the first index and leave the existing singularity check to raise ValueError."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode candidate row indices and provide coherent access to rows[i][col] from the current augmented-row state. Reversibly implement binary64 absolute value, comparison, equality, and index tie-breaking. The costs of loading the changing column values, representing special states, and uncomputing all arithmetic and access workspace must be included."
+      },
+      {
+        "pointer": "/plan/rationale",
+        "quote": "This is a conditional analysis plan, not an adoption recommendation. Line 13 has a finite runtime domain and performs an unstructured extremum selection that can be decomposed into Grover-style marked-state searches. Eligibility depends on exact reversible realization of the predicate and deterministic recovery of Python's first-index argmax semantics, neither of which is established by the supplied material."
+      },
+      {
+        "pointer": "/rationale",
+        "quote": "The narrow candidate is kernel.py line 13, which selects the partial-pivot row from the finite index range col through n-1. Its required inputs are the current column number and the mutable augmented-row state created at line 11 and updated by prior swaps and elimination steps. It activates once per column through the loop at line 12; the empty system never activates it. Structurally, selecting the largest absolute pivot can be expressed conditionally as finite unstructured search using threshold predicates, including an index condition that preserves Python max's first-index tie rule. The candidate boundary excludes the exact-zero test and row swap at lines 14-16, which must remain intact: an all-zero candidate column must still select the first eligible row and then raise ValueError. Lines 17-25 must retain their binary64 operation ordering, back substitution, and overflow behavior. program.py lines 22-27 must retain solve-mode activation, named solution and delta ordering, residual reporting, and requested-limit comparison. Validation, inspect mode, pre-solve residual calculation, empty-system behavior, exception semantics, and nonmutation must also remain unchanged. The residual function at kernel.py lines 29-38 is deterministic arithmetic rather than supported search or binary optimization and is not nominated. Practical suitability is false because coherent access and exact reversible binary64 comparison are unresolved, pivot search is only a lower-order portion of dense elimination, the program is explicitly small and serial, and probabilistic selection cannot silently weaken exact behavior. Benchmark support is false: the HPL attribution documents a classical algorithm and diagnostic, while the supplied program is not a compliant HPL performance run and no quantum workload, hardware, resource, or advantage evidence is provided. The reviewer observation reports only insufficient evidence from finite pivot-selection checks; it does not prove full-domain semantics, validate a fallback, or support deployment. The decision therefore remains classical despite narrow structural eligibility."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The revision adds a pivot candidate and a Grover threshold/maximum-finding plan, but does not specify a concrete threshold predicate with its update rule or an ordered full-state selector. Exact binary64, special-state and success-policy obligations remain open. Do not substitute a reviewer-written global-maximum formula or ordered scan. This is increased candidate/plan coverage, not a checked pivot repair. The supplied insufficient-evidence feedback itself named pivot selection, so any nomination change also has a task-specific cue confound and cannot be attributed solely to executing a semantic counterexample.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

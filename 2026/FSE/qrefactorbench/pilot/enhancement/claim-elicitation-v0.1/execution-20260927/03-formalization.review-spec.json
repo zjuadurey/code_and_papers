@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/rationale", "/contract_applicability/0/rationale", "/contract_applicability/1/rationale"],
+  "rationale": "The response explicitly retains no replacement computation, an empty candidate list and null plan. Detailed narration of the existing classical solver is not a new proposed selector. Respect permitted abstention: do not turn the original source description into a positive plan or claim that structural ineligibility is proven.",
+  "interpretations": []
+}

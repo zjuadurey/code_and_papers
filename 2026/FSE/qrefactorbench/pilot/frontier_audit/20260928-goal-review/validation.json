@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "protected_files": 3653,
+  "prior_artifact_files": 71,
+  "new_source_files": 7,
+  "recorded_download_failures": 2,
+  "local_link_occurrences": 374,
+  "artifact_files": 20,
+  "manual_completion_rows": 8,
+  "scope": "byte integrity, source hashes, path existence, handoff pointers; not scientific validation",
+  "errors": []
+}

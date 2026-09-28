@@ -1,0 +1,25 @@
+{
+  "version": "reference-views-0.2.0",
+  "files_sha256": {
+    "core-001/program.py": "2aa73675fc76452d16d2a016675e6367c3048d59fac893a9a9de846ffbd9f499",
+    "core-001/public_task.json": "a61e38d5d076263b8962c02c5dd670083503e99fc50e02448697d1a1e229cab0",
+    "core-002/program.py": "70a4f423fd3f5c41ff6062469044a161d980398918be68422b05099c8ac886bf",
+    "core-002/public_task.json": "2f6694577bc3894a08dbc9cdedcebd8966dc387d088a5e3be88b34239af628f4",
+    "context-001/program.py": "9431955f692c02cf4e2d1bf7288b21d08f39b3378d4504cf998a3de6decb5905",
+    "context-001/maintenance.py": "b1acb0f1a52185375aaccf624f8da082accd12748bb456d488037d8c1b29e880",
+    "context-001/public_task.json": "fec1bfbff8f66b55d54580b0adc4eb02226a6c3c61cd3b4b03c7fa241e745b91",
+    "context-002/program.py": "cf980e90e44333b4df9679a92243685219c7f67fad85f5897117c243d9b2dfba",
+    "context-002/inspection.py": "b3af442ac12d1470d5aaf1c68f8aeca76503b40770cec82bc89eb78f9d9acf10",
+    "context-002/public_task.json": "2d7ddb98b0f3e692bef362b4717be52054321b873c7eb6434695e6279bb0c9fd",
+    "core-003/program.py": "6c2c9e730ef42c63aab6f8baa44098c1b1e7439c4ab26a05cd94c71a8c75a8aa",
+    "core-003/public_task.json": "ebe523ac32aca4206414bc3c9bbf4d904ad4006e7d34c8f73af49ed678a9a5f0",
+    "core-004/program.py": "2ce7803004502b8237a561ab23d2a593303419c11360616c1bce477e7d58db9d",
+    "core-004/public_task.json": "9515f8649191824c8a978de6a1664ca1ba2e2dd870cf11f5b8a2d6b6fc03f087",
+    "context-003/program.py": "19386a4721ec2bdafd774eb68d207e7809df0309f2f5262caf006e111747b334",
+    "context-003/configurations.py": "6183ee783ec92166c9eb1dfb3072ddcc4a1dee8632bd96ec169b03a72031d2a6",
+    "context-003/public_task.json": "d8f8a344eb1b5f23818d2418f8e05757048918ee689928235c9dca4a8580d885",
+    "context-004/program.py": "0dee2b3b35406f1223eba67f2156d5ea77474193c4d58d429ed700a3874f4135",
+    "context-004/records.py": "db178f3fc49ac63643b2da6b6bf60e3979f75b83f950cf056f6b124f6c4d4871",
+    "context-004/public_task.json": "e36032510d38f067c4129090884da4b1306ae94e413731037594ccb72a93ca8b"
+  }
+}

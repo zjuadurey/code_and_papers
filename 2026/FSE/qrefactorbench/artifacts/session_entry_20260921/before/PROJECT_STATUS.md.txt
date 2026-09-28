@@ -1,0 +1,527 @@
+# QRefactorBench Project Status
+
+Last updated: 2026-09-21. **Current handoff; historical details remain in logs/results.**
+
+## Active priority: FSE research resumed
+
+The researcher explicitly ended the coursework diversion and requested continuation
+of the FSE paper. The [CA6000 submission](coursework/sat_case_study/README.md) is
+retained as a separate completed deliverable; do not continue coursework polishing
+or treat its SAT classification accuracy as quantumization evidence. Codex has not
+submitted it to the course, and external submission status is not inferred.
+
+Latest work: **N-031 [three approved review fixes, v0.1.1](pilot/reference_completion/v0.1.1/README.md)**.
+Read-only engineering review found a lit-005 lock-list ordering mismatch, lit-009
+nonfinite deltas on finite input, and a lit-007 algorithm-family cue in public source
+attribution. User explicitly requested fixes. The new version corrects the two
+behaviors under existing contracts and removes explicit QAOA class/path cues while
+retaining copyright/license/project attribution and private pinned provenance.
+Four new regression failures reproduced the old bugs; all 73 new-version checks now
+pass (61 case tests + 12 integrity/export tests). Core: 97 passed/15 optional skips;
+existing optional suite: 5 passed. New/original cases validate and summarize.
+Only 7 of 30 messages changed; prompt/contracts/labels/candidate spans unchanged;
+1,189 protected old files remain byte-identical. Six copied case directories are
+version snapshots, not six additional cases. No model experiment or scientific
+decision change. Lack of measured WHERE difficulty is not a construction defect;
+the controlled experiment will test it. N-030 engineering review is done, actual
+human inclusion/cue/scoring choices remain pending.
+
+Prior work: **N-029 [reference completion](pilot/reference_completion/v0.1/README.md)**.
+The user explicitly requested filling the gap between promised external-benchmark
+adoption and local synthetic expansion. Six new classical programs (lit-005–010)
+adapt concrete QuanBench/+, SupermarQ, Qiskit HumanEval, HPL and HPCG tasks/algorithms.
+Together with four existing C2|Q> groups there are ten source-traceable mother groups,
+with thirty A/B/C input messages. Newly authored contexts remain synthetic; related
+problems are not independent families. Three numerical/XOR scope-control proposals
+do not introduce new positive quantum families. Scientific judgments remain null/DRAFT.
+Executable method checks cover Pass@k, distributions, small unitary process overlap,
+PQID count signatures, MQT representation-level resources, objective gaps and numerical
+residual/symmetry checks. These are constructed fixtures, not model scores or new
+acceptance policies. Source snapshots include 22 files and available license texts.
+Corrected the earlier QuanBench+ URL typo in a new addendum; historical audit retained.
+See [coverage](pilot/reference_completion/v0.1/COVERAGE.md) and
+[actual method results](pilot/reference_completion/v0.1/METHOD_RESULTS.json).
+N-030 is review of these concrete tasks, cue boundaries and evaluation applicability;
+no new model experiment, optimizer, QPU call, schema or main evaluator change.
+
+Prior work: [two-case WHERE review and A/B/C preparation](pilot/where_review/v0.1/README.md).
+Researcher requested polishing and explicitly endorsed three conditions per mother
+case: core only, full program with a region cue, and the identical full program
+without that cue. N-028 prepares six DRAFT input messages, two private boundary/
+dependency/obligation dossiers, a prospective protocol and thirteen actual classical
+witness records. B minus its sole location-cue suffix equals C byte-for-byte. Cue
+positions are AI proposals, not human-approved labels; six views are two mother
+problems. Tests: six preparation checks and 38 source/context checks pass; core suite
+97 passed/15 optional skips; new/original manifests validate. No model run, frozen
+input/source/schema/evaluator/label change. The task instruction is a new common draft,
+not the historical baseline prompt. D-020 accepts the three-condition direction only.
+N-027 now uses these concrete review pages; functional realism, alternative boundaries,
+negative/multi-candidate controls, final rubric and future run configuration remain open.
+
+Prior work: [source-driven WHERE additions](pilot/source_adaptations/v0.2-where/README.md).
+The researcher clarified that the earlier synthetic expansion did not satisfy the
+intended external-benchmark sourcing goal. N-026 reviewed ten pinned C2|Q> records
+and adopted four functions for two new problems: agenda completion (lit-003) and
+release-group selection (lit-004), each with original-core and functional-context
+views. Source datasets and new application contexts are synthetic, not deployed
+software. Independent tests expose preview/full-solver confusion, conditional paths,
+history/filter dependencies and full-report obligations. These strengthen the WHERE
+construction hypothesis; they do not prove model difficulty or quantum suitability.
+Other referenced benchmarks were audited for case/evaluation roles; they are not
+misrepresented as sources of these two programs. All scientific judgments stay null/
+DRAFT. New checks: 38 passed; core suite 97 passed/15 optional skips; two new and
+fourteen original cases validate. No new model/quantum experiment, schema/evaluator
+change or alteration of earlier inputs. N-027 is concrete review of these two
+functional workflows and provisional boundaries; N-025's older eight-group review
+is paused, not completed. See [source selection](pilot/source_adaptations/v0.2-where/SOURCES.md)
+and [WHERE review](pilot/source_adaptations/v0.2-where/WHERE_REVIEW.md).
+
+Prior work: [eight reference pairs / sixteen views](pilot/reference_cases/v0.3/README.md).
+The researcher explicitly authorized expansion from the four prepared exemplars.
+N-024 adds exact eligible-lot capacity requests, optional-component charge assessment,
+capacity-limited archive selection with transfer manifests, and full normalized exports
+with independent mutable copies. Three kernels reuse synthetic pilot-007/006/008
+verbatim; archive selection is newly authored synthetic code, not a new paper source.
+All four new manifests retain null scientific judgments/DRAFT. The previous eight
+public views and 926 protected artifacts remain unchanged. These are eight functional
+problem groups / sixteen views, not sixteen independent observations or validated
+positive/negative labels. [Tomorrow review](pilot/reference_cases/v0.3/TOMORROW_REVIEW.md)
+prioritizes archive ties, optional-component semantics, independent capacity requests
+and output-identity obligations. Expansion authorization does not complete prior human
+review or authorize a model/quantum experiment. No schema/evaluator/old-label changes.
+
+Prior work: [four reference pairs / eight views](pilot/reference_cases/v0.2/README.md).
+Researcher requested the remaining search and classical-retention exemplars. Added
+context-003 partial configuration compatibility and context-004 change-batch receipts
+with ordered audit effects, reusing pilot-001/002 functions verbatim. New contexts
+are explicitly synthetic, not paper-sourced or deployed applications; all scientific
+judgment fields remain null/DRAFT. Named-rule oracle covers 139 bounded catalogues /
+1,163 profile decisions; batch oracle checks 121 sequences and callback failure prefixes.
+Eight allowlisted views now combine these with the four original optimization views,
+which remain byte-identical. These are four related problem groups, not eight
+independent observations or verified family/negative labels. [Tomorrow review](pilot/reference_cases/v0.2/TOMORROW_REVIEW.md).
+No batch expansion, new model/quantum experiment, labels, schema or evaluator changes.
+
+Prior work: [two polished reference pairs](pilot/reference_cases/v0.1/README.md).
+Researcher asked to develop a few high-quality exemplars before later expansion.
+Reused both sourced kernels and existing maintenance context; added context-002
+inspection coverage assessment, station worklists and responsibility-transfer reports.
+Two problem lineages now have four separately exportable core/context views. This is
+two optimization examples, not four independent problems or complete family coverage.
+New context remains synthetic/DRAFT with unknown scientific judgments. Core function
+is unchanged; full-report oracle checks 1,099 small graph/current-selection requests
+and fault examples. Source/public contracts, private review guide and fixed allowlist
+packets are ready. No batch case generation, model/quantum run or new approximation
+permission for inspection tasks. [Researcher review](pilot/reference_cases/v0.1/REVIEW.md).
+
+Prior research decision: [context-001 approximate contract draft](pilot/context_adaptations/v0.2-draft/CONTRACT_CONTEXT_001.md),
+[D-018](DECISIONS.md#d-018-context-001-approximate-quality-profile). Researcher permits
+a separately versioned approximate arrangement profile and accepts satisfied-weight
+ratio ρ=(W−C)/(W−C*). Report feasibility and objective gaps first; tolerance remains
+pending. 95% is an example, not an adopted threshold; new tie/statistical policy is
+also unresolved. No new pass label, case registration, evaluator edit or experiment.
+The original exact case and its observed failures remain unchanged. This documents
+an explicit exception pathway under D-015, not blanket permission to relax all cases.
+
+Prior engineering correction: [v0.1.1 device-range fix and measurements](demo/context001_qiskit/artifacts/device_limit_v011/README.md).
+The researcher challenged the unsupported six-device restriction. Restored the
+original maximum of 16 devices and checked actual 7/12/16-device executions, including
+a dense 16-device graph. Four runs completed without retries/fallback, taking about
+0.16–8.89 seconds with peak process RSS 128–385 MiB in fresh single-thread-configured
+processes. Full reports match for 7 and 12 devices; both 16-device results violate
+exact optimality (conflict-cost gaps 4 and 5). All four optimizations hit the unchanged
+80-evaluation budget. These failures are retained, not repaired or relabeled.
+Original implementation/protocol snapshots and all first-run artifacts are preserved.
+The 2**40 weight limit and finite-sampling exactness/tie gaps remain; this fixes the
+device count only, not complete contract preservation. No model/QPU calls occurred.
+
+Prior research work: [actual context-001 Qiskit conversion](demo/context001_qiskit/README.md).
+The researcher requested running the converted program. A separately implemented,
+AI-assisted one-layer QAOA prototype was executed locally on five fixed small inputs:
+four used Qiskit Statevector circuits; empty input returned directly. All five full
+reports matched the original, without classical exact fallback, reference feedback,
+repair or retry. Three nonzero objectives reached the 80-evaluation budget without
+optimizer convergence; this is retained in the first-run record. This demonstrates
+execution and these specific output matches, not general exact/tie preservation or
+benefit. The prototype is limited to six devices and bounded weights; the original
+input domain is larger. Cases, labels, schemas and evaluator remain unchanged.
+No new model or QPU call occurred; the authorized local check is complete.
+
+Prior research work: [context-001 structural mapping evidence](artifacts/context001_mapping_audit/README.md).
+Following the user's request to proceed with structural review, derived the exact
+same-window conflict QUBO and Ising expression from source. Across 98 bounded inputs /
+1,271 assignments, direct request costs, source scores, QUBO and exact Ising energies
+agree. All 98 reports agree when fed classical exact polynomial optima with the
+original tie rule. The researcher subsequently accepted the narrow structural-YES
+initial opinion while retaining unverified complete quantum migration and unknown
+practical suitability; [actual initial review](artifacts/context001_mapping_audit/RESEARCHER_REVIEW.md).
+This is not independent annotation, a verified quantum solver or a benefit claim;
+the DRAFT manifest and historical null labels remain unchanged.
+The polynomial has multiple optimal assignments; original tie behavior remains
+an additional software obligation. Cases, prior evidence and public inputs are unchanged.
+
+Prior research work: [second-context maintenance case](pilot/context_adaptations/v0.1/README.md).
+After inspecting lit-001, the researcher approved a complete current-assignment
+assessment → proposed assignment → change/conflict report workflow. New context-001
+retains the original computational function inside a normal maintenance module and
+adds meaningful dependent reporting, exact API requirements and independent tests.
+It is a versioned synthetic context adaptation sharing lit-001's source lineage,
+not an independent sourced algorithm or demonstrated harder WHERE task. All scientific
+judgments remain null/DRAFT; no model/quantum run or human annotation was performed.
+
+Prior research work: [two source-grounded adaptation drafts](pilot/source_adaptations/v0.1/README.md).
+The researcher narrowed the proposed ten-case expansion to MaxCut plus one constrained
+graph problem, to validate the construction route first. New lit-001/lit-002 preserve
+C2|Q> dataset functions (pinned rows 164/427), add explicitly synthetic maintenance /
+inspection APIs, and supply contract tests and a sourced evaluation-method comparison.
+They live outside the original cases/ population; all scientific judgment fields
+remain unknown. No model/quantum experiment or independent annotation occurred.
+
+Prior research work: [functional-context review of pilot-005/009](artifacts/context_case_review/README.md).
+Both have behaviorally meaningful surrounding code, but both are synthetic and
+have no established real-application provenance. Filtering in 005 changes the
+answer; validation/name order in 009 are observable obligations. The external
+necessity of 005's explicitly required sorting is unresolved, not removed.
+Classical tests pass separately; no new migration or scientific labels were made.
+The user redirected attention from additional input checks to benchmark case
+representativeness. N-007's five-search-plan audit is paused, not completed.
+
+Prior research work: a [bounded objective-mapping audit](artifacts/plan_mapping_audit/README.md)
+of all three optimization plans in the completed diagnostic. On 1,805 permitted
+test inputs / 7,083 assignments, manually transcribed objectives and exact-rational
+QUBO→Ising conversions match source behavior; recovered optima match original
+function calls. Concrete samples also demonstrate that rescoring alone is not an
+exact-optimality certificate. The saved plans already acknowledge this obligation.
+This is AI-assisted post-hoc evidence, not a new model experiment, full correctness
+proof, independent human review or label promotion.
+
+## Current phase and research question
+
+Phase 1: pilot task validation and descriptive failure characterization, targeting
+FSE 2027. Infrastructure, the first Restricted Codex CLI baseline, and one controlled
+conditional-plan diagnostic are complete. No experiment is running; there is no
+active model-run authorization. N-004's packet regeneration regression is fixed.
+The earlier bounded [terminal demo](demo/README.md) remains available:
+`bash scripts/run_demo.sh`. It replays two saved analyses and executes an AI-assisted
+Qiskit CNF search implementation with verified witnesses/exact classical fallback,
+plus an unchanged classical-retention example. It is not an automatic translator,
+new model experiment or validated scientific migration. Prospective protocol
+implementation and other recorded limitations remain pending.
+
+Latest discussion: [D-016](DECISIONS.md#d-016-reviewed-uncertainty-broad-candidates-and-staged-evidence)
+accepts reviewed uncertainty, WHERE nomination followed by WHETHER exclusion,
+assumption-based practical assessment and staged human review. These prospective
+policies are not yet implemented in schemas/scoring and do not promote any labels.
+The researcher subsequently accepted item 1 in
+[D-017](DECISIONS.md#d-017-structural-mapping-is-distinct-from-contract-preservation):
+structural YES requires concrete computational-core/formulation correspondence,
+not an already complete contract-preserving migration. Missing essential mapping
+evidence means uncertainty. All five discussion directions are now decided; do not
+ask them again. Case-specific labels, evidence and final metrics are not thereby settled.
+
+Current question: what meaningful software context and original-contract evidence
+should a benchmark case contain to study selective migration for non-experts?
+Kernel cases remain useful, but neither extra test inputs nor extra source files
+establish software-context realism. The proposed two-layer presentation is not a
+schema change or a new accepted inclusion/scoring policy.
+Independent annotation/adjudication has not occurred; every case label remains DRAFT.
+The narrow context-001 researcher initial opinion is recorded separately above.
+The preserved default is [D-015](DECISIONS.md#d-015-preserve-the-original-software-contract-by-default):
+preserve the original software behavior contract by default, including exactness,
+exceptions and effects; no implicit permission for approximate answers. D-014 also
+remains accepted: conditional plans for response-reported structural YES in future
+protocols, independently of adoption. Neither decision validates existing plans.
+Both policy questions are answered; no prompt, schema, evaluator or case changed.
+N-003 in [NEXT_ACTIONS.md](NEXT_ACTIONS.md) awaits technical human review. N-001's
+[coordinator-only record](pilot/review/CONDITIONAL_PLAN_HUMAN_REVIEW.md) links eight
+plans and two controls; all human fields remain blank. No case review was submitted.
+
+## Scope and completed milestones
+
+- Classical Python → hybrid Python/Qiskit direction; only unstructured_search and
+  combinatorial_optimization. Kernel, function-with-distractors and small-program contexts.
+- Versioned schemas; validate/summarize/compare/collect/static-evaluate workflows;
+  modular execution/semantic/contract interfaces and optional Qiskit resource extraction.
+- Four DRAFT toys plus ten DRAFT synthetic/Codex-assisted pilot cases; provenance,
+  public specifications, classical tests, blinded A/B/model packets and review templates.
+- Pilot-v0.1 public type/cue corrections and preserved previous snapshots; advisory
+  annotation-assist material remains non-independent and not ground truth.
+- One Restricted Codex CLI baseline and one paired conditional-plan diagnostic;
+  original inputs/responses, exact prompt differences, metadata and hashes retained.
+- Canonical charter, operating manual and finite action queue now support “继续”.
+- N-001 review preparation complete; one compact record retains existing questions
+  and links, without prefilled human judgments or new scientific analysis.
+- N-004 complete: packet instructions come from a dedicated versioned source;
+  all 99 regenerated packet files match the frozen snapshot, independently of README edits.
+
+## Latest findings and evidence
+
+| Artifact | Observed result and interpretation |
+|---|---|
+| [Original baseline](pilot/baseline-v0.1/restricted-codex/BASELINE_RESULTS.md) | Ten valid first attempts; all REMAIN_CLASSICAL; structural YES 8; practical NO 8/UNCERTAIN 2; all plans null. Restricted CLI, not raw API. |
+| [Retrospective diagnosis](pilot/baseline-v0.1/restricted-codex/DIAGNOSTIC_ABSTENTION_ANALYSIS.md) | Three-case analysis suggested adoption/planning coupling; did not establish model incapability or correctness. |
+| [Controlled diagnostic](pilot/baseline-v0.1/conditional-plan-diagnostic/CONDITIONAL_PLAN_DIAGNOSTIC_RESULTS.md) | Same CLI 0.154.0, gpt-5.6-sol/high, ChatGPT login, inputs and isolation; one approved instruction addition. Eight of eight structural-YES responses emit plans; two structural-NO controls retain null. Not an independent baseline. |
+| [Plan-content review](pilot/baseline-v0.1/conditional-plan-diagnostic/PLAN_CONTENT_REVIEW.md) | Eight AI-assisted SUBSTANTIVE codings; all retain exactness/resource gaps. No reference correctness scoring or independent review. |
+| [Objective-mapping audit](artifacts/plan_mapping_audit/README.md) | All three optimization plans' transcribed objectives agree on bounded inputs; exact optimality, circuits and full integration are not established. No label-based scoring. |
+
+Structural/practical/decision/main-family fields did not change between runs.
+Candidate regions changed in three cases, benchmark support in five and contract
+applicability labels in four. Evidence gives stronger support for H1 at the elicitation
+level; it does not establish complete HOW competence, advantage or significance.
+The diagnostic alone did not adopt a protocol. The subsequent explicit D-014 decision
+adopts the future elicitation policy; existing frozen prompts and metrics are unchanged.
+
+## Current blockers and next actions
+
+**Immediate next action (N-030):** review the
+[ten sourced groups, corrected version](pilot/reference_completion/v0.1.1/README.md), beginning with the six
+new programs and their source/contract differences. Review negative-control nominations,
+alternate boundaries and which descriptive methods suit each contract. N-027's
+lit-003/lit-004 review remains included, not completed by the new construction.
+Source provenance, useful functional context and model difficulty are separate claims.
+N-028's offline A/B/C preparation is complete; D-020 records direction approval,
+not cue acceptance, model-run permission or a new scoring rule. N-026 is complete;
+N-025's older eight-group review is paused after the
+researcher's sourcing correction. N-021/N-023 remain uncompleted human reviews.
+No human scientific review is inferred from engineering checks. N-019 remains
+pending but does not block preparation of exact-case functional examples: settle the new context-001 approximate profile's quality
+threshold and selection/tie policy before implementing pass/fail evaluation. Do not
+re-ask permission for approximation or its accepted ratio; 95% is still unapproved.
+N-018 is paused by this contract discussion. Its previous task was to use the two saved 16-device failures to make the existing
+semantic-check workflow report execution success separately from exactness failure.
+N-016 audit and N-017 device-limit correction are complete; do not rerun them by default.
+Any regression integration should use saved outputs and the original contract,
+without modifying evaluator semantics, adding fallback, rerunning the optimizer or
+weakening exactness. Statistical acceptance thresholds, a broader experiment and
+practical-benefit claims remain unsettled. The arbitrary weight cap remains a known
+separate implementation limitation, not an accepted change to the case domain.
+The earlier context walkthrough remains available for functional discussion.
+Movement count is explicitly report-only; an already optimal current assignment can
+still move under the inherited tie rule. Do not silently add move minimization or
+"retain current if no improvement." The latest user requested source-driven examples
+and stronger WHERE discovery; D-019 records that direction. N-026 supplies two
+reviewable examples without authorizing a model run, family, label or scoring change.
+N-007 is paused; N-006 and the 005/009 context review are complete. N-005 remains
+deferred until a concrete reviewed protocol need exists.
+N-004 is complete; frozen packet and experiment bytes were preserved.
+D-014–D-017 are accepted within their scopes. Actual case review (N-003) remains
+pending; preserve genuine submissions separately. Do not regenerate blank forms,
+fill human fields, re-ask the five policy questions or infer authorization for a run.
+
+**Human judgment still required:** review substantive-plan coding and obligations;
+define coverage/quality evaluation (remaining Q19); independently annotate/adjudicate
+cases. Case-specific suitability/cost/exactness assumptions (Q1/Q6/Q9), operational
+candidate criteria (remaining Q14), scientific metric policy (D-004–D-006), and licensing remain unresolved.
+See [open questions](docs/open_questions.md). No new agent architecture is decided.
+
+Known limitations: static evaluation does not prove plan conformity or semantic
+preservation; no validated case-specific quantum oracle library, complete cost model,
+final split, immutable release process or independently validated benchmark exists.
+The isolated experimental CLI runner is not a general sandbox for generated programs.
+
+The subsequent read-only alignment audit found unresolved gaps: reviewed labels
+cannot retain unknowns under the current schema; Phase-1 plan verification is gated
+by unknown intent correctness; interface checking omits return annotations; pilot-009's
+private oracle description retains the old name-type wording. These are recorded
+issues, not permission to alter scientific labels or frozen artifacts. The separate
+packet regeneration regression is now fixed; see [TODO.md](TODO.md).
+
+## Current benchmark statistics
+
+Original cases/ population: 14 cases, 10 pilot seeds + 4 original toys. All 14 DRAFT; REVIEWED, ADJUDICATED and
+FROZEN counts are zero. Draft categories: 8 positive, 5 hard_negative, 1 negative.
+Pilot-only draft composition: 6 positive, 4 hard_negative. These are provisional
+sampling labels, not findings. Package/Phase-1 prediction profile: 0.2.0; case/plan/
+legacy prediction schema: 0.1.0; frozen public input snapshot: pilot-v0.1.
+
+Separate construction trial: two additional DRAFT manifests in
+pilot/source_adaptations/v0.1/cases/, not part of the original pilot or its scores.
+Both use provisional positive sampling categories (required by the legacy schema),
+private candidate nominations, and null structural/practical/support/intent/family/
+decision fields. No case-specific quantumization judgment is thereby established.
+
+Separate second-context construction trial: one additional DRAFT context-001 in
+pilot/context_adaptations/v0.1/cases/, sharing lit-001's computational source.
+Do not count it as an independently sourced problem or silently mix these views
+into the old pilot population or future independent train/test sets.
+
+Reference-pair package adds one DRAFT context-002 in pilot/reference_cases/v0.1/cases/,
+sharing lit-002's source. Core-001/core-002 are public views of existing source kernels,
+not additional case manifests. No original-case population or historical score changes.
+
+Reference-pair v0.2 adds two DRAFT manifests context-003/004, sharing pilot-001/002
+source lineages. Core-003/004 are unregistered source views. The four-group/eight-view
+collection does not change the original 14-case population or its historical scores.
+
+Reference-pair v0.3 adds four DRAFT context manifests 005–008 and four core views;
+its cumulative public export has eight paired groups / sixteen views. Three new
+groups reuse pilot-007/006/008; archive selection is newly authored synthetic code.
+The required provisional sampling categories are three positive proposals and one
+hard_negative control, with all scientific judgments still null. Eight views are
+retained byte-for-byte from v0.2; none changes the original population or scores.
+
+Source-driven v0.2-where adds two DRAFT context manifests lit-003/lit-004 and
+two original-core views. Four imported C2|Q> functions form two related mother
+problems, not four independent cases; ten inspected source records are not ten
+new cases. New contexts and source dataset are synthetic. Required positive sampling
+categories and candidate nominations are provisional; scientific judgments stay null.
+This package remains separate from original cases/ and historical experiments.
+
+Reference-completion v0.1 adds six DRAFT manifests lit-005–010, with three positive
+and three hard_negative provisional sampling categories; scientific judgments are
+all null. The ten-group/30-condition collection reuses four earlier sourced groups,
+not the six local synthetic groups. Total distinct construction/original manifests
+now number 32 (14 original + 18 separate construction manifests); this is an inventory,
+not a released benchmark or 32 independent problems. Original cases/ still has 14.
+
+## Last verified checks and operational pointers
+
+Review fixes v0.1.1 (2026-09-21): **73 passed** (61 case + 12 package tests);
+core **97 passed/15 optional skips (4.05s)**; existing optional suite **5 passed (0.89s)**.
+Four intentional pre-fix regression failures retained. Six corrected-version cases
+and original fourteen validate and summarize. No model run; previous versions intact.
+See [commands and logs](pilot/reference_completion/v0.1.1/validation.json).
+
+Reference completion (2026-09-21): **81 new tests pass** (56 classical case, 14 method,
+5 optional quantum-method, 6 package/source/export). Initial quantum-method check
+had 2 failures/3 passes due to NumPy scalar rejection; fixed compatibility and retained
+the failure logs. Core **97 passed/15 skipped (4.08s)** in palqo; existing optional
+suite **5 passed (1.07s)** in htp-static. Six new and fourteen original manifests
+validate; both JSON summaries succeed. The skips are missing optional Qiskit/PyYAML
+in palqo, not silently counted as passes. Actual method fixture values and all logs:
+[validation.json](pilot/reference_completion/v0.1/validation.json).
+Final integrity check: 1,170 protected old files unchanged, all 22 source and 30
+condition hashes match, and 222 local Markdown path targets exist. NOTICE provenance
+can cue source-task identity; no claim of fully blind inputs. Source-presentation
+policy, cue acceptance and actual model runs remain pending researcher review.
+
+WHERE review preparation (2026-09-21): **6 passed (0.24s)**; existing source-context
+suites **17/15/6 passed**; core **97 passed/15 skipped (3.20s)**. Two source manifests
+and original fourteen cases validate; original JSON summary succeeds. Thirteen
+classical execution/substitution witnesses and six input texts generated; source
+anchors, B/C-only-cue difference, packet contents and overwrite refusal checked.
+No model/QPU/quantum-solver run. [Evidence and preservation](pilot/where_review/v0.1/validation.json).
+
+Source-driven WHERE construction (2026-09-21): agenda **17 passed**, release groups
+**15 passed**, source/export **6 passed**; core **97 passed/15 optional skips (3.45s)**.
+The first source/export attempt had 5 passed/1 failed from bytecode pollution in a
+temporary copied packet; -B fixes the harness, with failure log retained. Both new
+and fourteen original manifests validate/summarize. No quantum code or experiment
+changed. [Full checks and preservation audit](pilot/source_adaptations/v0.2-where/validation.json).
+
+Authorized expansion (2026-09-21): new context suites **25/25/25/24 passed**;
+pair/source/domain/export tests **10 passed**. Core suite **97 passed, 15 optional
+skips in 3.45s** (Qiskit/PyYAML unavailable in palqo). New four and original fourteen
+manifests validate; both summaries pass. **926 protected files unchanged**. No
+quantum code changed; optional quantum tests were not rerun, no new dependency/model
+or quantum calls. [Exact validation](pilot/reference_cases/v0.3/validation.json).
+
+Remaining reference pairs (2026-09-21): **37 configuration tests / 26 batch tests /
+5 pair-export tests passed** (0.09s/0.10s/0.12s). Source suites **1/2 passed** (0.01s
+each); core **97 passed, 15 skipped in 3.68s**. New/original manifests and summaries
+pass; **867 old files preserved**. No new quantum code/calls or dependencies.
+[Validation](pilot/reference_cases/v0.2/validation.json).
+
+Reference pairs (2026-09-21): new context **37 passed in 0.16s**, paired-view/export
+checks **7 passed in 0.12s**; source cases **24/22 passed in 0.03s each**, existing
+maintenance context **43 passed in 0.19s**; core **97 passed, 15 skipped in 3.40s**.
+New case/original cases validate; JSON summary passes. **823 old files unchanged**.
+No quantum code changed, optional quantum tests not repeated. [Validation](pilot/reference_cases/v0.1/validation.json).
+
+Device-range fix (2026-09-21): **31 quantum/optional tests passed in 2.13s**, covering
+every restored size 7–16 with real fixed-angle circuits; actual COBYLA checks on four
+inputs completed, **2 full-report matches / 2 exactness failures**. Original context
+tests **43 passed in 0.19s**; core **97 passed, 15 skipped in 3.40s**. Manifests validate.
+**547 protected files unchanged**, original snapshot and new-run hashes verified.
+[Exact validation](demo/context001_qiskit/artifacts/device_limit_v011/validation.json).
+
+Actual Qiskit conversion (2026-09-21): **5/5 full reports match**, four circuit
+simulations, zero retries/fallback. Quantum/optional tests **20 passed in 1.46s**;
+context tests **43 passed in 0.19s**; core **97 passed, 15 skipped in 3.48s**.
+Original 14 cases and context-001 validate; original JSON summary succeeds.
+**529 protected files unchanged**, first-run code hashes unchanged. No installation.
+Exact commands and output logs: [validation](demo/context001_qiskit/artifacts/validation.json).
+
+Structural mapping audit (2026-09-21): **98 inputs / 1,271 assignment comparisons**
+and **98 exact-polynomial full-report matches**; four faulty encoding/decoding variants
+produce counterexamples. Repeat output is byte-identical. Case tests **43 passed**;
+core **97 passed, 15 optional skips**; new and original manifests validate.
+**625 protected files unchanged**. No model or quantum execution. Exact commands:
+[mapping validation](artifacts/context001_mapping_audit/validation.json).
+
+Second-context checks (2026-09-21): **43 tests passed**, including complete-report
+oracle checks, invalid inputs, nonmutation, reporting mutant and JSON CLI. New manifest
+validates; core suite **97 passed, 15 optional skips** (Qiskit/PyYAML absent).
+Original 14 cases and two source drafts still validate; **593 protected files unchanged**.
+Optional quantum suites not rerun because no quantum code changed. Actual full-suite
+logs, public-export/source checks and old-artifact hashes:
+[context validation](pilot/context_adaptations/v0.1/validation/results.json).
+
+Source-adaptation checks (2026-09-21): lit-001 **24 passed**, lit-002 **22 passed**;
+both manifests validate; core regression **97 passed, 15 skipped** (optional Qiskit/
+PyYAML unavailable in the core environment). Original 14 cases still validate;
+**691 protected files unchanged**. Full regression and preservation details are recorded in
+[new validation evidence](pilot/source_adaptations/v0.1/validation/results.json).
+Source excerpts retain their original functions; public export contains only the
+six allowlisted source/spec files plus a manifest. No new dependencies.
+
+Latest context-review checks (2026-09-21): original pilot-005 and pilot-009 test
+files each pass separately (**1 passed in 0.01s** each); original-code context
+illustrations succeed; **717 protected files unchanged**. Source/spec review only,
+not quantum migration validation. [Evidence](artifacts/context_case_review/validation.json).
+
+Earlier FSE audit checks (2026-09-20): **29 focused tests passed in 2.74s; 14 cases
+validate and remain DRAFT; JSON summary succeeds; 1,805 input/7,083 assignment
+arithmetic audit passes.** Repeat output and 717 protected files are byte-identical.
+See [audit validation](artifacts/plan_mapping_audit/validation.json). No runtime
+benchmark changes or Qiskit execution; full/optional suites were not rerun this session.
+
+Historical demo checks (2026-09-20): **13 new demo tests passed; core suite 91 passed /
+14 optional skips; separate Qiskit demo + optional suite 18 passed; 14 cases validate
+and JSON summary passes.** Actual terminal walkthrough passed. The first full-suite
+attempt in the quantum environment failed collection because jsonschema is absent;
+the project's existing core/quantum environment split covers all tests without installs.
+Logs and protected-file hashes: [demo evidence](demo/README.md).
+
+Previous runtime checks (N-004 repair, 2026-09-20): **25 focused tests passed;
+89 full-suite tests passed, 3 optional skips; separate optional suite 5 passed;
+14 valid DRAFT cases; JSON summary and blind prepare/collect/evaluate/compare audit
+passed.** The full-suite optional skips are Qiskit/PyYAML unavailable in that environment;
+the separate environment covers them. No model calls or scientific scores.
+Exact commands, raw outputs and preservation checks:
+[N-004 validation](artifacts/n004_packet_regeneration/README.md).
+
+The prior alignment audit's 86-pass/3-skip/1-failure result is historical. N-004
+reproduced the failing byte-identity test and added modified/missing-README regressions,
+then fixed the source selection without editing frozen artifacts. Historical audit:
+[research log](docs/research_log.md#2026-09-20--alignment-audit-and-original-contract-decision).
+
+Historical completed-diagnostic checks were **87 passed, 3 skipped; optional suite
+5 passed; collector 10 valid/0 repairs; 14 valid DRAFT cases**; these do not describe
+the current test state. Historical evidence:
+[diagnostic validation](pilot/baseline-v0.1/conditional-plan-diagnostic/validation/README.md).
+Documentation-only checks: [consolidation audit](docs/DOCUMENTATION_AUDIT.md).
+N-001 link/blank-field/preservation checks: [review preparation validation](artifacts/n001_review_preparation/validation.json).
+D-014 documentation/link/artifact checks: [policy recording validation](artifacts/d014_protocol_decision/validation.json).
+D-015 documentation/preservation checks: [contract decision validation](artifacts/d015_contract_decision/validation.json).
+D-016 documentation/preservation checks: [policy direction validation](artifacts/d016_policy_directions/validation.json).
+D-017 documentation/preservation checks: [structural definition validation](artifacts/d017_structural_definition/validation.json).
+
+```bash
+/home/audrey/miniconda3/envs/palqo/bin/python -m pytest -q
+/home/audrey/miniconda3/envs/htp-static/bin/python -m pytest -q tests/test_optional.py
+/home/audrey/miniconda3/envs/palqo/bin/python -m qrefactorbench validate cases/
+/home/audrey/miniconda3/envs/palqo/bin/python -m qrefactorbench summarize cases/ --json
+```
+
+Use existing environments; no install needed. Models are not invoked by these
+checks. Do not run historical runners to revalidate documentation. External run
+directories remain `/home/audrey/qrefactor_baseline_v01/` and
+`/home/audrey/qrefactor_conditional_plan_diagnostic/`; canonical evidence copies
+are the experiment-local files linked above. Neither directory authorizes a new call.
+
+Read [AGENTS.md](AGENTS.md) for startup, [charter](docs/RESEARCH_CHARTER.md) for intent,
+[workflow](docs/CODEX_WORKFLOW.md) for autonomy/stop rules, and
+[DECISIONS.md](DECISIONS.md) before changing meaning. Historical preparation:
+[PHASE1_PILOT_STATUS.md](PHASE1_PILOT_STATUS.md); history:
+[CHANGELOG.md](CHANGELOG.md), [research log](docs/research_log.md).

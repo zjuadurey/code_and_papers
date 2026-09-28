@@ -1,0 +1,15 @@
+{
+  "failed_rules": [
+    "r1"
+  ],
+  "locked_failures": [],
+  "status": "completed",
+  "proposal": {
+    "x1": false,
+    "x2": true,
+    "x3": false
+  },
+  "changes": [
+    "x2"
+  ]
+}

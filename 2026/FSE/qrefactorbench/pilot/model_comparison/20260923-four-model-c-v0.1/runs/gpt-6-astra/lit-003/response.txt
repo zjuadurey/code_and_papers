@@ -1,0 +1,70 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-003",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "agenda.py",
+      "function": "complete",
+      "start_line": 28,
+      "end_line": 57
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "lexicographically_first_conflict_free_assignment",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditional research plan only: search assignments a in {0,...,k-1}^n, marking exactly those satisfying a[i] != a[j] for every participant-conflict edge. Preserve lexicographic minimality by fixing sessions in input order: test slot values in increasing order and accept the first prefix admitting a feasible suffix. Each suffix-existence test can use Grover-style search, but its exact yes/no semantics require additional certification. Never return an arbitrary marked assignment as the final result.",
+    "input_encoding": "For k >= 2, encode each session slot in ceil(log2(k)) qubits, rejecting unused binary codes. Compile the classical neighbor graph into reversible equality checks, combine their results with slot-range and prefix checks, phase-mark validity, and uncompute all temporary state. Account for graph-dependent circuit construction, loading and ancillas; no coherent-memory access is assumed free. Handle n=0, k=0 and k=1 classically.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Measure and classically verify every candidate against the graph, slot range and fixed prefix. Quantum sampling failure must not establish infeasibility. Without a proven exact quantum existence procedure, use exhaustive classical certification for negative prefix decisions, preserving the first feasible slot at every position. Return the resulting integer vector; raise ValueError only after certified absence of an arrangement. Resource exhaustion must remain an execution failure, not become an infeasibility result.",
+    "assumptions": [
+      "Invocation remains restricted to the existing complete-mode fallback after a blocked preview.",
+      "The graph and declared slot count are immutable classical predicate inputs; neither current assignments nor failed preview choices constrain the search.",
+      "The DRAFT contract is a planning framework, not an approved implementation or an exactness guarantee."
+    ],
+    "risks": [
+      "Unknown solution counts complicate search scheduling and exact absence decisions.",
+      "Lexicographic prefix certification can eliminate any apparent search advantage.",
+      "A reversible oracle and its full resource requirements have not been implemented or validated.",
+      "Replacing classical failure handling with probabilistic no-solution reporting would violate the contract."
+    ],
+    "expected_resource_characteristics": {
+      "candidate_domain": "k^n complete assignments for k>0; a fixed prefix leaves k^(remaining sessions) candidates.",
+      "assignment_qubits": "n*ceil(log2(k)) for k>=2, plus oracle, comparison and search workspace.",
+      "oracle_work": "Slot-range checks and one inequality check per graph edge, with reversible combination and uncomputation; precise gate counts and depth are unresolved.",
+      "search_cost": "Idealized amplitude amplification has square-root query scaling for suitable marked-state search, excluding oracle costs, repeated prefix tests and exact classical certification.",
+      "end_to_end_obligations": "Measure graph preparation, circuit synthesis, state preparation, quantum execution, decoding, verification and certification against the existing pruned backtracking implementation.",
+      "hardware_and_workload": null
+    },
+    "rationale": "The finite assignment domain and explicit Boolean conflict predicate justify structural investigation. This conditional plan does not establish practical suitability, correctness of a quantum implementation, or advantage."
+  },
+  "rationale": "agenda.py:28-57 is a self-contained exact graph-coloring search. Its available predicate (32-40) reads neighbors and mutable partial assigned state; place (42-53) explores sessions and slots in increasing order, restoring failed choices, so the first returned complete vector is lexicographically smallest. Replacing the whole function avoids treating the stateful recursive predicate as a ready-made pure quantum oracle. Its required external inputs are the contiguous session-index graph from catalog.py:32-38 and slot_count; the graph encodes case-sensitive participant overlap. No IDs, current choices or failed preview assignments are fixed completion constraints. Activation is precisely program.py:21-33 after validation, complete mode, an infeasible current arrangement and a preview ValueError. Keep catalog.py:6-29 validation before processing, nonmutation, inspect and retained branches, and agenda.py:6-25's prescribed first-fit preview unchanged. Preview blockage is not proof of infeasibility. Preserve program.py:30-38's unavailable/completed reporting, slot-name decoding and input-ordered moves, catalog.py:41-52's full ordered descriptions and sorted shared names, and program.py:41-42's CLI behavior. Empty sessions remain feasible even with zero slots; nonempty zero-slot instances cannot complete. Do not add a session-count cap or reinterpret recursion/runtime limits as infeasibility. The preview and reporting loops are not nominated: their ordered behavior is prescribed, and polynomial scanning alone supplies no practical quantum case. Structural eligibility is true because completion has a finite search domain and explicit feasibility predicate. Practical suitability and benchmark support are unknown: no workload distribution, timing, hardware, oracle implementation or comparative benchmark is supplied. Dataset provenance is not performance evidence. Remain classical pending those obligations.",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Find the lexicographically smallest complete slot-index assignment separating every pair of sessions that share a participant, or establish that no assignment exists.",
+  "assumptions": [
+    "Only the supplied source and software contract are evidence.",
+    "Exact output selection, exceptions, ordering and effects cannot be replaced by approximate or probabilistic semantics."
+  ],
+  "risks": [
+    "Returning any feasible coloring would violate lexicographic selection.",
+    "Constraining completion by current or failed-preview assignments would change the problem.",
+    "Classical pruning may outperform flat-domain quantum search on relevant inputs; no frequency or size evidence is available."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Applicable as a conditional structural formulation: finite slot vectors admit a pure range-and-edge predicate and reversible comparison construction. Actual oracle implementation, resource accounting, lexicographic selection and exact absence certification remain unresolved; inclusion does not approve migration."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "An alternative structural formulation uses binary x[i,s] with P=sum_i(sum_s x[i,s]-1)^2 + sum_edges(i,j) sum_s x[i,s]x[j,s]. P=0 exactly represents feasible assignments. For k>=2, lexicographic selection can use L=sum_i k^(n-1-i) sum_s s*x[i,s] and minimize A*P+L with A>k^n-1, making every feasible assignment cheaper than every infeasible binary state. Exact global minimization and verification are required; QAOA sampling alone certifies neither minimality nor absence. Coefficient range, precision, n*k variables, coupling/embedding costs and the x=(1-Z)/2 conversion require analysis. Handle degenerate n/k cases classically. This alternative is structurally applicable, not practically validated."
+    }
+  ]
+}

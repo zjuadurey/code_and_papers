@@ -1,0 +1,9 @@
+{
+  "resolution": "ambiguous",
+  "anchor_pointers": ["/contract_applicability/0/rationale", "/plan/formulation", "/plan/input_encoding"],
+  "rationale": "The primary one-hot QUBO still lacks coefficients, tie encoding and a penalty bound; it is not evaluated here. The separate Grover applicability paragraph supplies a secondary selector: no smaller than every competitor and lower index than every equal-valued competitor. As in prior audits, retain both >= and literal not-< readings of no-smaller; they differ for NaN. Competitors exclude the candidate itself. This separate Grover claim has no explicit finite guard; do not import the primary QUBO admission condition. Results concern only this secondary relation, not the primary QUBO or entire answer.",
+  "interpretations": [
+    {"id": "competitor_ge_first_equal", "meaning": "Conventional >= reading against all other candidates, and lower index than all equal competitors.", "mode": "predicate", "expression": "all(values[i] >= values[j] for j in indices if j != i) and all(i < j for j in indices if j != i and values[i] == values[j])", "guard": "True", "outside_guard": "unresolved"},
+    {"id": "competitor_not_lt_first_equal", "meaning": "Literal not-< reading against all other candidates, with the same equality tie rule.", "mode": "predicate", "expression": "not any(values[i] < values[j] for j in indices if j != i) and all(i < j for j in indices if j != i and values[i] == values[j])", "guard": "True", "outside_guard": "unresolved"}
+  ]
+}

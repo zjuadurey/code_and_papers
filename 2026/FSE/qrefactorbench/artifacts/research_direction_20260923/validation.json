@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "scope": "N-042 documentation only; D-030 direction recorded, no method implementation",
+  "changed_documents": [
+    {
+      "path": "docs/RESEARCH_CHARTER.md",
+      "before_sha256": "096c98d79b1fbdd1ecf235d53153289fa1cbbf31413a207eb4a6a9bb12d5935d",
+      "after_sha256": "f9bbf04987eb3d7bf55bda241628980dfad4fa89ed1b6fd67da6ddd14fe79626"
+    },
+    {
+      "path": "PROJECT_STATUS.md",
+      "before_sha256": "f1cea443054dd450ab1dd5a1942a9d12af8c8d6e8847afc7e9a8b9707fb21607",
+      "after_sha256": "2da57fddb0dece2f209b215b4598676ede1864f5d164ba725e991b7a9a888da4"
+    },
+    {
+      "path": "NEXT_ACTIONS.md",
+      "before_sha256": "ae818d98863f9f85d045d3969f7718ae570e4905bae7a36798338134170b103a",
+      "after_sha256": "8ccbb2ac07c7eaaadc94bc55bf8dc56f16ede2215bcc3c64fcbd2aca92b42a57"
+    },
+    {
+      "path": "DECISIONS.md",
+      "before_sha256": "34d09d97f7b47e724418f5a127f1bf8b63660333acd3ab99cb8d7ee90700d2c4",
+      "after_sha256": "aee987fab3497c7b671e452cc234993349e78f2708de0379273b2ed116f3b8ca"
+    },
+    {
+      "path": "TODO.md",
+      "before_sha256": "53cae5e8bc3f581c4dc682663ca0b441b1d778f551c45d544f7beaf5da110901",
+      "after_sha256": "578b4b254c98725082ddf1395c44f2c034473ad60cb29404209232be1a3f36b8"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "before_sha256": "54004064f1317f11e0ed2b522635fb3ca26227bb8d63e7f6c74627b6eab5cd6e",
+      "after_sha256": "e64c278a46d81d830cb286ef5e438ed8cd239965c8753d07efd531be7e377811"
+    },
+    {
+      "path": "docs/research_log.md",
+      "before_sha256": "a24e15acba1d1728a2b2b0b0142cb21502eb0ca5fbef04613d4ad6cc46b058a1",
+      "after_sha256": "ac1b6c8b986d64ec64140afca808b9b4c3d8c5a217089bac64dcc6e709898ad5"
+    }
+  ],
+  "local_links_checked": 208,
+  "new_anchors_checked": 2,
+  "protected_files_checked": 1909,
+  "protected_files_changed": [],
+  "protected_manifest_sha256": "657c4f6b3a5e88bffca450351c5edf1fe8acc7d278a0138a81a61f7510510ec0",
+  "runtime_tests_run": false,
+  "runtime_tests_reason": "Only research/control documentation changed; link, consistency and preservation checks executed.",
+  "model_calls": 0,
+  "qpu_calls": 0,
+  "same_model_comparison_recorded": true,
+  "specific_method_effectiveness": "not established"
+}

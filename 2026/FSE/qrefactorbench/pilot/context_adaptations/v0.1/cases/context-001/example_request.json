@@ -1,0 +1,9 @@
+{
+  "equipment": ["pump", "fan", "chiller"],
+  "requirements": [
+    {"first": "pump", "second": "fan", "weight": 4},
+    {"first": "fan", "second": "chiller", "weight": 3},
+    {"first": "pump", "second": "chiller", "weight": 1}
+  ],
+  "current_windows": [["chiller", "pump", "fan"], []]
+}

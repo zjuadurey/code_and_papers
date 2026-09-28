@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "changed_documents": [
+    "CHANGELOG.md",
+    "DECISIONS.md",
+    "NEXT_ACTIONS.md",
+    "PROJECT_STATUS.md",
+    "TODO.md",
+    "docs/RESEARCH_CHARTER.md",
+    "docs/annotation_guidelines.md",
+    "docs/open_questions.md",
+    "docs/research_log.md",
+    "docs/task_definition.md"
+  ],
+  "existing_files_checked": 700,
+  "unchanged_existing_files": 690,
+  "local_links_checked": 96,
+  "markdown_fragments_checked": 14,
+  "experiment_hashes_verified": {
+    "restricted-codex": 120,
+    "conditional-plan-diagnostic": 129
+  },
+  "protected_files": "All pre-existing files outside the listed ten Markdown documents unchanged.",
+  "tests_this_task": "Not run: documentation only; previous packet regeneration failure remains outstanding.",
+  "model_calls": 0,
+  "unresolved": "Item 1 / Q2 not decided; no scientific labels or actual reviews assigned."
+}

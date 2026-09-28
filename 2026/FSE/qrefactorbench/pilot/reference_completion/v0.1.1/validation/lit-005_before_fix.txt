@@ -1,0 +1,46 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_____ test_locked_failures_follow_feature_order_not_mapping_order[inspect] _____
+
+mode = 'inspect'
+
+    @pytest.mark.parametrize('mode', ['inspect', 'complete'])
+    def test_locked_failures_follow_feature_order_not_mapping_order(mode):
+        from itertools import permutations
+        for order in permutations(['b', 'z', 'a']):
+            request = {'features': ['z', 'a', 'b'], 'rules': [],
+                       'locked': {key: True for key in order},
+                       'current': [False, True, False], 'mode': mode}
+            before = deepcopy(request)
+            result = program.review(request)
+>           assert result['locked_failures'] == ['z', 'b']
+E           AssertionError: assert ['b', 'z'] == ['z', 'b']
+E             
+E             At index 0 diff: 'b' != 'z'
+E             Use -v to get more diff
+
+pilot/reference_completion/v0.1.1/cases/lit-005/test_program.py:19: AssertionError
+____ test_locked_failures_follow_feature_order_not_mapping_order[complete] _____
+
+mode = 'complete'
+
+    @pytest.mark.parametrize('mode', ['inspect', 'complete'])
+    def test_locked_failures_follow_feature_order_not_mapping_order(mode):
+        from itertools import permutations
+        for order in permutations(['b', 'z', 'a']):
+            request = {'features': ['z', 'a', 'b'], 'rules': [],
+                       'locked': {key: True for key in order},
+                       'current': [False, True, False], 'mode': mode}
+            before = deepcopy(request)
+            result = program.review(request)
+>           assert result['locked_failures'] == ['z', 'b']
+E           AssertionError: assert ['b', 'z'] == ['z', 'b']
+E             
+E             At index 0 diff: 'b' != 'z'
+E             Use -v to get more diff
+
+pilot/reference_completion/v0.1.1/cases/lit-005/test_program.py:19: AssertionError
+=========================== short test summary info ============================
+FAILED pilot/reference_completion/v0.1.1/cases/lit-005/test_program.py::test_locked_failures_follow_feature_order_not_mapping_order[inspect]
+FAILED pilot/reference_completion/v0.1.1/cases/lit-005/test_program.py::test_locked_failures_follow_feature_order_not_mapping_order[complete]
+2 failed, 9 deselected in 0.04s

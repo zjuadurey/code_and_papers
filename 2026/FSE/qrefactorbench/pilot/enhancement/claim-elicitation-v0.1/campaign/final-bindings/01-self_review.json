@@ -1,0 +1,39 @@
+{
+  "response_sha256": "dc9e79b1da45d3fbd868f65c6d5e1dd0350b0dda926983f68c4268b2759fdc46",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 25.57,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:39:27.526857+00:00",
+  "review_submitted_utc": "2026-09-26T21:39:53.096473+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "dc9e79b1da45d3fbd868f65c6d5e1dd0350b0dda926983f68c4268b2759fdc46",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode the remaining row indices for each elimination column as a finite search domain. Define a reversible predicate that marks exactly the index Python's max operation would select from range(col, n) using abs(rows[i][col]), including its first-candidate and tie behavior. Search for that marked index, decode it, and verify it classically before retaining the exact-zero pivot check and row swap."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode indices from col through n-1 in a basis-state register, with invalid basis states unmarked. Supply coherent access to the current augmented rows, active column, and binary64 representations of pivot values. The oracle must reversibly reproduce Python binary64 absolute-value and comparison behavior, including behavior for nonfinite intermediates if they can arise, and uncompute all comparison workspace. Coherent loading or reversible maintenance of the changing augmented matrix remains unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a candidate row index and classically recompute the original Python selection over the current column. Use the quantum result only if it equals that deterministic index; otherwise follow a defined retry or classical-fallback policy. Preserve the subsequent exact-zero singularity exception, deterministic swap, elimination order, back substitution, numerical-overflow behavior, residual calculations, named output order, and all validation and no-mutation semantics."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The primary search plan requests exactly Python's selection and mentions first/tie behavior but supplies no concrete comparison recurrence or predicate. Classical recomputation is a verification/fallback declaration, not a constructed oracle rule. No formula is inferred from the desired output.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

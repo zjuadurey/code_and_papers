@@ -1,0 +1,43 @@
+{
+  "response_sha256": "20d94f4538db881d45ec81226d5c8d6d887ff17f841f417ee4d50652a4a07be4",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 24.211,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:17:08.800808+00:00",
+  "review_submitted_utc": "2026-09-26T22:17:33.011655+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "20d94f4538db881d45ec81226d5c8d6d887ff17f841f417ee4d50652a4a07be4",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally replace only the linear maximum-selection expression with an adaptive Grover-style search over row indices col through n-1. A reversible comparison predicate would mark an index when its absolute binary64 pivot value is greater than the current incumbent value; updates must use strict greater-than so equal values retain the lowest index. Repeat until no greater candidate is found, then certify the selected index before continuing classical elimination."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a candidate row index, range-check it, and classically compare it with the incumbent. Before accepting the final pivot, certify that no row has a larger absolute value and that no earlier row has the same maximum. If probabilistic search cannot provide the contractually required certainty, perform the original classical scan and use its result."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "Conditionally applicable to line 13 because the current suffix of row indices is finite and a pure Boolean predicate can mark rows whose absolute pivot value strictly exceeds an incumbent. Applicability does not establish suitability: reversible binary64 comparison, coherent access to mutable rows, adaptive maximum-finding logic, exact no-marked-state handling, earliest-tie preservation, deterministic error policy, and full resource costs remain unresolved."
+      },
+      {
+        "pointer": "/rationale",
+        "quote": "The candidate is limited to kernel.py line 13, the complete assignment that scans rows col through n-1 and selects the largest absolute pivot. Its required inputs and state are col and the mutable augmented rows created at line 11 and updated at lines 16-20. It activates once per elimination column in kernel.py lines 12-20, and solve itself activates only from program.py lines 22-27 when mode is solve. The finite row-index domain and Boolean comparison against an incumbent make this expression structurally eligible for conditional Grover-style analysis. The surrounding classical behavior must remain intact: first-index tie selection, the exact-zero singularity check at lines 14-15, row swapping, elimination and back-substitution order, binary64 arithmetic, overflow rejection, empty-system behavior, named proposal and delta construction, both residual evaluations, inspect-mode behavior, validation, output ordering, and no mutation of caller inputs. Practical suitability is false because the program is explicitly small and serial, each pivot domain is at most n, row values change after every elimination step, coherent data access and reversible floating-point comparison are costly, and deterministic certification or fallback can require the original linear scan. Benchmark support is independently false: the HPL attribution documents the classical algorithm and residual diagnostic, while the supplied contract explicitly says this is not a compliant HPL performance run and supplies no quantum workload, hardware, encoding-cost, resource, or advantage evidence. The full dense solve and residual computation are not nominated: treating real-valued solution vectors as a Grover domain or QUBO variables would require unsupported bounds and precision and could not silently replace the specified elimination and diagnostic semantics."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "Catalog-only revision newly nominates line13 and supplies a conditional threshold/maximum-finding plan. A strict threshold comparison is present, but initial incumbent, candidate visitation/update control and exact termination are unresolved. Strict update alone does not imply earliest-tie selection under arbitrary adaptive search order. Do not transcribe it as an ordered scan or count the desired classical certificate as a constructed primary predicate.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

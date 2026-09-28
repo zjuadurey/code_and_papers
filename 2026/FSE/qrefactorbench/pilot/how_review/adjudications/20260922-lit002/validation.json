@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "protected_files_unchanged": 1634,
+  "claims_bound_to_exact_original_formulation": 2,
+  "prior_review_unchanged": true,
+  "reviewer_identity_and_independence_left_unknown": true,
+  "new_model_calls": 0,
+  "new_quantum_runs": 0,
+  "new_mathematical_execution": false,
+  "scope": "Document integrity and exact source binding, not a new scientific rerun or verified reviewer identity.",
+  "existing_local_file_links": 178
+}

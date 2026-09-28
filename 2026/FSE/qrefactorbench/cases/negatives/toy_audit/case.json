@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.1.0",
+  "title": "DRAFT placeholder: search-like loop with ordered audit side effects",
+  "description": "DRAFT infrastructure demonstration; not scientifically validated ground truth.",
+  "source": "Original toy authored during infrastructure setup; generated assistance, human scientific review pending.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "infrastructure_demonstration",
+  "version": "0.1.0",
+  "migration_family": "unstructured_search",
+  "context_level": "small_program",
+  "case_type": "hard_negative",
+  "difficulty": "unknown",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "inspect_flags",
+      "start_line": 1,
+      "end_line": 6
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": "REMAIN_CLASSICAL",
+  "computational_intent": {
+    "id": "ordered_audit_and_existence",
+    "description": "Record every visited position in order and return marked existence."
+  },
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "A future hook must check both the Boolean output and the complete ordered audit trace.",
+    "hook_id": "ordered_audit",
+    "config": {}
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Local simulator demonstration only; no speedup or practical advantage claim."
+    ],
+    "limits": {}
+  },
+  "negative_reason": "OPEN QUESTION: a search-like computation whose externally visible ordered audit effects must be preserved. Hard-negative classification requires humans.",
+  "annotation_rationale": "DRAFT toy metadata exercises the infrastructure. Researchers must replace or independently verify every scientific label.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "Not benchmark ground truth; not evidence of advantage."
+  ],
+  "case_id": "toy-hard-negative-001",
+  "files": [
+    "program.py",
+    "main.py"
+  ]
+}

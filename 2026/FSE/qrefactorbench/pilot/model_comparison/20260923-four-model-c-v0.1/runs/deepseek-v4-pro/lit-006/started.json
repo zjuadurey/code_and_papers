@@ -1,0 +1,12 @@
+{
+  "requested_model": "deepseek-v4-pro",
+  "mother_case_id": "lit-006",
+  "started_utc": "2026-09-22T17:11:03.980683+00:00",
+  "input_sha256": "788cc5bf47576888f1c5b883542ee92e9e6c73031524a1be1dc9a8bea557d817",
+  "request_sha256": "9eb7608f224ff0ec01b39a84da052dee931f8fb6a3672aa17e115bf7e11bbe5e",
+  "operator_retries": 0,
+  "http_status": null,
+  "transport_error": null,
+  "response_complete": false,
+  "unexpected_tool_calls": false
+}

@@ -1,0 +1,20 @@
+{
+  "slot": "04-catalog_only",
+  "replicate": 4,
+  "arm": "catalog_only",
+  "mother_case": "lit-009",
+  "usage": [
+    {
+      "input_tokens": 19781,
+      "cached_input_tokens": 2944,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2980,
+      "reasoning_output_tokens": 1150
+    }
+  ],
+  "model_seconds": 59.059,
+  "task_pass": null,
+  "response_sha256": "0d09b319ed21514ad94744b4c5f13ff357ae70bec1f65009600bb324ade48b24",
+  "status": "valid_response",
+  "validation_errors": []
+}

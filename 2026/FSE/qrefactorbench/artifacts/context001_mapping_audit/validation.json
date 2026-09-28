@@ -1,0 +1,72 @@
+{
+  "timestamp_utc": "2026-09-20T18:01:40.453453+00:00",
+  "commands": [
+    {
+      "argv": [
+        "python",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/artifacts/context001_mapping_audit/check_mapping.py"
+      ],
+      "exit_code": 0,
+      "stdout": "results.json",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "pilot/context_adaptations/v0.1/cases/context-001/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "check-1.txt",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "check-2.txt",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "pilot/context_adaptations/v0.1/cases"
+      ],
+      "exit_code": 0,
+      "stdout": "check-3.txt",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "check-4.txt",
+      "stderr": ""
+    }
+  ],
+  "repeat_results_identical": true,
+  "protected_count": 625,
+  "changed_protected_files": [],
+  "labels_changed": false,
+  "model_calls": 0,
+  "quantum_executions": 0,
+  "final_documentation_audit": {
+    "local_links_checked": 108,
+    "broken_links": [],
+    "protected_changes": []
+  }
+}

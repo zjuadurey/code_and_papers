@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "date": "2026-09-20",
+  "existing_files_checked": 696,
+  "unchanged_existing_files": 687,
+  "intentionally_changed_documents": [
+    "CHANGELOG.md",
+    "DECISIONS.md",
+    "NEXT_ACTIONS.md",
+    "PROJECT_STATUS.md",
+    "README.md",
+    "TODO.md",
+    "docs/RESEARCH_CHARTER.md",
+    "docs/open_questions.md",
+    "docs/research_log.md"
+  ],
+  "local_link_targets_checked": 92,
+  "experiment_manifest_entries_verified": {
+    "restricted-codex": 120,
+    "conditional-plan-diagnostic": 129
+  },
+  "protected_files": "All pre-existing files outside the nine listed documents unchanged, including frozen inputs, experiments, code, schemas, labels and blank human review record.",
+  "runtime_tests": "Not run: documentation-only changes.",
+  "model_calls": 0
+}

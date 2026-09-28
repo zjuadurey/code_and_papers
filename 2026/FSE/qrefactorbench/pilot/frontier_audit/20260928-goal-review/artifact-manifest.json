@@ -1,0 +1,22 @@
+{
+  "docs/frontier/v2/BOUNDARIES_AND_ROUTES.md": "a3115e75081eed213f711c54a58a81616acf5caa08aa0cc08256c9d7021a7978",
+  "docs/frontier/v2/CAPABILITY_MATRIX.md": "bfffc3940c1334b7ee126f07ecec22f92b5cc5fadcc309c253eeddc5b2a5f098",
+  "docs/frontier/v2/EVIDENCE_AND_COMPLETION.md": "e8027e7432a248116163c1f80afcf09669ab7681e04556e2139d1ccbc0f53ee5",
+  "docs/frontier/v2/README.md": "d061849e1a939f0e9a8158ef7e21d6a7c55f23cc52f78e8379afbffce558f123",
+  "pilot/frontier_audit/20260928-goal-review/README.md": "12fbdc3c7f4f3b7229ac9d3fd83e7d1411320375e31c185521b2981a71604dcd",
+  "pilot/frontier_audit/20260928-goal-review/completion-audit.json": "eb7fe2fc4a32ffc5be4408330171161247e8c7818780d13a2af95a6b4545022f",
+  "pilot/frontier_audit/20260928-goal-review/fetch.py": "b6794eb8041a9a0b66aaa1bad2ea684a8c0b289f89ccd5c2f32ab448ad07d6d0",
+  "pilot/frontier_audit/20260928-goal-review/protected-before.json": "26450c874d59ff02105a665768dc7c1440da0899d45e91edc99f5602a20f9ac6",
+  "pilot/frontier_audit/20260928-goal-review/source-manifest-2.json": "52aa77d1cbc33a9b6a6e147933e1fb7ed62fe6bba85b3239622da477f6430655",
+  "pilot/frontier_audit/20260928-goal-review/source-manifest.json": "5c1977e0cc6c1e6d70db3730eefe677ed8222e72335b69ca3bb577d0f268eab9",
+  "pilot/frontier_audit/20260928-goal-review/sources/bbbv-abstract.html": "f8df6103b477ac2d891b19202dce1be2b823838b970ace00e60d9a99e5c00618",
+  "pilot/frontier_audit/20260928-goal-review/sources/end-to-end-abstract.html": "5349e0328988cb788a4b4703d5432e361c5396d0f348e13a668f27bd8b996ac9",
+  "pilot/frontier_audit/20260928-goal-review/sources/fse-cfp.html": "35e7e8f340cd15c1931c41f43d3ef604e68978a547e0d9913026bb99120380a3",
+  "pilot/frontier_audit/20260928-goal-review/sources/hps-abstract.html": "6b8a938e70a0ec61631d12f0caab6a002d6ebbe5497ddea078582a6d877a01ed",
+  "pilot/frontier_audit/20260928-goal-review/sources/road.pdf": "11293d1c0eaf772c64a4f03b202e1a8254b4fb3d5e4c08a76d65a93d7c7a63ec",
+  "pilot/frontier_audit/20260928-goal-review/sources/road.txt": "947311324bb3251b371d274b07bb2311a28e2b7849362f75f9f0cfcc0cfd8a85",
+  "pilot/frontier_audit/20260928-goal-review/sources/turing.pdf": "a126650c315e998ba96ea8248a60bde0afe60fec3e810acfc2b6c70d3b0e9f36",
+  "pilot/frontier_audit/20260928-goal-review/sources/yamato.pdf": "6119749c4db077886aff3972d2ed15bae58acf9ff4547fcd8957a36c76ff1f7b",
+  "pilot/frontier_audit/20260928-goal-review/sources/yamato.txt": "5dad89af64f11432a783fc5576f970e7a43441dd2f91ba7f9e51145b371366c0",
+  "pilot/frontier_audit/20260928-goal-review/verify.py": "4f62300f9c7e123eaebc2330d4d279e62bd00731a93e301d3e72e7b7eec6cb0c"
+}

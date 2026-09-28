@@ -1,0 +1,71 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 13,
+      "end_line": 16
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "lit-009-partial-pivot-index-search",
+    "migration_family": "unstructured_search",
+    "formulation": "For each elimination step c, search the finite row-index domain D={c,...,n-1} for the unique index i satisfying P(i): i is in D, abs(rows[i][c]) is at least as large as abs(rows[k][c]) for every k in D, and no earlier index j<i in D has the same absolute value. This encodes the classical largest-absolute pivot with first-index tie. The surrounding elimination, row swap, zero-pivot check, back substitution, and residual diagnostics remain classical.",
+    "input_encoding": "Candidate row indices in [c,n-1] are encoded as integer basis states using O(log(n-c)) index qubits. The current augmented matrix entries must be available through a reversible arithmetic/comparator oracle; data loading and coherence are not assumed to be free.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Measure the candidate index, then classically verify P(i) against the current rows matrix. If verification fails or exact tie-first semantics are not confirmed, fall back to Python's deterministic max() and continue. A measured result is never trusted without verification.",
+    "assumptions": [
+      "A reversible oracle for binary64 absolute-value comparison and first-index tie can be constructed from the current rows matrix.",
+      "Classical verification and fallback preserve exact zero-pivot, ordering, floating-point, and exception behavior.",
+      "The migration is limited to pivot-index selection; all other solve and review behavior remains classical."
+    ],
+    "risks": [
+      "Pivot selection is O(n) per column classically and is not the dominant O(n^3) elimination/back-substitution cost.",
+      "The oracle must load or access dense floating-point matrix data, likely eliminating any search speedup.",
+      "Exact binary64 comparison and first-index tie encoding in superposition are unresolved and resource-heavy.",
+      "Grover output is probabilistic, so deterministic software semantics require classical verification and fallback."
+    ],
+    "expected_resource_characteristics": {
+      "candidate_domain_size_per_column": "O(n)",
+      "oracle_queries_per_column": "O(sqrt(n)) if the predicate oracle is treated as unit-cost",
+      "oracle_gate_depth": "O(n) or worse due to binary64 comparison and tie logic",
+      "total_pivot_search_overhead": "O(n^2.5) or greater without free data loading",
+      "notes": "No practical advantage over the classical O(n) per-column max scan; dominant dense solve remains classical O(n^3)."
+    },
+    "rationale": "Only the finite row-index pivot selection has Grover-style structure. The rest of the program is continuous real-valued dense linear algebra and must remain classical. This plan is conditional and is not a deployment recommendation."
+  },
+  "rationale": "kernel.py lines 13-16 contain the only finite-domain candidate-search-shaped component: max(range(col,n), key=lambda i: abs(rows[i][col])) selects a pivot row index by largest absolute value with Python's first-index tie. That can be expressed as a Grover predicate over row indices, but it depends on rows after prior pivot steps and must preserve the zero-pivot check and row swap. Lines 17-26 and kernel.py lines 29-38 are real-valued dense elimination/back substitution and residual diagnostics, outside the supported families. Practical suitability is false: pivot search is already O(n) per column and is not the dominant cost; a quantum oracle would need binary64 data access and exact tie/order verification, with no demonstrated advantage. benchmark_supported is null because no workload, benchmark, hardware, or encoding-cost evidence is supplied and this is not a compliant HPL performance run. The decision is therefore REMAIN_CLASSICAL, with the pivot-search migration treated as conditional and not recommended.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Conditionally accelerate only the finite partial-pivot row-index maximum search in kernel.solve; keep all real-valued dense elimination, back substitution, validation, and residual diagnostics classical.",
+  "assumptions": [
+    "No free data loading, arithmetic, comparator, or coherent matrix access is assumed.",
+    "Any quantum candidate must preserve exact exceptions, zero-pivot handling, ordering, tie-first behavior, and input/output semantics.",
+    "The analysis is phase-1 planning only; DRAFT contracts are not accepted as validation."
+  ],
+  "risks": [
+    "The nominated pivot search is a micro-step, not the dominant O(n^3) hot spot.",
+    "A reversible binary64 comparator/tie-first oracle may be larger and slower than the classical O(n) max scan.",
+    "Probabilistic Grover measurement would require verification/fallback to retain deterministic semantics.",
+    "Dense real linear solve and residual diagnostic do not fit unstructured_search or QUBO/Ising."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Applicable only to the local finite-domain pivot-index predicate. The global program is not a pure Boolean search. Reversible oracle construction remains unresolved for binary64 comparisons and first-index tie."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "There is no binary optimization objective or penalty formulation for the continuous real solution/residual task; solving Ax=b approximately as a minimum would relax exactness and does not match the required semantics."
+    }
+  ]
+}

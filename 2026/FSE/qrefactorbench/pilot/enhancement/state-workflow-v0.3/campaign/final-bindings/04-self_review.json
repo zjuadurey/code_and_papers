@@ -1,0 +1,35 @@
+{
+  "response_sha256": "17f5cbd5f5e3408efd7ab491faf8b0c8a97c4ff4e9ba242dba5939c15186f177",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 13.452,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:44:58.924602+00:00",
+  "review_submitted_utc": "2026-09-26T12:45:12.376474+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "17f5cbd5f5e3408efd7ab491faf8b0c8a97c4ff4e9ba242dba5939c15186f177",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "The only region warranting focused analysis is kernel.py lines 9-26, the dense linear-system solver. It contains the principal cubic work: construction of a private augmented matrix, deterministic partial-pivot selection, elimination, and back substitution. Its required inputs are the validated finite binary64 matrix and rhs; it depends on n=len(rhs), mutable copied rows, Python arithmetic and iteration order, largest-absolute-value pivot selection with the first index winning ties, exact-zero pivot detection, and a final finiteness check. It is activated only by program.py lines 22-27 when mode is solve. Surrounding behavior that must remain intact includes strict validation, no mutation of caller data, inspect mode not solving or necessarily rejecting singularity, ValueError behavior for exact-zero pivots and detected nonfinite solutions, residual recomputation by kernel.py lines 29-38, variable-name ordering, delta calculation, and the caller's diagnostic limit comparison. Structurally, this region is not an instance of either supported family: it solves a continuous dense linear system through ordered floating-point elimination, not a finite-domain predicate search or an explicitly binary combinatorial objective. Turning binary64 solution values and pivot-state evolution into a finite search or QUBO would require an unresolved encoding and would not inherently preserve the specified arithmetic, pivot tie-breaking, exceptions, or exact output behavior. Practical suitability is false because the supplied program is small and serial, while no workload scale, coherent data-loading mechanism, quantum hardware, resource budget, or advantage evidence is supplied. Benchmark support is independently false: the notice provides HPL algorithm attribution but explicitly states that this is not an HPL port, rating, or compliant performance run, and it provides no quantum benchmark evidence."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The solver exposes no finite candidate domain with a pure Boolean predicate. Constructing one would require discretizing all solution components and reversibly reproducing elimination or checking Ax=b under the specified binary64 semantics. No encoding, oracle, no-solution policy, exactness argument, or resource bounds are supplied."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The full-solver nomination and absence of a migration plan persist. Original pivot semantics are described as obligations but no replacement selector is offered. There is no local formula to check and no previously offered mapping has been withdrawn. Broader eligibility is ungraded.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

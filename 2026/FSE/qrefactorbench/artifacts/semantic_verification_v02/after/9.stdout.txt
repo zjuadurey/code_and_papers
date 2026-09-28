@@ -1,0 +1,1 @@
+{"mother_cases": 10, "input_conditions": 30, "cases_with_scoped_oracle": 10, "cases_actually_checked": 10, "test_inputs": 61, "synthetic_controls": 50, "correct_controls_passed": 21, "wrong_controls_rejected": 29, "model_calls": 0, "whole_task_passed": null}

@@ -1,0 +1,121 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]+$"
+    },
+    "decision": {
+      "enum": [
+        "QUANTUMIZE",
+        "REMAIN_CLASSICAL"
+      ]
+    },
+    "candidate_regions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "https://qrefactorbench.example/schemas/0.1.0/case.schema.json#/$defs/region"
+      }
+    },
+    "computational_intent_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "migration_family": {
+      "enum": [
+        "unstructured_search",
+        "combinatorial_optimization",
+        null
+      ]
+    },
+    "plan": {
+      "anyOf": [
+        {
+          "$ref": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "generated_patch": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "generated_files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "decision",
+    "candidate_regions"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "QUANTUMIZE"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "plan"
+        ],
+        "properties": {
+          "candidate_regions": {
+            "minItems": 1
+          },
+          "plan": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "correct": {
+    "version": "qubo-template-v1",
+    "sense": "min",
+    "decode": {
+      "index": "i",
+      "complement": false
+    },
+    "explanation": "Synthetic evaluator control.",
+    "terms": [
+      {
+        "over": "vertices",
+        "coefficient": "2**n - 2**(n-1-i)",
+        "factors": [
+          {
+            "index": "i",
+            "complement": false
+          }
+        ]
+      },
+      {
+        "over": "edges",
+        "coefficient": "n*2**n+1",
+        "factors": [
+          {
+            "index": "i",
+            "complement": true
+          },
+          {
+            "index": "j",
+            "complement": true
+          }
+        ]
+      }
+    ]
+  },
+  "equivalent": {
+    "version": "qubo-template-v1",
+    "sense": "max",
+    "decode": {
+      "index": "n-1-i",
+      "complement": true
+    },
+    "explanation": "Synthetic evaluator control.",
+    "terms": [
+      {
+        "over": "vertices",
+        "coefficient": "-3*(2**n - 2**(n-1-i))/2",
+        "factors": [
+          {
+            "index": "n-1-i",
+            "complement": true
+          }
+        ]
+      },
+      {
+        "over": "edges",
+        "coefficient": "-3*(n*2**n+1)/2",
+        "factors": [
+          {
+            "index": "n-1-i",
+            "complement": false
+          },
+          {
+            "index": "n-1-j",
+            "complement": false
+          }
+        ]
+      },
+      {
+        "over": "once",
+        "coefficient": "7",
+        "factors": []
+      }
+    ]
+  },
+  "numeric_mask": {
+    "version": "qubo-template-v1",
+    "sense": "min",
+    "decode": {
+      "index": "i",
+      "complement": false
+    },
+    "explanation": "Synthetic evaluator control.",
+    "terms": [
+      {
+        "over": "vertices",
+        "coefficient": "2**n + 2**i",
+        "factors": [
+          {
+            "index": "i",
+            "complement": false
+          }
+        ]
+      },
+      {
+        "over": "edges",
+        "coefficient": "n*2**n+1",
+        "factors": [
+          {
+            "index": "i",
+            "complement": true
+          },
+          {
+            "index": "j",
+            "complement": true
+          }
+        ]
+      }
+    ]
+  },
+  "positive_superincreasing": {
+    "version": "qubo-template-v1",
+    "sense": "min",
+    "decode": {
+      "index": "i",
+      "complement": false
+    },
+    "explanation": "Synthetic evaluator control.",
+    "terms": [
+      {
+        "over": "vertices",
+        "coefficient": "2**n + 2**(n-1-i)",
+        "factors": [
+          {
+            "index": "i",
+            "complement": false
+          }
+        ]
+      },
+      {
+        "over": "edges",
+        "coefficient": "n*2**n+1",
+        "factors": [
+          {
+            "index": "i",
+            "complement": true
+          },
+          {
+            "index": "j",
+            "complement": true
+          }
+        ]
+      }
+    ]
+  },
+  "omit_constraints": {
+    "version": "qubo-template-v1",
+    "sense": "min",
+    "decode": {
+      "index": "i",
+      "complement": false
+    },
+    "explanation": "Synthetic evaluator control.",
+    "terms": [
+      {
+        "over": "vertices",
+        "coefficient": "2**n - 2**(n-1-i)",
+        "factors": [
+          {
+            "index": "i",
+            "complement": false
+          }
+        ]
+      }
+    ]
+  },
+  "omit_tie": {
+    "version": "qubo-template-v1",
+    "sense": "min",
+    "decode": {
+      "index": "i",
+      "complement": false
+    },
+    "explanation": "Synthetic evaluator control.",
+    "terms": [
+      {
+        "over": "vertices",
+        "coefficient": "2**n",
+        "factors": [
+          {
+            "index": "i",
+            "complement": false
+          }
+        ]
+      },
+      {
+        "over": "edges",
+        "coefficient": "n*2**n+1",
+        "factors": [
+          {
+            "index": "i",
+            "complement": true
+          },
+          {
+            "index": "j",
+            "complement": true
+          }
+        ]
+      }
+    ]
+  },
+  "wrong_sense": {
+    "version": "qubo-template-v1",
+    "sense": "max",
+    "decode": {
+      "index": "i",
+      "complement": false
+    },
+    "explanation": "Synthetic evaluator control.",
+    "terms": [
+      {
+        "over": "vertices",
+        "coefficient": "2**n - 2**(n-1-i)",
+        "factors": [
+          {
+            "index": "i",
+            "complement": false
+          }
+        ]
+      },
+      {
+        "over": "edges",
+        "coefficient": "n*2**n+1",
+        "factors": [
+          {
+            "index": "i",
+            "complement": true
+          },
+          {
+            "index": "j",
+            "complement": true
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-005",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "complete",
+      "start_line": 10,
+      "end_line": 14
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "named-feature-first-conforming-minimization",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Minimize sum_{i=0}^{size-1} 2^(size-1-i) x_i over x_i in {0,1}, where False=0 and True=1, subject to: x_i = locked[i] for locked features; and for each rule, the OR over its three literals is true. Feasible solutions correspond exactly to conforms() assignments. The minimal feasible value corresponds to the first vector produced by product((False, True), repeat=size); infeasibility means complete() returns None.",
+    "input_encoding": "One binary variable per feature. If converting QUBO to Ising, use x_i=(1-Z_i)/2. Objective constants are powers of two in feature order. Locked choices are linear equality penalties, and each three-literal OR rule requires constraint penalties or ancillas.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure candidate bits, classically verify conforms(chosen, clauses, locked), recompute the binary-order objective, and certify that no lower feasible value exists before returning a proposal. If exact certification cannot be produced, the classical enumerator or None must remain the fallback.",
+    "assumptions": [
+      "A feasible QUBO penalty representation exists without changing the minimal feasible assignment.",
+      "OR-clause and locked-value constraints can be encoded exactly or verified classically after decoding.",
+      "The remaining program.py validation, failed_rules, locked_failures, status, proposal, and changes logic stays classical."
+    ],
+    "risks": [
+      "QAOA/QUBO is approximate and does not guarantee an exact global optimum.",
+      "Penalty tuning for locked values and OR clauses may produce infeasible or non-minimal candidate assignments.",
+      "The supported QUBO/QAOA contract does not provide an exact no-solution certificate.",
+      "Encoding, measurement, and certification overhead may dominate the classical 2^size enumeration."
+    ],
+    "expected_resource_characteristics": {
+      "num_variables": "size",
+      "objective_coefficients": "powers of two up to 2^(size-1)",
+      "constraint_encoding": "one OR per rule plus locked equality penalties; ancilla count unresolved",
+      "quantum_depth": "unresolved without backend/compilation and QAOA depth budget",
+      "classical_verification": "O(size + total rule literals) for decoded candidate verification; exact lower-bound certification is unresolved"
+    },
+    "rationale": "This conditional plan only records a possible QUBO/Ising formulation for complete(); it does not recommend adoption because exact first-match ordering and exact no-solution behavior are not guaranteed by the supported approximate QAOA-style contract."
+  },
+  "rationale": "kernel.py:10-14 complete() is the exhaustive enumeration hotspot: product((False, True), repeat=size) enumerates feature vectors in exactly the required False-before-True order and returns the first conforms(...) assignment. It activates only after program.py validates features, rule shape, locked/current types (program.py:8-30), and only in mode complete when the current vector is not conforming (program.py:37-45). The predicate depends on locked equality and OR satisfaction (kernel.py:5-7), while failed_rules and locked_failures are computed separately in program.py:31-34 and must remain in input feature/rule order. The region is structurally expressible as a finite Boolean search or QUBO minimization, so structural_eligibility=true, but practical_suitability=false because quantum replacement would need to preserve deterministic first-match ordering, exact no-solution/null proposal behavior, and report ordering; no workload, quantum hardware, encoding-cost, or advantage evidence is supplied. Therefore the region is nominated only for analysis, with decision REMAIN_CLASSICAL.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Exhaustive Boolean satisfaction search over named feature assignments under exactly-three-literal rules and locked values, returning the lexicographically first False-before-True conforming vector or reporting unavailable.",
+  "assumptions": [
+    "Classical inputs and outputs remain unchanged.",
+    "Exact first conforming vector in feature order and no-solution behavior are mandatory and cannot be relaxed by sampling.",
+    "No free oracle construction, data loading, coherent memory, or noise-free quantum execution is assumed.",
+    "No workload or feature-count distribution evidence is supplied."
+  ],
+  "risks": [
+    "A sampled or approximate quantum optimizer cannot guarantee the first conforming vector.",
+    "Standard Grover search returns an arbitrary satisfying assignment unless augmented with threshold/minimum search and exact no-solution certification.",
+    "Penalty encoding of locked values and OR clauses may be inexact or require unavailable ancilla/depth resources.",
+    "Replacing complete() without preserving program.py output ordering would break status, proposal, and changes semantics."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "A finite n-bit candidate space and the conforms() Boolean predicate are representable, so a Grover-style predicate search could mark valid assignments in principle. It does not by itself preserve the required first-in-product-order result and would need threshold or minimum-finding extensions plus exact no-solution handling."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The first-conforming requirement can be expressed as minimizing the binary feature-order value subject to locked and three-literal OR constraints, so a QUBO/Ising formulation exists. However exact feasibility, penalty sufficiency, and exact optimality are unresolved under the supported QAOA-style execution model."
+    }
+  ]
+}

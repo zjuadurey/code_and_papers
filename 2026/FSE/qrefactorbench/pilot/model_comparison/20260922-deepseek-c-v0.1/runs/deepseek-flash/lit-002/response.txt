@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "context-002",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "inspection.py",
+      "function": "min_vertex_cover_bruteforce",
+      "start_line": 77,
+      "end_line": 91
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_min_vertex_cover_with_lexicographic_station_order_tiebreak",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Binary x_i=1 when station i is selected. Primary objective: minimize sum_i x_i subject to x_u + x_v >= 1 for every normalized edge (u,v). QUBO form: minimize A * sum_i x_i + B * sum_{(u,v)} (1 - x_u)(1 - x_v), with B chosen strictly larger than the maximum possible cardinality difference so infeasible selections cannot beat feasible ones. The lexicographic tie-break among minimum-cardinality covers requires either superincreasing secondary weights w_i (w_i > sum_{j>i} w_j) added to x_i, or a hierarchical two-stage solve: first fix the minimum cardinality, then minimize the lexicographic rank. The exact penalty dominance, weight scaling and tie-break encoding must be validated.",
+    "input_encoding": "One binary/qubit variable per station index i in 0..n-1. Edges are the normalized sorted index pairs (u,v) returned by prepare_request. If Ising is used, map x_i=(1-Z_i)/2 and expand constants, linear and quadratic coefficients. Penalty terms may increase coefficient precision and resource accounting, even when they do not require additional logical variables in the direct QUBO expansion.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure or sample bitstrings, decode selected station indices, verify that every normalized edge has at least one selected endpoint, recompute cardinality, and compare the lexicographic tuple of selected station input positions against the exact contract. Any infeasible or suboptimal sample must be rejected or repaired; approximate station counts, altered tie results, uncovered proposed connections, and changed assignment semantics are not permitted.",
+    "assumptions": [
+      "The optimized object is the normalized undirected connection graph, with n <= 16 station indices.",
+      "The current_stations selection is an independent baseline and is not required to be minimally changed by the proposed plan.",
+      "The exact minimum and the lexicographic tie-break are part of the required output contract.",
+      "No workload frequency, hardware, latency, depth, shot or benchmark evidence is supplied."
+    ],
+    "risks": [
+      "Probabilistic or approximate optimization can violate exact minimum cardinality and the lexicographic tie rule.",
+      "Insufficient penalty or precision can allow infeasible uncovered-edge assignments to decode as feasible.",
+      "Lexicographic tie-breaking with superincreasing weights may demand high coefficient precision or additional encoding overhead not captured by a simple variable count.",
+      "QAOA sampling would still require classical exact verification for the small bounded instance, so any advantage claim is unsupported by the supplied evidence."
+    ],
+    "expected_resource_characteristics": {
+      "logical_variables": "At most 16 binary station variables for the direct QUBO, before precision or penalty-related overhead.",
+      "depth_budget": "Not specified; QAOA depth and parameter-optimization budget are unresolved.",
+      "shots_policy": "Not specified; exactness requires sufficient sampling plus classical verification or an exact fallback.",
+      "data_loading": "No free data loading, oracle construction, coherent memory or state-preparation cost is assumed."
+    },
+    "rationale": "Conditional QUBO/Ising plan for the nominated exact minimum-vertex-cover region. It is not an adoption recommendation and does not certify quantum advantage."
+  },
+  "rationale": "The only nominated region is inspection.py lines 77-91, the entire min_vertex_cover_bruteforce function. It is the true optimization step: it enumerates subsets of station indices in increasing cardinality r and, because itertools.combinations over range(n) is lexicographic, returns the first valid cover. That exactly implements the contract's fewest-station proposal and the lexicographically smallest tuple of station input positions among minimum covers. The call site is program.py line 14, after prepare_request has validated the request and normalized edges to sorted (i,j) pairs and current_stations to an index set. describe_plan then assigns each covered edge to the earliest selected endpoint, builds station-order checklists including empty ones, and compare_plans computes add_stations, remove_stations, selected_count_delta, newly_covered_connections and reassigned_connections from the actual current and proposed selections. Those surrounding behaviors must remain intact. Activation is unconditional for review_inspections: the proposed plan always calls this function. Dependencies are n = len(names), the normalized undirected edge list (possibly empty), and station input order; current_stations does not affect the proposed optimum, but changes reporting depends on the returned proposed selection. Empty stations and empty connections must still yield empty proposed lists and zero counts. The exact minimum, tie rule, uncovered_connections, covered_connection_count, checklists, selected_count, change records, ValueError behavior and CLI JSON report are not relaxable. Structurally, the optimization maps to a supported combinatorial_optimization family: binary selection variables, edge-coverage constraints, cardinality objective and a secondary lexicographic tie-break. Practically, suitability is false: the domain caps stations at 16, so the supplied brute force examines at most 2^16 subsets and is trivially cheap; no workload frequency, hardware, latency, depth, shot, deployment-cost or benchmark evidence is supplied. The strict exactness and lexicographic tie obligations would require classical exact verification of any quantum sample, so no advantage is demonstrated from the supplied material. The decision is therefore REMAIN_CLASSICAL, with a conditional QUBO/Ising migration plan retained only for further analysis.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "exact_min_vertex_cover_with_lexicographic_station_order_tiebreak",
+  "assumptions": [
+    "The nominated region is the exact minimum vertex cover computation, not the validation or reporting code.",
+    "Edges have already been normalized to unique sorted station-index pairs.",
+    "Station count is bounded by the stated local enumeration limit of 16.",
+    "No workload, hardware, latency or benchmark evidence is supplied."
+  ],
+  "risks": [
+    "Approximate optimization would break the exact minimum-cardinality requirement.",
+    "A weak or incorrectly scaled penalty can produce infeasible uncovered-edge proposals.",
+    "Lexicographic tie-breaking is non-trivial to encode without changing the required ordering.",
+    "Any change to assignment, ordering, checklist retention, uncovered handling or change reporting would alter the software contract."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The exact minimum-vertex-cover objective with edge coverage constraints and lexicographic tie-breaking can be represented as a binary QUBO/Ising optimization. Applicability is structural only: penalty sufficiency, secondary-weight precision, exact optimum certification, decoding and resource overhead remain unresolved obligations."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The required result is an exact minimum-cardinality cover with a global lexicographic tie-break, not a single marked item under a pure local predicate. Grover-style search could at best address a feasibility decision version such as whether a cover of size at most r exists, but it would not directly preserve the exact minimum, tie order and no-solution policy without additional exact orchestration."
+    }
+  ]
+}

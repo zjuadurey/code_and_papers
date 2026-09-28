@@ -1,0 +1,164 @@
+{
+  "status": "ENGINEERING_FIXTURES_NOT_MODEL_SCORES",
+  "model_calls": 0,
+  "qpu_calls": 0,
+  "quantum_optimizer_runs": 0,
+  "environment": {
+    "qiskit": "2.5.2",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pytest": "9.1.1"
+  },
+  "pass_at_k": {
+    "source": "QuanBench/HumanEval estimator",
+    "hand_fixture": {
+      "n": 4,
+      "c": 2,
+      "k": 2
+    },
+    "value": 0.8333333333333334,
+    "actual_model_sample_count": 0
+  },
+  "quanplus": {
+    "source_function_executed": true,
+    "upstream_direction": "observed to expected; elementwise clip eps=1e-12, no renormalization",
+    "source_kl": 0.6931471805330074,
+    "source_threshold": 0.05,
+    "source_fixture_accepts": false,
+    "threshold_adopted": false,
+    "our_explicit_direction": {
+      "total_variation": 0.5,
+      "hellinger_fidelity": 0.5000000000000001,
+      "kl_reference_to_observed": null,
+      "kl_is_infinite": true,
+      "smoothing": null,
+      "acceptance": null
+    }
+  },
+  "pqid": {
+    "source_function_executed": true,
+    "upstream_structural_checks": {
+      "num_qubits_match": true,
+      "num_clbits_match": true,
+      "gate_count_match": true,
+      "gate_types_match": true,
+      "all_match": true
+    },
+    "unitary_process_overlap": 0.06249999999999997,
+    "distribution": {
+      "total_variation": 0.5,
+      "hellinger_fidelity": 0.25,
+      "kl_reference_to_observed": null,
+      "kl_is_infinite": true,
+      "smoothing": null,
+      "acceptance": null
+    },
+    "conclusion": "This constructed pair shares count metadata but not circuit semantics; not a model failure."
+  },
+  "unitary_vs_distribution": {
+    "process_overlap": 0.0,
+    "distribution": {
+      "total_variation": 0.0,
+      "hellinger_fidelity": 1.0,
+      "kl_reference_to_observed": 0.0,
+      "kl_is_infinite": false,
+      "smoothing": null,
+      "acceptance": null
+    },
+    "scope": "Unitary-only diagnostic; measurement/nonunitary circuits are rejected, never silently stripped."
+  },
+  "mqt": {
+    "source_generator_executed": true,
+    "adaptation": "Removed registry decorator only; body retained.",
+    "configuration": {
+      "num_qubits": 4,
+      "repetitions": 1,
+      "seed": 10,
+      "all_parameters": 0.31,
+      "optimization_level": 0,
+      "seed_transpiler": 10,
+      "basis": [
+        "rz",
+        "sx",
+        "x",
+        "cx"
+      ]
+    },
+    "high_level": {
+      "representation": "logical_rzz_rx_h",
+      "num_qubits": 4,
+      "depth": 4,
+      "operation_count": 10,
+      "gate_count": 10,
+      "two_qubit_gate_count": 2,
+      "measurement_count": 0,
+      "shots": null,
+      "top_level_operations": {
+        "h": 4,
+        "rx": 4,
+        "rzz": 2
+      },
+      "limitations": [
+        "Counts refer to the supplied representation, not physical hardware cost."
+      ]
+    },
+    "basis_level": {
+      "representation": "basis_rz_sx_x_cx",
+      "num_qubits": 4,
+      "depth": 14,
+      "operation_count": 38,
+      "gate_count": 38,
+      "two_qubit_gate_count": 4,
+      "measurement_count": 0,
+      "shots": null,
+      "top_level_operations": {
+        "cx": 4,
+        "rz": 22,
+        "sx": 12
+      },
+      "limitations": [
+        "Counts refer to the supplied representation, not physical hardware cost."
+      ]
+    },
+    "process_overlap": 0.9999999999999987,
+    "hardware_layout": null,
+    "shots": null,
+    "objective_optimized": false
+  },
+  "supermarq": {
+    "objective_gap": {
+      "reference_expectation": 2.0,
+      "observed_expectation": 2.0,
+      "absolute_expectation_gap": 0.0,
+      "acceptance": null
+    },
+    "distribution": {
+      "total_variation": 1.0,
+      "hellinger_fidelity": 0.0,
+      "kl_reference_to_observed": null,
+      "kl_is_infinite": true,
+      "smoothing": null,
+      "acceptance": null
+    },
+    "note": "Equal expectation need not imply equal distributions. Upstream score denominator can be zero/signed; no ratio threshold imported."
+  },
+  "hpl": {
+    "good": {
+      "residual_infinity_norm": 0.0,
+      "scaled_backward_error": 0.0,
+      "acceptance": null
+    },
+    "bad": {
+      "residual_infinity_norm": 2,
+      "scaled_backward_error": 2251799813685248.0,
+      "acceptance": null
+    },
+    "official_hpl_run": false
+  },
+  "hpcg": {
+    "symmetric_raw_defect": 0,
+    "nonsymmetric_raw_defect": 1,
+    "upstream_scaled_threshold_adopted": false,
+    "official_hpcg_run": false
+  }
+}

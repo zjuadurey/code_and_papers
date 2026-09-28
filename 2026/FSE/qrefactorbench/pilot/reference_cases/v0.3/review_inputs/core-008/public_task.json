@@ -1,0 +1,7 @@
+{
+  "case_id": "core-008",
+  "title": "Normalized row copies",
+  "software_contract": "materialize(rows, copies) divides each row value by that row's sum of absolute values using Python integer true division, or emits 0.0 for every value in a zero row. Emit copies independent lists per row, preserving source-row order then copy order. Distinct emitted lists must not alias each other or the inputs. Empty rows, zero rows and copies=0 are supported. No mutation. Only valid-domain behavior is specified; no additional validation is promised.",
+  "input_domain": "rows is a finite list of finite lists of signed Python integers, not bool; ragged rows are permitted. copies is a nonnegative Python integer, not bool. No imposed count or integer cap; sufficient host memory is assumed. The paired table context additionally requires a fixed column width and unique labels.",
+  "execution_assumptions": ["All output entries must be materialized for classical consumers, with independent mutable rows. No hardware or measured benefit evidence is given."]
+}

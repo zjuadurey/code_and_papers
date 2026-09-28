@@ -1,0 +1,60 @@
+{
+  "response_sha256": "354614462de5ce18bc063a6da309abe649b5f228c09ca96f46a1ae6274214208",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 39.06,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:15:55.202681+00:00",
+  "review_submitted_utc": "2026-09-26T22:16:34.262288+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "354614462de5ce18bc063a6da309abe649b5f228c09ca96f46a1ae6274214208",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode indices col through n-1 in a basis-state register, reject unused encodings, and provide coherent access to the active column of the current augmented rows. The reversible predicate must reproduce binary64 absolute-value comparison and first-index tie behavior by establishing that the candidate is not smaller than any later eligible value and that no earlier eligible index has an equal maximum. Exact handling of nonfinite intermediate states, coherent mutable-row access, arithmetic workspace, and uncomputation remains unresolved."
+      },
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode the remaining row indices for one elimination column as a finite search domain. Define a unique marked index equal to the result of the required largest-absolute-pivot selection with first-index tie breaking. Use Grover-style marked-state search only as an experimental selector, then verify the measured index classically before allowing the existing singularity check, row swap, and elimination to proceed."
+      },
+      {
+        "pointer": "/plan/assumptions/2",
+        "quote": "The predicate marks exactly one valid index for every nonempty remaining range, including an all-zero column whose selected index is subsequently rejected by the existing zero-pivot check."
+      },
+      {
+        "pointer": "/rationale",
+        "quote": "The nominated region is the complete assignment at kernel.py line 13, which selects the pivot from the finite remaining-index range. The syntax inventory confirms that this assignment is inside the elimination loop spanning lines 12-20; the loop header and downstream statements are dependencies and surrounding behavior rather than part of the proposed search replacement. Selection depends on n and the active col, plus the mutable augmented rows created at line 11 and updated by prior executions of lines 17-20. It activates once per column only after program.py line 22 chooses solve mode and line 23 calls solve; inspect mode does not activate it, and n=0 executes no pivot selection. Python max supplies deterministic first-index tie behavior. The result controls the exact-zero singularity check at lines 14-15, row swap at line 16, elimination at lines 17-20, and therefore all back-substitution and overflow behavior at lines 21-25. Those effects must remain intact, as must validation, current-residual computation, proposal naming and ordering, deltas, proposed residual, scaled diagnostic, limit comparison, exceptions, empty-system behavior, and no mutation. Structurally, the finite index domain and deterministic first-maximum condition permit a unique Boolean predicate in principle, so structural eligibility is true. Practical suitability is false because a direct predicate must inspect the mutable dense column, exact binary64 and tie semantics are obligatory, verification repeats the classical scan, searches occur sequentially, and pivot selection is not the dominant elimination work. Benchmark support is false because the supplied attribution only identifies the classical HPL algorithm and diagnostic, explicitly disclaims a compliant HPL performance run, and provides no quantum workload, encoding-cost, hardware, resource, or advantage evidence."
+      }
+    ],
+    "resolution": "ambiguous",
+    "rationale": "The primary input_encoding supplies local marking conditions: candidate not smaller than any later value, and no earlier equal maximum. Retain >= versus literal not-< readings of not-smaller, treating the earlier equal-maximum check as equality to the candidate. Do not silently add an earlier-greater exclusion from the high-level desired global-maximum description: it is absent from these stated conditions. Nonfinite semantics are unresolved, not an explicit admission guard. The narrower line13 nomination is separate from correctness of these conditions.",
+    "interpretations": [
+      {
+        "id": "later_ge_no_earlier_equal",
+        "meaning": "Later comparisons use >=; reject an equal-valued earlier candidate.",
+        "mode": "predicate",
+        "expression": "all(values[i] >= values[k] for k in indices if k > i) and not any(values[j] == values[i] for j in indices if j < i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      },
+      {
+        "id": "later_not_lt_no_earlier_equal",
+        "meaning": "Later comparisons use literal not-<; retain the same earlier equality exclusion.",
+        "mode": "predicate",
+        "expression": "not any(values[i] < values[k] for k in indices if k > i) and not any(values[j] == values[i] for j in indices if j < i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

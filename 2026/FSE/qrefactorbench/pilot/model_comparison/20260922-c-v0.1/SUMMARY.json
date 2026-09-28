@@ -1,0 +1,573 @@
+{
+  "protocol": "restricted-codex-C-20260922",
+  "condition": "C",
+  "review_status": "PENDING",
+  "mother_cases": 10,
+  "planned_case_calls": 20,
+  "models": {
+    "gpt-5.6-sol": {
+      "valid_responses": 10,
+      "population": 10,
+      "elapsed_seconds_sum": 1038.081,
+      "usage": {
+        "input_tokens": 167163,
+        "cached_input_tokens": 20736,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 28479,
+        "reasoning_output_tokens": 12938
+      },
+      "rows": [
+        {
+          "mother_case_id": "lit-001",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 64.288,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": false,
+          "supported": null,
+          "family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "maintenance.py",
+              "function": "maxcut_bruteforce",
+              "start_line": 74,
+              "end_line": 89
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-002",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 136.619,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": false,
+          "supported": null,
+          "family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "inspection.py",
+              "function": "min_vertex_cover_bruteforce",
+              "start_line": 77,
+              "end_line": 91
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-003",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 110.595,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": false,
+          "supported": null,
+          "family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "agenda.py",
+              "function": "complete",
+              "start_line": 28,
+              "end_line": 57
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-004",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 111.25,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": null,
+          "supported": false,
+          "family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "program.py",
+              "function": "review_releases",
+              "start_line": 25,
+              "end_line": 29
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-005",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 113.893,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": false,
+          "supported": true,
+          "family": "unstructured_search",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "kernel.py",
+              "function": "complete",
+              "start_line": 10,
+              "end_line": 14
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-006",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 105.873,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": null,
+          "supported": true,
+          "family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "kernel.py",
+              "function": "choose",
+              "start_line": 4,
+              "end_line": 15
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-007",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 150.74,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": false,
+          "supported": null,
+          "family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "kernel.py",
+              "function": "choose",
+              "start_line": 12,
+              "end_line": 19
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-008",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 49.434,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": false,
+          "practical": false,
+          "supported": null,
+          "family": null,
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": false,
+          "regions": []
+        },
+        {
+          "mother_case_id": "lit-009",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 129.748,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": false,
+          "supported": false,
+          "family": "unstructured_search",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "kernel.py",
+              "function": "solve",
+              "start_line": 13,
+              "end_line": 13
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-010",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 65.641,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": false,
+          "practical": false,
+          "supported": false,
+          "family": null,
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": false,
+          "regions": []
+        }
+      ],
+      "full_population_evaluation_available": true,
+      "aggregate": {
+        "structural_eligibility": {
+          "unresolved": 3,
+          "total": 10,
+          "reference_known": 7,
+          "prediction_known": 10,
+          "matched": 7,
+          "mismatched": 0,
+          "agreement_on_resolved_pairs": 1.0,
+          "matched_over_known_references": 1.0
+        },
+        "practical_suitability": {
+          "unresolved": 10,
+          "total": 10,
+          "reference_known": 0,
+          "prediction_known": 8,
+          "matched": 0,
+          "mismatched": 0,
+          "agreement_on_resolved_pairs": null,
+          "matched_over_known_references": null
+        },
+        "benchmark_supported": {
+          "unresolved": 5,
+          "total": 10,
+          "reference_known": 10,
+          "prediction_known": 5,
+          "matched": 3,
+          "mismatched": 2,
+          "agreement_on_resolved_pairs": 0.6,
+          "matched_over_known_references": 0.3
+        },
+        "migration_family": {
+          "unresolved": 4,
+          "total": 10,
+          "reference_known": 7,
+          "prediction_known": 8,
+          "matched": 6,
+          "mismatched": 0,
+          "agreement_on_resolved_pairs": 1.0,
+          "matched_over_known_references": 0.8571428571428571
+        }
+      },
+      "plan_coverage": {
+        "reference_required": 7,
+        "present": 7
+      },
+      "decision_agreement": {
+        "matched": 10,
+        "total": 10
+      },
+      "where_reference_positive": {
+        "population": 7,
+        "exact_region_set_matches": 6,
+        "mean_line_iou": 0.9761904761904763,
+        "note": "Descriptive overlap against draft anchors, not semantic localization correctness."
+      }
+    },
+    "gpt-6-astra": {
+      "valid_responses": 10,
+      "population": 10,
+      "elapsed_seconds_sum": 504.354,
+      "usage": {
+        "input_tokens": 174733,
+        "cached_input_tokens": 16128,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 14704,
+        "reasoning_output_tokens": 895
+      },
+      "rows": [
+        {
+          "mother_case_id": "lit-001",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 61.379,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": null,
+          "supported": null,
+          "family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "maintenance.py",
+              "function": "maxcut_bruteforce",
+              "start_line": 74,
+              "end_line": 89
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-002",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 55.663,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": null,
+          "supported": null,
+          "family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "inspection.py",
+              "function": "min_vertex_cover_bruteforce",
+              "start_line": 77,
+              "end_line": 91
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-003",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 55.415,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": null,
+          "supported": null,
+          "family": "unstructured_search",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "agenda.py",
+              "function": "complete",
+              "start_line": 28,
+              "end_line": 57
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-004",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 59.479,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": null,
+          "supported": null,
+          "family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "program.py",
+              "function": "review_releases",
+              "start_line": 25,
+              "end_line": 29
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-005",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 54.307,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": null,
+          "supported": null,
+          "family": "unstructured_search",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "kernel.py",
+              "function": "complete",
+              "start_line": 10,
+              "end_line": 14
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-006",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 55.763,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": null,
+          "supported": null,
+          "family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "kernel.py",
+              "function": "choose",
+              "start_line": 4,
+              "end_line": 15
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-007",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 50.901,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": null,
+          "supported": null,
+          "family": "combinatorial_optimization",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "kernel.py",
+              "function": "choose",
+              "start_line": 12,
+              "end_line": 19
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-008",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 26.612,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": false,
+          "practical": false,
+          "supported": null,
+          "family": null,
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": false,
+          "regions": []
+        },
+        {
+          "mother_case_id": "lit-009",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 52.754,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": true,
+          "practical": null,
+          "supported": null,
+          "family": "unstructured_search",
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": true,
+          "regions": [
+            {
+              "file": "kernel.py",
+              "function": "solve",
+              "start_line": 13,
+              "end_line": 13
+            }
+          ]
+        },
+        {
+          "mother_case_id": "lit-010",
+          "valid": true,
+          "exit_code": 0,
+          "elapsed_seconds": 32.081,
+          "tool_events": 0,
+          "startup_warning_items": 2,
+          "structural": false,
+          "practical": null,
+          "supported": null,
+          "family": null,
+          "decision": "REMAIN_CLASSICAL",
+          "plan_present": false,
+          "regions": []
+        }
+      ],
+      "full_population_evaluation_available": true,
+      "aggregate": {
+        "structural_eligibility": {
+          "unresolved": 3,
+          "total": 10,
+          "reference_known": 7,
+          "prediction_known": 10,
+          "matched": 7,
+          "mismatched": 0,
+          "agreement_on_resolved_pairs": 1.0,
+          "matched_over_known_references": 1.0
+        },
+        "practical_suitability": {
+          "unresolved": 10,
+          "total": 10,
+          "reference_known": 0,
+          "prediction_known": 1,
+          "matched": 0,
+          "mismatched": 0,
+          "agreement_on_resolved_pairs": null,
+          "matched_over_known_references": null
+        },
+        "benchmark_supported": {
+          "unresolved": 10,
+          "total": 10,
+          "reference_known": 10,
+          "prediction_known": 0,
+          "matched": 0,
+          "mismatched": 0,
+          "agreement_on_resolved_pairs": null,
+          "matched_over_known_references": 0.0
+        },
+        "migration_family": {
+          "unresolved": 3,
+          "total": 10,
+          "reference_known": 7,
+          "prediction_known": 8,
+          "matched": 7,
+          "mismatched": 0,
+          "agreement_on_resolved_pairs": 1.0,
+          "matched_over_known_references": 1.0
+        }
+      },
+      "plan_coverage": {
+        "reference_required": 7,
+        "present": 7
+      },
+      "decision_agreement": {
+        "matched": 10,
+        "total": 10
+      },
+      "where_reference_positive": {
+        "population": 7,
+        "exact_region_set_matches": 6,
+        "mean_line_iou": 0.9761904761904763,
+        "note": "Descriptive overlap against draft anchors, not semantic localization correctness."
+      }
+    }
+  },
+  "reference_labels_sha256": "36a691f92c0042cc558e318170c5273de54086bcf06c749b1b3be5d04d468a7e",
+  "notes": [
+    "No output repair or scientific retry.",
+    "One sample/model/case; no stable ranking claim.",
+    "Pending AI references; control labels unresolved; plan presence is not correctness."
+  ],
+  "integrity": {
+    "protected_files": 319,
+    "changed": []
+  }
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/README.md",
+    "file": "sources/c2q/README.md"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/LICENSE",
+    "file": "sources/c2q/LICENSE"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/docs/CLAIMS_MAP.md",
+    "file": "sources/c2q/docs/CLAIMS_MAP.md"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/docs/RCR_DRAFT.md",
+    "file": "sources/c2q/docs/RCR_DRAFT.md"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/STATUS.md",
+    "file": "sources/c2q/STATUS.md"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/REQUIREMENTS.md",
+    "file": "sources/c2q/REQUIREMENTS.md"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/parser/parser.py",
+    "file": "sources/c2q/src/parser/parser.py"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/generator/generator.py",
+    "file": "sources/c2q/src/generator/generator.py"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/json_engine.py",
+    "file": "sources/c2q/src/json_engine.py"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/recommender/recommender_engine.py",
+    "file": "sources/c2q/src/recommender/recommender_engine.py"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/validation/implementation_validation.py",
+    "file": "sources/c2q/src/validation/implementation_validation.py"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/parser/algorithmic_structural_level_validation.py",
+    "file": "sources/c2q/src/parser/algorithmic_structural_level_validation.py"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/tools/reproduce_paper.py",
+    "file": "sources/c2q/tools/reproduce_paper.py"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/problems/tsp.py",
+    "file": "sources/c2q/src/problems/tsp.py"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/problems/minimum_vertex_cover.py",
+    "file": "sources/c2q/src/problems/minimum_vertex_cover.py"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/problems/max_cut.py",
+    "file": "sources/c2q/src/problems/max_cut.py"
+  },
+  {
+    "id": "c2q",
+    "revision": "42e9cb642d4300662274c859e96f131a26d0a714",
+    "url": "https://raw.githubusercontent.com/C2-Q/C2Q/42e9cb642d4300662274c859e96f131a26d0a714/src/report.py",
+    "file": "sources/c2q/src/report.py"
+  },
+  {
+    "id": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/README.md",
+    "file": "sources/pqid/README.md"
+  },
+  {
+    "id": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/LICENSE.md",
+    "file": "sources/pqid/LICENSE.md"
+  },
+  {
+    "id": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/docs/user-manual/reproducibility-contract.md",
+    "file": "sources/pqid/docs/user-manual/reproducibility-contract.md"
+  },
+  {
+    "id": "pqid",
+    "revision": "f4bafb4ce96569dbffe82c2e44f142a81e4ee27e",
+    "url": "https://raw.githubusercontent.com/Elias-Abebe-Gasparini/PQID-Bench/f4bafb4ce96569dbffe82c2e44f142a81e4ee27e/artifacts/pqid_bench_2_prereg.json",
+    "file": "sources/pqid/artifacts/pqid_bench_2_prereg.json"
+  },
+  {
+    "id": "c2q-paper",
+    "revision": "2510.02854v3",
+    "url": "https://arxiv.org/pdf/2510.02854v3",
+    "file": "sources/c2q-paper.pdf"
+  },
+  {
+    "id": "quasar-paper",
+    "revision": "2510.00967v1",
+    "url": "https://arxiv.org/pdf/2510.00967v1",
+    "file": "sources/quasar-paper.pdf"
+  },
+  {
+    "id": "qbridge-paper",
+    "revision": "2603.27836v1",
+    "url": "https://arxiv.org/pdf/2603.27836v1",
+    "file": "sources/qbridge-paper.pdf"
+  },
+  {
+    "id": "quanplus-paper",
+    "revision": "2604.08570v2",
+    "url": "https://arxiv.org/pdf/2604.08570v2",
+    "file": "sources/quanplus-paper.pdf"
+  }
+]

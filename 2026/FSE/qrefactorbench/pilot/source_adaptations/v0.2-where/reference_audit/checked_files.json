@@ -1,0 +1,35 @@
+[
+  {
+    "name": "quanbench",
+    "url": "https://raw.githubusercontent.com/GuoXiaoYu1125/Quanbench/e6cbd58628366c7538cc5a27e9dbf9ebdfc38e1f/QuanBench44.jsonl",
+    "sha256": "1feb9d632c8a5cbb0a0f7802f544163a897800cd40af7c1d4ef8fe49ef1fe9cd",
+    "bytes": 99127,
+    "records": 44,
+    "examined_task_ids": [
+      "01",
+      "03",
+      "04",
+      "05",
+      "25"
+    ]
+  },
+  {
+    "name": "qhe",
+    "url": "https://raw.githubusercontent.com/qiskit-community/qiskit-human-eval/c98ba538239fcfd554aa89627ee8026f4b5de450/dataset/dataset_qiskit_test_human_eval.json",
+    "sha256": "c9c87bd30bb600821f1385c9f8fc31205302823385f84966d32afd5d82c6e0f0",
+    "bytes": 206424,
+    "records": 151
+  },
+  {
+    "name": "mqt_grover",
+    "url": "https://raw.githubusercontent.com/munich-quantum-toolkit/bench/c05b1966274d8a8488bf777d3cc78a39ea9d7857/src/mqt/bench/benchmarks/grover.py",
+    "sha256": "0009287eee8324324c33c3e2bbe4bfd824e2bcacf245e24b3c96eaf1dc8a1c2a",
+    "bytes": 1906
+  },
+  {
+    "name": "mqt_qaoa",
+    "url": "https://raw.githubusercontent.com/munich-quantum-toolkit/bench/c05b1966274d8a8488bf777d3cc78a39ea9d7857/src/mqt/bench/benchmarks/qaoa.py",
+    "sha256": "2a388ae495e5685a3b2580b10fe1b88a9a774c4b46fd20d0d72a667b26b2070a",
+    "bytes": 2056
+  }
+]

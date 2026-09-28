@@ -1,0 +1,7 @@
+{
+  "case_id": "core-004",
+  "title": "Ordered event digest with checkpoints",
+  "software_contract": "ledger_digest(events, audit) starts with 32 zero bytes. For each event in input order, compute SHA-256 of previous digest bytes concatenated with that event, then call audit(index, lowercase hexadecimal digest), exactly once, starting at index zero. Return the final lowercase hexadecimal digest. Empty events return 64 zero characters with no callback. If audit raises, propagate that same exception and make no later callback; earlier effects are not rolled back. Inputs must not be modified by this function. Only valid-domain inputs are specified.",
+  "input_domain": "events is a finite list of bytes. audit is a callable accepting (int, str), may have externally visible effects, and may raise. Effects performed by the callback itself are outside the function's nonmutation guarantee.",
+  "execution_assumptions": ["All intermediate checkpoints and the final digest are required behavior. The caller supplies the callback; the implementation must respect its order and exceptions."]
+}

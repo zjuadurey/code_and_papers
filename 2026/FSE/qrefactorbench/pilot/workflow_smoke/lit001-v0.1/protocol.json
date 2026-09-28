@@ -1,0 +1,15 @@
+{
+  "kind": "positive-path engineering smoke, not independent LLM evaluation",
+  "case": "pilot/source_adaptations/v0.1/cases/lit-001",
+  "instance": "four equipment items, unit-weight cycle; within the unchanged public input domain",
+  "plan": "MaxCut QAOA p=1, gamma=pi/4, beta=pi/8; 32 ideal simulation shots; canonicalize complementary cuts, retain best",
+  "seed": 20260928,
+  "reference_policy": "original classical implementation supplies independent output reference; not used to construct the QAOA cost operator",
+  "runtime_certificate": "for this connected cycle only: cutting every positive edge proves optimality; its two complementary colorings give the canonical tie; otherwise use original classical fallback",
+  "profiles": "two hypothetical gate-based configurations, 100ns/1000ns gates, 1e-4 error; not current hardware calibration",
+  "timing": "7 batches of 1000 calls for classical source and preparation; descriptive min/max, no statistical speedup claim",
+  "scope": "current-session authored plan + compiler + actual QDK simulation + actual QDK resource backend + cost ledger + final report",
+  "model_calls": 0,
+  "qpu_calls": 0,
+  "reruns": "fresh output directories only; all raw results retained"
+}

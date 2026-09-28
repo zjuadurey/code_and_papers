@@ -1,0 +1,78 @@
+{
+  "pilot_id": "QRefactorBench-v0",
+  "status": "DRAFT",
+  "purpose": "Curator-only sampling plan; not a benchmark release, split, or validated category assignment.",
+  "case_count": 10,
+  "cases": [
+    {
+      "case_id": "pilot-001",
+      "path": "cases/pilot/pilot-001",
+      "proposed_category": "search_positive",
+      "annotation_status": "DRAFT",
+      "notes": "PROVISIONAL structural positive intended for T1/T2/T3 review. Practical suitability, benchmark support and final decision remain unknown; no benefit or semantic migration is established."
+    },
+    {
+      "case_id": "pilot-002",
+      "path": "cases/pilot/pilot-002",
+      "proposed_category": "hard_negative",
+      "annotation_status": "DRAFT",
+      "notes": "PROVISIONAL hard-negative hypothesis within the two supported families; candidate_regions is empty because no supported candidate is proposed. The rejected hotspot is recorded in CURATOR_NOTES.md. This is not an impossibility theorem; the REVIEWED hard-negative region convention in D-005 remains an open issue."
+    },
+    {
+      "case_id": "pilot-003",
+      "path": "cases/pilot/pilot-003",
+      "proposed_category": "optimization_positive",
+      "annotation_status": "DRAFT",
+      "notes": "PROVISIONAL structural positive intended for T1/T2/T3 review. Practical suitability, benchmark support and final decision remain unknown; no benefit or semantic migration is established."
+    },
+    {
+      "case_id": "pilot-004",
+      "path": "cases/pilot/pilot-004",
+      "proposed_category": "unsuitable_structural",
+      "annotation_status": "DRAFT",
+      "notes": "PROVISIONAL distinction: a pure finite predicate formulation is plausible, while the explicit workload/setup assumptions suggest remaining classical. This suitability label has no measured cost-model validation."
+    },
+    {
+      "case_id": "pilot-005",
+      "path": "cases/pilot/pilot-005",
+      "proposed_category": "context_positive",
+      "annotation_status": "DRAFT",
+      "notes": "PROVISIONAL structural positive intended for T1/T2/T3 review. Practical suitability, benchmark support and final decision remain unknown; no benefit or semantic migration is established."
+    },
+    {
+      "case_id": "pilot-006",
+      "path": "cases/pilot/pilot-006",
+      "proposed_category": "optimization_positive",
+      "annotation_status": "DRAFT",
+      "notes": "PROVISIONAL structural positive intended for T1/T2/T3 review. Practical suitability, benchmark support and final decision remain unknown; no benefit or semantic migration is established."
+    },
+    {
+      "case_id": "pilot-007",
+      "path": "cases/pilot/pilot-007",
+      "proposed_category": "search_positive",
+      "annotation_status": "DRAFT",
+      "notes": "PROVISIONAL structural positive intended for T1/T2/T3 review. Practical suitability, benchmark support and final decision remain unknown; no benefit or semantic migration is established."
+    },
+    {
+      "case_id": "pilot-008",
+      "path": "cases/pilot/pilot-008",
+      "proposed_category": "hard_negative",
+      "annotation_status": "DRAFT",
+      "notes": "PROVISIONAL hard-negative hypothesis within the two supported families; candidate_regions is empty because no supported candidate is proposed. The rejected hotspot is recorded in CURATOR_NOTES.md. This is not an impossibility theorem; the REVIEWED hard-negative region convention in D-005 remains an open issue."
+    },
+    {
+      "case_id": "pilot-009",
+      "path": "cases/pilot/pilot-009",
+      "proposed_category": "context_positive",
+      "annotation_status": "DRAFT",
+      "notes": "PROVISIONAL structural positive intended for T1/T2/T3 review. Practical suitability, benchmark support and final decision remain unknown; no benefit or semantic migration is established."
+    },
+    {
+      "case_id": "pilot-010",
+      "path": "cases/pilot/pilot-010",
+      "proposed_category": "unsuitable_structural",
+      "annotation_status": "DRAFT",
+      "notes": "PROVISIONAL distinction: a pure finite predicate formulation is plausible, while the explicit workload/setup assumptions suggest remaining classical. This suitability label has no measured cost-model validation."
+    }
+  ]
+}

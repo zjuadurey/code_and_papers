@@ -1,0 +1,39 @@
+{
+  "response_sha256": "123eec3de03b94f9b22b826237b57cc320424bd9e5fa6c48d7a5969b817b92d5",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 15.601,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:43:53.065565+00:00",
+  "review_submitted_utc": "2026-09-26T12:44:08.666467+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "123eec3de03b94f9b22b826237b57cc320424bd9e5fa6c48d7a5969b817b92d5",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/rationale",
+        "quote": "No source region is justified for either supported migration family. The supplied lexical dependency inventory reports no regions, but because it is explicitly neither a sound slice nor a ranges or reachability proof, it is only consistent supporting evidence and does not establish ineligibility by itself. Independently, kernel.py lines 9-26 implement deterministic dense Gaussian elimination with partial pivoting and back substitution over binary64 values; this is neither finite-domain predicate search nor binary combinatorial optimization. The computation depends on the validated matrix and right-hand side and maintains an augmented-row elimination state. It activates through program.py lines 22-27 only in solve mode. Behavior that must remain intact includes largest-absolute-value pivot selection with first-index tie behavior, exact-zero singularity rejection, Python floating-point operation ordering, detected-overflow rejection, named solution construction, delta calculation, and proposed residual reporting. kernel.py lines 29-38 deterministically compute Ax-b and the specified scaled backward error from the matrix, right-hand side, and selected vector; this diagnostic runs for the current vector in both modes and for the proposed vector in solve mode. Input validation, inspect-mode handling, empty-system behavior, exception semantics, output ordering, and absence of input mutation must also remain intact. No finite candidate domain, pure Boolean predicate, binary objective, constraint penalties, exact encoding, or acceptable probabilistic replacement is supplied. The HPL attribution concerns the classical algorithm and diagnostic only; the task expressly states that this small serial program is not a compliant HPL performance run and provides no quantum benchmark, workload, hardware, encoding-cost, or advantage evidence."
+      },
+      {
+        "pointer": "/assumptions/4",
+        "quote": "The empty lexical inventory is not treated as a sound slicing or reachability result."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The program exposes no finite candidate set or pure Boolean marked-state predicate. Constructing one would require arbitrary finite bounds and encoding for solution vectors plus a reversible oracle preserving binary64 arithmetic, pivot ties, exact-zero singularity checks, overflow behavior, and deterministic success or failure semantics."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "No candidate or pivot plan is introduced. The empty inventory came from the initial response's empty candidate list, so it is not independent evidence that no opportunity exists; the response does acknowledge its limited scope. There is still no replacement predicate to check. Retain insufficient evidence and leave broader candidate/structural judgments ungraded.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

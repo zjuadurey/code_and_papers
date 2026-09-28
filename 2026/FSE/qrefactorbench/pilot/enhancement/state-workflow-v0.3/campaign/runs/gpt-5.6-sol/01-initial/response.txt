@@ -1,0 +1,79 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 12,
+      "end_line": 16
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "exact-partial-pivot-selection",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditionally represent each remaining row index as a search candidate. Mark exactly the first index whose pivot magnitude is maximal over rows col through n-1, reproducing Python's largest-absolute-value rule and first-index tie break. Invoke this selection once per elimination column, then classically verify the decoded index before applying the existing zero-pivot check and row swap.",
+    "input_encoding": "Encode candidate indices in ceil(log2(n-col)) qubits and provide coherent access to the current mutable augmented rows, the active column, and exact binary64 value representations. The reversible predicate must compare abs(rows[i][col]) against every eligible row, enforce that no earlier equal maximum exists, and reproduce relevant binary64 comparison behavior. Coherent row-state preparation, updates between columns, invalid-index handling, and workspace uncomputation remain unresolved.",
+    "quantum_algorithm_family": "Grover-style marked-state search",
+    "output_decoding": "Measure a row index and verify classically that it is the first index attaining the largest absolute pivot. Reject or retry any invalid result under a defined bounded-error policy. After verification, preserve the classical exact-zero singularity exception, deterministic row swap, elimination, back substitution, overflow handling, and report construction.",
+    "assumptions": [
+      "The current augmented-row state can be exposed coherently at every elimination column without unaccounted data-loading or synchronization cost.",
+      "A reversible predicate can exactly implement the required binary64 absolute-value comparisons and first-index tie rule.",
+      "There is one marked index for every nonempty remaining row range, including the all-zero case where the first remaining index is marked and the subsequent classical check raises ValueError.",
+      "Any probabilistic execution can be wrapped in a policy that preserves the software contract rather than silently accepting an incorrect pivot."
+    ],
+    "risks": [
+      "Determining whether a candidate is the first global maximum requires comparison with all remaining pivots, so oracle construction may cost linear work and erase Grover-style query savings.",
+      "The rows change after every elimination step, requiring repeated coherent loading or reversible maintenance of dense binary64 state.",
+      "Finite inputs can produce nonfinite intermediates; reproducing Python comparison, exception, and overflow behavior in a reversible oracle is unresolved.",
+      "Sampling can violate deterministic pivot selection, exception behavior, and downstream floating-point results unless exactness and failure handling are established.",
+      "Classical verification itself scans the remaining pivots and can remove any prospective end-to-end benefit.",
+      "The surrounding elimination is cubic while pivot selection is not the dominant asymptotic work."
+    ],
+    "expected_resource_characteristics": {
+      "candidate_qubits": "O(log n) per pivot search, excluding data and arithmetic registers",
+      "data_and_workspace": "At least O(n^2) binary64 data representation or repeated coherent access, plus reversible comparison and reduction workspace",
+      "oracle_cost": "O(n-col) exact comparisons for the stated unique first-maximum predicate",
+      "invocations": "One search and classical verification for each of n elimination columns",
+      "unresolved": [
+        "Fault-tolerant gate counts and depth",
+        "Coherent memory implementation and loading cost",
+        "Exact amplitude-amplification and retry policy",
+        "End-to-end resource advantage"
+      ]
+    },
+    "rationale": "This is a conditional formulation for structural analysis only. It does not establish practical suitability, quantum advantage, or semantic equivalence."
+  },
+  "rationale": "The only supported-family-shaped region is the partial-pivot selection stage in kernel.py lines 12-16. Line 13 searches the finite remaining row-index domain for the largest absolute pivot, with Python max imposing the first-index tie rule. Its required state is the current augmented rows produced by line 11 and prior elimination iterations, the active col value, and n. It activates once per column only when program.py line 22 selects solve mode; inspect mode never invokes it, and an empty system performs no search. Lines 14-16 are included because the selected index immediately controls the exact-zero singularity exception and deterministic row swap. A replacement must leave lines 17-25 elimination, back substitution, and overflow behavior intact, as well as program.py validation, pre-solve residual, named output ordering, deltas, proposed residual, limit comparison, no-mutation behavior, and exceptions. Structurally, a finite unique marked predicate can be described, so eligibility is true. Practically, that predicate must establish a global first maximum by examining the mutable dense column, exact binary64 semantics and verification are costly, the stage is repeated sequentially, and the program is explicitly small and serial; therefore suitability is false. The supplied HPL attribution documents a classical algorithm and residual diagnostic, while the task explicitly disclaims a compliant HPL performance run and supplies no quantum workload, hardware, encoding-cost, or advantage evidence, so benchmark support is false.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Select, for each Gaussian-elimination column, the first remaining row having the largest absolute pivot while preserving singularity detection and deterministic binary64 behavior.",
+  "assumptions": [
+    "Input validation guarantees a dense square system of finite binary64-convertible values before solve begins.",
+    "The nomination concerns only pivot selection; it does not treat dense linear-system solution or residual computation as QUBO optimization.",
+    "Structural eligibility denotes representability as a finite predicate search, not demonstrated speedup or deployability."
+  ],
+  "risks": [
+    "A quantum-selected pivot could alter every subsequent floating-point operation if its index differs from the deterministic first maximum.",
+    "Probabilistic failure cannot be treated as an acceptable approximation under the supplied exact software contract.",
+    "Oracle, coherent-memory, verification, and state-update costs are unsupported and likely dominate this small workload.",
+    "No evidence establishes useful scale, hardware feasibility, or benchmark-relevant performance."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Conditionally applicable to the finite pivot-index domain if an exact reversible first-argmax predicate, coherent mutable-row access, classical verification, and contract-preserving failure policy can be supplied. Applicability does not imply practical suitability."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The software computes a deterministic binary64 linear-system solution and residual; it exposes no binary decision objective or constraint-penalty formulation, and replacing exact elimination with approximate QUBO optimization would change required semantics."
+    }
+  ]
+}

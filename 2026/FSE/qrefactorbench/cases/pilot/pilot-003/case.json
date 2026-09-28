@@ -1,0 +1,111 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "pilot-003",
+  "title": "Weighted partition score",
+  "description": "Return the exact maximum total weight crossing a binary partition. Pilot annotation material; not validated benchmark ground truth.",
+  "source": "Original synthetic program authored with Codex assistance for the requested Phase-1 pilot on 2026-09-18. No independent researcher authorship or review is claimed; not copied from an external repository.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "phase1_synthetic",
+  "version": "0.1.0",
+  "migration_family": "combinatorial_optimization",
+  "context_level": "kernel",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "classical_program": "program.py",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "best_partition_score",
+      "start_line": 1,
+      "end_line": 7
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": {
+    "id": "weighted_maximum_cut",
+    "description": "Return the exact maximum total weight crossing a binary partition."
+  },
+  "admissible_migration_contracts": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "status": "DRAFT",
+      "applicability_conditions": [
+        "The binary objective and any constraint penalties can be represented explicitly.",
+        "Check coefficients, signs, penalty sufficiency and decoding against the original objective."
+      ],
+      "input_encoding": "Binary decision variables; document the x=(1-Z)/2 mapping, constants and coefficients if using Ising.",
+      "formulation": "QUBO/Ising encoding; QAOA-style execution is a possible proposal, not an exactness guarantee.",
+      "algorithm_families": [
+        "qaoa"
+      ],
+      "output_decoding": "Decode feasible assignments and recompute the classical objective.",
+      "semantic_relation": "Preserve the required solution quality and software interface. An exact optimum cannot be silently weakened to an approximate one.",
+      "resource_assumptions": [
+        "State preparation, classical optimization, measurement and decoding overheads must be stated."
+      ],
+      "known_limitations": [
+        "No depth, parameter-optimization budget, approximation ratio or probability threshold is prescribed.",
+        "Shared DRAFT planning contract; conformity and scientific admissibility remain unverified."
+      ]
+    }
+  ],
+  "reference_plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "weighted_maximum_cut",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Draft objective: Return the exact maximum total weight crossing a binary partition. Express its binary polynomial, then verify an Ising mapping.",
+    "input_encoding": "Use one bit per binary choice; derive coefficients from the actual program including duplicate terms and constants.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Recompute original feasibility and objective; preserve exact result through an expert-approved guarantee/certification/fallback, currently unresolved.",
+    "assumptions": [
+      "Analyze the family for increasing graph sizes; tiny regression inputs only check classical semantics.",
+      "Edge weights are classical input data and their encoding cost must be stated.",
+      "The API requires the exact optimum; no approximation permission is given."
+    ],
+    "risks": [
+      "No depth, parameter-optimization budget, approximation ratio or probability threshold is prescribed.",
+      "Shared DRAFT planning contract; conformity and scientific admissibility remain unverified.",
+      "The exact classical optimum requires additional evidence, certification or an approved fallback; a QAOA proposal alone is insufficient."
+    ],
+    "expected_resource_characteristics": {
+      "status": "unresolved",
+      "cost_model": null
+    },
+    "rationale": "PROVISIONAL structural positive intended for T1/T2/T3 review. Practical suitability, benchmark support and final decision remain unknown; no benefit or semantic migration is established."
+  },
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "Return the exact maximum total weight crossing a binary partition. Check the declared input domain, edge cases and effects using the classical tests; this draft is not a registered quantum semantic oracle.",
+    "hook_id": "pilot-003-semantics",
+    "config": {
+      "input_domain": "n >= 0; edges are (u,v,nonnegative_integer_weight) with 0 <= u,v < n; self loops contribute zero; repeated edges count separately.",
+      "probabilistic_policy": null
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Analyze the family for increasing graph sizes; tiny regression inputs only check classical semantics.",
+      "Edge weights are classical input data and their encoding cost must be stated.",
+      "The API requires the exact optimum; no approximation permission is given."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "PROVISIONAL structural positive intended for T1/T2/T3 review. Practical suitability, benchmark support and final decision remain unknown; no benefit or semantic migration is established.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "DRAFT synthetic annotation material; curator hypotheses must not be distributed to independent annotators.",
+    "Licensing is unresolved; NOASSERTION grants no redistribution rights.",
+    "Human review must determine whether the proposed category and span are defensible."
+  ]
+}

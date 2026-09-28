@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/contract_applicability/0/rationale"],
+  "rationale": "A pivot candidate and threshold-search plan are now present, but the complete maximum-discovery procedure, threshold/update rules, ties and exceptional-state selector are explicitly unresolved. A threshold sketch does not uniquely determine the selector interpreted by the frozen checker. Keep increased nomination/plan coverage separate from semantic evidence and do not provide a reviewer-written fold or dominance oracle.",
+  "interpretations": []
+}

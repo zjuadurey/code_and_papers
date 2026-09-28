@@ -1,0 +1,5 @@
+{
+  "output": "pilot/baseline-v0.1/restricted-codex/predictions.json",
+  "prediction_count": 10,
+  "repairs": 0
+}

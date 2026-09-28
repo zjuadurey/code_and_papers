@@ -1,0 +1,685 @@
+[
+  {
+    "schema_version": "0.2.0",
+    "case_id": "context-001",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [
+      {
+        "file": "maintenance.py",
+        "function": "maxcut_bruteforce",
+        "start_line": 74,
+        "end_line": 89
+      }
+    ],
+    "migration_family": "combinatorial_optimization",
+    "plan": {
+      "schema_version": "0.1.0",
+      "contract_id": "qubo-ising-v0",
+      "computational_intent_id": "exact-lexicographic-weighted-max-cut",
+      "migration_family": "combinatorial_optimization",
+      "formulation": "Conditionally replace only the exhaustive partition search with a binary weighted Max-Cut formulation. For decision bits x_i indicating membership in window 0, cut(x)=sum_{i<j} w_ij*(x_i+x_j-2*x_i*x_j). To preserve the required tie rule, minimize E(x)=-2^n*cut(x)+sum_i 2^i*x_i. Because aggregated weights are nonnegative integers, the 2^n scale makes every one-unit cut improvement dominate the entire tie term. All bit strings are feasible because there are no capacity or assignment constraints beyond choosing one of two windows.",
+      "input_encoding": "After prepare_request has completed validation and aggregation, encode the n equipment positions as n binary variables and encode every positive matrix entry adj[i][j] as a quadratic interaction. If converted to Ising form, explicitly apply x_i=(1-Z_i)/2 and retain all constants, signs, arbitrary-precision weights, the 2^n primary-objective scale, and the position-weighted tie coefficients.",
+      "quantum_algorithm_family": "QAOA-style QUBO/Ising optimization, conditional on an exactness-preserving execution and verification strategy",
+      "output_decoding": "Decode x_i=1 positions as the first window and x_i=0 positions as the second, each in increasing equipment-input position. Classically recompute the cut, conflict weight, and integer mask. Accept a result only if global optimality and the smallest-mask tie rule are established; otherwise use the classical exhaustive solver. Leave evaluate_windows and compare_assignments unchanged so named ordering, conflict ordering, movement reporting, and conflict deltas remain classical and deterministic.",
+      "assumptions": [
+        "The candidate region is invoked only after prepare_request has produced a symmetric aggregated nonnegative-integer matrix for at most 16 equipment items.",
+        "Quantum state preparation and objective construction receive the matrix as classical data; coherent memory or free data loading is not assumed.",
+        "An execution method capable of preserving exact global optimization and deterministic lexicographic tie selection would have to be supplied.",
+        "The empty instance must decode to two empty windows with score zero."
+      ],
+      "risks": [
+        "Ordinary finite-shot QAOA does not guarantee the exact global optimum or required deterministic tie winner.",
+        "Arbitrary-precision input weights and the 2^n tie-preservation scale may exceed backend coefficient precision or dynamic range.",
+        "Classical certification of global optimality can require the same exhaustive work that the migration is intended to replace.",
+        "Circuit depth, parameter optimization, state preparation, measurements, decoding, and error handling are unspecified.",
+        "Changing the region boundary could disturb validation, exception behavior, input immutability, output ordering, or change reporting."
+      ],
+      "expected_resource_characteristics": {
+        "logical_decision_qubits": "n, where 0 <= n <= 16",
+        "interaction_terms": "At most n(n-1)/2 quadratic terms, plus n linear tie-breaking terms",
+        "ancillas": "Unknown; depend on the selected QUBO/Ising implementation and exactness or certification mechanism",
+        "depth": "Unknown",
+        "shots": "Unknown; finite sampling alone is insufficient to meet the exact contract",
+        "classical_overheads": "Matrix-to-Hamiltonian construction, parameter optimization, measurement, decoding, exact objective recomputation, and potentially exhaustive fallback"
+      },
+      "rationale": "This is a conditional formulation only. It demonstrates structural representability but does not establish that QAOA, or any supplied backend, can satisfy the program's exact optimum and tie semantics."
+    },
+    "rationale": "Lines 74-89 are a self-contained exhaustive weighted Max-Cut kernel: masks enumerate all two-window assignments, lines 82-85 sum weights crossing the partition, and the strict comparison at line 86 retains the first optimal mask. Since masks are visited in increasing integer order and bit i denotes membership in the first window, this implements the contract's smallest sum of 2**i tie rule. The kernel depends on the complete aggregated adjacency matrix returned by prepare_request; at the actual call site, validation has established at most 16 unique equipment positions, nonnegative arbitrary-precision integer weights, repeated/reversed-edge aggregation, and a symmetric matrix. It activates for every valid request, including empty and zero-weight instances. The boundary should exclude prepare_request, evaluate_windows, and compare_assignments: those functions must continue to preserve whole-request validation before evaluation, no input mutation, ordered names and conflicts, current/proposed scores, movement records, and resolved/introduced conflict reporting. Structurally, the kernel is eligible for a QUBO/Ising formulation. Practically, it should remain classical: n is capped at 16, so the search has at most 65,536 assignments; no recurring workload, latency pressure, backend, or resource budget is supplied; classical inputs would require encoding overhead; and a heuristic or finite-shot result cannot replace the required exact optimum and deterministic tie choice. The supplied provenance notice is not performance or resource benchmark evidence, so benchmark support remains unknown rather than asserted.",
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": null,
+    "computational_intent": "Find the globally optimal partition of weighted equipment conflicts into two windows, maximizing separated weight while selecting the smallest input-position bitmask among all optimal partitions.",
+    "assumptions": [
+      "Only the supplied source and contracts are considered.",
+      "The 16-item bound is a local enumeration limit and not evidence of a larger operational workload.",
+      "Exact objective value, smallest-mask tie selection, exceptions, ordering, reporting, and input immutability cannot be relaxed.",
+      "No coherent data-access mechanism, quantum backend, latency target, execution budget, or deployment-cost evidence is available."
+    ],
+    "risks": [
+      "A sampled optimizer may return a suboptimal partition or a different optimal partition, violating the software contract.",
+      "Penalty or coefficient rescaling may corrupt the lexicographic objective, especially with arbitrary-precision weights.",
+      "Quantum preparation and verification overhead can dominate the bounded classical enumeration.",
+      "Replacing surrounding validation or reporting logic would alter externally observable behavior."
+    ],
+    "contract_applicability": [
+      {
+        "contract_id": "grover-predicate-v0",
+        "applicable": false,
+        "rationale": "A threshold predicate could be constructed for a fixed cut target, but the region's task is exact optimization with an unknown optimum and deterministic tie selection. The draft predicate-search contract supplies neither a complete maximum-finding protocol nor an exact no-error policy that preserves those semantics."
+      },
+      {
+        "contract_id": "qubo-ising-v0",
+        "applicable": true,
+        "rationale": "The weighted cut and position-based tie objective have an explicit unconstrained binary quadratic representation. Applicability is only structural: coefficient fidelity, exact global optimization, deterministic tie recovery, backend resources, and classical certification remain unresolved."
+      }
+    ]
+  },
+  {
+    "schema_version": "0.2.0",
+    "case_id": "context-002",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [
+      {
+        "file": "inspection.py",
+        "function": "min_vertex_cover_bruteforce",
+        "start_line": 77,
+        "end_line": 91
+      }
+    ],
+    "migration_family": "combinatorial_optimization",
+    "plan": {
+      "schema_version": "0.1.0",
+      "contract_id": "qubo-ising-v0",
+      "computational_intent_id": "exact-minimum-vertex-cover-with-input-order-tiebreak",
+      "migration_family": "combinatorial_optimization",
+      "formulation": "Conditionally introduce one binary variable x_i per station, where x_i=1 selects station i. Minimize B(x)=A*sum_i(x_i)+sum_i(2^(n-1-i)*(1-x_i))+P*sum_(u,v in edges)((1-x_u)*(1-x_v)). Choose A greater than 2^n-1 so cardinality dominates the lexicographic term, and P greater than the maximum possible unconstrained base objective so every optimum covers every edge. The positional term makes the first differing lower-index station selected and therefore implements the required lexicographically smallest sorted tuple among minimum-cardinality covers. If converted to Ising form, explicitly apply x_i=(1-Z_i)/2 and retain all constants, linear coefficients, quadratic coefficients, and signs.",
+      "input_encoding": "Use n from len(names) and the normalized integer endpoint pairs produced by prepare_request. Encode n station-selection bits plus any implementation-specific ancillas or workspace. current_stations is deliberately excluded because the contract does not minimize changes from the current plan. Empty-edge and empty-station cases should remain direct classical results. Loading graph coefficients, coefficient precision, and connectivity embedding are not assumed free.",
+      "quantum_algorithm_family": "QUBO/Ising optimization with a possible QAOA-style candidate generator, subject to exact classical certification and fallback",
+      "output_decoding": "Measure and decode station bits, sort selected indices in input order, verify every normalized edge has a selected endpoint, and recompute cardinality and the lexicographic tie rule classically. Accept a quantum-produced set only if exact optimality and tie correctness are certified; otherwise use the existing exhaustive routine. Pass the certified set to describe_plan unchanged so assignment, empty checklists, ordering, uncovered reporting, and comparison behavior remain classical.",
+      "assumptions": [
+        "prepare_request has already validated the complete request and supplied n at most 16 with unique station indices and deduplicated normalized edges.",
+        "Penalty and tie-breaking coefficients can be represented without truncation or rescaling that changes the exact optimum.",
+        "A method exists to certify minimum cardinality and the lexicographically smallest optimum, or the classical implementation remains as an exact fallback.",
+        "Validation, report construction, JSON behavior, and current-plan assessment remain outside the migrated region."
+      ],
+      "risks": [
+        "Ordinary QAOA sampling does not guarantee the exact optimum or the mandated lexicographic representative.",
+        "Exponentially separated tie-breaking weights and a dominating feasibility penalty can create an unfavorable coefficient range and precision requirements.",
+        "Graph loading, QUBO construction, routing, state preparation, parameter optimization, measurement, decoding, and certification may cost more than the bounded classical enumeration.",
+        "A feasible sample alone is insufficient: accepting a nonminimum cover or a different tied optimum violates the software contract.",
+        "Backend failures or probabilistic no-result behavior must not alter exceptions, ordering, output fields, or CLI success semantics."
+      ],
+      "expected_resource_characteristics": {
+        "logical_problem_variables": "n station bits, with n <= 16",
+        "quadratic_terms": "At most one coverage-penalty term per unique normalized connection",
+        "coefficient_scale": "Exact lexicographic encoding can require weights through 2^(n-1), plus larger cardinality and feasibility scales",
+        "quantum_overheads": "Unspecified ancillas, embedding, circuit depth, optimizer iterations, shots, and certification work",
+        "classical_baseline": "At most 2^16 candidate subsets, with early termination after the first feasible subset in size and lexicographic order"
+      },
+      "rationale": "This is a conditional formulation only. It demonstrates a structural QUBO representation but does not establish that quantum execution is practical, faster, or capable of satisfying the exact contract without classical certification."
+    },
+    "rationale": "The defensible candidate is inspection.py lines 77-91: it alone performs the combinatorial search over station subsets. Lines 80-82 enumerate subsets first by increasing cardinality and then in itertools.combinations lexicographic order; lines 84-87 implement the pure coverage predicate; and lines 88-90 return the first feasible subset. Together these details enforce both minimum station count and the required input-position tie rule. The region depends only on n and normalized integer edges. Those values must continue to originate from prepare_request (lines 7-38), which validates the entire request, maps names to input positions, normalizes and deduplicates connections, sorts edges, and permits incomplete current coverage. The optimization must activate only after that validation succeeds; it must not consume current_stations or introduce a change-minimization objective. It has no required mutable global state. Empty stations and empty connections must still yield the empty cover. Surrounding behavior must remain intact: review_inspections must still call describe_plan for both selections; describe_plan must preserve input-order stations, earliest-selected-endpoint ownership, empty checklists, and uncovered connections; compare_plans must preserve normalized connection order and null ownership transitions; validation exceptions and CLI success/failure behavior must not change. The kernel is structurally eligible for an exact binary optimization encoding, but practical suitability is false: n is capped at 16, the classical space is at most 65,536 subsets, and no latency, frequency, hardware, or deployment-cost need is supplied. Quantum setup, sampling, and exact certification would likely dominate this small baseline, while approximate or merely feasible results are forbidden. Benchmark support is null because no comparative measurements, backend results, resource estimates, or representative workload distribution are supplied.",
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": null,
+    "computational_intent": "Find the minimum-cardinality vertex cover of the normalized connection graph and, among equal-size covers, return the lexicographically smallest tuple of station input positions.",
+    "assumptions": [
+      "The stated 0-16 station domain and exact software contract govern all executions.",
+      "Station input positions are the authoritative ordering for optimization ties and subsequent reporting.",
+      "No quantum advantage, coherent graph memory, suitable hardware, or acceptable probabilistic error rate is implied by the supplied material.",
+      "Classical validation and report-generation functions remain authoritative."
+    ],
+    "risks": [
+      "A quantum optimizer may return an uncovered, nonminimum, or incorrectly tied selection.",
+      "Penalty or coefficient scaling may change the intended constrained objective.",
+      "Probabilistic execution may conflict with the exact deterministic return contract.",
+      "Migrating validation, ownership assignment, or comparison logic would unnecessarily expose ordering and reporting semantics to regression.",
+      "The migration overhead is disproportionate to the explicit 16-station classical bound."
+    ],
+    "contract_applicability": [
+      {
+        "contract_id": "grover-predicate-v0",
+        "applicable": true,
+        "rationale": "The finite subset domain and edge-coverage test at lines 84-87 can in principle be represented as a reversible Boolean predicate. Exact minimum size and the lexicographically first solution would require staged searches or additional comparison logic, justified no-solution handling at each stage, graph-data loading, workspace accounting, classical verification, and an exact fallback policy. This structural applicability does not make Grover-style migration practically suitable."
+      },
+      {
+        "contract_id": "qubo-ising-v0",
+        "applicable": true,
+        "rationale": "Station selections are binary and each connection supplies the quadratic uncovered-edge penalty (1-x_u)(1-x_v). Cardinality and the input-position tie rule can be encoded with dominating exact weights, subject to proof of penalty sufficiency, coefficient precision, Ising-sign correctness, feasible decoding, and exact optimality certification. QAOA-style execution alone does not satisfy the mandatory exact result."
+      }
+    ]
+  },
+  {
+    "schema_version": "0.2.0",
+    "case_id": "lit-003",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [
+      {
+        "file": "agenda.py",
+        "function": "complete",
+        "start_line": 28,
+        "end_line": 57
+      }
+    ],
+    "migration_family": "combinatorial_optimization",
+    "plan": {
+      "schema_version": "0.1.0",
+      "contract_id": "qubo-ising-v0",
+      "computational_intent_id": "exact_lexicographic_conflict_free_slot_assignment",
+      "migration_family": "combinatorial_optimization",
+      "formulation": "Conditionally encode the fallback completion problem with binary variables x[v,s] indicating that session vertex v receives slot index s. Add exact-one-slot constraints for each session and exclusion constraints x[u,s]x[v,s] for every participant-conflict edge and slot. Among feasible assignments, minimize the slot-index vector lexicographically, potentially using positional weights whose dominance is proven, or a sequence of exact prefix-feasibility solves. Treat an empty session set as the classical empty assignment and a nonempty set with zero slots as infeasible.",
+      "input_encoding": "Encode the ordered vertices and adjacency lists supplied to complete, together with slot_count. A direct QUBO needs n times slot_count binary assignment variables, one-hot penalties, conflict penalties, and an exact lexicographic objective. If mapped to Ising, document x=(1-Z)/2, all constants and coefficients. Session indices and slot indices must retain their original orders. Current assignments are not encoded as fixed decisions because failed previews and partial current arrangements impose no completion constraints.",
+      "quantum_algorithm_family": "QUBO/Ising with a possible QAOA-style candidate generator, subject to exact classical verification and an exact fallback",
+      "output_decoding": "Decode one slot index per session in session order. Classically verify index bounds, one-hot assignment, every conflict edge, and lexicographic minimality before returning. Convert indices to declared slot names only in program.py. If no verified exact optimum is obtained, use the classical completion procedure; only proven infeasibility may produce the existing ValueError and unavailable result.",
+      "assumptions": [
+        "relations has already produced the participant-conflict graph with vertex order equal to session input order.",
+        "The candidate is activated only in complete mode after the current arrangement is found infeasible and the prescribed greedy preview raises ValueError.",
+        "Penalty magnitudes and any lexicographic weights can be represented with sufficient precision and are proven to make every infeasible state worse than every feasible state.",
+        "A classical verifier or exact fallback remains available because the software contract does not permit probabilistic, approximate, or non-minimal output."
+      ],
+      "risks": [
+        "Straight positional weights for lexicographic minimization grow exponentially with the number of sessions and can create impractical coefficient ranges.",
+        "QAOA-style sampling supplies no stated guarantee of finding a feasible assignment, the lexicographically smallest assignment, or proving that none exists.",
+        "Embedding, state preparation, parameter optimization, repeated measurements, and decoding may dominate the small Python search.",
+        "Incorrect penalty strengths, coefficient precision, or decoding could silently return a conflicting or non-minimal arrangement.",
+        "A failure to sample a solution cannot be interpreted as the classical no-arrangement exception."
+      ],
+      "expected_resource_characteristics": {
+        "logical_variables": "Approximately session_count times slot_count for a direct one-hot encoding, plus any ancillas required by the selected constraint implementation.",
+        "couplings": "One-hot couplings within each session and same-slot couplings for every conflict edge.",
+        "coefficient_range": "Potentially exponential under a single positional lexicographic objective; an iterative prefix-feasibility formulation trades that range for multiple solves.",
+        "execution_overheads": "Unknown state-preparation, embedding, circuit-depth, classical-optimization, measurement, verification, and fallback costs; no bounds are supplied."
+      },
+      "rationale": "This is a conditional formulation only. The classical routine is an exact ordered graph-coloring search, but preserving its lexicographically smallest result and definitive no-solution behavior requires exact optimization or an exact classical fallback. The supplied material does not establish that a QUBO/QAOA realization can meet those obligations economically or reliably."
+    },
+    "rationale": "agenda.py lines 28-57 are the defensible candidate boundary because complete owns the entire fallback search: its inputs are the participant-derived neighbors graph and slot_count; its mutable assigned vector is shared by available and recursive place; vertices are processed in session order and slots in increasing declared order, so the first successful leaf is the required lexicographically smallest slot-index vector. Lines 55-57 also define the exact no-arrangement exception. The region is activated from program.py lines 28-29 only when validation has succeeded, mode is complete, the current description is infeasible, and preview has raised ValueError. Quantum analysis must not alter validation, inspect behavior, retention of a feasible current arrangement, or the greedy preview and its blocked report. It must also preserve that current and failed-preview assignments impose no fixed completion choices. After successful completion, program.py lines 34-37 must still translate indices through the declared slot order, call describe, and produce moves in session input order; catalog.py must continue deriving conflicts from shared participants and formatting descriptions unchanged. Structurally, the region is a finite constrained graph-coloring optimization and therefore admits a conditional QUBO/Ising formulation. Practically, exact lexicographic optimality, conclusive infeasibility, potentially extreme objective coefficients, encoding overhead, and the lack of any input-size or hardware assumptions make quantum migration unsuitable on the supplied evidence. Benchmark support is unknown because no comparative measurements, workloads, resource estimates, or quantum experiments are supplied.",
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": null,
+    "computational_intent": "Find an exact conflict-free assignment of ordered sessions to ordered slots, returning the lexicographically smallest slot-index vector or conclusively reporting that no assignment exists.",
+    "assumptions": [
+      "All request validation and conflict-graph construction remain classical and unchanged.",
+      "A conflict edge means the two sessions share at least one case-sensitive participant name.",
+      "All slots are available to every session, and session and slot orders are semantically significant.",
+      "Empty sessions and zero-slot edge cases retain the specified classical behavior.",
+      "No workload frequency, useful problem-size distribution, latency target, quantum backend, or resource budget is known."
+    ],
+    "risks": [
+      "Replacing the whole review flow would disturb required validation, preview, reporting, ordering, or exception behavior outside the candidate kernel.",
+      "Returning any feasible coloring instead of the lexicographically smallest one violates the contract.",
+      "Treating unsuccessful probabilistic sampling as proof of infeasibility would incorrectly produce unavailable.",
+      "QUBO penalties or finite-precision coefficients may fail to enforce feasibility or exact lexicographic priority.",
+      "Quantum data-loading and execution overhead may exceed the cost of the existing depth-first search."
+    ],
+    "contract_applicability": [
+      {
+        "contract_id": "grover-predicate-v0",
+        "applicable": false,
+        "rationale": "A finite assignment domain and conflict predicate exist, but the draft contract's marked-state search does not by itself preserve the required lexicographically smallest assignment or provide an exact no-solution conclusion. Adding ordered minimum-finding, repeated threshold searches, and an exact error policy would exceed the stated predicate-search contract."
+      },
+      {
+        "contract_id": "qubo-ising-v0",
+        "applicable": true,
+        "rationale": "One-hot assignment variables, participant-conflict penalties, and a lexicographic objective can be written explicitly, so the contract is structurally applicable. Applicability remains conditional on proven penalty sufficiency, coefficient precision, exact decoding and verification, lexicographic optimality, and conclusive infeasibility handling; it does not establish practical suitability or quantum advantage."
+      }
+    ]
+  },
+  {
+    "schema_version": "0.2.0",
+    "case_id": "lit-004",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [
+      {
+        "file": "program.py",
+        "function": "review_releases",
+        "start_line": 25,
+        "end_line": 29
+      }
+    ],
+    "migration_family": "combinatorial_optimization",
+    "plan": {
+      "schema_version": "0.1.0",
+      "contract_id": "qubo-ising-v0",
+      "computational_intent_id": "exact-maximum-compatible-release-group",
+      "migration_family": "combinatorial_optimization",
+      "formulation": "Conditionally replace only the exhaustive maximum-compatible-subset search with an exact maximum-clique or independent-set QUBO. Introduce one binary variable x_i per eligible version. For every pair whose matrix entry is false, prohibit x_i*x_j=1 using a sufficiently large penalty. Preserve the primary objective of maximizing sum(x_i) and the secondary objective of minimizing sum(2**i*x_i). A safer conceptual formulation is two-stage: first determine the exact maximum cardinality K, then minimize the positional weight subject to cardinality K and all incompatibility constraints. Any single-stage reduction must prove that its primary-objective and feasibility penalties dominate the complete secondary-objective range.",
+      "input_encoding": "Classically retain validation, latest-record reduction, active-member filtering, and relation construction. For each select request, encode the resulting ordered names list as binary variables in that same order and encode every failed or unverified pair from matrix as an incompatibility. If mapped to Ising variables, use x_i=(1-Z_i)/2 and explicitly derive all constants, linear coefficients, quadratic coefficients, precision requirements, and penalty bounds.",
+      "quantum_algorithm_family": "QUBO/Ising optimization with a possible QAOA-style backend, conditional on an exactness mechanism not supplied here",
+      "output_decoding": "Decode measured assignments, reject any assignment containing an incompatible pair, recompute its cardinality and positional mask weight classically, and select names in their existing order. Before accepting the result, establish that no feasible assignment has greater cardinality and that no equal-cardinality assignment has a smaller mask weight. Then leave the existing describe and changes construction unchanged. Empty eligible sets must decode to the empty proposal.",
+      "assumptions": [
+        "The eligible names list and pairwise relation matrix are available through classical preprocessing exactly as currently defined.",
+        "The optimization instance is finite, with one decision variable per eligible version.",
+        "Failed and unverified pairs are both hard incompatibilities for proposal selection.",
+        "A backend and encoding capable of preserving the exact two-level objective and hard feasibility constraints would have to be identified."
+      ],
+      "risks": [
+        "A QAOA sample is not an exact-optimum certificate, while the software contract forbids approximate size or a different tie result.",
+        "Penalty sufficiency and the powers-of-two tie objective can require exponentially large coefficient ranges or precision.",
+        "Proving that no larger compatible group exists may require an exact classical solver or exhaustive verification, potentially eliminating any practical benefit.",
+        "Loading an arbitrary caller-supplied compatibility graph, preparing states, optimizing parameters, taking measurements, and decoding are not free.",
+        "No qubit, depth, shot, noise, latency, instance-size, or hardware bounds are supplied.",
+        "Changing variable order would change the required deterministic tie-breaking result."
+      ],
+      "expected_resource_characteristics": {
+        "logical_variables": "n binary variables for n active requested versions, plus any ancillas or slack variables required by the chosen encoding",
+        "quadratic_terms": "Up to n(n-1)/2 incompatibility terms from failed or unverified pairs",
+        "coefficient_precision": "Potentially exponential in n if powers-of-two tie-breaking is represented directly",
+        "execution": "Unknown circuit depth, shot count, optimizer iterations, state-preparation cost, and exactness overhead",
+        "verification": "Classical feasibility and objective recomputation is required; exact optimality certification remains unresolved"
+      },
+      "rationale": "This is only a conditional migration design. Structural encodability as a QUBO does not establish that QAOA or another quantum optimizer can return the contractually required exact, deterministically tie-broken solution."
+    },
+    "rationale": "The candidate is program.py lines 25-29: for each select-mode request, it enumerates all 2**len(names) masks, constructs each subset, checks pair compatibility, and retains a subset only when its cardinality strictly exceeds the incumbent. Ascending integer mask order plus the strict comparison implements the required tie rule: among maximum-cardinality subsets, the smallest sum(2**i) is retained. This is structurally a maximum-clique problem on the compatibility graph, or equivalently a constrained binary optimization problem. Its required inputs are names from eligible(versions, row['members']), which preserves active versions in global catalogue order, and matrix from relation(names, latest), where latest has already applied last-record-wins semantics to undirected pairs and relation treats failed and unknown pairs as incompatible. The region activates only when row['mode'] is 'select'; inspect-mode reports must continue to leave proposed and changes null. Validation, latest-check reduction, request independence and order, eligible reporting, current description, and the greedy preview at lines 18-23 must remain classical and unchanged, especially because preview is observably order-dependent and is not a maximum-group computation. After the candidate region, chosen must remain in eligible/global order, describe must preserve inactive and missing-pair reporting semantics, changes must remain an ordered set difference rather than an optimization objective, and empty eligible input must still yield an empty proposal. Structural eligibility is true because the finite binary decision variables, pair constraints, cardinality objective, and positional tie objective can be represented as a QUBO/Ising problem. Practical suitability is unknown: no workload distribution, instance sizes, hardware budget, encoding cost, or benefit evidence is supplied, and exact optimality plus deterministic tie-breaking are unresolved for a sampled QAOA execution. Benchmark support is false because the supplied material contains no performance or resource benchmark. The decision therefore remains classical despite the defensible analysis candidate and conditional plan.",
+    "structural_eligibility": true,
+    "practical_suitability": null,
+    "benchmark_supported": false,
+    "computational_intent": "Find, for each select-mode request, an exactly maximum-cardinality subset of active requested versions whose every pair has a latest passed check, breaking equal-cardinality ties by the smallest eligible-position bitmask.",
+    "assumptions": [
+      "Input validation and preprocessing produce finite eligible lists and deterministic Boolean relation matrices.",
+      "Only the exhaustive proposal-selection kernel is under consideration; validation, reporting, preview, and request orchestration remain classical.",
+      "No quantum advantage, coherent-memory facility, hardware capability, or acceptable probabilistic error policy is established by the supplied material."
+    ],
+    "risks": [
+      "Approximate or probabilistic optimization could violate exact maximum-cardinality semantics.",
+      "Incorrect penalties or insufficient coefficient precision could admit incompatible groups or alter tie-breaking.",
+      "Repeated sampling without an exact optimality certificate cannot establish that a larger compatible group does not exist.",
+      "Quantum encoding and execution overhead may exceed the cost of the existing classical search for relevant request sizes.",
+      "Quantumizing the greedy preview or incorporating current-group changes into the objective would change observable behavior."
+    ],
+    "contract_applicability": [
+      {
+        "contract_id": "grover-predicate-v0",
+        "applicable": false,
+        "rationale": "Compatibility of a particular subset is a finite Boolean predicate, but the nominated computation requires an exact lexicographically tie-broken optimum rather than merely finding any marked subset. Iterated threshold searches and exact no-solution handling would require an additional construction not provided by this contract, so it is not selected for this analysis."
+      },
+      {
+        "contract_id": "qubo-ising-v0",
+        "applicable": true,
+        "rationale": "Binary inclusion variables, pairwise incompatibility penalties, maximum cardinality, and positional tie-breaking admit a QUBO/Ising formulation. Applicability is conditional: penalty sufficiency, coefficient precision, exact optimum recovery, feasibility verification, resource costs, and deterministic tie preservation all remain obligations, and the draft contract does not establish practical suitability."
+      }
+    ]
+  },
+  {
+    "schema_version": "0.2.0",
+    "case_id": "lit-005",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [
+      {
+        "file": "kernel.py",
+        "function": "complete",
+        "start_line": 10,
+        "end_line": 14
+      }
+    ],
+    "migration_family": "unstructured_search",
+    "plan": {
+      "schema_version": "0.1.0",
+      "contract_id": "grover-predicate-v0",
+      "computational_intent_id": "lexicographically_first_conforming_feature_assignment",
+      "migration_family": "unstructured_search",
+      "formulation": "Conditionally encode the 2^size Boolean vectors as the search domain and reversibly mark vectors satisfying conforms(values, clauses, locked). A single Grover search is insufficient because complete must return the first conforming vector in False-before-True feature order. Preserving that requirement would need certified prefix-feasibility searches, fixing each bit to False whenever that prefix has any completion and otherwise fixing it to True, followed by an exact no-solution determination.",
+      "input_encoding": "Use one decision qubit per feature, with reversible access to every locked index/value pair and every ordered clause literal (feature index and required Boolean value). The encoding must handle repeated or contradictory literals, zero rules, locked variables, and the zero-feature domain without changing their classical meanings. Costs for loading instance-dependent clauses and locks, work qubits, and uncomputation remain unresolved.",
+      "quantum_algorithm_family": "Grover-style marked-state search used conditionally as a prefix-feasibility primitive",
+      "output_decoding": "Measure candidate suffixes, reconstruct the Boolean vector in feature order, and verify it classically with conforms. Return a list only after establishing that it conforms and that no lexicographically earlier conforming vector exists; return None only after a contract-compatible, exact no-solution determination. The surrounding review function must continue producing proposal and changes in feature order.",
+      "assumptions": [
+        "The validated size, clauses, and locked map produced by program.review are available to the search boundary.",
+        "A reversible oracle equivalent to kernel.conforms can be constructed without changing equality, conjunction, or disjunction semantics.",
+        "Any probabilistic search and no-solution behavior can be strengthened or certified to preserve the deterministic exact contract.",
+        "Classical validation, current-assignment retention, report construction, and exception behavior remain outside the migrated region."
+      ],
+      "risks": [
+        "Ordinary Grover measurement can return any satisfying assignment rather than the required first assignment.",
+        "False negatives in prefix-feasibility or global no-solution tests would change proposal, status, or ordering semantics.",
+        "Instance-data loading and reversible evaluation of all clauses and locks may dominate the search cost.",
+        "Repeated prefix searches, classical verification, and retries may eliminate any useful resource advantage.",
+        "No qubit, depth, shot, oracle-cost, hardware, workload, or advantage evidence is supplied."
+      ],
+      "expected_resource_characteristics": {
+        "search_space_size": "2^size before accounting for locked variables or fixed prefixes",
+        "decision_qubits": "At least size, potentially fewer only with a semantics-preserving elimination of locked variables",
+        "oracle_workspace": "Unspecified ancillas for literal comparisons, clause ORs, global conjunction, and uncomputation",
+        "oracle_calls": "An unconstrained feasibility query has idealized square-root search scaling, but lexicographic selection may require up to size prefix-feasibility stages plus certification",
+        "instance_loading": "Must be accounted for; no coherent-memory or free-oracle assumption is justified",
+        "quantitative_limits": "Unknown"
+      },
+      "rationale": "This is a conditional analysis plan, not an adoption recommendation. The loop is a finite unstructured search with a pure predicate, but preserving deterministic lexicographic selection and exact unavailable reporting creates unresolved oracle, certification, and resource obligations."
+    },
+    "rationale": "The defensible candidate is kernel.py lines 10-14: it enumerates the finite Boolean domain in False-before-True product order and returns the first vector accepted by conforms, or None. Structural eligibility is true because the candidate domain is explicit and finite and the predicate in kernel.py lines 5-7 is Boolean and side-effect-free. Required dependencies are size, the ordered clause literals, the locked index/value map, product ordering, and the exact behavior of conforms. The region activates only in complete mode when the validated current vector does not conform, through program.py lines 35-41. Input validation and ValueError behavior in program.py lines 8-30, reporting of failed_rules and locked_failures in input order at lines 31-34, retention of a conforming current vector at lines 37-38, status selection, proposal construction, feature-order changes, no mutation, and CLI behavior must remain classical and unchanged. Practical suitability is false: ordinary Grover-style search does not preserve the required first-solution ordering or deterministic no-solution result, and the supplied material gives no workload scale, oracle-construction cost, quantum resources, hardware, or advantage evidence. Benchmark support is true only in the limited provenance sense that NOTICE.txt attributes the formula to QuanBench task 03 and the same QuanBench+ Qiskit task; it supplies no independent source problem or empirical suitability evidence. Therefore the structurally eligible region merits further formulation analysis but should remain classical on the available evidence.",
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": true,
+    "computational_intent": "Find the lexicographically first Boolean feature vector, using False before True in feature order, that satisfies every named three-literal rule and every locked value, or determine that none exists.",
+    "assumptions": [
+      "The supplied contract's 'empty rules are true' means an empty rule collection; program.py rejects an individual rule unless it has exactly three alternatives.",
+      "The enumeration order of itertools.product((False, True), repeat=size) defines the required first conforming vector.",
+      "No quantum-resource or performance facts beyond the supplied provenance are assumed."
+    ],
+    "risks": [
+      "Quantum search can silently weaken exact deterministic semantics through probabilistic failure.",
+      "Returning an arbitrary satisfying assignment would violate the first-conforming-vector contract.",
+      "Incorrect handling of locked values, repeated literals, contradictory literals, or the zero-feature case could change feasibility.",
+      "Moving validation or report construction into the candidate boundary could alter exceptions, ordering, or observable output.",
+      "Benchmark provenance alone does not establish practical suitability or quantum advantage."
+    ],
+    "contract_applicability": [
+      {
+        "contract_id": "grover-predicate-v0",
+        "applicable": true,
+        "rationale": "The domain is finite and conforms is a pure Boolean predicate, so the draft contract is structurally applicable. Its reversible-oracle, input-loading, exactness, lexicographic-selection, and no-solution obligations are unresolved and prevent a deployment recommendation."
+      },
+      {
+        "contract_id": "qubo-ising-v0",
+        "applicable": true,
+        "rationale": "A conditional alternative could encode feature bits, clause-satisfaction penalties, locked-value penalties, and a lexicographic objective. It would require explicit quadratization or ancillas, proof that feasibility penalties dominate the ordering objective, potentially large coefficient ranges, and exact-optimum recovery. QAOA provides no supplied guarantee of the exact first solution, so this structural applicability does not establish practical suitability."
+      }
+    ]
+  },
+  {
+    "schema_version": "0.2.0",
+    "case_id": "lit-006",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [
+      {
+        "file": "kernel.py",
+        "function": "choose",
+        "start_line": 4,
+        "end_line": 15
+      }
+    ],
+    "migration_family": "combinatorial_optimization",
+    "plan": {
+      "schema_version": "0.1.0",
+      "contract_id": "qubo-ising-v0",
+      "computational_intent_id": "exact_capacity_constrained_value_selection",
+      "migration_family": "combinatorial_optimization",
+      "formulation": "Conditionally replace only choose with a binary optimization subroutine. For eligible item i in catalogue order, use x_i in {0,1}, maximize sum_i value_i*x_i subject to sum_i weight_i*x_i <= capacity, and encode the required tie break by secondarily minimizing mask=sum_i 2^i*x_i. A QUBO could introduce a bounded binary slack s satisfying sum_i weight_i*x_i+s=capacity and square this equality with a penalty. Objective scaling must make every one-unit value improvement dominate the complete mask range, while the feasibility penalty must dominate every possible objective improvement. Exact coefficient signs, slack encoding, penalty bounds, and any QUBO-to-Ising x=(1-Z)/2 expansion remain to be derived and checked for arbitrary-size input integers.",
+      "input_encoding": "Receive the already filtered active items and one validated window capacity. Assign one decision bit per eligible item in the unchanged eligible catalogue order, plus enough constrained slack bits to represent every integer from zero through capacity without admitting unintended slack values. Item weights, values, capacity, objective-scale constants, and penalty coefficients must be loaded explicitly; coherent data access is not assumed free.",
+      "quantum_algorithm_family": "QUBO/Ising optimization with a potential QAOA-style solver, conditional on an exactness-preserving execution and verification protocol",
+      "output_decoding": "Measure candidate assignments, reject any assignment whose recomputed total weight exceeds capacity, and classically recompute total value and numeric mask. Return the feasible assignment with maximum value and then smallest numeric mask. The decoded mask must use the original eligible-item bit positions. If sampling does not establish the exact required optimum and tie winner, fall back to the classical choose implementation or report no replacement result internally; externally visible behavior must remain unchanged.",
+      "assumptions": [
+        "review continues to perform all validation before any optimization call.",
+        "The subroutine is activated only for a window whose mode is select.",
+        "Each window is optimized independently using the same active-item catalogue; no stock or state is shared across windows.",
+        "A method can be supplied for constructing coefficients and penalties without overflow or loss of integer ordering.",
+        "An exactness protocol or classical fallback can preserve deterministic optimality and the smallest-numeric-mask tie rule."
+      ],
+      "risks": [
+        "A heuristic or finite-shot QAOA result does not guarantee the exact optimum or deterministic tie winner required by the contract.",
+        "Values, weights, capacity, item count, and resulting coefficients have no supplied upper bounds, so qubit count, coefficient precision, circuit depth, and data-loading cost are unresolved.",
+        "Naive binary slack can encode values outside the intended range unless its highest weight and validity constraints are designed carefully.",
+        "An insufficient feasibility penalty can select overweight assignments, while an insufficient objective scale can change the value-first ordering.",
+        "The exponential mask coefficients used to express the tie rule may require prohibitive dynamic range and precision.",
+        "Repeated execution for multiple select windows may make orchestration and measurement overhead dominate the existing dynamic program."
+      ],
+      "expected_resource_characteristics": {
+        "logical_variables": "At least one binary variable per eligible item, plus a capacity-dependent slack representation and possible ancillas required by the chosen encoding.",
+        "coefficient_precision": "Potentially large because exact value priority, feasibility, and the numeric-mask tie break must all be represented without collisions.",
+        "execution_overheads": [
+          "QUBO construction",
+          "classical parameter optimization",
+          "state preparation",
+          "repeated measurements",
+          "feasibility and objective verification",
+          "possible classical fallback"
+        ],
+        "bounds": "No qubit, depth, shot, operation-count, or coefficient-range bounds can be inferred from the supplied material."
+      },
+      "rationale": "The region is a structurally recognizable 0/1 knapsack optimizer, but this is only a conditional formulation. Adoption requires proof that encoding, execution, decoding, and fallback preserve exact optimality and the specified mask tie rule for the unrestricted input domain."
+    },
+    "rationale": "kernel.py lines 4-15 are the narrowly bounded optimization kernel: the table enumerates capacity states, considers each indivisible item once, maximizes accumulated value, and resolves equal values by the smaller numeric mask. Its required inputs are the active-item list in catalogue order and a validated nonnegative capacity; it depends on each item's positive integer weight and nonnegative integer value, and its state is the previous dynamic-programming table of (value, mask) pairs. program.py line 31 constructs the active-only eligible list, and lines 36-38 activate choose only for select windows. Every window invokes it independently, so a replacement must not introduce shared allocation or cross-window state. The surrounding behavior must remain classical and intact: whole-request validation and ValueError behavior at lines 17-30; retention and feasibility reporting of current items, including inactive ones, at lines 34-35; proposal construction at lines 38-39; catalogue-ordered transfers with contiguous offsets at lines 40-44; inspect rows with no proposal or transfers; report ordering; absence of mutation; and JSON CLI behavior. Structurally this is eligible for a binary combinatorial-optimization formulation. Practical suitability is unknown because no workload sizes, hardware, encoding costs, precision limits, or evidence of advantage are supplied, while exact optimization and tie behavior cannot be weakened. The QuanBench-attributed values, weights, and capacity provide benchmark support for the knapsack structure, but only for a small stated instance and not for quantum advantage or deployment suitability. The conservative decision is therefore REMAIN_CLASSICAL.",
+    "structural_eligibility": true,
+    "practical_suitability": null,
+    "benchmark_supported": true,
+    "computational_intent": "For each select-mode window independently, choose an exact maximum-value subset of active, indivisible catalogue items whose total weight does not exceed the window capacity, breaking value ties by the smallest numeric subset mask in eligible catalogue order.",
+    "assumptions": [
+      "The supplied software contract is authoritative for exact output, ordering, validation, exception, and non-mutation semantics.",
+      "NOTICE.txt supports provenance of a small knapsack benchmark instance but supplies no performance or quantum-resource evidence.",
+      "Only the choose kernel is a candidate; validation, reporting, transfer construction, and CLI behavior remain classical."
+    ],
+    "risks": [
+      "Treating the source benchmark attribution as evidence of practical quantum advantage would overstate the supplied evidence.",
+      "Approximate or probabilistic optimization could silently violate exact maximum value or the smallest-mask tie rule.",
+      "Changing eligible-item order would change mask significance and potentially the selected tied solution.",
+      "Quantum data loading, constraint enforcement, coefficient precision, measurements, and per-window invocation costs are unbounded and unquantified."
+    ],
+    "contract_applicability": [
+      {
+        "contract_id": "grover-predicate-v0",
+        "applicable": false,
+        "rationale": "The target is exact constrained optimization with a deterministic secondary objective, not a supplied Boolean existence predicate. A Grover marked-state oracle alone does not specify how to find and certify the global value optimum and smallest-mask tie winner, and no reversible oracle or exact success policy is supplied."
+      },
+      {
+        "contract_id": "qubo-ising-v0",
+        "applicable": true,
+        "rationale": "Item inclusion is naturally binary and the value objective, capacity constraint, and mask tie break can be expressed conditionally as a penalized QUBO/Ising model. Applicability remains contingent on deriving sufficient penalties, bounded slack, exact lexicographic scaling, coefficient precision, feasible decoding, and an exactness-preserving execution or fallback protocol."
+      }
+    ]
+  },
+  {
+    "schema_version": "0.2.0",
+    "case_id": "lit-007",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [
+      {
+        "file": "kernel.py",
+        "function": "choose",
+        "start_line": 12,
+        "end_line": 19
+      }
+    ],
+    "migration_family": "combinatorial_optimization",
+    "plan": {
+      "schema_version": "0.1.0",
+      "contract_id": "qubo-ising-v0",
+      "computational_intent_id": "exact-signed-pair-assignment",
+      "migration_family": "combinatorial_optimization",
+      "formulation": "Conditionally replace exhaustive mask selection with a binary quadratic optimization over x_i in {0,1}. For pair (i,j,w), its signed-score contribution is -w + 2w*x_i + 2w*x_j - 4w*x_i*x_j. Thus S(x) is already a QUBO objective with no feasibility constraints. Exact tie-breaking can be represented by maximizing F(x)=2^n*S(x)-sum_i(2^i*x_i), which prioritizes score and then the smallest numeric membership mask. This exponentially scaled lexicographic term must be checked for implementable coefficient precision; an alternative is a certified two-stage optimization that first obtains the exact maximum score and then minimizes the mask subject to that score.",
+      "input_encoding": "Use one binary variable x_i for each member, in the original member order, with False encoded as 0 and True as 1. Encode every validated, sorted pair and its weight (+1 for apart, -1 for together). Under an Ising implementation document x_i=(1-Z_i)/2, including all constants, signs, linear terms, quadratic couplings, and the tie-breaking terms.",
+      "quantum_algorithm_family": "QAOA-style QUBO/Ising optimization, conditional on an execution and certification procedure capable of preserving the exact classical contract",
+      "output_decoding": "Decode a measured bit string in member-index order to a Boolean list. Recompute the original score classically with kernel.score, verify that the assignment is a global maximizer, and verify that no smaller numeric mask has the same score. Pass the verified list to the unchanged describe and review reporting logic. If exact optimality and tie-breaking cannot be certified, retain the classical chooser or use it as an exact fallback.",
+      "assumptions": [
+        "Input validation, duplicate and completeness checks, pair sorting, and mode dispatch remain classical and unchanged.",
+        "The optimizer receives only pairs produced after successful validation, with indices matching the original member order.",
+        "No capacity or group-size constraint is introduced; every bit string, including all-False and all-True, remains feasible.",
+        "The proposed path is activated only when mode is propose; inspect continues to report the current assignment without optimization.",
+        "Any quantum execution is subordinate to the existing requirement for an exact deterministic optimum and smallest-mask tie-break."
+      ],
+      "risks": [
+        "Ordinary finite-shot QAOA does not guarantee that the exact global optimum is observed.",
+        "Classical rescoring validates a candidate's score but does not by itself prove global optimality or the absence of a smaller equally optimal mask.",
+        "Encoding the tie-break in one objective requires exponentially separated coefficients, potentially exceeding backend precision and distorting the primary score objective.",
+        "The complete preference catalogue produces a dense interaction graph with n(n-1)/2 pair terms, potentially requiring substantial routing, depth, and two-qubit operations.",
+        "State preparation, parameter optimization, repeated measurement, decoding, certification, and fallback costs may exceed the simple classical exhaustive search for relevant input sizes.",
+        "Global bit-flip symmetry creates equal-score complementary assignments; failure to enforce the numeric-mask rule would change observable output, moved members, and group ordering."
+      ],
+      "expected_resource_characteristics": {
+        "logical_variables": "n assignment bits, with any ancillas and routing overhead dependent on the chosen backend and exactness mechanism",
+        "objective_terms": "n(n-1)/2 quadratic pair interactions plus n linear tie-breaking terms",
+        "connectivity": "Dense complete-pair coupling in the supplied input domain",
+        "coefficient_range": "The direct exact tie-break construction scales the score by 2^n and therefore has exponential dynamic range",
+        "shots": "Unspecified; enough samples to discover an optimum is not an exactness certificate",
+        "classical_overhead": "QAOA parameter optimization, decoding, rescoring, exact optimality and tie certification, and potentially exhaustive fallback",
+        "unresolved": "No input-size distribution, hardware, depth, qubit, shot, precision, encoding-cost, or performance budget is supplied"
+      },
+      "rationale": "This is a conditional formulation only. The signed complete-graph objective maps structurally to QUBO/Ising, but the supplied contract requires an exact optimum and deterministic smallest-mask tie resolution. No supplied evidence establishes that a QAOA execution can meet those obligations economically or reliably."
+    },
+    "rationale": "The nominated region is kernel.py lines 12-19 because choose enumerates all 2^size membership masks, computes the signed pair objective through score at lines 8-9, retains only strictly better scores, and thereby returns the first optimum in ascending mask order—the required smallest numeric mask. Its required inputs are size and the validated pairs list of (i,j,w) tuples; it depends on member-index order, weights +1 for apart and -1 for together, and score's XOR-based contribution. It has no mutable external state. Activation occurs only from program.py line 35 when mode is propose. Validation and normalization at program.py lines 15-31 must remain intact, including exact fields, distinct names, Boolean current vector, valid relations, duplicate rejection, complete-pair coverage, and catalogue-pair sorting. The surrounding behavior at lines 32-39 must also remain intact: current is always described; inspect performs no proposal; propose describes the selected assignment, computes gain, and lists moved members in member order. describe must continue producing False/True groups in that order and violated pairs in sorted catalogue-pair order. Empty groups, exact exceptions, absence of mutation, and CLI JSON behavior must not change. Structural eligibility is true because the unconstrained signed binary objective is explicitly quadratic. Practical suitability is false because the observable contract demands an exact global optimum and exact lexicographic tie-break, while the supplied material provides no quantum certification method and the direct tie encoding has exponential coefficient range on a dense graph. Benchmark support is unknown: attribution of the score formula to SupermarQ is provenance, not workload, resource, correctness, or advantage evidence.",
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": null,
+    "computational_intent": "Select, from all two-group membership masks, the assignment with maximum signed satisfaction of all pair preferences, breaking equal-score ties by the smallest numeric mask.",
+    "assumptions": [
+      "The supplied software contract and source are the complete basis for assessment.",
+      "All pair weights are exactly +1 or -1 as constructed by review.",
+      "Exact output equivalence includes the selected mask, not merely the optimal score.",
+      "No unsupplied workload scale, quantum hardware capability, oracle access, coherent memory, or advantage evidence is assumed."
+    ],
+    "risks": [
+      "Treating an approximate high-scoring sample as acceptable would violate the exact maximization contract.",
+      "Ignoring smallest-mask tie-breaking can change proposed groups, gain-independent proposal identity, and moves.",
+      "A quantum path that changes validation timing or raises different exceptions would alter observable behavior.",
+      "Dense pair interactions and exact tie-breaking may make encoding and execution costs impractical.",
+      "Formula provenance must not be mistaken for benchmark evidence or a claim of quantum advantage."
+    ],
+    "contract_applicability": [
+      {
+        "contract_id": "grover-predicate-v0",
+        "applicable": true,
+        "rationale": "Structurally conditional: masks form a finite domain and a reversible predicate could compare the exactly computed augmented objective against a threshold. However, the draft predicate-search contract alone does not supply exact maximum finding, smallest-mask selection, reversible score-arithmetic costs, or a deterministic no-error policy. Those unresolved obligations make it less direct than QUBO and do not establish practical suitability."
+      },
+      {
+        "contract_id": "qubo-ising-v0",
+        "applicable": true,
+        "rationale": "The assignment bits and signed pair score give an explicit unconstrained quadratic objective, so the structural applicability conditions hold. Applicability remains conditional on checking coefficients and signs, preserving exact optimum and smallest-mask semantics, classically verifying decoded output, accounting for dense connectivity and exponential tie-break precision, and providing an exact certification or fallback procedure."
+      }
+    ]
+  },
+  {
+    "schema_version": "0.2.0",
+    "case_id": "lit-008",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [],
+    "migration_family": null,
+    "plan": null,
+    "rationale": "No region implements either supported computational family. kernel.py lines 7-9 deterministically compute an eight-bit XOR and its fixed-width binary representation; this is direct arithmetic, not search over a finite candidate domain and not optimization over binary decisions. program.py lines 19-24 merely apply that operation to every validated record, accumulate an order-dependent checksum, and construct mandatory receipts. Its dependencies are each row's left, right, and id values; the prior checksum; request mode; and repetitions. It activates once per input row after complete validation by program.py lines 9-17. The surrounding behavior that must remain intact includes validation before any receipt computation, rejection of booleans and out-of-range integers, distinct nonempty identifiers, input ordering, exactly eight most-significant-bit-first characters, exact set-bit counts, modulo-256 prefix checksums, deterministic counts equal to repetitions only in counts mode, null counts in inspect mode, complete output for every row, empty-list behavior, no mutation, ValueError behavior, and JSON CLI I/O. Grover-style search would add an artificial search problem without replacing the required exhaustive ordered transformation, while a QUBO/Ising formulation has no objective or decision variables to optimize. The fixed eight-bit classical operation and linear receipt construction provide no practical basis for quantum migration.",
+    "structural_eligibility": false,
+    "practical_suitability": false,
+    "benchmark_supported": null,
+    "computational_intent": "Validate an ordered list of byte pairs, compute each pair's deterministic XOR representation, and emit complete ordered receipts with exact repetition metadata and running modulo-256 checksums.",
+    "assumptions": [
+      "The supported migration families are limited to unstructured search and combinatorial optimization as stated.",
+      "Repetitions specifies an exact deterministic histogram count and does not authorize sampling or quantum execution.",
+      "The Qiskit HumanEval attribution establishes provenance only; it does not by itself establish eligibility, performance, resource feasibility, or quantum advantage."
+    ],
+    "risks": [
+      "Treating reversible XOR circuitry as sufficient eligibility would confuse implementability on a quantum circuit with applicability of a supported quantum algorithm family.",
+      "Introducing measurement or sampling could violate exact bits, counts, set-bit totals, and checksum semantics.",
+      "Batching, reordering, filtering, or aggregating records could violate validation-before-processing, ordered receipts, prefix checksums, and the requirement to return every receipt.",
+      "Quantum data loading, execution, and decoding would add overhead to a constant-width operation without supplied workload or resource evidence."
+    ],
+    "contract_applicability": [
+      {
+        "contract_id": "grover-predicate-v0",
+        "applicable": false,
+        "rationale": "Although eight-bit values form a finite domain and XOR equality could be embedded in a Boolean predicate, the software does not request discovery of a marked candidate or an existence decision. It must transform every supplied row and preserve ordered, exact outputs, so Grover-style search does not match the computational intent."
+      },
+      {
+        "contract_id": "qubo-ising-v0",
+        "applicable": false,
+        "rationale": "The program contains no binary decision problem, objective function, competing assignments, constraints, or optimum to recover. Encoding deterministic XOR receipt generation as a QUBO would manufacture an optimization problem and would not justify weakening exact output semantics."
+      }
+    ]
+  },
+  {
+    "schema_version": "0.2.0",
+    "case_id": "lit-009",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [
+      {
+        "file": "kernel.py",
+        "function": "solve",
+        "start_line": 13,
+        "end_line": 13
+      }
+    ],
+    "migration_family": "unstructured_search",
+    "plan": {
+      "schema_version": "0.1.0",
+      "contract_id": "grover-predicate-v0",
+      "computational_intent_id": "exact-partial-pivot-selection",
+      "migration_family": "unstructured_search",
+      "formulation": "Conditionally formulate each pivot choice as a finite search over row indices i in [col,n) for the unique index selected by Python's max: the first index having the largest abs(rows[i][col]). A marking predicate would have to establish that the candidate is not smaller than any candidate and that no earlier index ties it, while exactly reproducing Python binary64 comparison behavior. This formulation is only for further analysis and does not establish an advantageous implementation.",
+      "input_encoding": "Encode the current column number and a candidate row index in basis states, together with coherent access to the evolving augmented rows created at kernel.py line 11 and modified at lines 16-20. The unresolved reversible representation must preserve all relevant binary64 bit patterns and the behavior of abs and comparisons, including signed zero and any nonfinite intermediate produced before the program's later overflow detection. Matrix loading, updated-row loading, ancillas, and uncomputation must be charged.",
+      "quantum_algorithm_family": "Grover-style marked-state search, conditionally using an exact-first-argmax predicate",
+      "output_decoding": "Measure a proposed row index and verify classically that it exactly equals the first largest-absolute pivot under the program's comparison semantics. On failed verification, no marked result, or an inconclusive probabilistic run, use the original classical max scan. Only a verified index may proceed to the unchanged exact-zero test, row swap, elimination, and later calculations.",
+      "assumptions": [
+        "Each invocation has a finite candidate set even though no maximum system size is supplied.",
+        "A reversible oracle reproducing Python binary64 abs, comparison, tie ordering, and exceptional intermediate behavior can be constructed.",
+        "Coherent access to the newly updated augmented matrix is available at every elimination column, with its construction and update costs included.",
+        "Classical verification and a deterministic classical fallback are retained so probabilistic search cannot relax the software contract."
+      ],
+      "risks": [
+        "A direct predicate proving first-argmax can require comparisons against every remaining row, eliminating Grover-style query savings.",
+        "Building and repeatedly refreshing coherent access to the dense, evolving row state may dominate pivot-selection work.",
+        "Ordinary Grover execution is probabilistic, whereas the required pivot and tie result are exact.",
+        "Exact reversible binary64 semantics, including behavior after overflowing intermediate arithmetic, are complex and not supplied.",
+        "The candidate region is only one operation inside serial elimination; accelerating it does not remove the cubic classical elimination and back-substitution work.",
+        "No system-size distribution, hardware model, oracle circuit, qubit budget, depth bound, or advantage evidence is supplied."
+      ],
+      "expected_resource_characteristics": {
+        "index_register": "At least ceil(log2(n-col)) logical qubits for the active candidate range, plus validity handling for non-power-of-two ranges.",
+        "data_and_workspace": "Registers or coherent memory for pivot values and exact binary64 comparison, tie-breaking, reversible control, and uncomputation; no free data access is assumed.",
+        "oracle_work": "Potentially linear in the remaining row count per oracle call if the predicate directly certifies the unique first maximum.",
+        "invocations": "A separate search may be needed for every elimination column, after prior row swaps and arithmetic have changed the input state.",
+        "measurements_and_retries": "Unresolved; any finite probabilistic schedule requires classical verification and fallback to preserve exact semantics."
+      },
+      "rationale": "This is a conditional migration plan required by structural eligibility. It leaves oracle construction, exact floating-point encoding, feasibility, error handling, and concrete resource bounds unresolved and does not recommend deployment."
+    },
+    "rationale": "The only defensible supported-family candidate is the pivot-index selection at kernel.py line 13. For each elimination column it searches the finite remaining row indices and chooses the largest absolute pivot with the first index winning ties, which can in principle be expressed as a unique Boolean marked-state predicate. That makes structural eligibility true for further Grover-style analysis, but it does not make the surrounding dense linear solve a general unstructured-search problem. The predicate depends on col from line 12 and on the augmented rows copied from matrix and rhs at line 11; those rows are stateful within solve because swaps and elimination at lines 16-20 change the values before the next activation. The region activates only when program.py line 22 selects solve mode; inspect mode must continue to compute only the current residual and need not reject singularity. Input validation at program.py lines 9-18 and the unconditional current residual at line 19 must remain classical and unchanged. After pivot selection, the exact-zero singularity check at kernel.py lines 14-15, deterministic row swap and elimination at lines 16-20, back substitution at lines 21-23, overflow check at lines 24-25, and the proposed residual, named solution, deltas, and limit comparison at program.py lines 24-27 must retain their present ordering, exceptions, binary64 behavior, and effects. The copied rows at line 11 preserve the no-mutation contract and must not be replaced with mutation of caller data. Practical suitability is false: a predicate that certifies the first global maximum may itself scan all remaining rows, coherent loading must be repeated as elimination changes the matrix, exact reversible binary64 handling is costly, and probabilistic output requires verification and deterministic fallback. The supplied material describes a small serial program and supplies no scale, hardware, encoding-cost, or advantage evidence. Benchmark support is false: NOTICE.txt provides only classical HPL algorithm attribution, while the software contract expressly says this is not a compliant HPL performance run; no quantum benchmark supports this migration.",
+    "structural_eligibility": true,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "computational_intent": "Select, for each elimination column, the first row index whose pivot has the largest absolute binary64 value, while preserving the solver's exact tie, exception, ordering, and state-update semantics.",
+    "assumptions": [
+      "Structural eligibility concerns only the finite pivot-index selection, not the full linear-system solution.",
+      "The supplied Python and software contract are the complete semantic authority.",
+      "No quantum advantage, free coherent memory, relaxed exactness, or acceptable probabilistic failure rate is assumed.",
+      "Classical verification and fallback are permitted only if externally observable behavior remains identical."
+    ],
+    "risks": [
+      "Quantum proposal and verification overhead can exceed the original linear pivot scan.",
+      "A probabilistic or approximate pivot can change every later floating-point operation and is therefore not semantically acceptable.",
+      "Tie-breaking and unusual binary64 intermediate states complicate reversible oracle construction.",
+      "The remaining elimination, back substitution, diagnostics, validation, reporting, and exception behavior stay classical.",
+      "No supplied benchmark demonstrates useful end-to-end performance."
+    ],
+    "contract_applicability": [
+      {
+        "contract_id": "grover-predicate-v0",
+        "applicable": true,
+        "rationale": "Conditionally applicable only to line 13 because the remaining row indices form a finite domain and an exact first-argmax condition can in principle define a unique Boolean predicate. Applicability depends on constructing and costing a reversible predicate with exact Python binary64 and tie semantics, followed by classical verification and deterministic fallback."
+      },
+      {
+        "contract_id": "qubo-ising-v0",
+        "applicable": false,
+        "rationale": "The program performs deterministic partial-pivoted elimination and residual reporting, not binary combinatorial optimization. No supplied objective, binary decision model, constraint penalties, or exact QUBO/Ising encoding reproduces its required floating-point solution and exception semantics."
+      }
+    ]
+  },
+  {
+    "schema_version": "0.2.0",
+    "case_id": "lit-010",
+    "decision": "REMAIN_CLASSICAL",
+    "candidate_regions": [],
+    "migration_family": null,
+    "plan": null,
+    "rationale": "No region implements either supported computational family. The apparent numerical kernel in kernel.py lines 17-40 is a stateful, ordered conjugate-direction recurrence over binary64 values, not an unstructured finite-domain predicate search or a binary combinatorial optimization problem. Its inputs and state include rows, rhs, the current iterate, the step budget, tolerance, residual r, direction p, previous squared residual, and the recurrent norm. It activates only in advance mode through program.py lines 39-46; each iteration additionally depends on the budget and relative-residual stopping predicate at kernel.py line 24. Surrounding behavior that must remain intact includes validation and normalization in program.py lines 9-32, the separately computed initial residual in lines 33-38, zero-residual termination, the exact update ordering and per-step recurrent residual trace in kernel.py lines 24-39, breakdown and nonfinite exceptions, budget-limited nonconvergence, preservation of the resulting approximate iterate rather than substitution of an exact solution, and direct final-residual recomputation in program.py lines 41-46. Encoding real-valued iterates into a QUBO would introduce unresolved discretization, penalty, feasibility, and exactness changes and would not preserve the prescribed recurrence. Treating validation scans or sparse matrix operations as Grover searches would require coherent access and reversible predicates while still preserving deterministic exception behavior and ordering; the supplied material provides neither such an oracle nor a meaningful search objective. Structural eligibility is therefore false, so no conditional migration plan is warranted. Practical suitability is independently false because quantum data loading, arithmetic, state extraction, and classical verification would add unbounded overhead while the full named iterate and exact trace must remain classical outputs. Benchmark support is false: the material explicitly says this is not a compliant HPCG run and supplies no workload, resource, hardware, encoding-cost, or advantage measurements.",
+    "structural_eligibility": false,
+    "practical_suitability": false,
+    "benchmark_supported": false,
+    "computational_intent": "Validate a sparse symmetric strictly diagonally dominant system and execute a budgeted unpreconditioned conjugate-direction recurrence while reporting its ordered residual history and resulting named iterate.",
+    "assumptions": [
+      "Only unstructured_search and combinatorial_optimization are admissible migration families.",
+      "Python binary64 update order, stopping behavior, exceptions, output ordering, approximate iterate, and residual trace must not be relaxed.",
+      "Classical input loading and output reconstruction are not free, and no coherent sparse-memory mechanism is supplied."
+    ],
+    "risks": [
+      "A QUBO discretization would change the real-valued recurrence into a different optimization problem and could alter the iterate, stopping point, trace, and exceptions.",
+      "A probabilistic Grover-style validation oracle could miss invalid input or change which validation error is observed.",
+      "Quantum state preparation, reversible floating-point arithmetic, sparse access, repeated measurements, and extraction of the full iterate may dominate any proposed kernel benefit.",
+      "HPCG source attribution could be mistaken for benchmark evidence even though the software contract expressly disclaims HPCG compliance."
+    ],
+    "contract_applicability": [
+      {
+        "contract_id": "grover-predicate-v0",
+        "applicable": false,
+        "rationale": "The main computation is an ordered numerical recurrence rather than marked-item search. Validation loops could only be recast as searches after supplying reversible predicates, coherent data access, deterministic no-solution handling, and exception-order preservation, none of which is established or practically motivated by the supplied material."
+      },
+      {
+        "contract_id": "qubo-ising-v0",
+        "applicable": false,
+        "rationale": "There are no binary decision variables or combinatorial objective. Constructing them would require an unresolved finite-precision encoding and penalties and would solve a surrogate optimization problem instead of preserving the specified budgeted recurrence and exact trace semantics."
+      }
+    ]
+  }
+]

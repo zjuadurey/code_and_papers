@@ -1,0 +1,17 @@
+{
+  "replicate": 1,
+  "arm": "self_review",
+  "folder": "runs/gpt-5.6-sol/01-self_review",
+  "execution_success": true,
+  "usage": [
+    {
+      "input_tokens": 8260,
+      "cached_input_tokens": 2304,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 697,
+      "reasoning_output_tokens": 306
+    }
+  ],
+  "model_seconds": 27.903,
+  "initial_sha256": "3ead2ab753db174aa281725476d17dc880d2f1aa025adc34ebf32ef062d2e040"
+}

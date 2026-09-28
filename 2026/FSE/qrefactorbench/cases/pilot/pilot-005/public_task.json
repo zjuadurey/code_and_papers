@@ -1,0 +1,11 @@
+{
+  "case_id": "pilot-005",
+  "title": "Bundle request handler",
+  "software_contract": "Return a response describing whether some subset of available offers meets the exact unit target within budget, while preserving preprocessing and response metadata.",
+  "input_domain": "offers have sku, units, price, available; units/prices are nonnegative integers; target/budget are nonnegative integers; unavailable offers are ignored.",
+  "execution_assumptions": [
+    "The response includes a Boolean result; it does not return a selected subset or its ordering.",
+    "Filtering, sorting and response metadata are part of the required behavior.",
+    "Offer data arrive classically; encoding and repeated-use assumptions are not settled."
+  ]
+}

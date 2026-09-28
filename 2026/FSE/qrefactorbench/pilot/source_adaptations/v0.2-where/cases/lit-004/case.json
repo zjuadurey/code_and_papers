@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "lit-004",
+  "title": "Release group review from pair-check history",
+  "description": "review_releases(request) validates every version/check/request before processing and raises ValueError for invalid input (message unspecified), without mutation. Pair checks are undirected; the last input record for a pair supersedes earlier records, including reversed pairs. Unknown pairs are unverified, not passed. A proposed group must contain only active versions from that request's members, with every pair's latest check passed. Requests are independent, never consume versions, and follow input order. Output contains version_count, check_count, pair_count (distinct checked pairs including inactive versions), superseded_check_count (check_count-pair_count), and requests. Each request report contains request_id, eligible (active requested versions in global version input order), current, preview, proposed and changes. A description contains selected IDs in global version order, size, inactive IDs, missing_pairs (global pair order, each left/right/reason=failed or unverified), and eligible_and_compatible (no inactive or missing pair). Current may be inactive or incompatible and is reported honestly. Preview always starts empty and scans eligible versions in order, accepting a version exactly when it is compatible with every already accepted one; preview must retain this behavior even if a larger group exists. For mode=inspect, proposed and changes are null. For mode=select, proposed has the greatest possible size among eligible pair-compatible groups; ties choose the smallest integer sum(2**i) over selected positions in eligible. Empty eligible produces empty proposal. changes.add/remove are differences from current in global version order, not an objective. Singleton groups need no pair checks. No triple-level compatibility, minimum-change preference, or approximate size is permitted. CLI reads one JSON request and prints one JSON report; invalid inputs exit nonzero with no successful report.",
+  "source": "Codex-assisted adaptation of C2|Q> pinned dataset records [88, 93]. Original records preserved in ../../sources/. Newly authored synthetic workflow, not deployed software. See ADAPTATION.md and ../../SOURCES.md.",
+  "source_url": "https://huggingface.co/datasets/boshuai1/c2q-dataset/tree/c5b457cf425c31e91bae829503ece6e92646dd0a",
+  "license": "NOASSERTION",
+  "domain": "source_adapted_synthetic_context",
+  "version": "0.2.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "reports.py",
+    "catalog.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "review_releases",
+      "start_line": 25,
+      "end_line": 29
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT independent full-report functional oracle, source equivalence checks and wrong-boundary/dependency regressions; no automatic scoring of localization or quantum migration.",
+    "config": {
+      "test_artifact": "test_program.py",
+      "probabilistic_policy": null,
+      "approximation_permitted": false
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Versions represent independently selectable artifacts, not necessarily alternatives of one package. Pair-check history is supplied by the caller; no network or package installation occurs.",
+      "All reports and previews are observable. No measured workload distribution, hardware budget, encoding cost or practical benefit is supplied."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT, AI-ASSISTED PROPOSAL — NOT GROUND TRUTH. Required case_type=positive denotes a provisional sampling hypothesis only. The region is a private review nomination, not an accepted localization answer. All scientific judgment fields remain null. Inspect ADAPTATION.md before human annotation.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "External source programs are synthetic C2|Q> records, not existing deployed applications.",
+    "Context transformations and application requirements are new and explicitly documented; originals remain unchanged.",
+    "WHERE challenge is a design hypothesis with executable boundary counterexamples, not measured model difficulty.",
+    "Scientific labels, admissible quantum contracts, practical suitability, and localization scoring remain unreviewed.",
+    "Source portions CC-BY-4.0; new material/package license NOASSERTION."
+  ]
+}

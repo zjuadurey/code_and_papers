@@ -1,0 +1,56 @@
+{
+  "response_sha256": "3c9309bae95b8d7fde5a0b5cd7f5ea9b093de6d389a20631989482cd5e950a84",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 34.803,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:46:23.381009+00:00",
+  "review_submitted_utc": "2026-09-26T12:46:58.184406+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "3c9309bae95b8d7fde5a0b5cd7f5ea9b093de6d389a20631989482cd5e950a84",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "At a structural level, the finite row-index domain admits a unique Boolean predicate: index i is marked exactly when its magnitude is no smaller than every later candidate and strictly greater than every earlier candidate. A reversible oracle would have to load the current column, compare i against every competing row using exact binary64 absolute-value ordering, uncompute all workspace, and preserve signed-zero and tie semantics. Classical verification and a justified failure or fallback policy would remain mandatory. Because one oracle evaluation already requires comparisons against the full candidate set and no coherent-access construction or resource evidence is supplied, this applicability does not imply practical suitability."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the current augmented-row values rows[i][col] produced from matrix and rhs and mutated by all preceding swaps and elimination updates. Use one binary decision variable per eligible row. An exact encoding of Python binary64 absolute-value ordering, including equal values and signed zero, and an exact index tie-break are required. A possible abstract construction ranks each finite binary64 magnitude, scales that rank above the complete index range, and uses the row index as the secondary term. The realizability and cost of those integer ranges, coefficient precision, state loading, intermediate nonfinite handling, ancillary workspace, and a sufficient feasibility penalty are unresolved."
+      },
+      {
+        "pointer": "/plan/risks/3",
+        "quote": "A nonfinite intermediate may not have a valid proposed encoding and must not silently alter the program's eventual exception behavior."
+      }
+    ],
+    "resolution": "ambiguous",
+    "rationale": "The main QUBO remains unspecified and is not scored. However, this revision newly claims Grover applicability and explicitly gives a secondary pivot predicate in contract_applicability[0]: no smaller than each later magnitude, and strictly greater than every earlier magnitude. Preserve two readings of 'no smaller': >= or literal not-<, which differ for NaN. The QUBO paragraph's finite magnitude ranking is not an admission guard for this separate Grover claim. No such guard is stated, so use True. Results apply only to this secondary explicit pivot relation, not to rejection of the QUBO plan or whole task.",
+    "interpretations": [
+      {
+        "id": "later_ge_earlier_gt",
+        "meaning": "Conventional >= reading of no-smaller for later candidates and strict > for earlier candidates.",
+        "mode": "predicate",
+        "expression": "all(values[i] >= values[k] for k in indices if k > i) and all(values[i] > values[j] for j in indices if j < i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      },
+      {
+        "id": "later_not_lt_earlier_gt",
+        "meaning": "Literal not-< reading for later candidates, retaining the explicit strict > for earlier candidates.",
+        "mode": "predicate",
+        "expression": "not any(values[i] < values[k] for k in indices if k > i) and all(values[i] > values[j] for j in indices if j < i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

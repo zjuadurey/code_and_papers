@@ -1,0 +1,37 @@
+{
+  "algorithm": "sha256",
+  "paths_relative_to": "qrefactorbench/",
+  "excludes": [
+    "artifact-manifest.json",
+    "__pycache__"
+  ],
+  "files": {
+    "pilot/enhancement/state-workflow-design-v0.1/README.md": "18b47f2bc19cf67eae5e698d9bbbff35dbf3e7f88628d7f21f27df13f751796b",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/01-assessment_summary.txt": "006f6c398b40e86577a17854024b9fc3eb2c8a0dae3bffc44b9475acfe9a2dc6",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/01-cue_only.txt": "5ac2b270b60efe13885c9763bb780ddb4cac33988d226db2444b3a4b1cfcbe8a",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/01-self_review.txt": "edd407050cc5294f2aeca6241356bbbd019447927289466f7073c0f36fcef7e2",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/02-assessment_summary.txt": "a3f12c09b3e46ef93f2b98011da285c0b989d814756c1a0a59a65a4659c1470f",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/02-cue_only.txt": "c1471b2f726b94069875ba81f048f5953455328f5ef9def84e7eedc6f1eced28",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/02-self_review.txt": "08579fc246e12d2de6118ad8c3da4b3ea193f16e67faf8657a6ec38eb58e20ee",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/02-with_witness.txt": "3002c8d0358bd6231ea4f1b21e86dbceea8c55344d18971503c306b72bd8013a",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/03-assessment_summary.txt": "dd15bdb6ac92b5f2706930a7dbbe98e86a01a943850fd6924a2110d51b64eed6",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/03-cue_only.txt": "bc5b15ac751987344b0d8abdb63227dd696d4084b5af3fe84893657068f3b39d",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/03-self_review.txt": "d15c7af95b0a26f98d297b9b85a85ef56ca71271bff56f1a6dc20bd22691f512",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/04-assessment_summary.txt": "47a5c702680dd27c7c7f724e39f2b79159548c1ca6e12b98f6652c47f49bd5f3",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/04-cue_only.txt": "38be82721320a96e5b54a4fa93d62700bd001610b8b4e0eea34877299c5aefab",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/04-self_review.txt": "b6546c4983892ba7c135c1baaa0039589a56fd193dad0a783e239ec59fb0b281",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/05-assessment_summary.txt": "b81745a41403e9237ab030516d8cc295ccafc96289057666afadc6703a96480e",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/05-cue_only.txt": "c84448f52fb8e2ff7bac5d70498ec1a57d6712add4821c0ca7a0ee76ed4fef37",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/05-self_review.txt": "b6c54c622f6099452c156eba38785aad37fe428e4eef62d6d2cf5c8b6e0292b4",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/candidate-routing-audit.json": "1d5af4b0f0a1cbb9f12bd9fa081c26ba6090bfdce95f9e9214300bfaaaec3eab",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/prompt-design.json": "1909615775cf49693a4a061faf2111ccabc3c71197123e47709c7feaa25736b6",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/public-source-outline.json": "0c6c9413773c64927c254a1a2280b81285f7fd84d22e6a012fd4d5634b6fd1be",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/response-crosswalk.json": "ad1e8dd33dd87219e768297d06d7541ed4f91a457489da52bab09ceb97f3d9f2",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/source-manifest.json": "80c4720a49ed8e494c4ed9ab09f266f4c81bfb49109ac0edc32c1c03d5314225",
+    "pilot/enhancement/state-workflow-design-v0.1/audit/summary.json": "5b84d72d93d2319357af1ec192bc3860e44b590fa9e20587af81fd2a4b42a73f",
+    "pilot/enhancement/state-workflow-design-v0.1/build_audit.py": "bfdb9a72060bbd83e94f56ec6164c327c72fd539b343118837cdd0582af239ed",
+    "pilot/enhancement/state-workflow-design-v0.1/content-validation.json": "123c0b163b981610cf7e3a90bb7b7309b00fe071afc9c25d3d502c258a5e1731",
+    "pilot/enhancement/state-workflow-design-v0.1/protected_before.json": "eb92dfd7e98daff360bd9c21361536a1928cc04998ca7fac4e879fe5d236fdb1",
+    "pilot/enhancement/state-workflow-design-v0.1/validation.json": "c8dadeffa9d6fe1307ebf22134111bda8d7b72d14eb4b895967871d7170506ff"
+  }
+}

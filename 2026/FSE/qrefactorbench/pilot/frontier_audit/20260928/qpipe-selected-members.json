@@ -1,0 +1,32 @@
+[
+  {
+    "member": "QSE_workflow_artifact/README.md",
+    "file": "sources/qpipe/README.md",
+    "sha256": "a863e0510fce5c412ea8ecd25323a3c6df68b1b9050677a07e21d78f893b88b9"
+  },
+  {
+    "member": "QSE_workflow_artifact/backend/src/quantum_workflow/knowledge/classical/solvers.py",
+    "file": "sources/qpipe/backend/src/quantum_workflow/knowledge/classical/solvers.py",
+    "sha256": "2ac924d571262c37f4c920b128dde2c431c872f65c3ec98b708b48a26fd27dd5"
+  },
+  {
+    "member": "QSE_workflow_artifact/backend/src/quantum_workflow/pipeline/stage_verify.py",
+    "file": "sources/qpipe/backend/src/quantum_workflow/pipeline/stage_verify.py",
+    "sha256": "4225865555b246d046e263b11ab506df638ed02461774d5bb829872ca7f0be06"
+  },
+  {
+    "member": "QSE_workflow_artifact/backend/src/quantum_workflow/pipeline/stage_global_review.py",
+    "file": "sources/qpipe/backend/src/quantum_workflow/pipeline/stage_global_review.py",
+    "sha256": "0a3d438faff7dee2121c31540fdfec53517c108e8c9b65c2a37adabc83a55b02"
+  },
+  {
+    "member": "QSE_workflow_artifact/backend/src/quantum_workflow/pipeline/stage2_analyze.py",
+    "file": "sources/qpipe/backend/src/quantum_workflow/pipeline/stage2_analyze.py",
+    "sha256": "5ae0195061f078ae7f9b8119030c5aedcb4eb867db244db7fe724cbe5eb7b7d1"
+  },
+  {
+    "member": "QSE_workflow_artifact/backend/src/quantum_workflow/pipeline/stage_encode.py",
+    "file": "sources/qpipe/backend/src/quantum_workflow/pipeline/stage_encode.py",
+    "sha256": "2b9473c700a773e9d6885fd83e35b662555e9be6e3cfa8bc9eee5983f509473a"
+  }
+]

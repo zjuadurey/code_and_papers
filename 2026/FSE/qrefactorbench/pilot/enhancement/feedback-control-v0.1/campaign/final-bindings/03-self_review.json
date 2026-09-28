@@ -1,0 +1,43 @@
+{
+  "response_sha256": "47b231f06e3c8615ee0146dbba16221ae99a877c45524522f1495ca90f83d491",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 18.8,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:14:58.621439+00:00",
+  "review_submitted_utc": "2026-09-26T21:15:17.421409+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "47b231f06e3c8615ee0146dbba16221ae99a877c45524522f1495ca90f83d491",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate each pivot selection as finite unstructured maximum search over row indices col through n-1. A reversible predicate would compare a candidate row's absolute binary64 pivot value with an incumbent using a lexicographic rule that prefers larger magnitude and then smaller index, thereby preserving Python max's first-index tie behavior. Grover-style search could seek an index that improves the incumbent; no marked index leaves the incumbent unchanged."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a proposed pivot index, verify classically that it is in the active range and has the claimed value, and preserve the exact-zero singularity check before swapping rows. To retain deterministic largest-magnitude and first-index semantics, an exact success guarantee or exhaustive classical verification of maximality and tie-breaking is required; probabilistic acceptance alone is not permitted."
+      },
+      {
+        "pointer": "/plan/risks/0",
+        "quote": "Grover-style maximum finding is normally probabilistic, while the software contract requires deterministic pivot selection and exact tie behavior."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "For each column, the active row indices form a finite domain and a reversible predicate can conditionally mark candidates that beat an incumbent under the required magnitude-then-index ordering. Applicability is structural only: coherent access, reversible binary64 comparison, exact success and no-improvement handling, classical verification, and preservation of deterministic tie semantics remain unresolved."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "Even without observations this revision introduces a pivot candidate and adaptive maximum-search plan. It describes a better-than-incumbent lexicographic comparison but not an initialized, ordered full selector or complete adaptive search and no-improvement policy. Turning this probabilistic sketch into the checker's ordered_scan would invent a control flow. Retain insufficient evidence for the full local selection relation; nomination increase alone is not semantic repair or a cue-specific effect.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

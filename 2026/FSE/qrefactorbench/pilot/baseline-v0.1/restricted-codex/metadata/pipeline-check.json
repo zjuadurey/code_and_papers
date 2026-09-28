@@ -1,0 +1,10 @@
+{
+  "case_id": "pilot-001",
+  "response_saved": true,
+  "metadata_saved": true,
+  "parse_status": "json_object",
+  "manual_scoring_performed": false,
+  "reference_annotations_read": false,
+  "prompt_or_model_tuned_after_answer": false,
+  "mechanically_sound": true
+}

@@ -1,0 +1,10 @@
+{
+  "small_instances_passed": 45,
+  "qdk_attempts": 11,
+  "qdk_successes": 11,
+  "conditional_points": 2376,
+  "large_state_simulations": 0,
+  "protected_files_unchanged": 175,
+  "model_calls": 0,
+  "qpu_calls": 0
+}

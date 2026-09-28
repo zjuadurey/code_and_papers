@@ -1,0 +1,665 @@
+{
+  "review_status": "AI_REVIEW_PENDING",
+  "post_hoc": true,
+  "python": "3.10.21",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "provenance": {
+    "response_path": "pilot/model_comparison/20260923-four-model-c-v0.1/runs/gpt-5.6-sol/lit-009/response.txt",
+    "response_sha256": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+    "pointer": "/plan/formulation",
+    "quote": "Conditionally formulate each pivot selection as a finite search over row indices i in [col,n). Mark exactly the first index whose absolute pivot entry is maximal: abs(rows[i][col]) is at least every remaining candidate magnitude, and no earlier remaining index has the same magnitude. This produces the same unique index as Python max with its first-index tie rule.",
+    "interpretation": "At-least is >= over the actual Python binary64 values, with no earlier equal magnitude."
+  },
+  "normal_control": {
+    "input": {
+      "variables": [
+        "a",
+        "b"
+      ],
+      "matrix": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "rhs": [
+        1.0,
+        2.0
+      ],
+      "current": [
+        0.0,
+        0.0
+      ],
+      "mode": "solve",
+      "residual_limit": 1.0
+    },
+    "inspection": {
+      "current_residual": {
+        "vector": [
+          -1.0,
+          -2.0
+        ],
+        "infinity_norm": 2.0,
+        "scaled_backward_error": 2251799813685248.0
+      },
+      "proposal": null,
+      "proposed_residual": null,
+      "within_requested_limit": null,
+      "deltas": null
+    },
+    "outcome": {
+      "report": {
+        "current_residual": {
+          "vector": [
+            -1.0,
+            -2.0
+          ],
+          "infinity_norm": 2.0,
+          "scaled_backward_error": 2251799813685248.0
+        },
+        "proposal": {
+          "a": 1.0,
+          "b": 2.0
+        },
+        "proposed_residual": {
+          "vector": [
+            0.0,
+            0.0
+          ],
+          "infinity_norm": 0.0,
+          "scaled_backward_error": 0.0
+        },
+        "within_requested_limit": true,
+        "deltas": {
+          "a": 1.0,
+          "b": 2.0
+        }
+      }
+    },
+    "pivots": [
+      {
+        "column": 0,
+        "values": [
+          "1.0",
+          "0.0"
+        ],
+        "original": 0,
+        "literal_marked": [
+          0
+        ],
+        "excluding_self_marked": [
+          0
+        ],
+        "ordered_scan_control": 0
+      },
+      {
+        "column": 1,
+        "values": [
+          "1.0"
+        ],
+        "original": 1,
+        "literal_marked": [
+          1
+        ],
+        "excluding_self_marked": [
+          1
+        ],
+        "ordered_scan_control": 1
+      }
+    ],
+    "nonfinite_updates": [],
+    "kernel_exceptions": [],
+    "input_unchanged": true
+  },
+  "archived_witness": {
+    "input": {
+      "variables": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ],
+      "matrix": [
+        [
+          2.5e+307,
+          0.0,
+          0.0,
+          2.5e+307,
+          2.5e+307
+        ],
+        [
+          -2.5e+307,
+          2.5e+307,
+          0.0,
+          2.5e+307,
+          2.5e+307
+        ],
+        [
+          -2.5e+307,
+          -2.5e+307,
+          2.5e+307,
+          2.5e+307,
+          2.5e+307
+        ],
+        [
+          -2.5e+307,
+          -2.5e+307,
+          -2.5e+307,
+          2.5e+307,
+          2.5e+307
+        ],
+        [
+          -2.5e+307,
+          -2.5e+307,
+          -2.5e+307,
+          2.5e+307,
+          -2.5e+307
+        ]
+      ],
+      "rhs": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "current": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mode": "solve",
+      "residual_limit": 1.0
+    },
+    "inspection": {
+      "current_residual": {
+        "vector": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "infinity_norm": 1.0,
+        "scaled_backward_error": 900719925474099.2
+      },
+      "proposal": null,
+      "proposed_residual": null,
+      "within_requested_limit": null,
+      "deltas": null
+    },
+    "outcome": {
+      "exception": "ValueError",
+      "message": "numerical overflow"
+    },
+    "pivots": [
+      {
+        "column": 0,
+        "values": [
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307"
+        ],
+        "original": 0,
+        "literal_marked": [
+          0
+        ],
+        "excluding_self_marked": [
+          0
+        ],
+        "ordered_scan_control": 0
+      },
+      {
+        "column": 1,
+        "values": [
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307"
+        ],
+        "original": 1,
+        "literal_marked": [
+          1
+        ],
+        "excluding_self_marked": [
+          1
+        ],
+        "ordered_scan_control": 1
+      },
+      {
+        "column": 2,
+        "values": [
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307"
+        ],
+        "original": 2,
+        "literal_marked": [
+          2
+        ],
+        "excluding_self_marked": [
+          2
+        ],
+        "ordered_scan_control": 2
+      },
+      {
+        "column": 3,
+        "values": [
+          "inf",
+          "inf"
+        ],
+        "original": 3,
+        "literal_marked": [
+          3
+        ],
+        "excluding_self_marked": [
+          3
+        ],
+        "ordered_scan_control": 3
+      },
+      {
+        "column": 4,
+        "values": [
+          "nan"
+        ],
+        "original": 4,
+        "literal_marked": [],
+        "excluding_self_marked": [
+          4
+        ],
+        "ordered_scan_control": 4
+      }
+    ],
+    "nonfinite_updates": [
+      {
+        "column": 2,
+        "i": 3,
+        "j": 3,
+        "before": "1e+308",
+        "factor": "-1.0",
+        "pivot_value": "1e+308",
+        "after": "inf"
+      },
+      {
+        "column": 2,
+        "i": 3,
+        "j": 4,
+        "before": "1e+308",
+        "factor": "-1.0",
+        "pivot_value": "1e+308",
+        "after": "inf"
+      },
+      {
+        "column": 2,
+        "i": 4,
+        "j": 3,
+        "before": "1e+308",
+        "factor": "-1.0",
+        "pivot_value": "1e+308",
+        "after": "inf"
+      },
+      {
+        "column": 3,
+        "i": 4,
+        "j": 3,
+        "before": "inf",
+        "factor": "nan",
+        "pivot_value": "inf",
+        "after": "nan"
+      },
+      {
+        "column": 3,
+        "i": 4,
+        "j": 4,
+        "before": "1.5e+308",
+        "factor": "nan",
+        "pivot_value": "inf",
+        "after": "nan"
+      },
+      {
+        "column": 3,
+        "i": 4,
+        "j": 5,
+        "before": "8.0",
+        "factor": "nan",
+        "pivot_value": "8.0",
+        "after": "nan"
+      }
+    ],
+    "kernel_exceptions": [
+      {
+        "line": 25,
+        "type": "ValueError",
+        "message": "numerical overflow"
+      }
+    ],
+    "input_unchanged": true
+  },
+  "reviewer_sensitivity_probe": {
+    "input": {
+      "variables": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f"
+      ],
+      "matrix": [
+        [
+          2.5e+307,
+          0.0,
+          0.0,
+          2.5e+307,
+          2.5e+307,
+          0.0
+        ],
+        [
+          -2.5e+307,
+          2.5e+307,
+          0.0,
+          2.5e+307,
+          2.5e+307,
+          0.0
+        ],
+        [
+          -2.5e+307,
+          -2.5e+307,
+          2.5e+307,
+          2.5e+307,
+          2.5e+307,
+          0.0
+        ],
+        [
+          -2.5e+307,
+          -2.5e+307,
+          -2.5e+307,
+          2.5e+307,
+          2.5e+307,
+          0.0
+        ],
+        [
+          -2.5e+307,
+          -2.5e+307,
+          -2.5e+307,
+          2.5e+307,
+          -2.5e+307,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "rhs": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "current": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mode": "solve",
+      "residual_limit": 1.0
+    },
+    "inspection": {
+      "current_residual": {
+        "vector": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "infinity_norm": 1.0,
+        "scaled_backward_error": 750599937895082.6
+      },
+      "proposal": null,
+      "proposed_residual": null,
+      "within_requested_limit": null,
+      "deltas": null
+    },
+    "outcome": {
+      "exception": "ValueError",
+      "message": "numerical overflow"
+    },
+    "pivots": [
+      {
+        "column": 0,
+        "values": [
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "0.0"
+        ],
+        "original": 0,
+        "literal_marked": [
+          0
+        ],
+        "excluding_self_marked": [
+          0
+        ],
+        "ordered_scan_control": 0
+      },
+      {
+        "column": 1,
+        "values": [
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "0.0"
+        ],
+        "original": 1,
+        "literal_marked": [
+          1
+        ],
+        "excluding_self_marked": [
+          1
+        ],
+        "ordered_scan_control": 1
+      },
+      {
+        "column": 2,
+        "values": [
+          "2.5e+307",
+          "2.5e+307",
+          "2.5e+307",
+          "0.0"
+        ],
+        "original": 2,
+        "literal_marked": [
+          2
+        ],
+        "excluding_self_marked": [
+          2
+        ],
+        "ordered_scan_control": 2
+      },
+      {
+        "column": 3,
+        "values": [
+          "inf",
+          "inf",
+          "0.0"
+        ],
+        "original": 3,
+        "literal_marked": [
+          3
+        ],
+        "excluding_self_marked": [
+          3
+        ],
+        "ordered_scan_control": 3
+      },
+      {
+        "column": 4,
+        "values": [
+          "nan",
+          "nan"
+        ],
+        "original": 4,
+        "literal_marked": [],
+        "excluding_self_marked": [],
+        "ordered_scan_control": 4
+      },
+      {
+        "column": 5,
+        "values": [
+          "nan"
+        ],
+        "original": 5,
+        "literal_marked": [],
+        "excluding_self_marked": [
+          5
+        ],
+        "ordered_scan_control": 5
+      }
+    ],
+    "nonfinite_updates": [
+      {
+        "column": 2,
+        "i": 3,
+        "j": 3,
+        "before": "1e+308",
+        "factor": "-1.0",
+        "pivot_value": "1e+308",
+        "after": "inf"
+      },
+      {
+        "column": 2,
+        "i": 3,
+        "j": 4,
+        "before": "1e+308",
+        "factor": "-1.0",
+        "pivot_value": "1e+308",
+        "after": "inf"
+      },
+      {
+        "column": 2,
+        "i": 4,
+        "j": 3,
+        "before": "1e+308",
+        "factor": "-1.0",
+        "pivot_value": "1e+308",
+        "after": "inf"
+      },
+      {
+        "column": 3,
+        "i": 4,
+        "j": 3,
+        "before": "inf",
+        "factor": "nan",
+        "pivot_value": "inf",
+        "after": "nan"
+      },
+      {
+        "column": 3,
+        "i": 4,
+        "j": 4,
+        "before": "1.5e+308",
+        "factor": "nan",
+        "pivot_value": "inf",
+        "after": "nan"
+      },
+      {
+        "column": 3,
+        "i": 4,
+        "j": 5,
+        "before": "0.0",
+        "factor": "nan",
+        "pivot_value": "0.0",
+        "after": "nan"
+      },
+      {
+        "column": 3,
+        "i": 4,
+        "j": 6,
+        "before": "8.0",
+        "factor": "nan",
+        "pivot_value": "8.0",
+        "after": "nan"
+      },
+      {
+        "column": 3,
+        "i": 5,
+        "j": 3,
+        "before": "0.0",
+        "factor": "0.0",
+        "pivot_value": "inf",
+        "after": "nan"
+      },
+      {
+        "column": 3,
+        "i": 5,
+        "j": 4,
+        "before": "0.0",
+        "factor": "0.0",
+        "pivot_value": "inf",
+        "after": "nan"
+      },
+      {
+        "column": 4,
+        "i": 5,
+        "j": 4,
+        "before": "nan",
+        "factor": "nan",
+        "pivot_value": "nan",
+        "after": "nan"
+      },
+      {
+        "column": 4,
+        "i": 5,
+        "j": 5,
+        "before": "1.0",
+        "factor": "nan",
+        "pivot_value": "nan",
+        "after": "nan"
+      },
+      {
+        "column": 4,
+        "i": 5,
+        "j": 6,
+        "before": "1.0",
+        "factor": "nan",
+        "pivot_value": "nan",
+        "after": "nan"
+      }
+    ],
+    "kernel_exceptions": [
+      {
+        "line": 25,
+        "type": "ValueError",
+        "message": "numerical overflow"
+      }
+    ],
+    "input_unchanged": true
+  },
+  "task_pass": null,
+  "fallback_execution": null,
+  "new_model_calls": 0
+}

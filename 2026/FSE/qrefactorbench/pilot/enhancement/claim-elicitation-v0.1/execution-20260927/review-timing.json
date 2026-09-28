@@ -1,0 +1,7 @@
+{
+  "per_response_wall_seconds_sum": 321.44,
+  "nonoverlapping_review_interval_seconds": 161.909,
+  "first_inspection_to_last_submission_seconds": 163.35,
+  "intervals_overlap": true,
+  "limits": "Paired responses were inspected together. Summing per-response intervals double-counts overlap. Union includes coordination/tools and is not human annotation time."
+}

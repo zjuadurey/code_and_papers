@@ -1,0 +1,20 @@
+{
+  "form_version": "phase1-v0",
+  "case_id": null,
+  "role": null,
+  "annotator_id": null,
+  "annotation_status": "DRAFT",
+  "completion_status": "UNFILLED",
+  "candidate_regions": null,
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": null,
+  "migration_family": null,
+  "contract_applicability": null,
+  "expected_decision": null,
+  "assumptions": null,
+  "semantic_oracle": null,
+  "uncertainty": null,
+  "annotation_rationale": null
+}

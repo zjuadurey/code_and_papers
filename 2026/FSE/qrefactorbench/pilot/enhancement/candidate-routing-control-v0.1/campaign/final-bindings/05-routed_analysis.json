@@ -1,0 +1,60 @@
+{
+  "response_sha256": "b4dbee7ab36ffb552b03ff94d33a5242c391b7dcec12630736c74fb6738110b4",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 57.037,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:18:18.328809+00:00",
+  "review_submitted_utc": "2026-09-26T22:19:15.365939+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "b4dbee7ab36ffb552b03ff94d33a5242c391b7dcec12630736c74fb6738110b4",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "For an exactly encoded finite column state, a pure Boolean predicate can mark the unique eligible index whose magnitude is no smaller than every competitor and whose index precedes every equal-magnitude competitor. This is structural applicability only: reversible all-candidate comparison, coherent data access, workspace, no-solution handling, exact success semantics, and resource bounds are unresolved, and the predicate cost can eliminate any search benefit."
+      },
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode one activation of line 13 as a one-hot QUBO over row indices col through n-1. The objective must select the row with greatest abs(rows[i][col]) and, among exactly equal magnitudes, the lowest index. A lexicographic integer score derived from an exact order-preserving representation of finite binary64 magnitudes may supply the linear objective; a squared one-hot constraint requires a penalty proven larger than the complete objective range. Only pivot selection is formulated: singularity checking, swapping, elimination, back substitution, overflow handling, residual diagnostics, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "At each activation, encode the dynamically mutated values rows[i][col], along with eligible indices, rather than the original matrix alone. The encoding must preserve Python binary64 absolute-value ordering, equality, signed-zero behavior, and first-index tie resolution. If candidate state is nonfinite or cannot be encoded exactly, execute the original classical selection. Coefficient construction, exact rank conversion, one-hot penalty bounds, coherent loading, workspace, and backend precision remain unresolved obligations."
+      },
+      {
+        "pointer": "/assumptions/4",
+        "quote": "Any state outside the exact quantum encoding's established domain follows the original classical path."
+      }
+    ],
+    "resolution": "ambiguous",
+    "rationale": "Primary QUBO remains unconstructed: rank conversion, coefficient construction and penalty bounds are explicitly unresolved. Separately, the Grover applicability paragraph gives no-smaller-than-every-competitor and earlier-index-on-equality conditions with an explicit finite-column admission. Bind this secondary predicate only, retaining >= and literal not-< readings; competitors exclude the candidate itself. The finite guard applies explicitly to this secondary claim and outside-encoding states are declared classical. Finite agreement would not validate the primary QUBO or execute fallback.",
+    "interpretations": [
+      {
+        "id": "finite_competitor_ge_first_equal",
+        "meaning": "On finite active values, >= every other candidate and precede each equal competitor.",
+        "mode": "predicate",
+        "expression": "all(values[i] >= values[j] for j in indices if j != i) and all(i < j for j in indices if j != i and values[i] == values[j])",
+        "guard": "all(isfinite(values[j]) for j in indices)",
+        "outside_guard": "classical_fallback_declared"
+      },
+      {
+        "id": "finite_competitor_not_lt_first_equal",
+        "meaning": "On finite active values, not-< every other candidate and precede each equal competitor.",
+        "mode": "predicate",
+        "expression": "not any(values[i] < values[j] for j in indices if j != i) and all(i < j for j in indices if j != i and values[i] == values[j])",
+        "guard": "all(isfinite(values[j]) for j in indices)",
+        "outside_guard": "classical_fallback_declared"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

@@ -1,0 +1,21 @@
+replicate,arm,initial_status,revision_status,comparison,note
+1,self_review,insufficient_evidence,contradicted,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+1,analysis_only,insufficient_evidence,insufficient_evidence,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+1,verification_only,insufficient_evidence,insufficient_evidence,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+1,analysis_and_verification,insufficient_evidence,finite_guarded_pass,conditional_scope,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+2,analysis_only,contradicted,contradicted,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+2,verification_only,contradicted,finite_scope_pass,finite_local_repair_candidate,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+2,analysis_and_verification,contradicted,finite_scope_pass,finite_local_repair_candidate,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+2,self_review,contradicted,all_interpretations_contradicted,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+3,verification_only,insufficient_evidence,insufficient_evidence,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+3,analysis_and_verification,insufficient_evidence,insufficient_evidence,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+3,self_review,insufficient_evidence,insufficient_evidence,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+3,analysis_only,insufficient_evidence,insufficient_evidence,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+4,analysis_and_verification,insufficient_evidence,insufficient_evidence,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+4,self_review,insufficient_evidence,insufficient_evidence,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+4,analysis_only,insufficient_evidence,insufficient_evidence,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+4,verification_only,insufficient_evidence,contradicted,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+5,self_review,insufficient_evidence,insufficient_evidence,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+5,analysis_only,insufficient_evidence,ambiguous_interpretation,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+5,verification_only,insufficient_evidence,insufficient_evidence,no_repair_regression_claim,Candidate transitions still require prose/guard scope review; not whole-task outcomes.
+5,analysis_and_verification,insufficient_evidence,finite_guarded_pass,conditional_scope,Candidate transitions still require prose/guard scope review; not whole-task outcomes.

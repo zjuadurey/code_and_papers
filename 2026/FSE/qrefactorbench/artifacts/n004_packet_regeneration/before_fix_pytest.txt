@@ -1,0 +1,102 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+___________________ test_v01_regeneration_is_byte_identical ____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-audrey/pytest-59/test_v01_regeneration_is_byte_0')
+
+    def test_v01_regeneration_is_byte_identical(tmp_path):
+        output = tmp_path / "fresh"
+        result = prepare_packets(ROOT, output)
+        assert result["case_count"] == 10 and result["model_calls"] == 0
+>       assert file_hashes(output) == file_hashes(PACKETS)
+E       AssertionError: assert {'baseline/ru...4a39a78', ...} == {'baseline/ru...4a39a78', ...}
+E         
+E         Omitting 97 identical items, use -vv to show
+E         Differing items:
+E         {'baseline/INSTRUCTIONS.md': '2c31c4cb8b1f2a512314426192a7e2fd59b862a64d348da9ca57b149d56cc634'} != {'baseline/INSTRUCTIONS.md': '26f26558a85b521c883e322ad2239d37a2456cd89f95b7e223db3288248acca8'}
+E         {'baseline/packet_manifest.json': 'e4ece469d22b598bbcec5831b440584b4d38fabf036e7dffab5e6dc073c05144'} != {'baseline/packet_manifest.json': 'e14955a93faa59647e725cd907276698c9b88b44b7651fa8b73348d43079e51e'}
+E         Use -v to get more diff
+
+tests/test_pilot_v01.py:55: AssertionError
+____________ test_v01_export_is_independent_of_project_readme[True] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-audrey/pytest-59/test_v01_export_is_independent0')
+readme_present = True
+
+    @pytest.mark.parametrize("readme_present", [True, False])
+    def test_v01_export_is_independent_of_project_readme(tmp_path, readme_present):
+        repository = tmp_path / "repo"
+        shutil.copytree(ROOT / "cases/pilot", repository / "cases/pilot")
+        shutil.copytree(ROOT / "pilot/annotation", repository / "pilot/annotation")
+        shutil.copytree(ROOT / "pilot/baseline", repository / "pilot/baseline")
+        shutil.copy(ROOT / "pilot/public_contracts.json", repository / "pilot/public_contracts.json")
+        # Only export sources are present: no frozen packets or experiment results.
+        readme = repository / "pilot/baseline/README.md"
+        private_note = "PRIVATE_EXPERIMENT_FINDINGS_NOT_FOR_PACKET"
+        if readme_present:
+            readme.write_text(private_note, encoding="utf-8")
+        else:
+            readme.unlink()
+        output = tmp_path / "fresh"
+        assert prepare_packets(repository, output)["model_calls"] == 0
+>       assert file_hashes(output) == file_hashes(PACKETS)
+E       AssertionError: assert {'baseline/ru...4a39a78', ...} == {'baseline/ru...4a39a78', ...}
+E         
+E         Omitting 97 identical items, use -vv to show
+E         Differing items:
+E         {'baseline/INSTRUCTIONS.md': 'eb4d6e0295ca929056bc52bb8c85b9ec0f9c043ea8ed03253f1c99815d2d0bdc'} != {'baseline/INSTRUCTIONS.md': '26f26558a85b521c883e322ad2239d37a2456cd89f95b7e223db3288248acca8'}
+E         {'baseline/packet_manifest.json': '71b3ba061f6297768f3547d8effb4dfeb25baaf01cf0ce1c3afed3a074d4b657'} != {'baseline/packet_manifest.json': 'e14955a93faa59647e725cd907276698c9b88b44b7651fa8b73348d43079e51e'}
+E         Use -v to get more diff
+
+tests/test_pilot_v01.py:74: AssertionError
+___________ test_v01_export_is_independent_of_project_readme[False] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-audrey/pytest-59/test_v01_export_is_independent1')
+readme_present = False
+
+    @pytest.mark.parametrize("readme_present", [True, False])
+    def test_v01_export_is_independent_of_project_readme(tmp_path, readme_present):
+        repository = tmp_path / "repo"
+        shutil.copytree(ROOT / "cases/pilot", repository / "cases/pilot")
+        shutil.copytree(ROOT / "pilot/annotation", repository / "pilot/annotation")
+        shutil.copytree(ROOT / "pilot/baseline", repository / "pilot/baseline")
+        shutil.copy(ROOT / "pilot/public_contracts.json", repository / "pilot/public_contracts.json")
+        # Only export sources are present: no frozen packets or experiment results.
+        readme = repository / "pilot/baseline/README.md"
+        private_note = "PRIVATE_EXPERIMENT_FINDINGS_NOT_FOR_PACKET"
+        if readme_present:
+            readme.write_text(private_note, encoding="utf-8")
+        else:
+            readme.unlink()
+        output = tmp_path / "fresh"
+>       assert prepare_packets(repository, output)["model_calls"] == 0
+
+tests/test_pilot_v01.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+qrefactorbench/pilot.py:48: in prepare_packets
+    prepared["baseline/INSTRUCTIONS.md"] = (repository / "pilot" / "baseline" / "README.md").read_text(encoding="utf-8")
+../../../../miniconda3/envs/palqo/lib/python3.10/pathlib.py:1134: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/tmp/pytest-of-audrey/pytest-59/test_v01_export_is_independent1/repo/pilot/baseline/README.md')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return self._accessor.open(self, mode, buffering, encoding, errors,
+                                   newline)
+E       FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pytest-of-audrey/pytest-59/test_v01_export_is_independent1/repo/pilot/baseline/README.md'
+
+../../../../miniconda3/envs/palqo/lib/python3.10/pathlib.py:1119: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_pilot_v01.py::test_v01_regeneration_is_byte_identical - Ass...
+FAILED tests/test_pilot_v01.py::test_v01_export_is_independent_of_project_readme[True]
+FAILED tests/test_pilot_v01.py::test_v01_export_is_independent_of_project_readme[False]
+3 failed, 2 deselected in 0.28s

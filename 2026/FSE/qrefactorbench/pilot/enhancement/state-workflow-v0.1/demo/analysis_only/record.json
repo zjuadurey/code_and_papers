@@ -1,0 +1,33 @@
+{
+  "arm": "analysis_only",
+  "initial_origin": "historical_response_replay",
+  "initial_sha256": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+  "prompt_sha256": "b8dad458cea2e3490e9b16d5b61c97226baf385f9e0e2a058e18ae40c2ebdf8b",
+  "observation_kinds": [
+    "lexical_dependency_inventory"
+  ],
+  "prompt_bytes": 51769,
+  "revision_call_limit": 1,
+  "model_calls_executed": 0,
+  "state": "awaiting_model_not_run",
+  "task_pass": null,
+  "repair_success": null,
+  "events": [
+    {
+      "event": "historical_draft_loaded"
+    },
+    {
+      "event": "observations_selected",
+      "kinds": [
+        "lexical_dependency_inventory"
+      ]
+    },
+    {
+      "event": "revision_prompt_prepared"
+    },
+    {
+      "event": "stopped",
+      "reason": "offline_demo_no_model_transport"
+    }
+  ]
+}

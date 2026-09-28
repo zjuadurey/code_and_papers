@@ -1,0 +1,36 @@
+FF.                                                                      [100%]
+=================================== FAILURES ===================================
+_______________ test_delta_overflow_rejected_by_api_and_cli[-1] ________________
+
+sign = -1
+
+    @pytest.mark.parametrize('sign', [-1, 1])
+    def test_delta_overflow_rejected_by_api_and_cli(sign):
+        import subprocess
+        import sys
+        request = {'variables': ['x'], 'matrix': [[1e-308]], 'rhs': [float(sign)],
+                   'current': [-sign * 1e308], 'mode': 'solve', 'residual_limit': 1.0}
+        before = deepcopy(request)
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+pilot/reference_completion/v0.1.1/cases/lit-009/test_program.py:18: Failed
+________________ test_delta_overflow_rejected_by_api_and_cli[1] ________________
+
+sign = 1
+
+    @pytest.mark.parametrize('sign', [-1, 1])
+    def test_delta_overflow_rejected_by_api_and_cli(sign):
+        import subprocess
+        import sys
+        request = {'variables': ['x'], 'matrix': [[1e-308]], 'rhs': [float(sign)],
+                   'current': [-sign * 1e308], 'mode': 'solve', 'residual_limit': 1.0}
+        before = deepcopy(request)
+>       with pytest.raises(ValueError):
+E       Failed: DID NOT RAISE ValueError
+
+pilot/reference_completion/v0.1.1/cases/lit-009/test_program.py:18: Failed
+=========================== short test summary info ============================
+FAILED pilot/reference_completion/v0.1.1/cases/lit-009/test_program.py::test_delta_overflow_rejected_by_api_and_cli[-1]
+FAILED pilot/reference_completion/v0.1.1/cases/lit-009/test_program.py::test_delta_overflow_rejected_by_api_and_cli[1]
+2 failed, 1 passed, 8 deselected in 0.03s

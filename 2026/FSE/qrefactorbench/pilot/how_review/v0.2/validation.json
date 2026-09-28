@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "coverage": {
+    "requests": 40,
+    "reviewed_answers": 39,
+    "claims": 156,
+    "completion_records": 200,
+    "exact_source_fields": 267,
+    "inherited_answers": 19
+  },
+  "reviewer_packet": {
+    "payload_files": 13,
+    "human_reviews_filled": 0,
+    "replay_equal": true,
+    "scope": "Allowlist excludes model outputs/private labels/coordinator verdicts; checklist remains AI authored."
+  },
+  "protected_files_unchanged": 1605,
+  "existing_local_links": 185,
+  "review_and_new_math_replay_equal": true,
+  "new_model_calls": 0,
+  "quantum_runs": 0,
+  "known_initial_check_failure": "Wrong lit-001 source path caused FileNotFoundError; corrected before successful math checks.",
+  "limit": "Integrity and bounded arithmetic evidence, not independent human adjudication or complete migration proof.",
+  "focused_regression_tests": {
+    "command": "/home/audrey/miniconda3/envs/palqo/bin/python -B -m pytest -q -p no:cacheprovider pilot/how_review/v0.2/test_review.py",
+    "passed": 4,
+    "observed_elapsed_seconds": 0.05,
+    "scope": "reject dropped failure, invented failed-answer claim, altered quotation, and correctness/completion conflation"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/rationale", "/contract_applicability/0/rationale"],
+  "rationale": "The whole solve function is nominated for focused analysis, but plan and migration family remain null. No replacement pivot selector is supplied. A whole-function nomination is not an implemented candidate discovery result or a concrete local mapping, and the structural-negative conclusion is not adjudicated here.",
+  "interpretations": []
+}

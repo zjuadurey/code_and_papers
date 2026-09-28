@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/contract_applicability/0/rationale"],
+  "rationale": "The one-hot QUBO remains an obligation-level proposal without explicit objective/coefficient construction or sufficient penalty bounds. Its exact all-state encoding is unresolved, and the secondary Grover discussion supplies no concrete selector either. The frozen predicate/scan checker cannot validate an unconstructed QUBO; do not reject the allowed alternative family or invent a predicate/finite guard. The response correctly notes the scope notice has no check outcomes.",
+  "interpretations": []
+}

@@ -1,0 +1,7 @@
+{
+  "satisfiable": "PASS · hybrid=true / classical=true",
+  "unsatisfiable": "PASS · hybrid=false / classical=false",
+  "retained": "PASS · 3 次回调及最终 digest 验证",
+  "invalidInput": "文字必须是非零整数，绝对值不超过 n",
+  "passed": true
+}

@@ -1,0 +1,35 @@
+{
+  "case_ids": [
+    "pilot-001",
+    "pilot-002",
+    "pilot-003",
+    "pilot-004",
+    "pilot-005",
+    "pilot-006",
+    "pilot-007",
+    "pilot-008",
+    "pilot-009",
+    "pilot-010"
+  ],
+  "checks": {
+    "blinding_limit": "Public prose can cue intent/localization; schemas/menu contain generic field definitions, not per-case answers. Human review required.",
+    "case_specific_reference_fields": "PASS: absent from prompts; A/B forms blank; no private case artifacts",
+    "collect_schema_evaluate_cli": "PASS: ten IDs and both decisions, no value repairs, default DRAFT exclusion, explicit demo gate",
+    "comparison_cli": "PASS mechanically; empty blank-form diff is NOT annotator agreement",
+    "expressivity_limits": [
+      "No third UNCERTAIN decision; labels may still be null when abstaining.",
+      "Prediction candidate_regions cannot be null; unknown localization needs narrative, unlike blank human forms."
+    ],
+    "fresh_packet_export": "PASS: byte-identical to existing packets; existing material untouched",
+    "malformed_response": "PASS: rejected without repair or output artifact",
+    "packet_manifests_and_ids": "PASS: all four roles; exact file inventory and hashes",
+    "proposals_not_revised_using_audit": "PASS: all ten pre-audit proposal hashes unchanged",
+    "yes_no_uncertain_labels": "PASS: JSON true/false/null, not literal YES/NO/UNCERTAIN strings"
+  },
+  "date": "2026-09-20",
+  "dummy_responses_retained": false,
+  "model_calls": 0,
+  "packets": "pilot/packets-v0.1",
+  "scope": "MECHANICAL AUDIT ONLY; no baseline",
+  "scores_reported": false
+}

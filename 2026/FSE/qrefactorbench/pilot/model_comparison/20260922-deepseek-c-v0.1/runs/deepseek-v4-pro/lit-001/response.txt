@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "context-001",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "maintenance.py",
+      "function": "maxcut_bruteforce",
+      "start_line": 74,
+      "end_line": 89
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact-maxcut-min-conflict-over-16-items",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Minimize conflict_weight = sum_{u<v} w_{uv} [x_u == x_v], where binary x_i=0 for window 0 and x_i=1 for window 1. Equivalent QUBO: min sum_{u<v} w_{uv} (1 - x_u - x_v + 2 x_u x_v); this is equivalent to maximizing separated_weight = total_weight - conflict_weight, the weighted max-cut objective. Ising mapping uses x_i=(1-Z_i)/2. Tie rule: among globally optimal assignments, choose the smallest sum of 2**i over equipment input positions i assigned to window 0, matching the ascending-mask first-max behavior of maxcut_bruteforce.",
+    "input_encoding": "One binary variable/qubit per equipment input position, with n<=16. The adjacency matrix is constructed classically by prepare_request from requirement records, including repeated and reversed weight aggregation.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure candidate bitstrings and map bit 0 to window 0 and bit 1 to window 1. Classically recompute conflict_weight and separated_weight from the original adjacency matrix, reject non-optimum candidates, and enforce the deterministic smallest-window0-mask tie rule. Exact deterministic semantics must not be weakened to probable or approximate output.",
+    "assumptions": [
+      "No coherent data-access assumption is supplied; input parsing and report generation remain classical.",
+      "The exact global optimum and deterministic tie behavior remain mandatory.",
+      "Adjacency coefficients are arbitrary-precision nonnegative Python ints after prepare_request; quantum hardware coefficient precision is unresolved.",
+      "The 16-item cap remains a local enumeration limit."
+    ],
+    "risks": [
+      "QAOA is heuristic and does not guarantee the global optimum required by the contract.",
+      "Probabilistic or approximate decoding would violate exactness and the deterministic tie rule.",
+      "Classical verification or exhaustive postprocessing can erase any quantum advantage.",
+      "For n<=16, brute force examines at most 65536 masks and is already cheap and deterministic.",
+      "No practical depth, shot budget, parameter optimization scheme, backend, or latency target is specified."
+    ],
+    "expected_resource_characteristics": {
+      "num_qubits_estimation": "n data qubits plus QAOA ancillas/depth overheads for the cost Hamiltonian; n<=16",
+      "classical_preprocessing": "O(n^2) weight aggregation into the matrix",
+      "classical_postprocessing": "O(n^2) objective recomputation and tie verification per candidate",
+      "exactness_note": "QAOA does not provide exactness; exact ground-state preparation or exhaustive classical verification is unresolved"
+    },
+    "rationale": "Conditional planning only; the kernel is structurally a weighted max-cut QUBO, but practical adoption is not supported because exact deterministic semantics and tiny n favor the existing classical brute force."
+  },
+  "rationale": "Candidate maxcut_bruteforce (maintenance.py lines 74-89) is the only exponentially enumerating kernel. It is called by review_schedule after prepare_request validates the request and builds the nonnegative adjacency matrix and after evaluate_windows computes the current report. It returns a partition [first, second] used to build proposed and changes. Its strict val>best update over mask range 0..2**n-1 gives the deterministic tie rule: the first maximal cut with the smallest window0 mask. Surrounding validation, exception behavior, output ordering, and reporting must remain intact. The problem is canonical weighted max-cut/min-conflict and qualifies structurally for combinatorial_optimization, but practical quantumization is unsuitable because the contract requires an exact global optimum and deterministic tie choice, n is capped at 16, and the classical enumeration cost is at most 65536 masks.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": true,
+  "computational_intent": "Exact weighted max-cut/min-conflict partition over at most 16 equipment items with deterministic smallest-window0-mask tie selection.",
+  "assumptions": [
+    "The original exact selection and tie behavior are retained; no approximate score, arbitrary tie choice, input mutation, or omitted reporting is permitted.",
+    "Data arrive classically; no coherent data-access or quantum input model is supplied.",
+    "No workload frequency, hardware backend, resource budget, latency target, or deployment cost evidence is supplied."
+  ],
+  "risks": [
+    "Quantum approximation may fail to return the global optimum required by the contract.",
+    "The deterministic tie rule may be lost unless explicitly enforced by classical recomputation.",
+    "Small n makes classical exhaustive search simple and fast, leaving no clear advantage.",
+    "QUBO coefficient precision and QAOA parameter/depth budgets are unresolved."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The kernel is a weighted max-cut/min-conflict problem with nonnegative integer edge weights and at most 16 binary decision variables, so it maps directly to QUBO/Ising. Exactness and tie rule remain constraints on any proposal."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The kernel is a global optimum objective rather than a pure Boolean marked-state predicate. A Grover-style maximum-finding predicate and no-solution/exactness policy are unresolved and less direct than the QUBO/Ising formulation."
+    }
+  ]
+}

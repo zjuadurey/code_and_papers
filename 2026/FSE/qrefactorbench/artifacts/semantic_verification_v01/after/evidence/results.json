@@ -1,0 +1,2731 @@
+{
+  "created_utc": "2026-09-22T14:58:32.373616+00:00",
+  "python": "3.10.21",
+  "purpose": "Evaluator regression, not model ranking or end-to-end migration",
+  "population": {
+    "mother_cases": 10,
+    "input_conditions": 30,
+    "contract_sidecars": 10,
+    "cases_with_scoped_oracle": 4,
+    "cases_actually_checked": 4,
+    "cases_controls_verified": 4,
+    "cases_without_new_scoped_oracle": 6,
+    "test_inputs": 23,
+    "synthetic_controls": 18,
+    "correct_controls_passed": 8,
+    "wrong_controls_rejected": 10,
+    "model_calls": 0,
+    "whole_task_passed": null
+  },
+  "source_sha256": {
+    "pilot/semantic_verification/v0.1/build_contracts.py": "6e4fb2ee53b03194288623050c9a3b88612646694c05873e95c2d5541d20ff9d",
+    "pilot/semantic_verification/v0.1/controls.py": "b510dd7157e631fb33035560cec81d846b4f1ecd02c8e2901b06c3aa370c94a1",
+    "pilot/semantic_verification/v0.1/validate.py": "13efb6b8447bef78bd77abfa33c984ea895e25981375f6374f04e69e1ee685a8",
+    "pilot/semantic_verification/v0.1/oracles.py": "f539cba1257e34b80149097f0183d70066f4e375aa2bbc34916e8987a194faf2",
+    "pilot/semantic_verification/v0.1/run_controls.py": "717e8c491b5c5b6e2e97ac384a61cd1fd24775060a5ed59be842555ab21ee081",
+    "pilot/semantic_verification/v0.1/evaluate.py": "979ca7150c6f2b1af7c601bff89c8751d77e52549d89e54c46a7065c3a5b7c02",
+    "pilot/semantic_verification/v0.1/contracts.json": "6adeca48a010b5149d061c757e5853e66e9256a251276e74572aff7d5dcf447f",
+    "tests/test_semantic_verification.py": "628cd0d5ab21d98bbddef6e1e0a9267d292a0371f98ce427223bc7466abd348e"
+  },
+  "controls": [
+    {
+      "case_id": "lit-002",
+      "control": "correct",
+      "expected_status": "passed",
+      "matched_expected": true,
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "no_edges",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "single_edge",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "tuple_not_mask",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "triangle",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "star",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 6,
+        "executed": 6,
+        "passed": 6
+      }
+    },
+    {
+      "case_id": "lit-002",
+      "control": "equivalent",
+      "expected_status": "passed",
+      "matched_expected": true,
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "no_edges",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "single_edge",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "tuple_not_mask",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "triangle",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "star",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 6,
+        "executed": 6,
+        "passed": 6
+      }
+    },
+    {
+      "case_id": "lit-002",
+      "control": "numeric_mask",
+      "expected_status": "candidate_error",
+      "matched_expected": true,
+      "status": "candidate_error",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": false,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "no_edges",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "single_edge",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "tuple_not_mask",
+          "failures": [
+            {
+              "obligation": "canonical_selection",
+              "expected": [
+                0,
+                3
+              ],
+              "actual": [
+                1,
+                2
+              ],
+              "encoded_bits": [
+                0,
+                1,
+                1,
+                0
+              ],
+              "optimal_energy": "38"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "triangle",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "star",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 6,
+        "executed": 6,
+        "passed": 5,
+        "candidate_error": 1
+      }
+    },
+    {
+      "case_id": "lit-002",
+      "control": "positive_superincreasing",
+      "expected_status": "candidate_error",
+      "matched_expected": true,
+      "status": "candidate_error",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": false,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "no_edges",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "single_edge",
+          "failures": [
+            {
+              "obligation": "canonical_selection",
+              "expected": [
+                0
+              ],
+              "actual": [
+                1
+              ],
+              "encoded_bits": [
+                0,
+                1
+              ],
+              "optimal_energy": "5"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "tuple_not_mask",
+          "failures": [
+            {
+              "obligation": "canonical_selection",
+              "expected": [
+                0,
+                3
+              ],
+              "actual": [
+                1,
+                2
+              ],
+              "encoded_bits": [
+                0,
+                1,
+                1,
+                0
+              ],
+              "optimal_energy": "38"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "triangle",
+          "failures": [
+            {
+              "obligation": "canonical_selection",
+              "expected": [
+                0,
+                1
+              ],
+              "actual": [
+                1,
+                2
+              ],
+              "encoded_bits": [
+                0,
+                1,
+                1
+              ],
+              "optimal_energy": "19"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "star",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 6,
+        "executed": 6,
+        "passed": 3,
+        "candidate_error": 3
+      }
+    },
+    {
+      "case_id": "lit-002",
+      "control": "omit_constraints",
+      "expected_status": "candidate_error",
+      "matched_expected": true,
+      "status": "candidate_error",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": false,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "no_edges",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "single_edge",
+          "failures": [
+            {
+              "obligation": "feasibility",
+              "expected": [
+                0
+              ],
+              "actual": [],
+              "encoded_bits": [
+                0,
+                0
+              ],
+              "optimal_energy": "0"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "tuple_not_mask",
+          "failures": [
+            {
+              "obligation": "feasibility",
+              "expected": [
+                0,
+                3
+              ],
+              "actual": [],
+              "encoded_bits": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "optimal_energy": "0"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "triangle",
+          "failures": [
+            {
+              "obligation": "feasibility",
+              "expected": [
+                0,
+                1
+              ],
+              "actual": [],
+              "encoded_bits": [
+                0,
+                0,
+                0
+              ],
+              "optimal_energy": "0"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "star",
+          "failures": [
+            {
+              "obligation": "feasibility",
+              "expected": [
+                0
+              ],
+              "actual": [],
+              "encoded_bits": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "optimal_energy": "0"
+            }
+          ],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 6,
+        "executed": 6,
+        "passed": 2,
+        "candidate_error": 4
+      }
+    },
+    {
+      "case_id": "lit-004",
+      "control": "correct",
+      "expected_status": "passed",
+      "matched_expected": true,
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "no_edges",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "complete",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "path",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "isolated",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 5,
+        "executed": 5,
+        "passed": 5
+      }
+    },
+    {
+      "case_id": "lit-004",
+      "control": "equivalent",
+      "expected_status": "passed",
+      "matched_expected": true,
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "no_edges",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "complete",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "path",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "isolated",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 5,
+        "executed": 5,
+        "passed": 5
+      }
+    },
+    {
+      "case_id": "lit-004",
+      "control": "omit_constraints",
+      "expected_status": "candidate_error",
+      "matched_expected": true,
+      "status": "candidate_error",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": false,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "no_edges",
+          "failures": [
+            {
+              "obligation": "feasibility",
+              "expected": [
+                0
+              ],
+              "actual": [
+                0,
+                1,
+                2
+              ],
+              "encoded_bits": [
+                1,
+                1,
+                1
+              ],
+              "optimal_energy": "-17"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "complete",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "path",
+          "failures": [
+            {
+              "obligation": "feasibility",
+              "expected": [
+                0,
+                1
+              ],
+              "actual": [
+                0,
+                1,
+                2
+              ],
+              "encoded_bits": [
+                1,
+                1,
+                1
+              ],
+              "optimal_energy": "-17"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "isolated",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 5,
+        "executed": 5,
+        "passed": 3,
+        "candidate_error": 2
+      }
+    },
+    {
+      "case_id": "lit-004",
+      "control": "wrong_direction",
+      "expected_status": "candidate_error",
+      "matched_expected": true,
+      "status": "candidate_error",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": false,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "no_edges",
+          "failures": [
+            {
+              "obligation": "feasibility",
+              "expected": [
+                0
+              ],
+              "actual": [
+                0,
+                1,
+                2
+              ],
+              "encoded_bits": [
+                1,
+                1,
+                1
+              ],
+              "optimal_energy": "58"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "complete",
+          "failures": [
+            {
+              "obligation": "optimal_cardinality",
+              "expected": [
+                0,
+                1,
+                2
+              ],
+              "actual": [],
+              "encoded_bits": [
+                0,
+                0,
+                0
+              ],
+              "optimal_energy": "0"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "path",
+          "failures": [
+            {
+              "obligation": "feasibility",
+              "expected": [
+                0,
+                1
+              ],
+              "actual": [
+                0,
+                2
+              ],
+              "encoded_bits": [
+                1,
+                0,
+                1
+              ],
+              "optimal_energy": "14"
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "isolated",
+          "failures": [
+            {
+              "obligation": "optimal_cardinality",
+              "expected": [
+                0
+              ],
+              "actual": [],
+              "encoded_bits": [
+                0
+              ],
+              "optimal_energy": "0"
+            }
+          ],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 5,
+        "executed": 5,
+        "passed": 1,
+        "candidate_error": 4
+      }
+    },
+    {
+      "case_id": "lit-005",
+      "control": "correct",
+      "expected_status": "passed",
+      "matched_expected": true,
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "force_true",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "force_false",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "locked",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "unsatisfiable",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "lex",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "tautology",
+          "failures": [],
+          "predicate_pass": true
+        }
+      ],
+      "test_counts": {
+        "total": 7,
+        "executed": 7,
+        "passed": 7
+      }
+    },
+    {
+      "case_id": "lit-005",
+      "control": "equivalent",
+      "expected_status": "passed",
+      "matched_expected": true,
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "force_true",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "force_false",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "locked",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "unsatisfiable",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "lex",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "tautology",
+          "failures": [],
+          "predicate_pass": true
+        }
+      ],
+      "test_counts": {
+        "total": 7,
+        "executed": 7,
+        "passed": 7
+      }
+    },
+    {
+      "case_id": "lit-005",
+      "control": "ignore_locks",
+      "expected_status": "candidate_error",
+      "matched_expected": true,
+      "status": "candidate_error",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": false,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "force_true",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "force_false",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "locked",
+          "failures": [
+            {
+              "obligation": "predicate_equivalence",
+              "encoded_bits": [
+                0,
+                0
+              ],
+              "decoded_bits": [
+                0,
+                0
+              ],
+              "expected": false,
+              "actual": true
+            },
+            {
+              "obligation": "predicate_equivalence",
+              "encoded_bits": [
+                0,
+                1
+              ],
+              "decoded_bits": [
+                0,
+                1
+              ],
+              "expected": false,
+              "actual": true
+            },
+            {
+              "obligation": "canonical_selection_or_absence",
+              "expected": [
+                1,
+                0
+              ],
+              "actual": [
+                0,
+                0
+              ]
+            }
+          ],
+          "predicate_pass": false
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "unsatisfiable",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "lex",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "tautology",
+          "failures": [],
+          "predicate_pass": true
+        }
+      ],
+      "test_counts": {
+        "total": 7,
+        "executed": 7,
+        "passed": 6,
+        "candidate_error": 1
+      }
+    },
+    {
+      "case_id": "lit-005",
+      "control": "wrong_polarity",
+      "expected_status": "candidate_error",
+      "matched_expected": true,
+      "status": "candidate_error",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": false,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "force_true",
+          "failures": [
+            {
+              "obligation": "predicate_equivalence",
+              "encoded_bits": [
+                0
+              ],
+              "decoded_bits": [
+                0
+              ],
+              "expected": false,
+              "actual": true
+            },
+            {
+              "obligation": "predicate_equivalence",
+              "encoded_bits": [
+                1
+              ],
+              "decoded_bits": [
+                1
+              ],
+              "expected": true,
+              "actual": false
+            },
+            {
+              "obligation": "canonical_selection_or_absence",
+              "expected": [
+                1
+              ],
+              "actual": [
+                0
+              ]
+            }
+          ],
+          "predicate_pass": false
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "force_false",
+          "failures": [
+            {
+              "obligation": "predicate_equivalence",
+              "encoded_bits": [
+                0
+              ],
+              "decoded_bits": [
+                0
+              ],
+              "expected": true,
+              "actual": false
+            },
+            {
+              "obligation": "predicate_equivalence",
+              "encoded_bits": [
+                1
+              ],
+              "decoded_bits": [
+                1
+              ],
+              "expected": false,
+              "actual": true
+            },
+            {
+              "obligation": "canonical_selection_or_absence",
+              "expected": [
+                0
+              ],
+              "actual": [
+                1
+              ]
+            }
+          ],
+          "predicate_pass": false
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "locked",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "unsatisfiable",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "lex",
+          "failures": [
+            {
+              "obligation": "predicate_equivalence",
+              "encoded_bits": [
+                0,
+                0
+              ],
+              "decoded_bits": [
+                0,
+                0
+              ],
+              "expected": false,
+              "actual": true
+            },
+            {
+              "obligation": "predicate_equivalence",
+              "encoded_bits": [
+                1,
+                1
+              ],
+              "decoded_bits": [
+                1,
+                1
+              ],
+              "expected": true,
+              "actual": false
+            },
+            {
+              "obligation": "canonical_selection_or_absence",
+              "expected": [
+                0,
+                1
+              ],
+              "actual": [
+                0,
+                0
+              ]
+            }
+          ],
+          "predicate_pass": false
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "tautology",
+          "failures": [],
+          "predicate_pass": true
+        }
+      ],
+      "test_counts": {
+        "total": 7,
+        "executed": 7,
+        "passed": 4,
+        "candidate_error": 3
+      }
+    },
+    {
+      "case_id": "lit-005",
+      "control": "arbitrary_solution",
+      "expected_status": "candidate_error",
+      "matched_expected": true,
+      "status": "candidate_error",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": false,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "force_true",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "force_false",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "locked",
+          "failures": [
+            {
+              "obligation": "canonical_selection_or_absence",
+              "expected": [
+                1,
+                0
+              ],
+              "actual": [
+                1,
+                1
+              ]
+            }
+          ],
+          "predicate_pass": true
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "unsatisfiable",
+          "failures": [],
+          "predicate_pass": true
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "lex",
+          "failures": [
+            {
+              "obligation": "canonical_selection_or_absence",
+              "expected": [
+                0,
+                1
+              ],
+              "actual": [
+                1,
+                1
+              ]
+            }
+          ],
+          "predicate_pass": true
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "tautology",
+          "failures": [
+            {
+              "obligation": "canonical_selection_or_absence",
+              "expected": [
+                0
+              ],
+              "actual": [
+                1
+              ]
+            }
+          ],
+          "predicate_pass": true
+        }
+      ],
+      "test_counts": {
+        "total": 7,
+        "executed": 7,
+        "passed": 4,
+        "candidate_error": 3
+      }
+    },
+    {
+      "case_id": "lit-008",
+      "control": "correct",
+      "expected_status": "passed",
+      "matched_expected": true,
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "normal",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "endian",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "overflow",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "inspect",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 5,
+        "executed": 5,
+        "passed": 5
+      }
+    },
+    {
+      "case_id": "lit-008",
+      "control": "equivalent",
+      "expected_status": "passed",
+      "matched_expected": true,
+      "status": "passed",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": true,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "normal",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "endian",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "overflow",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "inspect",
+          "failures": [],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 5,
+        "executed": 5,
+        "passed": 5
+      }
+    },
+    {
+      "case_id": "lit-008",
+      "control": "wrong_endian",
+      "expected_status": "candidate_error",
+      "matched_expected": true,
+      "status": "candidate_error",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": false,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "normal",
+          "failures": [
+            {
+              "obligation": "full_ordered_report",
+              "expected": {
+                "record_count": 3,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "00011110",
+                    "set_bits": 4,
+                    "counts": {
+                      "00011110": 9
+                    },
+                    "prefix_checksum": 30
+                  },
+                  {
+                    "id": "r1",
+                    "bits": "00110100",
+                    "set_bits": 3,
+                    "counts": {
+                      "00110100": 9
+                    },
+                    "prefix_checksum": 82
+                  },
+                  {
+                    "id": "r2",
+                    "bits": "00100111",
+                    "set_bits": 4,
+                    "counts": {
+                      "00100111": 9
+                    },
+                    "prefix_checksum": 121
+                  }
+                ],
+                "checksum": 121
+              },
+              "actual": {
+                "record_count": 3,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "01111000",
+                    "set_bits": 4,
+                    "counts": {
+                      "01111000": 9
+                    },
+                    "prefix_checksum": 30
+                  },
+                  {
+                    "id": "r1",
+                    "bits": "00101100",
+                    "set_bits": 3,
+                    "counts": {
+                      "00101100": 9
+                    },
+                    "prefix_checksum": 82
+                  },
+                  {
+                    "id": "r2",
+                    "bits": "11100100",
+                    "set_bits": 4,
+                    "counts": {
+                      "11100100": 9
+                    },
+                    "prefix_checksum": 121
+                  }
+                ],
+                "checksum": 121
+              }
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "endian",
+          "failures": [
+            {
+              "obligation": "full_ordered_report",
+              "expected": {
+                "record_count": 1,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "00000001",
+                    "set_bits": 1,
+                    "counts": {
+                      "00000001": 9
+                    },
+                    "prefix_checksum": 1
+                  }
+                ],
+                "checksum": 1
+              },
+              "actual": {
+                "record_count": 1,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "10000000",
+                    "set_bits": 1,
+                    "counts": {
+                      "10000000": 9
+                    },
+                    "prefix_checksum": 1
+                  }
+                ],
+                "checksum": 1
+              }
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "overflow",
+          "failures": [
+            {
+              "obligation": "full_ordered_report",
+              "expected": {
+                "record_count": 2,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "11111111",
+                    "set_bits": 8,
+                    "counts": {
+                      "11111111": 9
+                    },
+                    "prefix_checksum": 255
+                  },
+                  {
+                    "id": "r1",
+                    "bits": "00000010",
+                    "set_bits": 1,
+                    "counts": {
+                      "00000010": 9
+                    },
+                    "prefix_checksum": 1
+                  }
+                ],
+                "checksum": 1
+              },
+              "actual": {
+                "record_count": 2,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "11111111",
+                    "set_bits": 8,
+                    "counts": {
+                      "11111111": 9
+                    },
+                    "prefix_checksum": 255
+                  },
+                  {
+                    "id": "r1",
+                    "bits": "01000000",
+                    "set_bits": 1,
+                    "counts": {
+                      "01000000": 9
+                    },
+                    "prefix_checksum": 1
+                  }
+                ],
+                "checksum": 1
+              }
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "inspect",
+          "failures": [
+            {
+              "obligation": "full_ordered_report",
+              "expected": {
+                "record_count": 2,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "00000010",
+                    "set_bits": 1,
+                    "counts": null,
+                    "prefix_checksum": 2
+                  },
+                  {
+                    "id": "r1",
+                    "bits": "00000001",
+                    "set_bits": 1,
+                    "counts": null,
+                    "prefix_checksum": 3
+                  }
+                ],
+                "checksum": 3
+              },
+              "actual": {
+                "record_count": 2,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "01000000",
+                    "set_bits": 1,
+                    "counts": null,
+                    "prefix_checksum": 2
+                  },
+                  {
+                    "id": "r1",
+                    "bits": "10000000",
+                    "set_bits": 1,
+                    "counts": null,
+                    "prefix_checksum": 3
+                  }
+                ],
+                "checksum": 3
+              }
+            }
+          ],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 5,
+        "executed": 5,
+        "passed": 1,
+        "candidate_error": 4
+      }
+    },
+    {
+      "case_id": "lit-008",
+      "control": "sample_only",
+      "expected_status": "candidate_error",
+      "matched_expected": true,
+      "status": "candidate_error",
+      "reason": "Only the declared finite claim scope; no whole-plan verdict",
+      "scoped_semantic_pass": false,
+      "task_pass": null,
+      "migration_execution_success": null,
+      "practical_advantage": null,
+      "format_valid": true,
+      "tests": [
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "empty",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "normal",
+          "failures": [
+            {
+              "obligation": "full_ordered_report",
+              "expected": {
+                "record_count": 3,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "00011110",
+                    "set_bits": 4,
+                    "counts": {
+                      "00011110": 9
+                    },
+                    "prefix_checksum": 30
+                  },
+                  {
+                    "id": "r1",
+                    "bits": "00110100",
+                    "set_bits": 3,
+                    "counts": {
+                      "00110100": 9
+                    },
+                    "prefix_checksum": 82
+                  },
+                  {
+                    "id": "r2",
+                    "bits": "00100111",
+                    "set_bits": 4,
+                    "counts": {
+                      "00100111": 9
+                    },
+                    "prefix_checksum": 121
+                  }
+                ],
+                "checksum": 121
+              },
+              "actual": {
+                "record_count": 1,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "00011110",
+                    "set_bits": 4,
+                    "counts": {
+                      "00011110": 9
+                    },
+                    "prefix_checksum": 30
+                  }
+                ],
+                "checksum": 121
+              }
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "passed",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": true,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "endian",
+          "failures": [],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "overflow",
+          "failures": [
+            {
+              "obligation": "full_ordered_report",
+              "expected": {
+                "record_count": 2,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "11111111",
+                    "set_bits": 8,
+                    "counts": {
+                      "11111111": 9
+                    },
+                    "prefix_checksum": 255
+                  },
+                  {
+                    "id": "r1",
+                    "bits": "00000010",
+                    "set_bits": 1,
+                    "counts": {
+                      "00000010": 9
+                    },
+                    "prefix_checksum": 1
+                  }
+                ],
+                "checksum": 1
+              },
+              "actual": {
+                "record_count": 1,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "11111111",
+                    "set_bits": 8,
+                    "counts": {
+                      "11111111": 9
+                    },
+                    "prefix_checksum": 255
+                  }
+                ],
+                "checksum": 1
+              }
+            }
+          ],
+          "predicate_pass": null
+        },
+        {
+          "status": "candidate_error",
+          "reason": "Finite definition comparison",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "test_id": "inspect",
+          "failures": [
+            {
+              "obligation": "full_ordered_report",
+              "expected": {
+                "record_count": 2,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "00000010",
+                    "set_bits": 1,
+                    "counts": null,
+                    "prefix_checksum": 2
+                  },
+                  {
+                    "id": "r1",
+                    "bits": "00000001",
+                    "set_bits": 1,
+                    "counts": null,
+                    "prefix_checksum": 3
+                  }
+                ],
+                "checksum": 3
+              },
+              "actual": {
+                "record_count": 1,
+                "receipts": [
+                  {
+                    "id": "r0",
+                    "bits": "00000010",
+                    "set_bits": 1,
+                    "counts": null,
+                    "prefix_checksum": 2
+                  }
+                ],
+                "checksum": 3
+              }
+            }
+          ],
+          "predicate_pass": null
+        }
+      ],
+      "test_counts": {
+        "total": 5,
+        "executed": 5,
+        "passed": 2,
+        "candidate_error": 3
+      }
+    }
+  ],
+  "reviewed_counterexamples": [
+    {
+      "model": "deepseek-flash",
+      "provenance": {
+        "kind": "reviewer_transcription",
+        "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-002/response.txt",
+        "response_sha256": "a31f772e4d734776c0609c27fab0726e74c99d39a417997c1d86f01ec94ebd18",
+        "pointer": "/plan/formulation",
+        "quote": "Binary x_i=1 when station i is selected. Primary objective: minimize sum_i x_i subject to x_u + x_v >= 1 for every normalized edge (u,v). QUBO form: minimize A * sum_i x_i + B * sum_{(u,v)} (1 - x_u)(1 - x_v), with B chosen strictly larger than the maximum possible cardinality difference so infeasible selections cannot beat feasible ones. The lexicographic tie-break among minimum-cardinality covers requires either superincreasing secondary weights w_i (w_i > sum_{j>i} w_j) added to x_i, or a hierarchical two-stage solve: first fix the minimum cardinality, then minimize the lexicographic rank. The exact penalty dominance, weight scaling and tie-break encoding must be validated.",
+        "interpretation": "Positive superincreasing selected-bit weights added to a minimization objective; reviewer formalization of one textual branch.",
+        "parameters_source": "Reviewer-instantiated prior witness: A=3 B=10 w=(2,1)",
+        "review_source": "pilot/how_review/adjudications/20260922-lit002/review.json",
+        "review_sha256": "d12953e0ab72e52156d8b482d2f26c6922a31d85c38d65206deb4962ef4acded",
+        "transcription_author": "Codex; exact-quote binding is not independent expert validation",
+        "whole_plan_verified": false
+      },
+      "protocol": "scoped-semantic-verification-v0.1",
+      "task_pass": null,
+      "population": {
+        "mother_cases": 10,
+        "input_conditions": 30,
+        "cases_with_scoped_oracle": 4,
+        "submitted_cases": 1,
+        "cases_with_executed_checks": 1,
+        "fully_executed_cases": 0,
+        "scoped_passed_cases": 0
+      },
+      "status_counts": {
+        "not_run": 9,
+        "candidate_error": 1
+      },
+      "results": [
+        {
+          "case_id": "lit-001",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-002",
+          "status": "candidate_error",
+          "reason": "Only the declared finite claim scope; no whole-plan verdict",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "format_valid": null,
+          "tests": [
+            {
+              "status": "insufficient_evidence",
+              "reason": "Claim not transcribed for this input",
+              "scoped_semantic_pass": null,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "empty"
+            },
+            {
+              "status": "insufficient_evidence",
+              "reason": "Claim not transcribed for this input",
+              "scoped_semantic_pass": null,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "no_edges"
+            },
+            {
+              "status": "candidate_error",
+              "reason": "Finite definition comparison",
+              "scoped_semantic_pass": false,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "single_edge",
+              "failures": [
+                {
+                  "obligation": "canonical_selection",
+                  "expected": [
+                    0
+                  ],
+                  "actual": [
+                    1
+                  ],
+                  "encoded_bits": [
+                    0,
+                    1
+                  ],
+                  "optimal_energy": "4"
+                }
+              ],
+              "predicate_pass": null
+            },
+            {
+              "status": "insufficient_evidence",
+              "reason": "Claim not transcribed for this input",
+              "scoped_semantic_pass": null,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "tuple_not_mask"
+            },
+            {
+              "status": "insufficient_evidence",
+              "reason": "Claim not transcribed for this input",
+              "scoped_semantic_pass": null,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "triangle"
+            },
+            {
+              "status": "insufficient_evidence",
+              "reason": "Claim not transcribed for this input",
+              "scoped_semantic_pass": null,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "star"
+            }
+          ],
+          "test_counts": {
+            "total": 6,
+            "executed": 1,
+            "insufficient_evidence": 5,
+            "candidate_error": 1
+          }
+        },
+        {
+          "case_id": "lit-003",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-004",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-005",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-006",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-007",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-008",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-009",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-010",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        }
+      ]
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "provenance": {
+        "kind": "reviewer_transcription",
+        "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-002/response.txt",
+        "response_sha256": "23ffd9fe67472287f38fa501285d9f78a190180c3d56821cf64203dda4e617bb",
+        "pointer": "/plan/formulation",
+        "quote": "Conditional QUBO/Ising formulation for minimum vertex cover. For each station index i = 0..n-1, binary variable x_i = 1 if selected and 0 otherwise. Objective: minimize A * sum_i x_i + P * sum_{(u,v) in edges} (1 - x_u)(1 - x_v) + C * sum_i 2^i x_i. The second term penalizes uncovered edges and must dominate cost so feasible covers are preferred; the third term is a small lexicographic tie-break term such that 0 < C < A/(2^n), so cardinality remains primary and among equal-cardinality covers the lexicographically smallest selected-position tuple is preferred. The strict software contract still requires classical verification/fallback.",
+        "interpretation": "Explicit positive numeric-mask term claimed to implement selected-index tuple lexicographic order.",
+        "parameters_source": "Reviewer-instantiated prior witness: A=1 P=10 C=1/32",
+        "review_source": "pilot/how_review/adjudications/20260922-lit002/review.json",
+        "review_sha256": "d12953e0ab72e52156d8b482d2f26c6922a31d85c38d65206deb4962ef4acded",
+        "transcription_author": "Codex; exact-quote binding is not independent expert validation",
+        "whole_plan_verified": false
+      },
+      "protocol": "scoped-semantic-verification-v0.1",
+      "task_pass": null,
+      "population": {
+        "mother_cases": 10,
+        "input_conditions": 30,
+        "cases_with_scoped_oracle": 4,
+        "submitted_cases": 1,
+        "cases_with_executed_checks": 1,
+        "fully_executed_cases": 0,
+        "scoped_passed_cases": 0
+      },
+      "status_counts": {
+        "not_run": 9,
+        "candidate_error": 1
+      },
+      "results": [
+        {
+          "case_id": "lit-001",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-002",
+          "status": "candidate_error",
+          "reason": "Only the declared finite claim scope; no whole-plan verdict",
+          "scoped_semantic_pass": false,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "format_valid": null,
+          "tests": [
+            {
+              "status": "insufficient_evidence",
+              "reason": "Claim not transcribed for this input",
+              "scoped_semantic_pass": null,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "empty"
+            },
+            {
+              "status": "insufficient_evidence",
+              "reason": "Claim not transcribed for this input",
+              "scoped_semantic_pass": null,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "no_edges"
+            },
+            {
+              "status": "insufficient_evidence",
+              "reason": "Claim not transcribed for this input",
+              "scoped_semantic_pass": null,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "single_edge"
+            },
+            {
+              "status": "candidate_error",
+              "reason": "Finite definition comparison",
+              "scoped_semantic_pass": false,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "tuple_not_mask",
+              "failures": [
+                {
+                  "obligation": "canonical_selection",
+                  "expected": [
+                    0,
+                    3
+                  ],
+                  "actual": [
+                    1,
+                    2
+                  ],
+                  "encoded_bits": [
+                    0,
+                    1,
+                    1,
+                    0
+                  ],
+                  "optimal_energy": "35/16"
+                }
+              ],
+              "predicate_pass": null
+            },
+            {
+              "status": "insufficient_evidence",
+              "reason": "Claim not transcribed for this input",
+              "scoped_semantic_pass": null,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "triangle"
+            },
+            {
+              "status": "insufficient_evidence",
+              "reason": "Claim not transcribed for this input",
+              "scoped_semantic_pass": null,
+              "task_pass": null,
+              "migration_execution_success": null,
+              "practical_advantage": null,
+              "test_id": "star"
+            }
+          ],
+          "test_counts": {
+            "total": 6,
+            "executed": 1,
+            "insufficient_evidence": 5,
+            "candidate_error": 1
+          }
+        },
+        {
+          "case_id": "lit-003",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-004",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-005",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-006",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-007",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-008",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-009",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        },
+        {
+          "case_id": "lit-010",
+          "status": "not_run",
+          "reason": "No transcribed claim submitted",
+          "scoped_semantic_pass": null,
+          "task_pass": null,
+          "migration_execution_success": null,
+          "practical_advantage": null,
+          "tests": []
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Four scoped finite contracts, not four universally correct plans.",
+    "Controls are reviewer authored, not independently annotated model outputs.",
+    "Two archived formula branches only; fallback/full plans remain unverified.",
+    "Six other case sidecars are design/catalogue only.",
+    "No quantum solver, resource/stability experiment or model rerun."
+  ]
+}

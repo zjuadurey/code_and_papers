@@ -1,0 +1,2 @@
+VALID: 1 structurally valid cases
+warning: /home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/context_adaptations/v0.1/cases/context-001/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth

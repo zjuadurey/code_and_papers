@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "protected_files_unchanged": 1593,
+  "requests_in_inventory": 40,
+  "trial_selected_requests": 20,
+  "trial_reviewed_answers": 19,
+  "budget_failures_preserved": 1,
+  "answers_not_content_reviewed": 20,
+  "claim_records": 76,
+  "exact_source_excerpts": 147,
+  "review_and_math_replay_equal": true,
+  "existing_local_document_links": 172,
+  "link_scope": "file existence only, not fragment anchors or external URLs",
+  "human_adjudications": 0,
+  "new_model_calls": 0,
+  "quantum_runs": 0,
+  "scope_limit": "No overall scores, whole-program proof or independent review."
+}

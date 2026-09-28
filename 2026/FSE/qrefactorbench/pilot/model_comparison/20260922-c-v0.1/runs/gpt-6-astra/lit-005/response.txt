@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-005",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "complete",
+      "start_line": 10,
+      "end_line": 14
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "lexicographically-first-conforming-feature-assignment",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditional investigation only: search Boolean assignments x using P(x) = AND over locked entries of [x_i = v], AND over clauses of OR over their three literals [x_i = v]. Recover the lexicographically first satisfying assignment, not an arbitrary marked state. One possible construction uses successive prefix-constrained existence searches, preferring False at each feature. Every negative existence conclusion requires exact justification.",
+    "input_encoding": "Encode one Boolean variable per feature in input order, with False = 0 and True = 1. Locked bits may be substituted and only unlocked bits searched, provided reconstruction preserves full-vector order. Compile validated indexed clauses and locks into a reversible phase oracle with workspace uncomputation. Repeated literals, opposite literals and the empty conjunction must retain their Boolean meanings. Oracle synthesis, ancillas, bit ordering and data-loading costs remain unresolved.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Reconstruct a Python Boolean list and verify it with the unchanged conforms predicate. Verification establishes feasibility only, not lexicographic minimality. Certify that no earlier vector conforms before returning a proposal, and certify global infeasibility before returning None. A finite classical enumeration fallback can provide these certificates and preserve exact behavior; unsuccessful quantum sampling must never mean unavailable.",
+    "assumptions": [
+      "Activate only after successful validation, in complete mode, when current does not conform.",
+      "Retain all surrounding classical validation, reporting, current-retention and CLI behavior.",
+      "The contract permits no probabilistic weakening of feasibility, minimality or infeasibility conclusions."
+    ],
+    "risks": [
+      "Ordinary Grover search returns an arbitrary solution and does not preserve the required first-solution ordering.",
+      "Unknown solution counts and zero-solution instances require explicit handling.",
+      "Exact classical certification may eliminate any performance benefit."
+    ],
+    "expected_resource_characteristics": {
+      "search_domain": "2^u assignments after substituting locks, where u is the number of unlocked features.",
+      "query_scaling": "For a search with M > 0 marked assignments, idealized amplitude amplification has O(sqrt(2^u/M)) oracle-query scaling; this does not include ordered recovery or exact certification.",
+      "unresolved_costs": [
+        "Assignment register, reversible clause and lock evaluation, ancillas and uncomputation",
+        "Oracle compilation, gate depth, connectivity and error correction",
+        "Repeated prefix searches, state preparation, measurement and classical verification",
+        "Exact minimality and no-solution certification"
+      ],
+      "hardware_budget": null,
+      "end_to_end_advantage": null
+    },
+    "rationale": "The finite domain and pure predicate justify structural investigation under the draft contract. Adoption remains conditional on a complete reversible implementation, exact semantic preservation and end-to-end resource evidence."
+  },
+  "rationale": "kernel.py:10-14 contains the finite exhaustive search, first-match return and exhausted-search None result. Its required predicate dependency is kernel.py:5-7, not a separate search hotspot. Inputs are size, indexed clauses and indexed locks prepared by program.py:9-30; no mutable search state or external effects are involved. program.py:35-40 activates completion only outside inspect mode and only when current fails conforms. Validation must remain before any report, including inspect reports. Preserve program.py:31-34 diagnostics about the original current, failed rule order, feature-order locked failures, retained current, completed/unavailable statuses, feature-order proposal construction and changes, nonmutation, ValueError behavior and the JSON CLI. Product order makes False precede True in feature order; nearest-change or arbitrary feasible proposals would violate the contract. Each validated rule has three alternatives; repetitions and contradictory literals are permitted. An empty rule collection is true, whereas an individual empty alternatives list is invalid. Empty feature lists cannot reach completion through a valid nonconforming current. Structural eligibility is true because this is finite Boolean predicate search. Practical suitability is unknown: no workload, oracle implementation, hardware or total-cost evidence is supplied. Benchmark support is unknown: NOTICE supplies task attribution and explicitly identifies the Qiskit variant as the same formula, but supplies no measured validation or independent performance evidence. Remain classical pending those obligations.",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Retain a conforming current configuration; otherwise find the first Boolean feature assignment satisfying every named disjunction and locked value, or establish that none exists.",
+  "assumptions": [
+    "Only the supplied source and contract support this assessment.",
+    "Inputs and outputs remain classical, with no arbitrary size cap.",
+    "A conditional migration plan is not a deployment recommendation or correctness certification."
+  ],
+  "risks": [
+    "Candidate feasibility alone cannot establish the required ordered result.",
+    "A sampling failure cannot establish unsatisfiability.",
+    "Small instances, early classical matches and exact fallback work may make quantum execution unsuitable."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Applicable structurally to the finite, pure predicate search. Reversible construction and exact ordered/no-solution handling remain obligations, not demonstrated properties."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "An alternative structural formulation is possible: let U(x) count violated clauses and locks and let R(x) = sum_i 2^(n-1-i) x_i. Minimizing 2^n U(x) + R(x) selects the first feasible vector whenever one exists. Clause violations are products of three literal-failure indicators; simplify repeated variables and quadratize remaining cubic terms using auxiliary variables and proven sufficient penalties. Exact coefficients, penalty bounds, auxiliary consistency and the x=(1-Z)/2 mapping require derivation. A globally certified optimum with U > 0 establishes infeasibility; QAOA sampling alone cannot. Exponentially scaled rank coefficients, precision, qubits, circuit depth and optimization overhead remain unresolved. This is conditional representability, not approval of an approximate replacement."
+    }
+  ]
+}

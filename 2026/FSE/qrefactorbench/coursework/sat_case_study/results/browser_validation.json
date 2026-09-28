@@ -1,0 +1,18 @@
+{
+  "examples": [
+    {
+      "prediction": "MLP: SAT  ·  Exact solver: SAT",
+      "verification": "MATCH — prediction agrees with exact enumeration."
+    },
+    {
+      "prediction": "MLP: UNSAT  ·  Exact solver: UNSAT",
+      "verification": "MATCH — prediction agrees with exact enumeration."
+    },
+    {
+      "prediction": "MLP: UNSAT  ·  Exact solver: SAT",
+      "verification": "MISMATCH — model prediction is incorrect."
+    }
+  ],
+  "invalid_input": "Use 4 or 5 variables and n to 7*n clauses, matching the dataset domain",
+  "passed": true
+}

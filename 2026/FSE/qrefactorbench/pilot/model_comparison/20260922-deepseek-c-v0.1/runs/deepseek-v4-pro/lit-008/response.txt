@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-008",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "encode",
+      "start_line": 7,
+      "end_line": 9
+    }
+  ],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "Candidate kernel.py:7-9 is the localized pure computation: encode(a,b) computes value=a^b and returns (value, format(value,'08b')). It is activated unconditionally for every valid record after review validates unique nonempty ids, integer fields, and 0..255 bounds. program.py:18-24 then depends on the exact returned integer and eight-bit string to update checksum=(checksum+value)%256, derive set_bits via text.count('1'), construct the counts map (exact repetitions) or null for inspect mode, and append ordered receipts. The task is a deterministic one-to-one per-record transformation and ordered aggregation, not a finite candidate-search predicate over an unknown marked state and not a QUBO/Ising optimization objective. The supported Grover-style and QAOA/QUBO contracts do not represent exact formatting, popcount, running checksum, full receipt generation, or validation side effects. A quantum replacement would risk probabilistic/statistical output, ordering loss, and inability to preserve exact deterministic outputs; therefore the nominated kernel is rejected structurally and no quantum migration plan is warranted.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Exact per-record bitwise XOR (8-bit MSB-first) with set-bit count and modulo-256 prefix checksum, emitted as ordered receipts and optional exact repetition histogram.",
+  "assumptions": [
+    "Classical I/O and interface are authoritative; review validation and exact output ordering must be preserved.",
+    "The only admissible migration families are the supplied DRAFT unstructured_search and combinatorial_optimization contracts.",
+    "No QPU execution, workload, oracle-cost, or quantum advantage evidence is supplied for this task."
+  ],
+  "risks": [
+    "Grover-style search would substitute statistical candidate sampling for a deterministic known-answer transform and violate exactness.",
+    "QUBO/QAOA would introduce an optimization/approximation layer for a function with no optimization objective or constraints.",
+    "Quantum encoding/decoding overhead for 8-bit per-row XOR/popcount would be disproportionate.",
+    "Dropping validation, ordering, counts-mode repetitions, or full receipt output would break the software contract and CLI JSON behavior."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "No finite black-box predicate or unknown marked state; each output is directly computed from left/right as XOR and must be returned exactly for every record in order, so Grover-style search is structurally inapplicable."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "No binary optimization objective, constraints, or feasible-assignment decoding; the task is an exact deterministic transformation with ordered receipts and checksums, so QUBO/Ising/QAOA is inapplicable."
+    }
+  ]
+}

@@ -1,0 +1,1122 @@
+                                         The Road to Hybrid Quantum Programs: Characterizing the
+                                         Evolution from Classical to Hybrid Quantum Software
+                                         VINCENZO DE MAIO, TU Wien, Austria
+                                         IVONA BRANDIC, TU Wien, Austria
+
+
+
+
+arXiv:2503.11450v1 [cs.SE] 14 Mar 2025
+                                         EWA DEELMAN, University of Southern California, USA
+                                         JÜRGEN CITO, TU Wien, Austria
+                                         Quantum computing exhibits the unique capability to natively and efficiently encode various natural phenom-
+                                         ena, promising theoretical speedups of several orders of magnitude. However, not all computational tasks
+                                         can be efficiently executed on quantum machines, giving rise to hybrid systems, where some portions of an
+                                         application run on classical machines, while others utilize quantum resources. Efforts to identify quantum
+                                         candidate code fragments that can meaningfully execute on quantum machines primarily rely on static code
+                                         analysis. Yet, the state-of-the-art in static code analysis for quantum candidates remains in its infancy, with
+                                         limited applicability to specific frameworks and languages, and a lack of generalizability. Existing methods
+                                         often involve a trial-and-error approach, relying on the intuition and expertise of computer scientists, resulting
+                                         in varying identification durations ranging from minutes to days for a single application.
+                                            This paper aims to systematically formalize the process of identifying quantum candidates and their
+                                         proper encoding within classical programs. Our work addresses the critical initial step in the development
+                                         of automated reasoning techniques for code-to-code translation, laying the foundation for more efficient
+                                         quantum software engineering.
+                                            Particularly, this study investigates a sociotechnical phenomenon where the starting point is not a problem
+                                         directly solvable with QC, but rather an existing classical program that addresses the problem. In doing so, it
+                                         underscores the interdisciplinary nature of QC application development, necessitating collaboration between
+                                         domain experts, computer scientists, and physicists to harness the potential of quantum computing effectively.
+
+                                         ACM Reference Format:
+                                         Vincenzo De Maio, Ivona Brandic, Ewa Deelman, and Jürgen Cito. 2025. The Road to Hybrid Quantum
+                                         Programs: Characterizing the Evolution from Classical to Hybrid Quantum Software. 1, 1 (March 2025),
+                                         21 pages. https://doi.org/10.1145/nnnnnnn.nnnnnnn
+
+                                         1    INTRODUCTION
+                                         As we are reaching post Moore Era, the computer science community is faced with new chal-
+                                         lenges [1]: data volumes are growing faster than the computing power, forcing the community to
+                                         look for alternatives beyond von Neumann architecture. Among different architectures that are
+                                         currently being developed, Quantum Computing is one of the most promising. Quantum Computing
+                                         (QC) aims to tackle a wide array of complex problems by leveraging its unique and novel features,
+                                         such as superposition and entanglement, that enables solving problems that are not possible with
+
+                                         Authors’ addresses: Vincenzo De Maio, vdemaio@tuwien.ac.at, TU Wien, Vienna, Austria; Ivona Brandic, TU Wien, Vienna,
+                                         Austria; Ewa Deelman, University of Southern California, Los Angeles, California, USA; Jürgen Cito, TU Wien, Vienna,
+                                         Austria.
+
+
+                                         Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee
+                                         provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and
+                                         the full citation on the first page. Copyrights for components of this work owned by others than ACM must be honored.
+                                         Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires
+                                         prior specific permission and/or a fee. Request permissions from permissions@acm.org.
+                                         © 2025 Association for Computing Machinery.
+                                         XXXX-XXXX/2025/3-ART $15.00
+                                         https://doi.org/10.1145/nnnnnnn.nnnnnnn
+
+
+                                                                                                                , Vol. 1, No. 1, Article . Publication date: March 2025.
+2                                                          Vincenzo De Maio, Ivona Brandic, Ewa Deelman, and Jürgen Cito
+
+
+classical computers. These range from drug discovery [2], manufacturing [3], healthcare [4], fi-
+nance [5] and many more [6–8]. On one hand, quantum computing facilitates native and efficient
+encoding of several natural phenomena (e.g., calculation of atomic distances) resulting in theoretical
+speedups of several orders of magnitude. On the other hand, not all computational steps of an
+application can be executed efficiently on a quantum machine requiring so-called hybrid systems
+where certain parts of the application are executed on the classic machine and certain parts of the
+application are executed on the quantum machine [9, 10].
+   The development of QC applications is a complex endeavor that requires experts of different fields
+to work in tandem, including domain experts such as chemists to properly understand the problem
+space and goals of the computation, computer scientists for expressing problems as efficiently
+executable programs, and physicists for mapping amenable sub-problems to quantum algorithms.
+Developing a hybrid application is an even more complex endeavor. Methods used to understand
+and develop hybrid systems range from automatic and semi-automatic code analysis to fundamental
+software engineering approaches. Static code analysis can be used to identify code fragments that
+represent quantum candidates. However, most static code analysis approaches are in its infancy [11]
+with limited applicability (i.e., specific frameworks/languages [12]) and generalizability [13]. Beyond
+some early and preliminary work on static code analysis, the most common method to identify
+quantum candidates is a trial-and-error approach where domain experts and computer scientists
+identify quantum candidates in an exploratory fashion manually. The effort to identify quantum
+candidates depends on the experience of the computer/domain scientists and can last from minutes
+to days for the same application [14].
+   We conducted a comprehensive six-month auto-ethnographic case study, engaging two distinct
+case partners – one, a seasoned domain expert in molecular dynamics, and the other, a team of
+quantum physicists and quantum computing scientists. The primary objective of this study was to
+document and formalize the intricate process of transitioning a conventional scientific program,
+rooted in the realm of molecular dynamics, into a hybrid quantum program, leveraging IBM’s
+quantum machines through the Qiskit framework. Our approach of triangulating data sources,
+comprising detailed personal notes by the first author, version-controlled software evolution
+artifacts, and computational notebooks that emerged from collaborative efforts among project
+stakeholders, allowed us to gain invaluable insights into the software evolution journey. The
+findings we present in this paper outline the multifaceted steps required for the transition of
+classical programs into hybrid quantum programs. These steps encompass various phases, ranging
+from initial conceptual decomposition into tasks and identification of quantum candidates, through
+to their mapping into quantum subroutines, establishing of proper abstractions to ensure concurrent
+operation of classical and quantum variants, and culminating in the vital stages of integration and
+evaluation, facilitated by automated differential testing. Our study documents a comprehensive
+roadmap for the evolution of classic software into the quantum realm and formulates implications
+for quantum software engineering. Furthermore, we conduct a comparative analysis of our findings
+to discern how existing approaches align with our proposed quantum software evolution model.
+
+
+1.1    Contributions
+We make the following contributions:
+
+      • We characterize the process by which domain experts, in tandem with computer scientists,
+        turn a classic application into a functionally equivalent quantum hybrid program based on a
+        case study on a migration of a molecular dynamics application.
+
+
+, Vol. 1, No. 1, Article . Publication date: March 2025.
+The Road to Hybrid Quantum Programs: Characterizing the Evolution from Classical to Hybrid Quantum Software                 3
+
+
+      • For each process step, we identify a more abstract methodology and discuss how it can
+        be generalized beyond our case. We also present the use case specifics of our case study
+        alongside the methodology to anchor our conclusions.
+      • We map our findings on the process of quantum software evolution to existing and ongoing
+        quantum software engineering research and sketch potential future avenues of investigation.
+
+2 BACKGROUND: QUANTUM COMPUTING
+Quantum computing is based on quantum-bits, i.e., qubits. While classic bits can be only in two
+states, i.e., either 0 or 1, qubits can be in a superposition of both states. A set of 𝑛 qubits taken
+together forms a quantum register. Quantum computation is performed by manipulating qubits
+within a quantum register. The state of a 𝑛-qubits register |𝜓 ⟩ is represented as a linear combination
+(superposition) of 𝑛 orthonormal basis, denoted as 𝑛 column vectors, i.e., |0⟩ ↦→ [1, 0, . . . , 0]𝑇 ,
+|1⟩ ↦→ [0, 1, . . . , 0]𝑇 , . . ., |𝑛 − 1⟩ ↦→ [0, 0, . . . , 1]𝑇 .
+                                                     Í
+   A quantum register is defined as |𝜓 ⟩ = 𝑛−1          𝑖=0 𝑐 𝑖 |𝑖⟩ with suitable complex coefficients 𝑐 0, 𝑐 1, . . . , 𝑐 𝑛−1 ∈
+C𝑛 known as the complex amplitudes. The normalization condition for the quantum state |𝜓 ⟩ implies
+     Í
+that 𝑛−1         2
+       𝑖=0 |𝑐 𝑖 | = 1.
+   Quantum computation must be repeated for a given number of times, 𝑠, and the most frequent
+result over 𝑠 executions will be the result of the whole computation, due to the non-deterministic
+nature of quantum computation. As a consequence, the goal of quantum computation is to manipu-
+late registers to obtain the solution to the target problem with high probability. Quantum registers
+are manipulated through quantum circuits. Quantum circuit model a quantum computation as a
+sequence of (1) quantum state preparation, (2) application of quantum gates, which can be compared
+to classical logical gates for quantum computing, (3) measurement of the circuit and (4) resets.
+
+2.1    Contemporary Quantum Systems
+At the time of this writing, we are in the era of NISQ (Noisy Intermediate Scale Quantum) machines,
+whose main characteristics are (i) the need of software methods to apply error correction/mitigation,
+and (ii) a number of qubit ranging from 50 to a few hundred qubits, which limits our work to
+relatively small problem instances where no quantum supremacy can be observed [15]. As a
+consequence, they are currently used in combination with classical architectures, forming the
+so-called hybrid quantum-classical systems.
+   Different frameworks to enable the execution of computation on hybrid quantum systems are
+available, ranging from IBM Qiskit, Amazon BraKet, Google Cirq, Microsoft Azure Quantum, and
+PennyLane AI. We focus on IBM Qiskit, which is currently the most used framework in this context
+and allows users from different domains to run applications on hybrid classic/quantum systems
+using IBM classic and quantum hardware.
+
+3     RELATED WORK
+We survey the related work on the emerging subfield of quantum software engineering that
+investigates how we can leverage software engineering methodology in the context of hybrid
+quantum applications. Further, we briefly outline a broad set of applications that investigate the
+use of quantum hardware in existing classical problems.
+
+3.1 Quantum Software Engineering
+There is a plethora of recent papers that investigate the use of software engineering techniques to
+quantum programs [16–28].
+  The most prominent research area for quantum software engineering is software testing of
+quantum programs [21–23, 28]. Ali et al. investigate the efficacy of input and output coverage
+
+                                                                      , Vol. 1, No. 1, Article . Publication date: March 2025.
+4                                                          Vincenzo De Maio, Ivona Brandic, Ewa Deelman, and Jürgen Cito
+
+
+criteria when testing quantum programs by introducing a probabilistic notion of test oracles to
+determine the passing and failing of test suites based on statistical analysis [21]. Fortunato et
+al. investigate how mutation testing can be applied for quantum programs [23]. They build on
+syntactically equivalent quantum operations to generate mutants based on qubit measurements
+and quantum gates. Wang et al. introduce QuanFuzz, a tool designed for generating test inputs for
+quantum software using a search-based approach. QuanFuzz operates by instrumenting the source
+code, pinpointing segments of code linked to measurement outcomes, and subsequently modifying
+the initial input matrix. It selects mutations that enhance the likelihood of specific values in the
+quantum register triggering sensitive branches [28]. As part of formulating implications of our
+study, we mapped how current open challenges in the quantum software engineering evolution
+process map to these existing efforts (see Section 6. Qdiff uses differential testing to identify bugs
+between different quantum platforms [22]. The differential testing we employed as part of our
+case was to identify whether the translation from an original classic source program to a quantum
+equivalent is correct.
+
+3.2    Quantum Applications
+Other existing work investigates how the use of quantum hardware can enhance the performance
+of existing classic applications. In [29], authors define methods to implement the Independent Set
+problem on IBM Quantum machines. One of the most promising applications of quantum computing
+is the optimization of linear algebra problems [30]. These problems involve large matrices and
+vectors computation and find their applications in a variety of fields such as machine learning [31],
+cryptography [32], finance [5] and molecular dynamics [33].
+   Concerning other scientific computing use cases, In [9], authors enhance molecular dynamics
+application by offloading part of computation on quantum hardware. In [34], authors apply quantum
+machine learning to classify medical images, while [35] focuses on quantum simulations.
+   Integration of quantum elements in machine learning applications is discussed in [36], while
+variational quantum algorithms and their applications are described in [37, 38].
+
+4     CASE STUDY
+This study aims to investigate how domain experts (i.e., scientists) and software developers take
+an existing scientific program written as an imperative program and turn it into an executable
+hybrid quantum program that mixes elements of classic and quantum computation by decomposing
+and transforming the initial program. This process is inherently social, involving experts in the
+application domain, quantum computing experts, and computer scientists.
+   We employ methods from ethnography to study to answer research questions. Particularly, we
+perform an autoethnography [39], a variation of traditional ethnography, which offers a distinctive
+research perspective by placing the researcher as both the subject and the analyst. In autoethnogra-
+phy, individuals explore their own experiences within a specific cultural or social context, providing
+a subjective but valuable viewpoint. This methodology is compelling for our case study because it
+allows researchers to offer firsthand, reflexive accounts of their experiences and perceptions. More
+specifically, our research is guided by the principles of interpretive field research as part of a case
+study. Interpretive field research aims to understand the deeper structure of a phenomenon from a
+participant’s perspective [40]. Our findings are derived through analysis of the source code of the
+existing scientific programs, the social process of identifying subproblems that are amenable to
+execution on quantum hardware (“quantum ready parts"), and the software evolution that eventu-
+ally leads to a hybrid quantum program. In that sense, we follow an interpretivist perspective as
+our knowledge is derived through social constructions “such as language, consciousness, shared
+meanings, documents, tools, and other artifacts" [41].
+
+, Vol. 1, No. 1, Article . Publication date: March 2025.
+The Road to Hybrid Quantum Programs: Characterizing the Evolution from Classical to Hybrid Quantum Software                 5
+
+
+4.1    Research Site: A Molecular Dynamics Case
+We worked together with two partners, A and B, to perform our case study in the scientific
+computing domain. The team at our partner A’s site focuses on scientific workflows, particularly in
+molecular dynamics (MD) applications. MD is a popular scientific application with applications in
+computational chemistry [9], material science, and drug design. Applications in MD are amenable
+to mapping to quantum hardware due to (i) the native 3D modeling of the problem offered by qubits
+and (ii) the fact that many molecular interactions can be easily modeled by quantum mechanics [29].
+   The team at partner B’s site are quantum physicists who work in quantum mechanics, specifically
+with applications to super-computing.
+   We focus on an application to analyze trajectories of alpha-carbon (𝐶𝛼) atoms in amino-acid
+segments. The goal of MD applications is to compute collective variables (CVs) that represent atom
+movements and capture modifications in their trajectories. In this case, CV is represented by the
+largest eigenvalue of a distance matrix 𝐷, such that 𝐷𝑖,𝑗 is equal to the Euclidean distance between
+atoms with index 𝑖 and 𝑗.
+   Partner A developed the initial “classical" scientific program. This program together with the
+experiences build the basis for our initial investigation. Partner B provided quantum computing
+expertise to support the evolution steps. The first author is a computer scientist working in high-
+performance computing (HPC) and was an active member of the team as part of this case study.
+   We make the resulting target application, including its version history that has been part of our
+analysis, available as an artifact1 .
+
+4.2    Data Collection
+For this case study spanning six months, data collection was conducted using a multi-faceted
+approach to ensure the richness and depth of our findings. We initiated the study by collaborating
+with members of Team A, who possess extensive expertise in scientific applications, to identify a
+suitable target use case for our methodology. This initial consultation provided valuable insights
+into the practicality and relevance of our research.
+   To maintain an ongoing dialogue and facilitate the study’s progress, weekly plenary meetings
+were held with either Team A or Team B, depending on whether we identified challenges with
+either the case application or quantum computing. These meetings served as a platform for tracking
+developments in the case study, addressing any emerging challenges, and fostering a collaborative
+environment for knowledge exchange.
+   Our data collection strategy employed several sources to triangulate findings and mitigate
+potential limitations inherent in the participant observation methodology.
+  Personal Notes. The first author, who actively participated in the research site, meticulously
+documented personal notes. These notes encompassed a comprehensive record of the research
+process, including interactions and communications with various stakeholders involved in the case.
+These personal notes provided an insider’s perspective and contributed to the contextualization of
+our findings.
+   Documented Software Evolution. To capture the evolution of the classical program into a hybrid
+quantum program, we relied on the version control history of the project. This history not only
+included the Python scripts representing the eventual hybrid quantum program (and intermediate
+states therein) but also computational notebooks (i.e., Jupyter notebooks), which combined narrative
+explanations with code explorations. Additionally, we examined commit messages associated with
+1 This is an anonymized version of our artifact. The full repository also contains all the version history: https://anonymous.
+
+4open.science/r/quantumMD-A70B/
+
+
+                                                                      , Vol. 1, No. 1, Article . Publication date: March 2025.
+6                                                          Vincenzo De Maio, Ivona Brandic, Ewa Deelman, and Jürgen Cito
+
+
+code changes to extract the rationale behind each modification, providing valuable insights into
+decision-making processes.
+   Computational Notebooks. In addition to personal notes as a form of an ongoing record of the case,
+we leveraged the extensive narrativistic components of our computational notebooks that were the
+result of specialized investigations within the project (especially with Team B). These notebooks
+served as formalized documentation, facilitating the communication of complex concepts among
+stakeholders with varying areas of expertise. Furthermore, they played a pivotal role in refining
+mutual understanding and collaboration among individuals involved in the case study, bridging
+gaps between different specialties, and facilitating knowledge transfer.
+   This multipronged data collection approach allowed us to holistically capture the nuances of our
+case, ensuring a comprehensive exploration of the research context and the dynamic processes
+unfolding within it.
+
+4.3    Analysis
+Our analysis was split into two phases. In our first phase, we conduct thematic analysis [42] on
+our collected data to identify overarching themes, resulting in the synthesis of findings (Section 5).
+We focused on iterative coding where we developed initial themes while going through the data,
+which we further split down and transformed along the way. Repeating this process loop of open,
+axial, and selective coding several times allowed us to reduce the amount of data to reason about
+while putting the focus on the relevant parts and abstractions for our research questions.
+   This is followed by a theoretical analysis of the findings, stemming from a comprehensive the-
+matic examination of ethnographic data, which seeks to establish a bridge between the observed
+outcomes and the pre-existing body of knowledge within the realm of quantum software engineer-
+ing. This endeavor involves delving into the core themes and patterns extracted from our study and
+subsequently contextualizing them within the broader landscape of quantum software engineering
+literature. By mapping the identified nuances and insights onto the existing theoretical frameworks
+and paradigms, this analysis aims to highlight how the ethnographic findings contribute to and
+align with current understandings of quantum software engineering practices. In doing so, it not
+only enriches the scholarly discourse but also fosters a deeper comprehension of the intricate
+interplay between empirical observations and established theoretical underpinnings in this evolving
+field.
+
+5     FINDINGS
+After careful thematic analysis, we identified the following crucial steps involved in evolving
+classical programs into hybrid quantum programs: (i) decomposition of application in sub-problems,
+(ii) identification of quantum candidates, (iii) data encoding, (iv) implementation of quantum code,
+and (v) integration in the hybrid classic/quantum loop. First, we provide an overview of the
+software development process, then we describe each step in the following sections. For each step,
+we carefully separate a more abstract, general methodology that we expect to generalize beyond
+our case to the use case specifics that were performed as part of the case study.
+
+5.1    Overview
+Figure 1 describes our software development process. First of all, the application is decomposed
+(conceptually) into different interdependent tasks. As a consequence, we describe our process
+starting from the identification of quantum candidates. The goal of this process is to identify the
+quantum candidates, i.e., tasks that can be executed on a quantum machine. The output is then a
+set 𝐶 of 𝑁 quantum candidates and a set 𝑇 of classic tasks. In step 2, each quantum candidate is
+
+, Vol. 1, No. 1, Article . Publication date: March 2025.
+The Road to Hybrid Quantum Programs: Characterizing the Evolution from Classical to Hybrid Quantum Software          7
+
+
+
+
+Fig. 1. Overview of a software evolution process from 1. conceptually decomposing a classical program into
+discrete tasks, 2. identifying quantum-ready parts (effectively distinguishing computation that ought to
+run on classical hardware vs. quantum machines), 3. mapping quantum-ready classical computation into
+quantum subroutines, 4. establishing abstractions for both computations and integrating them as variants, 5.
+using the original, classical computation as an oracle to evaluate correctness.
+
+
+
+
+                                        Fig. 2. Classic MD Workflow.
+
+
+mapped into a quantum subroutine, i.e., a quantum algorithm that is semantically equivalent [43, 44]
+to the quantum candidate. Mapping is performed in four sub-steps: first, there is a selection step,
+where a semantically equivalent algorithm is selected. If more algorithms are available for the
+same problem, selection is performed based on their resource requirements, available quantum
+machines or based on expert knowledge. Based on the selected algorithm, an appropriate data
+encoding method is applied, in order to translate data from the classic to the quantum domain,
+and an appropriate error mitigation method is selected, based on the performance of available
+methods on target quantum machines. Selection of data encoding, algorithm settings, and error
+mitigation methods can be performed by means of hyperparameter optimization methods, as in [9].
+Finally, unit testing of the resulting quantum subroutine (inclusive of the encoding, the algorithm
+execution, and the error mitigation) is performed using the results of the classic implementation
+of the candidate as an oracle 𝑂. In case the error surpasses a user-defined threshold, the mapping
+process is restarted from the selection. In this work, we use Mean Square Error (MSE) as an error
+metric and select the configuration that minimizes MSE. Afterward, classic tasks and quantum
+subroutines are integrated by means of different software layers, and evaluation is performed using
+the complete classic application as an oracle.
+
+5.2   Application Decomposition
+Methodology. The first step is decomposing the original classic application conceptually into
+a set of discrete tasks. The input of this process is a scientific program written in a high-level
+imperative language, including functions and subroutines that model the scientific process. This
+code is inspected with the help of experts of Team A to identify tasks that characterize the scientific
+program. In the target use case, the input application is an MD simulation, provided by Team A.
+
+                                                               , Vol. 1, No. 1, Article . Publication date: March 2025.
+8                                                          Vincenzo De Maio, Ivona Brandic, Ewa Deelman, and Jürgen Cito
+
+
+
+
+                                              Fig. 3. Hybrid MD Workflow.
+
+
+The application has been provided as a scientific workflow, therefore it comes in the form of a
+Directed Acyclic Graph where each node is a task and each edge defines a precedence relationship
+between each task.
+   Use Case Specifics. The application is composed of the following different tasks: (1) Input phase,
+where the user inputs simulation parameters; (2) Read trajectory file, where the input trajectory
+file is read to extract information about evolution of the molecular system; (3) evolution of atom
+segments, where the evolution of the system is simulated; (4) computation of inter-atomic distance,
+where the new inter-atomic distances between different atom segments are calculated and stored
+in distance matrices, 𝐷, such that each cell 𝑑𝑖,𝑗 contains the Euclidean distances between atom
+segment 𝑖 and 𝑗; (5) computation of largest eigenvalues, where for each distance matrix we compute
+the largest eigenvalue, which is one of the so-called collective variables capturing the evolution
+of the system. Since the scientific workflow is designed to be executed on Pegasus WMS [45, 46],
+we asked Team A to modify it to be executed outside the WMS, to allow us to focus more on the
+quantum parts. Application decomposition is summarized by Figure 2.
+
+5.3    Identification of Quantum Candidates
+Methodology. Afterwards, tasks are examined to identify quantum candidates, i.e., tasks of the
+scientific application for which it is possible to find a quantum algorithm, called quantum subroutine.
+Typical tasks that are not amenable to quantum execution usually involve I/O (e.g., reading input).
+For instance, Task 1 involves reading user input and setting up the simulation. Since data processing
+is not intensive in this phase, and also input operations are included, which cannot be performed
+efficiently on quantum hardware, this task is executed locally, on classic hardware, as well as task 2.
+   Use Case Specifics. Identification of quantum tasks was performed with the help of experts
+in Team B. Task 3 involves the selection and update of different atom segments, which can be
+performed very efficiently by applying vectorization on classic hardware. Task 4 requires calculating
+the Euclidean distance between atom segments, which has a very efficient implementation on
+quantum hardware [9], the same as Task 5, which involves the computation of eigenvalues. Based
+on this analysis, we decided to execute tasks 4 and 5 on quantum machines.
+
+5.4 Mapping Quantum Candidates to Quantum Subroutines
+Methodology. Once quantum candidates have been identified, the next step is to map them into
+quantum subroutines, i.e., high-level code that can be executed by quantum machines. This process
+has different sub-steps: (1) Algorithm selection: Identifying a semantically equivalent quantum
+algorithm for the same problem, which is done in the selection phase together with the data
+encoding method; (2) Data encoding: Data coming from the classic domain have to be encoded
+to be used by the quantum algorithms. Different methods are available in literature, such as basis
+encoding, amplitude encoding, angle encoding, and others [10], and each method affects application
+performance in different ways; (3) Error mitigation: State-of-the-art quantum hardware is in
+the NISQ (Noisy Intermediate Scale Quantum) era, meaning, current quantum machines offer a
+
+, Vol. 1, No. 1, Article . Publication date: March 2025.
+The Road to Hybrid Quantum Programs: Characterizing the Evolution from Classical to Hybrid Quantum Software           9
+
+
+limited amount of qubits (up to 127), and are subject to noise due to the influence of surrounding
+environment and subject to quantum decoherence [15]. As a consequence, different error correction
+methods need to be applied to the output of the quantum execution. Different methods can be
+applied in this context, such as ML-based [47], autoencoders [48] and error correction codes [49];
+(4) Unit testing: Since the output of the quantum subroutines might differ from the output of the
+classical code, unit test must be performed to evaluate the amount of error
+   Use Case Specifics. We describe the use-case specifics for each of the identified steps. This
+required extensive communications with Team B, whose members have expertise in quantum
+computing.
+5.4.1 Algorithm Selection. We describe the selection of quantum subroutines for identified candi-
+dates, Task 4 and 5.
+   SWAP test was identified as the best candidate for Euclidean distance between atom segments
+(Task 4). SWAP test is a quantum algorithm that expresses the inner product of two quantum
+states, |𝜓 ⟩, |𝜙⟩) in terms of the probability measurement of an auxiliary qubit, which acts as a
+controller qubit for the SWAP operator. The probability 𝑃 (|0⟩) = 0.5 of the auxiliary qubit means
+that the states are orthogonal, while the probability 𝑃 (|0⟩) = 1 means the states are identical. The
+circuit modelling the SWAP test is summarized by Figure 4, while the Python code for SWAP Test
+is summarized by Figure 9. In lines 1-5, we define three quantum registers, 𝑞𝑟 1 , 𝑞𝑟 2 and 𝑐𝑜𝑛𝑡𝑟𝑜𝑙 0 .
+The first two contain the encoding of the two atoms, while the control qubit is used to store the
+probability that two states 𝑞𝑟 1 and 𝑞𝑟 2 are orthogonal. Also, we initialize a classical register, 𝑐, where
+we store the result of measurements. These variables are used to initialize a QuantumCircuit object
+that models the quantum circuit performing the SWAP test. Afterward, 𝑞𝑟 1 and 𝑞𝑟 2 are initialized
+to the value of input atoms, 𝑎 and 𝑏, then, a Hadamard gate is applied to control qubit, to put it in a
+superposition. Based on values of 𝑐𝑜𝑛𝑡𝑟𝑜𝑙 0 , CSWAP gate is applied to 𝑞𝑟 1 and 𝑞𝑟 2 and a Hadamard
+gate is applied to 𝑐𝑜𝑛𝑡𝑟𝑜𝑙 0 , that now contains the Euclidean distance between 𝑎 and 𝑏. Finally,
+𝑐𝑜𝑛𝑡𝑟𝑜𝑙 0 is measured to obtain the Euclidean distance and stored in the classic register 𝑐, so that it
+can be used by the classic application.
+
+                                    |0⟩        𝐻            𝐻
+
+                                   |Ψ⟩
+
+                                   |Φ⟩
+
+
+                                          Fig. 4. SWAP Test Circuit.
+
+  Concerning the largest eigenvalue 𝑙𝑒𝑣 calculation (Task 5), there are different algorithms that
+could be used, such as HHL [50] and Variational Quantum Eigensolver [38] (VQE).
+  We selected VQE, which allows reducing the number of qubits needed to represent the input
+𝑚 × 𝑛 matrix 𝐵𝑃𝑀 to log2 (𝑚 · 𝑛). A very efficient VQE implementation is also already provided by
+Qiskit, which allowed to speed up the development. Source code is described in Figure 10.
+  VQE is defined by (1) the initial setting of Θ parameters, (2) a parametrized quantum circuit 𝐶
+that is used for the preparation of input state 𝜓 (Θ), (3) a cost function 𝜙 on parameters Θ, and (4)
+an optimization algorithm. VQE cost function is defined as
+                                 Θ∗ = arg min 𝐶 (Θ) = ⟨𝜓 (Θ)| 𝐻 |𝜓 (Θ)⟩ ,                                           (1)
+                                           Θ
+
+                                                                , Vol. 1, No. 1, Article . Publication date: March 2025.
+10                                                         Vincenzo De Maio, Ivona Brandic, Ewa Deelman, and Jürgen Cito
+
+
+meaning that for each state |𝜓 (Θ)⟩ one tries to minimize expectation of 𝐻 . It follows from the vari-
+ational principle that, arg minΘ 𝜙 (Θ) ≥ 𝐸𝐺 , therefore minimizing 𝜙 (Θ) enables us to approximate
+the ground state of 𝐻 , 𝐸𝐺 , where |𝜓 (Θ)⟩ = 𝐶 (Θ) |𝜓𝑖 ⟩ corresponds to the minimum 𝐻 eigenvalues.
+   VQE takes as input three main parameters: the input matrix, 𝑞𝑢𝑏𝑖𝑡_𝑜𝑝 that corresponds to 𝐻 ; the
+𝑣𝑎𝑟𝑖𝑎𝑡𝑖𝑜𝑛𝑎𝑙_𝑓 𝑜𝑟𝑚, that includes the circuit 𝐶 and the Θ parameters, and the 𝑜𝑝𝑡𝑖𝑚𝑖𝑧𝑒𝑟 , that is the
+optimization algorithms used by the framework to minimize the cost function in Equation 1. Since
+we are interested in the maximum eigenvalue, we put a minus in front of the qubit_op. Concerning
+the circuit 𝐶 and the optimization algorithm, they are selected from the Qiskit API, respectively,
+qiskit.circuit.library and qiskit.algorithms.optimizers, based on a parameter studio
+described in [9].
+5.4.2 Data Encoding. In some cases, such as VQE, the encoding is straightforward, since the
+algorithm requires specific data formats that allow to generalize encoding through specific classes
+and interfaces, i.e., in this case, MatrixOp class provided by Qiskit framework. However, for other
+cases, such as the SWAP test, it is left to the developer to identify the most suitable way to encode
+classic data into a quantum state. In our case, we have to encode the coordinates of the atoms in
+the circuit to calculate the Euclidean distance between them. The states |𝜙⟩ and |𝜓 ⟩ contain the
+coordinates of the atoms, which we encode by means of amplitude encoding, which is defined as in
+Equation 2.
+   Definition: For x ∈ R𝑛 , amplitude encoding maps x ↦→ 𝐸 (x),
+                                                  𝑛
+                                                 ∑︁
+                                           |𝑥⟩ =     𝑓𝑖 (𝑥) |𝑖⟩ ,                                  (2)
+                                                              𝑖
+
+where |𝑓𝑖 (𝑥)| 2 = 1. |𝜙⟩ and |𝜓 ⟩ are initialized with the state amplitudes (coefficients), as follows:
+                                                    1
+                                           |𝜙⟩ = √ (||𝑢® || |0⟩ − ||®
+                                                                    𝑣 || |1⟩),                    (3a)
+                                                    𝑊
+                                                      1
+                                              |𝜓 ⟩ = √ (|𝑢, 0⟩ + |𝑣, 1⟩),                         (3b)
+                                                       2
+with ||𝑢® ||, ||®    𝑣 || being the Euclidean norm of the coordinates of two different atoms and 𝑊 =
+||𝑢® || 2 + ||®
+              𝑣 || 2 . Where, the compact notation |𝑥, 𝑦, .., 𝑧⟩ denotes |𝑥⟩ ⊗ |𝑦⟩ ⊗ .... ⊗ |𝑧⟩.
+    The amplitude encoded vectors are given by,
+                                                             𝑁 −1
+                                                             ∑︁   𝑢𝑖
+                                                    |𝑢⟩ =                |𝑖⟩ ,                                     (4a)
+                                                             𝑖=0
+                                                                 ||𝑢® ||
+                                                             𝑁 −1
+                                                             ∑︁    𝑣𝑖
+                                                     |𝑣⟩ =               |𝑖⟩                                       (4b)
+                                                              𝑖=0
+                                                                  ||®
+                                                                    𝑣 ||
+.
+     which is translated in code for two quantum states, 𝜙 and 𝜓 , as shown in Figure 7.
+5.4.3 Error Mitigation. In the target application, error correction has been set to the default methods
+applied by Qiskit, setting the measurement_error_mitigation parameter to True, as shown in
+Figure 11, since it allows minimizing MSE in comparison with each classic oracle.
+5.4.4 Unit Testing. First, we randomly generate our atom segments, using Python random module.
+This randomized testing procedure could also be extended through quantum fuzzing [28]. Afterward,
+we calculate the 𝐷 matrix using randomly generated segments as input for the classic and quantum
+versions. The classic task is used as a classic oracle, and we calculate the MSE. The same is done
+
+, Vol. 1, No. 1, Article . Publication date: March 2025.
+The Road to Hybrid Quantum Programs: Characterizing the Evolution from Classical to Hybrid Quantum Software                        11
+
+
+for the calculation of largest eigenvalues, where we also evaluate different hyperparameters for
+eigenvalue calculation and select the configuration that minimizes MSE.
+
+5.5    Integration
+Methodology. Another important step is to integrate the quantum code in the application flow,
+allowing the application to switch between the two versions if quantum hardware is available.
+To this end, first, we abstract the code for each quantum task into a function, defining a classic
+and a quantum version. Figure 5 shows an example of such a separation for calculating Euclidian
+distance.
+
+      def c a l c u l a t e _ d i s t a n c e _ q u a n t u m ( A , B ) :
+          IBMQ . l o a d _ a c c o u n t ( )
+           p r o v i d e r = IBMQ . g e t _ p r o v i d e r ( hub= 'XXX ' ,
+                           group = 'XXXX ' , p r o j e c t = ' main ' )
+          b a c k e n d = Aer . g e t _ b a c k e n d ( ' a e r _ s i m u l a t o r ' )
+          noise_model = NoiseModel .
+                           from_backend ( p r o v i d e r . backend . ibmq_quito )
+           c s w a p _ c i r c u i t = CSWAPCircuit
+                           ( 1 , 1 , 3 , 1 , backend , 8 1 9 2 )
+          quantum_ED = c s w a p _ c i r c u i t .
+                                    execute_swap_test (A, B , noise_model )
+           a r r = np . a r r a y ( quantum_ED )
+          return a r r
+
+      def c l a s s i c _ e u c l i d e a n _ d i s t a n c e ( A , B ) :
+           a r r = np . a r r a y ( d i s t a n c e . c d i s t ( A , B ,   ' sqeuclidean ' ) )
+           print ( a r r . shape )
+           return a r r
+       %\ end { m i n t e d }
+
+
+                           Fig. 5. Quantum-Classical Euclidean Distance (commit 6094be7)
+
+
+   Use Case Specifics. This is done respectively for Euclidean distance (Figure 5) and for calculation
+of eigenvalues (Figure 12, Appendix). We can see that both tasks impact on the distance matrix 𝐷
+(variable bpm in the code): since Euclidean distance is used to calculate each 𝐷𝑖 𝑗 cell, which contains
+Euclidean distance between atom segment 𝑖 and 𝑗; Also, eigenvalues are calculated using 𝐷 as
+input. To allow selection of the distance function, we further abstract the initialization of the 𝐷
+into the method extract_bpm, which takes as input the atom segments 𝐴 and 𝐵 and the distance
+function (classic or quantum) that should be used, as shown in Figure 13. To decide which version
+of each task to invoke, we use a boolean flag, QUANTUM. Execution flow of the program is decided
+based on the value of the flag, as shown in Figure 6.
+
+5.6    Evaluating Correctness
+   Once each quantum subroutine has been correctly evaluated by means of unit testing, and there
+are several ways to organize the variation between the original code and the quantum variant (see
+Figure 6). In this particular case study, we chose to introduce configuration options that activate
+either variant at the start of the program. This allowed us to easily experiment with both versions,
+but also write test programs that only differ in how we call our application. From a software design
+
+                                                                              , Vol. 1, No. 1, Article . Publication date: March 2025.
+12                                                               Vincenzo De Maio, Ivona Brandic, Ewa Deelman, and Jürgen Cito
+
+
+         i f QUANTUM :
+                   bpm = e x t r a c t _ b p m ( s e g s ,
+                            calculate_distance_quantum )
+                   num_qubits =
+                            i n t ( math . l o g 2 ( bpm . s h a p e [ 0 ] ) )
+                   ansatz = globals ( ) [ a n s a t z _ c l a s s ]
+                            ( num_qubits )
+                   l e v s = c a l c _ e i g v a l _ q u a n t u m ( bpm , a n s a t z ,
+                            backend , o p t i m i z e r )
+             else :
+                   bpm = e x t r a c t _ b p m ( s e g s ,
+                            classic_euclidean_distance )
+                   l e v s = l i n _ a l g . e i g v a l s h ( bpm ) [ − 1 ]
+         %\ end { m i n t e d }
+
+
+                            Fig. 6. Integration of Quantum-Classical Tasks (commit 6094be7)
+
+
+perspective, we could envision more sophisticated abstractions to define this variation (e.g., by
+employing a strategy pattern [51]).
+
+6     IMPLICATIONS FOR QUANTUM SE
+
+              Steps                            Papers                             Summary                      Implications
+
+    Candidate                                                          Manual identification based on   Semi-automatic Candidate
+                                    [5, 9, 18, 34]
+    Identification                                                     expert knowledge.                Identification
+
+    Mapping Quantum                                                    Specifically designed code for   Transformation to Efficient
+                                    [5, 9, 34, 52]
+    Candidates                                                         each identified quantum tasks.   Quantum Algorithms
+                                                                       Problem-specific data
+    Data Encoding                   [5, 9, 10, 34]
+                                                                       encoding                         Quantum Framework API
+                                                                                                        Evolution
+    Error Mitigation                [47–49]                            Data-driven methods
+
+                                                                       Application- and                 Managing Variants in
+    Integration                     [9, 18, 20, 52]
+                                                                       framework-specific bindings      Hybrid Quantum Programs
+    Evaluation of                                                      Ad-hoc difference with classic   Automated Differential
+                                    [9, 16, 19–23, 27, 34, 53]
+    Correctness                                                        output                           Testing
+                                        Table 1. Comparison with the State of the Art.
+
+
+
+   In this case study, we identified the sequence of steps required to obtain a hybrid classic/quantum
+program from a classic scientific program. In this section, we identify how each step is covered
+in the state of the art, with the goal to identify future research directions for quantum software
+engineering. Our analysis is summarized by Table 1.
+   From what concerns the identification of quantum candidates, it is performed by application
+developers or experts of the domain, who have the right knowledge both of the application domain
+and of quantum computing in order to identify which tasks can be executed on quantum computers
+to achieve a speedup. As a consequence, providing methods to analyze programs and support users
+in the identification of quantum candidates would significantly speed up the development of hybrid
+applications.
+
+, Vol. 1, No. 1, Article . Publication date: March 2025.
+The Road to Hybrid Quantum Programs: Characterizing the Evolution from Classical to Hybrid Quantum Software         13
+
+
+   A similar discussion could be done for the mapping of candidates in the quantum subrou-
+tines, since identifying the most efficient quantum subroutine for a specific task also requires
+knowledge of quantum computing. As a consequence, methods to support users in the transfor-
+mation of classic tasks into quantum subroutines should be provided, to support users in the
+development of efficient hybrid applications.
+   In the context of RQ3, we need to address three different sub-problems: data encoding, error
+mitigation, and integration.
+   Different data encoding methods can be applied, depending on the target application and the
+number of qubits available. Considering the fast evolution of both quantum hardware, quantum
+APIs should be able to keep up with the new features provided by quantum hardware, providing
+encoding methods that can exploit the capabilities of underlying quantum architecture.
+   Regarding error mitigation, most of existing methods rely on AI models of quantum hardware
+noise, which are then used as input of specific error mitigation methods. Design of such models
+require collection of a huge amount of data by purposely-designed benchmarks, that needs to be
+constantly updated when a new quantum architecture is released. Quantum APIs should then
+provide methods to collect noise data and constantly update noise models, allowing to easily
+integrate new quantum hardware in target systems.
+   Integration of classic and quantum hardware is also a big issue, since current hybrid applications
+are tightly coupled to the target quantum framework that is used for their development. In order to
+easily integrate a wider spectrum of quantum hardware in the continuum, a mechanism to manage
+different implementation of quantum subroutines (i.e., for different architectures or frameworks)
+would be needed.
+   Finally, evaluation of correctness of hybrid application is generally performed by comparing
+the quantum output with the classic output by means of different error metrics. As a consequence,
+testing of hybrid applications requires running both applications and collect intermediate results at
+different stage of execution and for each variant, which is a tedious task and is left to the application
+developer. Therefore, formal methods for automated differential testing are needed to ensure quality
+of hybrid applications. While automated differential testing has seen extensive work in testing
+compilers [54–56], program analyzers and solvers [57, 58], and recently database engines [59]. We
+see our study as a catalyst to develop differential testing techniques for hybrid quantum applications.
+This brings additional challenges due to the stochastic nature of results stemming from quantum
+computing.
+   In the next sections, we describe possible ideas to address identified implications for quantum
+software engineering.
+
+6.1   Automated Reasoning Techniques for Quantum Candidate Identification
+Identifying quantum-ready tasks, i.e., quantum candidates, in classic scientific programs requires
+domain knowledge from both computer scientists and quantum computing experts. Automated
+reasoning techniques tailored specifically for the identification of quantum candidates within the
+original source code. As the transition from classical to quantum computing gathers momentum,
+it becomes increasingly vital to develop methodologies that facilitate the detection of potential
+quantum algorithms embedded within existing codebases. One plausible avenue for achieving
+this objective is to establish a correspondence mapping between classical algorithms with known
+quantum counterparts. By identifying such correspondences, we can potentially unravel quantum
+candidates hidden within the code. This mapping serves as a crucial bridge, allowing us to draw
+parallels between classical and quantum algorithmic structures. To effectively identify quantum
+candidates within the original source code, it is imperative to operate at a level of abstraction that
+captures the high-level algorithmic structure. This abstract representation facilitates reasoning
+
+                                                               , Vol. 1, No. 1, Article . Publication date: March 2025.
+14                                                         Vincenzo De Maio, Ivona Brandic, Ewa Deelman, and Jürgen Cito
+
+
+about the code’s underlying logic, thereby enabling the identification of the original algorithm. It
+is worth noting that the source code may often be obscured by noise or distractions, making it
+essential to focus on the fundamental algorithmic constructs.
+
+6.2    Quantum Framework API Evolution
+In the dynamic world of quantum computing, frameworks like Qiskit are constantly evolving to
+harness the latest advancements in the field. These frameworks offer essential bindings for quantum
+execution, enabling developers to access cutting-edge quantum algorithms and hardware. However,
+this rapid evolution poses a challenge for developers who need to keep their code up-to-date with
+the latest API changes. Even during the six-month course of our case, we needed to adapt our
+code base to fit the evolving Qiskit interfaces. There are multiple streams of work that has been
+exploring ways to automatically update existing code to newer versions of (framework or library)
+APIs under the umbrella term API evolution [60]. The question at the forefront of these efforts is
+whether it is possible to automate the refactoring process, allowing developers to seamlessly adapt
+to the fast-paced evolution of the Qiskit library. This endeavor holds the promise of streamlining
+quantum development and ensuring that quantum applications remain at the forefront of scientific
+and technological progress.
+
+6.3    Managing Variants in Hybrid Quantum Programs
+One of our key findings underscores the necessity of retaining the original implementation from the
+classic program to facilitate automated evaluation through differential testing. Differential testing is
+vital for validating the correctness and performance of the quantum translation. However, to enable
+such testing, we must preserve parts of the classical codebase, even for quantum candidate tasks,
+presenting a challenge on how to seamlessly integrate and manage these two program variants. In
+the course of our case study, we addressed the challenge of managing variants by introducing a
+configuration flag. This flag allows us to determine whether specific control flows of the code should
+be executed as part of the quantum version or the classic version of the program. While this approach
+can be effective in distinguishing between program variants, it also introduces the potential for
+inconsistent states and complexity in the codebase. Given the limitations of configuration flags and
+the inherent complexities they may introduce, there is a pressing need for further research into
+improved software design principles for hybrid quantum systems. Such principles should enable
+the concurrent description of both classic and quantum program variants, facilitating seamless
+integration and maintenance. As we navigate the intricate landscape of hybrid quantum programs,
+we want to draw inspiration from the software product line community, which can offer valuable
+insights into managing variability in software systems by creating flexible, reusable assets.
+
+6.4 Threats to Validity
+While conducting our case study, it was essential to acknowledge and address potential threats to
+the validity of our findings. These threats encompass various aspects of the research process. We
+identify and discuss the following potential threats.
+
+   Generalizability. Case study research is highly contextual and personal in nature. Findings from
+this study may be challenging to generalize beyond the specific case under investigation. To address
+this limitation, we have taken measures to provide a detailed description of the research context
+and have aimed to extract broader insights and implications where possible. Further, as part of
+our analysis, we identified and presented a more general software engineering methodology and
+present this separately from use case specific aspects in our findings.
+
+, Vol. 1, No. 1, Article . Publication date: March 2025.
+The Road to Hybrid Quantum Programs: Characterizing the Evolution from Classical to Hybrid Quantum Software                       15
+
+
+   Researcher Bias and Interpretive Subjectivity. The presence of the first author as an active partici-
+pant in the research context may have influenced the behaviors and actions of other participants.
+This subjectivity can introduce bias into the data collection and interpretation process. To mitigate
+this threat, the researcher maintained reflexivity by continually examining and acknowledging
+personal biases and their potential influence on data collection and analysis. Further, analysis
+involves interpretation and sense-making, which can be subjective. Different researchers might
+interpret the same data differently. To enhance the validity of interpretations, analysis was per-
+formed by multiple authors of the paper, and we have maintained transparency in our analytic
+process, including detailing the criteria and rationale for data interpretation.
+   Documentation and Data Availability. The reliance on personal notes, software version control
+history, and computational notebooks for data collection may lead to incomplete or biased docu-
+mentation. Some critical events or perspectives may not have been adequately recorded. We have
+attempted to address this limitation by cross-referencing multiple data sources and emphasizing
+the importance of comprehensive record-keeping.
+   In conclusion, while auto-ethnography as part of this case study offers a valuable perspective for
+understanding complex phenomena, it is essential to recognize and address these potential threats
+to the validity of our findings.
+
+7    CONCLUSION
+We conducted a six-month case study to investigate the process, evolution, and communication
+involved in the development of hybrid quantum applications. Starting from a real case in Molecular
+Dynamics (MD), we identified an evolution process to transform the classic MD program into a
+hybrid quantum application. We report on our experience based on the triangulation of different
+sources of data collected during the case, derive a more general software evolution process, and
+finally formulate implications for the software engineering research community. We believe that
+this work would be useful in guiding the software engineering community in the development of
+software development patterns and tools that will support the development of hybrid quantum
+applications.
+
+REFERENCES
+ [1] W. A. Wulf and S. A. McKee, “Hitting the memory wall: Implications of the obvious,” SIGARCH Comput. Archit. News,
+     vol. 23, no. 1, p. 20–24, mar 1995. [Online]. Available: https://doi.org/10.1145/216585.216588
+ [2] Y. Cao, J. Romero, and A. Aspuru-Guzik, “Potential of quantum computing for drug discovery,” IBM Journal of Research
+     and Development, vol. 62, no. 6, pp. 6–1, 2018.
+ [3] J. Clarke, N. Thomas, J. Roberts, R. Pilliarisetty, Z. Yoscovits, R. Caudillo, H. George, K. Singh, D. Michalak, P. Amin et al.,
+     “Quantum computing within the framework of advanced semiconductor manufacturing,” in 2016 IEEE International
+     Electron Devices Meeting (IEDM). IEEE, 2016, pp. 13–1.
+ [4] R. Ur Rasool, H. F. Ahmad, W. Rafique, A. Qayyum, J. Qadir, and Z. Anwar, “Quantum computing for healthcare: A
+     review,” Future Internet, vol. 15, no. 3, p. 94, 2023.
+ [5] R. Orús, S. Mugel, and E. Lizaso, “Quantum computing for finance: Overview and prospects,” Reviews in Physics, vol. 4,
+     p. 100028, 2019.
+ [6] B. Bauer, S. Bravyi, M. Motta, and G. K.-L. Chan, “Quantum algorithms for quantum chemistry and quantum materials
+     science,” Chemical Reviews, vol. 120, no. 22, pp. 12 685–12 717, 2020.
+ [7] S. S. Bharadwaj and K. R. Sreenivasan, “Quantum computation of fluid dynamics,” arXiv preprint arXiv:2007.09147, 2020.
+ [8] P. J. Ollitrault, A. Miessen, and I. Tavernelli, “Molecular quantum dynamics: A quantum computing perspective,”
+     Accounts of Chemical Research, vol. 54, no. 23, pp. 4229–4238, 2021.
+ [9] S. S. Cranganore, V. D. Maio, I. Brandic, T. M. A. Do, and E. Deelman, “Molecular dynamics workflow decomposition
+     for hybrid classic/quantum systems,” in 18th IEEE International Conference on e-Science, e-Science 2022, Salt Lake City,
+     UT, USA, October 11-14, 2022. IEEE, 2022, pp. 346–356.
+[10] M. Weigold, J. Barzen, F. Leymann, and M. Salm, “Encoding patterns for quantum algorithms,” IET Quantum Communi-
+     cation, vol. 2, no. 4, pp. 141–152, 2021.
+
+                                                                          , Vol. 1, No. 1, Article . Publication date: March 2025.
+16                                                         Vincenzo De Maio, Ivona Brandic, Ewa Deelman, and Jürgen Cito
+
+
+[11] M. Kaul, A. Küchler, and C. Banse, “A uniform representation of classical and quantum source code for static code
+     analysis,” arXiv preprint arXiv:2308.06113, 2023.
+[12] L. Jiménez-Navajas, R. Pérez-Castillo, and M. Piattini, “Reverse engineering of quantum programs toward kdm models,”
+     in International Conference on the Quality of Information and Communications Technology. Springer, 2020, pp. 249–262.
+[13] S. Ali and T. Yue, “Modeling quantum programs: Challenges, initial results, and research directions,” in Proceedings of
+     the 1st ACM SIGSOFT International Workshop on Architectures and Paradigms for Engineering Quantum Software, 2020,
+     pp. 14–21.
+[14] V. D. Maio and I. Brandic, “Accelerating scientific applications with the quantum edge: A drug design use case,” in
+     High Performance Computing - ISC High Performance 2023 International Workshops, Hamburg, Germany, May 21-25,
+     2023, Revised Selected Papers, ser. Lecture Notes in Computer Science, A. Bienz, M. Weiland, M. Baboulin, and C. Kruse,
+     Eds., vol. 13999. Springer, 2023, pp. 134–143. [Online]. Available: https://doi.org/10.1007/978-3-031-40843-4_11
+[15] J. Preskill, “Quantum Computing in the NISQ era and beyond,” Quantum, vol. 2, p. 79, Aug. 2018. [Online]. Available:
+     https://doi.org/10.22331/q-2018-08-06-79
+[16] J. Luo, P. Zhao, Z. Miao, S. Lan, and J. Zhao, “A comprehensive study of bug fixes in quantum programs,” in Proceedings
+     - 2022 IEEE International Conference on Software Analysis, Evolution and Reengineering, SANER 2022, ser. Proceedings -
+     2022 IEEE International Conference on Software Analysis, Evolution and Reengineering, SANER 2022. United States:
+     Institute of Electrical and Electronics Engineers Inc., 2022, pp. 1239–1246, publisher Copyright: © 2022 IEEE.; 29th
+     IEEE International Conference on Software Analysis, Evolution and Reengineering, SANER 2022 ; Conference date:
+     15-03-2022 Through 18-03-2022.
+[17] M. De Stefano, F. Pecorelli, D. Di Nucci, F. Palomba, and A. De Lucia, “Software engineering for quantum programming:
+     How far are we?” Journal of Systems and Software, vol. 190, p. 111326, 2022.
+[18] B. Weder, J. Barzen, F. Leymann, and D. Vietz, “Quantum software development lifecycle,” in Quantum Software
+     Engineering. Springer, 2022, pp. 61–83.
+[19] P. Zhao, J. Zhao, Z. Miao, and S. Lan, “Bugs4q: A benchmark of real bugs for quantum programs,” in Proceedings - 2021
+     36th IEEE/ACM International Conference on Automated Software Engineering, ASE 2021, ser. Proceedings - 2021 36th
+     IEEE/ACM International Conference on Automated Software Engineering, ASE 2021. United States: Institute of
+     Electrical and Electronics Engineers Inc., 2021, pp. 1373–1379, publisher Copyright: © 2021 IEEE.; 36th IEEE/ACM
+     International Conference on Automated Software Engineering, ASE 2021 ; Conference date: 15-11-2021 Through
+     19-11-2021.
+[20] M. Paltenghi and M. Pradel, “Bugs in quantum computing platforms: an empirical study,” Proceedings of the ACM on
+     Programming Languages, vol. 6, no. OOPSLA1, pp. 1–27, 2022.
+[21] S. Ali, P. Arcaini, X. Wang, and T. Yue, “Assessing the effectiveness of input and output coverage criteria for testing
+     quantum programs,” in 2021 14th IEEE Conference on Software Testing, Verification and Validation (ICST). IEEE, 2021,
+     pp. 13–23.
+[22] J. Wang, Q. Zhang, G. H. Xu, and M. Kim, “Qdiff: Differential testing of quantum software stacks,” in 2021 36th IEEE/ACM
+     International Conference on Automated Software Engineering (ASE). IEEE, 2021, pp. 692–704.
+[23] D. Fortunato, J. Campos, and R. Abreu, “Mutation testing of quantum programs: A case study with qiskit,” IEEE
+     Transactions on Quantum Engineering, vol. 3, pp. 1–17, 2022.
+[24] A. Ahmad, A. A. Khan, M. Waseem, M. Fahmideh, and T. Mikkonen, “Towards process centered architecting for
+     quantum software systems,” in 2022 IEEE International Conference on Quantum Software (QSW). IEEE, 2022, pp. 26–31.
+[25] H. Li, F. Khomh, M. Openja et al., “Understanding quantum software engineering challenges an empirical study on
+     stack exchange forums and github issues,” in 2021 IEEE International Conference on Software Maintenance and Evolution
+     (ICSME). IEEE, 2021, pp. 343–354.
+[26] M. A. Akbar, S. Rafi, and A. A. Khan, “Classical to quantum software migration journey begins: A conceptual readiness
+     model,” in International Conference on Product-Focused Software Process Improvement. Springer, 2022, pp. 563–573.
+[27] A. García de la Barrera, I. García-Rodríguez de Guzmán, M. Polo, and M. Piattini, “Quantum software testing: State of
+     the art,” Journal of Software: Evolution and Process, p. e2419, 2021.
+[28] J. Wang, M. Gao, Y. Jiang, J. Lou, Y. Gao, D. Zhang, and J. Sun, “Quanfuzz: Fuzz testing of quantum program,” arXiv
+     preprint arXiv:1810.10310, 2018.
+[29] W.-L. Chang, J.-C. Chen, W.-Y. Chung, C.-Y. Hsiao, R. Wong, and A. V. Vasilakos, “Quantum speedup and mathematical
+     solutions of implementing bio-molecular solutions for the independent set problem on ibm quantum computers,” IEEE
+     Transactions on NanoBioscience, vol. 20, no. 3, pp. 354–376, 2021.
+[30] X. Xu, J. Sun, S. Endo, Y. Li, S. C. Benjamin, and X. Yuan, “Variational algorithms for linear algebra,” Science Bulletin,
+     vol. 66, no. 21, pp. 2181–2188, 2021.
+[31] J. Biamonte, P. Wittek, N. Pancotti, P. Rebentrost, N. Wiebe, and S. Lloyd, “Quantum machine learning,” Nature, vol.
+     549, no. 7671, pp. 195–202, 2017.
+[32] C. Easttom, “Quantum computing and cryptography,” in Modern Cryptography. Springer, 2022, pp. 397–407.
+
+
+, Vol. 1, No. 1, Article . Publication date: March 2025.
+The Road to Hybrid Quantum Programs: Characterizing the Evolution from Classical to Hybrid Quantum Software                  17
+
+
+[33] A. M. Niklasson and M. J. Cawkwell, “Fast method for quantum mechanical molecular dynamics,” Physical Review B,
+     vol. 86, no. 17, p. 174308, 2012.
+[34] A. Matic, M. Monnet, J. M. Lorenz, B. Schachtner, and T. Messerer, “Quantum-classical convolutional neural networks
+     in radiological image classification,” 2022. [Online]. Available: https://arxiv.org/abs/2204.12390
+[35] A. J. Daley, I. Bloch, C. Kokail, S. Flannigan, N. Pearson, M. Troyer, and P. Zoller, “Practical quantum advantage in
+     quantum simulation,” Nature, vol. 607, no. 7920, pp. 667–676, 2022.
+[36] M. Cerezo, G. Verdon, H.-Y. Huang, L. Cincio, and P. J. Coles, “Challenges and opportunities in quantum machine
+     learning,” Nature Computational Science, vol. 2, no. 9, pp. 567–576, 2022.
+[37] M. Cerezo, A. Arrasmith, R. Babbush, S. C. Benjamin, S. Endo, K. Fujii, J. R. McClean, K. Mitarai, X. Yuan, L. Cincio
+     et al., “Variational quantum algorithms,” Nature Reviews Physics, vol. 3, no. 9, pp. 625–644, 2021.
+[38] M. Cerezo, K. Sharma, A. Arrasmith, and P. J. Coles, “Variational quantum state eigensolver,” npj Quantum Information,
+     vol. 8, no. 1, pp. 1–11, 2022.
+[39] C. Ellis, T. E. Adams, and A. P. Bochner, “Autoethnography: an overview,” Historical social research/Historische sozial-
+     forschung, pp. 273–290, 2011.
+[40] W. J. Orlikowski and J. J. Baroudi, “Studying information technology in organizations: Research approaches and
+     assumptions,” Information systems research, vol. 2, no. 1, pp. 1–28, 1991.
+[41] S. Gasson, “Rigor in grounded theory research: An interpretive perspective on generating theory from qualitative field
+     studies,” in The handbook of information systems research. IGI Global, 2004, pp. 79–102.
+[42] V. Clarke, V. Braun, and N. Hayfield, “Thematic analysis,” Qualitative psychology: A practical guide to research methods,
+     vol. 3, pp. 222–248, 2015.
+[43] T. Klijnsma and T. Steenvoorden, “Semantic equivalence of task-oriented programs in tophat,” in Trends in Functional
+     Programming: 23rd International Symposium, TFP 2022, Virtual Event, March 17–18, 2022, Revised Selected Papers.
+     Springer, 2023, pp. 100–125.
+[44] A. M. Pitts, “Operational semantics and program equivalence,” in Applied Semantics: International Summer School,
+     APPSEM 2000 Caminha, Portugal, September 9–15, 2000 Advanced Lectures. Springer, 2002, pp. 378–412.
+[45] “Pegasus workflow management system,” https://pegasus.isi.edu/, [Online].
+[46] R. Tanaka, G. Papadimitriou, S. C. Viswanath, C. Wang, E. Lyons, K. Thareja, C. Qu, A. Esquivel, E. Deelman, A. Mandal
+     et al., “Automating edge-to-cloud workflows for science: Traversing the edge-to-cloud continuum with pegasus,” in
+     2022 22nd IEEE International Symposium on Cluster, Cloud and Internet Computing (CCGrid). IEEE, 2022, pp. 826–833.
+[47] L. Domingo, G. Carlo, and F. Borondo, “Taking advantage of noise in quantum reservoir computing,” Scientific Reports,
+     vol. 13, no. 1, p. 8790, 2023.
+[48] D. F. Locher, L. Cardarelli, and M. Müller, “Quantum Error Correction with Quantum Autoencoders,” Quantum, vol. 7,
+     p. 942, Mar. 2023. [Online]. Available: https://doi.org/10.22331/q-2023-03-09-942
+[49] V. Sivak, A. Eickbusch, B. Royer, S. Singh, I. Tsioutsios, S. Ganjam, A. Miano, B. Brock, A. Ding, L. Frunzio et al.,
+     “Real-time quantum error correction beyond break-even,” Nature, vol. 616, no. 7955, pp. 50–55, 2023.
+[50] N. A. Nghiem and T.-C. Wei, “Quantum algorithm for estimating eigenvalue,” 2023.
+[51] A. Christopoulou, E. A. Giakoumakis, V. E. Zafeiris, and V. Soukara, “Automated refactoring to the strategy design
+     pattern,” Information and Software Technology, vol. 54, no. 11, pp. 1202–1214, 2012.
+[52] D. Vietz, J. Barzen, F. Leymann, and B. Weder, “Splitting quantum-classical scripts for the generation of quantum
+     workflows,” in International Conference on Enterprise Design, Operations, and Computing. Springer, 2022, pp. 255–270.
+[53] G. Pontolillo and M. R. Mousavi, “A multi-lingual benchmark for property-based testing of quantum programs,” in
+     2022 IEEE/ACM 3rd International Workshop on Quantum Software Engineering (Q-SE). IEEE, 2022, pp. 1–7.
+[54] Y. Chen, T. Su, C. Sun, Z. Su, and J. Zhao, “Coverage-directed differential testing of jvm implementations,” in proceedings
+     of the 37th ACM SIGPLAN Conference on Programming Language Design and Implementation, 2016, pp. 85–99.
+[55] Y. Chen, T. Su, and Z. Su, “Deep differential testing of jvm implementations,” in 2019 IEEE/ACM 41st International
+     Conference on Software Engineering (ICSE). IEEE, 2019, pp. 1257–1268.
+[56] G. Barany, “Finding missed compiler optimizations by differential testing,” in Proceedings of the 27th international
+     conference on compiler construction, 2018, pp. 82–92.
+[57] T. Kapus and C. Cadar, “Automatic testing of symbolic execution engines via program generation and differential
+     testing,” in 2017 32nd IEEE/ACM International Conference on Automated Software Engineering (ASE). IEEE, 2017, pp.
+     590–600.
+[58] C. Klinger, M. Christakis, and V. Wüstholz, “Differentially testing soundness and precision of program analyzers,” in
+     Proceedings of the 28th ACM SIGSOFT International Symposium on Software Testing and Analysis, 2019, pp. 239–250.
+[59] Z. Cui, W. Dou, Q. Dai, J. Song, W. Wang, J. Wei, and D. Ye, “Differentially testing database transactions for fun and
+     profit,” in Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering, 2022, pp. 1–12.
+[60] M. Lamothe, Y.-G. Guéhéneuc, and W. Shang, “A systematic review of api evolution literature,” ACM Computing Surveys
+     (CSUR), vol. 54, no. 8, pp. 1–36, 2021.
+
+
+                                                                        , Vol. 1, No. 1, Article . Publication date: March 2025.
+18                                                               Vincenzo De Maio, Ivona Brandic, Ewa Deelman, and Jürgen Cito
+
+
+   In this appendix, we provide a representative set the code listings that we analyzed during our
+study.
+
+      def p h i _ r e g ( s e l f , A , B ) :
+          p h i = [ np . a r r a y ( [ s e l f . norm ( A , B ) [ 0 ] [ i ] /
+                                  ( s e l f . norm_factor (A, B ) [ i ] ) , −
+                                  s e l f . norm ( A , B ) [ 1 ] [ i ] /
+                                  ( s e l f . norm_factor (A, B ) [ i ] ) ] )
+                        f o r i in range ( len ( s e l f . norm ( A , B ) [ 0 ] ) ) ]
+          return p h i
+
+      def p s i _ r e g ( s e l f , A , B ) :
+          psi = []
+          vec = s e l f . vector_padding (A, B )
+          f o r i in range ( len ( v e c [ 0 ] ) ) :
+                  p s i . append ( ( v e c [ 0 ] [ i ] ) /
+                          ( s e l f . norm ( A , B ) [ 0 ] [ i ] ∗ np . s q r t ( 2 ) ) )
+                  p s i . append ( ( v e c [ 1 ] [ i ] ) /
+                          ( s e l f . norm ( A , B ) [ 1 ] [ i ] ∗ np . s q r t ( 2 ) ) )
+
+           return np . a r r a y ( p s i ) .
+                           r e s h a p e ( len ( A ) , 2 ∗ ∗ ( v e c [ 2 ] ) )
+      %\ end { m i n t e d }
+
+
+                                        Fig. 7. Amplitude Encoding (commit 029af9e)
+
+
+
+      levs = []
+      segs = []
+      n s e g s = len ( a t o m _ i n d e x _ g r o u p s )
+      f o r i in range ( n s e g s ) :
+              f o r j in range ( i + 1 , n s e g s ) :
+                    seg1 = p o i n t s [ atom_index_groups [ i ] ]
+                    seg2 = p o i n t s [ atom_index_groups [ j ] ]
+                    s e g s . append ( [ s e g1 , s e g 2 ] )
+
+      seg1 = segs [ 0 ]
+      seg2 = segs [ 1 ]
+      s e g 1 _ l = len ( s e g 1 )
+      s e g 2 _ l = len ( s e g 2 )
+      d = d i s t a n c e . c d i s t ( se g 1 , s eg 2 , ' s q e u c l i d e a n ' )
+      d t = np . t r a n s p o s e ( d )
+      z 1 = np . z e r o s ( ( s e g 1 _ l , s e g 1 _ l ) )
+      z 2 = np . z e r o s ( ( s e g 2 _ l , s e g 2 _ l ) )
+      bpm = np . b l o c k ( [ [ z1 , d ] , [ dt , z 2 ] ] )
+      l e v = l i n _ a l g . e i g v a l s h ( bpm ) [ − 1 ]
+      return l e v
+
+
+                    Fig. 8. Classic Computation of Distance Matrix and LEV. (commit 75c745f )
+
+
+
+, Vol. 1, No. 1, Article . Publication date: March 2025.
+The Road to Hybrid Quantum Programs: Characterizing the Evolution from Classical to Hybrid Quantum Software                        19
+
+
+     def a p p l y _ s w a p _ t e s t ( a , b )
+         q1 = Q u a n t u m R e g i s t e r ( s e l f . _aux , name= ' c o n t r o l _ 0 ' )
+         q2 = Q u a n t u m R e g i s t e r ( s e l f . _qr1n , name= ' q r _ 1 ' )
+         q3 = Q u a n t u m R e g i s t e r ( s e l f . _qr2n , name= ' q r _ 2 ' )
+         c = C l a s s i c a l R e g i s t e r ( s e l f . _crn , name= ' c ' )
+         qc = Q u a n t u m C i r c u i t ( q1 , q2 , q3 , c )
+
+           qc . i n i t i a l i z e ( a , q2 [ 0 : s e l f . _ q r 1 n ] )
+           qc . i n i t i a l i z e ( b , q3 [ 0 : s e l f . _ q r 2 n ] )
+           qc . b a r r i e r ( )
+           qc . h ( q1 [ 0 ] )
+           qc . cswap ( q1 [ 0 ] , q2 [ 0 ] , q3 [ 0 ] )
+           qc . h ( q1 [ 0 ] )
+           qc . b a r r i e r ( )
+           qc . measure ( q1 , c )
+
+           return qc
+
+
+                                     Fig. 9. SWAP Test Circuit Code (commit 029af9e)
+
+     vqe = VQE( − q u b i t _ o p , v a r i a t i o n a l _ f o r m , o p t i m i z e r )
+     r e t = vqe . run ( q u a n t u m _ i n s t a n c e )
+     v q e _ r e s u l t = np . r e a l ( r e t [ ' e i g e n v a l u e ' ] )
+
+
+                                 Fig. 10. LEV Calculation Source Code(commit 887a34b)
+
+     vqe_inputs = {
+         ' ansatz ' : ansatz ,
+         ' operator ' : qubit_op ,
+         ' optimizer ' : optimizer ,
+         ' initial_point ' :
+                        np . random . random ( a n s a t z . num_parameters ) ,
+         ' m e a s u r e m e n t _ e r r o r _ m i t i g a t i o n ' : True ,
+         ' s h o t s ' : 1024
+         }
+
+            j o b = p r o v i d e r . r u n t i m e . run ( p r o g r a m _ i d = ' vqe ' ,
+                                                                inputs =vqe_inputs ,
+                                                                options=options )
+
+
+                                          Fig. 11. Error Mitigation (commit 6094be7)
+
+
+
+
+                                                                              , Vol. 1, No. 1, Article . Publication date: March 2025.
+20                                                                 Vincenzo De Maio, Ivona Brandic, Ewa Deelman, and Jürgen Cito
+
+
+      def c a l c _ e i g v a l _ q u a n t u m ( bpm , a n s a t z , backend ,
+      optimizer ) :
+          q u b i t _ o p = MatrixOp ( −bpm )
+
+            vqe_inputs = {
+                    ' ansatz ' : ansatz ,
+                    ' operator ' : qubit_op ,
+                    ' optimizer ' : optimizer ,
+                    ' initial_point ' :
+                           np . random . random ( a n s a t z .
+                           num_parameters ) ,
+                    ' m e a s u r e m e n t _ e r r o r _ m i t i g a t i o n ' : True ,
+                    ' s h o t s ' : 1024
+            }
+            options = {
+                    ' backend_name ' : backend ,
+            }
+            p r o v i d e r = IBMQ . g e t _ p r o v i d e r ( 'XXX ' ,
+                            'XXXX ' , ' main ' )
+            job = provider . runtime
+                            . run ( p r o g r a m _ i d = ' vqe ' ,
+                                   inputs =vqe_inputs ,
+                                   options=options )
+
+            while j o b . s t a t u s ( ) ! = J o b S t a t u s . RUNNING
+                  and j o b . s t a t u s ( ) ! = J o b S t a t u s . ERROR :
+            pass
+            i f j o b . s t a t u s ( ) == J o b S t a t u s . ERROR :
+                  print ( job . error_message ( ) )
+                  print ( job . logs ( ) )
+
+            s t a r t = time . time ( )
+            res = job . r e s u l t ( )
+            end = t i m e . t i m e ( )
+            return [ − np . r e a l ( r e s [ ' e i g e n v a l u e ' ] ) ,
+                        end − s t a r t ]
+
+      def c a l c _ e i g v a l _ c l a s s i c ( bpm ) :
+          l e v s = l i n _ a l g . e i g v a l s h ( bpm ) [ − 1 ]
+          return l e v s
+
+
+                               Fig. 12. Quantum-Classical Eigenvalues (commit 6094be7)
+
+
+
+
+, Vol. 1, No. 1, Article . Publication date: March 2025.
+The Road to Hybrid Quantum Programs: Characterizing the Evolution from Classical to Hybrid Quantum Software                     21
+
+
+     def e x t r a c t _ b p m ( s e g s , d i s t _ f u n c t i o n ) :
+         seg1 = segs [ 0 ] [ 0 ]
+         seg2 = segs [ 1 ] [ 0 ]
+
+            s e g 1 _ l = len ( s e g 1 )
+            s e g 2 _ l = len ( s e g 2 )
+            d = d i s t _ f u n c t i o n ( se g 1 , s e g 2 )
+
+            d t = np . t r a n s p o s e ( d )
+            z 1 = np . z e r o s ( ( s e g 1 _ l , s e g 1 _ l ) )
+            z 2 = np . z e r o s ( ( s e g 2 _ l , s e g 2 _ l ) )
+            bpm = np . b l o c k ( [ [ z1 , d ] , [ dt , z 2 ] ] )
+            return bpm
+
+
+                                Fig. 13. Integration of BPM calculation (commit 6094be7)
+
+
+
+
+                                                                           , Vol. 1, No. 1, Article . Publication date: March 2025.
+

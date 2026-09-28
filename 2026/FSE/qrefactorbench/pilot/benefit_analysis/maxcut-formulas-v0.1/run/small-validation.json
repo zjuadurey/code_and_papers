@@ -1,0 +1,4772 @@
+[
+  {
+    "n": 4,
+    "seed": 20260928,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        5
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        2,
+        3,
+        1
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999984,
+    "resources": {
+      "logical_qubits": 4,
+      "counts": {
+        "h": 4,
+        "cx": 12,
+        "rz": 6,
+        "rx": 4,
+        "measure": 4
+      },
+      "unitary_gate_count": 26,
+      "scheduled_depth_with_measurement": 12,
+      "two_qubit_layers": 6,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 11,
+    "minimum_mask": 3,
+    "ideal_any_optimum_probability": 0.32008252147247745,
+    "ideal_canonical_pair_probability": 0.32008252147247745,
+    "iid_64_shot_contains_canonical_pair_probability": 0.9999999999810679,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 4,
+    "seed": 20260928,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        5
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        2,
+        3,
+        1
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999976,
+    "resources": {
+      "logical_qubits": 4,
+      "counts": {
+        "h": 4,
+        "cx": 24,
+        "rz": 12,
+        "rx": 8,
+        "measure": 4
+      },
+      "unitary_gate_count": 48,
+      "scheduled_depth_with_measurement": 22,
+      "two_qubit_layers": 12,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 11,
+    "minimum_mask": 3,
+    "ideal_any_optimum_probability": 0.33570752147247696,
+    "ideal_canonical_pair_probability": 0.33570752147247696,
+    "iid_64_shot_contains_canonical_pair_probability": 0.9999999999957244,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 4,
+    "seed": 20260928,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        5
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        2,
+        3,
+        1
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999973,
+    "resources": {
+      "logical_qubits": 4,
+      "counts": {
+        "h": 4,
+        "cx": 48,
+        "rz": 24,
+        "rx": 16,
+        "measure": 4
+      },
+      "unitary_gate_count": 92,
+      "scheduled_depth_with_measurement": 42,
+      "two_qubit_layers": 24,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 11,
+    "minimum_mask": 3,
+    "ideal_any_optimum_probability": 0.16266459228019844,
+    "ideal_canonical_pair_probability": 0.16266459228019844,
+    "iid_64_shot_contains_canonical_pair_probability": 0.9999883703886787,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 4,
+    "seed": 20260929,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        3,
+        2
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        1,
+        3,
+        2
+      ],
+      [
+        2,
+        3,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999982,
+    "resources": {
+      "logical_qubits": 4,
+      "counts": {
+        "h": 4,
+        "cx": 12,
+        "rz": 6,
+        "rx": 4,
+        "measure": 4
+      },
+      "unitary_gate_count": 26,
+      "scheduled_depth_with_measurement": 12,
+      "two_qubit_layers": 6,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 14,
+    "minimum_mask": 3,
+    "ideal_any_optimum_probability": 0.3749999999999999,
+    "ideal_canonical_pair_probability": 0.12499999999999994,
+    "iid_64_shot_contains_canonical_pair_probability": 0.9998056809433629,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 4,
+    "seed": 20260929,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        3,
+        2
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        1,
+        3,
+        2
+      ],
+      [
+        2,
+        3,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999984,
+    "resources": {
+      "logical_qubits": 4,
+      "counts": {
+        "h": 4,
+        "cx": 24,
+        "rz": 12,
+        "rx": 8,
+        "measure": 4
+      },
+      "unitary_gate_count": 48,
+      "scheduled_depth_with_measurement": 22,
+      "two_qubit_layers": 12,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 14,
+    "minimum_mask": 3,
+    "ideal_any_optimum_probability": 0.11718750000000003,
+    "ideal_canonical_pair_probability": 0.03906250000000002,
+    "iid_64_shot_contains_canonical_pair_probability": 0.9219291200033382,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 4,
+    "seed": 20260929,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        3,
+        2
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        1,
+        3,
+        2
+      ],
+      [
+        2,
+        3,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999973,
+    "resources": {
+      "logical_qubits": 4,
+      "counts": {
+        "h": 4,
+        "cx": 48,
+        "rz": 24,
+        "rx": 16,
+        "measure": 4
+      },
+      "unitary_gate_count": 92,
+      "scheduled_depth_with_measurement": 42,
+      "two_qubit_layers": 24,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 14,
+    "minimum_mask": 3,
+    "ideal_any_optimum_probability": 0.09960937500000011,
+    "ideal_canonical_pair_probability": 0.033203125000000056,
+    "iid_64_shot_contains_canonical_pair_probability": 0.8847992704835498,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 4,
+    "seed": 20260930,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        3,
+        4
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        2,
+        3,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999989,
+    "resources": {
+      "logical_qubits": 4,
+      "counts": {
+        "h": 4,
+        "cx": 12,
+        "rz": 6,
+        "rx": 4,
+        "measure": 4
+      },
+      "unitary_gate_count": 26,
+      "scheduled_depth_with_measurement": 12,
+      "two_qubit_layers": 6,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 15,
+    "minimum_mask": 3,
+    "ideal_any_optimum_probability": 0.018305826175840832,
+    "ideal_canonical_pair_probability": 0.018305826175840832,
+    "iid_64_shot_contains_canonical_pair_probability": 0.6934666956619946,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 4,
+    "seed": 20260930,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        3,
+        4
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        2,
+        3,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.999999999999998,
+    "resources": {
+      "logical_qubits": 4,
+      "counts": {
+        "h": 4,
+        "cx": 24,
+        "rz": 12,
+        "rx": 8,
+        "measure": 4
+      },
+      "unitary_gate_count": 48,
+      "scheduled_depth_with_measurement": 22,
+      "two_qubit_layers": 12,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 15,
+    "minimum_mask": 3,
+    "ideal_any_optimum_probability": 0.0026808261758407737,
+    "ideal_canonical_pair_probability": 0.0026808261758407737,
+    "iid_64_shot_contains_canonical_pair_probability": 0.15785516429506236,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 4,
+    "seed": 20260930,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        3,
+        4
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        2,
+        3,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999973,
+    "resources": {
+      "logical_qubits": 4,
+      "counts": {
+        "h": 4,
+        "cx": 48,
+        "rz": 24,
+        "rx": 16,
+        "measure": 4
+      },
+      "unitary_gate_count": 92,
+      "scheduled_depth_with_measurement": 42,
+      "two_qubit_layers": 24,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 15,
+    "minimum_mask": 3,
+    "ideal_any_optimum_probability": 0.008329951686925283,
+    "ideal_canonical_pair_probability": 0.008329951686925283,
+    "iid_64_shot_contains_canonical_pair_probability": 0.4145355032161915,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 6,
+    "seed": 20260928,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        1
+      ],
+      [
+        0,
+        5,
+        2
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        1,
+        3,
+        3
+      ],
+      [
+        1,
+        4,
+        3
+      ],
+      [
+        1,
+        5,
+        5
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        2,
+        4,
+        5
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        4
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.999999999999998,
+    "resources": {
+      "logical_qubits": 6,
+      "counts": {
+        "h": 6,
+        "cx": 24,
+        "rz": 12,
+        "rx": 6,
+        "measure": 6
+      },
+      "unitary_gate_count": 48,
+      "scheduled_depth_with_measurement": 21,
+      "two_qubit_layers": 12,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 27,
+    "minimum_mask": 19,
+    "ideal_any_optimum_probability": 0.015052942932004997,
+    "ideal_canonical_pair_probability": 0.015052942932004997,
+    "iid_64_shot_contains_canonical_pair_probability": 0.6211870984108037,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 6,
+    "seed": 20260928,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        1
+      ],
+      [
+        0,
+        5,
+        2
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        1,
+        3,
+        3
+      ],
+      [
+        1,
+        4,
+        3
+      ],
+      [
+        1,
+        5,
+        5
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        2,
+        4,
+        5
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        4
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999971,
+    "resources": {
+      "logical_qubits": 6,
+      "counts": {
+        "h": 6,
+        "cx": 48,
+        "rz": 24,
+        "rx": 12,
+        "measure": 6
+      },
+      "unitary_gate_count": 90,
+      "scheduled_depth_with_measurement": 40,
+      "two_qubit_layers": 24,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 27,
+    "minimum_mask": 19,
+    "ideal_any_optimum_probability": 0.01082416661074875,
+    "ideal_canonical_pair_probability": 0.01082416661074875,
+    "iid_64_shot_contains_canonical_pair_probability": 0.5016851346214223,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 6,
+    "seed": 20260928,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        1
+      ],
+      [
+        0,
+        5,
+        2
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        1,
+        3,
+        3
+      ],
+      [
+        1,
+        4,
+        3
+      ],
+      [
+        1,
+        5,
+        5
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        2,
+        4,
+        5
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        4
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999964,
+    "resources": {
+      "logical_qubits": 6,
+      "counts": {
+        "h": 6,
+        "cx": 96,
+        "rz": 48,
+        "rx": 24,
+        "measure": 6
+      },
+      "unitary_gate_count": 174,
+      "scheduled_depth_with_measurement": 78,
+      "two_qubit_layers": 48,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 27,
+    "minimum_mask": 19,
+    "ideal_any_optimum_probability": 0.012428262958309854,
+    "ideal_canonical_pair_probability": 0.012428262958309854,
+    "iid_64_shot_contains_canonical_pair_probability": 0.5508475620275455,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 6,
+    "seed": 20260929,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        2
+      ],
+      [
+        0,
+        4,
+        1
+      ],
+      [
+        0,
+        5,
+        5
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        3,
+        3
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        2,
+        4,
+        1
+      ],
+      [
+        2,
+        5,
+        2
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.999999999999998,
+    "resources": {
+      "logical_qubits": 6,
+      "counts": {
+        "h": 6,
+        "cx": 24,
+        "rz": 12,
+        "rx": 6,
+        "measure": 6
+      },
+      "unitary_gate_count": 48,
+      "scheduled_depth_with_measurement": 21,
+      "two_qubit_layers": 12,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 24,
+    "minimum_mask": 21,
+    "ideal_any_optimum_probability": 0.007812499999999983,
+    "ideal_canonical_pair_probability": 0.007812499999999983,
+    "iid_64_shot_contains_canonical_pair_probability": 0.394659008556303,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 6,
+    "seed": 20260929,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        2
+      ],
+      [
+        0,
+        4,
+        1
+      ],
+      [
+        0,
+        5,
+        5
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        3,
+        3
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        2,
+        4,
+        1
+      ],
+      [
+        2,
+        5,
+        2
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999976,
+    "resources": {
+      "logical_qubits": 6,
+      "counts": {
+        "h": 6,
+        "cx": 48,
+        "rz": 24,
+        "rx": 12,
+        "measure": 6
+      },
+      "unitary_gate_count": 90,
+      "scheduled_depth_with_measurement": 40,
+      "two_qubit_layers": 24,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 24,
+    "minimum_mask": 21,
+    "ideal_any_optimum_probability": 0.030489447341516276,
+    "ideal_canonical_pair_probability": 0.030489447341516276,
+    "iid_64_shot_contains_canonical_pair_probability": 0.8621640214553196,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 6,
+    "seed": 20260929,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        2
+      ],
+      [
+        0,
+        4,
+        1
+      ],
+      [
+        0,
+        5,
+        5
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        3,
+        3
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        2,
+        4,
+        1
+      ],
+      [
+        2,
+        5,
+        2
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.999999999999996,
+    "resources": {
+      "logical_qubits": 6,
+      "counts": {
+        "h": 6,
+        "cx": 96,
+        "rz": 48,
+        "rx": 24,
+        "measure": 6
+      },
+      "unitary_gate_count": 174,
+      "scheduled_depth_with_measurement": 78,
+      "two_qubit_layers": 48,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 24,
+    "minimum_mask": 21,
+    "ideal_any_optimum_probability": 0.012137912563958169,
+    "ideal_canonical_pair_probability": 0.012137912563958169,
+    "iid_64_shot_contains_canonical_pair_probability": 0.542317437406705,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 6,
+    "seed": 20260930,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        4,
+        2
+      ],
+      [
+        0,
+        5,
+        4
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        4,
+        5
+      ],
+      [
+        1,
+        5,
+        5
+      ],
+      [
+        2,
+        3,
+        5
+      ],
+      [
+        2,
+        4,
+        3
+      ],
+      [
+        3,
+        4,
+        2
+      ],
+      [
+        3,
+        5,
+        3
+      ],
+      [
+        4,
+        5,
+        3
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999982,
+    "resources": {
+      "logical_qubits": 6,
+      "counts": {
+        "h": 6,
+        "cx": 24,
+        "rz": 12,
+        "rx": 6,
+        "measure": 6
+      },
+      "unitary_gate_count": 48,
+      "scheduled_depth_with_measurement": 18,
+      "two_qubit_layers": 10,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 34,
+    "minimum_mask": 11,
+    "ideal_any_optimum_probability": 0.13660376073623867,
+    "ideal_canonical_pair_probability": 0.13660376073623867,
+    "iid_64_shot_contains_canonical_pair_probability": 0.9999173106135665,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 6,
+    "seed": 20260930,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        4,
+        2
+      ],
+      [
+        0,
+        5,
+        4
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        4,
+        5
+      ],
+      [
+        1,
+        5,
+        5
+      ],
+      [
+        2,
+        3,
+        5
+      ],
+      [
+        2,
+        4,
+        3
+      ],
+      [
+        3,
+        4,
+        2
+      ],
+      [
+        3,
+        5,
+        3
+      ],
+      [
+        4,
+        5,
+        3
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999973,
+    "resources": {
+      "logical_qubits": 6,
+      "counts": {
+        "h": 6,
+        "cx": 48,
+        "rz": 24,
+        "rx": 12,
+        "measure": 6
+      },
+      "unitary_gate_count": 90,
+      "scheduled_depth_with_measurement": 34,
+      "two_qubit_layers": 20,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 34,
+    "minimum_mask": 11,
+    "ideal_any_optimum_probability": 0.06354473159511194,
+    "ideal_canonical_pair_probability": 0.06354473159511194,
+    "iid_64_shot_contains_canonical_pair_probability": 0.9850317721089206,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 6,
+    "seed": 20260930,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        4,
+        2
+      ],
+      [
+        0,
+        5,
+        4
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        4,
+        5
+      ],
+      [
+        1,
+        5,
+        5
+      ],
+      [
+        2,
+        3,
+        5
+      ],
+      [
+        2,
+        4,
+        3
+      ],
+      [
+        3,
+        4,
+        2
+      ],
+      [
+        3,
+        5,
+        3
+      ],
+      [
+        4,
+        5,
+        3
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.999999999999996,
+    "resources": {
+      "logical_qubits": 6,
+      "counts": {
+        "h": 6,
+        "cx": 96,
+        "rz": 48,
+        "rx": 24,
+        "measure": 6
+      },
+      "unitary_gate_count": 174,
+      "scheduled_depth_with_measurement": 66,
+      "two_qubit_layers": 40,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 34,
+    "minimum_mask": 11,
+    "ideal_any_optimum_probability": 0.05364498978027894,
+    "ideal_canonical_pair_probability": 0.05364498978027894,
+    "iid_64_shot_contains_canonical_pair_probability": 0.9706599069929162,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 8,
+    "seed": 20260928,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        3
+      ],
+      [
+        0,
+        4,
+        3
+      ],
+      [
+        0,
+        7,
+        5
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        2,
+        3,
+        2
+      ],
+      [
+        2,
+        4,
+        2
+      ],
+      [
+        2,
+        5,
+        5
+      ],
+      [
+        2,
+        6,
+        5
+      ],
+      [
+        3,
+        4,
+        4
+      ],
+      [
+        3,
+        6,
+        1
+      ],
+      [
+        3,
+        7,
+        5
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        5,
+        6,
+        5
+      ],
+      [
+        6,
+        7,
+        4
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999978,
+    "resources": {
+      "logical_qubits": 8,
+      "counts": {
+        "h": 8,
+        "cx": 32,
+        "rz": 16,
+        "rx": 8,
+        "measure": 8
+      },
+      "unitary_gate_count": 64,
+      "scheduled_depth_with_measurement": 21,
+      "two_qubit_layers": 12,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 42,
+    "minimum_mask": 107,
+    "ideal_any_optimum_probability": 0.018773238269271457,
+    "ideal_canonical_pair_probability": 0.018773238269271457,
+    "iid_64_shot_contains_canonical_pair_probability": 0.7026687133711794,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 8,
+    "seed": 20260928,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        3
+      ],
+      [
+        0,
+        4,
+        3
+      ],
+      [
+        0,
+        7,
+        5
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        2,
+        3,
+        2
+      ],
+      [
+        2,
+        4,
+        2
+      ],
+      [
+        2,
+        5,
+        5
+      ],
+      [
+        2,
+        6,
+        5
+      ],
+      [
+        3,
+        4,
+        4
+      ],
+      [
+        3,
+        6,
+        1
+      ],
+      [
+        3,
+        7,
+        5
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        5,
+        6,
+        5
+      ],
+      [
+        6,
+        7,
+        4
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999967,
+    "resources": {
+      "logical_qubits": 8,
+      "counts": {
+        "h": 8,
+        "cx": 64,
+        "rz": 32,
+        "rx": 16,
+        "measure": 8
+      },
+      "unitary_gate_count": 120,
+      "scheduled_depth_with_measurement": 40,
+      "two_qubit_layers": 24,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 42,
+    "minimum_mask": 107,
+    "ideal_any_optimum_probability": 0.014560248491473499,
+    "ideal_canonical_pair_probability": 0.014560248491473499,
+    "iid_64_shot_contains_canonical_pair_probability": 0.6088665642097619,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 8,
+    "seed": 20260928,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        3
+      ],
+      [
+        0,
+        4,
+        3
+      ],
+      [
+        0,
+        7,
+        5
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        2,
+        3,
+        2
+      ],
+      [
+        2,
+        4,
+        2
+      ],
+      [
+        2,
+        5,
+        5
+      ],
+      [
+        2,
+        6,
+        5
+      ],
+      [
+        3,
+        4,
+        4
+      ],
+      [
+        3,
+        6,
+        1
+      ],
+      [
+        3,
+        7,
+        5
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        5,
+        6,
+        5
+      ],
+      [
+        6,
+        7,
+        4
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999949,
+    "resources": {
+      "logical_qubits": 8,
+      "counts": {
+        "h": 8,
+        "cx": 128,
+        "rz": 64,
+        "rx": 32,
+        "measure": 8
+      },
+      "unitary_gate_count": 232,
+      "scheduled_depth_with_measurement": 78,
+      "two_qubit_layers": 48,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 42,
+    "minimum_mask": 107,
+    "ideal_any_optimum_probability": 0.002646611235956583,
+    "ideal_canonical_pair_probability": 0.002646611235956583,
+    "iid_64_shot_contains_canonical_pair_probability": 0.15600411585644944,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 8,
+    "seed": 20260929,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        6,
+        2
+      ],
+      [
+        0,
+        7,
+        5
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        4,
+        2
+      ],
+      [
+        1,
+        6,
+        5
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        2,
+        4,
+        2
+      ],
+      [
+        3,
+        4,
+        3
+      ],
+      [
+        3,
+        5,
+        1
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        4,
+        6,
+        4
+      ],
+      [
+        4,
+        7,
+        5
+      ],
+      [
+        5,
+        6,
+        3
+      ],
+      [
+        6,
+        7,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.999999999999998,
+    "resources": {
+      "logical_qubits": 8,
+      "counts": {
+        "h": 8,
+        "cx": 32,
+        "rz": 16,
+        "rx": 8,
+        "measure": 8
+      },
+      "unitary_gate_count": 64,
+      "scheduled_depth_with_measurement": 21,
+      "two_qubit_layers": 12,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 39,
+    "minimum_mask": 19,
+    "ideal_any_optimum_probability": 0.015619918144489438,
+    "ideal_canonical_pair_probability": 0.015051890445267734,
+    "iid_64_shot_contains_canonical_pair_probability": 0.6211611910544326,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 8,
+    "seed": 20260929,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        6,
+        2
+      ],
+      [
+        0,
+        7,
+        5
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        4,
+        2
+      ],
+      [
+        1,
+        6,
+        5
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        2,
+        4,
+        2
+      ],
+      [
+        3,
+        4,
+        3
+      ],
+      [
+        3,
+        5,
+        1
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        4,
+        6,
+        4
+      ],
+      [
+        4,
+        7,
+        5
+      ],
+      [
+        5,
+        6,
+        3
+      ],
+      [
+        6,
+        7,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999969,
+    "resources": {
+      "logical_qubits": 8,
+      "counts": {
+        "h": 8,
+        "cx": 64,
+        "rz": 32,
+        "rx": 16,
+        "measure": 8
+      },
+      "unitary_gate_count": 120,
+      "scheduled_depth_with_measurement": 40,
+      "two_qubit_layers": 24,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 39,
+    "minimum_mask": 19,
+    "ideal_any_optimum_probability": 0.02961557602247359,
+    "ideal_canonical_pair_probability": 0.010515677324105284,
+    "iid_64_shot_contains_canonical_pair_probability": 0.491640749775116,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 8,
+    "seed": 20260929,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        6,
+        2
+      ],
+      [
+        0,
+        7,
+        5
+      ],
+      [
+        1,
+        2,
+        4
+      ],
+      [
+        1,
+        4,
+        2
+      ],
+      [
+        1,
+        6,
+        5
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        2,
+        4,
+        2
+      ],
+      [
+        3,
+        4,
+        3
+      ],
+      [
+        3,
+        5,
+        1
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        4,
+        6,
+        4
+      ],
+      [
+        4,
+        7,
+        5
+      ],
+      [
+        5,
+        6,
+        3
+      ],
+      [
+        6,
+        7,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999953,
+    "resources": {
+      "logical_qubits": 8,
+      "counts": {
+        "h": 8,
+        "cx": 128,
+        "rz": 64,
+        "rx": 32,
+        "measure": 8
+      },
+      "unitary_gate_count": 232,
+      "scheduled_depth_with_measurement": 78,
+      "two_qubit_layers": 48,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 39,
+    "minimum_mask": 19,
+    "ideal_any_optimum_probability": 0.0034494760323566,
+    "ideal_canonical_pair_probability": 0.0004885920954118865,
+    "iid_64_shot_contains_canonical_pair_probability": 0.030793453678660394,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 8,
+    "seed": 20260930,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        6,
+        2
+      ],
+      [
+        0,
+        7,
+        4
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        1,
+        6,
+        5
+      ],
+      [
+        2,
+        3,
+        5
+      ],
+      [
+        2,
+        4,
+        4
+      ],
+      [
+        2,
+        5,
+        1
+      ],
+      [
+        2,
+        6,
+        1
+      ],
+      [
+        2,
+        7,
+        4
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        3
+      ],
+      [
+        5,
+        6,
+        3
+      ],
+      [
+        6,
+        7,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999978,
+    "resources": {
+      "logical_qubits": 8,
+      "counts": {
+        "h": 8,
+        "cx": 32,
+        "rz": 16,
+        "rx": 8,
+        "measure": 8
+      },
+      "unitary_gate_count": 64,
+      "scheduled_depth_with_measurement": 24,
+      "two_qubit_layers": 14,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 40,
+    "minimum_mask": 89,
+    "ideal_any_optimum_probability": 0.006325223854483221,
+    "ideal_canonical_pair_probability": 0.006325223854483221,
+    "iid_64_shot_contains_canonical_pair_probability": 0.333756474725519,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 8,
+    "seed": 20260930,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        6,
+        2
+      ],
+      [
+        0,
+        7,
+        4
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        1,
+        6,
+        5
+      ],
+      [
+        2,
+        3,
+        5
+      ],
+      [
+        2,
+        4,
+        4
+      ],
+      [
+        2,
+        5,
+        1
+      ],
+      [
+        2,
+        6,
+        1
+      ],
+      [
+        2,
+        7,
+        4
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        3
+      ],
+      [
+        5,
+        6,
+        3
+      ],
+      [
+        6,
+        7,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999969,
+    "resources": {
+      "logical_qubits": 8,
+      "counts": {
+        "h": 8,
+        "cx": 64,
+        "rz": 32,
+        "rx": 16,
+        "measure": 8
+      },
+      "unitary_gate_count": 120,
+      "scheduled_depth_with_measurement": 46,
+      "two_qubit_layers": 28,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 40,
+    "minimum_mask": 89,
+    "ideal_any_optimum_probability": 0.0008567669715167283,
+    "ideal_canonical_pair_probability": 0.0008567669715167283,
+    "iid_64_shot_contains_canonical_pair_probability": 0.053379106112280826,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 8,
+    "seed": 20260930,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        6,
+        2
+      ],
+      [
+        0,
+        7,
+        4
+      ],
+      [
+        1,
+        2,
+        3
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        1,
+        6,
+        5
+      ],
+      [
+        2,
+        3,
+        5
+      ],
+      [
+        2,
+        4,
+        4
+      ],
+      [
+        2,
+        5,
+        1
+      ],
+      [
+        2,
+        6,
+        1
+      ],
+      [
+        2,
+        7,
+        4
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        4,
+        5,
+        3
+      ],
+      [
+        5,
+        6,
+        3
+      ],
+      [
+        6,
+        7,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.999999999999996,
+    "resources": {
+      "logical_qubits": 8,
+      "counts": {
+        "h": 8,
+        "cx": 128,
+        "rz": 64,
+        "rx": 32,
+        "measure": 8
+      },
+      "unitary_gate_count": 232,
+      "scheduled_depth_with_measurement": 90,
+      "two_qubit_layers": 56,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 40,
+    "minimum_mask": 89,
+    "ideal_any_optimum_probability": 0.007348819043705229,
+    "ideal_canonical_pair_probability": 0.007348819043705229,
+    "iid_64_shot_contains_canonical_pair_probability": 0.3762845953280922,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 10,
+    "seed": 20260928,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        5,
+        2
+      ],
+      [
+        0,
+        8,
+        4
+      ],
+      [
+        0,
+        9,
+        1
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        1,
+        4,
+        2
+      ],
+      [
+        1,
+        7,
+        3
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        2,
+        5,
+        3
+      ],
+      [
+        3,
+        4,
+        2
+      ],
+      [
+        4,
+        5,
+        2
+      ],
+      [
+        4,
+        6,
+        2
+      ],
+      [
+        5,
+        6,
+        4
+      ],
+      [
+        5,
+        8,
+        5
+      ],
+      [
+        5,
+        9,
+        2
+      ],
+      [
+        6,
+        7,
+        4
+      ],
+      [
+        6,
+        8,
+        3
+      ],
+      [
+        7,
+        8,
+        4
+      ],
+      [
+        8,
+        9,
+        5
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.999999999999998,
+    "resources": {
+      "logical_qubits": 10,
+      "counts": {
+        "h": 10,
+        "cx": 40,
+        "rz": 20,
+        "rx": 10,
+        "measure": 10
+      },
+      "unitary_gate_count": 80,
+      "scheduled_depth_with_measurement": 21,
+      "two_qubit_layers": 12,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 50,
+    "minimum_mask": 298,
+    "ideal_any_optimum_probability": 0.00020838705825030886,
+    "ideal_canonical_pair_probability": 0.00020838705825030886,
+    "iid_64_shot_contains_canonical_pair_probability": 0.013249602425747437,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 10,
+    "seed": 20260928,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        5,
+        2
+      ],
+      [
+        0,
+        8,
+        4
+      ],
+      [
+        0,
+        9,
+        1
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        1,
+        4,
+        2
+      ],
+      [
+        1,
+        7,
+        3
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        2,
+        5,
+        3
+      ],
+      [
+        3,
+        4,
+        2
+      ],
+      [
+        4,
+        5,
+        2
+      ],
+      [
+        4,
+        6,
+        2
+      ],
+      [
+        5,
+        6,
+        4
+      ],
+      [
+        5,
+        8,
+        5
+      ],
+      [
+        5,
+        9,
+        2
+      ],
+      [
+        6,
+        7,
+        4
+      ],
+      [
+        6,
+        8,
+        3
+      ],
+      [
+        7,
+        8,
+        4
+      ],
+      [
+        8,
+        9,
+        5
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999967,
+    "resources": {
+      "logical_qubits": 10,
+      "counts": {
+        "h": 10,
+        "cx": 80,
+        "rz": 40,
+        "rx": 20,
+        "measure": 10
+      },
+      "unitary_gate_count": 150,
+      "scheduled_depth_with_measurement": 40,
+      "two_qubit_layers": 24,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 50,
+    "minimum_mask": 298,
+    "ideal_any_optimum_probability": 0.0004060344606801151,
+    "ideal_canonical_pair_probability": 0.0004060344606801151,
+    "iid_64_shot_contains_canonical_pair_probability": 0.025656611514745405,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 10,
+    "seed": 20260928,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        5,
+        2
+      ],
+      [
+        0,
+        8,
+        4
+      ],
+      [
+        0,
+        9,
+        1
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        1,
+        4,
+        2
+      ],
+      [
+        1,
+        7,
+        3
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        2,
+        5,
+        3
+      ],
+      [
+        3,
+        4,
+        2
+      ],
+      [
+        4,
+        5,
+        2
+      ],
+      [
+        4,
+        6,
+        2
+      ],
+      [
+        5,
+        6,
+        4
+      ],
+      [
+        5,
+        8,
+        5
+      ],
+      [
+        5,
+        9,
+        2
+      ],
+      [
+        6,
+        7,
+        4
+      ],
+      [
+        6,
+        8,
+        3
+      ],
+      [
+        7,
+        8,
+        4
+      ],
+      [
+        8,
+        9,
+        5
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999947,
+    "resources": {
+      "logical_qubits": 10,
+      "counts": {
+        "h": 10,
+        "cx": 160,
+        "rz": 80,
+        "rx": 40,
+        "measure": 10
+      },
+      "unitary_gate_count": 290,
+      "scheduled_depth_with_measurement": 78,
+      "two_qubit_layers": 48,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 50,
+    "minimum_mask": 298,
+    "ideal_any_optimum_probability": 0.0015001810720961146,
+    "ideal_canonical_pair_probability": 0.0015001810720961146,
+    "iid_64_shot_contains_canonical_pair_probability": 0.0916119992984689,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 10,
+    "seed": 20260929,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        0,
+        8,
+        1
+      ],
+      [
+        0,
+        9,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        7,
+        2
+      ],
+      [
+        1,
+        8,
+        1
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        3,
+        5,
+        2
+      ],
+      [
+        3,
+        8,
+        1
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        4,
+        9,
+        4
+      ],
+      [
+        5,
+        6,
+        5
+      ],
+      [
+        5,
+        9,
+        3
+      ],
+      [
+        6,
+        7,
+        2
+      ],
+      [
+        6,
+        8,
+        4
+      ],
+      [
+        6,
+        9,
+        3
+      ],
+      [
+        7,
+        8,
+        1
+      ],
+      [
+        8,
+        9,
+        1
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999969,
+    "resources": {
+      "logical_qubits": 10,
+      "counts": {
+        "h": 10,
+        "cx": 40,
+        "rz": 20,
+        "rx": 10,
+        "measure": 10
+      },
+      "unitary_gate_count": 80,
+      "scheduled_depth_with_measurement": 24,
+      "two_qubit_layers": 14,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 39,
+    "minimum_mask": 83,
+    "ideal_any_optimum_probability": 0.0021662988700634307,
+    "ideal_canonical_pair_probability": 4.584214760857795e-05,
+    "iid_64_shot_contains_canonical_pair_probability": 0.002929664828910742,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 10,
+    "seed": 20260929,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        0,
+        8,
+        1
+      ],
+      [
+        0,
+        9,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        7,
+        2
+      ],
+      [
+        1,
+        8,
+        1
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        3,
+        5,
+        2
+      ],
+      [
+        3,
+        8,
+        1
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        4,
+        9,
+        4
+      ],
+      [
+        5,
+        6,
+        5
+      ],
+      [
+        5,
+        9,
+        3
+      ],
+      [
+        6,
+        7,
+        2
+      ],
+      [
+        6,
+        8,
+        4
+      ],
+      [
+        6,
+        9,
+        3
+      ],
+      [
+        7,
+        8,
+        1
+      ],
+      [
+        8,
+        9,
+        1
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999973,
+    "resources": {
+      "logical_qubits": 10,
+      "counts": {
+        "h": 10,
+        "cx": 80,
+        "rz": 40,
+        "rx": 20,
+        "measure": 10
+      },
+      "unitary_gate_count": 150,
+      "scheduled_depth_with_measurement": 46,
+      "two_qubit_layers": 28,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 39,
+    "minimum_mask": 83,
+    "ideal_any_optimum_probability": 0.00486270629109576,
+    "ideal_canonical_pair_probability": 0.0017971413288356561,
+    "iid_64_shot_contains_canonical_pair_probability": 0.10874127704912964,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 10,
+    "seed": 20260929,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        3
+      ],
+      [
+        0,
+        2,
+        4
+      ],
+      [
+        0,
+        8,
+        1
+      ],
+      [
+        0,
+        9,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        7,
+        2
+      ],
+      [
+        1,
+        8,
+        1
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        3,
+        5,
+        2
+      ],
+      [
+        3,
+        8,
+        1
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        4,
+        9,
+        4
+      ],
+      [
+        5,
+        6,
+        5
+      ],
+      [
+        5,
+        9,
+        3
+      ],
+      [
+        6,
+        7,
+        2
+      ],
+      [
+        6,
+        8,
+        4
+      ],
+      [
+        6,
+        9,
+        3
+      ],
+      [
+        7,
+        8,
+        1
+      ],
+      [
+        8,
+        9,
+        1
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999964,
+    "resources": {
+      "logical_qubits": 10,
+      "counts": {
+        "h": 10,
+        "cx": 160,
+        "rz": 80,
+        "rx": 40,
+        "measure": 10
+      },
+      "unitary_gate_count": 290,
+      "scheduled_depth_with_measurement": 90,
+      "two_qubit_layers": 56,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 39,
+    "minimum_mask": 83,
+    "ideal_any_optimum_probability": 0.002258352301321997,
+    "ideal_canonical_pair_probability": 0.0009031420534071238,
+    "iid_64_shot_contains_canonical_pair_probability": 0.05618698373086223,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 10,
+    "seed": 20260930,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        4
+      ],
+      [
+        0,
+        9,
+        4
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        1,
+        5,
+        1
+      ],
+      [
+        1,
+        8,
+        3
+      ],
+      [
+        2,
+        3,
+        3
+      ],
+      [
+        2,
+        6,
+        5
+      ],
+      [
+        3,
+        4,
+        1
+      ],
+      [
+        3,
+        5,
+        2
+      ],
+      [
+        4,
+        5,
+        3
+      ],
+      [
+        4,
+        6,
+        2
+      ],
+      [
+        5,
+        6,
+        5
+      ],
+      [
+        5,
+        8,
+        5
+      ],
+      [
+        6,
+        7,
+        5
+      ],
+      [
+        7,
+        8,
+        2
+      ],
+      [
+        7,
+        9,
+        2
+      ],
+      [
+        8,
+        9,
+        3
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999971,
+    "resources": {
+      "logical_qubits": 10,
+      "counts": {
+        "h": 10,
+        "cx": 40,
+        "rz": 20,
+        "rx": 10,
+        "measure": 10
+      },
+      "unitary_gate_count": 80,
+      "scheduled_depth_with_measurement": 18,
+      "two_qubit_layers": 10,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 49,
+    "minimum_mask": 329,
+    "ideal_any_optimum_probability": 0.000508821172231109,
+    "ideal_canonical_pair_probability": 0.0002358713236593382,
+    "iid_64_shot_contains_canonical_pair_probability": 0.014984148772913979,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 10,
+    "seed": 20260930,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        4
+      ],
+      [
+        0,
+        9,
+        4
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        1,
+        5,
+        1
+      ],
+      [
+        1,
+        8,
+        3
+      ],
+      [
+        2,
+        3,
+        3
+      ],
+      [
+        2,
+        6,
+        5
+      ],
+      [
+        3,
+        4,
+        1
+      ],
+      [
+        3,
+        5,
+        2
+      ],
+      [
+        4,
+        5,
+        3
+      ],
+      [
+        4,
+        6,
+        2
+      ],
+      [
+        5,
+        6,
+        5
+      ],
+      [
+        5,
+        8,
+        5
+      ],
+      [
+        6,
+        7,
+        5
+      ],
+      [
+        7,
+        8,
+        2
+      ],
+      [
+        7,
+        9,
+        2
+      ],
+      [
+        8,
+        9,
+        3
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999964,
+    "resources": {
+      "logical_qubits": 10,
+      "counts": {
+        "h": 10,
+        "cx": 80,
+        "rz": 40,
+        "rx": 20,
+        "measure": 10
+      },
+      "unitary_gate_count": 150,
+      "scheduled_depth_with_measurement": 34,
+      "two_qubit_layers": 20,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 49,
+    "minimum_mask": 329,
+    "ideal_any_optimum_probability": 0.00048746688258192495,
+    "ideal_canonical_pair_probability": 0.00020850745006078977,
+    "iid_64_shot_contains_canonical_pair_probability": 0.013257206968275452,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 10,
+    "seed": 20260930,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        0,
+        3,
+        4
+      ],
+      [
+        0,
+        9,
+        4
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        3,
+        4
+      ],
+      [
+        1,
+        5,
+        1
+      ],
+      [
+        1,
+        8,
+        3
+      ],
+      [
+        2,
+        3,
+        3
+      ],
+      [
+        2,
+        6,
+        5
+      ],
+      [
+        3,
+        4,
+        1
+      ],
+      [
+        3,
+        5,
+        2
+      ],
+      [
+        4,
+        5,
+        3
+      ],
+      [
+        4,
+        6,
+        2
+      ],
+      [
+        5,
+        6,
+        5
+      ],
+      [
+        5,
+        8,
+        5
+      ],
+      [
+        6,
+        7,
+        5
+      ],
+      [
+        7,
+        8,
+        2
+      ],
+      [
+        7,
+        9,
+        2
+      ],
+      [
+        8,
+        9,
+        3
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999951,
+    "resources": {
+      "logical_qubits": 10,
+      "counts": {
+        "h": 10,
+        "cx": 160,
+        "rz": 80,
+        "rx": 40,
+        "measure": 10
+      },
+      "unitary_gate_count": 290,
+      "scheduled_depth_with_measurement": 66,
+      "two_qubit_layers": 40,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 49,
+    "minimum_mask": 329,
+    "ideal_any_optimum_probability": 0.0020849047611020363,
+    "ideal_canonical_pair_probability": 0.0018180517256394541,
+    "iid_64_shot_contains_canonical_pair_probability": 0.10993537701757047,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 12,
+    "seed": 20260928,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        3
+      ],
+      [
+        0,
+        11,
+        3
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        3,
+        1
+      ],
+      [
+        1,
+        8,
+        2
+      ],
+      [
+        1,
+        10,
+        1
+      ],
+      [
+        1,
+        11,
+        2
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        2,
+        7,
+        2
+      ],
+      [
+        2,
+        8,
+        3
+      ],
+      [
+        3,
+        4,
+        4
+      ],
+      [
+        3,
+        10,
+        3
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        5,
+        6,
+        1
+      ],
+      [
+        5,
+        8,
+        4
+      ],
+      [
+        5,
+        9,
+        4
+      ],
+      [
+        6,
+        7,
+        2
+      ],
+      [
+        7,
+        8,
+        4
+      ],
+      [
+        7,
+        11,
+        1
+      ],
+      [
+        8,
+        9,
+        3
+      ],
+      [
+        8,
+        11,
+        3
+      ],
+      [
+        9,
+        10,
+        5
+      ],
+      [
+        10,
+        11,
+        1
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999976,
+    "resources": {
+      "logical_qubits": 12,
+      "counts": {
+        "h": 12,
+        "cx": 48,
+        "rz": 24,
+        "rx": 12,
+        "measure": 12
+      },
+      "unitary_gate_count": 96,
+      "scheduled_depth_with_measurement": 24,
+      "two_qubit_layers": 14,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 50,
+    "minimum_mask": 683,
+    "ideal_any_optimum_probability": 0.0004720489356230064,
+    "ideal_canonical_pair_probability": 0.0004720489356230064,
+    "iid_64_shot_contains_canonical_pair_probability": 0.029766257331903773,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 12,
+    "seed": 20260928,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        3
+      ],
+      [
+        0,
+        11,
+        3
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        3,
+        1
+      ],
+      [
+        1,
+        8,
+        2
+      ],
+      [
+        1,
+        10,
+        1
+      ],
+      [
+        1,
+        11,
+        2
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        2,
+        7,
+        2
+      ],
+      [
+        2,
+        8,
+        3
+      ],
+      [
+        3,
+        4,
+        4
+      ],
+      [
+        3,
+        10,
+        3
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        5,
+        6,
+        1
+      ],
+      [
+        5,
+        8,
+        4
+      ],
+      [
+        5,
+        9,
+        4
+      ],
+      [
+        6,
+        7,
+        2
+      ],
+      [
+        7,
+        8,
+        4
+      ],
+      [
+        7,
+        11,
+        1
+      ],
+      [
+        8,
+        9,
+        3
+      ],
+      [
+        8,
+        11,
+        3
+      ],
+      [
+        9,
+        10,
+        5
+      ],
+      [
+        10,
+        11,
+        1
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999976,
+    "resources": {
+      "logical_qubits": 12,
+      "counts": {
+        "h": 12,
+        "cx": 96,
+        "rz": 48,
+        "rx": 24,
+        "measure": 12
+      },
+      "unitary_gate_count": 180,
+      "scheduled_depth_with_measurement": 46,
+      "two_qubit_layers": 28,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 50,
+    "minimum_mask": 683,
+    "ideal_any_optimum_probability": 0.0008794404508288288,
+    "ideal_canonical_pair_probability": 0.0008794404508288288,
+    "iid_64_shot_contains_canonical_pair_probability": 0.05475294582742142,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 12,
+    "seed": 20260928,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        2,
+        3
+      ],
+      [
+        0,
+        11,
+        3
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        3,
+        1
+      ],
+      [
+        1,
+        8,
+        2
+      ],
+      [
+        1,
+        10,
+        1
+      ],
+      [
+        1,
+        11,
+        2
+      ],
+      [
+        2,
+        3,
+        4
+      ],
+      [
+        2,
+        7,
+        2
+      ],
+      [
+        2,
+        8,
+        3
+      ],
+      [
+        3,
+        4,
+        4
+      ],
+      [
+        3,
+        10,
+        3
+      ],
+      [
+        4,
+        5,
+        4
+      ],
+      [
+        5,
+        6,
+        1
+      ],
+      [
+        5,
+        8,
+        4
+      ],
+      [
+        5,
+        9,
+        4
+      ],
+      [
+        6,
+        7,
+        2
+      ],
+      [
+        7,
+        8,
+        4
+      ],
+      [
+        7,
+        11,
+        1
+      ],
+      [
+        8,
+        9,
+        3
+      ],
+      [
+        8,
+        11,
+        3
+      ],
+      [
+        9,
+        10,
+        5
+      ],
+      [
+        10,
+        11,
+        1
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999947,
+    "resources": {
+      "logical_qubits": 12,
+      "counts": {
+        "h": 12,
+        "cx": 192,
+        "rz": 96,
+        "rx": 48,
+        "measure": 12
+      },
+      "unitary_gate_count": 348,
+      "scheduled_depth_with_measurement": 90,
+      "two_qubit_layers": 56,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 50,
+    "minimum_mask": 683,
+    "ideal_any_optimum_probability": 0.00019985629207770696,
+    "ideal_canonical_pair_probability": 0.00019985629207770696,
+    "iid_64_shot_contains_canonical_pair_probability": 0.012710610120173382,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 12,
+    "seed": 20260929,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        0,
+        7,
+        4
+      ],
+      [
+        0,
+        9,
+        3
+      ],
+      [
+        0,
+        11,
+        3
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        1,
+        5,
+        3
+      ],
+      [
+        2,
+        3,
+        5
+      ],
+      [
+        2,
+        6,
+        1
+      ],
+      [
+        2,
+        7,
+        4
+      ],
+      [
+        2,
+        8,
+        3
+      ],
+      [
+        2,
+        9,
+        2
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        3,
+        5,
+        3
+      ],
+      [
+        3,
+        11,
+        2
+      ],
+      [
+        4,
+        5,
+        1
+      ],
+      [
+        4,
+        6,
+        4
+      ],
+      [
+        5,
+        6,
+        4
+      ],
+      [
+        6,
+        7,
+        2
+      ],
+      [
+        7,
+        8,
+        5
+      ],
+      [
+        8,
+        9,
+        2
+      ],
+      [
+        9,
+        10,
+        1
+      ],
+      [
+        9,
+        11,
+        1
+      ],
+      [
+        10,
+        11,
+        3
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999973,
+    "resources": {
+      "logical_qubits": 12,
+      "counts": {
+        "h": 12,
+        "cx": 48,
+        "rz": 24,
+        "rx": 12,
+        "measure": 12
+      },
+      "unitary_gate_count": 96,
+      "scheduled_depth_with_measurement": 24,
+      "two_qubit_layers": 14,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 62,
+    "minimum_mask": 1333,
+    "ideal_any_optimum_probability": 0.001025528721347499,
+    "ideal_canonical_pair_probability": 0.001025528721347499,
+    "iid_64_shot_contains_canonical_pair_probability": 0.06355783531926767,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 12,
+    "seed": 20260929,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        0,
+        7,
+        4
+      ],
+      [
+        0,
+        9,
+        3
+      ],
+      [
+        0,
+        11,
+        3
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        1,
+        5,
+        3
+      ],
+      [
+        2,
+        3,
+        5
+      ],
+      [
+        2,
+        6,
+        1
+      ],
+      [
+        2,
+        7,
+        4
+      ],
+      [
+        2,
+        8,
+        3
+      ],
+      [
+        2,
+        9,
+        2
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        3,
+        5,
+        3
+      ],
+      [
+        3,
+        11,
+        2
+      ],
+      [
+        4,
+        5,
+        1
+      ],
+      [
+        4,
+        6,
+        4
+      ],
+      [
+        5,
+        6,
+        4
+      ],
+      [
+        6,
+        7,
+        2
+      ],
+      [
+        7,
+        8,
+        5
+      ],
+      [
+        8,
+        9,
+        2
+      ],
+      [
+        9,
+        10,
+        1
+      ],
+      [
+        9,
+        11,
+        1
+      ],
+      [
+        10,
+        11,
+        3
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999962,
+    "resources": {
+      "logical_qubits": 12,
+      "counts": {
+        "h": 12,
+        "cx": 96,
+        "rz": 48,
+        "rx": 24,
+        "measure": 12
+      },
+      "unitary_gate_count": 180,
+      "scheduled_depth_with_measurement": 46,
+      "two_qubit_layers": 28,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 62,
+    "minimum_mask": 1333,
+    "ideal_any_optimum_probability": 0.00028297515443323327,
+    "ideal_canonical_pair_probability": 0.00028297515443323327,
+    "iid_64_shot_contains_canonical_pair_probability": 0.01794991882208993,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 12,
+    "seed": 20260929,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        0,
+        7,
+        4
+      ],
+      [
+        0,
+        9,
+        3
+      ],
+      [
+        0,
+        11,
+        3
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        1,
+        5,
+        3
+      ],
+      [
+        2,
+        3,
+        5
+      ],
+      [
+        2,
+        6,
+        1
+      ],
+      [
+        2,
+        7,
+        4
+      ],
+      [
+        2,
+        8,
+        3
+      ],
+      [
+        2,
+        9,
+        2
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        3,
+        5,
+        3
+      ],
+      [
+        3,
+        11,
+        2
+      ],
+      [
+        4,
+        5,
+        1
+      ],
+      [
+        4,
+        6,
+        4
+      ],
+      [
+        5,
+        6,
+        4
+      ],
+      [
+        6,
+        7,
+        2
+      ],
+      [
+        7,
+        8,
+        5
+      ],
+      [
+        8,
+        9,
+        2
+      ],
+      [
+        9,
+        10,
+        1
+      ],
+      [
+        9,
+        11,
+        1
+      ],
+      [
+        10,
+        11,
+        3
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999933,
+    "resources": {
+      "logical_qubits": 12,
+      "counts": {
+        "h": 12,
+        "cx": 192,
+        "rz": 96,
+        "rx": 48,
+        "measure": 12
+      },
+      "unitary_gate_count": 348,
+      "scheduled_depth_with_measurement": 90,
+      "two_qubit_layers": 56,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 62,
+    "minimum_mask": 1333,
+    "ideal_any_optimum_probability": 0.0005157641108064231,
+    "ideal_canonical_pair_probability": 0.0005157641108064231,
+    "iid_64_shot_contains_canonical_pair_probability": 0.032478293260525586,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 12,
+    "seed": 20260930,
+    "depth": 1,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        9,
+        2
+      ],
+      [
+        0,
+        11,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        6,
+        1
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        2,
+        5,
+        4
+      ],
+      [
+        2,
+        7,
+        1
+      ],
+      [
+        2,
+        10,
+        2
+      ],
+      [
+        2,
+        11,
+        3
+      ],
+      [
+        3,
+        4,
+        1
+      ],
+      [
+        3,
+        9,
+        5
+      ],
+      [
+        4,
+        5,
+        1
+      ],
+      [
+        5,
+        6,
+        3
+      ],
+      [
+        5,
+        9,
+        5
+      ],
+      [
+        5,
+        10,
+        3
+      ],
+      [
+        6,
+        7,
+        1
+      ],
+      [
+        6,
+        10,
+        4
+      ],
+      [
+        7,
+        8,
+        4
+      ],
+      [
+        7,
+        11,
+        4
+      ],
+      [
+        8,
+        9,
+        2
+      ],
+      [
+        9,
+        10,
+        4
+      ],
+      [
+        10,
+        11,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999969,
+    "resources": {
+      "logical_qubits": 12,
+      "counts": {
+        "h": 12,
+        "cx": 48,
+        "rz": 24,
+        "rx": 12,
+        "measure": 12
+      },
+      "unitary_gate_count": 96,
+      "scheduled_depth_with_measurement": 24,
+      "two_qubit_layers": 14,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 56,
+    "minimum_mask": 1193,
+    "ideal_any_optimum_probability": 0.00017440013007034548,
+    "ideal_canonical_pair_probability": 0.00017440013007034548,
+    "iid_64_shot_contains_canonical_pair_probability": 0.011100511285354742,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 12,
+    "seed": 20260930,
+    "depth": 2,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        9,
+        2
+      ],
+      [
+        0,
+        11,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        6,
+        1
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        2,
+        5,
+        4
+      ],
+      [
+        2,
+        7,
+        1
+      ],
+      [
+        2,
+        10,
+        2
+      ],
+      [
+        2,
+        11,
+        3
+      ],
+      [
+        3,
+        4,
+        1
+      ],
+      [
+        3,
+        9,
+        5
+      ],
+      [
+        4,
+        5,
+        1
+      ],
+      [
+        5,
+        6,
+        3
+      ],
+      [
+        5,
+        9,
+        5
+      ],
+      [
+        5,
+        10,
+        3
+      ],
+      [
+        6,
+        7,
+        1
+      ],
+      [
+        6,
+        10,
+        4
+      ],
+      [
+        7,
+        8,
+        4
+      ],
+      [
+        7,
+        11,
+        4
+      ],
+      [
+        8,
+        9,
+        2
+      ],
+      [
+        9,
+        10,
+        4
+      ],
+      [
+        10,
+        11,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999969,
+    "resources": {
+      "logical_qubits": 12,
+      "counts": {
+        "h": 12,
+        "cx": 96,
+        "rz": 48,
+        "rx": 24,
+        "measure": 12
+      },
+      "unitary_gate_count": 180,
+      "scheduled_depth_with_measurement": 46,
+      "two_qubit_layers": 28,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 56,
+    "minimum_mask": 1193,
+    "ideal_any_optimum_probability": 0.0002179175606338003,
+    "ideal_canonical_pair_probability": 0.0002179175606338003,
+    "iid_64_shot_contains_canonical_pair_probability": 0.01385141767517004,
+    "usable_certified_success_probability": null
+  },
+  {
+    "n": 12,
+    "seed": 20260930,
+    "depth": 4,
+    "edges": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        2,
+        5
+      ],
+      [
+        0,
+        9,
+        2
+      ],
+      [
+        0,
+        11,
+        2
+      ],
+      [
+        1,
+        2,
+        2
+      ],
+      [
+        1,
+        6,
+        1
+      ],
+      [
+        2,
+        3,
+        1
+      ],
+      [
+        2,
+        5,
+        4
+      ],
+      [
+        2,
+        7,
+        1
+      ],
+      [
+        2,
+        10,
+        2
+      ],
+      [
+        2,
+        11,
+        3
+      ],
+      [
+        3,
+        4,
+        1
+      ],
+      [
+        3,
+        9,
+        5
+      ],
+      [
+        4,
+        5,
+        1
+      ],
+      [
+        5,
+        6,
+        3
+      ],
+      [
+        5,
+        9,
+        5
+      ],
+      [
+        5,
+        10,
+        3
+      ],
+      [
+        6,
+        7,
+        1
+      ],
+      [
+        6,
+        10,
+        4
+      ],
+      [
+        7,
+        8,
+        4
+      ],
+      [
+        7,
+        11,
+        4
+      ],
+      [
+        8,
+        9,
+        2
+      ],
+      [
+        9,
+        10,
+        4
+      ],
+      [
+        10,
+        11,
+        2
+      ]
+    ],
+    "fidelity_up_to_global_phase": 0.9999999999999931,
+    "resources": {
+      "logical_qubits": 12,
+      "counts": {
+        "h": 12,
+        "cx": 192,
+        "rz": 96,
+        "rx": 48,
+        "measure": 12
+      },
+      "unitary_gate_count": 348,
+      "scheduled_depth_with_measurement": 90,
+      "two_qubit_layers": 56,
+      "scope": "Explicit matching-barrier schedule, pre-synthesis, all-to-all logical connectivity; not optimized physical depth"
+    },
+    "optimal_cut": 56,
+    "minimum_mask": 1193,
+    "ideal_any_optimum_probability": 0.00024352631567368425,
+    "ideal_canonical_pair_probability": 0.00024352631567368425,
+    "iid_64_shot_contains_canonical_pair_probability": 0.015466724686875512,
+    "usable_certified_success_probability": null
+  }
+]

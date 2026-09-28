@@ -1,0 +1,1396 @@
+Analyze the supplied existing classical Python software for selective quantumization.
+Use only the supplied material. Return one response; do not use tools, execute code,
+browse, retrieve other material, or request feedback. Do not generate a patch.
+
+Identify candidate region(s) for further analysis, or [] if none is justified.
+Coordinates are 1-based, inclusive, in the supplied source files. A nomination may
+subsequently be rejected: it is not a recommendation to deploy. Explain the source
+evidence, required input/predicate/state dependencies, activation conditions, and
+surrounding behavior that must remain intact in rationale. Multiple defensible
+regions are possible; a supplied location cue is a starting point, not an exhaustive
+answer or proof of eligibility. Do not infer that every input has a suitable candidate.
+
+Assess structural eligibility, practical suitability and benchmark support separately.
+An expensive hotspot is not automatically a quantumization opportunity. Supported
+families are only unstructured_search (Grover-style) and combinatorial_optimization
+(QUBO/Ising, potentially QAOA). Unknown evidence stays null. REMAIN_CLASSICAL is valid.
+Do not assume quantum advantage or relax exactness, exceptions, ordering or effects.
+
+Whenever structural_eligibility is true, provide a conditional migration plan even
+if practical suitability is false/null or decision is REMAIN_CLASSICAL. State the
+formulation and unresolved encoding, oracle, exactness, feasibility and resource
+obligations. A conditional plan does not recommend adoption or certify correctness.
+
+Return exactly one JSON object conforming to the supplied phase1_prediction schema
+(schema_version 0.2.0); use the public_task case_id. Use true/false/null for labels,
+the existing candidate_regions field for spans and rationale for boundary/dependency
+evidence. Do not invent extra fields or private intent identifiers. Use your own
+descriptive computational intent. The shared contract menu is DRAFT: independently
+assess applicability, rather than treating inclusion as approval. No human review
+judgments or correctness scores are requested from you.
+
+PUBLIC TASK
+{
+  "case_id": "context-002",
+  "title": "Connection inspection review and station worklists",
+  "software_contract": "review_inspections(request) validates the whole request or raises ValueError, without modifying it. Error text is not fixed. Return station_count (all declared stations), connection_count (unique undirected connections), current, proposed and changes. Proposed selects the fewest stations such that every connection has a selected endpoint; ties choose the lexicographically smallest tuple of station input positions. There is no requirement to minimize changes from current_stations. Current selection may leave connections uncovered and must be assessed honestly. Each plan contains selected_stations in station input order, selected_count, covered_connection_count, uncovered_connections, and checklists. Normalize each connection's endpoints by their input positions i<j, remove duplicate/reversed declarations, and order connections by increasing (i,j). Assign every covered connection to exactly one selected endpoint: the earliest endpoint in station input order. Checklists contains one object per selected station, in station input order, with station and connections; retain empty checklists. Uncovered connections are listed separately, never allocated to an unselected station. Changes contains add_stations and remove_stations in input order, selected_count_delta (proposed minus current), newly_covered_connections (uncovered before, covered after), and reassigned_connections for every connection whose assigned station changes. Reassigned records contain connection, from_station and to_station, using null for an unassigned connection; retain normalized connection order. All scores and worklists describe the actual returned selections. Empty stations require empty connections and current_stations, producing empty lists and zero counts. Empty connections propose no stations. Valid CLI input produces one JSON report; invalid requests produce no successful report and a nonzero exit. No uncovered proposed connection, approximate station count, or altered tie rule is permitted in this version.",
+  "input_domain": "JSON object with exactly stations, connections, current_stations. stations is a list of 0–16 unique nonempty strings. connections is a list of two-element lists of distinct known station names. current_stations is a list of distinct known station names; arbitrary order and empty selection are allowed. Every station is available at unit selection cost. A selected station can inspect any number of its incident connections. Inspection from either endpoint is sufficient. No travel, staff capacity, duration, geographical or activation-cost rules are modeled. The 16-station bound is a local enumeration limit, not a measured workload.",
+  "execution_assumptions": [
+    "Input is ordinary classical JSON. The report is a proposal for human review, not execution of inspections or deployment.",
+    "No hardware, latency target, workload frequency or deployment cost evidence is supplied.",
+    "Connection responsibility follows input ordering; station-count optimality and report correctness are separate requirements."
+  ]
+}
+
+FILE program.py
+1: """Review an existing inspection arrangement and produce station worklists."""
+2: 
+3: import json
+4: import sys
+5: from typing import Any
+6: 
+7: from inspection import compare_plans, describe_plan, min_vertex_cover_bruteforce, prepare_request
+8: 
+9: 
+10: def review_inspections(request: Any) -> dict[str, Any]:
+11:     """Validate, assess current coverage, propose stations, and explain work transfers."""
+12:     names, edges, selected = prepare_request(request)
+13:     current = describe_plan(names, edges, selected)
+14:     proposed = describe_plan(names, edges, min_vertex_cover_bruteforce(edges, len(names)))
+15:     return {"station_count": len(names), "connection_count": len(edges),
+16:             "current": current, "proposed": proposed,
+17:             "changes": compare_plans(names, edges, current, proposed)}
+18: 
+19: 
+20: if __name__ == "__main__":
+21:     print(json.dumps(review_inspections(json.load(sys.stdin)), indent=2))
+
+FILE inspection.py
+1: """Validation, coverage assessment, worklists and changes for endpoint inspections."""
+2: 
+3: import itertools
+4: from typing import Any
+5: 
+6: 
+7: def prepare_request(request: Any) -> tuple[list[str], list[tuple[int, int]], set[int]]:
+8:     """Read all fields; an incomplete current coverage is legal and must be reported."""
+9:     if not isinstance(request, dict) or set(request) != {"stations", "connections", "current_stations"}:
+10:         raise ValueError("Expected stations, connections and current_stations")
+11:     names = request["stations"]
+12:     if not isinstance(names, list) or len(names) > 16:
+13:         raise ValueError("stations must be a list of at most 16 names")
+14:     if any(not isinstance(name, str) or not name for name in names) or len(set(names)) != len(names):
+15:         raise ValueError("Station names must be unique nonempty strings")
+16:     index = {name: i for i, name in enumerate(names)}
+17:     connections = request["connections"]
+18:     if not isinstance(connections, list):
+19:         raise ValueError("connections must be a list")
+20:     edges = set()
+21:     for pair in connections:
+22:         if not isinstance(pair, list) or len(pair) != 2:
+23:             raise ValueError("Connections require two endpoints")
+24:         first, second = pair
+25:         if not isinstance(first, str) or not isinstance(second, str):
+26:             raise ValueError("Endpoints must be names")
+27:         if first not in index or second not in index or first == second:
+28:             raise ValueError("Endpoints must be distinct known stations")
+29:         edges.add(tuple(sorted((index[first], index[second]))))
+30:     current = request["current_stations"]
+31:     if not isinstance(current, list):
+32:         raise ValueError("current_stations must be a list")
+33:     selected = set()
+34:     for name in current:
+35:         if not isinstance(name, str) or name not in index or index[name] in selected:
+36:             raise ValueError("Current stations must be distinct known names")
+37:         selected.add(index[name])
+38:     return list(names), sorted(edges), selected
+39: 
+40: 
+41: def describe_plan(names: list[str], edges: list[tuple[int, int]], selected: set[int]) -> dict[str, Any]:
+42:     """Assign each covered connection once to its earliest selected endpoint."""
+43:     assigned = {i: [] for i in sorted(selected)}
+44:     uncovered = []
+45:     for u, v in edges:
+46:         pair = [names[u], names[v]]
+47:         if u in selected:
+48:             assigned[u].append(pair)
+49:         elif v in selected:
+50:             assigned[v].append(pair)
+51:         else:
+52:             uncovered.append(pair)
+53:     return {"selected_stations": [names[i] for i in sorted(selected)],
+54:             "selected_count": len(selected), "covered_connection_count": len(edges) - len(uncovered),
+55:             "uncovered_connections": uncovered,
+56:             "checklists": [{"station": names[i], "connections": pairs} for i, pairs in assigned.items()]}
+57: 
+58: 
+59: def compare_plans(names: list[str], edges: list[tuple[int, int]], current: dict, proposed: dict) -> dict:
+60:     """Describe station activation and connection responsibility changes independently."""
+61:     old_set, new_set = set(current["selected_stations"]), set(proposed["selected_stations"])
+62: 
+63:     def owners(plan: dict) -> dict:
+64:         return {tuple(pair): row["station"] for row in plan["checklists"] for pair in row["connections"]}
+65: 
+66:     old, new = owners(current), owners(proposed)
+67:     pairs = [(names[u], names[v]) for u, v in edges]
+68:     return {"add_stations": [name for name in names if name in new_set - old_set],
+69:             "remove_stations": [name for name in names if name in old_set - new_set],
+70:             "selected_count_delta": len(new_set) - len(old_set),
+71:             "newly_covered_connections": [list(pair) for pair in pairs if pair not in old and pair in new],
+72:             "reassigned_connections": [{"connection": list(pair), "from_station": old.get(pair),
+73:                                         "to_station": new.get(pair)}
+74:                                        for pair in pairs if old.get(pair) != new.get(pair)]}
+75: 
+76: 
+77: def min_vertex_cover_bruteforce(edges, n):
+78:     nodes = list(range(n))
+79:     best_cover = None
+80:     for r in range(n + 1):
+81:         for subset in itertools.combinations(nodes, r):
+82:             cover = set(subset)
+83:             ok = True
+84:             for u, v in edges:
+85:                 if u not in cover and v not in cover:
+86:                     ok = False
+87:                     break
+88:             if ok:
+89:                 best_cover = cover
+90:                 return best_cover
+91:     return best_cover
+
+FILE NOTICE.txt
+Portions of these inputs derive from C2|Q> Dataset, maintained at
+https://huggingface.co/datasets/boshuai1/c2q-dataset
+revision c5b457cf425c31e91bae829503ece6e92646dd0a.
+Associated paper: C2|Q>: A Robust Framework for Bridging Classical and Quantum
+Software Development, https://doi.org/10.1145/3803018 .
+The pinned dataset card declares CC BY 4.0:
+https://creativecommons.org/licenses/by/4.0/ .
+No endorsement by the source authors is implied.
+Source-function views remove top-level demonstrations. Application views adapt
+identifiers/control integration and add new functional input/output requirements,
+validation and reporting. Detailed changes and original excerpts are retained in
+the curator package. Newly authored project material has no declared distribution
+license (NOASSERTION); this notice is not a blanket license for the entire package.
+
+SHARED DRAFT CONTRACTS
+{
+  "catalog_version": "phase1-v0",
+  "status": "DRAFT",
+  "notice": "Identical menu for all annotators and models. Inclusion is not per-case applicability or an admissibility judgment.",
+  "contracts": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "status": "DRAFT",
+      "applicability_conditions": [
+        "A finite domain and pure Boolean predicate can be explicitly represented.",
+        "Preserve required classical effects and input/output semantics; demonstrate reversible predicate construction."
+      ],
+      "input_encoding": "Finite basis-state encoding of candidates; predicate data and workspace costs must be accounted for.",
+      "formulation": "Grover-style marked-state predicate search; define success/no-solution handling explicitly.",
+      "algorithm_families": [
+        "grover_style"
+      ],
+      "output_decoding": "Classically verify decoded candidates; existence decisions also require a justified no-solution policy.",
+      "semantic_relation": "Preserve the classical task contract; probabilistic error policy is unresolved, not silently accepted.",
+      "resource_assumptions": [
+        "No free data loading, oracle construction, workspace or coherent memory is assumed."
+      ],
+      "known_limitations": [
+        "Shared candidate contract for planning, not a validated implementation.",
+        "No universal suitability or advantage claim; statistical semantics require human review."
+      ]
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "status": "DRAFT",
+      "applicability_conditions": [
+        "The binary objective and any constraint penalties can be represented explicitly.",
+        "Check coefficients, signs, penalty sufficiency and decoding against the original objective."
+      ],
+      "input_encoding": "Binary decision variables; document the x=(1-Z)/2 mapping, constants and coefficients if using Ising.",
+      "formulation": "QUBO/Ising encoding; QAOA-style execution is a possible proposal, not an exactness guarantee.",
+      "algorithm_families": [
+        "qaoa"
+      ],
+      "output_decoding": "Decode feasible assignments and recompute the classical objective.",
+      "semantic_relation": "Preserve the required solution quality and software interface. An exact optimum cannot be silently weakened to an approximate one.",
+      "resource_assumptions": [
+        "State preparation, classical optimization, measurement and decoding overheads must be stated."
+      ],
+      "known_limitations": [
+        "No depth, parameter-optimization budget, approximation ratio or probability threshold is prescribed.",
+        "Shared DRAFT planning contract; conformity and scientific admissibility remain unverified."
+      ]
+    }
+  ]
+}
+
+SCHEMA case
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_url": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "uri"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "license": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "migration_family": {
+      "enum": [
+        "unstructured_search",
+        "combinatorial_optimization",
+        null
+      ]
+    },
+    "context_level": {
+      "enum": [
+        "kernel",
+        "function_with_distractors",
+        "small_program"
+      ]
+    },
+    "case_type": {
+      "enum": [
+        "positive",
+        "hard_negative",
+        "negative"
+      ]
+    },
+    "difficulty": {
+      "enum": [
+        "easy",
+        "medium",
+        "hard",
+        "unknown"
+      ]
+    },
+    "classical_program": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+      }
+    },
+    "candidate_regions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "file": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+          },
+          "function": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "start_line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "end_line": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "file",
+          "start_line",
+          "end_line"
+        ]
+      }
+    },
+    "structural_eligibility": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "practical_suitability": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "benchmark_supported": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "expected_decision": {
+      "enum": [
+        "QUANTUMIZE",
+        "REMAIN_CLASSICAL",
+        null
+      ]
+    },
+    "computational_intent": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "id",
+            "description"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "admissible_migration_contracts": {
+      "type": "array",
+      "items": {
+        "$ref": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json#/$defs/contract"
+      }
+    },
+    "reference_plan": {
+      "anyOf": [
+        {
+          "$ref": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reference_hybrid_implementation": {
+      "anyOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "classical_tests": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+      }
+    },
+    "semantic_oracle": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "deterministic_equality",
+                "property",
+                "optimization_feasibility",
+                "optimization_objective",
+                "probabilistic"
+              ]
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "config": {
+              "type": "object"
+            },
+            "hook_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "description",
+            "config"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "resource_expectations": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "assumptions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "limits": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "num_qubits": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "depth": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "operation_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "gate_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "two_qubit_gate_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "measurement_count": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "shots": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            "execution_config": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "shots": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "seed": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "backend": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": []
+            }
+          },
+          "required": [
+            "assumptions",
+            "limits"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "negative_reason": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "annotation_rationale": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "annotators": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "annotation_status": {
+      "enum": [
+        "DRAFT",
+        "REVIEWED",
+        "ADJUDICATED",
+        "FROZEN"
+      ]
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "independent_annotations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "annotator_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "artifact": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+              }
+            },
+            "required": [
+              "annotator_id",
+              "artifact"
+            ]
+          },
+          "minItems": 2
+        },
+        "disagreements": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+        },
+        "adjudicator_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+        }
+      },
+      "required": [
+        "independent_annotations",
+        "disagreements"
+      ]
+    },
+    "benchmark_release": {
+      "type": "string",
+      "minLength": 1
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "title",
+    "description",
+    "source",
+    "source_url",
+    "license",
+    "domain",
+    "version",
+    "migration_family",
+    "context_level",
+    "case_type",
+    "difficulty",
+    "candidate_regions",
+    "structural_eligibility",
+    "practical_suitability",
+    "benchmark_supported",
+    "expected_decision",
+    "annotation_status"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrefactorbench.example/schemas/0.1.0/case.schema.json",
+  "$defs": {
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+        },
+        "function": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "start_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "file",
+        "start_line",
+        "end_line"
+      ]
+    }
+  },
+  "oneOf": [
+    {
+      "required": [
+        "classical_program"
+      ],
+      "not": {
+        "required": [
+          "files"
+        ]
+      }
+    },
+    {
+      "required": [
+        "files"
+      ],
+      "not": {
+        "required": [
+          "classical_program"
+        ]
+      }
+    }
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "case_type": {
+            "const": "positive"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "candidate_regions": {
+            "minItems": 1
+          },
+          "structural_eligibility": {
+            "enum": [
+              true,
+              null
+            ]
+          },
+          "practical_suitability": {
+            "enum": [
+              true,
+              null
+            ]
+          },
+          "benchmark_supported": {
+            "enum": [
+              true,
+              null
+            ]
+          },
+          "expected_decision": {
+            "enum": [
+              "QUANTUMIZE",
+              null
+            ]
+          },
+          "negative_reason": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "case_type": {
+            "enum": [
+              "negative",
+              "hard_negative"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "expected_decision": {
+            "enum": [
+              "REMAIN_CLASSICAL",
+              null
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_status": {
+            "enum": [
+              "REVIEWED",
+              "ADJUDICATED",
+              "FROZEN"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "computational_intent",
+          "admissible_migration_contracts",
+          "classical_tests",
+          "semantic_oracle",
+          "resource_expectations",
+          "annotation_rationale",
+          "annotators",
+          "review"
+        ],
+        "properties": {
+          "structural_eligibility": {
+            "type": "boolean"
+          },
+          "practical_suitability": {
+            "type": "boolean"
+          },
+          "benchmark_supported": {
+            "type": "boolean"
+          },
+          "expected_decision": {
+            "enum": [
+              "QUANTUMIZE",
+              "REMAIN_CLASSICAL"
+            ]
+          },
+          "computational_intent": {
+            "type": "object"
+          },
+          "classical_tests": {
+            "minItems": 1
+          },
+          "semantic_oracle": {
+            "type": "object"
+          },
+          "resource_expectations": {
+            "type": "object"
+          },
+          "annotation_rationale": {
+            "type": "string",
+            "minLength": 1
+          },
+          "annotators": {
+            "minItems": 2
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "case_type": {
+                  "const": "positive"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "structural_eligibility": {
+                  "const": true
+                },
+                "practical_suitability": {
+                  "const": true
+                },
+                "benchmark_supported": {
+                  "const": true
+                },
+                "admissible_migration_contracts": {
+                  "minItems": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "case_type": {
+                  "enum": [
+                    "negative",
+                    "hard_negative"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "negative_reason"
+              ],
+              "properties": {
+                "negative_reason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "anyOf": [
+                {
+                  "properties": {
+                    "structural_eligibility": {
+                      "const": false
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "practical_suitability": {
+                      "const": false
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "benchmark_supported": {
+                      "const": false
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "case_type": {
+                  "const": "hard_negative"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "candidate_regions": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_status": {
+            "enum": [
+              "ADJUDICATED",
+              "FROZEN"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "required": [
+              "adjudicator_id",
+              "resolution"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "annotation_status": {
+            "const": "FROZEN"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "benchmark_release"
+        ]
+      }
+    }
+  ]
+}
+
+SCHEMA prediction
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]+$"
+    },
+    "decision": {
+      "enum": [
+        "QUANTUMIZE",
+        "REMAIN_CLASSICAL"
+      ]
+    },
+    "candidate_regions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "https://qrefactorbench.example/schemas/0.1.0/case.schema.json#/$defs/region"
+      }
+    },
+    "computational_intent_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "migration_family": {
+      "enum": [
+        "unstructured_search",
+        "combinatorial_optimization",
+        null
+      ]
+    },
+    "plan": {
+      "anyOf": [
+        {
+          "$ref": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "generated_patch": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "generated_files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\\\:]).+$"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "content"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "decision",
+    "candidate_regions"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "QUANTUMIZE"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "plan"
+        ],
+        "properties": {
+          "candidate_regions": {
+            "minItems": 1
+          },
+          "plan": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  ]
+}
+
+SCHEMA migration_plan
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "contract_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "computational_intent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "migration_family": {
+      "enum": [
+        "unstructured_search",
+        "combinatorial_optimization"
+      ]
+    },
+    "formulation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_encoding": {
+      "type": "string",
+      "minLength": 1
+    },
+    "quantum_algorithm_family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "output_decoding": {
+      "type": "string",
+      "minLength": 1
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "expected_resource_characteristics": {
+      "type": "object"
+    },
+    "rationale": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "contract_id",
+    "computational_intent_id",
+    "migration_family",
+    "formulation",
+    "input_encoding",
+    "quantum_algorithm_family",
+    "output_decoding",
+    "assumptions",
+    "risks",
+    "expected_resource_characteristics"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrefactorbench.example/schemas/0.1.0/migration_plan.schema.json",
+  "$defs": {
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "contract_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "DRAFT",
+            "REVIEWED"
+          ]
+        },
+        "applicability_conditions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "input_encoding": {
+          "type": "string",
+          "minLength": 1
+        },
+        "formulation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "algorithm_families": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "output_decoding": {
+          "type": "string",
+          "minLength": 1
+        },
+        "semantic_relation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resource_assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "known_limitations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "contract_id",
+        "status",
+        "applicability_conditions",
+        "input_encoding",
+        "formulation",
+        "algorithm_families",
+        "output_decoding",
+        "semantic_relation",
+        "resource_assumptions",
+        "known_limitations"
+      ]
+    }
+  }
+}
+
+SCHEMA phase1_prediction
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrefactorbench.example/schemas/0.2.0/phase1_prediction.schema.json",
+  "title": "Phase-1 T1/T2/T3 prediction; shared fields reference the unchanged v0.1 format",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.2.0"
+    },
+    "case_id": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/case_id"
+    },
+    "decision": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/decision"
+    },
+    "candidate_regions": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/candidate_regions"
+    },
+    "migration_family": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/migration_family"
+    },
+    "plan": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/plan"
+    },
+    "rationale": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/rationale"
+    },
+    "structural_eligibility": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "practical_suitability": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "benchmark_supported": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "computational_intent": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "description": "Free description; private reference intent IDs are not a grading vocabulary."
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "contract_applicability": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contract_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "applicable": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "contract_id",
+          "applicable",
+          "rationale"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "decision",
+    "candidate_regions",
+    "migration_family",
+    "plan",
+    "rationale",
+    "structural_eligibility",
+    "practical_suitability",
+    "benchmark_supported",
+    "computational_intent",
+    "assumptions",
+    "risks",
+    "contract_applicability"
+  ],
+  "allOf": [
+    {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/allOf/0"
+    }
+  ]
+}
+
+LOCATION CUE
+{"end_line": 91, "file": "inspection.py", "start_line": 77}

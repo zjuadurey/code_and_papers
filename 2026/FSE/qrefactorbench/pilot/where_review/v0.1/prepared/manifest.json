@@ -1,0 +1,74 @@
+{
+  "status": "DRAFT_NOT_RUN",
+  "independent_mother_problems": 2,
+  "human_approved_locations": false,
+  "model_calls": 0,
+  "conditions": [
+    {
+      "mother_case": "lit-003",
+      "condition": "A",
+      "prediction_case_id": "source-core-003",
+      "path": "inputs/lit-003-A.txt",
+      "sha256": "b405b0206138bd7039071d8de32e7b930415e3affc1e2e5b9fdd76470e88223e",
+      "location_cue": null
+    },
+    {
+      "mother_case": "lit-003",
+      "condition": "B",
+      "prediction_case_id": "lit-003",
+      "path": "inputs/lit-003-B.txt",
+      "sha256": "9587a0cd8bafb5c6b331500fa9bde64fc435e0b03beaad80bf8268a5d13e7279",
+      "location_cue": {
+        "file": "agenda.py",
+        "start_line": 28,
+        "end_line": 57
+      }
+    },
+    {
+      "mother_case": "lit-003",
+      "condition": "C",
+      "prediction_case_id": "lit-003",
+      "path": "inputs/lit-003-C.txt",
+      "sha256": "058447316d8d52e2b33697a9efd33f09b85d583f254d18cc1eaeecdccf966645",
+      "location_cue": null
+    },
+    {
+      "mother_case": "lit-004",
+      "condition": "A",
+      "prediction_case_id": "source-core-004",
+      "path": "inputs/lit-004-A.txt",
+      "sha256": "79f9e7b9246da48adf4806ac82b692ee73dd71235a2d170b196c9fcc702e7b69",
+      "location_cue": null
+    },
+    {
+      "mother_case": "lit-004",
+      "condition": "B",
+      "prediction_case_id": "lit-004",
+      "path": "inputs/lit-004-B.txt",
+      "sha256": "2e02adfea741e553fffd1e1378ba2437e57e258aec80954029ee6a88991acb75",
+      "location_cue": {
+        "file": "program.py",
+        "start_line": 25,
+        "end_line": 29
+      }
+    },
+    {
+      "mother_case": "lit-004",
+      "condition": "C",
+      "prediction_case_id": "lit-004",
+      "path": "inputs/lit-004-C.txt",
+      "sha256": "ff951e85626a3724e3a62428c795228e8ad4009c81c3ba830feec60c77dd3734",
+      "location_cue": null
+    }
+  ],
+  "source_files_sha256": {
+    "pilot/where_review/v0.1/TASK.md": "fa72646781f8bbb4175c64125c0ed9d8fa9ff30ab587ab6952a6c87f2be8d7b0",
+    "pilot/where_review/v0.1/prepare.py": "13ca2f35a32537086ef2ae6a9534036d396c8241a5b1eea380d3e18d48a0d5f1",
+    "pilot/source_adaptations/v0.2-where/review_inputs/manifest.json": "b111733f7076db98b463d76ef3a0bca2a647b08d98319b68d966d8dd5d4052e4",
+    "pilot/public_contracts.json": "dcd0eebee2c0258fc9d6a8176b8e4cb8a36df80aa03fd16cdfa3d9600a5fdfc8",
+    "schemas/case.schema.json": "ab043477501474a9055d75997ee194b576840f7e6613b332694b15c0a3f49124",
+    "schemas/prediction.schema.json": "016e0ef79b0fe4bbdb837b1dda4251245fe6d72327b088906065924417b5f0a5",
+    "schemas/migration_plan.schema.json": "82fb0369cdb967bebef78942fcba6e2514ce3a2143271120b26b60aaa5c55639",
+    "schemas/phase1_prediction.schema.json": "7fbbce683b407d82e8f556d218c985c2aa398c60cfb6c794f8e2191f46e61caa"
+  }
+}

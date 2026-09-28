@@ -1,0 +1,13 @@
+{
+  "utc": "2026-09-26T21:46:59.238104+00:00",
+  "local_links_checked": 226,
+  "missing_local_targets": [],
+  "exact_quote_anchors": 33,
+  "protected_files_unchanged": 3114,
+  "artifact_files_hashed": 169,
+  "check_only_replay_passed": true,
+  "notes": [
+    "File targets checked; heading anchors not checked by this delivery check.",
+    "Results and bindings remain immutable; paper untouched."
+  ]
+}

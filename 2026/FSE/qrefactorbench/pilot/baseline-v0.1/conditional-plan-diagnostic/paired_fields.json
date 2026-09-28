@@ -1,0 +1,696 @@
+[
+  {
+    "case_id": "pilot-001",
+    "original": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "unstructured_search",
+      "computational_intent": "Decide exactly whether any of the 2^n Boolean assignments satisfies every supplied clause, returning a classical Boolean. The empty clause must make the result false, an empty clause list must make it true, and no witness assignment or other side effect is required.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "satisfies",
+          "start_line": 1,
+          "end_line": 6
+        },
+        {
+          "file": "program.py",
+          "function": "has_assignment",
+          "start_line": 9,
+          "end_line": 13
+        }
+      ],
+      "benchmark_supported": false,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": true,
+          "rationale": "Assignments form a finite basis-state domain and satisfies is a pure Boolean predicate, so the exhaustive loop has a structural Grover-style formulation. Actual conformity would still require a reversible clause predicate, explicit loading or encoding of all clause data and workspace costs, classical verification of measured assignments, and a justified bounded-error or exact no-solution policy preserving the Boolean contract."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": null,
+          "rationale": "SAT can potentially be reduced to a binary penalty objective, possibly with auxiliary variables for clauses, but no QUBO coefficients, auxiliary-variable construction, or sufficient penalty bounds are supplied. Moreover, a QAOA sample that fails to find a satisfying assignment does not establish unsatisfiability, so preservation of the exact existence decision is unresolved."
+        }
+      ]
+    },
+    "diagnostic": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "unstructured_search",
+      "computational_intent": "Decide exactly whether any of the 2^n Boolean assignments satisfies every supplied clause, returning a Boolean with no other required effects. Empty clauses must make the result false, while an empty clause list must make it true.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "satisfies",
+          "start_line": 1,
+          "end_line": 6
+        },
+        {
+          "file": "program.py",
+          "function": "has_assignment",
+          "start_line": 9,
+          "end_line": 13
+        }
+      ],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": true,
+          "rationale": "The assignment space is finite and satisfies is a pure Boolean predicate, so a Grover-style formulation is structurally available. Applicability is conditional on constructing a reversible clause predicate, accounting for the classically supplied clause data and workspace, and resolving exact no-solution certification."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": null,
+          "rationale": "SAT can in principle be reduced to minimizing an unsatisfied-clause objective, with auxiliary variables and sufficiently strong penalties for higher-order clauses. No explicit QUBO reduction, coefficient bounds, penalty proof, resource accounting, or exact-optimum certification is supplied, and ordinary QAOA sampling would not by itself preserve the exact Boolean decision contract."
+        }
+      ]
+    },
+    "original_plan_present": false,
+    "diagnostic_plan_present": true,
+    "exact_field_changes": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": false,
+      "migration_family": false,
+      "computational_intent": true,
+      "candidate_regions": false,
+      "benchmark_supported": true,
+      "contract_applicability": true
+    }
+  },
+  {
+    "case_id": "pilot-002",
+    "original": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": null,
+      "computational_intent": "Sequentially consume every event, update a rolling SHA-256 digest from the previous digest and current event, invoke the host audit callback exactly once per event in input order with each observable intermediate digest, propagate callback exceptions according to ordinary Python execution, and return the final digest.",
+      "candidate_regions": [],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": false,
+          "rationale": "The program performs no search over a finite candidate domain and defines no pure Boolean predicate or marked state. Its core recurrence and required ordered callback effects cannot be represented as a Grover-style predicate search without changing the task."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": false,
+          "rationale": "The program contains no binary decision variables, objective function, constraints, or optimization requirement. Encoding its deterministic ordered digest computation as a QUBO would not satisfy the contract's intended optimization structure and would not preserve exact semantics through approximate QAOA execution."
+        }
+      ]
+    },
+    "diagnostic": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": null,
+      "computational_intent": "Sequentially consume every byte-string event, update a rolling SHA-256 digest from the preceding digest and current event, invoke the host audit callback exactly once per event in input order with each observable intermediate digest, propagate any callback exception according to normal Python execution, and return the final digest if processing completes.",
+      "candidate_regions": [],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": false,
+          "rationale": "The program does not search a candidate domain or evaluate a pure Boolean predicate. Lines 7-9 perform a deterministic, order-dependent hash chain with externally visible callbacks. Recasting some unrelated SHA-256 problem as predicate search would not implement the supplied software contract."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": false,
+          "rationale": "There are no binary decision variables, objective function, constraints, or optimum to encode as a QUBO or Ising model. Introducing an approximate optimization problem would change the computation and would not preserve the exact digest and audit behavior."
+        }
+      ]
+    },
+    "original_plan_present": false,
+    "diagnostic_plan_present": false,
+    "exact_field_changes": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": false,
+      "migration_family": false,
+      "computational_intent": true,
+      "candidate_regions": false,
+      "benchmark_supported": false,
+      "contract_applicability": true
+    }
+  },
+  {
+    "case_id": "pilot-003",
+    "original": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "combinatorial_optimization",
+      "computational_intent": "Enumerate binary vertex partitions, sum the weights of all edges whose endpoints lie on opposite sides, including repeated edges independently and excluding self-loop contributions, and return the exact maximum crossing weight.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "best_partition_score",
+          "start_line": 3,
+          "end_line": 6
+        }
+      ],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": false,
+          "rationale": "The required result is an optimum value rather than a direct marked-state search. A threshold predicate over partitions could be constructed, but obtaining the maximum would require an additional maximum-finding or repeated-threshold procedure outside this contract, reversible weighted arithmetic, coherent edge access, and an exact no-better-solution certification policy."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": true,
+          "rationale": "With one binary variable x_u per vertex, the crossing-weight objective is explicitly representable as sum over edges of w_uv*(x_u+x_v-2*x_u*x_v), with repeated edges included separately and self-loop terms cancelling. Decoded assignments can be checked classically. This establishes structural applicability only; ordinary QAOA sampling does not guarantee the exact optimum required by the software contract."
+        }
+      ]
+    },
+    "diagnostic": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "combinatorial_optimization",
+      "computational_intent": "Compute and return the exact maximum weighted cut value over every binary partition of the n vertices, counting repeated edges separately and assigning zero contribution to self loops, with no externally visible side effects.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "best_partition_score",
+          "start_line": 2,
+          "end_line": 6
+        }
+      ],
+      "benchmark_supported": false,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": null,
+          "rationale": "The finite set of 2^n partitions and a threshold predicate on their cut scores could in principle be represented, but the program requests an optimum value rather than a single predicate-search result. Applicability would require an explicit reversible weighted-score oracle, threshold or maximum-finding procedure, no-solution handling, exactness policy, and accounting for edge-data encoding and workspace; none is supplied."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": true,
+          "rationale": "Weighted maximum cut has a direct unconstrained binary quadratic objective with one binary variable per vertex. Repeated edges add coefficients and self-loop terms cancel. The contract is structurally applicable, but its QAOA proposal does not guarantee the exact optimum required by the software contract."
+        }
+      ]
+    },
+    "original_plan_present": false,
+    "diagnostic_plan_present": true,
+    "exact_field_changes": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": false,
+      "migration_family": false,
+      "computational_intent": true,
+      "candidate_regions": true,
+      "benchmark_supported": true,
+      "contract_applicability": true
+    }
+  },
+  {
+    "case_id": "pilot-004",
+    "original": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "unstructured_search",
+      "computational_intent": "Reject inputs containing more than eight codes with ValueError; otherwise return an exact Boolean indicating whether target equals any resident code, including false for empty input.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "has_code",
+          "start_line": 4,
+          "end_line": 7
+        }
+      ],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": true,
+          "rationale": "The bounded list forms a finite search domain and equality with target is a pure Boolean predicate, so a Grover-style structural formulation is possible. An actual migration would still need a reversible equality predicate, explicit handling of empty and duplicate-containing inputs, a justified no-solution policy, classical verification, and preservation of exact Boolean semantics."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": false,
+          "rationale": "The program performs an existence test rather than optimizing a binary objective, and no natural QUBO objective, constraints, or required optimal assignment are present."
+        }
+      ]
+    },
+    "diagnostic": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "unstructured_search",
+      "computational_intent": "Determine exactly whether target equals any of at most eight resident integer codes, returning a deterministic Boolean, handling duplicates and empty input, and preserving the ValueError for inputs longer than eight.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "has_code",
+          "start_line": 4,
+          "end_line": 7
+        }
+      ],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": true,
+          "rationale": "The bounded index domain admits a Boolean predicate marking indices whose resident code equals the target. Applicability is conditional on constructing a reversible exact-integer equality oracle and defining exact success and no-solution handling. All loading, oracle synthesis, and verification costs must be counted."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": false,
+          "rationale": "The program performs an existence test over independent candidates, not a binary optimization problem with an objective and constraints. A QUBO encoding would introduce an artificial optimization formulation without supporting evidence or benefit."
+        }
+      ]
+    },
+    "original_plan_present": false,
+    "diagnostic_plan_present": true,
+    "exact_field_changes": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": false,
+      "migration_family": false,
+      "computational_intent": true,
+      "candidate_regions": false,
+      "benchmark_supported": false,
+      "contract_applicability": true
+    }
+  },
+  {
+    "case_id": "pilot-005",
+    "original": {
+      "structural_eligibility": true,
+      "practical_suitability": null,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "unstructured_search",
+      "computational_intent": "After filtering unavailable offers and sorting the remaining copies by SKU, determine exactly whether any subset of eligible offer instances has total units equal to target and total price at most budget; return only that Boolean decision together with the eligible-offer count and target metadata.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "feasible_bundle",
+          "start_line": 4,
+          "end_line": 12
+        }
+      ],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": true,
+          "rationale": "The eligible-offer indices define a finite domain of subset masks, and the marked-state predicate is total_units(mask) == target and total_price(mask) <= budget. This is structurally compatible with predicate search, provided sufficient-width reversible arithmetic, instance-data access, candidate verification, and a justified exact success/no-solution policy are supplied. Applicability does not establish practical advantage."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": true,
+          "rationale": "Binary variables can represent offer inclusion, with squared penalties for the exact-unit equality and for a budget equality augmented by nonnegative slack bits. Coefficient widths, slack bounds, penalty sufficiency, and reliable recovery of a zero-penalty assignment would need validation. QAOA supplies no stated guarantee of the exact Boolean decision required here, making this a less direct formulation than predicate search."
+        }
+      ]
+    },
+    "diagnostic": {
+      "structural_eligibility": true,
+      "practical_suitability": null,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "unstructured_search",
+      "computational_intent": "After classically filtering unavailable offers and sorting eligible offers by SKU, determine exactly whether any subset has total units equal to the target and total price no greater than the budget, then return that Boolean together with the eligible-offer count and target metadata.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "feasible_bundle",
+          "start_line": 4,
+          "end_line": 12
+        }
+      ],
+      "benchmark_supported": false,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": true,
+          "rationale": "The finite set of subset masks supports a pure Boolean predicate checking exact unit equality and the budget inequality. A reversible implementation using controlled integer accumulation, equality and comparison is structurally plausible. Practical application remains conditional on accounting for classical data encoding, arithmetic workspace, uncomputation, and an exact-contract-compatible no-solution policy."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": null,
+          "rationale": "Binary offer-selection variables and auxiliary slack variables could potentially encode the equality and budget constraints as a zero-energy feasibility objective. However, coefficient bounds, sufficient penalties, auxiliary-variable costs, and a QAOA procedure that preserves the exact existential Boolean result have not been established."
+        }
+      ]
+    },
+    "original_plan_present": false,
+    "diagnostic_plan_present": true,
+    "exact_field_changes": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": false,
+      "migration_family": false,
+      "computational_intent": true,
+      "candidate_regions": false,
+      "benchmark_supported": true,
+      "contract_applicability": true
+    }
+  },
+  {
+    "case_id": "pilot-006",
+    "original": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "combinatorial_optimization",
+      "computational_intent": "Compute and return the exact minimum integer value of the unconstrained binary quadratic expression sum_i biases[i] * x_i + sum_(i,j,w) w * x_i * x_j over every binary assignment, preserving self-couplings, repeated coupling tuples, coefficient signs, and the existing integer return interface.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "minimum_energy",
+          "start_line": 2,
+          "end_line": 7
+        }
+      ],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": null,
+          "rationale": "The assignments form a finite domain and a threshold predicate such as energy(x) < T could be defined, but the catalog contract alone does not specify the adaptive threshold protocol, reversible arithmetic, exact no-solution handling, or error policy needed to return the exact minimum. Oracle construction and its resource costs are also unevaluated."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": true,
+          "rationale": "The program directly defines an unconstrained binary quadratic objective. Repeated tuples can be accumulated, and self-couplings can be retained or folded into linear coefficients using x_i squared equals x_i. This establishes formulation-level applicability only; QAOA does not by itself satisfy the required exact-optimum semantics."
+        }
+      ]
+    },
+    "diagnostic": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "combinatorial_optimization",
+      "computational_intent": "Exactly minimize the specified integer-valued quadratic expression over all binary assignments and return only its minimum value, counting every coupling tuple independently, including repeated and self-coupling terms.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "minimum_energy",
+          "start_line": 2,
+          "end_line": 8
+        }
+      ],
+      "benchmark_supported": false,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": null,
+          "rationale": "The finite assignment space could support a reversible threshold predicate, but the program performs optimization rather than a single predicate-existence query. Applying this contract would require an additional exact minimum-finding procedure, reversible objective evaluation, threshold management, and justified probabilistic failure handling, none of which are specified."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": true,
+          "rationale": "The expression is already an unconstrained quadratic binary objective. Its coefficients, signs, repeated terms, and self-couplings can be represented explicitly, but the DRAFT contract does not establish that QAOA will return the exact optimum required by the software contract."
+        }
+      ]
+    },
+    "original_plan_present": false,
+    "diagnostic_plan_present": true,
+    "exact_field_changes": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": false,
+      "migration_family": false,
+      "computational_intent": true,
+      "candidate_regions": true,
+      "benchmark_supported": true,
+      "contract_applicability": true
+    }
+  },
+  {
+    "case_id": "pilot-007",
+    "original": {
+      "structural_eligibility": true,
+      "practical_suitability": null,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "unstructured_search",
+      "computational_intent": "Decide exactly whether at least one positional subset of the finite integer list sums to target, including the empty subset for target zero, while returning only a Boolean and producing no side effects.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "has_total",
+          "start_line": 2,
+          "end_line": 7
+        }
+      ],
+      "benchmark_supported": false,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": null,
+          "rationale": "The masks form a finite domain and equality of a selected-element sum with target is a pure Boolean predicate, so a Grover-style formulation is structurally available. Applicability remains unresolved because reversible signed-arithmetic construction, coherent access to all input values, integer and accumulator widths, uncomputation workspace, repeated oracle cost, and an exact-contract-compatible no-solution/error policy are not established."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": null,
+          "rationale": "A formal QUBO can minimize (sum_i values[i] x_i - target)^2, whose zero-energy assignments correspond to satisfying subsets. However, coefficient magnitudes and precision costs are unstated, and ordinary QAOA sampling or approximate minimization does not establish the exact Boolean result or reliably certify that no zero-energy assignment exists."
+        }
+      ]
+    },
+    "diagnostic": {
+      "structural_eligibility": true,
+      "practical_suitability": null,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "unstructured_search",
+      "computational_intent": "Decide exactly whether at least one subset of the supplied integer list sums to the target, treating duplicate positions independently, permitting negative integers, and recognizing the empty subset as a solution when the target is zero; return only a Boolean and produce no other effects.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "has_total",
+          "start_line": 2,
+          "end_line": 7
+        }
+      ],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": true,
+          "rationale": "The 2^n inclusion masks form a finite domain and equality of the selected-item sum to the target is a pure Boolean predicate. Structural applicability is conditional on constructing and uncomputing reversible signed-integer arithmetic and on resolving exact no-solution semantics; finite-shot Grover-style execution alone cannot certify False under the unchanged exact Boolean contract."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": true,
+          "rationale": "A structural QUBO exists using the objective (sum_i values[i] * x_i - target)^2, whose minimum is zero exactly when a qualifying subset exists. Its linear coefficients are values[i]^2 - 2 * target * values[i] and its pairwise coefficients are 2 * values[i] * values[j]. However, arbitrary coefficient ranges and dense interactions must be represented, and QAOA sampling does not by itself certify either an exact zero minimum or the absence of one."
+        }
+      ]
+    },
+    "original_plan_present": false,
+    "diagnostic_plan_present": true,
+    "exact_field_changes": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": false,
+      "migration_family": false,
+      "computational_intent": true,
+      "candidate_regions": false,
+      "benchmark_supported": true,
+      "contract_applicability": true
+    }
+  },
+  {
+    "case_id": "pilot-008",
+    "original": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": null,
+      "computational_intent": "For each input row in order, compute its total absolute magnitude, normalize every element (using 0.0 for zero-magnitude rows), and materialize the requested number of distinct mutable list copies in the complete nested classical output.",
+      "candidate_regions": [],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": false,
+          "rationale": "The program performs deterministic transformation and exhaustive output materialization, not a search over a finite candidate domain using a Boolean predicate. No marked-state predicate, candidate-selection result, or meaningful success/no-solution behavior exists."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": false,
+          "rationale": "The program has no binary decision variables, objective function, constraints, or optimization result to encode as QUBO or Ising. Recasting arithmetic and copying as optimization would not preserve the exact transformation contract."
+        }
+      ]
+    },
+    "diagnostic": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": null,
+      "computational_intent": "For each input row in order, compute its total absolute magnitude, normalize every element (using 0.0 when the magnitude is zero), and materialize the requested number of distinct mutable list copies in row-major and copy order.",
+      "candidate_regions": [],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": false,
+          "rationale": "The computation does not search a finite candidate domain for states satisfying a Boolean predicate. It must transform and return every input element in every requested copy, so a Grover-style search would not preserve the task structure or avoid complete classical output materialization."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": false,
+          "rationale": "There are no binary decision variables, constraints, or optimization objective to encode as a QUBO or Ising model. Recasting deterministic normalization and copying as optimization would introduce an unrelated formulation without preserving exact semantics."
+        }
+      ]
+    },
+    "original_plan_present": false,
+    "diagnostic_plan_present": false,
+    "exact_field_changes": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": false,
+      "migration_family": false,
+      "computational_intent": true,
+      "candidate_regions": false,
+      "benchmark_supported": false,
+      "contract_applicability": true
+    }
+  },
+  {
+    "case_id": "pilot-009",
+    "original": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "combinatorial_optimization",
+      "computational_intent": "Validate the job and link data, compute the exact minimum cost over all binary left/right placements, and return that cost together with the original job names and job count. The placement itself need not be returned, but the reported cost must be exactly optimal and validation behavior must be preserved.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "best_cost",
+          "start_line": 4,
+          "end_line": 12
+        }
+      ],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": null,
+          "rationale": "The placement domain is finite, and a threshold predicate such as cost(mask) <= B is structurally conceivable. However, the program requires an exact minimum rather than a single predicate-search result, and no reversible cost oracle, threshold-search procedure, register widths, or probabilistic failure policy is supplied. Applicability therefore remains unresolved."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": true,
+          "rationale": "Using x_i=1 for right and x_i=0 for left, the objective is a QUBO: sum_i(left_cost_i + (right_cost_i-left_cost_i)x_i) plus sum_(a,b,p) p(1-x_a-x_b+2x_a*x_b). There are no additional placement constraints because every binary assignment is valid. Decoding an assignment and classically recomputing its cost could preserve the interface, but the draft QAOA proposal does not ensure the required exact optimum."
+        }
+      ]
+    },
+    "diagnostic": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "combinatorial_optimization",
+      "computational_intent": "Validate a batch of jobs and links, compute the exact minimum cost over all binary left/right placements, and return that cost with the original job names and job count in a classical report.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "best_cost",
+          "start_line": 5,
+          "end_line": 12
+        }
+      ],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": null,
+          "rationale": "The finite placement space could support a reversible threshold predicate such as cost(mask) <= T, followed by a separately specified exact minimum-finding procedure. However, the supplied program is not an existence-search API, and no reversible oracle, threshold schedule, success amplification, or exact no-solution/error policy is provided."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": true,
+          "rationale": "Each placement is a binary variable, unary placement costs are linear, and every same-side link penalty is quadratic, so the exact classical objective has an explicit QUBO/Ising representation. Applicability is structural only: the contract does not establish that QAOA will return or certify the required exact optimum."
+        }
+      ]
+    },
+    "original_plan_present": false,
+    "diagnostic_plan_present": true,
+    "exact_field_changes": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": false,
+      "migration_family": false,
+      "computational_intent": true,
+      "candidate_regions": true,
+      "benchmark_supported": false,
+      "contract_applicability": true
+    }
+  },
+  {
+    "case_id": "pilot-010",
+    "original": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "unstructured_search",
+      "computational_intent": "Parse every JSON payload, propagating any parsing failure, and only after all parsing is complete return an exact Boolean indicating whether at least one record has a truthy active field and a key equal to the requested target.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "contains_record",
+          "start_line": 4,
+          "end_line": 8
+        }
+      ],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": null,
+          "rationale": "The contains_record loop is structurally an existence search over a finite list with the predicate bool(record[\"active\"]) and record[\"key\"] == target. Applicability remains unresolved because arbitrary parsed JSON values and Python truthiness/equality would need bounded reversible encodings, a coherent representation must be rebuilt for every batch, and no exact success/no-solution error policy or reversible oracle construction is supplied."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": false,
+          "rationale": "The program performs an existence test and defines neither a binary optimization objective nor constraints whose optimum is a required output. Recasting the Boolean search as a QUBO would add an optimization problem without preserving an evident computational purpose."
+        }
+      ]
+    },
+    "diagnostic": {
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "decision": "REMAIN_CLASSICAL",
+      "migration_family": "unstructured_search",
+      "computational_intent": "Parse every supplied JSON string before searching, preserving malformed-JSON exceptions, and then return the exact Boolean existence result for a record whose active field is truthy and whose key equals the requested target under Python semantics.",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "contains_record",
+          "start_line": 4,
+          "end_line": 8
+        }
+      ],
+      "benchmark_supported": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": true,
+          "rationale": "After all payloads have been parsed, the finite record indices admit the Boolean predicate active(record[i]) and key(record[i]) == target. Applicability remains conditional on a reversible implementation of Python truthiness and equality, explicit fresh-batch data encoding, and exact handling of the no-match outcome."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": false,
+          "rationale": "The program performs an existence test over independent records and supplies no optimization objective, interacting binary decisions, or constraints whose optimum must be found. Recasting existence as an artificial QUBO would not establish suitability and would introduce approximate-solution concerns absent from the original exact Boolean contract."
+        }
+      ]
+    },
+    "original_plan_present": false,
+    "diagnostic_plan_present": true,
+    "exact_field_changes": {
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "decision": false,
+      "migration_family": false,
+      "computational_intent": true,
+      "candidate_regions": false,
+      "benchmark_supported": false,
+      "contract_applicability": true
+    }
+  }
+]

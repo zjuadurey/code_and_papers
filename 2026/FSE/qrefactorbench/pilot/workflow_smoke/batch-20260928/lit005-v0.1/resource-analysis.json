@@ -1,0 +1,156 @@
+{
+  "application_sha256": "3f6a1f005c8c85dbf37bdcbbd710d5e88e1eb8629d90bea865a36547094b6439",
+  "assumptions": {
+    "controller_context": {
+      "algorithm_failure_bound": 0,
+      "application_sha256": "3f6a1f005c8c85dbf37bdcbbd710d5e88e1eb8629d90bea865a36547094b6439",
+      "classical_seconds": {
+        "lower": 2.013078199524898e-05,
+        "source": "perf_counter: 7 batch means, descriptive range not confidence bound",
+        "upper": 2.12525140013895e-05
+      },
+      "comparison_id": "lit005-source-example-exact-first",
+      "evidence_source": "semantics.json finite checks; host-timings.json; no calibrated deployment overhead",
+      "max_failure_probability": 0,
+      "overheads_seconds": {
+        "classical_control": null,
+        "communication": null,
+        "compilation_amortized": null,
+        "preparation": {
+          "lower": 8.04947349752183e-05,
+          "source": "perf_counter: 7 batch means, descriptive range not confidence bound",
+          "upper": 8.571696002036333e-05
+        },
+        "readout_decode": null,
+        "validation_fallback": null
+      },
+      "quantum_executions": 1,
+      "same_task": true
+    },
+    "request": {
+      "application": {
+        "coverage": "one uniform preparation, one clause-derived oracle, one diffusion, data measurement",
+        "format": "openqasm3",
+        "source": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nqubit[14] q;\nbit[3] result;\nh q[0];\nh q[1];\nh q[2];\nx q[3];\nx q[0];\nx q[1];\nx q[2];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[3];\nccx q[0], q[1], q[10];\nx q[0];\nx q[1];\nx q[2];\nx q[4];\nx q[1];\nx q[2];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[4];\nccx q[0], q[1], q[10];\nx q[1];\nx q[2];\nx q[5];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[5];\nccx q[0], q[1], q[10];\nx q[6];\nx q[2];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[6];\nccx q[0], q[1], q[10];\nx q[2];\nx q[7];\nx q[0];\nx q[1];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[7];\nccx q[0], q[1], q[10];\nx q[0];\nx q[1];\nx q[8];\nx q[1];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[8];\nccx q[0], q[1], q[10];\nx q[1];\nccx q[3], q[4], q[10];\nccx q[10], q[5], q[11];\nccx q[11], q[6], q[12];\nccx q[12], q[7], q[13];\nccx q[13], q[8], q[9];\nccx q[12], q[7], q[13];\nccx q[11], q[6], q[12];\nccx q[10], q[5], q[11];\nccx q[3], q[4], q[10];\nz q[9];\nccx q[3], q[4], q[10];\nccx q[10], q[5], q[11];\nccx q[11], q[6], q[12];\nccx q[12], q[7], q[13];\nccx q[13], q[8], q[9];\nccx q[12], q[7], q[13];\nccx q[11], q[6], q[12];\nccx q[10], q[5], q[11];\nccx q[3], q[4], q[10];\nx q[1];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[8];\nccx q[0], q[1], q[10];\nx q[1];\nx q[8];\nx q[1];\nx q[0];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[7];\nccx q[0], q[1], q[10];\nx q[1];\nx q[0];\nx q[7];\nx q[2];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[6];\nccx q[0], q[1], q[10];\nx q[2];\nx q[6];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[5];\nccx q[0], q[1], q[10];\nx q[5];\nx q[2];\nx q[1];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[4];\nccx q[0], q[1], q[10];\nx q[2];\nx q[1];\nx q[4];\nx q[2];\nx q[1];\nx q[0];\nccx q[0], q[1], q[10];\nccx q[10], q[2], q[3];\nccx q[0], q[1], q[10];\nx q[2];\nx q[1];\nx q[0];\nx q[3];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[2];\nccx q[0], q[1], q[2];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nresult[0] = measure q[0];\nresult[1] = measure q[1];\nresult[2] = measure q[2];\n"
+      },
+      "max_error": 0.01,
+      "plan_id": "lit005-one-iteration-prefix-repair",
+      "profiles": [
+        {
+          "error_rate": 0.0001,
+          "gate_time_ns": 100,
+          "id": "hypothetical-100ns",
+          "measurement_time_ns": 500,
+          "source": "explicit hypothetical scenario; not calibrated user hardware"
+        },
+        {
+          "error_rate": 0.0001,
+          "gate_time_ns": 1000,
+          "id": "hypothetical-1000ns",
+          "measurement_time_ns": 5000,
+          "source": "explicit hypothetical scenario; not calibrated user hardware"
+        }
+      ],
+      "version": "resource-workflow-v0.1"
+    }
+  },
+  "comparison_id": "lit005-source-example-exact-first",
+  "conditional_benefit_points": [],
+  "context_sha256": "d9a8b305e51c1bb32f29dc4fd6bbea355efd792c142e1f91c186a3a2144fbaa0",
+  "estimation_runs": [
+    {
+      "backend": "qdk.qre",
+      "backend_version": "1.32.3",
+      "model": "GateBased/SurfaceCode/RoundBasedFactory; PSSPC/LatticeSurgery",
+      "profile_id": "hypothetical-100ns",
+      "rows": [
+        {
+          "error_bound": 0.004887607699999999,
+          "physical_qubits": 5700,
+          "runtime_ns": 840000.0
+        }
+      ],
+      "stats": {
+        "num_isas": 1284,
+        "num_traces": 32,
+        "pareto_results": 1,
+        "successful_estimates": 18480,
+        "total_jobs": 41088
+      },
+      "status": "ok",
+      "use_graph": false
+    },
+    {
+      "backend": "qdk.qre",
+      "backend_version": "1.32.3",
+      "model": "GateBased/SurfaceCode/RoundBasedFactory; PSSPC/LatticeSurgery",
+      "profile_id": "hypothetical-1000ns",
+      "rows": [
+        {
+          "error_bound": 0.004887607699999999,
+          "physical_qubits": 5700,
+          "runtime_ns": 8400000.0
+        }
+      ],
+      "stats": {
+        "num_isas": 1284,
+        "num_traces": 32,
+        "pareto_results": 1,
+        "successful_estimates": 18480,
+        "total_jobs": 41088
+      },
+      "status": "ok",
+      "use_graph": false
+    }
+  ],
+  "limitations": [
+    "Predictions under supplied models, not hardware observations or benchmark scores.",
+    "Controller evidence is consumed, not independently verified by this tool.",
+    "Serial schedule; all costs aggregated per request; no implicit overlap/amortization.",
+    "Failure bound uses a union bound; exceeding it does not prove actual failure rate.",
+    "Sampled profiles and backend frontier do not establish a globally minimal threshold."
+  ],
+  "plan_id": "lit005-one-iteration-prefix-repair",
+  "points": [
+    {
+      "decision": "quality_not_established",
+      "error_bound": 0.004887607699999999,
+      "failure_upper_bound": 0.004887607699999999,
+      "hybrid_seconds": null,
+      "missing_cost_terms": [
+        "classical_control",
+        "communication",
+        "readout_decode",
+        "validation_fallback",
+        "compilation_amortized"
+      ],
+      "physical_qubits": 5700,
+      "profile_id": "hypothetical-100ns",
+      "quality_bound_satisfied": false,
+      "quantum_seconds_total": 0.00084,
+      "runtime_ns": 840000.0,
+      "timing_relation": "unknown"
+    },
+    {
+      "decision": "quality_not_established",
+      "error_bound": 0.004887607699999999,
+      "failure_upper_bound": 0.004887607699999999,
+      "hybrid_seconds": null,
+      "missing_cost_terms": [
+        "classical_control",
+        "communication",
+        "readout_decode",
+        "validation_fallback",
+        "compilation_amortized"
+      ],
+      "physical_qubits": 5700,
+      "profile_id": "hypothetical-1000ns",
+      "quality_bound_satisfied": false,
+      "quantum_seconds_total": 0.0084,
+      "runtime_ns": 8400000.0,
+      "timing_relation": "unknown"
+    }
+  ],
+  "request_sha256": "181995b46461ab754b7441ea84c31a3b8a0517d776b12cc2c7a28c9b09b0dcd5",
+  "version": "resource-workflow-v0.1"
+}

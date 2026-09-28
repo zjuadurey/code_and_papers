@@ -1,0 +1,119 @@
+\section{Benchmark Construction and Evidence}
+\label{sec:benchmark}
+\subsection{Source provenance and functional context}
+\bench{} begins from traceable computations rather than arbitrary code padded
+with unrelated lines. Each mother case records its source revision, adapted
+mathematical definition, public contract, classical implementation, and private
+checking evidence. Source tasks and the newly written application contexts are
+identified separately. An adaptation from a quantum programming task is not
+presented as an original production application supplied by its upstream authors.
+
+Table~\ref{tab:cases} lists development cases and obligations. Shared mathematical
+structure and upstream tasks prevent treating every directory or narrative as an
+independent problem family.
+
+\begin{table}[tb]
+\caption{Development case inventory. IDs identify cases, not independent sample
+counts. Scope-control labels remain provisional. Corpus measurements are unfilled.}
+\label{tab:cases}
+\begin{tabularx}{\linewidth}{lYYY}
+\toprule
+Case & Source lineage & Classical role & Contract focus \\
+\midrule
+lit-001 & C2$|$Q$\rangle$ & Weighted partitioning & Weights, canonical selection, change report \\
+lit-002 & C2$|$Q$\rangle$ & Vertex-cover work list & Cardinality, tuple ties, ownership \\
+lit-003 & C2$|$Q$\rangle$ & Agenda coloring & Preview versus completion, first solution \\
+lit-004 & C2$|$Q$\rangle$ & Compatible records & Filtering, recency, maximum subset \\
+lit-005 & QuanBench / QuanBench+ & Feature configuration & Locked values, validation order \\
+lit-006 & QuanBench & Transfer allocation & Capacity, windows, offsets, ties \\
+lit-007 & SupermarQ & Signed preferences & Sign conventions, scores, movement \\
+lit-008 & Qiskit HumanEval & Ordered XOR receipts & Full output, order, prefix checksum \\
+lit-009 & HPL & Dense balance solving & Pivot selection, exceptions, residuals \\
+lit-010 & HPCG & Sparse iterative solving & Initial state, stopping, full trajectory \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+C2$|$Q$\rangle$, QuanBench, QuanBench+, Qiskit HumanEval, and SupermarQ supply
+task or objective provenance~\cite{c2q,quanbench,quanplus,qhe,supermarq}.
+HPL and HPCG supply numerical algorithm references~\cite{hpl,hpcg}.
+These uses do not reproduce the upstream systems' complete workloads or official
+performance measurements. Circuit resources and representation levels can be
+studied using ideas from MQT Bench~\cite{mqt}, but resource extraction does not
+establish the semantic correctness of the enclosing application.
+
+\subsection{Controlled input views}
+For each mother case, view A contains the computational core; view B contains
+the full classical program plus a source-location cue; view C contains the same
+full program without that cue. The B/C pair is byte-identical after removal of
+the designated cue. This makes B/C the clean contrast for location assistance.
+A/B changes both context and the obligations visible to the model, so differences
+cannot be attributed solely to search difficulty. An analysis of core obligations
+shared across A and B is reported separately from full-contract completion.
+
+Context must affect the public contract, as assessed through dependency and
+mutation checks. Program size, branches, obligations, and dependency distance are
+descriptive covariates; difficulty is measured rather than assumed.
+
+Public input packages contain only allowlisted source and task material. Private
+reference proposals, tests, previous responses, and diagnostic conclusions are
+excluded. Source notices preserve attribution and licensing, so the benchmark
+does not claim perfect source anonymity. Any redaction or renaming experiment
+must retain legally required notices and use a separately versioned input.
+
+\subsection{Reference construction and uncertainty}
+The reference process begins with a behavioral inventory: input domain, returned
+values, ordering, exception behavior, relevant state, and downstream uses. Reviewers
+then identify possible regions and admissible formulations. They record whether
+a concrete mapping is supported, contradicted, or unresolved and state the scope
+of each judgment. Multiple valid regions and different formulation families may
+be accepted when their obligations are met.
+
+The current materials contain AI-assisted proposals and coordinator review;
+these are not independent gold annotations. For a confirmatory release, separate
+reviewers should inspect the original program and contract before seeing model
+answers. The proposed process records identity or role, expertise, independence,
+initial judgments, disagreements, and adjudication. Difficult cases remain
+uncertain when evidence is insufficient. The final inclusion policy is a human
+scientific decision, recorded before confirmatory responses are collected.
+
+Correctness and completion occupy different axes. A formula explicitly supplied
+but refuted is \emph{provided and contradicted}. A response that honestly defers
+the tie-breaking construction is \emph{unresolved and incomplete}. Neither should
+be converted into the other by a keyword score. Obligations cover core
+correspondence, encoding, exact selection or certification, decoding, and context
+preservation. Each record binds the original response passage, its interpretation,
+the applicable obligation, evidence, and remaining uncertainty.
+
+\subsection{Local checkers and their scope}
+Trusted checkers compare a supported claim against a definition of the classical
+task. For a QUBO, a bounded exhaustive checker enumerates assignments and checks
+\emph{every} globally optimal decoded state; accepting one convenient ground
+state would miss invalid tied optima. For a search predicate, it compares marked
+states with the task relation and separately handles selection order, illegal
+encodings, and no-solution behavior. Numeric checks preserve the declared
+arithmetic model and distinguish permitted inputs from reachable intermediate
+states.
+
+The checker suite includes known-correct constructions, equivalent encodings,
+and deliberate semantic errors. Examples include reversed optimization direction,
+missing constraints, wrong tie order, discarded weights, and omitted iteration
+trajectories. These controls validate an evaluator; they are never counted as
+model errors or model repairs. A checker can also fail: equality of the zero-energy
+set alone, for example, does not establish that feasible states minimize the
+energy. The validation record must include extremum checks and retain the failure
+that motivated a correction.
+
+Each verdict names its representation, tested domain, arithmetic, and executable
+evidence. Unknown representations and infrastructure errors stay distinct from
+semantic refutations. In the existing workflow, some natural-language claims
+require a reviewer's structured transcription. This is not an automatic judge of
+arbitrary prose. The experimental design measures that transcription burden and
+reports what fraction of claims can actually be checked.
+
+\figplaceholder{evidence}{2.1cm}{Four layers: public source/contract; private
+reference and admissible alternatives; model claim with exact passage; scoped
+check and unresolved obligations. Draw a boundary between development feedback
+and evaluator-reserved final tests.}
+{Provenance and evaluation separation. A verdict is attached to a specific claim
+and domain, rather than promoted to whole-program correctness.}

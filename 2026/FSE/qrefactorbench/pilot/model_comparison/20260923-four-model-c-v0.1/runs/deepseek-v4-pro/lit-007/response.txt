@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-007",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 12,
+      "end_line": 19
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "signed-pair-assignment-exact-max",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "For each member i let x_i in {0,1}. For each preference pair (i,j,w), the contribution is w if x_i != x_j else -w, which equals 2*w*x_i + 2*w*x_j - 4*w*x_i*x_j - w. Maximize the sum over all pairs. For QAOA, minimize the negated objective. There are no group-size or capacity constraints, so no penalty terms are needed.",
+    "input_encoding": "Map each member assignment to a binary variable encoded as a qubit basis state. For Ising, substitute x_i=(1-Z_i)/2. Pair coefficients w must be loaded as QUBO/Ising coefficients; no free data loading or oracle construction is assumed.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure candidate basis states, interpret bits as False/True group assignments, recompute score(values,pairs) classically, and verify global optimality plus the smallest numeric mask tie-break. Only then construct proposed, gain, and moves with the existing classical describe/review logic.",
+    "assumptions": [
+      "Classical input validation in review() remains unchanged before and after any quantum kernel.",
+      "Exact optimum and deterministic smallest-mask tie-breaking are not weakened; if a quantum candidate cannot be certified, fall back to classical choose().",
+      "All 2^n assignments are feasible because groups may be empty and no capacity constraints exist."
+    ],
+    "risks": [
+      "QAOA is approximate and does not guarantee the global optimum or deterministic tie-breaking.",
+      "Quantum data-loading, measurement, and certification costs are unresolved and may exceed the classical exact enumerator for practical n.",
+      "The existing exhaustive loop is exact and deterministic; no quantum speedup or advantage evidence is supplied.",
+      "Changing the strict > tie update or ascending mask order would violate the required smallest numeric membership mask."
+    ],
+    "expected_resource_characteristics": {
+      "num_qubits": "n assignment qubits plus ancilla for QAOA cost and mixing; exact overhead unresolved",
+      "depth": "unresolved without a specified ansatz and parameter optimization budget",
+      "shots": "unresolved; must be sufficient to distinguish tied optima and verify exactness"
+    },
+    "rationale": "Conditional structural plan only; it does not recommend deployment or certify correctness."
+  },
+  "rationale": "kernel.py:12-19 is the selective candidate. It exhaustively enumerates all 2^size boolean masks in ascending order and updates only on strict >, which yields the required smallest numeric membership mask among tied optima. It depends on score() at kernel.py:8-9 and the validated/sorted pairs prepared by program.py:20-31. Activation is only mode=='propose'; mode=='inspect' never calls choose(). Surrounding behavior that must remain intact includes strict request validation with ValueError, describe() output ordering and violated-pair computation, current report computation before proposal, gain and moves construction, and no mutation. Structurally, the objective is a sum of pairwise binary terms with no constraints, so QUBO/Ising encoding is applicable. Practical suitability is false because the classical exact enumerator already satisfies deterministic exactness and tie-breaking, QAOA cannot guarantee the same optimum without classical verification, and no scale/advantage evidence is supplied. Benchmark support is true at the allowed family/contract level, but the DRAFT qubo-ising-v0 contract does not approve deployment or certify exactness.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": true,
+  "computational_intent": "Exact maximization of signed pairwise agreement score over two-group boolean assignments with deterministic smallest-mask tie-breaking.",
+  "assumptions": [
+    "The classical validator and reporter remain authoritative for input/output semantics.",
+    "Any quantum candidate must be classically recomputed and certified against score().",
+    "No capacity or group-size constraints exist, so all assignments are feasible."
+  ],
+  "risks": [
+    "Approximate quantum optimization cannot silently replace an exact optimum and deterministic tie-break.",
+    "The problem may be small enough that exhaustive classical search is cheaper than quantum encoding and verification.",
+    "Data loading and oracle construction for complete pairwise preferences are not free under the supplied DRAFT contract."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The hotspot is not a pure Boolean predicate/satisfaction search. It is an optimization over assignments requiring a maximum signed score and a precise tie-breaking rule; Grover-style predicate search does not directly express that optimization contract."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The kernel objective is a binary quadratic score with no constraints, so it can be explicitly represented as QUBO/Ising. This is structural applicability only; exact global optimality and smallest-mask tie-breaking remain unresolved under QAOA."
+    }
+  ]
+}

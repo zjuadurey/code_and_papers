@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "context-001",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "maintenance.py",
+      "function": "maxcut_bruteforce",
+      "start_line": 74,
+      "end_line": 89
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact-lexicographic-weighted-max-cut",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditionally replace only the exhaustive partition search with a binary weighted Max-Cut formulation. For decision bits x_i indicating membership in window 0, cut(x)=sum_{i<j} w_ij*(x_i+x_j-2*x_i*x_j). To preserve the required tie rule, minimize E(x)=-2^n*cut(x)+sum_i 2^i*x_i. Because aggregated weights are nonnegative integers, the 2^n scale makes every one-unit cut improvement dominate the entire tie term. All bit strings are feasible because there are no capacity or assignment constraints beyond choosing one of two windows.",
+    "input_encoding": "After prepare_request has completed validation and aggregation, encode the n equipment positions as n binary variables and encode every positive matrix entry adj[i][j] as a quadratic interaction. If converted to Ising form, explicitly apply x_i=(1-Z_i)/2 and retain all constants, signs, arbitrary-precision weights, the 2^n primary-objective scale, and the position-weighted tie coefficients.",
+    "quantum_algorithm_family": "QAOA-style QUBO/Ising optimization, conditional on an exactness-preserving execution and verification strategy",
+    "output_decoding": "Decode x_i=1 positions as the first window and x_i=0 positions as the second, each in increasing equipment-input position. Classically recompute the cut, conflict weight, and integer mask. Accept a result only if global optimality and the smallest-mask tie rule are established; otherwise use the classical exhaustive solver. Leave evaluate_windows and compare_assignments unchanged so named ordering, conflict ordering, movement reporting, and conflict deltas remain classical and deterministic.",
+    "assumptions": [
+      "The candidate region is invoked only after prepare_request has produced a symmetric aggregated nonnegative-integer matrix for at most 16 equipment items.",
+      "Quantum state preparation and objective construction receive the matrix as classical data; coherent memory or free data loading is not assumed.",
+      "An execution method capable of preserving exact global optimization and deterministic lexicographic tie selection would have to be supplied.",
+      "The empty instance must decode to two empty windows with score zero."
+    ],
+    "risks": [
+      "Ordinary finite-shot QAOA does not guarantee the exact global optimum or required deterministic tie winner.",
+      "Arbitrary-precision input weights and the 2^n tie-preservation scale may exceed backend coefficient precision or dynamic range.",
+      "Classical certification of global optimality can require the same exhaustive work that the migration is intended to replace.",
+      "Circuit depth, parameter optimization, state preparation, measurements, decoding, and error handling are unspecified.",
+      "Changing the region boundary could disturb validation, exception behavior, input immutability, output ordering, or change reporting."
+    ],
+    "expected_resource_characteristics": {
+      "logical_decision_qubits": "n, where 0 <= n <= 16",
+      "interaction_terms": "At most n(n-1)/2 quadratic terms, plus n linear tie-breaking terms",
+      "ancillas": "Unknown; depend on the selected QUBO/Ising implementation and exactness or certification mechanism",
+      "depth": "Unknown",
+      "shots": "Unknown; finite sampling alone is insufficient to meet the exact contract",
+      "classical_overheads": "Matrix-to-Hamiltonian construction, parameter optimization, measurement, decoding, exact objective recomputation, and potentially exhaustive fallback"
+    },
+    "rationale": "This is a conditional formulation only. It demonstrates structural representability but does not establish that QAOA, or any supplied backend, can satisfy the program's exact optimum and tie semantics."
+  },
+  "rationale": "Lines 74-89 are a self-contained exhaustive weighted Max-Cut kernel: masks enumerate all two-window assignments, lines 82-85 sum weights crossing the partition, and the strict comparison at line 86 retains the first optimal mask. Since masks are visited in increasing integer order and bit i denotes membership in the first window, this implements the contract's smallest sum of 2**i tie rule. The kernel depends on the complete aggregated adjacency matrix returned by prepare_request; at the actual call site, validation has established at most 16 unique equipment positions, nonnegative arbitrary-precision integer weights, repeated/reversed-edge aggregation, and a symmetric matrix. It activates for every valid request, including empty and zero-weight instances. The boundary should exclude prepare_request, evaluate_windows, and compare_assignments: those functions must continue to preserve whole-request validation before evaluation, no input mutation, ordered names and conflicts, current/proposed scores, movement records, and resolved/introduced conflict reporting. Structurally, the kernel is eligible for a QUBO/Ising formulation. Practically, it should remain classical: n is capped at 16, so the search has at most 65,536 assignments; no recurring workload, latency pressure, backend, or resource budget is supplied; classical inputs would require encoding overhead; and a heuristic or finite-shot result cannot replace the required exact optimum and deterministic tie choice. The supplied provenance notice is not performance or resource benchmark evidence, so benchmark support remains unknown rather than asserted.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Find the globally optimal partition of weighted equipment conflicts into two windows, maximizing separated weight while selecting the smallest input-position bitmask among all optimal partitions.",
+  "assumptions": [
+    "Only the supplied source and contracts are considered.",
+    "The 16-item bound is a local enumeration limit and not evidence of a larger operational workload.",
+    "Exact objective value, smallest-mask tie selection, exceptions, ordering, reporting, and input immutability cannot be relaxed.",
+    "No coherent data-access mechanism, quantum backend, latency target, execution budget, or deployment-cost evidence is available."
+  ],
+  "risks": [
+    "A sampled optimizer may return a suboptimal partition or a different optimal partition, violating the software contract.",
+    "Penalty or coefficient rescaling may corrupt the lexicographic objective, especially with arbitrary-precision weights.",
+    "Quantum preparation and verification overhead can dominate the bounded classical enumeration.",
+    "Replacing surrounding validation or reporting logic would alter externally observable behavior."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "A threshold predicate could be constructed for a fixed cut target, but the region's task is exact optimization with an unknown optimum and deterministic tie selection. The draft predicate-search contract supplies neither a complete maximum-finding protocol nor an exact no-error policy that preserves those semantics."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The weighted cut and position-based tie objective have an explicit unconstrained binary quadratic representation. Applicability is only structural: coefficient fidelity, exact global optimization, deterministic tie recovery, backend resources, and classical certification remain unresolved."
+    }
+  ]
+}

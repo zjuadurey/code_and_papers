@@ -1,0 +1,13 @@
+{
+  "original_context_sha256": "a4f071103e424405d74981ad97929f26636974e987b13a8aec8404134aafc654",
+  "diagnostic_context_sha256": "34333ecb11059222d1f407600de77dd08be7e6cd0ab7f96e4948ecde464dacaf",
+  "byte_identical": false,
+  "original_bytes": 10006,
+  "diagnostic_bytes": 10005,
+  "interpretation": "Local debug prompt-input inspection, not server-side context proof.",
+  "content_identical_after_removing_message_ids_and_timestamps": true,
+  "excluded_volatile_fields": [
+    "id",
+    "create_time"
+  ]
+}

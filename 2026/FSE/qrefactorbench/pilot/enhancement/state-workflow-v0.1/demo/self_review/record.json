@@ -1,0 +1,29 @@
+{
+  "arm": "self_review",
+  "initial_origin": "historical_response_replay",
+  "initial_sha256": "117b8182e3626b83555ae2c5f1ee16240b99057aa99724c27642b08e55f583ab",
+  "prompt_sha256": "9f802b1d901009eefd39dae68505a7bb713a5719565479a9b4b12a95751767d5",
+  "observation_kinds": [],
+  "prompt_bytes": 49456,
+  "revision_call_limit": 1,
+  "model_calls_executed": 0,
+  "state": "awaiting_model_not_run",
+  "task_pass": null,
+  "repair_success": null,
+  "events": [
+    {
+      "event": "historical_draft_loaded"
+    },
+    {
+      "event": "observations_selected",
+      "kinds": []
+    },
+    {
+      "event": "revision_prompt_prepared"
+    },
+    {
+      "event": "stopped",
+      "reason": "offline_demo_no_model_transport"
+    }
+  ]
+}

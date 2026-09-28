@@ -1,0 +1,39 @@
+\section{Related Work}
+\paragraph{Classical-to-quantum development.}
+C2$|$Q$\rangle$ provides a modular path from classical specifications to encoding,
+quantum execution, and decoding~\cite{c2q}. It is an especially relevant comparison
+because it begins with classical problem descriptions. Our intended emphasis is
+on candidate regions inside surrounding software, the distinction between a
+conditional mapping and adoption, and source-linked behavioral obligations. Some
+development cores derive from its dataset, so the source dependence is explicit.
+This paper does not assert that prior work lacks every form of semantic checking.
+Any future direct system comparison must align task scope, access, and contracts.
+
+\paragraph{Quantum code-generation benchmarks.}
+Qiskit HumanEval evaluates generated Qiskit programs on curated tasks~\cite{qhe}.
+QuanBench combines functional checking with quantum semantic evaluation~\cite{quanbench}.
+QuanBench+ extends evaluation across frameworks and includes feedback-based
+repair~\cite{quanplus}. The proposed distinction is source-contract evidence for
+the same model and separate measurement of claim correctness and completion,
+rather than the addition of an execution-feedback loop alone.
+
+\paragraph{Quantum algorithms and workload evaluation.}
+Grover search, QAOA, and Ising formulations provide the algorithmic and mathematical
+basis of the supported families~\cite{grover,qaoa,lucas}. Their premises must be
+connected to source behavior rather than assumed from a problem label.
+SupermarQ emphasizes application-oriented quantum benchmarking~\cite{supermarq},
+while MQT Bench supports multiple circuit abstraction levels~\cite{mqt}.
+These motivate explicit evaluation boundaries and representation-aware resource
+reporting. Neither a device benchmark score nor a circuit count is substituted
+for preservation of a classical application's observations.
+
+\paragraph{Feedback and synthesis.}
+Self-Refine studies iterative improvement using model-generated
+feedback~\cite{selfrefine}. Counterexample-guided synthesis separates a proposed
+candidate from validation and uses failures to guide subsequent
+candidates~\cite{sketching}. The planned workflow adopts a related separation
+between model proposal and external evidence, without claiming a general synthesis
+algorithm or inheriting formal guarantees. Its research question is whether
+program-specific facts and scoped counterexamples improve quantum opportunity
+analysis beyond matched self-review. Establishing that contribution requires
+the planned controlled study; the current local prototype alone is insufficient.

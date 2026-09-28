@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/rationale", "/contract_applicability/0/rationale"],
+  "rationale": "The full-solver nomination and absence of a migration plan persist. Original pivot semantics are described as obligations but no replacement selector is offered. There is no local formula to check and no previously offered mapping has been withdrawn. Broader eligibility is ungraded.",
+  "interpretations": []
+}

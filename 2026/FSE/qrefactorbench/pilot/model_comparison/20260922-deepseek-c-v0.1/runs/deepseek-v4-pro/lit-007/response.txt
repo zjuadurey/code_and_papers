@@ -1,0 +1,73 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-007",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 12,
+      "end_line": 19
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "signed_pair_maximum_score_assignment",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Let x_i in {0,1} encode membership for member i. For a pair (i,j,w), w=+1 for apart and w=-1 for together, the contribution is w if x_i xor x_j=1, otherwise -w. Since x_i xor x_j = x_i+x_j-2*x_i*x_j, the contribution is 2w*x_i + 2w*x_j - 4w*x_i*x_j - w. Summed over all complete pairs, score = C + sum_i h_i*x_i + sum_{i<j} J_ij*x_i*x_j, with C=-sum_pairs w, h_i=2*sum_{j:pair(i,j)} w, and J_ij=-4*w_ij. No capacity or group-size constraints exist, so no penalty terms are required; for Ising use x_i=(1-Z_i)/2.",
+    "input_encoding": "One qubit per member in the computational basis encodes x_i. Coefficients h_i and J_ij are precomputed classically from the validated, sorted preference pairs. Current assignment, score(), describe(), and gain reporting remain classical.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure the candidate bitstring, decode x_i per member, and classically recompute score() to verify the result. The contract's exactness requirement means a QAOA sample is not sufficient unless verified against the true maximum. The smallest numeric membership mask tie-break must be enforced classically, because quantum sampling has no deterministic tie ordering.",
+    "assumptions": [
+      "Pairs are already validated, complete, unique, and sorted before quantum selection.",
+      "Classical preprocessing can compute objective coefficients exactly.",
+      "Exact global optimum and smallest-mask tie-breaking remain mandatory.",
+      "QAOA is a heuristic proposal, not an exactness guarantee."
+    ],
+    "risks": [
+      "QAOA may return a non-optimal assignment and thereby violate propose's exact max contract.",
+      "Probabilistic sampling and parameter optimization do not preserve the deterministic smallest-mask tie-break.",
+      "Objective/oracle data loading, ancilla requirements, and classical QAOA parameter optimization may outweigh the classical exhaustive loop for practical n.",
+      "No workload or advantage evidence exists; quantumization could add failure modes without demonstrated benefit."
+    ],
+    "expected_resource_characteristics": {
+      "decision_qubits": "O(n) for n members",
+      "ancilla_requirements": "Undefined in this DRAFT plan; depends on pair-term phase-separation implementation",
+      "classical_preprocessing": "O(M) for M=n(n-1)/2 pairs",
+      "classical_verification": "O(M) per decoded candidate",
+      "measurement_repetitions": "Undefined; must support finding and classically verifying an exact optimum"
+    }
+  },
+  "rationale": "kernel.py choose at lines 12-19 is the only quantumization candidate; it exhaustively enumerates masks 0..2^n-1, builds values with member i as bit i, computes score(values,pairs), and returns the first achieved maximum in ascending numeric-mask order, thereby implementing smallest-mask tie-breaking. This is a finite unconstrained binary optimization: each pair contributes +1 if satisfied and -1 otherwise, so the objective has exact QUBO/Ising coefficients. Activation is only in review mode == 'propose' after lines 15-31 have validated members, preferences (complete, unique, non-self, known relation), current bool vector, and sorted pairs as (i,j,w). score() is still required for current/proposed reports and verification; describe() and input validation must remain intact. Although structurally eligible, practical suitability is false: propose must maximize signed score exactly and tie-break deterministically, while QAOA is approximate and quantum sampling does not guarantee the smallest mask; no workload, hardware, encoding-cost, or advantage evidence is supplied. Therefore the correct decision is REMAIN_CLASSICAL. Benchmark support is true because the QUBO/Ising family is in the DRAFT menu. A Grover threshold-predicate search is also conceivable but requires threshold meta-search plus classical verification and tie-breaking, and does not improve practical suitability.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": true,
+  "computational_intent": "Exact maximum signed-score binary group assignment under complete pairwise together/apart preferences",
+  "assumptions": [
+    "Preference validation and all ValueError behavior remain in classical review before any selection.",
+    "Pairs are complete, unique, sorted as (i,j,w), with w=+1 for apart and w=-1 for together.",
+    "Groups may be empty or singleton; no capacity/group-size constraints exist.",
+    "Exact global maximum and smallest numeric membership-mask tie-breaking are part of the contract.",
+    "No quantum hardware, workload, encoding-cost or advantage evidence is supplied."
+  ],
+  "risks": [
+    "QAOA/Ising sampling can violate the exact maximum semantics required by propose.",
+    "Deterministic smallest-mask tie-breaking can be lost under probabilistic sampling.",
+    "Quantum data loading and parameter optimization may be more expensive than the classical exhaustive search for unknown n.",
+    "The shared contract menu is DRAFT; applicability does not imply validated advantage or correctness."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The signed pair score is exactly a quadratic binary objective with no required penalty terms; coefficients can be precomputed from pairs."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "A finite group-assignment domain and a score >= threshold predicate can support Grover-style search as a subroutine, but finding the maximum and smallest-mask tie requires threshold meta-search plus classical verification."
+    }
+  ]
+}

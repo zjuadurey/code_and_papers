@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "context-005",
+  "title": "Indivisible capacity request review",
+  "description": "review_requests(request) validates the whole request before assessing alternatives, raising ValueError for invalid input (message unspecified) without mutation. Each lot is indivisible and can be used at most once within a request. Only unheld lots at listed sites are eligible. Requests are independent what-if assessments: do not reserve or consume lots between requests. For each request return exactly whether some selection totals the target, not whether available units merely exceed it; zero target permits the empty selection. Return lot_count, requests and possible_request_ids. Each request report contains request_id, target, eligible_lot_ids in lot input order, available_units (sum over all eligible lots), and exact_capacity_exists (bool). Request reports and the possible-ID summary retain request order. No witness, allocation or count of solutions is required. Empty site lists and unknown sites are allowed and contribute no lots. Empty lots/requests are supported. The CLI reads one JSON request and prints one JSON report; invalid input has nonzero exit and no successful report.",
+  "source": "Codex-assisted synthetic functional-context adaptation of existing pilot-007; source function preserved. No external-paper or deployed-system provenance.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "synthetic_reference_context",
+  "version": "0.3.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "lots.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "lots.py",
+      "function": "has_total",
+      "start_line": 43,
+      "end_line": 49
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "DRAFT Subset-of-lots oracle checks exact capacity, eligibility, independent requests, full report order and no mutation.",
+    "config": {
+      "test_artifact": "test_program.py",
+      "approximation_permitted": false,
+      "probabilistic_policy": null
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Ordinary classical data. Inventory is a snapshot; assessments do not mutate state or promise simultaneous allocation across requests.",
+      "No runtime distribution, hardware budget, latency requirement or preprocessing cost measurement is supplied."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT / AI-ASSISTED PROPOSAL — NOT GROUND TRUTH. Sampling category and region nomination are private design intentions. Scientific fields remain null; previous pilot labels are not copied. Functional correctness tests are not quantumization labels.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "DRAFT synthetic functionality, not a deployed software case or independent annotation.",
+    "Related views and parent source must remain grouped in any future split; parent is 007.",
+    "Source names and visible computations may cue intent. No proven increase in WHERE difficulty.",
+    "No quantum migration, practical advantage, oracle/encoding correctness, or scientific labels validated.",
+    "Package and new code rights remain NOASSERTION."
+  ]
+}

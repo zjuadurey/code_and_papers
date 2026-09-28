@@ -1,0 +1,19 @@
+{
+  "adjudicator_id": null,
+  "case_id": "pilot-002",
+  "comparison_artifact": null,
+  "completion_status": "UNFILLED",
+  "disagreements": [],
+  "form_version": "phase1-v0",
+  "independent_submissions": {
+    "a_path": null,
+    "a_sha256": null,
+    "b_path": null,
+    "b_sha256": null
+  },
+  "remaining_uncertainty": null,
+  "resolutions_with_evidence": [],
+  "resolved_annotation": null,
+  "resulting_annotation_status": "DRAFT",
+  "resulting_case_version": null
+}

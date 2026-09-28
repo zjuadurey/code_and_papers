@@ -1,0 +1,43 @@
+{
+  "response_sha256": "58ae268bdbd473062ff6fd15d2d4f83277426117f32c4a1b4767abd2e9b835a1",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 14.202,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:46:08.796027+00:00",
+  "review_submitted_utc": "2026-09-26T12:46:22.998277+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "58ae268bdbd473062ff6fd15d2d4f83277426117f32c4a1b4767abd2e9b835a1",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally represent each execution of pivot selection as a one-hot QUBO over row indices col through n-1. The objective must select the row with greatest absolute current pivot value and select the lowest index when values are exactly equal. Feasibility penalties must be proven sufficient over the complete objective range. Only line 13 is replaced conditionally; singularity checking, swapping, elimination, back substitution, residual calculation, exceptions, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the dynamically updated binary64 values rows[i][col] and one binary selection variable for each eligible row. An exact order-preserving representation of Python absolute-value and comparison behavior is required, together with a lower-priority index term that cannot outrank any unequal magnitudes. The encoding must account for signed zero, coefficient precision, possible nonfinite intermediate state, data loading, ancillas, and embedding."
+      },
+      {
+        "pointer": "/plan/rationale",
+        "quote": "This is a conditional structural formulation, not an adoption recommendation. Exactness, feasibility, encoding precision, and resource obligations remain unresolved."
+      },
+      {
+        "pointer": "/contract_applicability/1/rationale",
+        "quote": "The finite pivot argmax conditionally admits a one-hot binary optimization with exact magnitude ordering and index tie-breaking. This establishes only structural applicability; coefficient construction, penalty sufficiency, feasibility, backend precision, exact-optimum recovery, and end-to-end resources remain unresolved."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The one-hot QUBO remains an obligation-level sketch: exact ordering, lower-priority tie terms and sufficient penalties are required, but objective coefficients, bounds and nonfinite encoding are unspecified. The frozen pivot predicate/scan checker cannot verify this unconstructed optimization. Retain insufficient evidence without rejecting the allowed alternative family or supplying missing coefficients.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

@@ -1,0 +1,2399 @@
+{
+  "version": "0.1",
+  "status": "PRIVATE_DRAFT_PENDING",
+  "reviewer": "Codex coordinator, AI post-hoc review, not independent/blinded annotation",
+  "selection": "Purposeful five-case calibration; not a random sample or full HOW evaluation",
+  "rules": "RUBRIC.md",
+  "model_calls": 0,
+  "human_reviews": [],
+  "rows": [
+    {
+      "model": "gpt-5.6-sol",
+      "mother_case": "lit-001",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-5.6-sol/lit-001/response.txt",
+      "response_sha256": "fa70b67d6a8e7f8bab66c32d3c5dd122b61ad81ce69780cecda08be980d3d141",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-001-C.txt",
+      "input_sha256": "9268f0b7023736ab7fa88e42610194c0cdfd7131c5ff6fa72403eab3b3e19a65",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "mother_case": "lit-002",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-5.6-sol/lit-002/response.txt",
+      "response_sha256": "d36c6898ddaf202bbc0ed78b39892246e07b3063449ae0fc898ccf67edd02bff",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-002-C.txt",
+      "input_sha256": "78d179578aad53e085314bc7c8950f504ab2171798424f88356fda67d61a7702",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "选站变量、覆盖约束与最小基数对应原核。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "supported",
+          "reason": "A 与 P 的充分界成立；审核者实例化后有限枚举通过。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "supported",
+          "reason": "反向未选位权在固定基数下给出所需 tuple 顺序；只支持目标函数，非量子/报告实现。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "完整原核；验证、当前方案和报告保留经典，范围解释对应源码。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Conditionally introduce one binary variable x_i per station, where x_i=1 selects station i. Minimize B(x)=A*sum_i(x_i)+sum_i(2^(n-1-i)*(1-x_i))+P*sum_(u,v in edges)((1-x_u)*(1-x_v)). Choose A greater than 2^n-1 so cardinality dominates the lexicographic term, and P greater than the maximum possible unconstrained base objective so every optimum covers every edge. The positional term makes the first differing lower-index station selected and therefore implements the required lexicographically smallest sorted tuple among minimum-cardinality covers. If converted to Ising form, explicitly apply x_i=(1-Z_i)/2 and retain all constants, linear coefficients, quadratic coefficients, and signs.",
+        "/plan/input_encoding": "Use n from len(names) and the normalized integer endpoint pairs produced by prepare_request. Encode n station-selection bits plus any implementation-specific ancillas or workspace. current_stations is deliberately excluded because the contract does not minimize changes from the current plan. Empty-edge and empty-station cases should remain direct classical results. Loading graph coefficients, coefficient precision, and connectivity embedding are not assumed free.",
+        "/plan/output_decoding": "Measure and decode station bits, sort selected indices in input order, verify every normalized edge has a selected endpoint, and recompute cardinality and the lexicographic tie rule classically. Accept a quantum-produced set only if exact optimality and tie correctness are certified; otherwise use the existing exhaustive routine. Pass the certified set to describe_plan unchanged so assignment, empty checklists, ordering, uncovered reporting, and comparison behavior remain classical.",
+        "/plan/assumptions": [
+          "prepare_request has already validated the complete request and supplied n at most 16 with unique station indices and deduplicated normalized edges.",
+          "Penalty and tie-breaking coefficients can be represented without truncation or rescaling that changes the exact optimum.",
+          "A method exists to certify minimum cardinality and the lexicographically smallest optimum, or the classical implementation remains as an exact fallback.",
+          "Validation, report construction, JSON behavior, and current-plan assessment remain outside the migrated region."
+        ],
+        "/plan/risks": [
+          "Ordinary QAOA sampling does not guarantee the exact optimum or the mandated lexicographic representative.",
+          "Exponentially separated tie-breaking weights and a dominating feasibility penalty can create an unfavorable coefficient range and precision requirements.",
+          "Graph loading, QUBO construction, routing, state preparation, parameter optimization, measurement, decoding, and certification may cost more than the bounded classical enumeration.",
+          "A feasible sample alone is insufficient: accepting a nonminimum cover or a different tied optimum violates the software contract.",
+          "Backend failures or probabilistic no-result behavior must not alter exceptions, ordering, output fields, or CLI success semantics."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "inspection.py",
+            "function": "min_vertex_cover_bruteforce",
+            "start_line": 77,
+            "end_line": 91
+          }
+        ],
+        "/rationale": "The defensible candidate is inspection.py lines 77-91: it alone performs the combinatorial search over station subsets. Lines 80-82 enumerate subsets first by increasing cardinality and then in itertools.combinations lexicographic order; lines 84-87 implement the pure coverage predicate; and lines 88-90 return the first feasible subset. Together these details enforce both minimum station count and the required input-position tie rule. The region depends only on n and normalized integer edges. Those values must continue to originate from prepare_request (lines 7-38), which validates the entire request, maps names to input positions, normalizes and deduplicates connections, sorts edges, and permits incomplete current coverage. The optimization must activate only after that validation succeeds; it must not consume current_stations or introduce a change-minimization objective. It has no required mutable global state. Empty stations and empty connections must still yield the empty cover. Surrounding behavior must remain intact: review_inspections must still call describe_plan for both selections; describe_plan must preserve input-order stations, earliest-selected-endpoint ownership, empty checklists, and uncovered connections; compare_plans must preserve normalized connection order and null ownership transitions; validation exceptions and CLI success/failure behavior must not change. The kernel is structurally eligible for an exact binary optimization encoding, but practical suitability is false: n is capped at 16, the classical space is at most 65,536 subsets, and no latency, frequency, hardware, or deployment-cost need is supplied. Quantum setup, sampling, and exact certification would likely dominate this small baseline, while approximate or merely feasible results are forbidden. Benchmark support is null because no comparative measurements, backend results, resource estimates, or representative workload distribution are supplied.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "mother_case": "lit-003",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-5.6-sol/lit-003/response.txt",
+      "response_sha256": "39d71a4de4e1caae3b1b09570a490bc96e8b1bf42a058c096ac8808c3b9785fe",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-003-C.txt",
+      "input_sha256": "f20e2374eadaca85cb94fb983d706fd595b8e922c693b53d1e2d9accb50ac6f5",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "one-hot 图着色是可辩护替代家族；不因偏离 Search 参考而判错。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "one-hot/冲突惩罚及位置权重只给条件，尚无具体充分界。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "明确 lex 最优、无解及回退义务；无完整认证实现。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "完整 complete 边界、预览失败触发和不继承部分选择均说明。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Conditionally encode the fallback completion problem with binary variables x[v,s] indicating that session vertex v receives slot index s. Add exact-one-slot constraints for each session and exclusion constraints x[u,s]x[v,s] for every participant-conflict edge and slot. Among feasible assignments, minimize the slot-index vector lexicographically, potentially using positional weights whose dominance is proven, or a sequence of exact prefix-feasibility solves. Treat an empty session set as the classical empty assignment and a nonempty set with zero slots as infeasible.",
+        "/plan/input_encoding": "Encode the ordered vertices and adjacency lists supplied to complete, together with slot_count. A direct QUBO needs n times slot_count binary assignment variables, one-hot penalties, conflict penalties, and an exact lexicographic objective. If mapped to Ising, document x=(1-Z)/2, all constants and coefficients. Session indices and slot indices must retain their original orders. Current assignments are not encoded as fixed decisions because failed previews and partial current arrangements impose no completion constraints.",
+        "/plan/output_decoding": "Decode one slot index per session in session order. Classically verify index bounds, one-hot assignment, every conflict edge, and lexicographic minimality before returning. Convert indices to declared slot names only in program.py. If no verified exact optimum is obtained, use the classical completion procedure; only proven infeasibility may produce the existing ValueError and unavailable result.",
+        "/plan/assumptions": [
+          "relations has already produced the participant-conflict graph with vertex order equal to session input order.",
+          "The candidate is activated only in complete mode after the current arrangement is found infeasible and the prescribed greedy preview raises ValueError.",
+          "Penalty magnitudes and any lexicographic weights can be represented with sufficient precision and are proven to make every infeasible state worse than every feasible state.",
+          "A classical verifier or exact fallback remains available because the software contract does not permit probabilistic, approximate, or non-minimal output."
+        ],
+        "/plan/risks": [
+          "Straight positional weights for lexicographic minimization grow exponentially with the number of sessions and can create impractical coefficient ranges.",
+          "QAOA-style sampling supplies no stated guarantee of finding a feasible assignment, the lexicographically smallest assignment, or proving that none exists.",
+          "Embedding, state preparation, parameter optimization, repeated measurements, and decoding may dominate the small Python search.",
+          "Incorrect penalty strengths, coefficient precision, or decoding could silently return a conflicting or non-minimal arrangement.",
+          "A failure to sample a solution cannot be interpreted as the classical no-arrangement exception."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "agenda.py",
+            "function": "complete",
+            "start_line": 28,
+            "end_line": 57
+          }
+        ],
+        "/rationale": "agenda.py lines 28-57 are the defensible candidate boundary because complete owns the entire fallback search: its inputs are the participant-derived neighbors graph and slot_count; its mutable assigned vector is shared by available and recursive place; vertices are processed in session order and slots in increasing declared order, so the first successful leaf is the required lexicographically smallest slot-index vector. Lines 55-57 also define the exact no-arrangement exception. The region is activated from program.py lines 28-29 only when validation has succeeded, mode is complete, the current description is infeasible, and preview has raised ValueError. Quantum analysis must not alter validation, inspect behavior, retention of a feasible current arrangement, or the greedy preview and its blocked report. It must also preserve that current and failed-preview assignments impose no fixed completion choices. After successful completion, program.py lines 34-37 must still translate indices through the declared slot order, call describe, and produce moves in session input order; catalog.py must continue deriving conflicts from shared participants and formatting descriptions unchanged. Structurally, the region is a finite constrained graph-coloring optimization and therefore admits a conditional QUBO/Ising formulation. Practically, exact lexicographic optimality, conclusive infeasibility, potentially extreme objective coefficients, encoding overhead, and the lack of any input-size or hardware assumptions make quantum migration unsuitable on the supplied evidence. Benchmark support is unknown because no comparative measurements, workloads, resource estimates, or quantum experiments are supplied.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "mother_case": "lit-004",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-5.6-sol/lit-004/response.txt",
+      "response_sha256": "afc76370da179d304efeb588e4d0977d78b15287cf6af6f7d112967395c0e765",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-004-C.txt",
+      "input_sha256": "c7d39e87215fdb8d54b69d9c387911ca17020108782de50189a6fcb21847c278",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "最大兼容子集与最小 numeric mask 对应。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "两阶段思路有效，单阶段支配界明确留待推导。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "目标层级说明正确；精确最优认证未实现。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "25–29 保留后续解码，解释了 best 到报告的接口；不同锚点可辩护。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Conditionally replace only the exhaustive maximum-compatible-subset search with an exact maximum-clique or independent-set QUBO. Introduce one binary variable x_i per eligible version. For every pair whose matrix entry is false, prohibit x_i*x_j=1 using a sufficiently large penalty. Preserve the primary objective of maximizing sum(x_i) and the secondary objective of minimizing sum(2**i*x_i). A safer conceptual formulation is two-stage: first determine the exact maximum cardinality K, then minimize the positional weight subject to cardinality K and all incompatibility constraints. Any single-stage reduction must prove that its primary-objective and feasibility penalties dominate the complete secondary-objective range.",
+        "/plan/input_encoding": "Classically retain validation, latest-record reduction, active-member filtering, and relation construction. For each select request, encode the resulting ordered names list as binary variables in that same order and encode every failed or unverified pair from matrix as an incompatibility. If mapped to Ising variables, use x_i=(1-Z_i)/2 and explicitly derive all constants, linear coefficients, quadratic coefficients, precision requirements, and penalty bounds.",
+        "/plan/output_decoding": "Decode measured assignments, reject any assignment containing an incompatible pair, recompute its cardinality and positional mask weight classically, and select names in their existing order. Before accepting the result, establish that no feasible assignment has greater cardinality and that no equal-cardinality assignment has a smaller mask weight. Then leave the existing describe and changes construction unchanged. Empty eligible sets must decode to the empty proposal.",
+        "/plan/assumptions": [
+          "The eligible names list and pairwise relation matrix are available through classical preprocessing exactly as currently defined.",
+          "The optimization instance is finite, with one decision variable per eligible version.",
+          "Failed and unverified pairs are both hard incompatibilities for proposal selection.",
+          "A backend and encoding capable of preserving the exact two-level objective and hard feasibility constraints would have to be identified."
+        ],
+        "/plan/risks": [
+          "A QAOA sample is not an exact-optimum certificate, while the software contract forbids approximate size or a different tie result.",
+          "Penalty sufficiency and the powers-of-two tie objective can require exponentially large coefficient ranges or precision.",
+          "Proving that no larger compatible group exists may require an exact classical solver or exhaustive verification, potentially eliminating any practical benefit.",
+          "Loading an arbitrary caller-supplied compatibility graph, preparing states, optimizing parameters, taking measurements, and decoding are not free.",
+          "No qubit, depth, shot, noise, latency, instance-size, or hardware bounds are supplied.",
+          "Changing variable order would change the required deterministic tie-breaking result."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "program.py",
+            "function": "review_releases",
+            "start_line": 25,
+            "end_line": 29
+          }
+        ],
+        "/rationale": "The candidate is program.py lines 25-29: for each select-mode request, it enumerates all 2**len(names) masks, constructs each subset, checks pair compatibility, and retains a subset only when its cardinality strictly exceeds the incumbent. Ascending integer mask order plus the strict comparison implements the required tie rule: among maximum-cardinality subsets, the smallest sum(2**i) is retained. This is structurally a maximum-clique problem on the compatibility graph, or equivalently a constrained binary optimization problem. Its required inputs are names from eligible(versions, row['members']), which preserves active versions in global catalogue order, and matrix from relation(names, latest), where latest has already applied last-record-wins semantics to undirected pairs and relation treats failed and unknown pairs as incompatible. The region activates only when row['mode'] is 'select'; inspect-mode reports must continue to leave proposed and changes null. Validation, latest-check reduction, request independence and order, eligible reporting, current description, and the greedy preview at lines 18-23 must remain classical and unchanged, especially because preview is observably order-dependent and is not a maximum-group computation. After the candidate region, chosen must remain in eligible/global order, describe must preserve inactive and missing-pair reporting semantics, changes must remain an ordered set difference rather than an optimization objective, and empty eligible input must still yield an empty proposal. Structural eligibility is true because the finite binary decision variables, pair constraints, cardinality objective, and positional tie objective can be represented as a QUBO/Ising problem. Practical suitability is unknown: no workload distribution, instance sizes, hardware budget, encoding cost, or benefit evidence is supplied, and exact optimality plus deterministic tie-breaking are unresolved for a sampled QAOA execution. Benchmark support is false because the supplied material contains no performance or resource benchmark. The decision therefore remains classical despite the defensible analysis candidate and conditional plan.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "mother_case": "lit-005",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-5.6-sol/lit-005/response.txt",
+      "response_sha256": "02c8f0d7fe35f509872bd8bfe684287f100b3b4ef7593a481bbf1aca883e8c65",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-005-C.txt",
+      "input_sha256": "dd8d7f2d0022e82930aed2f8f2293b707c4502ef882bbc387783f00afb644a10",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "mother_case": "lit-006",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-5.6-sol/lit-006/response.txt",
+      "response_sha256": "dcc99268eb942b4115a8ca0e89222be536f4df3dbdfdde2dd11c904223048034",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-006-C.txt",
+      "input_sha256": "788cc5bf47576888f1c5b883542ee92e9e6c73031524a1be1dc9a8bea557d817",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "识别 DP 实现后的背包目标/容量/位序。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "slack、惩罚界及精确系数明确留待推导。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "明确 value 主、numeric mask 次及回退义务；构造未完成。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "choose 核与每窗口独立、select 激活、catalogue 顺序对应。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Conditionally replace only choose with a binary optimization subroutine. For eligible item i in catalogue order, use x_i in {0,1}, maximize sum_i value_i*x_i subject to sum_i weight_i*x_i <= capacity, and encode the required tie break by secondarily minimizing mask=sum_i 2^i*x_i. A QUBO could introduce a bounded binary slack s satisfying sum_i weight_i*x_i+s=capacity and square this equality with a penalty. Objective scaling must make every one-unit value improvement dominate the complete mask range, while the feasibility penalty must dominate every possible objective improvement. Exact coefficient signs, slack encoding, penalty bounds, and any QUBO-to-Ising x=(1-Z)/2 expansion remain to be derived and checked for arbitrary-size input integers.",
+        "/plan/input_encoding": "Receive the already filtered active items and one validated window capacity. Assign one decision bit per eligible item in the unchanged eligible catalogue order, plus enough constrained slack bits to represent every integer from zero through capacity without admitting unintended slack values. Item weights, values, capacity, objective-scale constants, and penalty coefficients must be loaded explicitly; coherent data access is not assumed free.",
+        "/plan/output_decoding": "Measure candidate assignments, reject any assignment whose recomputed total weight exceeds capacity, and classically recompute total value and numeric mask. Return the feasible assignment with maximum value and then smallest numeric mask. The decoded mask must use the original eligible-item bit positions. If sampling does not establish the exact required optimum and tie winner, fall back to the classical choose implementation or report no replacement result internally; externally visible behavior must remain unchanged.",
+        "/plan/assumptions": [
+          "review continues to perform all validation before any optimization call.",
+          "The subroutine is activated only for a window whose mode is select.",
+          "Each window is optimized independently using the same active-item catalogue; no stock or state is shared across windows.",
+          "A method can be supplied for constructing coefficients and penalties without overflow or loss of integer ordering.",
+          "An exactness protocol or classical fallback can preserve deterministic optimality and the smallest-numeric-mask tie rule."
+        ],
+        "/plan/risks": [
+          "A heuristic or finite-shot QAOA result does not guarantee the exact optimum or deterministic tie winner required by the contract.",
+          "Values, weights, capacity, item count, and resulting coefficients have no supplied upper bounds, so qubit count, coefficient precision, circuit depth, and data-loading cost are unresolved.",
+          "Naive binary slack can encode values outside the intended range unless its highest weight and validity constraints are designed carefully.",
+          "An insufficient feasibility penalty can select overweight assignments, while an insufficient objective scale can change the value-first ordering.",
+          "The exponential mask coefficients used to express the tie rule may require prohibitive dynamic range and precision.",
+          "Repeated execution for multiple select windows may make orchestration and measurement overhead dominate the existing dynamic program."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "kernel.py",
+            "function": "choose",
+            "start_line": 4,
+            "end_line": 15
+          }
+        ],
+        "/rationale": "kernel.py lines 4-15 are the narrowly bounded optimization kernel: the table enumerates capacity states, considers each indivisible item once, maximizes accumulated value, and resolves equal values by the smaller numeric mask. Its required inputs are the active-item list in catalogue order and a validated nonnegative capacity; it depends on each item's positive integer weight and nonnegative integer value, and its state is the previous dynamic-programming table of (value, mask) pairs. program.py line 31 constructs the active-only eligible list, and lines 36-38 activate choose only for select windows. Every window invokes it independently, so a replacement must not introduce shared allocation or cross-window state. The surrounding behavior must remain classical and intact: whole-request validation and ValueError behavior at lines 17-30; retention and feasibility reporting of current items, including inactive ones, at lines 34-35; proposal construction at lines 38-39; catalogue-ordered transfers with contiguous offsets at lines 40-44; inspect rows with no proposal or transfers; report ordering; absence of mutation; and JSON CLI behavior. Structurally this is eligible for a binary combinatorial-optimization formulation. Practical suitability is unknown because no workload sizes, hardware, encoding costs, precision limits, or evidence of advantage are supplied, while exact optimization and tie behavior cannot be weakened. The QuanBench-attributed values, weights, and capacity provide benchmark support for the knapsack structure, but only for a small stated instance and not for quantum advantage or deployment suitability. The conservative decision is therefore REMAIN_CLASSICAL.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "mother_case": "lit-007",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-5.6-sol/lit-007/response.txt",
+      "response_sha256": "3357128402245b87d18524e47032f0f9d73f59bbdde8a530672e0d8d3180f21b",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-007-C.txt",
+      "input_sha256": "2d0d9c2d999879cb3e43242ae092a56bf3889cb3af95b611419282dd6a1b7c74",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "mother_case": "lit-008",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-5.6-sol/lit-008/response.txt",
+      "response_sha256": "6cc1ffed9cfc70261e5f10ed15c9f873371c7545b7e0db36010bf3f57173b7de",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-008-C.txt",
+      "input_sha256": "0521e1deb52d47ba8b123f09c3b3ea894de23bbcc1c6bc05b2e80c6e8a764a20",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "mother_case": "lit-009",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-5.6-sol/lit-009/response.txt",
+      "response_sha256": "d23994280e467184fec18ff9f7bd504fec95841eefd4fdd7b94de951d7835d1d",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-009-C.txt",
+      "input_sha256": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "unresolved",
+          "reason": "有限有序数列可标记首个最大值；对全部 Python 中间浮点状态的等价性未证明。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "需比较所有行的谓词及可逆 binary64 行为未实现，可能消除收益。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "提出原 max 验证/回退；未完成浮点、异常和完整程序证明。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "line 13 子区域依赖当前 rows/col 而非仅原矩阵，触发路径有明确说明。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Conditionally formulate each pivot choice as a finite search over row indices i in [col,n) for the unique index selected by Python's max: the first index having the largest abs(rows[i][col]). A marking predicate would have to establish that the candidate is not smaller than any candidate and that no earlier index ties it, while exactly reproducing Python binary64 comparison behavior. This formulation is only for further analysis and does not establish an advantageous implementation.",
+        "/plan/input_encoding": "Encode the current column number and a candidate row index in basis states, together with coherent access to the evolving augmented rows created at kernel.py line 11 and modified at lines 16-20. The unresolved reversible representation must preserve all relevant binary64 bit patterns and the behavior of abs and comparisons, including signed zero and any nonfinite intermediate produced before the program's later overflow detection. Matrix loading, updated-row loading, ancillas, and uncomputation must be charged.",
+        "/plan/output_decoding": "Measure a proposed row index and verify classically that it exactly equals the first largest-absolute pivot under the program's comparison semantics. On failed verification, no marked result, or an inconclusive probabilistic run, use the original classical max scan. Only a verified index may proceed to the unchanged exact-zero test, row swap, elimination, and later calculations.",
+        "/plan/assumptions": [
+          "Each invocation has a finite candidate set even though no maximum system size is supplied.",
+          "A reversible oracle reproducing Python binary64 abs, comparison, tie ordering, and exceptional intermediate behavior can be constructed.",
+          "Coherent access to the newly updated augmented matrix is available at every elimination column, with its construction and update costs included.",
+          "Classical verification and a deterministic classical fallback are retained so probabilistic search cannot relax the software contract."
+        ],
+        "/plan/risks": [
+          "A direct predicate proving first-argmax can require comparisons against every remaining row, eliminating Grover-style query savings.",
+          "Building and repeatedly refreshing coherent access to the dense, evolving row state may dominate pivot-selection work.",
+          "Ordinary Grover execution is probabilistic, whereas the required pivot and tie result are exact.",
+          "Exact reversible binary64 semantics, including behavior after overflowing intermediate arithmetic, are complex and not supplied.",
+          "The candidate region is only one operation inside serial elimination; accelerating it does not remove the cubic classical elimination and back-substitution work.",
+          "No system-size distribution, hardware model, oracle circuit, qubit budget, depth bound, or advantage evidence is supplied."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "kernel.py",
+            "function": "solve",
+            "start_line": 13,
+            "end_line": 13
+          }
+        ],
+        "/rationale": "The only defensible supported-family candidate is the pivot-index selection at kernel.py line 13. For each elimination column it searches the finite remaining row indices and chooses the largest absolute pivot with the first index winning ties, which can in principle be expressed as a unique Boolean marked-state predicate. That makes structural eligibility true for further Grover-style analysis, but it does not make the surrounding dense linear solve a general unstructured-search problem. The predicate depends on col from line 12 and on the augmented rows copied from matrix and rhs at line 11; those rows are stateful within solve because swaps and elimination at lines 16-20 change the values before the next activation. The region activates only when program.py line 22 selects solve mode; inspect mode must continue to compute only the current residual and need not reject singularity. Input validation at program.py lines 9-18 and the unconditional current residual at line 19 must remain classical and unchanged. After pivot selection, the exact-zero singularity check at kernel.py lines 14-15, deterministic row swap and elimination at lines 16-20, back substitution at lines 21-23, overflow check at lines 24-25, and the proposed residual, named solution, deltas, and limit comparison at program.py lines 24-27 must retain their present ordering, exceptions, binary64 behavior, and effects. The copied rows at line 11 preserve the no-mutation contract and must not be replaced with mutation of caller data. Practical suitability is false: a predicate that certifies the first global maximum may itself scan all remaining rows, coherent loading must be repeated as elimination changes the matrix, exact reversible binary64 handling is costly, and probabilistic output requires verification and deterministic fallback. The supplied material describes a small serial program and supplies no scale, hardware, encoding-cost, or advantage evidence. Benchmark support is false: NOTICE.txt provides only classical HPL algorithm attribution, while the software contract expressly says this is not a compliant HPL performance run; no quantum benchmark supports this migration.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "mother_case": "lit-010",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-5.6-sol/lit-010/response.txt",
+      "response_sha256": "95c4d298524def9c94d5cae2b37df62b62a6520a0b72b6e0e3fc20b123fd8814",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-010-C.txt",
+      "input_sha256": "813a8c8fe93ec272831290f415c96a550c76cca8854b978a996e7c5689d91094",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "gpt-6-astra",
+      "mother_case": "lit-001",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-6-astra/lit-001/response.txt",
+      "response_sha256": "610c6cfb2fcd8c099390618c09c21b40cc50ce02d392dc28348bf40de8ebe1cb",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-001-C.txt",
+      "input_sha256": "9268f0b7023736ab7fa88e42610194c0cdfd7131c5ff6fa72403eab3b3e19a65",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "gpt-6-astra",
+      "mother_case": "lit-002",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-6-astra/lit-002/response.txt",
+      "response_sha256": "cbd6c570ba56aeb6c77efc3db7587ecff0c0b96b32a2d05925595f348ecdde11",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-002-C.txt",
+      "input_sha256": "78d179578aad53e085314bc7c8950f504ab2171798424f88356fda67d61a7702",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "核心覆盖与最小基数映射成立。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "supported",
+          "reason": "A=n+1 保证基数最优；有限枚举包含全部并列最优。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "明确声明能量不编码 tie；提出经典 canonicalization 义务，不能当错误 tie 公式。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "完整原核和经典报告边界有明确依赖解释。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Conditional study only: introduce x_i in {0,1}, with x_i=1 selecting station i. Minimize E(x)=sum_i x_i+A*sum_(u,v in edges)(1-x_u)(1-x_v), using A=n+1. Every infeasible assignment costs at least A, whereas selecting all stations is feasible with cost n; therefore every global minimizer is feasible and minimizes station count. This energy does not encode the required lexicographic tie rule. Preserve that rule through exact classical canonicalization among covers of the certified optimal cardinality, or develop and prove a hierarchical encoding before replacement.",
+        "/plan/input_encoding": "Use one logical binary variable per station input position and construct coefficients classically from validated normalized edges, independently of current_stations. With x_i=(1-Z_i)/2, the Ising constant is n/2+A*|edges|/4, each Z_i coefficient is -1/2+A*degree(i)/4, and each edge ZZ coefficient is A/4. Check signs, coefficients, bit ordering and hardware precision. No coherent data-loading service is assumed.",
+        "/plan/output_decoding": "Decode measurements into a set of station indices and classically recompute coverage and cardinality. Feasibility alone is insufficient: certify absence of every smaller cover and select the lexicographically first cover at the optimal size. Retain the existing ordered enumerator as an exact certification/fallback mechanism whenever those obligations are unresolved, including quantum execution failures. Never return an approximate count, uncovered proposal or arbitrary tied optimum. Pass only the certified canonical set into the unchanged reporting functions.",
+        "/plan/assumptions": [
+          "The candidate boundary is the validated application call, with 0<=n<=16 and edges between distinct valid indices.",
+          "All stations have unit cost, unlimited incident-edge inspection capacity and no additional activation constraints.",
+          "Empty-edge instances bypass quantum execution and return the empty selection.",
+          "A QUBO cost Hamiltonian replaces the search predicate for this formulation; no Grover oracle is assumed."
+        ],
+        "/plan/risks": [
+          "QAOA samples do not certify a global optimum or the required lexicographic tie winner.",
+          "Exact classical certification and canonicalization may consume the original enumeration cost.",
+          "Coefficient scaling, hardware connectivity, noise and finite measurement budgets may prevent reliable candidate generation.",
+          "Any alternative reversible feasibility oracle or hierarchical tie encoding still requires construction and verification."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "inspection.py",
+            "function": "min_vertex_cover_bruteforce",
+            "start_line": 77,
+            "end_line": 91
+          }
+        ],
+        "/rationale": "The nominated function is a self-contained finite combinatorial optimization kernel. Lines 80–81 enumerate subsets by increasing cardinality and then lexicographic input-position order; lines 84–87 test whether every edge has a selected endpoint; lines 88–90 return the first feasible subset. These establish both exact optimality and the required tie rule. Its dependencies are only n and the normalized, deduplicated, sorted integer edges produced by prepare_request at lines 7–38; current_stations is not an optimization objective or constraint. program.py line 14 invokes the kernel only after whole-request validation and current-plan assessment. A conditional quantum path would activate only for validated nonempty-edge instances; empty edges, including n=0, must immediately return an empty set. Preserve the set-of-indices interface and input immutability. Validation, ValueError behavior, describe_plan and compare_plans remain classical: preserve honest uncovered current connections, input-ordered selections, earliest-selected-endpoint ownership, empty checklists, normalized connection ordering, all additions/removals and ownership changes including null owners, and actual-selection counts. Keep the CLI's single successful JSON report and nonzero failure behavior. The optimization structure justifies further analysis, not deployment. At most 2^16 subsets exist, and the source does not establish a measured hotspot, workload, hardware suitability or advantage; practical suitability and benchmark support remain unknown.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "gpt-6-astra",
+      "mother_case": "lit-003",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-6-astra/lit-003/response.txt",
+      "response_sha256": "ac63a24876754bd4e4bd1ef3f2b1382f100f7774963e6501023c8745d6b880e4",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-003-C.txt",
+      "input_sha256": "f20e2374eadaca85cb94fb983d706fd595b8e922c693b53d1e2d9accb50ac6f5",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "有限完整赋值域及邻接不等谓词对应图着色。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "前缀存在性构造有逻辑依据；可逆实现与精确否定判定尚未完成。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "按最小可延伸前缀可保 lex；回答明确负判定须认证，不把没采到当无解。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "完整 complete 及经典验证/预览/报告边界有源码依据。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Conditional investigation only: for n sessions and k slots, search assignments a in {0,...,k-1}^n using P(a) = AND over conflict edges (i,j) of [a_i != a_j]. Ordinary Grover sampling does not preserve lexicographic output. Construct the answer by fixing each session's smallest slot whose prefix admits a feasible suffix, using prefix-constrained existence searches. Every negative existence decision must be exact or classically certified before excluding that prefix. Handle n=0 by returning [] and n>0,k=0 by raising ValueError without quantum search.",
+        "/plan/input_encoding": "For k>=2, encode each session with ceil(log2(k)) bits and reject out-of-range labels. Compile the classical edge list into reversible equality tests, combine validity and edge constraints into a phase mark, and uncompute workspace. Prefix values become additional fixed constraints. Handle k=1 directly. Graph loading, reversible synthesis, ancillas, valid-domain preparation, and diffusion remain implementation obligations; assume no free coherent memory.",
+        "/plan/output_decoding": "Decode and classically check every witness against slot bounds and all graph edges. Witness validation establishes feasibility only. Certify exclusion of all smaller prefixes before returning an assignment. An unsuccessful quantum run must never become ValueError by itself. Until an exact quantum existence procedure is justified, use exact classical search to certify exclusions and infeasibility, or retain complete as the fallback. Return the same list-of-indices interface and raise ValueError only for established impossibility; do not reinterpret runtime or recursion failures as unavailable.",
+        "/plan/assumptions": [
+          "The graph is produced by the existing validated application path and remains immutable during search.",
+          "No probabilistic error allowance or relaxation of lexicographic exactness is authorized.",
+          "The current application wrapper and prescribed preview remain unchanged."
+        ],
+        "/plan/risks": [
+          "An arbitrary feasible marked state can violate the required lexicographic minimum.",
+          "Unknown solution counts and zero-solution cases require a justified existence protocol; bounded sampling cannot certify absence.",
+          "Exact classical certification may dominate runtime and eliminate any benefit.",
+          "The classical backtracker prunes infeasible prefixes, so an unstructured-domain query comparison does not establish advantage."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "agenda.py",
+            "function": "complete",
+            "start_line": 28,
+            "end_line": 57
+          }
+        ],
+        "/rationale": "agenda.py:28-57 contains finite constraint search: available checks neighboring sessions, and place explores sessions and slots in ascending order, returning the first complete assignment. This traversal establishes the required lexicographic minimum, not merely feasibility. The nominated boundary includes initialization, the state-dependent predicate, backtracking, and the failure/return interface; replacing available alone would omit its assigned-state dependency. Inputs are the symmetric, contiguous-index conflict graph constructed by catalog.py:32-38 and the declared slot count. A pure full-assignment predicate can replace the mutable partial-state checks for search purposes. Activation is restricted to program.py:21-33: complete mode, infeasible current arrangement, and a blocked prescribed preview. Neither partial current assignments nor failed preview choices constrain completion. Keep prepare's whole-request validation and nonmutation, describe's ordered reports and sorted participant names, inspect and retained branches, preview's exact first-available behavior, status transitions, moves, and CLI behavior classical and unchanged. Preview blockage is not an infeasibility certificate. Validation, reporting, graph construction, and the prescribed greedy preview are not independently justified migration targets by the supplied evidence. Structural eligibility follows from the explicit finite domain and Boolean constraint predicate; practical benefit and benchmark support remain unknown because no workload, implementation, resource measurements, or comparative results are supplied. Dataset provenance is not performance evidence. Retain the classical implementation pending resolution of exact ordered output and no-solution obligations.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "gpt-6-astra",
+      "mother_case": "lit-004",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-6-astra/lit-004/response.txt",
+      "response_sha256": "2e4eba2634f42ca434db4cee1f49943e7ff4908b38aee43e2dc9e076d1e44f26",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-004-C.txt",
+      "input_sha256": "c7d39e87215fdb8d54b69d9c387911ca17020108782de50189a6fcb21847c278",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "选位与不兼容对对应。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "supported",
+          "reason": "B=2^n,A=nB+1 的可行性及目标支配证明成立，有限核对通过。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "supported",
+          "reason": "仅能量全局最小的 cardinality/mask 合同成立；认证及量子执行仍是义务。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "25–29 保留解码/报告，接口已说明；非唯一合法坐标。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "For n eligible versions, introduce x_i in {0,1}; let C contain unordered pairs i<j with matrix[i][j]=False. For n>0 set B=2^n and A=n*B+1. Minimize E(x)=A*sum_{(i,j) in C}(x_i*x_j)-B*sum_i x_i+sum_i 2^i*x_i. Every infeasible assignment has E>=A-B*n>0, whereas the empty feasible assignment has E=0. Thus all global minima are feasible. Among feasible assignments, one additional selected version improves the objective regardless of mask because the mask ranges from 0 to B-1. At equal size, the smallest mask uniquely minimizes E. For n=0 return best=[] classically.",
+        "/plan/input_encoding": "Construct C classically from the existing immutable per-request matrix, using exactly the existing eligible order. Encode one logical binary variable per eligible version. The QUBO uses linear coefficients 2^i-B and one quadratic coefficient A for each conflict. If using Ising, substitute x_i=(1-Z_i)/2: each conflict contributes A*(1-Z_i-Z_j+Z_i*Z_j)/4 and each linear term contributes (2^i-B)*(1-Z_i)/2. Constants may be omitted only during optimization, with their accounting retained for energy comparisons. Device precision, rescaling, embedding and bit-order conventions remain unresolved.",
+        "/plan/output_decoding": "Decode measured assignments into ascending selected indices, recompute compatibility, cardinality and mask classically, and return the exact unique optimum through best to the unchanged downstream code. Feasibility checks alone cannot certify optimality or the tie-break. Require a sound exact certification procedure or an exact classical fallback before returning a proposal; finite-shot QAOA output alone is insufficient.",
+        "/plan/assumptions": [
+          "This is a conditional formulation for investigation, not authorization to replace the existing exact solver with a heuristic.",
+          "Classical validation, history reduction, eligibility, preview and reporting remain unchanged.",
+          "Only supplied pair evidence defines compatibility; current selections introduce no optimization preference."
+        ],
+        "/plan/risks": [
+          "QAOA does not itself guarantee the exact global optimum or required tie-break.",
+          "Exponentially large coefficient magnitudes create precision and dynamic-range obligations even though their integer descriptions have polynomial bit length.",
+          "Exact certification or fallback may dominate execution and erase any prospective benefit.",
+          "No reversible search oracle is needed for this QUBO route, but correct cost-Hamiltonian implementation, coefficient signs and decoding still require verification."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "program.py",
+            "function": "review_releases",
+            "start_line": 25,
+            "end_line": 29
+          }
+        ],
+        "/rationale": "program.py:25-29 enumerates all eligible-position masks and retains a compatible subset only on a strict size improvement. Ascending mask enumeration therefore implements the required minimum-mask tie-break. This is maximum clique in the passed-pair graph, equivalently maximum independent set in its conflict graph, and has an explicit binary quadratic formulation. The nominated boundary produces best, an ascending list of eligible indices consumed at line 30; no reporting or validation needs replacement. Activation is exclusively mode=select at line 24. Inputs are names from catalog.py:48-49, preserving global version order and filtering active request members, and matrix from reports.py:6-8, based on latest_results at catalog.py:41-45. Reversed checks share an undirected key, later records overwrite earlier records, and failed or absent pairs are incompatible. reports.py:11-12 supplies the pure feasibility predicate; its diagonal exclusion makes empty and singleton subsets feasible. These helpers are dependencies, not separately nominated quantum workloads. Keep prepare at catalog.py:6-38 before all processing, preserving complete validation, ValueError behavior and nonmutation. Keep the observable ordered greedy preview at reports.py:15-20 unchanged, including when it is smaller than the optimum. Preserve honest current descriptions, inactive and failed/unverified evidence, global ordering, inspect-mode nulls, independent requests, changes as differences rather than an objective, all history counts including inactive pairs, and CLI behavior. Structural eligibility follows from the explicit optimization problem, not merely exponential enumeration. No workload measurements, hardware budgets, encoding costs or comparative benchmarks establish practical suitability or benefit; dataset provenance is not benchmark evidence. Remaining classical is the present decision while the following migration plan is conditional.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "gpt-6-astra",
+      "mother_case": "lit-005",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-6-astra/lit-005/response.txt",
+      "response_sha256": "7377b3da58a8c664cd872d55ab51a0c3c62a903f3193fedb5995ab87389ad799",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-005-C.txt",
+      "input_sha256": "dd8d7f2d0022e82930aed2f8f2293b707c4502ef882bbc387783f00afb644a10",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "gpt-6-astra",
+      "mother_case": "lit-006",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-6-astra/lit-006/response.txt",
+      "response_sha256": "8d6321d27fc9761f13155ef96102a18a03c03ebc762407a7fa2bf1e7b81fd7b1",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-006-C.txt",
+      "input_sha256": "788cc5bf47576888f1c5b883542ee92e9e6c73031524a1be1dc9a8bea557d817",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "变量、容量等式和 value/mask 层级对应。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "supported",
+          "reason": "A>B*sum(v) 对非负整数值充分；标准非负二进制 slack 实例化的有限检查通过。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "supported",
+          "reason": "只支持精确整数 ground-state 返回 mask 的合同，未证明硬件或认证实现。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "原 choose 返回 mask；独立窗口和 select 激活均保留。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Conditional analysis only: let x_i be binary inclusion in eligible order, V(x)=sum(v_i*x_i), W(x)=sum(w_i*x_i), and M(x)=sum(2^i*x_i). For n eligible items set B=2^n and introduce nonnegative binary-encoded slack s capable of representing every integer from 0 through C. Minimize E=-B*V(x)+M(x)+A*(W(x)+s-C)^2, with integer A>B*sum(v_i). The empty subset with s=C has energy zero; every capacity-equation violation has strictly positive energy under this bound, while every feasible subset has a zero-penalty representation. Among feasible subsets, B makes a one-unit value gain dominate any mask difference, preserving the exact tie rule. Prove these properties for the implemented encoding before use.",
+        "/plan/input_encoding": "Load weights, values and capacity classically after existing validation. Use n decision bits and ceil(log2(C+1)) slack bits, with no slack bits when C=0. An ordinary binary slack range extending beyond C is harmless for exact ground states because weights are positive and the equality penalty excludes excess slack. Preserve original eligible indices. If using Ising, expand the square and substitute each binary variable with (1-Z)/2, documenting all coefficients and constants. Arbitrarily large input integers and exponential tie coefficients require explicit precision and representation analysis.",
+        "/plan/output_decoding": "Decode decision bits into the original numeric mask and recompute weight and value using exact classical integers. Reject infeasible candidates. Feasibility checking alone does not certify maximum value or the smallest-mask tie: require a rigorous exact optimality certificate or exact classical verification/fallback before returning. Preserve empty-input, zero-capacity and zero-value behavior, including mask zero when all values are zero. Pass only the verified mask to unchanged proposal and transfer construction.",
+        "/plan/assumptions": [
+          "Each validated window is solved independently, and inspect windows never invoke optimization.",
+          "The formulation describes exact ground states; it does not establish that a quantum execution will find them.",
+          "No approximation or nonzero probability of returning an incorrect result is authorized."
+        ],
+        "/plan/risks": [
+          "Large penalty and tie coefficients may exceed usable hardware precision; rescaling can erase meaningful energy differences.",
+          "QAOA samples do not certify optimality, and classical exact verification or fallback may dominate total runtime.",
+          "Unbounded item counts and numeric magnitudes prevent a fixed hardware-resource guarantee."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "kernel.py",
+            "function": "choose",
+            "start_line": 4,
+            "end_line": 15
+          }
+        ],
+        "/rationale": "kernel.py:4-15 implements exact 0/1 knapsack using a capacity-indexed dynamic program. Reading from previous rather than the updated table enforces indivisibility; lines 13-14 enforce maximum value and smallest-mask ties. The whole function is the replacement boundary: its table is internal state, and its only output is a mask. Dependencies are the ordered eligible items' integer weights and values and the window capacity; bit positions depend on eligible catalogue order. Activation occurs only at program.py:36-37 after whole-batch validation at lines 17-30 and active filtering at line 31. Current selections do not constrain optimization, and windows share no stock state. Preserve validation and ValueError behavior, including rejection of Boolean integers; current reports must retain listed inactive items and compute feasibility independently. Keep proposal decoding, catalogue order, contiguous transfer offsets, inspect behavior, report/window order, nonmutation and JSON CLI unchanged. Binary subset optimization is structurally eligible, but the existing dynamic program is not an unstructured search loop, and no measured hotspot or advantage is established. Its roughly O(nC) table work and O(C) entries provide a classical baseline, with additional arbitrary-precision integer costs. NOTICE.txt supplies task attribution and one small instance, not execution results, workload representativeness or quantum benchmarking. Practical suitability and benchmark support therefore remain unknown.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "gpt-6-astra",
+      "mother_case": "lit-007",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-6-astra/lit-007/response.txt",
+      "response_sha256": "093dfddd184f3b38e6f2c76a252875a1fff26346c7cd5f4f8cf265ce1bb60bfa",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-007-C.txt",
+      "input_sha256": "2d0d9c2d999879cb3e43242ae092a56bf3889cb3af95b611419282dd6a1b7c74",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "gpt-6-astra",
+      "mother_case": "lit-008",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-6-astra/lit-008/response.txt",
+      "response_sha256": "75c9cb9218105aa17a15ba12f1886178242f8079ef6af344ad455ebb21a1ed86",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-008-C.txt",
+      "input_sha256": "0521e1deb52d47ba8b123f09c3b3ea894de23bbcc1c6bc05b2e80c6e8a764a20",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "gpt-6-astra",
+      "mother_case": "lit-009",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-6-astra/lit-009/response.txt",
+      "response_sha256": "bab8773e3bb90c2747edfa90060d62fe597d1a088734eb9a1ef5f80a063cdc8c",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-009-C.txt",
+      "input_sha256": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "有限列上的 incumbent 改进谓词不需预知最大值；只支持条件子计算，不冻结整题标签。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "有限列经典谓词检查通过；可逆访问、精确终止和量子实现仍未完成。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "说明非有限中间状态走原实现、不提前拒绝；认证/回退尚未实现。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "line 13 及可变 rows、col、残差先行和模式触发均说明。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Conditionally replace only pivot selection. For a fixed elimination column col and frozen current rows, search indices i in [col,n) using the Boolean predicate abs(rows[i][col]) > abs(rows[p][col]) OR (equal magnitudes AND i < p), where p is the incumbent. Repeated marked-state searches seek the lexicographic optimum: greatest magnitude, then smallest index. Failure to find a marked index is not itself proof of optimality.",
+        "/plan/input_encoding": "Encode candidate indices in ceil(log2(n-col)) qubits with an offset of col; padded indices are unmarked. Provide reversible access to the current binary64 column values, an incumbent register or classical control parameter, magnitude comparison, index comparison and uncomputed workspace. Rebuild or update the data representation after each classical elimination step. Loading and coherent access are not free. Initially restrict this path to finite column values and retain the original selection for nonfinite states.",
+        "/plan/output_decoding": "Measure and range-check indices, verify every proposed improvement against the frozen classical column, and certify that no better index exists. Preserve first-index ties exactly. Until an exact termination policy is established, use a complete classical certification scan and the original max as fallback; this may remove any benefit. Return only the pivot index to unchanged elimination.",
+        "/plan/assumptions": [
+          "This is a conditional research plan, not authorization to weaken deterministic pivot semantics.",
+          "Classical elimination, back substitution and diagnostics remain unchanged.",
+          "Nonfinite intermediate states use the original classical selection, without introducing earlier rejection.",
+          "A reversible comparator and data-access implementation remain to be demonstrated."
+        ],
+        "/plan/risks": [
+          "Bounded-error search can miss an improving pivot; classical verification of a returned index alone cannot certify maximality.",
+          "Finite inputs can produce infinities or NaNs during elimination, for which ordinary mathematical maximum formulations need not reproduce Python max behavior.",
+          "Data preparation, state updates and exact certification can dominate the original linear pivot scan.",
+          "Different pivot choices can change all subsequent rounded arithmetic, singularity detection and overflow behavior."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "kernel.py",
+            "function": "solve",
+            "start_line": 13,
+            "end_line": 13
+          }
+        ],
+        "/rationale": "kernel.py:13 explicitly scans a finite, unordered set of remaining row indices to select the largest absolute pivot, with Python max retaining the first index on ties. This is a defensible narrow search candidate, not a nomination of dense linear solving as a supported quantum algorithm. Its dependencies are n, col and the current augmented rows copied at kernel.py:11 and modified at lines 16-20; the original input matrix alone is insufficient. It activates only in solve mode (program.py:22-23), for nonempty remaining columns, after the current residual has already succeeded. A conditional finite-column quantum path must preserve the exact selected index; nonfinite intermediate columns require original behavior unless their ordered comparison semantics are separately encoded. Keep the exact-zero pivot exception at kernel.py:14-15, row swapping and arithmetic order at lines 16-23, and detected overflow handling at lines 24-25 intact. Preserve validation, no input mutation, inspect mode without singularity rejection, empty-system results, variable ordering, named proposal and deltas, and residual evaluation and exceptions. The diagnostic remains Ax-b with its supplied scaling and zero-denominator conventions; residual_limit is only a report comparison, not permission to return an approximate solution. No explicit binary optimization problem justifies QUBO conversion, and quantum linear-system algorithms are outside the supported families. Structural eligibility of pivot search is true; practical suitability is unknown because no workload or implementation costs are supplied. Benchmark support is unknown: attribution to HPL is not a compliant performance run or quantum comparison.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "gpt-6-astra",
+      "mother_case": "lit-010",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-c-v0.1/runs/gpt-6-astra/lit-010/response.txt",
+      "response_sha256": "06ba47ef3f9057f7d6ba048fc6e5b8fba048ca86a94611ff6382a4bad6a6f4d3",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-010-C.txt",
+      "input_sha256": "813a8c8fe93ec272831290f415c96a550c76cca8854b978a996e7c5689d91094",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "mother_case": "lit-001",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-001/response.txt",
+      "response_sha256": "b1a35a479614dc20a452eab4040053b4eaf5c7c858dc4e0a0e181801c28964e6",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-001-C.txt",
+      "input_sha256": "9268f0b7023736ab7fa88e42610194c0cdfd7131c5ff6fa72403eab3b3e19a65",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "mother_case": "lit-002",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-002/response.txt",
+      "response_sha256": "23ffd9fe67472287f38fa501285d9f78a190180c3d56821cf64203dda4e617bb",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-002-C.txt",
+      "input_sha256": "78d179578aad53e085314bc7c8950f504ab2171798424f88356fda67d61a7702",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "变量及覆盖/基数核心对应；不包含其错误的次级排序主张。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "P 仅要求支配目标；C<A/2^n 保住基数但不保证 tuple 顺序。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "contradicted",
+          "reason": "正 numeric-mask 次级目标选择 (1,2)，合同选择 (0,3)；仅反驳此公式。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "supplied_claim_refuted",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "完整核及周边报告义务已说明；回退尚未实现。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Conditional QUBO/Ising formulation for minimum vertex cover. For each station index i = 0..n-1, binary variable x_i = 1 if selected and 0 otherwise. Objective: minimize A * sum_i x_i + P * sum_{(u,v) in edges} (1 - x_u)(1 - x_v) + C * sum_i 2^i x_i. The second term penalizes uncovered edges and must dominate cost so feasible covers are preferred; the third term is a small lexicographic tie-break term such that 0 < C < A/(2^n), so cardinality remains primary and among equal-cardinality covers the lexicographically smallest selected-position tuple is preferred. The strict software contract still requires classical verification/fallback.",
+        "/plan/input_encoding": "One qubit per station, with x_i in {0,1}; if using Ising, map x_i = (1 - Z_i)/2. Edge data and station input order are classical data used to construct the cost Hamiltonian; no free coherent data loading is assumed.",
+        "/plan/output_decoding": "Measure the n-bit candidate, decode selected station indices by input position, then classically recompute the objective, verify every connection is covered, and verify cardinality plus lexicographic tie against the required contract. Reject invalid or suboptimal candidates and fall back to min_vertex_cover_bruteforce.",
+        "/plan/assumptions": [
+          "n is at most 16 due to prepare_request validation",
+          "edges are normalized unique undirected connections in sorted input-position order",
+          "this plan is conditional and does not recommend adoption",
+          "classical verification/fallback preserves exactness, ordering, and report semantics"
+        ],
+        "/plan/risks": [
+          "QAOA is approximate and may not return the true optimum or even a feasible cover",
+          "penalty and tie-break coefficient interaction may violate the required cardinality/lexicographic precedence",
+          "decoded bitstrings may be invalid or dominated by noise and require classical rejection/fallback",
+          "quantum overhead is likely unjustified for n <= 16"
+        ],
+        "/candidate_regions": [
+          {
+            "file": "inspection.py",
+            "function": "min_vertex_cover_bruteforce",
+            "start_line": 77,
+            "end_line": 91
+          }
+        ],
+        "/rationale": "Candidate is min_vertex_cover_bruteforce, the only combinatorial core. It is activated from review_inspections at program.py line 14 after prepare_request has validated and normalized names, edges, and current_stations. Its dependencies are: edges is a sorted list of unique undirected input-position pairs; n == len(names) <= 16. The function enumerates r = 0..n over itertools.combinations(range(n), r), giving increasing cardinality and lexicographic tuple order, and returns the first subset covering all edges. This exactly implements the contract's fewest-stations rule and lexicographically smallest input-position tie rule. Surrounding behavior that must remain intact includes: ValueError validation, current-plan honest coverage assessment, describe_plan assigning each covered connection to the earliest selected endpoint, compare_plans computing add/remove/newly_covered/reassigned from selected_stations and checklists, and empty-station/empty-connection outputs. Structural eligibility is true because this is a finite minimum-vertex-cover problem representable as QUBO/Ising. Practical suitability is false: the bound n <= 16 makes the exhaustive search tiny and exact, and no hardware/latency/deployment evidence is supplied; a heuristic quantum candidate adds exactness and ordering risk without demonstrated benefit. Benchmark support for combinatorial_optimization exists only as a DRAFT shared contract, not as an approval or correctness assurance. Decision is therefore REMAIN_CLASSICAL.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "mother_case": "lit-003",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-003/response.txt",
+      "response_sha256": "f5c690d453ad12bd8ee454bee294f98ec2da05ac434c73ca2cce4aa5633aa017",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-003-C.txt",
+      "input_sha256": "f20e2374eadaca85cb94fb983d706fd595b8e922c693b53d1e2d9accb50ac6f5",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "具体公式是每 session 一个 slot，加冲突约束；按公式审，不用另一处含糊概述替代。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "位置权重排序成立；lambda/mu 的充分界明确未解决。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "可行态 lex 顺序有有限检查；全局 ground state、无解和回退实现仍需证据。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "完整函数、complete 激活与失败报告均说明。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Binary QUBO/Ising over variables x_{v,s}, where session v in 0..n-1 and declared slot index s in 0..m-1. Objective: minimize sum_v W_v * sum_s s*x_{v,s}, with W_v chosen such as (m+1)^(n-v) so earlier sessions dominate later sessions lexicographically. Constraints: for each session exactly one slot, penalty lambda * (sum_s x_{v,s}-1)^2; for each participant-conflict edge (u,v) and each slot s, penalty mu * x_{u,s}*x_{v,s}. If n>0 and slot_count=0, handle as classical infeasible because no slot assignments exist. Lambda/mu must be proven large enough to make constraint violation strictly worse than any feasible lexicographic objective saving; this proof is unresolved.",
+        "/plan/input_encoding": "Encode n*slot_count binary variables. If using Ising, use the mapping x=(1-Z)/2 and account for constants. The already computed conflict matrix/neighbors from catalog.relations must be loaded as quadratic coefficients. Slot-name validation, participant validation, preview construction, describe, and moves remain classical and outside the candidate region.",
+        "/plan/output_decoding": "Classically decode sampled bits to an assignment, reject infeasible or non-one-hot bitstrings, verify all conflict constraints, then convert indices to slot names through the existing describe and moves logic. Only accept a decoded result if it is guaranteed to be the exact lexicographically smallest feasible arrangement; otherwise restore the deterministic classical complete path. If the input is infeasible, exact no-solution certification is required before raising ValueError so review_agenda reports status unavailable with proposed null.",
+        "/plan/assumptions": [
+          "The region is entered only after prepare/relations have validated and converted the request to integer conflict data.",
+          "n and slot_count are finite, so a finite binary encoding exists.",
+          "Exact lexicographic weights and constraint penalty coefficients can be represented with sufficient numerical precision.",
+          "All surrounding behavior in program.py, preview, describe, and moves remains intact and classical."
+        ],
+        "/plan/risks": [
+          "QAOA-style sampling is probabilistic and does not guarantee finding the global optimum or exact lexicographic minimum.",
+          "QAOA cannot provide a deterministic infeasibility certificate, so unavailable cannot be safely emitted without an additional exact infeasibility proof.",
+          "Large lexicographic and penalty weights may cause ill-conditioned QAOA optimization and precision problems.",
+          "Resource cost scales as n*slot_count variables and up to O(n^2*slot_count) conflict terms, with no supplied evidence of quantum advantage.",
+          "A decoded feasible arrangement may still be lexicographically incorrect unless the exact optimum is independently certified."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "agenda.py",
+            "function": "complete",
+            "start_line": 28,
+            "end_line": 57
+          }
+        ],
+        "/rationale": "The selected region is agenda.complete, the backtracking solver invoked only when mode=complete, current is not feasible, and preview has already raised ValueError. Evidence: agenda.py lines 28-57 implement exhaustive slot assignment over a participant-conflict graph; program.py lines 28-29 call complete and turn a ValueError into status unavailable. The region depends on neighbors and slot_count, not on any choices from the blocked preview; preview failure imposes no fixed assignments. It must preserve the lexicographically smallest slot-index vector, raise ValueError when no arrangement exists, and leave the existing preview-retained/current-feasible paths unchanged. This finite coloring problem is structurally expressible as a QUBO/Ising with weighted lexicographic objective and one-hot/edge-conflict penalties, so structural eligibility is true. Practical suitability is false because QAOA-style output is probabilistic, exact infeasibility is not certified, penalty/objective weights can be ill-conditioned, and there is no supplied workload or advantage evidence. Benchmark support is treated as true only at the generic family level because combinatorial_optimization/QUBO is in the shared draft contracts; it is not adoption approval. The deterministic classical backend is therefore retained.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "mother_case": "lit-004",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-004/response.txt",
+      "response_sha256": "042d13ecb7bc7e766941d221e9789dc802e1918c642701dc6deaf59ef1fea237",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-004-C.txt",
+      "input_sha256": "c7d39e87215fdb8d54b69d9c387911ca17020108782de50189a6fcb21847c278",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "最大团/非边惩罚和 mask 目标对应。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "supported",
+          "reason": "P>A 可通过删除冲突顶点说明；正 epsilon 的实例支配条件及有限检查见证据。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "supported",
+          "reason": "仅所述充分 epsilon 条件下的 ground-state 顺序；量子认证尚未实现。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "24–30 包含触发与解码，较大边界本身不构成错误。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "For each eligible version i in 0..n-1, let x_i=1 if selected. The selected set must satisfy x_i*x_j=0 for every pair whose latest check is not true (non-edge). Maximize cardinality sum_i x_i. A QUBO objective is H = -A*sum_i x_i + P*sum_{(i,j) in nonedges} x_i*x_j + epsilon*sum_i 2^i*x_i, with A>0, P>A to make infeasible sets worse than smaller feasible sets, and epsilon sufficiently small to order equal-cardinality feasible optima by the contract's smallest sum(2^i) tie-break. In Ising form substitute x_i=(1-Z_i)/2.",
+        "/plan/input_encoding": "Binary decision variables x_i for the n eligible active request members in global version order. Pair nonedges are derived from latest_results: undirected frozenset keys with the last check for each pair; missing or passed=false records are nonedges. Singleton and empty cases need no pair penalties.",
+        "/plan/output_decoding": "Measure candidate bitstrings, decode to subsets of eligible version IDs, and classically verify compatibility with the latest check matrix. Recompute size and tie-break sum(2^i). Reject infeasible or suboptimal candidates and fall back to the classical exact search for final report generation.",
+        "/plan/assumptions": [
+          "Eligible set is finite and known after classical prepare, latest_results, and eligible filtering.",
+          "The latest check data can be represented in a reversible oracle or Hamiltonian penalty circuit; no data loading is free.",
+          "Penalty coefficients A, P, and epsilon are selected for the specific n; epsilon may require precision below A/(2^n-1) for tie-breaking."
+        ],
+        "/plan/risks": [
+          "QAOA/QUBO ground-state sampling does not guarantee the exact global optimum or deterministic tie-break required by the contract.",
+          "Choosing P>A and a tie-breaking epsilon is prone to coefficient precision and scalability issues for large n.",
+          "Oracle construction and data loading may exceed the cost of the current O(2^n*n^2) exhaustive scan in practical cases.",
+          "Measurement errors can produce infeasible or suboptimal candidates; classical verification and fallback are mandatory but may negate any advantage.",
+          "The draft contract menu does not provide benchmark evidence for this specific performance claim."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "program.py",
+            "function": "review_releases",
+            "start_line": 24,
+            "end_line": 30
+          }
+        ],
+        "/rationale": "program.py:24-30 is the select-mode exhaustive search. It activates only when row['mode']=='select'. It depends on names = eligible(versions, row['members']), which preserves global version order for active request members, and matrix = relation(names, latest), where latest is built by latest_results(checks) using undirected frozenset keys and last-record-wins semantics. The loop visits masks in increasing integer order, so among maximum-size compatible subsets it keeps the smallest numeric mask, matching the required smallest sum(2^i) tie-break. Surrounding report behavior must remain intact: current and preview are computed independently, inspect mode keeps proposed and changes null, describe reports in global version order, and changes.add/remove are differences from current rather than an objective. Structural eligibility is true because this is a maximum-clique problem over a finite pairwise compatibility graph and can be represented in QUBO/Ising. Practical suitability is false because no hardware, workload, encoding-cost, or practical-benefit evidence is supplied, and the exact deterministic optimum cannot be silently relaxed to an approximate QAOA result. Benchmark support is false because no benchmark support or measured workload distribution is supplied. Decision: REMAIN_CLASSICAL. The attached plan is conditional only.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "mother_case": "lit-005",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-005/response.txt",
+      "response_sha256": "5e19e51be7054b008facf9c5fbee5a7c78fe521873d78900759efa41abdd1674",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-005-C.txt",
+      "input_sha256": "dd8d7f2d0022e82930aed2f8f2293b707c4502ef882bbc387783f00afb644a10",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "mother_case": "lit-006",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-006/response.txt",
+      "response_sha256": "f677540a515d324e6d3fb63508b6e3bca892dc2d25f8293a1c0851b6c904f58c",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-006-C.txt",
+      "input_sha256": "788cc5bf47576888f1c5b883542ee92e9e6c73031524a1be1dc9a8bea557d817",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "核心背包目标与容量对应；tie 不在写出的标量式里。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "slack/P 未构造；缺全局输入上限不阻止用逐实例 sum(v) 推导，不能用此理由证明不可构造。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "tie 依赖与原 DP 完全核对；不是已完成的 tie 编码，也未实现核对流程。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "choose、过滤和窗口独立义务均说明。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Binary variables x_i for each eligible item i in catalogue order. The classical objective is maximize sum_i v_i x_i subject to sum_i w_i x_i <= C. QUBO/Ising objective form: H = -sum_i v_i x_i + P * penalty, with penalty constructed from the capacity constraint. A slack representation for sum_i w_i x_i <= C can use slack s = C - sum_i w_i x_i with binary slack bits y_j, but the exact coefficient form and feasible slack range must be derived. Ising mapping is x_i = (1 - Z_i)/2 with constants folded. The penalty P must dominate all feasible value differences and is unresolved because weights/values have no supplied numeric cap.",
+        "/plan/input_encoding": "n qubits for eligible item bits x_i, or n Ising spins under x_i = (1 - Z_i)/2, plus m slack qubits for capacity slack. Classical preprocessing loads item positions, weights, values and window capacity into coefficient arrays/oracle logic; catalogue-order bit indices must be retained so the smallest numeric mask can be decoded.",
+        "/plan/output_decoding": "Measure candidate bits; reconstruct the eligible item subset from the catalogue-order bitmask; recompute total weight and value and verify capacity feasibility. Because QAOA does not guarantee the exact classical optimum or the smallest-mask tie rule, the quantum candidate must be classically verified against the DP result and rejected if not exactly matching.",
+        "/plan/assumptions": [
+          "Classical input validation and active-item filtering remain outside the quantum routine.",
+          "QUBO/Ising coefficients are constructed from supplied weights/values; data loading and operator construction are not free.",
+          "A suitable penalty strength and exact slack-variable encoding can be found for every integer capacity.",
+          "Probabilistic quantum readout is acceptable only as a candidate generator, with classical verification preserving exactness."
+        ],
+        "/plan/risks": [
+          "QAOA is heuristic and can return infeasible or suboptimal candidates.",
+          "The tie-breaking rule uses smallest numeric eligible-order bitmask, which is not directly represented in the scalar QUBO objective.",
+          "Unbounded weights/values mean no universal finite penalty coefficient is known from the supplied material.",
+          "Slack-variable count depends on capacity and can dominate quantum resources.",
+          "No quantum advantage evidence supplied; replacing deterministic DP would violate exactness unless classically verified."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "kernel.py",
+            "function": "choose",
+            "start_line": 4,
+            "end_line": 15
+          }
+        ],
+        "/rationale": "The candidate is kernel.choose at kernel.py:4-15. Source evidence: review (program.py:16-46) validates the batch, item fields, active bool, window capacity and current IDs; then eligible is the active items in catalogue order (program.py:31). For each window, current is described first, and only when window.mode == 'select' is choose(eligible, window.capacity) called (program.py:36-38). Dependencies: choose receives the pre-filtered eligible list and validated nonnegative capacity; the 1<<i mask positions refer to eligible order, and chosen IDs are reconstructed via enumerate(eligible) (program.py:38-39). Transfers are then built in the same eligible order for selected items, accumulating offsets by item weight (program.py:40-44). Activation conditions: select windows are independent, with no shared-stock allocation; empty eligible or zero capacity yields mask 0; inspect mode never calls choose. Surrounding behavior that must remain intact includes exact 0/1 knapsack maximization, the smallest numeric eligible-order mask tie rule, current report infeasibility for listed inactive items or overweight totals, no mutation, ValueError on invalid input, and JSON CLI input/output. Structural eligibility is true for combinatorial optimization because kernel.choose is a binary linear program with a capacity constraint. Practical suitability is false because a QUBO/QAOA path would introduce approximation and probabilistic measurement, conflicting with the required exact optimum and deterministic tie/order semantics, and no advantage evidence is supplied. Benchmark support is false because the supplied NOTICE is source-task attribution only, not an executable benchmark or validation harness.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "mother_case": "lit-007",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-007/response.txt",
+      "response_sha256": "b5f4a0a8afe9d6df57fcf828ad833d0d73e357ca0db74fcbe6143e85d50beb20",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-007-C.txt",
+      "input_sha256": "2d0d9c2d999879cb3e43242ae092a56bf3889cb3af95b611419282dd6a1b7c74",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "mother_case": "lit-008",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-008/response.txt",
+      "response_sha256": "a265435e2ab58d6a59a5adaf4e8f6bff6574677be7e2b0446ee880c7a849d2f0",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-008-C.txt",
+      "input_sha256": "0521e1deb52d47ba8b123f09c3b3ea894de23bbcc1c6bc05b2e80c6e8a764a20",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "mother_case": "lit-009",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-009/response.txt",
+      "response_sha256": "04189d916fb84a0fc70e933497a7b73e504ba366891d1ff7e218e449d2468cb3",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-009-C.txt",
+      "input_sha256": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "contradicted",
+          "reason": "“必须有全局 argmax 谓词或预计算 target”的必要性主张过强；incumbent 谓词提供替代。非整题 NO 判错。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/rationale"
+          ],
+          "obligation_status": "supplied_claim_refuted",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "not_applicable",
+          "reason": "无条件计划；不凭空要求该 NO 回答给 QUBO 系数。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/rationale"
+          ],
+          "obligation_status": "no_plan_obligation_for_this_response",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "保留浮点、异常和残差的要求合理，尚不足以否定所有条件子区域映射。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/rationale"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "unresolved",
+          "reason": "整个 solve 可被提名后拒绝；内部 pivot 需要单独审核，当前记录没有可靠排除它。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/candidate_regions": [
+          {
+            "file": "kernel.py",
+            "function": "solve",
+            "start_line": 9,
+            "end_line": 26
+          }
+        ],
+        "/rationale": "The nominated solve region is the main computational core and was analyzed for selective quantumization. It performs dense Gaussian elimination with partial pivoting: for each column it selects the largest absolute pivot with first-index tie behavior (line 13), swaps rows, eliminates below, and back-substitutes; an exact zero pivot raises ValueError on lines 14-15, and detected non-finite x raises ValueError on lines 24-25. These required effects, finite-number validation, mode activation for solve only, empty-system behavior, deterministic tie ordering, and overflow/singular exception semantics must remain intact. The computation is continuous binary64 linear algebra, not a finite-domain Boolean predicate search or a binary-variable QUBO/Ising problem. The only search-like operation is an argmax over floating-point values, which would require a global maximum/argmax predicate or precomputed target rather than a naturally marked unstructured-search predicate. A QUBO/Ising mapping would require discretizing real variables and could not preserve exactness, exceptions, or residual diagnostics. Therefore no supported migration family is structurally eligible.",
+        "/structural_eligibility": false
+      }
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "mother_case": "lit-010",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-v4-pro/lit-010/response.txt",
+      "response_sha256": "46745eaa48492a25d0f623db0f9190f3a527d30b9700a7e30fd9a311385c7480",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-010-C.txt",
+      "input_sha256": "813a8c8fe93ec272831290f415c96a550c76cca8854b978a996e7c5689d91094",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "deepseek-flash",
+      "mother_case": "lit-001",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-001/response.txt",
+      "response_sha256": "f0cfeb0a0089c64c7ff59e73bb13e8a052ee57620b9d250b2e5d0d17863d7cf7",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-001-C.txt",
+      "input_sha256": "9268f0b7023736ab7fa88e42610194c0cdfd7131c5ff6fa72403eab3b3e19a65",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "deepseek-flash",
+      "mother_case": "lit-002",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-002/response.txt",
+      "response_sha256": "a31f772e4d734776c0609c27fab0726e74c99d39a417997c1d86f01ec94ebd18",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-002-C.txt",
+      "input_sha256": "78d179578aad53e085314bc7c8950f504ab2171798424f88356fda67d61a7702",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "核心覆盖约束和基数目标对应。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "承认支配系数及 tie 构造需验证；另一层级方案仍待构造。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "contradicted",
+          "reason": "加在选择位上的正递减超递增权重方向相反；反例只否定该分支，不否定两阶段替代方案。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "supplied_claim_refuted",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "完整核、激活及报告依赖与源码对应。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Binary x_i=1 when station i is selected. Primary objective: minimize sum_i x_i subject to x_u + x_v >= 1 for every normalized edge (u,v). QUBO form: minimize A * sum_i x_i + B * sum_{(u,v)} (1 - x_u)(1 - x_v), with B chosen strictly larger than the maximum possible cardinality difference so infeasible selections cannot beat feasible ones. The lexicographic tie-break among minimum-cardinality covers requires either superincreasing secondary weights w_i (w_i > sum_{j>i} w_j) added to x_i, or a hierarchical two-stage solve: first fix the minimum cardinality, then minimize the lexicographic rank. The exact penalty dominance, weight scaling and tie-break encoding must be validated.",
+        "/plan/input_encoding": "One binary/qubit variable per station index i in 0..n-1. Edges are the normalized sorted index pairs (u,v) returned by prepare_request. If Ising is used, map x_i=(1-Z_i)/2 and expand constants, linear and quadratic coefficients. Penalty terms may increase coefficient precision and resource accounting, even when they do not require additional logical variables in the direct QUBO expansion.",
+        "/plan/output_decoding": "Measure or sample bitstrings, decode selected station indices, verify that every normalized edge has at least one selected endpoint, recompute cardinality, and compare the lexicographic tuple of selected station input positions against the exact contract. Any infeasible or suboptimal sample must be rejected or repaired; approximate station counts, altered tie results, uncovered proposed connections, and changed assignment semantics are not permitted.",
+        "/plan/assumptions": [
+          "The optimized object is the normalized undirected connection graph, with n <= 16 station indices.",
+          "The current_stations selection is an independent baseline and is not required to be minimally changed by the proposed plan.",
+          "The exact minimum and the lexicographic tie-break are part of the required output contract.",
+          "No workload frequency, hardware, latency, depth, shot or benchmark evidence is supplied."
+        ],
+        "/plan/risks": [
+          "Probabilistic or approximate optimization can violate exact minimum cardinality and the lexicographic tie rule.",
+          "Insufficient penalty or precision can allow infeasible uncovered-edge assignments to decode as feasible.",
+          "Lexicographic tie-breaking with superincreasing weights may demand high coefficient precision or additional encoding overhead not captured by a simple variable count.",
+          "QAOA sampling would still require classical exact verification for the small bounded instance, so any advantage claim is unsupported by the supplied evidence."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "inspection.py",
+            "function": "min_vertex_cover_bruteforce",
+            "start_line": 77,
+            "end_line": 91
+          }
+        ],
+        "/rationale": "The only nominated region is inspection.py lines 77-91, the entire min_vertex_cover_bruteforce function. It is the true optimization step: it enumerates subsets of station indices in increasing cardinality r and, because itertools.combinations over range(n) is lexicographic, returns the first valid cover. That exactly implements the contract's fewest-station proposal and the lexicographically smallest tuple of station input positions among minimum covers. The call site is program.py line 14, after prepare_request has validated the request and normalized edges to sorted (i,j) pairs and current_stations to an index set. describe_plan then assigns each covered edge to the earliest selected endpoint, builds station-order checklists including empty ones, and compare_plans computes add_stations, remove_stations, selected_count_delta, newly_covered_connections and reassigned_connections from the actual current and proposed selections. Those surrounding behaviors must remain intact. Activation is unconditional for review_inspections: the proposed plan always calls this function. Dependencies are n = len(names), the normalized undirected edge list (possibly empty), and station input order; current_stations does not affect the proposed optimum, but changes reporting depends on the returned proposed selection. Empty stations and empty connections must still yield empty proposed lists and zero counts. The exact minimum, tie rule, uncovered_connections, covered_connection_count, checklists, selected_count, change records, ValueError behavior and CLI JSON report are not relaxable. Structurally, the optimization maps to a supported combinatorial_optimization family: binary selection variables, edge-coverage constraints, cardinality objective and a secondary lexicographic tie-break. Practically, suitability is false: the domain caps stations at 16, so the supplied brute force examines at most 2^16 subsets and is trivially cheap; no workload frequency, hardware, latency, depth, shot, deployment-cost or benchmark evidence is supplied. The strict exactness and lexicographic tie obligations would require classical exact verification of any quantum sample, so no advantage is demonstrated from the supplied material. The decision is therefore REMAIN_CLASSICAL, with a conditional QUBO/Ising migration plan retained only for further analysis.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "deepseek-flash",
+      "mother_case": "lit-003",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-003/response.txt",
+      "response_sha256": "169cef677f19cfc473270077e7debff55ddbe7424ccfb85883873c3298f9a303",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-003-C.txt",
+      "input_sha256": "f20e2374eadaca85cb94fb983d706fd595b8e922c693b53d1e2d9accb50ac6f5",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "one-hot 与冲突约束对应；允许同 slot 的不冲突 sessions。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "B>=k 的可行态 lex 权重有依据；约束惩罚充分界未给出。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "区分无解与采样失败，认证未完成；排序检查不等于完整 QUBO 检查。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "unresolved",
+          "reason": "28–56 未含 return 57；可能保留经典返回，需明确替换接口，不能按一行差异定错。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Encode each session v and slot s with binary x_{v,s}=1 iff session v is assigned slot s. Hard constraints: for every session v, sum_s x_{v,s}=1; for every participant-conflict edge (u,v) in neighbors and every slot s, x_{u,s}+x_{v,s} <= 1. Objective: minimize sum_{v,s} s * B^{n-1-v} x_{v,s}, or an equivalent hierarchical lexicographic objective, with B >= slot_count so the optimal feasible assignment matches the classical lexicographically smallest slot-index vector. QUBO penalties enforce exact-one and conflict constraints; QAOA-style execution is a possible heuristic, not an exactness guarantee.",
+        "/plan/input_encoding": "One-hot binary variables over n sessions and m=slot_count slots; conflict edges from catalog.relations neighbors dict. Coefficients include integer lexicographic weights and penalty weights that must be checked for sufficiency against those weights. Classical validation, description, status, moves, and exception handling remain outside the quantum kernel.",
+        "/plan/output_decoding": "Measure the binary vector, decode one selected slot per session, and classically verify exactly-one assignment, zero participant conflicts, and lexicographic minimality under the classical objective. If no feasible assignment is found, distinguish verified infeasibility from sampler failure; preserve ValueError('no arrangement') only when classical no-solution is established. Recompute proposed description and moves in original session and slot order.",
+        "/plan/assumptions": [
+          "The neighbors graph and slot_count are fully available before search; no fixed assignments from a blocked preview or partial current arrangement are imposed.",
+          "The classical contract requires an exact lexicographically smallest feasible assignment; approximate or probabilistic weakening is not permitted.",
+          "Empty sessions and zero-slot edge cases, including the infeasibility of nonempty sessions with zero slots, must be preserved.",
+          "No free data loading, oracle construction, workspace, shot budget, hardware, or latency target is supplied.",
+          "All slots are available to all sessions; there are no duration, room-capacity, or availability constraints."
+        ],
+        "/plan/risks": [
+          "QAOA/Ising solvers do not guarantee the exact optimum required for lexicographic minimality.",
+          "One-hot encoding plus conflict penalties uses O(n*m) variables and O(|E|*m) constraints; lexicographic weights may be exponentially scaled and hard to represent.",
+          "No-solution detection remains classical; a quantum sampler's failure to find a solution cannot by itself justify status=unavailable.",
+          "Measurement noise and probabilistic success probability require repetitions; no threshold or resource budget is supplied.",
+          "Integration must preserve exact session input order, slot order, status transitions, preview blockage behavior, and moves semantics."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "agenda.py",
+            "function": "complete",
+            "start_line": 28,
+            "end_line": 56
+          }
+        ],
+        "/rationale": "The only justified candidate is agenda.complete (lines 28-56). It is the combinatorial kernel: given neighbors and slot_count, it backtracks over sessions in input order, tries slots 0..slot_count-1, and returns the first complete assignment, which is the lexicographically smallest slot-index vector. It depends on the neighbors dict from catalog.relations, an internal assigned state, and the available predicate that checks already assigned conflicting sessions; it deliberately ignores preview partial choices and current partial assignments (program.py lines 29-33), so failed previews and partial current arrangements impose no fixed assignments. Activation occurs only in complete mode when current is not feasible and preview raises ValueError; success yields status=completed and a proposed description, failure raises ValueError and program.py maps it to status=unavailable with proposed=null. Surrounding behavior that must remain intact includes prepare validation and case-sensitive participant matching, the prescribed greedy preview and its blocked status, describe's assignment/unassigned/conflicts/feasible/slots reporting in session and slot order, moves generation only when a proposal exists, and the exact ValueError/no-solution and no-mutation semantics. Structurally, this finite discrete search can be encoded as a QUBO/Ising problem with one-hot session-slot variables, exact-one constraints, per-slot conflict constraints, and a weighted lexicographic objective; so structural_eligibility is true. Practically, however, the required output is the exact lexicographically smallest feasible assignment. QAOA/Ising is heuristic/probabilistic and supplies no exactness guarantee; no workload frequencies, hardware, encoding-cost, latency, shot, or benchmark evidence is supplied, and the contract forbids silently weakening exactness. Therefore practical suitability is assessed false and benchmark support is null; the supported family remains classical unless an exactness-preserving formulation and resource evidence are established. A conditional migration plan is provided despite REMAIN_CLASSICAL.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "deepseek-flash",
+      "mother_case": "lit-004",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-004/response.txt",
+      "response_sha256": "8d519abd93adce017e1b7087aa38750fe18ffa82d3f65f53874d5bceeab9dd2e",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-004-C.txt",
+      "input_sha256": "c7d39e87215fdb8d54b69d9c387911ca17020108782de50189a6fcb21847c278",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "选择位、最新兼容矩阵与 cardinality/mask 对应。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "supported",
+          "reason": "给出的 M/P 充分条件可实例化并通过有限检查。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "supported",
+          "reason": "支持 ground-state 合同；未提供量子最优保证，回答已说明此义务。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "25–29 核、经典 preview 和报告边界有解释。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Encode each eligible version position i in names (global version order, active and member) as a binary variable x_i. The classical select-mode computes the maximum-cardinality subset S of positions with all pairwise checks passed in matrix; ties are broken by the smallest integer sum(2^i) over i in S, equivalent to the smallest mask in the existing loop. A QUBO/Ising objective can be: minimize -M * sum_i x_i + sum_i 2^i x_i + P * sum over i<j where matrix[i][j] is False of x_i x_j, with M > sum_i 2^i (e.g., M = 2^n) to make cardinality primary, and P large enough (e.g., P > M*n + sum_i 2^i) to forbid incompatible pairs. The empty set is represented by all x_i=0 and is optimal only when no eligible version exists; singleton groups need no pair checks. This preserves the exact maximum-size and tie-break objective structurally, but QAOA-style execution does not guarantee the exact optimum.",
+        "/plan/input_encoding": "n = len(names) qubits or Ising spins, one per eligible requested version in the order produced by eligible. Linear coefficients: for minimization, -M + 2^i on x_i. Quadratic coefficients: P for each pair (i,j) with i<j and matrix[i][j] == False, meaning latest check missing, failed, or otherwise not True. Diagonal terms and i=j are ignored. If using Ising, map x_i = (1 - Z_i)/2 and expand constants, linear Z_i terms, and quadratic Z_i Z_j terms explicitly. The compatibility matrix is derived from relation(names, latest), where latest is the last-writer-wins frozenset mapping from latest_results; inactive versions are already excluded by eligible, and unknown pairs are False, not passed.",
+        "/plan/output_decoding": "Measure the final state, decode bitstring x to selected indices i with x_i=1, and map back to version IDs via names[i]. Classically recompute the compatibility predicate with compatible(indices, matrix), the size len(indices), and the tie-break sum sum(2**i for i in indices). If the decoded set is infeasible due to a penalty violation, or if exactness is required, the result must be rejected, repaired, or replaced by a classical exact solver; a heuristic sample cannot silently substitute for the required greatest-size and tie-break result. The existing describe, changes, eligible, current, preview, and report-ordering behavior must be retained around the decoded selected IDs.",
+        "/plan/assumptions": [
+          "The eligible set and compatibility matrix are finite and fully supplied before the quantum step; no data loading is free.",
+          "Only the mode=select exhaustive search is considered for replacement; mode=inspect and the preview greedy scan remain classical.",
+          "Penalties and tie-break weights are representable in the chosen QUBO/Ising precision; this is an unresolved encoding obligation.",
+          "Classical verification of any decoded candidate is available and mandatory."
+        ],
+        "/plan/risks": [
+          "QAOA or annealing returns approximate samples and does not preserve the required exact greatest-size optimum or the smallest-integer-sum tie-break without a proven exactness mechanism.",
+          "The tie-break term sum 2^i grows exponentially with n; coefficient range and precision may make the QUBO/Ising representation impractical or numerically unstable.",
+          "Penalty sufficiency must be proven for all feasible and infeasible subsets; too small a penalty can yield infeasible high-cardinality samples.",
+          "Quadratic terms are O(n^2) in the number of incompatible pairs, with associated two-qubit gate and coherence costs.",
+          "No measured workload distribution, hardware budget, encoding cost, or benchmark advantage is supplied, so practical benefit is unestablished.",
+          "The preview algorithm in reports.py lines 15-20 is a separate greedy scan and must not be changed by this optimization; current may be inactive or incompatible and is reported honestly."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "program.py",
+            "function": "review_releases",
+            "start_line": 25,
+            "end_line": 29
+          }
+        ],
+        "/rationale": "Source evidence: program.py lines 25-29 contain the mode=select exact search. Lines 26-29 brute-force every subset of eligible versions via for mask in range(1 << len(names)), test compatible(subset, matrix), and keep the first strictly larger subset; because masks are scanned in increasing integer order and the break condition is strict greater-than, this implements the specified primary maximum-size and secondary smallest sum(2**i) tie-break. The eligible set comes from catalog.eligible, which returns active versions from the request members in global version order. The matrix comes from reports.relation over latest_results, where later checks supersede earlier ones for undirected frozenset pairs and unknown pairs are False. Activation: only requests with mode == select enter the search; mode == inspect leaves proposed and changes null. Dependencies: valid prepared request via catalog.prepare, latest pair map, eligible names, relation matrix, and the compatible predicate. Surrounding behavior that must remain intact: validation and ValueError behavior, request independence and input order, version_count, check_count, pair_count, superseded_check_count, eligible/current/preview/describe output, the preview greedy scan in reports.py lines 15-20, changes.add and changes.remove ordering and semantics, and CLI JSON behavior. Structural eligibility: the search is a finite binary decision problem with explicit pairwise compatibility constraints, so a QUBO/Ising encoding is structurally representable. Practical suitability is false because the contract requires exact optimum and exact tie-break, QAOA or annealing is heuristic, the tie-break weights grow as 2**n, and no workload, hardware, encoding cost, or benefit data is supplied. Benchmark support is null because no benchmark evidence is supplied. Decision: REMAIN_CLASSICAL; a conditional combinatorial_optimization plan is provided because structural eligibility holds, but it does not recommend adoption or certify exactness.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "deepseek-flash",
+      "mother_case": "lit-005",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-005/response.txt",
+      "response_sha256": "4b9a627b5d06ca84a9f06d87a2ed0cb5a5a20757e0ba6b79e9581298e9cf4b72",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-005-C.txt",
+      "input_sha256": "dd8d7f2d0022e82930aed2f8f2293b707c4502ef882bbc387783f00afb644a10",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "deepseek-flash",
+      "mother_case": "lit-006",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-006/response.txt",
+      "response_sha256": "e2db5a3f7a13dcd9c37d3c986162e898c9ab917799075c4d5ffd3839f94a1ea4",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-006-C.txt",
+      "input_sha256": "788cc5bf47576888f1c5b883542ee92e9e6c73031524a1be1dc9a8bea557d817",
+      "selected_for_trial_review": true,
+      "response_status": "final_json_present",
+      "review_status": "AI_PENDING",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [
+        {
+          "dimension": "M",
+          "evidence_state": "supported",
+          "reason": "容量、价值、catalogue 位序的数学核心对应。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "E",
+          "evidence_state": "unresolved",
+          "reason": "回答明确是 sketch，系数和 slack 构造未完成。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/assumptions"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "C",
+          "evidence_state": "unresolved",
+          "reason": "明确精确 value/mask 与验证义务；未完成不自动判错。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/plan/formulation",
+            "/plan/output_decoding",
+            "/plan/risks"
+          ],
+          "obligation_status": "open_obligation_or_interpretation",
+          "complete_migration_verified": false
+        },
+        {
+          "dimension": "W",
+          "evidence_state": "supported",
+          "reason": "独立窗口、select 激活、返回 mask 到报告的接口已说明。",
+          "evidence_kind": "AI source/formula review; see linked scope and finite checks",
+          "evidence": [
+            "EVIDENCE.md",
+            "checks.json"
+          ],
+          "response_pointers": [
+            "/candidate_regions",
+            "/rationale"
+          ],
+          "obligation_status": "scoped_argument_supplied",
+          "complete_migration_verified": false
+        }
+      ],
+      "excerpts": {
+        "/plan/formulation": "Conditional QUBO/Ising encoding of each select window's 0/1 knapsack: binary x_i for eligible item i in catalogue order, maximize sum(value_i*x_i) subject to sum(weight_i*x_i) <= capacity, and break equal-value ties by the smallest numeric mask sum(2^i*x_i). The objective is converted to minimization and capacity is handled by an exact penalty with slack bits. The tie-break is a secondary objective. This is a planning sketch only; exact QUBO coefficient and penalty construction is unresolved.",
+        "/plan/input_encoding": "Eligible items are already filtered classically at program.py line 31, preserving catalogue order. Use x_i in {0,1} for each eligible item i, with i equal to the eligible-list index used by kernel.choose and program.py line 38. If Ising, map x_i=(1-Z_i)/2. Capacity inequality needs slack binary variables for nonnegative unused capacity or an equivalent penalty; the slack width depends on capacity and is not supplied. The least-mask tie-break maps to minimizing sum(2^i*x_i), which requires a lexicographic or sufficiently large secondary coefficient.",
+        "/plan/output_decoding": "Read a returned bitstring as x_i values, reconstruct mask = sum(2^i*x_i) for i in eligible order, derive chosen IDs by program.py line 38's eligible-order rule, recompute weight = sum(weight_i*x_i), value = sum(value_i*x_i), and feasible = weight <= capacity and all selected active. Classically verify feasibility, exact maximum value, and smallest numeric mask among equal-value optima before emitting proposal and transfers. Any approximate sampler result must be either verified or rejected.",
+        "/plan/assumptions": [
+          "Eligible items, weights, values and capacities are finite and already validated by the classical front end.",
+          "Each select window is optimized independently; no shared allocation or cross-window coupling is introduced.",
+          "The capacity constraint can be encoded exactly with slack bits or an exact penalty whose sufficiency is proven for the actual value and weight ranges.",
+          "The least-mask tie-break is preserved as a separate lexicographic or sufficiently weighted objective.",
+          "Classical validation, filtering, reporting, transfer-offset construction, and ValueError behavior remain outside the quantumized core."
+        ],
+        "/plan/risks": [
+          "Penalty coefficients may be insufficient or numerically extreme because no capacity, weight-sum, value-sum or added numeric cap is supplied.",
+          "A single scalarized QUBO for value plus least-mask tie-break may require exponentially large coefficients, and an approximate QAOA result cannot guarantee exact optimality or the exact tie-break.",
+          "Slack-bit encoding width depends on capacity and may dominate qubit count; no resource evidence is supplied.",
+          "Decoded bitstrings may be infeasible or suboptimal; classical recomputation and exact fallback are required.",
+          "The quantumized kernel must still return the same mask semantics expected at program.py lines 37-38 and preserve all surrounding window behavior."
+        ],
+        "/candidate_regions": [
+          {
+            "file": "kernel.py",
+            "function": "choose",
+            "start_line": 4,
+            "end_line": 15
+          }
+        ],
+        "/rationale": "kernel.choose lines 4-15 is the only region that performs the selection search. It builds a capacity-indexed table over eligible items; for each item it either keeps prior table state or uses previous[available-weight] plus (value, mask|1<<i). The comparison candidate[0] > incumbent[0] or equal value and candidate[1] < incumbent[1] implements maximize value and smallest numeric mask tie-break. Inputs: eligible list of dicts with positive int weight, nonnegative int value, and capacity nonnegative int; active filtering and validation are outside at program.py lines 17-31. Activation: only window mode select at program.py line 36 calls choose; inspect windows leave proposal None and transfers empty. State dependencies: bit i corresponds to eligible index i; table length capacity+1; no mutation of items. Surrounding behavior that must remain intact: validation and ValueError paths, eligible catalogue order, current describe over full item list including inactive entries, independent windows, no shared allocation, proposal IDs/weight/value/feasible, transfers in selected eligible order with contiguous offsets starting at 0 and length item weight, CLI JSON printing, and no mutation. Structural eligibility true because the core is a finite 0/1 knapsack with linear objective/constraint and deterministic tie-break. Practical suitability null and benchmark_supported null because the supplied assumptions state no workload, quantum hardware, encoding-cost or advantage evidence, and the notice's QuanBench attribution is source-task metadata rather than quantum performance evidence. Decision REMAIN_CLASSICAL: the exact DP is not shown to be unsuitable, and no evidence supports quantum migration. A conditional QUBO plan is supplied only because structural eligibility is true; it is not a recommendation. Tie-break and capacity-penalty encoding are unresolved and exact optimum cannot be relaxed.",
+        "/structural_eligibility": true
+      }
+    },
+    {
+      "model": "deepseek-flash",
+      "mother_case": "lit-007",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-007/response.txt",
+      "response_sha256": "2bb8494988b68a1f1402169f9f30227ac56cb568669805c23c95b704bde92969",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-007-C.txt",
+      "input_sha256": "2d0d9c2d999879cb3e43242ae092a56bf3889cb3af95b611419282dd6a1b7c74",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "deepseek-flash",
+      "mother_case": "lit-008",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-008/response.txt",
+      "response_sha256": "a6901b98f1d53880b38bd4fc864c8cfe577768774c4e54ed53709cf578588ced",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-008-C.txt",
+      "input_sha256": "0521e1deb52d47ba8b123f09c3b3ea894de23bbcc1c6bc05b2e80c6e8a764a20",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    },
+    {
+      "model": "deepseek-flash",
+      "mother_case": "lit-009",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-009/response.txt",
+      "response_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-009-C.txt",
+      "input_sha256": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+      "selected_for_trial_review": true,
+      "response_status": "budget_exhausted_no_final",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {},
+      "failure_evidence": {
+        "metadata_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-009/metadata.json",
+        "metadata_sha256": "994d66c3d0c4ec685a6b25acf91ef6f0c4a89c632085d4166d637ba15a5ca15c",
+        "finish_reason": "length",
+        "completion_tokens": 16384
+      }
+    },
+    {
+      "model": "deepseek-flash",
+      "mother_case": "lit-010",
+      "condition": "C",
+      "response_path": "pilot/model_comparison/20260922-deepseek-c-v0.1/runs/deepseek-flash/lit-010/response.txt",
+      "response_sha256": "db8149a2d7d40ac9d35afade99b49274a6cb00400a300e347c2da5c38f0597e0",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-010-C.txt",
+      "input_sha256": "813a8c8fe93ec272831290f415c96a550c76cca8854b978a996e7c5689d91094",
+      "selected_for_trial_review": false,
+      "response_status": "final_json_present",
+      "review_status": "NOT_REVIEWED",
+      "human_reviews": [],
+      "task_pass": null,
+      "assessments": [],
+      "excerpts": {}
+    }
+  ]
+}

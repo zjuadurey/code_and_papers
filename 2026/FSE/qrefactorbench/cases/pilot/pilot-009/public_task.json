@@ -1,0 +1,11 @@
+{
+  "case_id": "pilot-009",
+  "title": "Placement report",
+  "software_contract": "Return the minimum binary placement cost and a classical metadata report for a job batch.",
+  "input_domain": "jobs have a string name and integer left_cost/right_cost fields; links are valid job index pairs with nonnegative same-side penalties. Non-string names, out-of-range link indices and negative penalties raise ValueError.",
+  "execution_assumptions": [
+    "All jobs must receive one of two placements; any minimum-cost assignment is acceptable but the API returns only the exact cost.",
+    "Input validation and report formatting are required surrounding behavior.",
+    "No approximate output permission or physical performance target has been approved."
+  ]
+}

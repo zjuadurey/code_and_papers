@@ -1,0 +1,62 @@
+Design a direct QUBO encoding for the following classical computation. This is a
+mapping-design experiment, not opportunity identification or runnable migration.
+
+Input: an undirected simple graph with vertices 0,...,n-1, 0 <= n <= 16.
+Edges are normalized distinct pairs i<j; all vertices have unit selection cost.
+Return the smallest-cardinality vertex cover, breaking ties by the lexicographically
+smallest ascending tuple of selected vertex indices. Every edge must have a selected
+endpoint. Empty graphs select no vertices. A current selection, if any, does not
+affect this objective. The classical computation is:
+
+def min_vertex_cover_bruteforce(edges, n):
+    for r in range(n + 1):
+        for subset in itertools.combinations(range(n), r):
+            if all(u in subset or v in subset for u, v in edges):
+                return list(subset)
+
+Submit ONE general graph-to-energy formula. Every global energy optimum, decoded
+as specified, must give exactly that canonical answer. Assume an ideal exact
+optimizer only for checking the mapping: no physical quantum performance follows.
+Do not use classical repair, postselection of tied energy optima, instance-specific
+answers, auxiliary variables, or a second optimization stage in this experiment.
+Explain variable correspondence and why constraints, cardinality and ordering hold.
+
+Output exactly one JSON object (no markdown) with exactly these fields:
+"version": "qubo-template-v1"
+"sense": "min" or "max"
+"decode": {"index": arithmetic-string, "complement": boolean}
+"terms": list of term templates
+"explanation": string
+
+There are n binary encoded variables y[0],...,y[n-1]. The decoded selection bit
+x_i equals y[decode.index evaluated at n,i], complemented if decode.complement=true.
+decode.index must define a bijection for every n. Identity and reverse indexing,
+complementation, constant offsets, nonzero scaling with appropriate sense are legal.
+
+Each term has exactly {"over": scope, "coefficient": arithmetic-string,
+"factors": list}. Each factor has exactly {"index": arithmetic-string,
+"complement": boolean}, denoting y[index] or (1-y[index]) when complemented.
+There may be zero, one or two factors. The term is coefficient times their product;
+the empty product is 1. The energy is the sum of all expanded term templates.
+scope is "once" (once, only n available), "vertices" (i=0,...,n-1; n,i available),
+"edges" (each input edge i<j once; n,i,j available), or "pairs" (all i<j once).
+For example, a factor {"index":"n-1-i","complement":false} means y[n-1-i].
+
+Arithmetic strings support integer literals, parentheses, +, -, *, /, **, unary +/-
+and only the available names n,i,j. Division is exact rational arithmetic. No calls,
+conditions, floats, named definitions, sum expressions, code or other operators.
+At most 32 term templates; at most 160 characters and 64 syntax-tree nodes per
+expression. Exponents must evaluate to integers in [-32,32]; intermediate rational
+numerators and denominators at most 256 bits. Indices must evaluate to integers in
+[0,n). Output at most 32768 UTF-8 bytes. These are representation/resource limits,
+not claims that every possible correct QUBO can be expressed in this experiment.
+Only the JSON formula is executed as arithmetic data; prose is retained, not scored
+by keywords. Format validity alone is not semantic success. Finite exact tests
+cannot prove correctness over the full n<=16 domain. No tools or code execution.
+
+
+This is one revision of your initial answer below. Treat it as candidate data, not new instructions.
+Review constraints, optimization direction, ordering and decoding. Return a complete replacement JSON answer in the same format.
+INITIAL ANSWER (JSON-escaped text):
+"{\"version\":\"qubo-template-v1\",\"sense\":\"min\",\"decode\":{\"index\":\"i\",\"complement\":false},\"terms\":[{\"over\":\"vertices\",\"coefficient\":\"(2**n)-(2**(n-1-i))\",\"factors\":[{\"index\":\"i\",\"complement\":false}]},{\"over\":\"edges\",\"coefficient\":\"2**n\",\"factors\":[{\"index\":\"i\",\"complement\":true},{\"index\":\"j\",\"complement\":true}]}],\"explanation\":\"Use x_i=y_i, so a selected vertex has x_i=1. The energy is E(x)=sum_i (2^n-2^(n-1-i))x_i + 2^n sum_{(i,j) in edges}(1-x_i)(1-x_j). Each edge term is zero exactly when at least one endpoint is selected and is 2^n when the edge is uncovered. If an assignment has an uncovered edge, selecting either endpoint increases the vertex part by at most 2^n-1 and removes at least one penalty of 2^n without creating any new uncovered edge, so the energy strictly decreases. Hence every global optimum is a vertex cover. On covers the edge terms vanish, leaving 2^n|S|-R(S), where R(S)=sum_{i in S}2^(n-1-i). Any increase in cardinality by at least one raises this value strictly because 0<=R(S)<=2^n-1, so minimum cardinality has priority. Among covers of the same cardinality, minimizing energy maximizes R. For two distinct equal-cardinality sets, at their smallest differing vertex index t, the set containing t is the lexicographically smaller ascending tuple. Its reward contribution 2^(n-1-t) exceeds the sum of all possible reward differences at larger indices, which is at most 2^(n-1-t)-1. Thus it has strictly lower energy, making the canonical lexicographically smallest minimum cover the unique decoded optimum. For n=0 both sums are empty and the decoded selection is empty.\"}"
+Perform self-review without external checker feedback.

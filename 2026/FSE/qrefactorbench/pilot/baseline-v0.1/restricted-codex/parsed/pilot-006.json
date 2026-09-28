@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-006",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "minimum_energy",
+      "start_line": 2,
+      "end_line": 7
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Compute and return the exact minimum integer value of the unconstrained binary quadratic expression sum_i biases[i] * x_i + sum_(i,j,w) w * x_i * x_j over every binary assignment, preserving self-couplings, repeated coupling tuples, coefficient signs, and the existing integer return interface.",
+  "migration_family": "combinatorial_optimization",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": null,
+      "rationale": "The assignments form a finite domain and a threshold predicate such as energy(x) < T could be defined, but the catalog contract alone does not specify the adaptive threshold protocol, reversible arithmetic, exact no-solution handling, or error policy needed to return the exact minimum. Oracle construction and its resource costs are also unevaluated."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The program directly defines an unconstrained binary quadratic objective. Repeated tuples can be accumulated, and self-couplings can be retained or folded into linear coefficients using x_i squared equals x_i. This establishes formulation-level applicability only; QAOA does not by itself satisfy the required exact-optimum semantics."
+    }
+  ],
+  "assumptions": [
+    "Every coupling index is valid as stated in the input domain.",
+    "Each coupling tuple contributes independently, including repeated tuples.",
+    "The returned minimum value must be exact for all accepted inputs.",
+    "No approximate result or probabilistic failure rate is implicitly acceptable."
+  ],
+  "risks": [
+    "A QAOA execution generally produces sampled candidate assignments and provides no supplied guarantee that the global optimum was observed.",
+    "Classical recomputation can verify a sampled assignment's energy but cannot by itself certify that its energy is globally minimal.",
+    "No circuit-depth, shot-count, parameter-optimization, coefficient-range, or hardware budget is supplied.",
+    "Encoding arbitrary integer coefficients, repeated terms, and dense couplings may require substantial precision and connectivity resources.",
+    "State preparation, measurement, decoding, and classical parameter optimization could dominate any putative benefit.",
+    "Changing the result to an approximate minimum would violate the software contract unless an explicit approximation policy were added."
+  ],
+  "rationale": "Lines 2-7 perform exhaustive minimization over 2^n binary assignments and admit a direct QUBO/Ising formulation, so the region is structurally eligible for the combinatorial-optimization family. That structural correspondence is insufficient for migration. The required output is the exact global minimum, while the available QAOA-style contract supplies no exactness guarantee, approximation threshold, success probability, optimality certificate, or resource budget. The fixtures are explicitly not performance evidence, and no benchmark supports an advantage. The exponential classical loop is therefore a rejected hotspot rather than a justified quantumization opportunity.",
+  "plan": null
+}

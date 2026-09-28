@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-004",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "review_releases",
+      "start_line": 24,
+      "end_line": 30
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "lit-004:max-compatible-release-group",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "For each mode=select request, index the eligible active versions 0..m-1 in global version order. Let binary variables x_i indicate whether eligible version i is selected. Build the pairwise compatibility matrix R from the latest checks, where R[i][j] is true only when the latest undirected check for the pair passed. Define W = {(i,j): i<j and R[i][j] is not true}. Use QUBO objective minimize -sum_i x_i + P * sum_{(i,j) in W} x_i x_j with penalty P > m. Any incompatible selection incurs at least penalty P while any feasible selection has penalty 0, so the optimum encodes a maximum-cardinality compatible subset. The required deterministic tie-break, smallest integer sum(2^i) over selected positions, is not naturally represented by this cardinality objective and must be resolved by an exact tie-breaking term or classical post-selection; this remains unresolved for approximate solvers.",
+    "input_encoding": "One binary variable per eligible version: x_i in {0,1}. Ising mapping x_i=(1-Z_i)/2 if a spin formulation is used. Pairwise incompatibility penalties require O(m^2) coefficients derived from the classically constructed relation matrix.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Decode measured bitstrings into selected eligible version IDs in global version order. Recompute size, inactive status, compatibility, and missing_pairs using the original latest()/relation()/describe() logic. Verify feasibility and exact optimality, including the deterministic tie-break; if verification fails, do not emit the quantum result.",
+    "assumptions": [
+      "The classically constructed latest-check relation matrix and eligible ordering are available before encoding.",
+      "Penalty P greater than the number of eligible versions is sufficient to make infeasible selections worse than all feasible selections.",
+      "Data loading, oracle construction, workspace qubits, and decoding are not free and must be accounted for."
+    ],
+    "risks": [
+      "QAOA/QUBO is not an exact solver; the software contract requires exact maximum size and exact tie-breaking, so heuristic output is not directly admissible.",
+      "The deterministic tie-break smallest sum(2^i) may require exponentially small tie-breaking coefficients or exhaustive enumeration of optimal states.",
+      "Insufficient penalty or approximate optimization can produce incompatible or non-maximum selections, violating the contract.",
+      "No measured workload, hardware budget, or speedup evidence exists; classical brute force may remain preferable for this reporting function."
+    ],
+    "expected_resource_characteristics": {
+      "num_qubits": "O(m) variable qubits plus ancillas for the oracle and constraints",
+      "coefficient_count": "O(m^2) pairwise incompatibility penalties",
+      "unresolved": "QAOA depth, parameter optimization budget, sampling overhead, and exact tie-breaking"
+    },
+    "rationale": "The select-mode loop is structurally a maximum pairwise-compatible subset problem, which can be expressed as QUBO/Ising. Exactness and tie-breaking obligations make a heuristic QAOA plan conditional and not a recommendation."
+  },
+  "rationale": "Lines 24-30 in program.py implement the only combinatorial optimization core: under mode=select, after prepare validation, latest_results construction, eligible active-version ordering, and relation matrix construction, the code enumerates every mask over eligible names, tests each subset with compatible(), and keeps the first maximum-size subset. Increasing mask order realizes the required tie-break by smallest integer sum(2^i). A migration must leave intact: prepare() validation and ValueError behavior for malformed fields, duplicate IDs, unknown IDs, bad current/members, and inspect/select modes; latest_results() last-record-wins semantics for undirected pairs including reversed pairs; eligible() preserving global version order and active-only membership; relation() treating only latest passed true as compatible; preview() greedy behavior staying unchanged; describe() reporting selected/inactive/missing_pairs/eligible_and_compatible consistently; and changes.add/remove preserving global version order. Structural eligibility is true because this is a maximum-cardinality pairwise-compatible subset problem expressible as QUBO/Ising. Practical suitability is false because the task requires exact maximum and deterministic tie-breaking, while the available combinatorial_optimization contract is approximate/heuristic and no workload evidence supports a benefit. Benchmark support is true only in the DRAFT shared-menu sense that a QUBO/Ising family exists, not as an approval or validated implementation.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": true,
+  "computational_intent": "Exact maximum-cardinality pair-compatible subset selection with deterministic smallest-integer-mask tie-breaking over active eligible release versions.",
+  "assumptions": [
+    "The latest pairwise check matrix and eligible ordering are computed classically before any quantum encoding.",
+    "QAOA/QUBO can only be considered with exact post-verification because the contract forbids approximate size or compatibility.",
+    "No free data loading, oracle construction, or decoding is assumed."
+  ],
+  "risks": [
+    "Heuristic QUBO/QAOA optimizers may return incompatible or non-maximum selections.",
+    "Exact tie-breaking by smallest sum(2^i) is not directly captured by cardinality QUBO and may be numerically fragile.",
+    "Classical verification of exact optimality may be as expensive as the original exhaustive search, eliminating practical benefit.",
+    "Replacing the loop without preserving validation, ordering, reporting, or changes semantics would violate the contract."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The select-mode region is a binary optimization problem: maximize selected eligible versions subject to pairwise compatibility constraints. A QUBO/Ising penalty formulation is directly representable."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The region is not a fixed pure predicate search; it is an optimization over all subsets with maximum cardinality and a deterministic tie-break. A fixed-size feasibility predicate could be constructed, but exact maximum/tie-breaking would require repeated searches and complex oracle logic, making this family a poor match."
+    }
+  ]
+}

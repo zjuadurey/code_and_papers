@@ -1,0 +1,65 @@
+{
+  "columns": [
+    "gain",
+    "loss"
+  ],
+  "source_row_count": 3,
+  "export_row_count": 6,
+  "zero_row_ids": [
+    "empty"
+  ],
+  "column_totals": [
+    1.6666666666666665,
+    0.33333333333333326
+  ],
+  "entries": [
+    {
+      "row_id": "signed",
+      "copy_index": 0,
+      "values": [
+        0.5,
+        -0.5
+      ]
+    },
+    {
+      "row_id": "signed",
+      "copy_index": 1,
+      "values": [
+        0.5,
+        -0.5
+      ]
+    },
+    {
+      "row_id": "empty",
+      "copy_index": 0,
+      "values": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "row_id": "empty",
+      "copy_index": 1,
+      "values": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "row_id": "uneven",
+      "copy_index": 0,
+      "values": [
+        0.3333333333333333,
+        0.6666666666666666
+      ]
+    },
+    {
+      "row_id": "uneven",
+      "copy_index": 1,
+      "values": [
+        0.3333333333333333,
+        0.6666666666666666
+      ]
+    }
+  ]
+}

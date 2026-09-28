@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-008",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "For each input row in order, compute its total absolute magnitude, normalize every element (using 0.0 for zero-magnitude rows), and materialize the requested number of distinct mutable list copies in the complete nested classical output.",
+  "migration_family": null,
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The program performs deterministic transformation and exhaustive output materialization, not a search over a finite candidate domain using a Boolean predicate. No marked-state predicate, candidate-selection result, or meaningful success/no-solution behavior exists."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The program has no binary decision variables, objective function, constraints, or optimization result to encode as QUBO or Ising. Recasting arithmetic and copying as optimization would not preserve the exact transformation contract."
+    }
+  ],
+  "assumptions": [
+    "Every requested copy must be returned explicitly rather than represented lazily or by reference.",
+    "Each appended list must have independent mutable identity.",
+    "Input row order and copy order must be preserved.",
+    "Python's existing numeric behavior for absolute values, summation, division, and zero-row handling is part of the required semantics."
+  ],
+  "risks": [
+    "Runtime and memory grow with the total number of input elements multiplied by the number of copies because the contract requires complete materialization.",
+    "Sharing lists, returning a compressed representation, sampling outputs, or using lazy generation would violate the required output semantics.",
+    "A quantum formulation would introduce data-loading, arithmetic, measurement, and decoding costs while still requiring classical construction of every output element and distinct list.",
+    "No benchmark evidence is supplied for quantum advantage or practical feasibility."
+  ],
+  "rationale": "Lines 3-7 may become an expensive hotspot as rows and copies grow, but the work is mandated deterministic arithmetic and classical output construction. It is neither unstructured predicate search nor combinatorial optimization. Even if some arithmetic were expressed in a quantum circuit, the caller requires every normalized value and every distinct mutable copy, so the dominant output-size lower bound and classical materialization remain. Therefore there is no supported candidate region, and the program should remain classical.",
+  "plan": null
+}

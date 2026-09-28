@@ -1,0 +1,11 @@
+{
+  "case_id": "pilot-003",
+  "title": "Graph interface",
+  "software_contract": "Return the exact maximum total weight crossing a binary partition.",
+  "input_domain": "n >= 0; edges are (u,v,nonnegative_integer_weight) with 0 <= u,v < n; self loops contribute zero; repeated edges count separately.",
+  "execution_assumptions": [
+    "Graph sizes may grow beyond the regression inputs, which only check classical semantics.",
+    "Edge weights are classical input data and their encoding cost must be stated.",
+    "The API requires the exact optimum; no approximation permission is given."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "response_sha256": "5aae543cedc1bc7f6088008a8cb60ae1d8ddded642aa5823353d9a9eeaae558a",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 56.493,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:18:18.314544+00:00",
+  "review_submitted_utc": "2026-09-26T22:19:14.807623+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "5aae543cedc1bc7f6088008a8cb60ae1d8ddded642aa5823353d9a9eeaae558a",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally replace each activated pivot-index scan with a Grover-style search over row indices from col through n-1. A row is acceptable only if its current absolute pivot value exceeds every earlier candidate and is at least every later candidate, thereby reproducing Python max over the ascending range, including first-index tie-breaking. Alternatively, an iterative maximum-finding construction must maintain and update a classical incumbent while using reversible better-candidate predicates. In either formulation, bounded-error output alone is insufficient: the decoded index must be verified exactly and failure must use a semantics-preserving classical fallback."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode candidate row indices in a basis register and provide reversible access to the current augmented values rows[i][col], including mutations produced by all preceding swaps and elimination steps. The oracle must implement Python binary64 absolute-value ordering, equality, signed-zero behavior, index tie-breaking, and defined handling of any nonfinite intermediate state. Coherent data access, comparison circuitry, ancillas, uncomputation, and per-column state-loading costs are unresolved."
+      },
+      {
+        "pointer": "/contract_applicability/1/rationale",
+        "quote": "A one-hot binary optimization can conditionally encode pivot selection with an objective that prioritizes maximum magnitude and then minimum index. This alternative is not selected as the primary family because it turns a direct finite search into a constrained optimization and offers no supplied benefit. Exact binary64 coefficient representation, lexicographic weighting, penalty sufficiency, feasible one-hot recovery, exact-optimum guarantees, and backend precision would all require proof."
+      }
+    ],
+    "resolution": "transcribed",
+    "rationale": "Self-review changes the primary family from QUBO to Grover. Bind only its first explicit alternative: earlier strict-greater and later at-least comparisons, with no finite admission guard. Its second iterative maximum-finding alternative remains unspecified, and the QUBO alternative remains an unconstructed sketch. A refutation of this explicit predicate would not refute those other alternatives or prove whole-task failure.",
+    "interpretations": [
+      {
+        "id": "earlier_gt_later_ge",
+        "meaning": "Explicit first Grover alternative with earlier > and later >=.",
+        "mode": "predicate",
+        "expression": "all(values[i] > values[j] for j in indices if j < i) and all(values[i] >= values[k] for k in indices if k > i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

@@ -1,0 +1,247 @@
+{
+  "arbitrary_witness_negative_control_rejected": true,
+  "fast_paths_checked": 18,
+  "ideal_outcomes": [
+    {
+      "direct_output_matches_required_first": true,
+      "feature_order_bits": [
+        false,
+        true,
+        false
+      ],
+      "probability": 0.4999999999999991
+    },
+    {
+      "direct_output_matches_required_first": false,
+      "feature_order_bits": [
+        false,
+        true,
+        true
+      ],
+      "probability": 0.4999999999999991
+    }
+  ],
+  "reference_output": {
+    "changes": [
+      "x2"
+    ],
+    "failed_rules": [
+      "r1"
+    ],
+    "locked_failures": [],
+    "proposal": {
+      "x1": false,
+      "x2": true,
+      "x3": false
+    },
+    "status": "completed"
+  },
+  "repair_details": [
+    {
+      "output": {
+        "changes": [
+          "x2"
+        ],
+        "failed_rules": [
+          "r1"
+        ],
+        "locked_failures": [],
+        "proposal": {
+          "x1": false,
+          "x2": true,
+          "x3": false
+        },
+        "status": "completed"
+      },
+      "predicate_calls": 4,
+      "sample": [
+        false,
+        false,
+        false
+      ]
+    },
+    {
+      "output": {
+        "changes": [
+          "x2"
+        ],
+        "failed_rules": [
+          "r1"
+        ],
+        "locked_failures": [],
+        "proposal": {
+          "x1": false,
+          "x2": true,
+          "x3": false
+        },
+        "status": "completed"
+      },
+      "predicate_calls": 4,
+      "sample": [
+        false,
+        false,
+        true
+      ]
+    },
+    {
+      "output": {
+        "changes": [
+          "x2"
+        ],
+        "failed_rules": [
+          "r1"
+        ],
+        "locked_failures": [],
+        "proposal": {
+          "x1": false,
+          "x2": true,
+          "x3": false
+        },
+        "status": "completed"
+      },
+      "predicate_calls": 3,
+      "sample": [
+        false,
+        true,
+        false
+      ]
+    },
+    {
+      "output": {
+        "changes": [
+          "x2"
+        ],
+        "failed_rules": [
+          "r1"
+        ],
+        "locked_failures": [],
+        "proposal": {
+          "x1": false,
+          "x2": true,
+          "x3": false
+        },
+        "status": "completed"
+      },
+      "predicate_calls": 4,
+      "sample": [
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "output": {
+        "changes": [
+          "x2"
+        ],
+        "failed_rules": [
+          "r1"
+        ],
+        "locked_failures": [],
+        "proposal": {
+          "x1": false,
+          "x2": true,
+          "x3": false
+        },
+        "status": "completed"
+      },
+      "predicate_calls": 4,
+      "sample": [
+        true,
+        false,
+        false
+      ]
+    },
+    {
+      "output": {
+        "changes": [
+          "x2"
+        ],
+        "failed_rules": [
+          "r1"
+        ],
+        "locked_failures": [],
+        "proposal": {
+          "x1": false,
+          "x2": true,
+          "x3": false
+        },
+        "status": "completed"
+      },
+      "predicate_calls": 4,
+      "sample": [
+        true,
+        false,
+        true
+      ]
+    },
+    {
+      "output": {
+        "changes": [
+          "x2"
+        ],
+        "failed_rules": [
+          "r1"
+        ],
+        "locked_failures": [],
+        "proposal": {
+          "x1": false,
+          "x2": true,
+          "x3": false
+        },
+        "status": "completed"
+      },
+      "predicate_calls": 4,
+      "sample": [
+        true,
+        true,
+        false
+      ]
+    },
+    {
+      "output": {
+        "changes": [
+          "x2"
+        ],
+        "failed_rules": [
+          "r1"
+        ],
+        "locked_failures": [],
+        "proposal": {
+          "x1": false,
+          "x2": true,
+          "x3": false
+        },
+        "status": "completed"
+      },
+      "predicate_calls": 4,
+      "sample": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "output": {
+        "changes": [
+          "x2"
+        ],
+        "failed_rules": [
+          "r1"
+        ],
+        "locked_failures": [],
+        "proposal": {
+          "x1": false,
+          "x2": true,
+          "x3": false
+        },
+        "status": "completed"
+      },
+      "predicate_calls": 3,
+      "sample": null
+    }
+  ],
+  "repaired_wrapper_all_samples_pass": true,
+  "samples_checked": 9,
+  "scope": "one development instance; all Boolean measurement outputs plus absent sample; no general-program proof"
+}

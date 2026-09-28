@@ -1,0 +1,44 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-008",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "encode",
+      "start_line": 7,
+      "end_line": 9
+    }
+  ],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "The only substantive computation is kernel.py:7-9, where encode(a,b) computes a ^ b and formats it as exactly eight bits. This is a direct deterministic map over already-known row values, not a finite marked-state search and not a binary objective/constraint optimization. There is no Grover-style predicate with a specified marked solution, and no QUBO/Ising objective whose optimum or feasible assignment is required. The surrounding review() path must remain intact: common.fields exact-key validation, common.integer rejecting bool and enforcing 0..255, common.names uniqueness/nonempty ids, the ordered loop over records, the running checksum updated modulo 256, and full ordered receipt generation for every row including inspect null counts and counts exact repetition maps. Changing encode to a search or optimization would invent a different task, and a reversible XOR circuit is outside the supported quantumization families. No workload, advantage, or hardware evidence justifies quantumization.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Direct deterministic bitwise XOR mask and fixed-width binary formatting for ordered per-row masking receipts with a modulo-256 prefix checksum.",
+  "assumptions": [
+    "Classical inputs and outputs must be preserved exactly.",
+    "Supported migration families are limited to unstructured_search and combinatorial_optimization.",
+    "Repetitions is an exact repeated-outcome count, not random sampling or QPU execution.",
+    "No quantum workload, hardware, encoding-cost, or advantage evidence is supplied."
+  ],
+  "risks": [
+    "Reformulating XOR receipt generation as Grover search would require inventing a search target absent from the contract.",
+    "Reformulating bit counting or checksum updates as QUBO/Ising would introduce an artificial optimization objective and risk violating exactness.",
+    "A reversible XOR circuit would add encoding/measurement overhead without evidence of benefit and is not in the supported family menu.",
+    "Replacing full ordered receipts by samples or aggregates would violate the stated software contract."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "No finite marked-state predicate/search target exists; the software computes an exact deterministic XOR-to-binary mapping for every supplied row."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "No binary objective, constraints, or penalty terms are specified; bit counts and checksum are direct deterministic transformations rather than an optimization problem."
+    }
+  ]
+}

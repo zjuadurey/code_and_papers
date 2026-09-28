@@ -1,0 +1,47 @@
+{
+  "response_sha256": "4a960ae2d205a6344b0d8557af506438962a3e4fb689a6fac218c824e9081311",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 17.969,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:13:44.061209+00:00",
+  "review_submitted_utc": "2026-09-26T21:14:02.030723+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "4a960ae2d205a6344b0d8557af506438962a3e4fb689a6fac218c824e9081311",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode the row indices from col through n-1 and mark the unique index that the ordered Python max operation at line 13 would select. For finite active-column values, this is the smallest index whose absolute value equals the column maximum. To cover dynamically produced NaN or infinity, the oracle would instead have to reproduce Python's ordered max/key comparison behavior exactly, or the implementation must detect such state and use the original classical expression before any quantum invocation."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode col, the active index range, and the current rows[i][col] values from the augmented elimination state. A reversible oracle must implement Python-compatible binary64 absolute value and ordered comparison, including ties, signed zero, and any reachable nonfinite intermediate state. Coherent loading, floating-point representation, ancillary workspace, uncomputation, and gate costs are unresolved. Prechecking that the active column is finite would itself require a classical scan and must not change exception timing or other observable behavior."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a proposed pivot index and verify classically that it is exactly the index selected by the original ordered max expression. On any failed verification, unresolved nonfinite state, or unsuccessful search, execute the original classical selection. Preserve the subsequent exact-zero test, exception behavior, row swap, elimination order, back substitution, overflow detection, and report construction."
+      },
+      {
+        "pointer": "/plan/risks/2",
+        "quote": "Intermediate elimination arithmetic can produce nonfinite values even from finite inputs, and mathematical argmax predicates need not match Python max behavior in the presence of NaN."
+      },
+      {
+        "pointer": "/rationale",
+        "quote": "The supported-family candidate is the pivot-selection expression at kernel.py line 13. It selects from the finite range [col,n), with Python max preserving the first encountered index on ordinary equal keys. Its dependencies are col and the augmented rows created at lines 10-11 and changed by all prior swaps and elimination updates at lines 16-20. It activates during each iteration of the elimination loop for n>0 and is never evaluated for n=0. Its result controls the exact-zero singularity check at lines 14-15, the swap at line 16, all later elimination and back substitution, overflow behavior, and ultimately the named proposal, deltas, and residual report. These effects, ordering, exceptions, and no-mutation behavior must remain intact. A finite deterministic predicate reproducing the ordered pivot choice is structurally expressible in principle, so structural eligibility is true. However, dynamically generated nonfinite values complicate equivalence: a mathematical first-argmax predicate is sufficient only for finite active-column state, while general equivalence requires simulating Python's ordered comparison semantics or falling back before quantum execution. The supplied observation is limited to reviewer-transcribed pivot selection on finite development checks and therefore supplies no evidence for nonfinite states, general correctness, resource use, or advantage. Practical suitability is false because predicate evaluation or verification can repeat the original linear scan, coherent access to changing rows is unresolved, and this is a small serial program. Benchmark support is false: the HPL attribution documents classical pivoting and residual checking, while the task expressly disclaims a compliant HPL run and supplies no quantum workload, resource, or advantage benchmark. Residual calculation, input validation, elimination arithmetic, and report assembly do not independently fit either supported migration family."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The revision abandons the explicit >=-all predicate and recognizes nonfinite-state mismatch, but states only the desired ordered max result or first finite maximum, with alternatives for simulation versus finite precheck/fallback. It gives neither a concrete comparison predicate nor the ordered update recurrence. Do not implement the target max on the model's behalf or choose an alternative admission policy. This is a clearer conditional specification with an unbound replacement, not a verified repair or complete withdrawal. Its interpretation of finite development checks as offering no nonfinite-state evidence is not warranted by the scope notice alone.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

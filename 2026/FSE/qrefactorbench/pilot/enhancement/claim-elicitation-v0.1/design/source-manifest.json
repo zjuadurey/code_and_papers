@@ -1,0 +1,9 @@
+{
+  "pilot/reference_completion/v0.1.1/review_inputs/lit-009-C.txt": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+  "pilot/enhancement/claim-elicitation-v0.1/design_inputs.py": "5b72e4309c8888475eb886ed84ea1901fc95cb29f8d40f293a8c7dbcc838ff53",
+  "pilot/enhancement/state-workflow-v0.3/campaign/runs/gpt-5.6-sol/01-initial/response.txt": "d5f2b52a9bcb531aa06cbe66c80e1004f43f336a426d3f38b6c5a5d7c3a18912",
+  "pilot/enhancement/state-workflow-v0.3/campaign/runs/gpt-5.6-sol/02-initial/response.txt": "f9578a04847909601a2a2f236fce1aa9ee72a615cadc7dfc1c8363bc08a27f31",
+  "pilot/enhancement/state-workflow-v0.3/campaign/runs/gpt-5.6-sol/03-initial/response.txt": "4c65827a0d7e8204ea7fe0b42171537993f5950cf7109b92ce80db500083e9e8",
+  "pilot/enhancement/state-workflow-v0.3/campaign/runs/gpt-5.6-sol/04-initial/response.txt": "b3363176a048b12e56e39c7b9ee772e24b9b50698a884260d1a2e618f9861a87",
+  "pilot/enhancement/state-workflow-v0.3/campaign/runs/gpt-5.6-sol/05-initial/response.txt": "8226dce20aa0ef0b717b9b7bba5600024ac460e6a6a2dead32e2d4eaeaa3d48c"
+}

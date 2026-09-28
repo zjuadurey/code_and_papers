@@ -1,0 +1,48 @@
+{
+  "response_sha256": "6cbe1511c46bdf891a03d2f8af8328983136409af9d3a61e9c4a7a3ba9843b43",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 33.48,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:16:34.515920+00:00",
+  "review_submitted_utc": "2026-09-26T22:17:07.995448+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "6cbe1511c46bdf891a03d2f8af8328983136409af9d3a61e9c4a7a3ba9843b43",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode the row indices from col through n-1 as a finite search domain. Mark an index i exactly when abs(rows[i][col]) is strictly greater than every earlier candidate value and at least every later candidate value, thereby reproducing Python max's first-index tie rule. A Grover-style procedure would only propose the uniquely marked pivot index."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode col, candidate indices, and the dynamically updated binary64 values rows[i][col]. The reversible oracle must reproduce the relevant Python floating-point absolute-value, comparison, equality, signed-zero, and ordering behavior, including behavior if elimination has produced nonfinite intermediate values. Coherent data loading, value representation, ancilla cleanup, and their resource costs are unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a proposed row index and classically verify that it is exactly the first index selected by Python's argmax over abs(rows[i][col]). On failed search or verification, execute the original classical max expression. Preserve the following zero-pivot check, row swap, elimination, back substitution, overflow handling, and report construction unchanged."
+      }
+    ],
+    "resolution": "transcribed",
+    "rationale": "Explicit primary rule requires strict greater-than against earlier values and at least every later value. Bind the conventional >= reading of at least. Dynamic nonfinite states are discussed without an admission exclusion, so guard True. Classical fallback is separate and does not repair the marked-state relation.",
+    "interpretations": [
+      {
+        "id": "earlier_gt_later_ge",
+        "meaning": "Earlier strict-greater and later nonstrict-greater comparisons.",
+        "mode": "predicate",
+        "expression": "all(values[i] > values[j] for j in indices if j < i) and all(values[i] >= values[k] for k in indices if k > i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

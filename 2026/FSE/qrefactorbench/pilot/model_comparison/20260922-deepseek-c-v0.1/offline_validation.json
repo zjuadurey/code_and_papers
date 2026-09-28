@@ -1,0 +1,13 @@
+{
+  "phase": "pre-inference offline validation",
+  "tests": 9,
+  "passed": 9,
+  "command": "python -B -m pytest -q -p no:cacheprovider pilot/model_comparison/20260922-deepseek-c-v0.1/test_run.py",
+  "elapsed_test_seconds": 0.33,
+  "live_model_calls_in_tests": 0,
+  "fixtures": "mock HTTP transport and historical GPT JSON used offline only; never in API payloads",
+  "files": {
+    "run.py": "e5a20e1013abf12095102188527b6b83d510a8089449876637b6f8abfcb5d5a9",
+    "test_run.py": "a47ce727309704632c882ad4fc4e1b3d35a8e683c0e4e0c5cb482ac6fd0b546c"
+  }
+}

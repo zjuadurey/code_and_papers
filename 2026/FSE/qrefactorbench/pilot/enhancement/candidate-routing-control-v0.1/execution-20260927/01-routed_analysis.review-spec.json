@@ -1,0 +1,9 @@
+{
+ "resolution":"ambiguous",
+ "anchor_pointers":["/plan/input_encoding","/plan/formulation","/plan/assumptions/2","/rationale"],
+ "rationale":"The primary input_encoding supplies local marking conditions: candidate not smaller than any later value, and no earlier equal maximum. Retain >= versus literal not-< readings of not-smaller, treating the earlier equal-maximum check as equality to the candidate. Do not silently add an earlier-greater exclusion from the high-level desired global-maximum description: it is absent from these stated conditions. Nonfinite semantics are unresolved, not an explicit admission guard. The narrower line13 nomination is separate from correctness of these conditions.",
+ "interpretations":[
+ {"id":"later_ge_no_earlier_equal","meaning":"Later comparisons use >=; reject an equal-valued earlier candidate.","mode":"predicate","expression":"all(values[i] >= values[k] for k in indices if k > i) and not any(values[j] == values[i] for j in indices if j < i)","guard":"True","outside_guard":"unresolved"},
+ {"id":"later_not_lt_no_earlier_equal","meaning":"Later comparisons use literal not-<; retain the same earlier equality exclusion.","mode":"predicate","expression":"not any(values[i] < values[k] for k in indices if k > i) and not any(values[j] == values[i] for j in indices if j < i)","guard":"True","outside_guard":"unresolved"}
+ ]
+}

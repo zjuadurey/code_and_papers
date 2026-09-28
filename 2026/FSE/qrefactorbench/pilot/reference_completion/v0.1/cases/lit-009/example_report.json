@@ -1,0 +1,27 @@
+{
+  "current_residual": {
+    "vector": [
+      -4.0,
+      -7.0
+    ],
+    "infinity_norm": 7.0,
+    "scaled_backward_error": 2251799813685248.0
+  },
+  "proposal": {
+    "supply": 1.0,
+    "return": 2.0
+  },
+  "proposed_residual": {
+    "vector": [
+      0.0,
+      0.0
+    ],
+    "infinity_norm": 0.0,
+    "scaled_backward_error": 0.0
+  },
+  "within_requested_limit": true,
+  "deltas": {
+    "supply": 1.0,
+    "return": 2.0
+  }
+}

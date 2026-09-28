@@ -1,0 +1,98 @@
+{
+  "version_count": 5,
+  "check_count": 6,
+  "pair_count": 5,
+  "superseded_check_count": 1,
+  "requests": [
+    {
+      "request_id": "review",
+      "eligible": [
+        "legacy",
+        "a",
+        "b",
+        "c"
+      ],
+      "current": {
+        "selected": [
+          "legacy",
+          "a"
+        ],
+        "size": 2,
+        "inactive": [],
+        "missing_pairs": [
+          {
+            "left": "legacy",
+            "right": "a",
+            "reason": "failed"
+          }
+        ],
+        "eligible_and_compatible": false
+      },
+      "preview": {
+        "selected": [
+          "legacy"
+        ],
+        "size": 1,
+        "inactive": [],
+        "missing_pairs": [],
+        "eligible_and_compatible": true
+      },
+      "proposed": null,
+      "changes": null
+    },
+    {
+      "request_id": "release",
+      "eligible": [
+        "legacy",
+        "a",
+        "b",
+        "c"
+      ],
+      "current": {
+        "selected": [
+          "legacy",
+          "a"
+        ],
+        "size": 2,
+        "inactive": [],
+        "missing_pairs": [
+          {
+            "left": "legacy",
+            "right": "a",
+            "reason": "failed"
+          }
+        ],
+        "eligible_and_compatible": false
+      },
+      "preview": {
+        "selected": [
+          "legacy"
+        ],
+        "size": 1,
+        "inactive": [],
+        "missing_pairs": [],
+        "eligible_and_compatible": true
+      },
+      "proposed": {
+        "selected": [
+          "a",
+          "b",
+          "c"
+        ],
+        "size": 3,
+        "inactive": [],
+        "missing_pairs": [],
+        "eligible_and_compatible": true
+      },
+      "changes": {
+        "add": [
+          "b",
+          "c"
+        ],
+        "remove": [
+          "legacy"
+        ]
+      }
+    }
+  ]
+}

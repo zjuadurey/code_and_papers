@@ -1,0 +1,967 @@
+[
+  {
+    "id": "mixed_request_modes",
+    "input": {
+      "versions": [
+        {
+          "version_id": "legacy",
+          "active": true
+        },
+        {
+          "version_id": "a",
+          "active": true
+        },
+        {
+          "version_id": "b",
+          "active": true
+        },
+        {
+          "version_id": "c",
+          "active": true
+        },
+        {
+          "version_id": "retired",
+          "active": false
+        }
+      ],
+      "checks": [
+        {
+          "left": "legacy",
+          "right": "a",
+          "passed": true
+        },
+        {
+          "left": "a",
+          "right": "legacy",
+          "passed": false
+        },
+        {
+          "left": "a",
+          "right": "b",
+          "passed": true
+        },
+        {
+          "left": "a",
+          "right": "c",
+          "passed": true
+        },
+        {
+          "left": "b",
+          "right": "c",
+          "passed": true
+        },
+        {
+          "left": "retired",
+          "right": "a",
+          "passed": true
+        }
+      ],
+      "requests": [
+        {
+          "request_id": "review",
+          "members": [
+            "c",
+            "legacy",
+            "a",
+            "b",
+            "retired"
+          ],
+          "current": [
+            "a",
+            "legacy"
+          ],
+          "mode": "inspect"
+        },
+        {
+          "request_id": "release",
+          "members": [
+            "c",
+            "legacy",
+            "a",
+            "b",
+            "retired"
+          ],
+          "current": [
+            "a",
+            "legacy"
+          ],
+          "mode": "select"
+        }
+      ]
+    },
+    "calls": {
+      "preview": 2,
+      "compatible": 16
+    },
+    "report": {
+      "version_count": 5,
+      "check_count": 6,
+      "pair_count": 5,
+      "superseded_check_count": 1,
+      "requests": [
+        {
+          "request_id": "review",
+          "eligible": [
+            "legacy",
+            "a",
+            "b",
+            "c"
+          ],
+          "current": {
+            "selected": [
+              "legacy",
+              "a"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [
+              {
+                "left": "legacy",
+                "right": "a",
+                "reason": "failed"
+              }
+            ],
+            "eligible_and_compatible": false
+          },
+          "preview": {
+            "selected": [
+              "legacy"
+            ],
+            "size": 1,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "proposed": null,
+          "changes": null
+        },
+        {
+          "request_id": "release",
+          "eligible": [
+            "legacy",
+            "a",
+            "b",
+            "c"
+          ],
+          "current": {
+            "selected": [
+              "legacy",
+              "a"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [
+              {
+                "left": "legacy",
+                "right": "a",
+                "reason": "failed"
+              }
+            ],
+            "eligible_and_compatible": false
+          },
+          "preview": {
+            "selected": [
+              "legacy"
+            ],
+            "size": 1,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "proposed": {
+            "selected": [
+              "a",
+              "b",
+              "c"
+            ],
+            "size": 3,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "changes": {
+            "add": [
+              "b",
+              "c"
+            ],
+            "remove": [
+              "legacy"
+            ]
+          }
+        }
+      ]
+    },
+    "kind": "original_execution"
+  },
+  {
+    "id": "inspection_only",
+    "input": {
+      "versions": [
+        {
+          "version_id": "legacy",
+          "active": true
+        },
+        {
+          "version_id": "a",
+          "active": true
+        },
+        {
+          "version_id": "b",
+          "active": true
+        },
+        {
+          "version_id": "c",
+          "active": true
+        },
+        {
+          "version_id": "retired",
+          "active": false
+        }
+      ],
+      "checks": [
+        {
+          "left": "legacy",
+          "right": "a",
+          "passed": true
+        },
+        {
+          "left": "a",
+          "right": "legacy",
+          "passed": false
+        },
+        {
+          "left": "a",
+          "right": "b",
+          "passed": true
+        },
+        {
+          "left": "a",
+          "right": "c",
+          "passed": true
+        },
+        {
+          "left": "b",
+          "right": "c",
+          "passed": true
+        },
+        {
+          "left": "retired",
+          "right": "a",
+          "passed": true
+        }
+      ],
+      "requests": [
+        {
+          "request_id": "review",
+          "members": [
+            "c",
+            "legacy",
+            "a",
+            "b",
+            "retired"
+          ],
+          "current": [
+            "a",
+            "legacy"
+          ],
+          "mode": "inspect"
+        }
+      ]
+    },
+    "calls": {
+      "preview": 1,
+      "compatible": 0
+    },
+    "report": {
+      "version_count": 5,
+      "check_count": 6,
+      "pair_count": 5,
+      "superseded_check_count": 1,
+      "requests": [
+        {
+          "request_id": "review",
+          "eligible": [
+            "legacy",
+            "a",
+            "b",
+            "c"
+          ],
+          "current": {
+            "selected": [
+              "legacy",
+              "a"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [
+              {
+                "left": "legacy",
+                "right": "a",
+                "reason": "failed"
+              }
+            ],
+            "eligible_and_compatible": false
+          },
+          "preview": {
+            "selected": [
+              "legacy"
+            ],
+            "size": 1,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "proposed": null,
+          "changes": null
+        }
+      ]
+    },
+    "kind": "original_execution"
+  },
+  {
+    "id": "selection_only",
+    "input": {
+      "versions": [
+        {
+          "version_id": "legacy",
+          "active": true
+        },
+        {
+          "version_id": "a",
+          "active": true
+        },
+        {
+          "version_id": "b",
+          "active": true
+        },
+        {
+          "version_id": "c",
+          "active": true
+        },
+        {
+          "version_id": "retired",
+          "active": false
+        }
+      ],
+      "checks": [
+        {
+          "left": "legacy",
+          "right": "a",
+          "passed": true
+        },
+        {
+          "left": "a",
+          "right": "legacy",
+          "passed": false
+        },
+        {
+          "left": "a",
+          "right": "b",
+          "passed": true
+        },
+        {
+          "left": "a",
+          "right": "c",
+          "passed": true
+        },
+        {
+          "left": "b",
+          "right": "c",
+          "passed": true
+        },
+        {
+          "left": "retired",
+          "right": "a",
+          "passed": true
+        }
+      ],
+      "requests": [
+        {
+          "request_id": "release",
+          "members": [
+            "c",
+            "legacy",
+            "a",
+            "b",
+            "retired"
+          ],
+          "current": [
+            "a",
+            "legacy"
+          ],
+          "mode": "select"
+        }
+      ]
+    },
+    "calls": {
+      "preview": 1,
+      "compatible": 16
+    },
+    "report": {
+      "version_count": 5,
+      "check_count": 6,
+      "pair_count": 5,
+      "superseded_check_count": 1,
+      "requests": [
+        {
+          "request_id": "release",
+          "eligible": [
+            "legacy",
+            "a",
+            "b",
+            "c"
+          ],
+          "current": {
+            "selected": [
+              "legacy",
+              "a"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [
+              {
+                "left": "legacy",
+                "right": "a",
+                "reason": "failed"
+              }
+            ],
+            "eligible_and_compatible": false
+          },
+          "preview": {
+            "selected": [
+              "legacy"
+            ],
+            "size": 1,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "proposed": {
+            "selected": [
+              "a",
+              "b",
+              "c"
+            ],
+            "size": 3,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "changes": {
+            "add": [
+              "b",
+              "c"
+            ],
+            "remove": [
+              "legacy"
+            ]
+          }
+        }
+      ]
+    },
+    "kind": "original_execution"
+  },
+  {
+    "id": "replace_preview_with_largest_group",
+    "input": {
+      "versions": [
+        {
+          "version_id": "legacy",
+          "active": true
+        },
+        {
+          "version_id": "a",
+          "active": true
+        },
+        {
+          "version_id": "b",
+          "active": true
+        },
+        {
+          "version_id": "c",
+          "active": true
+        },
+        {
+          "version_id": "retired",
+          "active": false
+        }
+      ],
+      "checks": [
+        {
+          "left": "legacy",
+          "right": "a",
+          "passed": true
+        },
+        {
+          "left": "a",
+          "right": "legacy",
+          "passed": false
+        },
+        {
+          "left": "a",
+          "right": "b",
+          "passed": true
+        },
+        {
+          "left": "a",
+          "right": "c",
+          "passed": true
+        },
+        {
+          "left": "b",
+          "right": "c",
+          "passed": true
+        },
+        {
+          "left": "retired",
+          "right": "a",
+          "passed": true
+        }
+      ],
+      "requests": [
+        {
+          "request_id": "review",
+          "members": [
+            "c",
+            "legacy",
+            "a",
+            "b",
+            "retired"
+          ],
+          "current": [
+            "a",
+            "legacy"
+          ],
+          "mode": "inspect"
+        },
+        {
+          "request_id": "release",
+          "members": [
+            "c",
+            "legacy",
+            "a",
+            "b",
+            "retired"
+          ],
+          "current": [
+            "a",
+            "legacy"
+          ],
+          "mode": "select"
+        }
+      ]
+    },
+    "calls": {
+      "preview": 2,
+      "compatible": 16
+    },
+    "report": {
+      "version_count": 5,
+      "check_count": 6,
+      "pair_count": 5,
+      "superseded_check_count": 1,
+      "requests": [
+        {
+          "request_id": "review",
+          "eligible": [
+            "legacy",
+            "a",
+            "b",
+            "c"
+          ],
+          "current": {
+            "selected": [
+              "legacy",
+              "a"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [
+              {
+                "left": "legacy",
+                "right": "a",
+                "reason": "failed"
+              }
+            ],
+            "eligible_and_compatible": false
+          },
+          "preview": {
+            "selected": [
+              "a",
+              "b",
+              "c"
+            ],
+            "size": 3,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "proposed": null,
+          "changes": null
+        },
+        {
+          "request_id": "release",
+          "eligible": [
+            "legacy",
+            "a",
+            "b",
+            "c"
+          ],
+          "current": {
+            "selected": [
+              "legacy",
+              "a"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [
+              {
+                "left": "legacy",
+                "right": "a",
+                "reason": "failed"
+              }
+            ],
+            "eligible_and_compatible": false
+          },
+          "preview": {
+            "selected": [
+              "a",
+              "b",
+              "c"
+            ],
+            "size": 3,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "proposed": {
+            "selected": [
+              "a",
+              "b",
+              "c"
+            ],
+            "size": 3,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "changes": {
+            "add": [
+              "b",
+              "c"
+            ],
+            "remove": [
+              "legacy"
+            ]
+          }
+        }
+      ]
+    },
+    "kind": "constructed_substitution",
+    "same_final_proposal": true,
+    "changed_fields": [
+      "$.requests[0].preview.selected",
+      "$.requests[0].preview.size",
+      "$.requests[1].preview.selected",
+      "$.requests[1].preview.size"
+    ]
+  },
+  {
+    "id": "reverse_history_precedence",
+    "input": {
+      "versions": [
+        {
+          "version_id": "legacy",
+          "active": true
+        },
+        {
+          "version_id": "a",
+          "active": true
+        },
+        {
+          "version_id": "b",
+          "active": true
+        },
+        {
+          "version_id": "c",
+          "active": true
+        },
+        {
+          "version_id": "retired",
+          "active": false
+        }
+      ],
+      "checks": [
+        {
+          "left": "legacy",
+          "right": "a",
+          "passed": true
+        },
+        {
+          "left": "a",
+          "right": "legacy",
+          "passed": false
+        },
+        {
+          "left": "a",
+          "right": "b",
+          "passed": true
+        },
+        {
+          "left": "a",
+          "right": "c",
+          "passed": true
+        },
+        {
+          "left": "b",
+          "right": "c",
+          "passed": true
+        },
+        {
+          "left": "retired",
+          "right": "a",
+          "passed": true
+        }
+      ],
+      "requests": [
+        {
+          "request_id": "review",
+          "members": [
+            "c",
+            "legacy",
+            "a",
+            "b",
+            "retired"
+          ],
+          "current": [
+            "a",
+            "legacy"
+          ],
+          "mode": "inspect"
+        },
+        {
+          "request_id": "release",
+          "members": [
+            "c",
+            "legacy",
+            "a",
+            "b",
+            "retired"
+          ],
+          "current": [
+            "a",
+            "legacy"
+          ],
+          "mode": "select"
+        }
+      ]
+    },
+    "calls": {
+      "preview": 2,
+      "compatible": 16
+    },
+    "report": {
+      "version_count": 5,
+      "check_count": 6,
+      "pair_count": 5,
+      "superseded_check_count": 1,
+      "requests": [
+        {
+          "request_id": "review",
+          "eligible": [
+            "legacy",
+            "a",
+            "b",
+            "c"
+          ],
+          "current": {
+            "selected": [
+              "legacy",
+              "a"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "preview": {
+            "selected": [
+              "legacy",
+              "a"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "proposed": null,
+          "changes": null
+        },
+        {
+          "request_id": "release",
+          "eligible": [
+            "legacy",
+            "a",
+            "b",
+            "c"
+          ],
+          "current": {
+            "selected": [
+              "legacy",
+              "a"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "preview": {
+            "selected": [
+              "legacy",
+              "a"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "proposed": {
+            "selected": [
+              "a",
+              "b",
+              "c"
+            ],
+            "size": 3,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "changes": {
+            "add": [
+              "b",
+              "c"
+            ],
+            "remove": [
+              "legacy"
+            ]
+          }
+        }
+      ]
+    },
+    "kind": "constructed_substitution",
+    "changed_fields": [
+      "$.requests[0].current.eligible_and_compatible",
+      "$.requests[0].current.missing_pairs",
+      "$.requests[0].preview.selected",
+      "$.requests[0].preview.size",
+      "$.requests[1].current.eligible_and_compatible",
+      "$.requests[1].current.missing_pairs",
+      "$.requests[1].preview.selected",
+      "$.requests[1].preview.size"
+    ]
+  },
+  {
+    "id": "numeric_mask_tie",
+    "input": {
+      "versions": [
+        {
+          "version_id": "a",
+          "active": true
+        },
+        {
+          "version_id": "b",
+          "active": true
+        },
+        {
+          "version_id": "c",
+          "active": true
+        },
+        {
+          "version_id": "d",
+          "active": true
+        }
+      ],
+      "checks": [
+        {
+          "left": "a",
+          "right": "d",
+          "passed": true
+        },
+        {
+          "left": "b",
+          "right": "c",
+          "passed": true
+        }
+      ],
+      "requests": [
+        {
+          "request_id": "tie",
+          "members": [
+            "d",
+            "c",
+            "b",
+            "a"
+          ],
+          "current": [],
+          "mode": "select"
+        }
+      ]
+    },
+    "calls": {
+      "preview": 1,
+      "compatible": 16
+    },
+    "report": {
+      "version_count": 4,
+      "check_count": 2,
+      "pair_count": 2,
+      "superseded_check_count": 0,
+      "requests": [
+        {
+          "request_id": "tie",
+          "eligible": [
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "current": {
+            "selected": [],
+            "size": 0,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "preview": {
+            "selected": [
+              "a",
+              "d"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "proposed": {
+            "selected": [
+              "b",
+              "c"
+            ],
+            "size": 2,
+            "inactive": [],
+            "missing_pairs": [],
+            "eligible_and_compatible": true
+          },
+          "changes": {
+            "add": [
+              "b",
+              "c"
+            ],
+            "remove": []
+          }
+        }
+      ]
+    },
+    "kind": "original_execution"
+  }
+]

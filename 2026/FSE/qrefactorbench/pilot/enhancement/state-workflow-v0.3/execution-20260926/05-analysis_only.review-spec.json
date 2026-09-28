@@ -1,0 +1,9 @@
+{
+  "resolution": "ambiguous",
+  "anchor_pointers": ["/contract_applicability/0/rationale", "/plan/input_encoding", "/plan/risks/3"],
+  "rationale": "The main QUBO remains unspecified and is not scored. However, this revision newly claims Grover applicability and explicitly gives a secondary pivot predicate in contract_applicability[0]: no smaller than each later magnitude, and strictly greater than every earlier magnitude. Preserve two readings of 'no smaller': >= or literal not-<, which differ for NaN. The QUBO paragraph's finite magnitude ranking is not an admission guard for this separate Grover claim. No such guard is stated, so use True. Results apply only to this secondary explicit pivot relation, not to rejection of the QUBO plan or whole task.",
+  "interpretations": [
+    {"id": "later_ge_earlier_gt", "meaning": "Conventional >= reading of no-smaller for later candidates and strict > for earlier candidates.", "mode": "predicate", "expression": "all(values[i] >= values[k] for k in indices if k > i) and all(values[i] > values[j] for j in indices if j < i)", "guard": "True", "outside_guard": "unresolved"},
+    {"id": "later_not_lt_earlier_gt", "meaning": "Literal not-< reading for later candidates, retaining the explicit strict > for earlier candidates.", "mode": "predicate", "expression": "not any(values[i] < values[k] for k in indices if k > i) and all(values[i] > values[j] for j in indices if j < i)", "guard": "True", "outside_guard": "unresolved"}
+  ]
+}

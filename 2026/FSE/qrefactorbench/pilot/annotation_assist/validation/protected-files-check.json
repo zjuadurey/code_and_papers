@@ -1,0 +1,8 @@
+{
+  "before_manifest_sha256": "d33ba0d120688cf84f2ecb7d7dc78647d3c66c4d21204ffb99cf74fd682a416e",
+  "changed_files": [],
+  "date": "2026-09-19",
+  "protected_file_count": 225,
+  "scope": "Pre-existing programs, annotations, packets, schemas, evaluator, tests, templates, scripts and project configuration recorded before review work. Handoff Markdown is intentionally outside this protected set.",
+  "unchanged": true
+}

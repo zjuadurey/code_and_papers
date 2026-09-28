@@ -1,0 +1,14 @@
+{
+  "kind": "single-case integration smoke, not an independent LLM benchmark",
+  "case": "pilot/reference_completion/v0.1.1/cases/lit-005",
+  "instance": "example_request.json",
+  "proposal_author": "current assistant session; source and prior diagnostic already visible",
+  "plan": "one uniform Grover iteration proposes a witness; classical prefix repair preserves firstness; absent/invalid sample falls back",
+  "iteration_policy": "one fixed iteration, not selected by knowing the answer count",
+  "negative_control": "direct return of any satisfying witness; deliberately wrong engineering control, not an observed LLM failure",
+  "scope": "run one instance through source binding, concrete circuit, ideal semantic checks, real QDK estimate, host timing, full cost ledger and decision",
+  "hardware_profiles": "two explicitly hypothetical gate-based profiles; not user's calibrated QPU",
+  "timing": "7 batches of 1000 source wrapper calls; min/max batch means are descriptive, not confidence bounds",
+  "outputs": "new run directory only; include hashes, raw QDK results, stage feedback, report",
+  "excluded_claims": ["autonomous LLM campaign", "method efficacy", "held-out correctness", "practical quantum advantage", "all quantum plans ruled out"]
+}

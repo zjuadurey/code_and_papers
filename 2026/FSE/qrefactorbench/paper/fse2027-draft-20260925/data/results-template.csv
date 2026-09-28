@@ -1,0 +1,1 @@
+protocol_id,experiment_id,model_id,lineage_id,mother_case_id,view,replicate,arm,shared_draft_id,delivery_status,obligation_id,claim_id,completion_status,verdict,evidence_scope,initial_verdict,final_verdict,model_calls,input_tokens,output_tokens,wall_seconds,analysis_seconds,checker_seconds,review_minutes,source_artifact

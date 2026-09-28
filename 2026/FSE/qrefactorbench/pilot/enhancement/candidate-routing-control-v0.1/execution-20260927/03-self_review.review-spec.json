@@ -1,0 +1,1 @@
+{"resolution":"unsupported","anchor_pointers":["/rationale","/contract_applicability/0/rationale"],"rationale":"The revision retains an empty candidate list and null plan. Descriptions of the original classical solver are not a proposed replacement. The structural-negative assertion is not independently established by this checker.","interpretations":[]}

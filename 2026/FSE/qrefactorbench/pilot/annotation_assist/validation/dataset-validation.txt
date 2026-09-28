@@ -1,0 +1,15 @@
+VALID: 14 structurally valid cases
+warning: cases/negatives/toy_audit/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/negatives/toy_normalize/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/optimization/toy_max_cut/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/pilot/pilot-001/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/pilot/pilot-002/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/pilot/pilot-003/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/pilot/pilot-004/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/pilot/pilot-005/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/pilot/pilot-006/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/pilot/pilot-007/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/pilot/pilot-008/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/pilot/pilot-009/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/pilot/pilot-010/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth
+warning: cases/search/toy_search/case.json: DRAFT: infrastructure example or unfinished annotation; not ground truth

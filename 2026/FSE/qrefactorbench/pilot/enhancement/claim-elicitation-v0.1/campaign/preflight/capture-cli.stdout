@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a0dfa1-21c5-7973-82f6-803ce21a6ec6"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"Under-development features enabled: skip_host_skill_discovery. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in /home/audrey/.codex/config.toml."}}
+{"type":"turn.started"}
+{"type":"error","message":"{\"error\":{\"message\":\"OFFLINE_CAPTURE_ONLY_NO_MODEL\",\"type\":\"invalid_request_error\"}}"}
+{"type":"turn.failed","error":{"message":"{\"error\":{\"message\":\"OFFLINE_CAPTURE_ONLY_NO_MODEL\",\"type\":\"invalid_request_error\"}}"}}

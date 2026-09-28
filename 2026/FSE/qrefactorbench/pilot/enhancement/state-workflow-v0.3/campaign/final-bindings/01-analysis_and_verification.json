@@ -1,0 +1,52 @@
+{
+  "response_sha256": "9555feefd6562631351e60f505fdd51d5c360840f5d8e0a884d8601f4fa0979f",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 21.018,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:41:47.927873+00:00",
+  "review_submitted_utc": "2026-09-26T12:42:08.946266+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "9555feefd6562631351e60f505fdd51d5c360840f5d8e0a884d8601f4fa0979f",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode the remaining row indices for one elimination column as a finite search domain. A marked index must be exactly the index that Python's ordered max operation on abs(rows[i][col]) would select, including the first-index tie rule. For finite intermediate pivots this can be expressed by requiring the candidate magnitude to exceed every earlier magnitude and be at least every later magnitude. Search is invoked once per active column, and the decoded result is classically verified before the existing singularity check and row swap."
+      },
+      {
+        "pointer": "/plan/assumptions/2",
+        "quote": "For every nonempty range with finite pivot values, exactly one index is marked; in the all-zero case the first remaining index is marked and the unchanged line 14 check raises ValueError."
+      },
+      {
+        "pointer": "/plan/assumptions/3",
+        "quote": "Any reachable nonfinite intermediate state is either represented with behavior matching the original execution or routed through a verified classical fallback preserving required overflow behavior."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode indices col through n-1 in ceil(log2(n-col)) qubits, with invalid basis states unmarked. Supply coherent access to n, col, and the current augmented rows initialized at kernel.py line 11 and mutated by earlier elimination iterations at lines 17-20. Reversible binary64 absolute-value and comparison logic, ordered behavior for any nonfinite intermediate state, coherent loading or maintenance of mutable rows, invalid-state handling, and workspace uncomputation remain unresolved."
+      }
+    ],
+    "resolution": "transcribed",
+    "rationale": "The response explicitly supplies a comparison formula only for finite intermediate pivots: strictly exceed every earlier magnitude and be at least every later magnitude. Bind that stated finite-state guard instead of extending the formula to nonfinite states. The response declares matching behavior or a verified classical fallback outside the guard, but neither is implemented or checked here; mark fallback as declared only. A conditional finite pass would not establish whole-domain repair.",
+    "interpretations": [
+      {
+        "id": "finite_strict_earlier_ge_later",
+        "meaning": "Stated first-maximum predicate restricted to all-finite current pivot magnitudes.",
+        "mode": "predicate",
+        "expression": "all(values[i] > values[j] for j in indices if j < i) and all(values[i] >= values[k] for k in indices if k > i)",
+        "guard": "all(isfinite(values[k]) for k in indices)",
+        "outside_guard": "classical_fallback_declared"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qrefactorbench"
+version = "0.2.0"
+description = "Infrastructure for human-annotated selective quantumization benchmarks"
+requires-python = ">=3.10"
+dependencies = ["jsonschema==4.26.0", "referencing==0.37.0"]
+
+[project.optional-dependencies]
+yaml = ["PyYAML==6.0.3"]
+quantum = ["qiskit==2.5.2"]
+resources = ["qdk[qre]==1.32.3"]
+test = ["pytest==9.1.1"]
+
+[project.scripts]
+qrefactorbench = "qrefactorbench.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["qrefactorbench*", "schemas"]
+
+[tool.setuptools.package-data]
+schemas = ["*.schema.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

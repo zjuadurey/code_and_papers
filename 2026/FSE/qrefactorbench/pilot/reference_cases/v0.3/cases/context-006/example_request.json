@@ -1,0 +1,6 @@
+{
+  "base_cost": 100,
+  "components": [{"name": "cache", "cost": 4}, {"name": "telemetry", "cost": 3}, {"name": "backup", "cost": -1}],
+  "adjustments": [{"members": ["cache", "telemetry"], "cost": -9}, {"members": ["telemetry", "backup"], "cost": 2}, {"members": ["telemetry", "cache"], "cost": -1}],
+  "current": ["backup", "cache"]
+}

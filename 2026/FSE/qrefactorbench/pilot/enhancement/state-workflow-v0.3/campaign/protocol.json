@@ -1,0 +1,389 @@
+{
+  "version": "state-workflow-0.3",
+  "run_authorization": null,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "access": "existing ChatGPT subscription",
+  "task": "unchanged lit-009 C initial input; separately versioned Phase-1 revisions",
+  "mother_cases": 1,
+  "replicates": 5,
+  "maximum_model_calls": 25,
+  "maximum_concurrency": 1,
+  "timeout_seconds_per_call": 600,
+  "operator_retries": 0,
+  "model_tools": [],
+  "model_seed": null,
+  "temperature": null,
+  "server_snapshot": null,
+  "slots": [
+    {
+      "id": "01-initial",
+      "replicate": 1,
+      "arm": "initial",
+      "depends_on": [],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "01-self_review",
+      "replicate": 1,
+      "arm": "self_review",
+      "depends_on": [
+        "01-initial",
+        "01-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "01-analysis_only",
+      "replicate": 1,
+      "arm": "analysis_only",
+      "depends_on": [
+        "01-initial",
+        "01-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "01-verification_only",
+      "replicate": 1,
+      "arm": "verification_only",
+      "depends_on": [
+        "01-initial",
+        "01-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "01-analysis_and_verification",
+      "replicate": 1,
+      "arm": "analysis_and_verification",
+      "depends_on": [
+        "01-initial",
+        "01-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "02-initial",
+      "replicate": 2,
+      "arm": "initial",
+      "depends_on": [],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "02-analysis_only",
+      "replicate": 2,
+      "arm": "analysis_only",
+      "depends_on": [
+        "02-initial",
+        "02-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "02-verification_only",
+      "replicate": 2,
+      "arm": "verification_only",
+      "depends_on": [
+        "02-initial",
+        "02-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "02-analysis_and_verification",
+      "replicate": 2,
+      "arm": "analysis_and_verification",
+      "depends_on": [
+        "02-initial",
+        "02-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "02-self_review",
+      "replicate": 2,
+      "arm": "self_review",
+      "depends_on": [
+        "02-initial",
+        "02-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "03-initial",
+      "replicate": 3,
+      "arm": "initial",
+      "depends_on": [],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "03-verification_only",
+      "replicate": 3,
+      "arm": "verification_only",
+      "depends_on": [
+        "03-initial",
+        "03-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "03-analysis_and_verification",
+      "replicate": 3,
+      "arm": "analysis_and_verification",
+      "depends_on": [
+        "03-initial",
+        "03-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "03-self_review",
+      "replicate": 3,
+      "arm": "self_review",
+      "depends_on": [
+        "03-initial",
+        "03-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "03-analysis_only",
+      "replicate": 3,
+      "arm": "analysis_only",
+      "depends_on": [
+        "03-initial",
+        "03-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "04-initial",
+      "replicate": 4,
+      "arm": "initial",
+      "depends_on": [],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "04-analysis_and_verification",
+      "replicate": 4,
+      "arm": "analysis_and_verification",
+      "depends_on": [
+        "04-initial",
+        "04-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "04-self_review",
+      "replicate": 4,
+      "arm": "self_review",
+      "depends_on": [
+        "04-initial",
+        "04-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "04-analysis_only",
+      "replicate": 4,
+      "arm": "analysis_only",
+      "depends_on": [
+        "04-initial",
+        "04-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "04-verification_only",
+      "replicate": 4,
+      "arm": "verification_only",
+      "depends_on": [
+        "04-initial",
+        "04-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "05-initial",
+      "replicate": 5,
+      "arm": "initial",
+      "depends_on": [],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "05-self_review",
+      "replicate": 5,
+      "arm": "self_review",
+      "depends_on": [
+        "05-initial",
+        "05-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "05-analysis_only",
+      "replicate": 5,
+      "arm": "analysis_only",
+      "depends_on": [
+        "05-initial",
+        "05-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "05-verification_only",
+      "replicate": 5,
+      "arm": "verification_only",
+      "depends_on": [
+        "05-initial",
+        "05-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    },
+    {
+      "id": "05-analysis_and_verification",
+      "replicate": 5,
+      "arm": "analysis_and_verification",
+      "depends_on": [
+        "05-initial",
+        "05-development-review"
+      ],
+      "state": "not_run",
+      "attempt_limit": 1
+    }
+  ],
+  "development_review": {
+    "performed_by": "Codex coordinator; AI_REVIEW_PENDING, not independent human review",
+    "required_before_branch_execution": true,
+    "record": "Exact anchors, formal interpretation(s), scope/guard, unknown or withdrawal; wall time separately.",
+    "no_supported_binding": "insufficient_evidence observation, never a fabricated counterexample",
+    "analysis_region": "All declared candidate regions in allowed public files; unsupported inventory scopes return unknown.",
+    "feedback_semantic_scope": "Only lit009 pivot-selection claims; other candidate mappings remain unjudged."
+  },
+  "branch_policy": "Every delivered initial draft enters all four revisions, irrespective of correctness; no filtering or response sharing.",
+  "final_policy": "Bind claims before final evaluation; final results are collected only after all model revisions, never feedback.",
+  "failure_policy": {
+    "transport_or_isolation_error": "Stop remaining slots; retain called and unrun slots, no retries.",
+    "invalid_or_budget_initial": "Retain failed initial and mark dependent revisions not_run_parent_failure; no substituted draft.",
+    "invalid_revision": "Retain failure; continue independent preplanned branches if infrastructure intact.",
+    "checker_binding_failure": "Stop for offline correction; do not silently score a model error or reissue a request."
+  },
+  "reporting": [
+    "All five replicate slots per arm, including missing/invalid outputs.",
+    "Finite local claims, ambiguity, guard exclusions, withdrawal and unknown separately.",
+    "Repair/regression only for comparable scopes; changing scope is its own outcome.",
+    "Reviewer overhead, classical tool cost, model usage and latency separately; not equal-token comparison.",
+    "No whole-task pass, scientific gold, model ranking, significance or independent-mother generalization."
+  ],
+  "limitations": [
+    "Explicit reviewer transcription remains part of this diagnostic workflow.",
+    "AST inventory is lexical, not sound slicing, range inference or reachability analysis.",
+    "Reserved requests are same-mother development evaluation, not an independent held-out program set.",
+    "Offline preflight checks isolation, not subscription availability or server behavior."
+  ],
+  "source_sha256": {
+    "pilot/enhancement/state-workflow-v0.2/claims.py": "84aef684895df509647ac95bd378df174ee1bd4ed797c0f110aee9a3a0a3d94e",
+    "pilot/enhancement/state-workflow-v0.2/build.py": "0061a61d0d0efe65bef6455a1e62a4c34c09f199d566cfe0673c85fba9b26b47",
+    "pilot/enhancement/state-workflow-v0.2/review.py": "2a9ba5c6cc1a19a5cc22b9366ffa5626ec36f9a81a90b65a6e0f33f9a009c208",
+    "pilot/enhancement/state-workflow-v0.2/prepare_protocol.py": "39ab8f0f6178ed37ce261029acbef2b84a71e81d5ec918921395d10eae13a7b4",
+    "pilot/enhancement/state-workflow-v0.2/test_claims.py": "121aac26a368c3d873ff9cb75cb7a5137a808cd07c784e4c7b5e47f9cc097d76",
+    "pilot/enhancement/state-workflow-v0.2/evidence/development.json": "c973906f45be705e691f4c98c565a2d79182fc6156cc71433d60d1911e9f29e9",
+    "pilot/enhancement/state-workflow-v0.2/evidence/evaluator-reserved.json": "febe10ea0de1d81e0366dd25d119999ae75c641fbec19e0843d750e1e76fcf4e",
+    "pilot/enhancement/state-workflow-v0.1/workflow.py": "71e29d349676e0f19b2330fc8f4e085f4db221a43de3b94a004904581c8a0834",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-009-C.txt": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+    "schemas/phase1_prediction.schema.json": "7fbbce683b407d82e8f556d218c985c2aa398c60cfb6c794f8e2191f46e61caa",
+    "pilot/model_comparison/20260922-c-v0.1/run.py": "63aab4e00a4adca7a25f2fd2813bb1b5a2c965bece04295efae3b3d71bd465ec",
+    "pilot/enhancement/state-workflow-v0.3/preflight.py": "d025974b8a217215daa30ef1e82043ff47afdfe4f4f09289a9aeeda8e8b39392",
+    "pilot/enhancement/state-workflow-v0.3/test_campaign.py": "4e07f0b8841417e47d3fd8264cb8214c97d68f0a2bb9aa1f1ebbb0d45cb9e20d",
+    "pilot/enhancement/state-workflow-v0.3/capture_request.py": "c5c24f2a828baab817e5314b18bdbe4c3169a9971d4da9dce8d01afeb4063ca4",
+    "pilot/enhancement/state-workflow-v0.3/campaign.py": "3d2b5519ed923a8469a748ad7dc8875962da42518afe54d2c3c9e2c6b5f01b04",
+    "pilot/enhancement/state-workflow-v0.3/tool-free-sol-catalog.json": "b1b4bcadd2fd8c6580a0685dc2e6d4f6ac79c683ec6047e3d29be8b64fa44b49",
+    "pilot/enhancement/state-workflow-v0.3/bundled-sol-metadata.json": "cdbb645bd2254160681ba1838c7b35a7b8c7ba2d7d581270d110960e29efa4bb",
+    "pilot/reference_completion/v0.1.1/cases/lit-009/program.py": "40b399f11a314c9f7eff3f3dd9a799defc8b4d63919fabb7bbb31c245281e46f",
+    "pilot/reference_completion/v0.1.1/cases/lit-009/kernel.py": "7bd7ab7a59d78bf064f14a3e97f60f80d91b9e6d42977952c1e5c21d795dd18f",
+    "pilot/reference_completion/v0.1.1/cases/lit-009/common.py": "d45402e6db3166b6f35c1a654c2470e1e9cef82e67bcefdd43275f49cd397966",
+    "schemas/prediction.schema.json": "016e0ef79b0fe4bbdb837b1dda4251245fe6d72327b088906065924417b5f0a5",
+    "schemas/migration_plan.schema.json": "82fb0369cdb967bebef78942fcba6e2514ce3a2143271120b26b60aaa5c55639",
+    "schemas/case.schema.json": "ab043477501474a9055d75997ee194b576840f7e6613b332694b15c0a3f49124",
+    "qrefactorbench/__init__.py": "c53081b4869f170a99826488e87e5cad7277aae8456680c9f681d856200b8174",
+    "qrefactorbench/loader.py": "9b3489aaad30d52106bf0c22d32e288e1426ec10befa47be91299905e3537fd9",
+    "qrefactorbench/schema.py": "e10e6ec441d8bd7d221d85145cef47740235d721f42779cdf519168557d41fd4",
+    "qrefactorbench/validator.py": "e18caadcd3f3f5d26ac21a7aeef1fc032424146c510fcb7d460eefd95865f3e9"
+  },
+  "simulation": false,
+  "cli_version": "codex-cli 0.156.1",
+  "cli_sha256": "0b2e9301d6100dddda3b9d5c80ebaeaa3a2f1962388f2f36f6b96a9f08b1f33f",
+  "created_utc": "2026-09-25T02:15:47.245227+00:00",
+  "transport_config": [
+    "model_provider=\"openai\"",
+    "forced_login_method=\"chatgpt\"",
+    "model_reasoning_effort=\"medium\"",
+    "approval_policy=\"never\"",
+    "web_search=\"disabled\"",
+    "project_doc_max_bytes=0",
+    "personality=\"none\"",
+    "features.skip_host_skill_discovery=true",
+    "developer_instructions=\"This is a restricted single-turn research baseline. All task information is in the supplied user message. Do not invoke tools, browse files or the web, execute code, delegate, request clarification, or produce interim messages. Return one final response to the supplied prompt. Do not use previous sessions.\"",
+    "features.shell_tool=false",
+    "features.unified_exec=false",
+    "features.multi_agent=false",
+    "features.multi_agent_v2=false",
+    "features.apps=false",
+    "features.plugins=false",
+    "features.hooks=false",
+    "features.memories=false",
+    "features.shell_snapshot=false",
+    "features.skill_search=false",
+    "features.skill_mcp_dependency_install=false",
+    "features.browser_use=false",
+    "features.browser_use_external=false",
+    "features.computer_use=false",
+    "features.in_app_browser=false",
+    "features.image_generation=false",
+    "features.view_image=false",
+    "features.code_mode=false",
+    "features.code_mode_host=false",
+    "features.goals=false",
+    "features.sleep_tool=false",
+    "features.tool_suggest=false",
+    "features.unbounded_connection_retries=false",
+    "features.workspace_dependencies=false",
+    "model_catalog_json=\"/model-catalog.json\"",
+    "tools.update_plan.enabled=false",
+    "tools.experimental_request_user_input.enabled=false"
+  ],
+  "transport_wrapper": "This is a restricted single-turn research baseline. All task information is in the supplied user message. Do not invoke tools, browse files or the web, execute code, delegate, request clarification, or produce interim messages. Return one final response to the supplied prompt. Do not use previous sessions.",
+  "final_binding_policy": "Initial binding frozen at development review; revision bindings frozen after all slots terminate.",
+  "authorization_receipt": "Separate authorization.json; absent until explicit new user approval.",
+  "catalog_overrides": {
+    "tool_mode": null,
+    "multi_agent_version": null,
+    "apply_patch_tool_type": null
+  },
+  "catalog_override_reason": "Clear bundled forced code-mode/collaboration and patch tool metadata, keeping original model entry otherwise identical."
+}

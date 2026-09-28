@@ -1,0 +1,73 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-007",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "has_total",
+      "start_line": 2,
+      "end_line": 7
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Decide exactly whether at least one subset of the supplied integer list sums to the target, treating duplicate positions independently, permitting negative integers, and recognizing the empty subset as a solution when the target is zero; return only a Boolean and produce no other effects.",
+  "migration_family": "unstructured_search",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The 2^n inclusion masks form a finite domain and equality of the selected-item sum to the target is a pure Boolean predicate. Structural applicability is conditional on constructing and uncomputing reversible signed-integer arithmetic and on resolving exact no-solution semantics; finite-shot Grover-style execution alone cannot certify False under the unchanged exact Boolean contract."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "A structural QUBO exists using the objective (sum_i values[i] * x_i - target)^2, whose minimum is zero exactly when a qualifying subset exists. Its linear coefficients are values[i]^2 - 2 * target * values[i] and its pairwise coefficients are 2 * values[i] * values[j]. However, arbitrary coefficient ranges and dense interactions must be represented, and QAOA sampling does not by itself certify either an exact zero minimum or the absence of one."
+    }
+  ],
+  "assumptions": [
+    "Each input list is finite, with one candidate-selection bit per list position.",
+    "The original exact Boolean semantics, including a definitive False result, cannot be replaced silently by bounded-error behavior.",
+    "Any future comparison includes appropriate classical subset-sum implementations such as meet-in-the-middle methods and magnitude-dependent dynamic programming, rather than only the supplied exhaustive enumeration.",
+    "No particular satisfying subset must be exposed to the caller."
+  ],
+  "risks": [
+    "The marked-state count is unknown and may range from zero to many because duplicates and negative values are allowed.",
+    "Finite-shot search cannot establish nonexistence with certainty; exhaustive fallback for False could remove the search advantage.",
+    "Runtime data cannot be assumed to enter the oracle for free; circuit synthesis, coherent loading, or QROM costs may dominate.",
+    "The required signed arithmetic width and gate count grow with the bit lengths and total absolute magnitude of the integers, not only with the list length.",
+    "Reversible accumulation, comparison, phase marking, and uncomputation require additional workspace and fault-tolerant resources that have not been estimated.",
+    "No input scale, hardware model, error budget, benchmark, or resource estimate establishes practical suitability or speedup.",
+    "Suitable classical algorithms may substantially outperform the source's direct 2^n enumeration."
+  ],
+  "rationale": "Lines 2-7 are an exponential exhaustive-search hotspot and admit a Grover-style predicate formulation, so structural eligibility is true. The hotspot alone does not justify migration. Practical suitability remains unresolved because input sizes and integer magnitudes are unspecified, oracle construction and data-loading costs are unquantified, no benchmark supports an advantage over suitable classical algorithms, and the exact False result cannot be obtained from ordinary finite-shot Grover sampling without an unresolved certification mechanism or potentially exhaustive fallback. The program should therefore remain classical under the current evidence, while the plan records only a conditional reformulation.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "exact_subset_sum_existence",
+    "migration_family": "unstructured_search",
+    "formulation": "Use an n-bit candidate x, where x_i selects list position i, and mark x exactly when sum_i values[i] * x_i equals target. Position-based bits preserve duplicate handling, controlled addition and subtraction preserve negative values, and x=0 represents the empty subset. A classical precheck may return True immediately for target zero and False when target lies outside [-S,S], where S=sum_i abs(values[i]). For remaining inputs, the phase oracle must reversibly accumulate the selected sum, compare it with the target, mark equality, and uncompute all arithmetic. The number of marked states is not known in advance. An exact method for certifying the zero-marked-state case, or an explicitly authorized probabilistic error policy, remains required.",
+    "input_encoding": "Prepare a uniform superposition over the n selection qubits. Treat the input integers and target as runtime classical data compiled into controlled arithmetic or supplied through an explicitly costed coherent-memory mechanism; neither loading model is free. One safe representation uses an offset accumulator covering every value in [-S,S], requiring at least ceil(log2(2*S+1)) logical value bits, with an additional convention for the S=0 case, plus carry, comparison, phase-marking, and uncomputation workspace. Circuit and workspace estimates must also account for the bit lengths of the original Python integers and for circuit regeneration or loading on each distinct input.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Measure a candidate and recompute its subset sum using exact classical integer arithmetic before returning True. Failed samples cannot justify False. To preserve the original interface, False requires a proven exact no-solution procedure; otherwise the contract would need an explicit bounded-error policy, which is currently unresolved. Any fallback that classically exhausts all candidates must be included in end-to-end cost comparisons.",
+    "assumptions": [
+      "A reversible signed or offset-binary accumulator can be synthesized without overflow for the computed bound S.",
+      "All oracle preparation, arithmetic, comparison, uncomputation, and input-dependent compilation or loading costs are included in resource accounting.",
+      "If bounded-error execution is considered, changing the exact software contract requires explicit approval rather than being treated as implicit.",
+      "Classical prechecks preserve the empty-subset and out-of-range cases exactly."
+    ],
+    "risks": [
+      "Known- or unknown-solution-count Grover variants generally provide probabilistic detection and do not furnish exact nonexistence certification from finite samples.",
+      "The oracle may require arithmetic proportional to both n and the accumulator width on every query.",
+      "Large-magnitude Python integers can make logical-qubit, gate, and fault-tolerance costs prohibitive even when n is moderate.",
+      "Input-dependent circuit construction or coherent memory can outweigh any reduction in predicate-query count.",
+      "Meet-in-the-middle or magnitude-dependent dynamic programming may be the stronger baseline at relevant scales.",
+      "No physical-feasibility or end-to-end speedup claim is supported."
+    ],
+    "expected_resource_characteristics": {
+      "status": "unresolved"
+    }
+  }
+}

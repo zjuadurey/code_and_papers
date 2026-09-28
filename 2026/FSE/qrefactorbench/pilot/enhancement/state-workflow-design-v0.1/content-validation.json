@@ -1,0 +1,13 @@
+{
+  "regenerated_files_identical": 22,
+  "overwrite_refused": true,
+  "prompt_content_checks": 16,
+  "negative_controls_rejected": 4,
+  "response_rows": 25,
+  "exact_anchors": 90,
+  "source_files_hashed": 61,
+  "protected_files_unchanged": 2736,
+  "model_calls": 0,
+  "qpu_calls": 0,
+  "new_quality_result": null
+}

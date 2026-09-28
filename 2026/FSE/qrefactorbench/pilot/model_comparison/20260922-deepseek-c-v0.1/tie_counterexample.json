@@ -1,0 +1,48 @@
+{
+  "reviewer": "Codex coordinator; AI technical review, not gold adjudication",
+  "response_sha256": "a31f772e4d734776c0609c27fab0726e74c99d39a417997c1d86f01ec94ebd18",
+  "claim_source": "runs/deepseek-flash/lit-002/response.txt",
+  "formulation": "Binary x_i=1 when station i is selected. Primary objective: minimize sum_i x_i subject to x_u + x_v >= 1 for every normalized edge (u,v). QUBO form: minimize A * sum_i x_i + B * sum_{(u,v)} (1 - x_u)(1 - x_v), with B chosen strictly larger than the maximum possible cardinality difference so infeasible selections cannot beat feasible ones. The lexicographic tie-break among minimum-cardinality covers requires either superincreasing secondary weights w_i (w_i > sum_{j>i} w_j) added to x_i, or a hierarchical two-stage solve: first fix the minimum cardinality, then minimize the lexicographic rank. The exact penalty dominance, weight scaling and tie-break encoding must be validated.",
+  "input": {
+    "station_indices": [
+      0,
+      1
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ]
+    ]
+  },
+  "minimum_covers": [
+    [
+      0
+    ],
+    [
+      1
+    ]
+  ],
+  "secondary_weights": [
+    2,
+    1
+  ],
+  "contract_expected": [
+    0
+  ],
+  "positive_weight_minimizer": [
+    1
+  ],
+  "reviewer_instantiated_scales": {
+    "A": 3,
+    "B": 10
+  },
+  "energy_by_mask": {
+    "0": 10,
+    "1": 5,
+    "2": 4,
+    "3": 9
+  },
+  "finding": "Positive superincreasing weights added to selected bits in minimization prefer the wrong selected-index tuple.",
+  "limit": "Refutes this encoding branch only. The separate exact two-stage alternative is not refuted. No model-generated program, quantum circuit, or full migration was executed. Labels and scores unchanged."
+}

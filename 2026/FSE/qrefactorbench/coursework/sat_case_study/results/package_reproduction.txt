@@ -1,0 +1,45 @@
+{
+  "split": {
+    "train": 1799,
+    "validation": 600,
+    "test": 601
+  },
+  "mlp_test": {
+    "n": 601,
+    "accuracy": 0.9168053244592346,
+    "precision_sat": 0.915057915057915,
+    "recall_sat": 0.8943396226415095,
+    "f1_sat": 0.9045801526717557,
+    "confusion_matrix": [
+      [
+        314,
+        22
+      ],
+      [
+        28,
+        237
+      ]
+    ],
+    "threshold": 0.5
+  },
+  "linear_test": {
+    "n": 601,
+    "accuracy": 0.908485856905158,
+    "precision_sat": 0.8977272727272727,
+    "recall_sat": 0.8943396226415095,
+    "f1_sat": 0.8960302457466919,
+    "confusion_matrix": [
+      [
+        309,
+        27
+      ],
+      [
+        28,
+        237
+      ]
+    ],
+    "threshold": 0.5
+  },
+  "majority": 0.5590682196339434,
+  "best_epoch": 19
+}

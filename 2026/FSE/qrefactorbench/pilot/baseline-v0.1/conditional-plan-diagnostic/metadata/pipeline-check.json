@@ -1,0 +1,9 @@
+{
+  "case_id": "pilot-001",
+  "exit_code": 0,
+  "raw_output_present": true,
+  "parse_status": "json_object",
+  "no_tools": true,
+  "scientific_content_not_reviewed": true,
+  "configuration_unchanged": true
+}

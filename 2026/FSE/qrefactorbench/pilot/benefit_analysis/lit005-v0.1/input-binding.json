@@ -1,0 +1,8 @@
+{
+  "pilot/reference_completion/v0.1.1/cases/lit-005/common.py": "d45402e6db3166b6f35c1a654c2470e1e9cef82e67bcefdd43275f49cd397966",
+  "pilot/reference_completion/v0.1.1/cases/lit-005/example_request.json": "d4881b2591e1846d0a2485f20a5f7b5a7316552036bdb35b2337ec1c00c0184f",
+  "pilot/reference_completion/v0.1.1/cases/lit-005/kernel.py": "02b63e5ce9bb379b8e61f1b0917bc75e139e54e6cdca5bbc64e39ec2aa21f3d7",
+  "pilot/reference_completion/v0.1.1/cases/lit-005/program.py": "7d314210f99a968711754eb9cca9aff29b149f19278539e0f52531eadbdaaaa8",
+  "pilot/reference_completion/v0.1.1/cases/lit-005/public_task.json": "d0465e09611b9d4a03b5c6d932d399a08e9631a268782313a3cbb5fae5d30c8d",
+  "pilot/reference_completion/v0.1.1/cases/lit-005/test_program.py": "17a1a5c79494051e51791915ec5b8c4fd712211d6566428de986fe2bd9134c1b"
+}

@@ -1,0 +1,63 @@
+{
+  "case_count": 6,
+  "counts": {
+    "annotation_status": {
+      "DRAFT": 6
+    },
+    "benchmark_supported": {
+      "unknown": 6
+    },
+    "case_type": {
+      "hard_negative": 3,
+      "positive": 3
+    },
+    "context_level": {
+      "small_program": 6
+    },
+    "difficulty": {
+      "unknown": 6
+    },
+    "migration_family": {
+      "unknown": 6
+    },
+    "practical_suitability": {
+      "unknown": 6
+    },
+    "structural_eligibility": {
+      "unknown": 6
+    }
+  },
+  "issues": [
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "pilot/reference_completion/v0.1.1/cases/lit-005/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "pilot/reference_completion/v0.1.1/cases/lit-006/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "pilot/reference_completion/v0.1.1/cases/lit-007/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "pilot/reference_completion/v0.1.1/cases/lit-008/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "pilot/reference_completion/v0.1.1/cases/lit-009/case.json",
+      "severity": "warning"
+    },
+    {
+      "message": "DRAFT: infrastructure example or unfinished annotation; not ground truth",
+      "path": "pilot/reference_completion/v0.1.1/cases/lit-010/case.json",
+      "severity": "warning"
+    }
+  ],
+  "valid": true
+}

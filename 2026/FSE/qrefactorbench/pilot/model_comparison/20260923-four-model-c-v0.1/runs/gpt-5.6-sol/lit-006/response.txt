@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-006",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 4,
+      "end_line": 15
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact-capacity-constrained-subset-selection",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditionally introduce one binary variable x_i per eligible item and binary slack representing capacity minus selected weight. Enforce sum_i(weight_i*x_i)+slack=capacity with a squared QUBO penalty. Preserve the lexicographic objective by maximizing 2^n*sum_i(value_i*x_i)-sum_i(2^i*x_i), where i is eligible catalogue order; this makes total value primary and the numeric mask secondary. The feasibility penalty must be proved larger than the complete objective range. This formulation is only a migration-analysis proposal, not a suitability or correctness claim.",
+    "input_encoding": "For each select window, encode the active items in their original catalogue order as n decision bits. Encode nonnegative slack through enough binary bits to represent 0 through capacity, accounting for unused encoded values and the capacity-zero case. Item weights, values, capacity, objective scaling, and penalty coefficients must be loaded explicitly; no free coherent data access is assumed.",
+    "quantum_algorithm_family": "QUBO/Ising optimization with a possible QAOA-style executor",
+    "output_decoding": "Measure candidate decision bits, reconstruct the numeric mask in eligible order, and classically recompute weight, value, feasibility, and tie-breaking. Accept a result only if it is feasible and is certified to have the exact maximum value and smallest mask among all maximizers. Because sampling or QAOA alone does not provide that certificate, an exact classical fallback or another proved certification procedure remains necessary. The decoded mask then passes through the unchanged proposal and transfer construction.",
+    "assumptions": [
+      "Each select window remains an independent optimization instance over the same active-item sequence.",
+      "All validation completes before any optimization is invoked.",
+      "Indivisible-item, exact-capacity-inequality, exact-optimum, and smallest-mask tie semantics are retained.",
+      "Coefficient construction uses exact arithmetic despite unbounded input integers."
+    ],
+    "risks": [
+      "No supplied evidence establishes quantum advantage, useful workload scale, hardware availability, or acceptable execution cost.",
+      "The 2^n tie-breaking scale and a sufficiently dominant feasibility penalty can require exponentially large coefficient ranges and precision.",
+      "Slack encoding, input loading, state preparation, QAOA parameter optimization, sampling, and classical certification may outweigh the dynamic-programming kernel.",
+      "QAOA is not an exact optimizer by default and could change deterministic output semantics.",
+      "Independent windows repeat setup and execution costs, while the classical implementation can reuse ordinary in-memory item data."
+    ],
+    "expected_resource_characteristics": {
+      "logical_variables": "n eligible-item bits plus approximately ceil(log2(capacity+1)) slack bits per select window, before ancillas or reductions",
+      "coefficient_scale": "May grow with 2^n, the sum of item values, item weights, capacity, and the feasibility penalty",
+      "execution": "Unknown circuit depth, gate count, shot count, optimizer iterations, encoding cost, and backend requirements",
+      "certification": "Exact optimality and smallest-mask tie-breaking require a proved certificate or exact classical fallback"
+    },
+    "rationale": "This is a conditional formulation required by structural eligibility. Its unresolved encoding range, penalty sufficiency, hardware precision, exactness certification, feasible-solution recovery, and total resource costs prevent it from supporting deployment."
+  },
+  "rationale": "The nominated region is exactly the pure 0/1 knapsack dynamic program: kernel.py lines 4-15 consume eligible items and a capacity, maximize summed value subject to summed weight not exceeding capacity, and resolve equal-value solutions by the smaller numeric mask. Its required inputs are the active-item sequence in catalogue order, every eligible item's positive integer weight and nonnegative integer value, and the current window's nonnegative capacity; the numeric bit positions make catalogue order semantically significant. It is activated only for windows whose mode is select at program.py lines 36-39. Whole-batch validation at lines 17-30 must still occur before any selection, and eligible filtering at line 31 must remain classical and ordered. Each window must remain independent: there is no stock state or allocation shared between calls. The surrounding construction must also remain intact: inspect windows have no proposal or transfers; current reports retain listed inactive items and apply their existing feasibility rule; proposals are described classically; transfers follow selected catalogue order with contiguous offsets; reports retain window order; there is no mutation; ValueError and CLI JSON behavior are unchanged. Structurally, the finite binary decisions, linear value objective, capacity constraint, and explicit deterministic tie-break admit a QUBO/Ising formulation. Practical suitability is false because inputs have no numeric cap, exact deterministic optimization is mandatory, coefficient ranges can become extreme, and no workload, backend, encoding-cost, or advantage evidence is supplied. The notice supplies benchmark provenance and a concrete QuanBench instance, so benchmark support is present, but it does not establish practical advantage or upstream endorsement. Therefore the region merits further formulation analysis but should remain classical on the supplied evidence.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": true,
+  "computational_intent": "For each select-mode window, choose an exact maximum-value subset of active, indivisible catalogue items whose total weight does not exceed that window's capacity, breaking ties by the smallest numeric mask in eligible catalogue order.",
+  "assumptions": [
+    "Only the supplied source, contract, notice, and execution assumptions are considered.",
+    "The mask comparison in kernel.py is the authoritative implementation of the stated tie rule.",
+    "The cited QuanBench attribution supports benchmark provenance only, not performance or quantum advantage.",
+    "No relaxation of exactness, ordering, validation, exception behavior, or observable report construction is permitted."
+  ],
+  "risks": [
+    "Replacing the kernel with probabilistic output could violate exact optimum and deterministic tie-breaking requirements.",
+    "Changing eligible-item order would change mask significance, selected IDs, and transfer order.",
+    "Batching windows into a shared optimization could introduce forbidden cross-window allocation dependencies.",
+    "Penalty or coefficient errors could admit overweight subsets or reverse the value and mask priorities.",
+    "Quantum data-loading, slack, ancilla, measurement, and classical optimization costs are unknown."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "A feasibility or value-threshold predicate could be constructed over the finite mask domain, but the supplied contract's marked-state search does not by itself specify exact maximization and smallest-mask tie resolution. Marking only the required optimum would require prior knowledge of that optimum, while iterative threshold search, exact no-better-solution certification, and deterministic failure handling are unresolved."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "Binary item decisions, a capacity constraint, value maximization, and numeric-mask tie-breaking can be represented explicitly as a penalized QUBO/Ising objective. Applicability is conditional on proving penalty sufficiency and coefficient fidelity and on decoding and classically certifying the exact feasible optimum; it does not imply that QAOA is practically suitable."
+    }
+  ]
+}

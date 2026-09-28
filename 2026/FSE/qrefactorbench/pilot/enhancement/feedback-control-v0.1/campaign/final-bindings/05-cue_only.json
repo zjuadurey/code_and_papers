@@ -1,0 +1,43 @@
+{
+  "response_sha256": "ecb66fbbcfe2be958cd153619ac7ce814ac3bfade4bd7acc153d1e003d54fbdd",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 15.893,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:16:23.650658+00:00",
+  "review_submitted_utc": "2026-09-26T21:16:39.543531+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "ecb66fbbcfe2be958cd153619ac7ce814ac3bfade4bd7acc153d1e003d54fbdd",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate each activated pivot selection as a one-hot QUBO over rows col through n-1. The objective must select the greatest absolute pivot value and, among exactly equal values, the lowest row index. The one-hot penalty and tie-breaking coefficients must be proven sufficient over the complete objective range. Only kernel.py line 13 is covered; singularity checking, row swapping, elimination, back substitution, diagnostics, and report construction remain classical."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the dynamically modified binary64 values rows[i][col], rather than only the original matrix. One binary variable represents selection of each eligible row. An exact order-preserving representation of nonnegative Python binary64 absolute values and an index tie-break term are required. Coefficient precision, signed-zero behavior, nonfinite intermediate handling, state-loading cost, and penalty bounds that preserve the lexicographic optimum remain unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Decode a one-hot row index and verify classically that it is exactly the first index attaining Python's maximum absolute current pivot value. Invalid, suboptimal, or uncertified samples cannot be accepted. A failure path must use classical selection or otherwise preserve the applicable classical exception behavior. The exact-zero check and swap then execute unchanged."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "A Boolean predicate identifying the first maximum could be defined over finite row indices, but evaluating it requires exact comparison against every competing current pivot and exact tie handling. No reversible oracle, coherent data-access construction, resource bound, or deterministic error policy is supplied, so applicability is unresolved."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The one-hot QUBO remains an obligation-level proposal without explicit objective/coefficient construction or sufficient penalty bounds. Its exact all-state encoding is unresolved, and the secondary Grover discussion supplies no concrete selector either. The frozen predicate/scan checker cannot validate an unconstructed QUBO; do not reject the allowed alternative family or invent a predicate/finite guard. The response correctly notes the scope notice has no check outcomes.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

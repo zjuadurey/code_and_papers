@@ -1,0 +1,130 @@
+[
+  {
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests"
+    ],
+    "exit_code": 0,
+    "seconds": 3.754637441947125,
+    "stdout": "baseline-0.stdout.txt",
+    "stderr": "baseline-0.stderr.txt"
+  },
+  {
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "pilot/provisional_labels/v0.1/test_labels.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.6735653569921851,
+    "stdout": "baseline-1.stdout.txt",
+    "stderr": "baseline-1.stderr.txt"
+  },
+  {
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "pilot/how_review/v0.2/test_review.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.18592609197366983,
+    "stdout": "baseline-2.stdout.txt",
+    "stderr": "baseline-2.stderr.txt"
+  },
+  {
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "pilot/reference_completion/v0.1.1/test_corrections.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.41840473597403616,
+    "stdout": "baseline-3.stdout.txt",
+    "stderr": "baseline-3.stderr.txt"
+  },
+  {
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "pilot/reference_cases/v0.1/cases/context-002/test_program.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.2847081939689815,
+    "stdout": "baseline-4.stdout.txt",
+    "stderr": "baseline-4.stderr.txt"
+  },
+  {
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "pilot/source_adaptations/v0.2-where/cases/lit-004/test_program.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.24535947502590716,
+    "stdout": "baseline-5.stdout.txt",
+    "stderr": "baseline-5.stderr.txt"
+  },
+  {
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "pilot/reference_completion/v0.1.1/cases/lit-005/test_program.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.17745957197621465,
+    "stdout": "baseline-6.stdout.txt",
+    "stderr": "baseline-6.stderr.txt"
+  },
+  {
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "pilot/reference_completion/v0.1.1/cases/lit-008/test_program.py"
+    ],
+    "exit_code": 0,
+    "seconds": 0.2479861950268969,
+    "stdout": "baseline-7.stdout.txt",
+    "stderr": "baseline-7.stderr.txt"
+  }
+]

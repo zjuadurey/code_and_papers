@@ -1,0 +1,167 @@
+{
+  "status": "passed",
+  "date": "2026-09-25",
+  "focused_tests": {
+    "command": [
+      "/home/audrey/miniconda3/envs/palqo/bin/python",
+      "-B",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "pilot/enhancement/state-workflow-v0.2/test_claims.py",
+      "pilot/enhancement/state-workflow-v0.1/test_workflow.py"
+    ],
+    "exit_code": 0
+  },
+  "test_result": ".................................................                        [100%]\n49 passed in 0.25s",
+  "new_tests": 37,
+  "previous_workflow_tests": 12,
+  "full_repository_suite": "not rerun; shared source/evaluator unchanged",
+  "build_command": "/home/audrey/miniconda3/envs/palqo/bin/python -B pilot/enhancement/state-workflow-v0.2/build.py --output pilot/enhancement/state-workflow-v0.2/evidence",
+  "build_exit_code": 0,
+  "evidence_regeneration": "byte-identical via test_build_retains_history_and_no_model_results",
+  "development_requests": 3,
+  "reserved_requests": 12,
+  "reachable_pivot_states": 57,
+  "abstract_comparator_states": 780,
+  "new_model_calls": 0,
+  "qpu_calls": 0,
+  "cli_version_read_only": "0.156.1",
+  "credentials_accessed": false,
+  "old_file_count": 2364,
+  "old_files_changed": [],
+  "protocol_source_hashes": "passed",
+  "links": [
+    {
+      "source": "PROJECT_STATUS.md",
+      "target": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "exists": true
+    },
+    {
+      "source": "NEXT_ACTIONS.md",
+      "target": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "exists": true
+    },
+    {
+      "source": "NEXT_ACTIONS.md",
+      "target": "pilot/enhancement/state-workflow-v0.2/protocol.proposed.json",
+      "exists": true
+    },
+    {
+      "source": "TODO.md",
+      "target": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "exists": true
+    },
+    {
+      "source": "CHANGELOG.md",
+      "target": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "exists": true
+    },
+    {
+      "source": "docs/research_log.md",
+      "target": "../pilot/enhancement/state-workflow-v0.2/README.md",
+      "exists": true
+    },
+    {
+      "source": "docs/AGENT_WORKFLOW_LEARNING.md",
+      "target": "../pilot/enhancement/state-workflow-v0.1/README.md",
+      "exists": true
+    },
+    {
+      "source": "docs/AGENT_WORKFLOW_LEARNING.md",
+      "target": "../pilot/enhancement/state-workflow-v0.2/README.md",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "claims.py",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "build.py",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "evidence/development.json",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "evidence/evaluator-reserved.json",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "evidence/control-results.json",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "evidence/historical-binding.json",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "evidence/historical-feedback.json",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "evidence/historical-reserved.json",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "review.py",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "protocol.proposed.json",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "final-tests.json",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.2/README.md",
+      "target": "final-tests.stdout.txt",
+      "exists": true
+    }
+  ],
+  "artifact_sha256": {
+    "claims.py": "84aef684895df509647ac95bd378df174ee1bd4ed797c0f110aee9a3a0a3d94e",
+    "focused-tests.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "focused-tests.stdout.txt": "de19f92943048ce50f29511720a42c71769e760c8eab17bdd8372b927135a7a4",
+    "protocol.proposed.json": "2224e895f13a3507477272f0e0ba787fe17c7eab25d5e8e5bb9d3580dfee299a",
+    "test_claims.py": "121aac26a368c3d873ff9cb75cb7a5137a808cd07c784e4c7b5e47f9cc097d76",
+    "prepare_protocol.py": "39ab8f0f6178ed37ce261029acbef2b84a71e81d5ec918921395d10eae13a7b4",
+    "review.py": "2a9ba5c6cc1a19a5cc22b9366ffa5626ec36f9a81a90b65a6e0f33f9a009c208",
+    "final-tests.stdout.txt": "a1fd2a75a346447eaffc4dbe268a589ed7967deddaa4ce94f3fa15a66c37c783",
+    "final-tests.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "focused-tests.json": "264b45f93be2440a35222a2dcae2ab3840683716ecef89b6ececcf8480e57792",
+    "final-tests.json": "264b45f93be2440a35222a2dcae2ab3840683716ecef89b6ececcf8480e57792",
+    "build.py": "0061a61d0d0efe65bef6455a1e62a4c34c09f199d566cfe0673c85fba9b26b47",
+    "README.md": "d870ce53716b5b0168e1337263f6d01cf01dc83d71c82a559661bf3be794b953",
+    "evidence/analysis_only.txt": "b8dad458cea2e3490e9b16d5b61c97226baf385f9e0e2a058e18ae40c2ebdf8b",
+    "evidence/analysis_and_verification.txt": "9ab663d5a16e0bc6fb901f35e26798432b66a017588d020cc107bf2cd85cd005",
+    "evidence/verification_only.txt": "a10181b3feee7ef86dca8465799c752f343c497933ac7f8e0edc5601f9958b62",
+    "evidence/self_review.txt": "9f802b1d901009eefd39dae68505a7bb713a5719565479a9b4b12a95751767d5",
+    "evidence/control-results.json": "ffa5bac1aa7629b71dcdf7ea2639ee2e70235e25d981178cdb6252130429b755",
+    "evidence/evaluator-reserved.json": "febe10ea0de1d81e0366dd25d119999ae75c641fbec19e0843d750e1e76fcf4e",
+    "evidence/historical-feedback.json": "648f0ba64d5c6b93af92b2dad7517843e6993d0c517682676e22f7c2899ffd5a",
+    "evidence/historical-binding.json": "02cd8605d52ffe1b598ce05d3d2bcdc086b56678deb3cae692c746110997b8f1",
+    "evidence/summary.json": "eec98237706e26276654db981de2ae3b515ce9a3f48a846f83dda011b288d6f1",
+    "evidence/development.json": "c973906f45be705e691f4c98c565a2d79182fc6156cc71433d60d1911e9f29e9",
+    "evidence/historical-development.json": "81f83d769f02c6687f7bdcb8868a8158dfab9c38463d2a39bd92c410cbdc3437",
+    "evidence/historical-reserved.json": "774d61a4bd2a48e299e5c2714bc1bf6337e6fcb216c2aae5f6db80598fe20ccb"
+  },
+  "task_pass": null,
+  "effect_on_model_quality": null
+}

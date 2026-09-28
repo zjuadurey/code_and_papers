@@ -1,0 +1,79 @@
+{
+  "schema_version": "0.1.0",
+  "title": "DRAFT: maximum cut score",
+  "description": "DRAFT infrastructure demonstration; not scientifically validated ground truth.",
+  "source": "Original toy authored during infrastructure setup; generated assistance, human scientific review pending.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "infrastructure_demonstration",
+  "version": "0.1.0",
+  "migration_family": "combinatorial_optimization",
+  "context_level": "function_with_distractors",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "classical_program": "program.py",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "max_cut_score",
+      "start_line": 5,
+      "end_line": 10
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": true,
+  "benchmark_supported": true,
+  "expected_decision": "QUANTUMIZE",
+  "computational_intent": {
+    "id": "maximum_cut_score",
+    "description": "Return the exact maximum number of edges cut by a binary vertex assignment."
+  },
+  "admissible_migration_contracts": [
+    {
+      "contract_id": "draft-max-cut",
+      "status": "DRAFT",
+      "applicability_conditions": [
+        "Small undirected graph; encoding and validation need expert review."
+      ],
+      "input_encoding": "One decision bit per vertex; an Ising mapping remains to be reviewed.",
+      "formulation": "Illustrative QUBO/Ising maximum-cut objective.",
+      "algorithm_families": [
+        "qaoa"
+      ],
+      "output_decoding": "Decode a feasible partition and report its classical cut score.",
+      "semantic_relation": "Classical API returns the exact optimum; approximate quality alone does not preserve this API.",
+      "resource_assumptions": [
+        "DRAFT teaching example, not evidence of profitability."
+      ],
+      "known_limitations": [
+        "QAOA does not automatically guarantee the exact optimum. No admissibility claim is established without additional conditions or fallback."
+      ]
+    }
+  ],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "optimization_objective",
+    "description": "No quality threshold chosen. Exactness, feasibility, and fallback policy require human review.",
+    "config": {
+      "direction": "maximize"
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Local simulator demonstration only; no speedup or practical advantage claim."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT toy metadata exercises the infrastructure. Researchers must replace or independently verify every scientific label.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "This is a template of an unresolved proposed migration, not a scientifically supported QAOA equivalence example."
+  ],
+  "case_id": "toy-optimization-001"
+}

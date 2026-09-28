@@ -1,0 +1,20 @@
+{
+  "version": "0.1.1",
+  "purpose": "Local conversion execution check, not a model baseline or advantage experiment",
+  "solver": "one-layer QAOA with ideal Statevector expectation optimization",
+  "layers": 1,
+  "initial_gamma_beta": [0.37, 0.21],
+  "optimizer": "COBYLA",
+  "maxiter": 80,
+  "optimizer_tolerance": 0.000001,
+  "shots": 256,
+  "seed": 7,
+  "max_qubits": 16,
+  "max_total_weight": 1099511627776,
+  "selection": "minimum (exact classical conflict cost, mask) among sampled masks only",
+  "exact_fallback": false,
+  "reference_feedback": false,
+  "attempts_per_fixture": 1,
+  "acceptance_probability_threshold": null,
+  "hardware": "none; local noiseless simulation"
+}

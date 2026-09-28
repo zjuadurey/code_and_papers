@@ -1,0 +1,15 @@
+{
+  "version": "source-adaptations-0.1.0-review-inputs",
+  "case_ids": [
+    "lit-001",
+    "lit-002"
+  ],
+  "files_sha256": {
+    "lit-001/program.py": "1190430f7b73ddf4a44ee38c5caa649a540faafe3418fcaddd3a531e6d3274e3",
+    "lit-001/kernel.py": "2aa73675fc76452d16d2a016675e6367c3048d59fac893a9a9de846ffbd9f499",
+    "lit-001/public_task.json": "b0a3ccafeeb8280487e61310213889d70871a65ec6f35347883ce56f0d4cd6f5",
+    "lit-002/program.py": "ecc779119695e28e452b56dacb646fb02ee791b92a721c1a1747d263d10f7aa3",
+    "lit-002/kernel.py": "70a4f423fd3f5c41ff6062469044a161d980398918be68422b05099c8ac886bf",
+    "lit-002/public_task.json": "a680f10b8c1c5db1a4c330c6037c5f221e323930fecb30fde3f812c8a0659e07"
+  }
+}

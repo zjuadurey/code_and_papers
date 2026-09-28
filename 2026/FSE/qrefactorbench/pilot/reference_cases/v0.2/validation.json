@@ -1,0 +1,165 @@
+{
+  "utc": "2026-09-20T19:22:32.204930+00:00",
+  "commands": [
+    {
+      "name": "configuration_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_cases/v0.2/cases/context-003/test_program.py"
+      ],
+      "exit_code": 0,
+      "result": "37 passed in 0.09s",
+      "evidence": "First execution this session, copied from tool output; not rerun"
+    },
+    {
+      "name": "batch_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_cases/v0.2/cases/context-004/test_program.py"
+      ],
+      "exit_code": 0,
+      "result": "26 passed in 0.10s",
+      "evidence": "First execution this session, copied from tool output; not rerun"
+    },
+    {
+      "name": "paired_views",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_cases/v0.2/test_views.py"
+      ],
+      "exit_code": 0,
+      "result": "5 passed in 0.12s",
+      "evidence": "First execution this session, copied from tool output; not rerun"
+    },
+    {
+      "name": "source_search_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "cases/pilot/pilot-001/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/source_search_tests.stdout.txt",
+      "stderr": "validation/source_search_tests.stderr.txt"
+    },
+    {
+      "name": "source_digest_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "cases/pilot/pilot-002/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/source_digest_tests.stdout.txt",
+      "stderr": "validation/source_digest_tests.stderr.txt"
+    },
+    {
+      "name": "core_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/core_tests.stdout.txt",
+      "stderr": "validation/core_tests.stderr.txt"
+    },
+    {
+      "name": "validate_new",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "pilot/reference_cases/v0.2/cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_new.stdout.txt",
+      "stderr": "validation/validate_new.stderr.txt"
+    },
+    {
+      "name": "summarize_new",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "pilot/reference_cases/v0.2/cases/",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/summarize_new.stdout.txt",
+      "stderr": "validation/summarize_new.stderr.txt"
+    },
+    {
+      "name": "validate_original",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_original.stdout.txt",
+      "stderr": "validation/validate_original.stderr.txt"
+    },
+    {
+      "name": "summarize_original",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "cases/",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/summarize_original.stdout.txt",
+      "stderr": "validation/summarize_original.stderr.txt"
+    }
+  ],
+  "protected_count": 867,
+  "protected_changed": [],
+  "scientific_judgments_null": true,
+  "new_model_quantum_calls": 0,
+  "new_dependencies": false,
+  "optional_quantum_tests": "Not rerun; no quantum code changes",
+  "new_context_cases": 2,
+  "reference_problem_groups": 4,
+  "public_views": 8,
+  "protected_changed_after_documentation": [],
+  "local_links_checked": 119,
+  "missing_local_links": [],
+  "public_files": 20,
+  "prior_four_views_byte_identical": true,
+  "public_spec_cue_scan": "Passed explicit family/annotation terms; source names and functional intent remain visible",
+  "public_spec_cue_pattern": "\\b(qaoa|grover|qubo|quantum|candidate_region|structural_eligibility)\\b|\\b(positive|negative)\\s+(case|example|label)\\b",
+  "pair_index_hashes_valid": true
+}

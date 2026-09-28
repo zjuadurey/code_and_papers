@@ -1,0 +1,26 @@
+{
+  "application": {
+    "coverage": "one QAOA p=1 shot including uniform initialization, edge cost phases, mixers, measurement",
+    "format": "openqasm3",
+    "source": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nqubit[4] q;\nbit[4] result;\nh q[0];\nh q[1];\nh q[2];\nh q[3];\ncx q[0], q[1];\nrz(-0.78539816339744828) q[1];\ncx q[0], q[1];\ncx q[0], q[3];\nrz(-0.78539816339744828) q[3];\ncx q[0], q[3];\ncx q[1], q[2];\nrz(-0.78539816339744828) q[2];\ncx q[1], q[2];\ncx q[2], q[3];\nrz(-0.78539816339744828) q[3];\ncx q[2], q[3];\nrx(0.78539816339744828) q[0];\nrx(0.78539816339744828) q[1];\nrx(0.78539816339744828) q[2];\nrx(0.78539816339744828) q[3];\nresult[0] = measure q[0];\nresult[1] = measure q[1];\nresult[2] = measure q[2];\nresult[3] = measure q[3];\n"
+  },
+  "max_error": 0.01,
+  "plan_id": "lit001-qaoa-p1-cycle4",
+  "profiles": [
+    {
+      "error_rate": 0.0001,
+      "gate_time_ns": 100,
+      "id": "hypothetical-100ns",
+      "measurement_time_ns": 500,
+      "source": "hypothetical gate-based configuration; not calibrated physical device"
+    },
+    {
+      "error_rate": 0.0001,
+      "gate_time_ns": 1000,
+      "id": "hypothetical-1000ns",
+      "measurement_time_ns": 5000,
+      "source": "hypothetical gate-based configuration; not calibrated physical device"
+    }
+  ],
+  "version": "resource-workflow-v0.1"
+}

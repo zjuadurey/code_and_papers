@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qrefactorbench.example/schemas/0.2.0/phase1_prediction.schema.json",
+  "title": "Phase-1 T1/T2/T3 prediction; shared fields reference the unchanged v0.1 format",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.2.0"
+    },
+    "case_id": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/case_id"
+    },
+    "decision": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/decision"
+    },
+    "candidate_regions": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/candidate_regions"
+    },
+    "migration_family": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/migration_family"
+    },
+    "plan": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/plan"
+    },
+    "rationale": {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/properties/rationale"
+    },
+    "structural_eligibility": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "practical_suitability": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "benchmark_supported": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "computational_intent": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "description": "Free description; private reference intent IDs are not a grading vocabulary."
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "contract_applicability": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contract_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "applicable": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "contract_id",
+          "applicable",
+          "rationale"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "decision",
+    "candidate_regions",
+    "migration_family",
+    "plan",
+    "rationale",
+    "structural_eligibility",
+    "practical_suitability",
+    "benchmark_supported",
+    "computational_intent",
+    "assumptions",
+    "risks",
+    "contract_applicability"
+  ],
+  "allOf": [
+    {
+      "$ref": "https://qrefactorbench.example/schemas/0.1.0/prediction.schema.json#/allOf/0"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "resolution": "transcribed",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/assumptions/1"],
+  "rationale": "This revision supplies strict greater-than against earlier candidates and at-least against later candidates, unlike the initial >=-all predicate that included self. Nonfinite encoding is unresolved but no executable finite-only admission condition is declared. Bind the literal earlier/later predicate with guard True; fixed row state does not mean finite-valued state. Declared verification and fallback do not establish the local predicate or complete migration.",
+  "interpretations": [{"id": "earlier_gt_later_ge", "meaning": "Candidate strictly exceeds every earlier absolute pivot and is at least every later absolute pivot, with no stated state exclusion.", "mode": "predicate", "expression": "all(values[i] > values[j] for j in indices if j < i) and all(values[i] >= values[k] for k in indices if k > i)", "guard": "True", "outside_guard": "unresolved"}]
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "pilot-002",
+  "title": "Ordered ledger digest",
+  "description": "Consume every event in order, call audit exactly once per event, and return the final rolling digest. Pilot annotation material; not validated benchmark ground truth.",
+  "source": "Original synthetic program authored with Codex assistance for the requested Phase-1 pilot on 2026-09-18. No independent researcher authorship or review is claimed; not copied from an external repository.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "phase1_synthetic",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "kernel",
+  "case_type": "hard_negative",
+  "difficulty": "unknown",
+  "classical_program": "program.py",
+  "candidate_regions": [],
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "expected_decision": "REMAIN_CLASSICAL",
+  "computational_intent": {
+    "id": "ordered_ledger_digest",
+    "description": "Consume every event in order, call audit exactly once per event, and return the final rolling digest."
+  },
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "Consume every event in order, call audit exactly once per event, and return the final rolling digest. Check the declared input domain, edge cases and effects using the classical tests; this draft is not a registered quantum semantic oracle.",
+    "hook_id": "pilot-002-semantics",
+    "config": {
+      "input_domain": "events is a finite list of bytes; audit is a callback with externally visible effects and may raise.",
+      "probabilistic_policy": null
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "The audit callback must run on the classical host, exactly in input order.",
+      "Every event affects the digest; each intermediate audit digest is observable.",
+      "The one-pass full ledger is the required output contract; there is no hidden existential query."
+    ],
+    "limits": {}
+  },
+  "negative_reason": "PROVISIONAL hard-negative hypothesis within the two supported families; candidate_regions is empty because no supported candidate is proposed. The rejected hotspot is recorded in CURATOR_NOTES.md. This is not an impossibility theorem; the REVIEWED hard-negative region convention in D-005 remains an open issue.",
+  "annotation_rationale": "PROVISIONAL hard-negative hypothesis within the two supported families; candidate_regions is empty because no supported candidate is proposed. The rejected hotspot is recorded in CURATOR_NOTES.md. This is not an impossibility theorem; the REVIEWED hard-negative region convention in D-005 remains an open issue.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "DRAFT synthetic annotation material; curator hypotheses must not be distributed to independent annotators.",
+    "Licensing is unresolved; NOASSERTION grants no redistribution rights.",
+    "Human review must determine whether the proposed category and span are defensible."
+  ]
+}

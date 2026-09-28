@@ -1,0 +1,37 @@
+{
+  "finite_solver_checks": [
+    {
+      "seed": 0,
+      "passed": true
+    },
+    {
+      "seed": 1,
+      "passed": true
+    },
+    {
+      "seed": 2,
+      "passed": true
+    },
+    {
+      "seed": 3,
+      "passed": true
+    },
+    {
+      "seed": 4,
+      "passed": true
+    },
+    {
+      "seed": 5,
+      "passed": true
+    },
+    {
+      "seed": 6,
+      "passed": true
+    },
+    {
+      "seed": 7,
+      "passed": true
+    }
+  ],
+  "timeout_and_strict_boundary_checks": true
+}

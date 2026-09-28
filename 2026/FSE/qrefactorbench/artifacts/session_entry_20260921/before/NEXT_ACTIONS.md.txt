@@ -1,0 +1,212 @@
+# Next actions
+
+Last updated: 2026-09-21. Short execution queue; [TODO.md](TODO.md) is the broader backlog.
+Current handoff: [PROJECT_STATUS.md](PROJECT_STATUS.md). No new LLM benchmark run is authorized.
+The researcher has ended the CA6000 diversion and explicitly resumed FSE work.
+Preserve the delivered coursework; do not continue polishing it by default.
+
+## NOW
+
+**All five discussion directions are recorded in D-016/D-017; do not re-ask them.**
+
+1. **N-030 — Review the ten sourced groups and concrete evaluation methods.**
+   Engineering review and its three approved fixes are complete (N-031).
+   Start at [corrected v0.1.1](pilot/reference_completion/v0.1.1/README.md) and
+   [coverage](pilot/reference_completion/v0.1/COVERAGE.md). Six new programs adopt
+   specified source tasks/algorithms; the prior four sourced groups are reused.
+   Run/read each example, inspect functional obligations and A/B/C cues, record
+   researcher keep/change/drop feedback. Review XOR/numerical scope controls without
+   labeling them scientifically negative. Methods have real fixtures/results but no
+   new scoring thresholds. N-029 construction is complete; do not substitute another
+   literature checklist or local wrapper expansion for source adoption. No model run.
+   Do not re-audit the fixed ordering/overflow issues or expand cases by default.
+   Next concrete human review is keep/change/drop and experiment rubric/cue approval;
+   no measured difficulty is required to finish case construction. Use corrected
+   packets for future authorized runs; no copying earlier run authorization.
+
+**N-027 — Included in N-030; human review still pending.**
+   [Polished review package](pilot/where_review/v0.1/README.md) /
+   [A/B/C design](pilot/where_review/v0.1/PROTOCOL.md).
+   Walk through lit-003's blocked preview but feasible completion and lit-004's
+   different preview/proposal groups. Inspect source lineage, required branches,
+   dependency boundaries and full reports. Record actual researcher keep/change/drop
+   feedback; do not infer acceptance from tests. Stronger WHERE remains a hypothesis.
+   N-026 construction and N-028 offline preparation are complete. Six messages and
+   thirteen classical witnesses exist; do not regenerate more worksheets. D-020
+   accepts the three-condition direction, not final cue spans, scores or run settings.
+   No model/quantum experiment is authorized.
+   N-029 subsequently adds six sourced programs at the user's explicit request;
+   further expansion should follow review, not mass wrapper generation.
+
+**N-025 — Paused:** review of the earlier eight synthetic groups / sixteen views.
+   [Prior package](pilot/reference_cases/v0.3/README.md) remains intact. The user
+   corrected the direction toward reference-benchmark examples and harder WHERE.
+   N-021/N-023's earlier reviews remain pending, not completed by this redirection.
+
+**N-019 — Complete context-001 approximate-contract criteria (human decision):**
+   [Case draft](pilot/context_adaptations/v0.2-draft/CONTRACT_CONTEXT_001.md) and D-018
+   record permission and ρ=(W−C)/(W−C*) as accepted. Tolerance remains pending;
+   95% is illustrative. When ready, ask one concise question about minimum quality,
+   then resolve selection/tie and any probabilistic requirements. Do not infer
+   semantic success, auto-register the draft, rerun solvers or change old results.
+
+**N-018 — Paused: expose observed exactness failures through existing semantic checks:**
+   [v0.1.1 saved results](demo/context001_qiskit/artifacts/device_limit_v011/README.md)
+   include two 16-device outputs that execute but miss the exact optimum. Reuse
+   existing semantic hooks with these saved reports and the unchanged original
+   contract, so execution success cannot hide mismatch. Add only focused regressions
+   if needed; no solver rerun, evaluator semantics change, fallback or label changes.
+   Weight-domain compatibility remains separate debt, not a reason to relax the case.
+
+N-012 functional-context/tie discussion and N-010 source-case review remain available
+alongside this focused decision; none is an independent annotation submission.
+
+N-007 (five search-plan predicate checks) is **paused**, not completed: the user
+has prioritized benchmark representativeness over more bounded input checks.
+
+**N-003 — Pending technical human review of the conditional plans.**
+   [Coordinator-only review record](pilot/review/CONDITIONAL_PLAN_HUMAN_REVIEW.md)
+   is ready; all human fields are blank. No submissions have been received.
+   Do not fill these fields for the researcher or generate another worksheet.
+   D-014–D-017 are accepted; do not ask those policy questions again.
+   Review formulation, semantic/exactness
+   obligations and resource gaps against the original contract. Unresolved obligations
+   remain unresolved; no human judgment is implied by accepting these policies.
+   N-006 now supplies arithmetic evidence for pilot-003/006/009; review that evidence
+   rather than assuming the earlier SUBSTANTIVE coding establishes correctness.
+
+## AFTER THAT
+
+N-005 is deferred: implement accepted directions through a new version only when
+it serves the next concrete experiment. Reuse existing abstractions for reviewed
+uncertainty, nomination-before-exclusion and staged review. Preserve legacy formats,
+labels and scores; do not invent unresolved scientific criteria.
+
+2. If actual reviews arrive, preserve completed copies separately, compare recorded
+   disagreements and prepare unresolved questions without adjudicating. Adoption
+   of protocol directions does not authorize a new model run.
+
+## COMPLETED
+
+- N-031: user-approved review fixes in v0.1.1, old version retained; locked conflict
+  order, finite delta guard, explicit lit-007 algorithm cue removal. New-version
+  suites 73 passed, core 97 passed/15 skipped, optional 5 passed. Only seven input
+  messages changed; 1,189 protected files and all scientific fields unchanged.
+
+- N-029: six source-derived classical programs, 56 case tests, 30 A/B/C messages
+  across ten source groups, and executable method fixtures. All 81 new tests pass
+  after fixing a NumPy scalar compatibility error (initial failures retained).
+  QuanBench+ URL corrected in an addendum; source inconsistencies recorded, not
+  copied into labels. Old cases, schemas, evaluator and experiments preserved.
+
+- N-028: polished lit-003/lit-004 core/dependency/outer-obligation evidence and alternate
+  boundary proposals; drafted A/B/C protocol, six allowlisted inputs with exact B/C
+  cue-only difference, and thirteen classical witnesses. Six preparation checks pass;
+  old source/context and core tests pass. No human judgments, new cases or model runs.
+
+- N-026: source-first correction; reviewed ten C2|Q> records, selected four functions
+  for two mother problems/four views, with source snapshots/diffs, full-report tests,
+  blind exports and a reference-benchmark/method audit. Thirty-eight new tests pass;
+  all scientific judgments remain unknown/DRAFT. Not ten new independent cases.
+
+- N-024: researcher-authorized expansion of four exemplars to eight functional groups /
+  sixteen views in pilot/reference_cases/v0.3/. Added four meaningful contexts, exact
+  contracts, independent/fault tests, examples, provenance and allowlisted exports.
+  Three source functions unchanged from existing synthetic pilots; one new synthetic
+  capacity-selection kernel. Previous eight views and 926 protected files unchanged;
+  new labels unknown/DRAFT. No new external provenance, scientific validation or runs.
+
+- N-022: search/configuration and ordered-event classical-retention reference pairs
+  added with unchanged pilot-001/002 cores, independent functional/trace oracles,
+  exact public contracts, source lineage and eight-view allowlist export. Scientific
+  fields remain null; both new contexts are synthetic, not new literature sources.
+- N-020: polished the two existing optimization reference pairs; reused sourced
+  cores/maintenance context and added inspection assessment/worklists/transfer context.
+  Independent tests, concrete good/bad output checks, two-level public contracts,
+  fixed allowlist exports, lineage index and reviewer guide ready. No gold labels.
+- Recorded D-018 and the separate v0.2-draft contract document: approximation allowed
+  for this profile, satisfied-weight ratio accepted, threshold still unknown. No
+  benchmark/code/label changes; old exact-version failures remain valid observations.
+- N-017: corrected the arbitrary six-device cap to the original 16-device maximum;
+  preserved original source/records and measured actual 7/12/16-device runs.
+  All four complete, two exactness failures retained (cost gaps 4 and 5); no retries.
+  This fixes device count, not weight-domain coverage or general exactness.
+- N-016: source/count/report audit confirmed the original five matches, no exact
+  fallback, and a concrete 7-device input-domain incompatibility. The latter prompted
+  the researcher-authorized N-017 fix; it was not a Qiskit hardware limitation.
+
+- N-015: researcher-requested local Qiskit conversion implemented and run once on
+  five small inputs (four circuits, empty classical return). Five full reports agree;
+  three optimizations hit their budget without convergence. No reference feedback,
+  fallback, retry, model/QPU call or benchmark alteration. This is a bounded prototype,
+  not an automatic translator, general contract proof or performance experiment.
+
+- N-014: researcher explicitly accepted context-001's narrow structural correspondence
+  as an initial opinion, with complete quantum migration unverified and practical
+  suitability unknown. Recorded separately; no independent review/status promotion.
+
+- N-013: context-001 source-to-QUBO/Ising and decoding audit; bounded arithmetic and
+  classical exact-polynomial full-report checks support the structural proposal.
+  No case labels or code changed, no quantum optimizer or benefit verified.
+
+- N-011: researcher-approved second-context maintenance assessment/adjustment program,
+  fixed software contract, independent full-report tests, public source export and
+  source-lineage preservation. No new model run; original lit-001/lit-002 unchanged.
+
+- N-009 and two-case construction trial: pinned C2|Q> rows 164/427, unchanged MaxCut /
+  vertex-cover kernels, synthetic functional APIs, classical tests, source attribution,
+  public input export and evaluation-method comparison. See
+  [construction package](pilot/source_adaptations/v0.1/README.md). No baseline run.
+
+- N-008: [005/009 functional-context review](artifacts/context_case_review/README.md).
+  Real functional dependencies within synthetic examples; no verified application
+  provenance. 005's sorting obligation needs clarification; 009 has explicit
+  exception/report behavior. Source/test evidence recorded, no labels assigned.
+- N-006: audited all three optimization plans on 1,805 bounded inputs / 7,083
+  assignments. Objective/Ising values and recovered exact optima agree; explicit
+  feasible-but-suboptimal sample witnesses demonstrate the certification obligation.
+  This is AI-assisted evidence only; frozen results and human review fields unchanged.
+- CA6000 SAT course study: researcher chose own-project data and English PPT;
+  3,000 canonical-distinct inputs, exact labels, cleaning/EDA, MLP/linear baselines,
+  local interactive prediction/exact verification, English report and eight slides.
+  This is separate from benchmark quantumization labels and experiments.
+- Terminal demo: saved analysis/conditional plan → actual Qiskit simulation →
+  classical verification/fallback; separate retained-classical example. No model run,
+  case/schema/evaluator/label change. See demo/README.md for passing checks and limits.
+- N-004: exporter uses dedicated versioned instructions, independent of mutable README;
+  focused/full/optional tests and dummy blind workflow pass. All 99 frozen packet
+  files and both experiments are unchanged. Do not repeat this repair.
+- D-016: items 2–5 recorded; reviewed uncertainty, broad candidates, evidence-based
+  suitability and staged review accepted prospectively.
+- D-017: item 1 accepted; structural YES requires concrete mapping evidence,
+  distinct from complete original-contract preservation and practical suitability.
+- D-015: researcher approved original software contract preservation as the default;
+  recorded without changing cases, experiments, schemas or scoring.
+- N-002 policy branch: researcher selected A; D-014 records conditional planning
+  independently of adoption for future versions. Pending case review moves to N-003.
+- N-001: single coordinator-only record for eight plans/two controls prepared and
+  checked. Original responses and analyses are linked, not rewritten. No human
+  judgments or scientific labels supplied. Do not repeat this preparation.
+
+## BLOCKED ON HUMAN
+
+- Context-001 approximate profile: minimum quality threshold, tie/selection policy
+  and any repeated-run confidence requirements. Definition and permission are decided.
+- Review conditional-plan correctness and define coverage/quality criteria (remaining
+  Q19). Elicitation policy is decided; no plan has been human-validated by that choice.
+- Independently annotate/adjudicate cases; resolve Q1/Q6/Q9/Q14 and licenses before
+  label promotion, scientific accuracy claims, or release.
+
+## DO NOT DO YET
+
+No additional model runs, frozen-prompt edits, relabeling, legacy schema/metric
+rewrites, agent architecture, new families, unreviewed mass expansion, or final split.
+The latest user corrected the expansion toward external benchmark sources and
+stronger WHERE discovery. N-026 supplies two new source-driven functional examples;
+next is their concrete review. Earlier N-024's local synthetic expansion did not
+satisfy that sourcing goal. Neither task approves labels or authorizes model runs,
+automatic bulk generation or agent design.
+Accepted prospective rules may be implemented in a new version under N-005; unresolved
+scientific criteria remain open. “继续” follows the FSE evidence-audit queue above;
+it does not authorize another model experiment or further review-form generation.
+N-005 is deferred until it enables a concrete reviewed protocol/experiment need.

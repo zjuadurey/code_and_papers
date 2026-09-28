@@ -1,0 +1,21 @@
+{
+  "analysis": {
+    "kind": "lexical_dependency_inventory",
+    "regions": [],
+    "limits": "Public source only; lexical inventory, not sound slicing, ranges or reachability proof."
+  },
+  "verification": {
+    "kind": "semantic_feedback",
+    "status": "insufficient_evidence",
+    "task_pass": null,
+    "scope": "Reviewer-transcribed pivot selection on finite development checks only",
+    "prose_fidelity_automatically_proved": false,
+    "interpretations": [],
+    "limits": [
+      "Finite checks are not full-domain proof, whole-plan correctness or quantum execution.",
+      "Excluded states and a declared fallback are not verified repairs.",
+      "Ambiguous, withdrawn or unsupported claims are not automatic successes."
+    ]
+  },
+  "tool_seconds": 0.009302659003878944
+}

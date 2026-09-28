@@ -1,0 +1,120 @@
+--- N050/campaign.py
++++ N052/campaign.py
+@@ -1,4 +1,4 @@
+-"""N-050: sixteen fixed historical-draft revisions; no live run without a new receipt."""
++"""N-052: ten paired claim-elicitation revisions under delegated subscription budget."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -13,8 +13,8 @@
+ HERE = Path(__file__).resolve().parent
+ ROOT = HERE.parents[2]
+ BASE = HERE.parent / "state-workflow-v0.3"
+-DESIGN = HERE.parent / "state-workflow-design-v0.1/audit"
+-spec = importlib.util.spec_from_file_location("n050_retained_campaign", BASE / "campaign.py")
++DESIGN = HERE / "design"
++spec = importlib.util.spec_from_file_location("n052_retained_campaign", BASE / "campaign.py")
+ assert spec and spec.loader
+ base = importlib.util.module_from_spec(spec)
+ spec.loader.exec_module(base)
+@@ -23,7 +23,7 @@
+ load_document, save, sha, now = base.load_document, base.save, base.sha, base.now
+ locked, raw_path, result_path = base.locked, base.raw_path, base.result_path
+ claims = base.claims
+-DENOMINATORS = {"self_review": 5, "cue_only": 5, "assessment_summary": 5, "with_witness": 1}
++DENOMINATORS = {"self_review": 5, "formalization": 5}
+ REGRESSION_ROLE = "known_regression_previously_inspected_not_unseen"
+ 
+ 
+@@ -48,7 +48,7 @@
+             raise ValueError(f"Historical dependency changed: {name}")
+     slots = design_slots()
+     if Counter(s["arm"] for s in slots) != DENOMINATORS:
+-        raise ValueError("Design must retain all16 planned positions")
++        raise ValueError("Design must retain all10 planned positions")
+     folder.mkdir(parents=True, exist_ok=False)
+     (folder / "frozen-inputs").mkdir()
+     for s in slots:
+@@ -57,10 +57,10 @@
+             raise ValueError("Design prompt changed")
+         with (folder / "frozen-inputs" / f"{s['id']}.txt").open("xb") as stream:
+             stream.write(data)
+-    protocol = {"version": "feedback-control-0.1", "created_utc": now(),
++    protocol = {"version": "claim-elicitation-0.1", "created_utc": now(),
+                 "run_authorization": None, "simulation": simulation,
+                 "model": "gpt-5.6-sol", "reasoning_effort": "medium",
+-                "access": "existing ChatGPT subscription", "maximum_model_calls": 16,
++                "access": "existing ChatGPT subscription", "maximum_model_calls": 10,
+                 "maximum_concurrency": 1, "timeout_seconds_per_call": 600,
+                 "operator_retries": 0, "model_tools": [], "mother_cases": 1,
+                 "model_seed": None, "temperature": None, "server_snapshot": None,
+@@ -72,7 +72,7 @@
+                 "evaluation_role": REGRESSION_ROLE,
+                 "evaluation_suite": str((base.V2 / "evidence/evaluator-reserved.json").relative_to(ROOT)),
+                 "final_binding_policy": "All new valid responses bound after queue termination, before regression collection.",
+-                "reporting": ["S/C/E each5; W only1. Compare W with same-draft E, not pooled proportions.",
++                "reporting": ["S/F each5, all historical drafts retained; paired elicitation diagnostic, equal calls not equal tokens.",
+                               "One known failure, one mother case; no independent generalization evidence.",
+                               "Insufficient, ambiguous, guarded and contradicted claims remain separate.",
+                               "Reviewer transcription is not independent human review or full-task correctness.",
+@@ -86,8 +86,8 @@
+     for name, digest in p["source_sha256"].items():
+         if sha(ROOT / name) != digest:
+             raise ValueError(f"Frozen source changed: {name}")
+-    fixed = {"version": "feedback-control-0.1", "model": "gpt-5.6-sol", "reasoning_effort": "medium",
+-             "maximum_model_calls": 16, "maximum_concurrency": 1, "timeout_seconds_per_call": 600,
++    fixed = {"version": "claim-elicitation-0.1", "model": "gpt-5.6-sol", "reasoning_effort": "medium",
++             "maximum_model_calls": 10, "maximum_concurrency": 1, "timeout_seconds_per_call": 600,
+              "operator_retries": 0, "model_tools": [], "new_initial_calls": 0,
+              "denominators_by_arm": DENOMINATORS, "slots": design_slots(),
+              "evaluation_role": REGRESSION_ROLE,
+@@ -111,21 +111,21 @@
+         for s in p["slots"]:
+             records.setdefault(s["id"], {"slot": s["id"], "replicate": s["replicate"], "arm": s["arm"],
+                                         "status": "not_run_infrastructure_stop", "task_pass": None})
+-        return {"state": "stopped", "records": records, "planned": 16}
++        return {"state": "stopped", "records": records, "planned": 10}
+     for s in p["slots"]:
+         if s["id"] not in records:
+             status = ("recover_attempt" if (folder / "attempts" / f"{s['id']}.json").exists()
+                       else "ready_call" if (folder / "authorization.json").exists() else "await_authorization")
+-            return {"state": status, "slot": s, "records": records, "planned": 16}
+-    return {"state": "all_slots_terminal", "records": records, "planned": 16}
++            return {"state": status, "slot": s, "records": records, "planned": 10}
++    return {"state": "all_slots_terminal", "records": records, "planned": 10}
+ 
+ 
+ def authorized(folder: Path, p: dict[str, Any]) -> None:
+     receipt = load_document(folder / "authorization.json")
+-    required = {"protocol_sha256": sha(folder / "protocol.json"), "maximum_model_calls": 16,
++    required = {"protocol_sha256": sha(folder / "protocol.json"), "maximum_model_calls": 10,
+                 "model": p["model"], "reasoning_effort": p["reasoning_effort"], "simulation": p["simulation"]}
+     if any(receipt.get(k) != v for k, v in required.items()) or not receipt.get("user_instruction"):
+-        raise ValueError("Authorization does not cover this exact16-call protocol")
++        raise ValueError("Authorization does not cover this exact10-call protocol")
+     if not p["simulation"]:
+         check = load_document(folder / "preflight/passed.json")
+         if check.get("protocol_sha256") != required["protocol_sha256"] or check.get("passed") is not True:
+@@ -152,7 +152,7 @@
+         authorized(folder, p)
+         if p["simulation"] != (fake_transport is not None):
+             raise ValueError("Simulation requires fake transport; live mode requires isolated transport")
+-        if len(list((folder / "attempts").glob("*.json"))) >= 16:
++        if len(list((folder / "attempts").glob("*.json"))) >= 10:
+             raise ValueError("Call budget exhausted")
+         s = current["slot"]
+         source = folder / "inputs" / f"{s['id']}.txt"
+@@ -229,11 +229,10 @@
+                 row["reviewer"] = review["reviewer"]
+             rows.append(row)
+         result = {"protocol_sha256": sha(folder / "protocol.json"), "simulation": p["simulation"],
+-                  "planned_slots": 16, "denominators_by_arm": DENOMINATORS,
++                  "planned_slots": 10, "denominators_by_arm": DENOMINATORS,
+                   "attempts": len(list((folder / "attempts").glob("*.json"))), "task_pass": None,
+                   "evaluation_role": REGRESSION_ROLE, "rows": rows,
+-                  "paired_comparisons": {"cue_minus_self": [1, 2, 3, 4, 5],
+-                                         "summary_minus_cue": [1, 2, 3, 4, 5], "witness_minus_summary": [2]},
++                  "paired_comparisons": {"formalization_minus_self": [1, 2, 3, 4, 5]},
+                   "limits": p["reporting"]}
+         save(folder / "final-results.json", result)
+         return result

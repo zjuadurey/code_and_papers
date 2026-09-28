@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 13,
+      "end_line": 13
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact-first-partial-pivot-selection",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditionally replace each execution of the pivot argmax with a one-hot QUBO over indices col through n-1. For finite current pivot magnitudes, an exact order key K for each nonnegative Python binary64 abs(rows[i][col]) could define a lexicographic objective such as minimizing -(m+1)*K+i, where m=n-col, so magnitude dominates and the lowest index wins exact ties. Add a one-hot penalty proven larger than the complete feasible-objective range. This formulation covers only line 13; the zero-pivot check, swap, elimination, back substitution, overflow behavior, residual diagnostics, and report construction remain classical.",
+    "input_encoding": "Encode n, col, and the current augmented rows state produced at line 11 and mutated by earlier executions of lines 16-20. One binary variable denotes each eligible row. The implementation must define an exact order-preserving encoding of finite absolute binary64 values, including subnormals and signed-zero behavior, and must not round coefficients in a way that changes the selected index. Nonfinite intermediate candidate values require a semantics-preserving classical path because a total finite order encoding would not reproduce Python comparison behavior automatically. Coefficient construction, state loading, ancillary workspace, and a sufficient penalty bound remain unresolved.",
+    "quantum_algorithm_family": "QUBO/Ising with a possible QAOA-style executor",
+    "output_decoding": "Decode a one-hot row index and verify classically that it equals Python's first index attaining the maximum current absolute pivot value. Invalid, suboptimal, or uncertified samples cannot be accepted. A semantics-preserving implementation must use the original classical selection whenever exact certification or encoding is unavailable; it must then execute the existing exact-zero check and swap unchanged.",
+    "assumptions": [
+      "The solve branch is active, n is positive, and the current column iteration has at least one eligible row.",
+      "An exact order key for each finite Python binary64 absolute value can be constructed without changing Python comparison and first-index tie semantics.",
+      "The hybrid boundary preserves the serial dependence by using the rows state resulting from all preceding swaps and elimination updates.",
+      "Classical verification and fallback are permitted and included in total resource and performance accounting.",
+      "No finite development check is treated as proof of the whole formulation, full-domain correctness, or quantum execution behavior."
+    ],
+    "risks": [
+      "QAOA does not guarantee the exact optimum required by largest-absolute-value selection and first-index tie-breaking.",
+      "Exact binary64 ordering and a sufficient one-hot penalty can require coefficient ranges and precision unavailable on a target backend.",
+      "Constructing coefficients from every current pivot, loading them for every column, and verifying the result can cost at least as much as the original linear scan.",
+      "Intermediate infinities or NaNs are not covered by the finite order-key formulation and must not alter eventual exception behavior.",
+      "A wrong pivot changes subsequent floating-point operation order and can alter rounding, singularity detection, the solution, deltas, residuals, and exceptions.",
+      "The supplied evidence does not establish correctness of the proposed encoding or any useful quantum execution."
+    ],
+    "expected_resource_characteristics": {
+      "logical_variables_per_activation": "n-col one-hot variables before ancillary and embedding overhead",
+      "coupling_structure": "The squared one-hot constraint generally creates dense pairwise couplings among eligible-row variables.",
+      "activations": "Up to n serial activations in solve mode; none in inspect mode or for an empty system.",
+      "precision": "Coefficients must preserve the complete relevant binary64 magnitude order and deterministic index tie-break.",
+      "overheads": "State inspection and loading, exact coefficient construction, embedding, parameter optimization, shots, decoding, classical certification, and fallback are unquantified.",
+      "advantage_evidence": "None supplied."
+    },
+    "rationale": "This is a conditional structural formulation, not a correctness certificate or adoption recommendation. Exact feasibility, coefficient precision, backend support, resource bounds, and full-domain semantic equivalence remain unresolved."
+  },
+  "rationale": "The defensible supported-family region is the pivot selection at kernel.py line 13. It selects from the finite index set range(col, n) using abs(rows[i][col]); because the range is ascending and Python max retains the first encountered equal key, the line implements the required first-index tie rule. Its direct state dependencies are n from line 10, rows initialized from matrix and rhs at line 11, col from the loop at line 12, and the current rows contents modified by prior swaps and elimination at lines 16-20. It activates only when program.py lines 22-23 enter solve mode, n is nonzero, and the corresponding elimination-column iteration is reached. The boundary must preserve the exact-zero singularity check at lines 14-15, row swap at line 16, elimination at lines 17-20, back substitution and finite-solution check at lines 21-25, and residual and report behavior in program.py lines 19-27. Structural eligibility is true because finite, comparable pivot values permit an exact one-hot discrete argmax formulation in principle. Practical suitability is false because this is a small linear scan in a small serial program, while every pivot depends on newly mutated classical state and exact encoding, optimization, verification, and fallback introduce substantial overhead. Benchmark support is false: the supplied material provides no workload, hardware, encoding-cost, resource, or advantage evidence and explicitly states that the program is not a compliant HPL performance run. The lexical inventory supports the stated local dependencies and later rows mutations but is not a sound slice or reachability proof. The supplied semantic feedback is explicitly insufficient evidence and therefore does not establish whole-plan correctness. Dense elimination, back substitution, and residual calculation are numerical linear-algebra operations outside the two supported migration families.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "For each activated elimination column, select exactly the earliest eligible row having the greatest absolute current pivot value while preserving singularity checks, binary64 behavior, exceptions, and all downstream reporting semantics.",
+  "assumptions": [
+    "Only the supplied source, software contract, draft migration contracts, and bounded observations are considered.",
+    "No quantum memory, coherent data access, backend capability, workload distribution, or performance advantage is assumed.",
+    "Python binary64 ordering and first-index tie behavior are mandatory semantics rather than approximation targets.",
+    "Inspect mode, empty systems, validation, residual calculation, named output construction, and nonmutation remain classical.",
+    "The lexical inventory identifies possible dependencies but does not prove ranges, reachability, aliases, or complete data flow."
+  ],
+  "risks": [
+    "A probabilistic, approximate, or insufficiently precise pivot result can violate exact output and exception semantics.",
+    "Objective construction and exact classical certification can duplicate or exceed the work of line 13.",
+    "Sequential row mutation prevents independent batching of later pivot selections.",
+    "Nonfinite intermediate values require careful preservation of the existing Python execution and eventual overflow behavior.",
+    "No supplied benchmark supports useful scaling or quantum advantage.",
+    "The HPL attribution supports only the provenance of the classical algorithm and diagnostic, not the proposed migration."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": null,
+      "rationale": "For finite comparable pivots, a predicate could mark index i when its magnitude exceeds every earlier magnitude and is at least every later magnitude. However, the supplied material does not demonstrate a reversible implementation of all required binary64 comparisons, coherent access to the dynamically mutated rows state, nonfinite-state handling, resource bounds, or a deterministic error policy. Applicability therefore remains unresolved."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The finite pivot argmax has a conditional one-hot binary optimization formulation with exact magnitude priority and index tie-breaking. This establishes only structural applicability. Exact coefficient construction, penalty sufficiency, feasible one-hot recovery, nonfinite-state handling, backend precision, exact-optimum certification, and end-to-end resource costs remain unresolved, so practical adoption is unsupported."
+    }
+  ]
+}

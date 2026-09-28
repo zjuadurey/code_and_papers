@@ -1,0 +1,62 @@
+{
+  "experiment_type": "controlled diagnostic; not independent baseline",
+  "case_count": 10,
+  "successful_cli_executions": 10,
+  "schema_valid_predictions": 10,
+  "malformed_predictions": 0,
+  "operator_retries": 0,
+  "observed_tool_items": 0,
+  "structural_yes": 8,
+  "structural_yes_plan_present": 8,
+  "structural_yes_practical_no_or_unknown_remain_classical": 8,
+  "conditional_subset_plan_present": 8,
+  "structural_no": 2,
+  "structural_no_plan_null": 2,
+  "decisions": {
+    "REMAIN_CLASSICAL": 10
+  },
+  "practical": {
+    "NO": 8,
+    "UNCERTAIN": 2
+  },
+  "families": {
+    "unstructured_search": 5,
+    "null": 2,
+    "combinatorial_optimization": 3
+  },
+  "exact_field_change_counts": {
+    "structural_eligibility": 0,
+    "practical_suitability": 0,
+    "decision": 0,
+    "migration_family": 0,
+    "computational_intent": 10,
+    "candidate_regions": 3,
+    "benchmark_supported": 5,
+    "contract_applicability": 10
+  },
+  "interpretation_notes": [
+    "Intent wording differences are not a semantic error metric.",
+    "Plan-content classifications are separately reviewed in PLAN_CONTENT_REVIEW.md.",
+    "No ground-truth agreement computed."
+  ],
+  "plan_content_classification_counts": {
+    "SUBSTANTIVE": 8,
+    "NOT APPLICABLE": 2,
+    "PARTIAL": 0,
+    "SUPERFICIAL": 0
+  },
+  "diagnostic_interpretation": "A. STRONGER SUPPORT FOR H1; elicitation/formulation level only",
+  "contract_applicability_label_changed_cases": [
+    "pilot-003",
+    "pilot-005",
+    "pilot-007",
+    "pilot-010"
+  ],
+  "benchmark_support_changed_cases": [
+    "pilot-001",
+    "pilot-003",
+    "pilot-005",
+    "pilot-006",
+    "pilot-007"
+  ]
+}

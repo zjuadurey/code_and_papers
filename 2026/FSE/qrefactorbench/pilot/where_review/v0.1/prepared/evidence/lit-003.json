@@ -1,0 +1,820 @@
+[
+  {
+    "id": "completion_after_blocked_preview",
+    "input": {
+      "slots": [
+        "morning",
+        "afternoon"
+      ],
+      "sessions": [
+        {
+          "session_id": "design",
+          "participants": [
+            "alice"
+          ]
+        },
+        {
+          "session_id": "release",
+          "participants": [
+            "carol"
+          ]
+        },
+        {
+          "session_id": "testing",
+          "participants": [
+            "alice",
+            "bob"
+          ]
+        },
+        {
+          "session_id": "operations",
+          "participants": [
+            "bob",
+            "carol"
+          ]
+        }
+      ],
+      "current": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "mode": "complete"
+    },
+    "calls": {
+      "preview": 1,
+      "complete": 1
+    },
+    "report": {
+      "session_count": 4,
+      "current": {
+        "assignment": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "unassigned": [
+          "design",
+          "release",
+          "testing",
+          "operations"
+        ],
+        "conflicts": [],
+        "feasible": false,
+        "slots": [
+          {
+            "slot": "morning",
+            "sessions": []
+          },
+          {
+            "slot": "afternoon",
+            "sessions": []
+          }
+        ]
+      },
+      "preview": {
+        "status": "blocked",
+        "assignment": null
+      },
+      "proposed": {
+        "assignment": [
+          "morning",
+          "afternoon",
+          "afternoon",
+          "morning"
+        ],
+        "unassigned": [],
+        "conflicts": [],
+        "feasible": true,
+        "slots": [
+          {
+            "slot": "morning",
+            "sessions": [
+              "design",
+              "operations"
+            ]
+          },
+          {
+            "slot": "afternoon",
+            "sessions": [
+              "release",
+              "testing"
+            ]
+          }
+        ]
+      },
+      "status": "completed",
+      "moves": [
+        {
+          "session_id": "design",
+          "from": null,
+          "to": "morning"
+        },
+        {
+          "session_id": "release",
+          "from": null,
+          "to": "afternoon"
+        },
+        {
+          "session_id": "testing",
+          "from": null,
+          "to": "afternoon"
+        },
+        {
+          "session_id": "operations",
+          "from": null,
+          "to": "morning"
+        }
+      ]
+    },
+    "kind": "original_execution"
+  },
+  {
+    "id": "inspection",
+    "input": {
+      "slots": [
+        "morning",
+        "afternoon"
+      ],
+      "sessions": [
+        {
+          "session_id": "design",
+          "participants": [
+            "alice"
+          ]
+        },
+        {
+          "session_id": "release",
+          "participants": [
+            "carol"
+          ]
+        },
+        {
+          "session_id": "testing",
+          "participants": [
+            "alice",
+            "bob"
+          ]
+        },
+        {
+          "session_id": "operations",
+          "participants": [
+            "bob",
+            "carol"
+          ]
+        }
+      ],
+      "current": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "mode": "inspect"
+    },
+    "calls": {
+      "preview": 0,
+      "complete": 0
+    },
+    "report": {
+      "session_count": 4,
+      "current": {
+        "assignment": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "unassigned": [
+          "design",
+          "release",
+          "testing",
+          "operations"
+        ],
+        "conflicts": [],
+        "feasible": false,
+        "slots": [
+          {
+            "slot": "morning",
+            "sessions": []
+          },
+          {
+            "slot": "afternoon",
+            "sessions": []
+          }
+        ]
+      },
+      "preview": null,
+      "proposed": null,
+      "status": "inspected",
+      "moves": []
+    },
+    "kind": "original_execution"
+  },
+  {
+    "id": "retain_valid_current",
+    "input": {
+      "slots": [
+        "morning",
+        "afternoon"
+      ],
+      "sessions": [
+        {
+          "session_id": "design",
+          "participants": [
+            "alice"
+          ]
+        },
+        {
+          "session_id": "release",
+          "participants": [
+            "carol"
+          ]
+        },
+        {
+          "session_id": "testing",
+          "participants": [
+            "alice",
+            "bob"
+          ]
+        },
+        {
+          "session_id": "operations",
+          "participants": [
+            "bob",
+            "carol"
+          ]
+        }
+      ],
+      "current": [
+        "afternoon",
+        "morning",
+        "morning",
+        "afternoon"
+      ],
+      "mode": "complete"
+    },
+    "calls": {
+      "preview": 0,
+      "complete": 0
+    },
+    "report": {
+      "session_count": 4,
+      "current": {
+        "assignment": [
+          "afternoon",
+          "morning",
+          "morning",
+          "afternoon"
+        ],
+        "unassigned": [],
+        "conflicts": [],
+        "feasible": true,
+        "slots": [
+          {
+            "slot": "morning",
+            "sessions": [
+              "release",
+              "testing"
+            ]
+          },
+          {
+            "slot": "afternoon",
+            "sessions": [
+              "design",
+              "operations"
+            ]
+          }
+        ]
+      },
+      "preview": null,
+      "proposed": {
+        "assignment": [
+          "afternoon",
+          "morning",
+          "morning",
+          "afternoon"
+        ],
+        "unassigned": [],
+        "conflicts": [],
+        "feasible": true,
+        "slots": [
+          {
+            "slot": "morning",
+            "sessions": [
+              "release",
+              "testing"
+            ]
+          },
+          {
+            "slot": "afternoon",
+            "sessions": [
+              "design",
+              "operations"
+            ]
+          }
+        ]
+      },
+      "status": "retained",
+      "moves": []
+    },
+    "kind": "original_execution"
+  },
+  {
+    "id": "ready_preview",
+    "input": {
+      "slots": [
+        "a",
+        "b"
+      ],
+      "sessions": [
+        {
+          "session_id": "one",
+          "participants": [
+            "shared"
+          ]
+        },
+        {
+          "session_id": "two",
+          "participants": [
+            "shared"
+          ]
+        }
+      ],
+      "current": [
+        null,
+        null
+      ],
+      "mode": "complete"
+    },
+    "calls": {
+      "preview": 1,
+      "complete": 0
+    },
+    "report": {
+      "session_count": 2,
+      "current": {
+        "assignment": [
+          null,
+          null
+        ],
+        "unassigned": [
+          "one",
+          "two"
+        ],
+        "conflicts": [],
+        "feasible": false,
+        "slots": [
+          {
+            "slot": "a",
+            "sessions": []
+          },
+          {
+            "slot": "b",
+            "sessions": []
+          }
+        ]
+      },
+      "preview": {
+        "status": "ready",
+        "assignment": [
+          "a",
+          "b"
+        ]
+      },
+      "proposed": {
+        "assignment": [
+          "a",
+          "b"
+        ],
+        "unassigned": [],
+        "conflicts": [],
+        "feasible": true,
+        "slots": [
+          {
+            "slot": "a",
+            "sessions": [
+              "one"
+            ]
+          },
+          {
+            "slot": "b",
+            "sessions": [
+              "two"
+            ]
+          }
+        ]
+      },
+      "status": "preview",
+      "moves": [
+        {
+          "session_id": "one",
+          "from": null,
+          "to": "a"
+        },
+        {
+          "session_id": "two",
+          "from": null,
+          "to": "b"
+        }
+      ]
+    },
+    "kind": "original_execution"
+  },
+  {
+    "id": "no_arrangement",
+    "input": {
+      "slots": [
+        "only"
+      ],
+      "sessions": [
+        {
+          "session_id": "design",
+          "participants": [
+            "alice"
+          ]
+        },
+        {
+          "session_id": "release",
+          "participants": [
+            "carol"
+          ]
+        },
+        {
+          "session_id": "testing",
+          "participants": [
+            "alice",
+            "bob"
+          ]
+        },
+        {
+          "session_id": "operations",
+          "participants": [
+            "bob",
+            "carol"
+          ]
+        }
+      ],
+      "current": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "mode": "complete"
+    },
+    "calls": {
+      "preview": 1,
+      "complete": 1
+    },
+    "report": {
+      "session_count": 4,
+      "current": {
+        "assignment": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "unassigned": [
+          "design",
+          "release",
+          "testing",
+          "operations"
+        ],
+        "conflicts": [],
+        "feasible": false,
+        "slots": [
+          {
+            "slot": "only",
+            "sessions": []
+          }
+        ]
+      },
+      "preview": {
+        "status": "blocked",
+        "assignment": null
+      },
+      "proposed": null,
+      "status": "unavailable",
+      "moves": []
+    },
+    "kind": "original_execution"
+  },
+  {
+    "id": "replace_preview_with_completion",
+    "input": {
+      "slots": [
+        "morning",
+        "afternoon"
+      ],
+      "sessions": [
+        {
+          "session_id": "design",
+          "participants": [
+            "alice"
+          ]
+        },
+        {
+          "session_id": "release",
+          "participants": [
+            "carol"
+          ]
+        },
+        {
+          "session_id": "testing",
+          "participants": [
+            "alice",
+            "bob"
+          ]
+        },
+        {
+          "session_id": "operations",
+          "participants": [
+            "bob",
+            "carol"
+          ]
+        }
+      ],
+      "current": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "mode": "complete"
+    },
+    "calls": {
+      "preview": 1,
+      "complete": 0
+    },
+    "report": {
+      "session_count": 4,
+      "current": {
+        "assignment": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "unassigned": [
+          "design",
+          "release",
+          "testing",
+          "operations"
+        ],
+        "conflicts": [],
+        "feasible": false,
+        "slots": [
+          {
+            "slot": "morning",
+            "sessions": []
+          },
+          {
+            "slot": "afternoon",
+            "sessions": []
+          }
+        ]
+      },
+      "preview": {
+        "status": "ready",
+        "assignment": [
+          "morning",
+          "afternoon",
+          "afternoon",
+          "morning"
+        ]
+      },
+      "proposed": {
+        "assignment": [
+          "morning",
+          "afternoon",
+          "afternoon",
+          "morning"
+        ],
+        "unassigned": [],
+        "conflicts": [],
+        "feasible": true,
+        "slots": [
+          {
+            "slot": "morning",
+            "sessions": [
+              "design",
+              "operations"
+            ]
+          },
+          {
+            "slot": "afternoon",
+            "sessions": [
+              "release",
+              "testing"
+            ]
+          }
+        ]
+      },
+      "status": "preview",
+      "moves": [
+        {
+          "session_id": "design",
+          "from": null,
+          "to": "morning"
+        },
+        {
+          "session_id": "release",
+          "from": null,
+          "to": "afternoon"
+        },
+        {
+          "session_id": "testing",
+          "from": null,
+          "to": "afternoon"
+        },
+        {
+          "session_id": "operations",
+          "from": null,
+          "to": "morning"
+        }
+      ]
+    },
+    "kind": "constructed_substitution",
+    "same_final_proposal": true,
+    "changed_fields": [
+      "$.preview.assignment",
+      "$.preview.status",
+      "$.status"
+    ]
+  },
+  {
+    "id": "drop_participant_relation",
+    "input": {
+      "slots": [
+        "morning",
+        "afternoon"
+      ],
+      "sessions": [
+        {
+          "session_id": "design",
+          "participants": [
+            "alice"
+          ]
+        },
+        {
+          "session_id": "release",
+          "participants": [
+            "carol"
+          ]
+        },
+        {
+          "session_id": "testing",
+          "participants": [
+            "alice",
+            "bob"
+          ]
+        },
+        {
+          "session_id": "operations",
+          "participants": [
+            "bob",
+            "carol"
+          ]
+        }
+      ],
+      "current": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "mode": "complete"
+    },
+    "calls": {
+      "preview": 1,
+      "complete": 0
+    },
+    "report": {
+      "session_count": 4,
+      "current": {
+        "assignment": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "unassigned": [
+          "design",
+          "release",
+          "testing",
+          "operations"
+        ],
+        "conflicts": [],
+        "feasible": false,
+        "slots": [
+          {
+            "slot": "morning",
+            "sessions": []
+          },
+          {
+            "slot": "afternoon",
+            "sessions": []
+          }
+        ]
+      },
+      "preview": {
+        "status": "ready",
+        "assignment": [
+          "morning",
+          "morning",
+          "morning",
+          "morning"
+        ]
+      },
+      "proposed": {
+        "assignment": [
+          "morning",
+          "morning",
+          "morning",
+          "morning"
+        ],
+        "unassigned": [],
+        "conflicts": [
+          {
+            "first": "design",
+            "second": "testing",
+            "participants": [
+              "alice"
+            ]
+          },
+          {
+            "first": "release",
+            "second": "operations",
+            "participants": [
+              "carol"
+            ]
+          },
+          {
+            "first": "testing",
+            "second": "operations",
+            "participants": [
+              "bob"
+            ]
+          }
+        ],
+        "feasible": false,
+        "slots": [
+          {
+            "slot": "morning",
+            "sessions": [
+              "design",
+              "release",
+              "testing",
+              "operations"
+            ]
+          },
+          {
+            "slot": "afternoon",
+            "sessions": []
+          }
+        ]
+      },
+      "status": "preview",
+      "moves": [
+        {
+          "session_id": "design",
+          "from": null,
+          "to": "morning"
+        },
+        {
+          "session_id": "release",
+          "from": null,
+          "to": "morning"
+        },
+        {
+          "session_id": "testing",
+          "from": null,
+          "to": "morning"
+        },
+        {
+          "session_id": "operations",
+          "from": null,
+          "to": "morning"
+        }
+      ]
+    },
+    "kind": "constructed_substitution",
+    "changed_fields": [
+      "$.moves[1].to",
+      "$.moves[2].to",
+      "$.preview.assignment",
+      "$.preview.status",
+      "$.proposed.assignment[1]",
+      "$.proposed.assignment[2]",
+      "$.proposed.conflicts",
+      "$.proposed.feasible",
+      "$.proposed.slots[0].sessions",
+      "$.proposed.slots[1].sessions",
+      "$.status"
+    ]
+  }
+]

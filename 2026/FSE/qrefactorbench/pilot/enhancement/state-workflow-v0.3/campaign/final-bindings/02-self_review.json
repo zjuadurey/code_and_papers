@@ -1,0 +1,60 @@
+{
+  "response_sha256": "1fe367c07b017914d6eb7aa4dc2c0ba2857b213465845b07fe4985ad358afc9b",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 27.301,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:42:09.339864+00:00",
+  "review_submitted_utc": "2026-09-26T12:42:36.640896+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "1fe367c07b017914d6eb7aa4dc2c0ba2857b213465845b07fe4985ad358afc9b",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally search the finite index set range(col, n) for the unique index p satisfying the exact first-argmax rule used by Python max with key abs: abs(rows[p][col]) is not less than any candidate value, and no earlier index has an equal maximal value. The quantum subroutine may only propose p; it must not replace the surrounding singularity check or elimination."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode col, candidate indices, and the current augmented-row entries rows[i][col], which depend on every preceding pivot, swap, and elimination update. A reversible oracle must reproduce the relevant Python binary64 absolute-value, ordering, equality, signed-zero, infinity, NaN, and first-tie behavior. Coherent loading of dynamically updated rows, reversible floating-point representation, ancilla cleanup, and all associated costs are unresolved."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a proposed pivot index and verify classically that it is exactly the index Python's max expression would return for the current state. On failed verification, unsuccessful search, or an unsupported exceptional floating-point state, execute the original classical expression. Preserve the exact-zero test, exception behavior, row swap, elimination order, back substitution, overflow checks, and report construction."
+      },
+      {
+        "pointer": "/risks/4",
+        "quote": "Intermediate nonfinite values require exact handling consistent with the existing program and contract, but no reversible policy is supplied."
+      }
+    ],
+    "resolution": "ambiguous",
+    "rationale": "The phrase 'not less than any candidate value' has two relevant transcriptions: conventional >=, or literal negation of <. They differ for NaN, which the response itself names without resolving its oracle treatment. Both retain the explicitly stated no-earlier-equal condition. The fallback mentions unsupported exceptional states but does not define which states are unsupported; do not invent an all-finite admission guard. Check both literal predicate readings while leaving classical verification/fallback and whole-task behavior unjudged.",
+    "interpretations": [
+      {
+        "id": "not_less_as_ge",
+        "meaning": "Conventional non-strict ordering interpretation of not-less, with first equal index.",
+        "mode": "predicate",
+        "expression": "all(values[i] >= values[k] for k in indices) and not any(values[j] == values[i] for j in indices if j < i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      },
+      {
+        "id": "literal_not_lt",
+        "meaning": "Negate strict less-than literally; retain no earlier equal value.",
+        "mode": "predicate",
+        "expression": "not any(values[i] < values[k] for k in indices) and not any(values[j] == values[i] for j in indices if j < i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

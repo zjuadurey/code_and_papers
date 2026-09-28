@@ -1,0 +1,121 @@
+{
+  "timestamp_utc": "2026-09-20T17:50:49.794742+00:00",
+  "commands": [
+    {
+      "argv": [
+        "python",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/context_adaptations/v0.1/prepare_inputs.py",
+        "--output",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/context_adaptations/v0.1/review_input"
+      ],
+      "exit_code": 0,
+      "stdout_stderr_file": "command-01.txt"
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/context_adaptations/v0.1/cases/context-001/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout_stderr_file": "command-02.txt"
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/context_adaptations/v0.1/cases"
+      ],
+      "exit_code": 0,
+      "stdout_stderr_file": "command-03.txt"
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/context_adaptations/v0.1/cases",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout_stderr_file": "command-04.txt"
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout_stderr_file": "command-05.txt"
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "cases/"
+      ],
+      "exit_code": 0,
+      "stdout_stderr_file": "command-06.txt"
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "cases/",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout_stderr_file": "command-07.txt"
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "pilot/source_adaptations/v0.1/cases"
+      ],
+      "exit_code": 0,
+      "stdout_stderr_file": "command-08.txt"
+    },
+    {
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/context_adaptations/v0.1/cases/context-001/program.py"
+      ],
+      "stdin_file": "cases/context-001/example_request.json",
+      "stdout_file": "cases/context-001/example_report.json",
+      "exit_code": 0
+    }
+  ],
+  "checks": {
+    "example_cli_passed": true,
+    "upstream_function_unchanged": true,
+    "public_export_reproducible": true,
+    "public_export_refuses_overwrite": true,
+    "public_file_allowlist": true,
+    "scientific_judgments_unknown": true,
+    "protected_files_unchanged": true
+  },
+  "protected_count": 593,
+  "changed_protected_files": [],
+  "model_calls": 0,
+  "quantum_executions": 0,
+  "final_audit": {
+    "local_links_checked": 107,
+    "broken_links": [],
+    "protected_changes": [],
+    "public_hash_errors": []
+  }
+}

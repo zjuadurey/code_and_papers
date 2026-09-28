@@ -1,0 +1,4 @@
+{
+  "code_snippet": "import itertools\\n\\n# Brute-force minimum vertex cover for a small graph\\n\\ndef min_vertex_cover_bruteforce(edges, n):\\n    nodes = list(range(n))\\n    best_cover = None\\n    for r in range(n + 1):\\n        for subset in itertools.combinations(nodes, r):\\n            cover = set(subset)\\n            ok = True\\n            for u, v in edges:\\n                if u not in cover and v not in cover:\\n                    ok = False\\n                    break\\n            if ok:\\n                best_cover = cover\\n                return best_cover\\n    return best_cover\\n\\nedges = [(0, 1), (1, 2), (2, 3), (3, 0)]\\ncover = min_vertex_cover_bruteforce(edges, 4)\\nprint(sorted(cover))",
+  "labels": "9"
+}

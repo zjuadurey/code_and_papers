@@ -1,0 +1,78 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 9,
+      "end_line": 26
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "exact-binary64-solver-output-search",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditionally encode every n-component binary64 bit pattern as a candidate solution and mark exactly the pattern produced by the specified partial-pivoted elimination and back-substitution computation. The reversible predicate must reproduce the ordered loops, largest-absolute-pivot rule with first-index tie resolution, exact-zero-pivot test, binary64 arithmetic and detected-overflow status. This formulation is only structural: the oracle substantially contains the original solver and offers no established advantage.",
+    "input_encoding": "Encode each validated matrix and rhs binary64 value, candidate solution component, loop index, augmented-row value, pivot index, arithmetic workspace and exception-status flag in finite registers. The representation of Python binary64 operations, comparisons, signed zero, rounding, intermediate nonfinite values and reversible cleanup remains unresolved and must be specified exactly.",
+    "quantum_algorithm_family": "Grover-style marked-state search",
+    "output_decoding": "Measure and decode a candidate binary64 vector, then classically rerun the specified solver and require component-wise bit-pattern agreement before constructing the named proposal. Recompute residuals, deltas and the requested-limit comparison classically. If the classical computation raises the required singular-system or numerical-overflow ValueError, preserve that exception instead of returning a search result. A bounded-error and no-solution policy remains unresolved and cannot weaken deterministic behavior.",
+    "assumptions": [
+      "The finite set of binary64 bit patterns supplies a formal finite search domain.",
+      "Validated matrix and rhs data can be made available to a reversible predicate without free loading or memory access.",
+      "A reversible implementation can reproduce the relevant Python binary64 arithmetic, control flow, pivot tie-breaking and exception status.",
+      "The original interface, ordering, no-mutation behavior and downstream diagnostics remain classical and unchanged."
+    ],
+    "risks": [
+      "The search space grows as the set of binary64 patterns raised to the number of variables and includes many invalid or irrelevant encodings.",
+      "Oracle construction requires reversible floating-point elimination and may cost at least as much as the classical solve on each invocation.",
+      "Grover-style bounded-error behavior does not by itself preserve the deterministic result and exception contract.",
+      "Signed-zero, rounding, overflow and comparison details may make exact semantic equivalence difficult or prohibitively expensive.",
+      "State preparation, arithmetic workspace, uncomputation, measurement and classical verification may dominate the small serial workload.",
+      "Finite development checks of pivot selection do not establish exhaustive oracle equivalence, scalability or quantum advantage."
+    ],
+    "expected_resource_characteristics": {
+      "candidate_register": "At least 64n qubits before validity, control and decoding overheads if raw binary64 patterns are used.",
+      "oracle_workspace": "Registers for an augmented n by n+1 binary64 matrix, pivot indices, loop controls, arithmetic temporaries and exception flags, with reversible uncomputation.",
+      "oracle_work": "At least the reversible analogue of cubic elimination work per oracle evaluation.",
+      "search_iterations": "Potentially proportional to the square root of an approximately 2^(64n) raw candidate domain absent a justified reduction.",
+      "evidence": "No numerical qubit, depth, gate, shot or hardware bounds are supplied."
+    },
+    "rationale": "This is a mandatory conditional plan for the narrowly structural finite-domain formulation. It does not recommend implementation, establish exact reversible encoding, or demonstrate practical or benchmark support."
+  },
+  "rationale": "The focused region is kernel.py lines 9-26, which copies the validated matrix and rhs into an augmented matrix and performs deterministic partial-pivoted elimination and back substitution. It depends on n=len(rhs), the private mutable rows state, Python binary64 arithmetic and loop order, largest-absolute pivot selection with the first index winning ties, exact-zero pivot detection, and the final solution-finiteness check. It is activated only by program.py lines 22-27 when mode is solve. Required surrounding behavior includes strict validation, no mutation of caller inputs, inspect mode not invoking solve or necessarily rejecting singularity, the specified ValueError behavior, residual recomputation in kernel.py lines 29-38, variable-name ordering, delta computation and the diagnostic limit comparison. Because binary64 bit patterns form a finite domain, the solver output can in principle be wrapped as an exact Boolean marked-state predicate, so narrow structural eligibility for unstructured search is true. That construction must reversibly reproduce the solver itself and therefore supplies no inherent acceleration. A residual-only predicate would be insufficient because it would not necessarily identify the exact output produced by the ordered elimination or preserve singularity and overflow behavior. Practical suitability is false: the program is small and serial, the raw domain is enormous, and no coherent loading mechanism, reversible floating-point implementation, hardware, resource budget or advantage evidence is supplied. Benchmark support is false because the notice only attributes classical HPL algorithm concepts and expressly says this is not an HPL port, rating or compliant run; no quantum benchmark is supplied. The observation concerns reviewer-transcribed pivot selection on finite development checks only, so it does not establish exhaustive semantic equivalence, resources or benchmark support.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Produce the exact binary64 solution returned by deterministic partial-pivoted Gaussian elimination and back substitution, while preserving prescribed failures and enabling unchanged classical residual reporting.",
+  "assumptions": [
+    "Inputs and outputs remain classical Python binary64 values.",
+    "Binary64 candidate bit patterns are treated as a formal finite domain for structural analysis.",
+    "No relaxation of pivot rules, arithmetic ordering, exception behavior, residual definitions or interface semantics is permitted.",
+    "No free coherent loading of the dense matrix or rhs is assumed.",
+    "The reported finite development checks concern pivot selection only and provide no exhaustive correctness or performance evidence."
+  ],
+  "risks": [
+    "An exact reversible predicate would need to reproduce binary64 arithmetic, deterministic pivoting, mutable elimination state and exception behavior.",
+    "The formal candidate domain is exponentially large in the number of solution bits.",
+    "A predicate based only on Ax=b or a residual threshold could accept values different from the solver's specified output.",
+    "Probabilistic search could violate deterministic semantics without exact classical verification and an adequate failure policy.",
+    "Encoding, state preparation, workspace, uncomputation, measurement, decoding and verification costs could overwhelm this small workload.",
+    "Replacing the solver could disturb downstream residuals, named ordering, deltas and limit comparisons."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Binary64 output tuples provide a finite formal domain, and an exact marked-state predicate could conditionally be defined by reversible reproduction of the specified solver followed by bit-pattern comparison. Applicability is only structural: the encoding, reversible oracle, deterministic success and no-solution policy, exception propagation, exactness proof and resource bounds are unresolved."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The source defines neither binary decision variables nor a combinatorial objective. A QUBO discretization would require unresolved encodings, coefficients and penalties and would not inherently preserve the exact ordered binary64 result, pivot tie-breaking, singularity detection or overflow behavior. QAOA supplies no required exactness guarantee."
+    }
+  ]
+}

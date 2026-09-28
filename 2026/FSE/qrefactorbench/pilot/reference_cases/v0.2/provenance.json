@@ -1,0 +1,52 @@
+[
+  {
+    "case_id": "context-003",
+    "parent_case": "pilot-001",
+    "source_lineage": "qrefactorbench-synthetic-pilot-001",
+    "source_path": "cases/pilot/pilot-001/program.py",
+    "source_sha256": "6c2c9e730ef42c63aab6f8baa44098c1b1e7439c4ab26a05cd94c71a8c75a8aa",
+    "external_source": null,
+    "license": "NOASSERTION",
+    "origin": "Existing Codex-assisted synthetic pilot kernel; new Codex-assisted synthetic application",
+    "functions": [
+      {
+        "function": "satisfies",
+        "file": "configurations.py",
+        "start_line": 72,
+        "end_line": 77,
+        "function_sha256": "36948b885b937cbf975710577bdd47ab0bb09069f99a254eadba335464381992",
+        "verbatim": true
+      },
+      {
+        "function": "has_assignment",
+        "file": "configurations.py",
+        "start_line": 80,
+        "end_line": 84,
+        "function_sha256": "bf8f155458a0f166cebf5c9ef43c3bdc409ed29c04a8eb1482e1d9480b562c75",
+        "verbatim": true
+      }
+    ],
+    "scientific_status": "DRAFT"
+  },
+  {
+    "case_id": "context-004",
+    "parent_case": "pilot-002",
+    "source_lineage": "qrefactorbench-synthetic-pilot-002",
+    "source_path": "cases/pilot/pilot-002/program.py",
+    "source_sha256": "2ce7803004502b8237a561ab23d2a593303419c11360616c1bce477e7d58db9d",
+    "external_source": null,
+    "license": "NOASSERTION",
+    "origin": "Existing Codex-assisted synthetic pilot kernel; new Codex-assisted synthetic application",
+    "functions": [
+      {
+        "function": "ledger_digest",
+        "file": "records.py",
+        "start_line": 32,
+        "end_line": 37,
+        "function_sha256": "6f6fd72471eace4def76e7be4d4e3c9d8ae40f8a348fd36e9273bf546208e987",
+        "verbatim": true
+      }
+    ],
+    "scientific_status": "DRAFT"
+  }
+]

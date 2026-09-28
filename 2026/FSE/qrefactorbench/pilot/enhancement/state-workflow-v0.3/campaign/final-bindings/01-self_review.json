@@ -1,0 +1,52 @@
+{
+  "response_sha256": "374afcf9e04cc03f0c87f0fceda2a65192b9ceb5be4b81b26d70c0d29bcbe030",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 25.839,
+  "review_time_definition": "Wall-clock from first detailed response inspection to submission; includes coordinator/tool latency, not isolated human labor.",
+  "review_started_utc": "2026-09-26T12:40:23.012791+00:00",
+  "review_submitted_utc": "2026-09-26T12:40:48.852016+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "374afcf9e04cc03f0c87f0fceda2a65192b9ceb5be4b81b26d70c0d29bcbe030",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode indices from col through n-1 in a basis-state register, with explicit rejection of unused states. Provide coherent access to the active column of the current augmented rows and reversible binary64-compatible absolute-value and comparison operations. The predicate must establish that no candidate has a larger magnitude and that no earlier candidate has an equal magnitude. Encoding and updating the mutable dense row state, handling intermediate nonfinite values, and uncomputing comparison workspace remain unresolved."
+      },
+      {
+        "pointer": "/plan/assumptions/2",
+        "quote": "For every nonempty remaining range there is exactly one marked first-maximum index, including an all-zero range whose selected pivot is subsequently rejected by the classical zero-pivot check."
+      },
+      {
+        "pointer": "/plan/risks/2",
+        "quote": "Python-compatible floating-point comparison, arithmetic, nonfinite-intermediate handling, and exception semantics are not supplied as reversible circuits."
+      },
+      {
+        "pointer": "/plan/rationale",
+        "quote": "This conditional plan records only structural representability as finite predicate search. It does not establish practical suitability, semantic equivalence, or quantum advantage."
+      }
+    ],
+    "resolution": "transcribed",
+    "rationale": "The revision now explicitly states two Boolean conditions: no candidate has a larger magnitude, and no earlier candidate has an equal magnitude. These are negated existential > and == comparisons, not the historical universal >= condition. Nonfinite handling remains unresolved but no executable guard restricts the domain. Check the literal relation with guard True; conditional future circuit feasibility and whole-plan equivalence remain unjudged.",
+    "interpretations": [
+      {
+        "id": "no_larger_no_earlier_equal",
+        "meaning": "Literal no-larger and no-earlier-equal conditions on absolute pivot values.",
+        "mode": "predicate",
+        "expression": "not any(values[k] > values[i] for k in indices) and not any(values[j] == values[i] for j in indices if j < i)",
+        "guard": "True",
+        "outside_guard": "unresolved"
+      }
+    ]
+  },
+  "unbound_reason": null
+}

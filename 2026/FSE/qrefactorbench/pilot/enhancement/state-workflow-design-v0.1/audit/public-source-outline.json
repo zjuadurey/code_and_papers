@@ -1,0 +1,274 @@
+{
+  "status": "syntax_only_not_candidate_discovery",
+  "files": {
+    "program.py": [
+      {
+        "name": "review",
+        "start_line": 8,
+        "end_line": 28,
+        "body_statements": [
+          {
+            "syntax": "Expr",
+            "line": 9,
+            "end_line": 9
+          },
+          {
+            "syntax": "Assign",
+            "line": 10,
+            "end_line": 10
+          },
+          {
+            "syntax": "Assign",
+            "line": 11,
+            "end_line": 11
+          },
+          {
+            "syntax": "If",
+            "line": 12,
+            "end_line": 13
+          },
+          {
+            "syntax": "Assign",
+            "line": 14,
+            "end_line": 14
+          },
+          {
+            "syntax": "Assign",
+            "line": 15,
+            "end_line": 15
+          },
+          {
+            "syntax": "Assign",
+            "line": 16,
+            "end_line": 16
+          },
+          {
+            "syntax": "If",
+            "line": 17,
+            "end_line": 18
+          },
+          {
+            "syntax": "Assign",
+            "line": 19,
+            "end_line": 19
+          },
+          {
+            "syntax": "Assign",
+            "line": 20,
+            "end_line": 21
+          },
+          {
+            "syntax": "If",
+            "line": 22,
+            "end_line": 27
+          },
+          {
+            "syntax": "Return",
+            "line": 28,
+            "end_line": 28
+          }
+        ]
+      }
+    ],
+    "kernel.py": [
+      {
+        "name": "solve",
+        "start_line": 9,
+        "end_line": 26,
+        "body_statements": [
+          {
+            "syntax": "Assign",
+            "line": 10,
+            "end_line": 10
+          },
+          {
+            "syntax": "Assign",
+            "line": 11,
+            "end_line": 11
+          },
+          {
+            "syntax": "For",
+            "line": 12,
+            "end_line": 20
+          },
+          {
+            "syntax": "Assign",
+            "line": 21,
+            "end_line": 21
+          },
+          {
+            "syntax": "For",
+            "line": 22,
+            "end_line": 23
+          },
+          {
+            "syntax": "If",
+            "line": 24,
+            "end_line": 25
+          },
+          {
+            "syntax": "Return",
+            "line": 26,
+            "end_line": 26
+          }
+        ]
+      },
+      {
+        "name": "residual",
+        "start_line": 29,
+        "end_line": 38,
+        "body_statements": [
+          {
+            "syntax": "Assign",
+            "line": 30,
+            "end_line": 30
+          },
+          {
+            "syntax": "Assign",
+            "line": 31,
+            "end_line": 31
+          },
+          {
+            "syntax": "Assign",
+            "line": 32,
+            "end_line": 32
+          },
+          {
+            "syntax": "Assign",
+            "line": 33,
+            "end_line": 34
+          },
+          {
+            "syntax": "If",
+            "line": 35,
+            "end_line": 36
+          },
+          {
+            "syntax": "Assign",
+            "line": 37,
+            "end_line": 37
+          },
+          {
+            "syntax": "Return",
+            "line": 38,
+            "end_line": 38
+          }
+        ]
+      }
+    ],
+    "common.py": [
+      {
+        "name": "fields",
+        "start_line": 5,
+        "end_line": 8,
+        "body_statements": [
+          {
+            "syntax": "If",
+            "line": 6,
+            "end_line": 7
+          },
+          {
+            "syntax": "Return",
+            "line": 8,
+            "end_line": 8
+          }
+        ]
+      },
+      {
+        "name": "integer",
+        "start_line": 11,
+        "end_line": 14,
+        "body_statements": [
+          {
+            "syntax": "If",
+            "line": 12,
+            "end_line": 13
+          },
+          {
+            "syntax": "Return",
+            "line": 14,
+            "end_line": 14
+          }
+        ]
+      },
+      {
+        "name": "finite",
+        "start_line": 17,
+        "end_line": 26,
+        "body_statements": [
+          {
+            "syntax": "If",
+            "line": 18,
+            "end_line": 19
+          },
+          {
+            "syntax": "Try",
+            "line": 20,
+            "end_line": 23
+          },
+          {
+            "syntax": "If",
+            "line": 24,
+            "end_line": 25
+          },
+          {
+            "syntax": "Return",
+            "line": 26,
+            "end_line": 26
+          }
+        ]
+      },
+      {
+        "name": "names",
+        "start_line": 29,
+        "end_line": 33,
+        "body_statements": [
+          {
+            "syntax": "If",
+            "line": 30,
+            "end_line": 32
+          },
+          {
+            "syntax": "Return",
+            "line": 33,
+            "end_line": 33
+          }
+        ]
+      },
+      {
+        "name": "vector",
+        "start_line": 36,
+        "end_line": 39,
+        "body_statements": [
+          {
+            "syntax": "If",
+            "line": 37,
+            "end_line": 38
+          },
+          {
+            "syntax": "Return",
+            "line": 39,
+            "end_line": 39
+          }
+        ]
+      },
+      {
+        "name": "bits",
+        "start_line": 42,
+        "end_line": 45,
+        "body_statements": [
+          {
+            "syntax": "If",
+            "line": 43,
+            "end_line": 44
+          },
+          {
+            "syntax": "Return",
+            "line": 45,
+            "end_line": 45
+          }
+        ]
+      }
+    ]
+  }
+}

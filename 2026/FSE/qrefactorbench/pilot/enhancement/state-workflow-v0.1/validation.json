@@ -1,0 +1,191 @@
+{
+  "status": "passed",
+  "date": "2026-09-25",
+  "commands": [
+    {
+      "command": "/home/audrey/miniconda3/envs/palqo/bin/python -B -m pytest -q -p no:cacheprovider pilot/enhancement/state-workflow-v0.1/test_workflow.py",
+      "exit_code": 0,
+      "result": "12 passed in 0.06s"
+    },
+    {
+      "command": "/home/audrey/miniconda3/envs/palqo/bin/python -B pilot/enhancement/state-workflow-v0.1/workflow.py --output pilot/enhancement/state-workflow-v0.1/demo",
+      "exit_code": 0,
+      "result": "4 branches prepared; 0 model calls; effect_on_model_quality null"
+    }
+  ],
+  "protected_file_count": 2347,
+  "protected_files_changed": [],
+  "local_links": [
+    {
+      "source": "DECISIONS.md",
+      "target": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "exists": true
+    },
+    {
+      "source": "DECISIONS.md",
+      "target": "docs/AGENT_WORKFLOW_LEARNING.md",
+      "exists": true
+    },
+    {
+      "source": "PROJECT_STATUS.md",
+      "target": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "exists": true
+    },
+    {
+      "source": "PROJECT_STATUS.md",
+      "target": "docs/AGENT_WORKFLOW_LEARNING.md",
+      "exists": true
+    },
+    {
+      "source": "NEXT_ACTIONS.md",
+      "target": "docs/AGENT_WORKFLOW_LEARNING.md",
+      "exists": true
+    },
+    {
+      "source": "NEXT_ACTIONS.md",
+      "target": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "exists": true
+    },
+    {
+      "source": "TODO.md",
+      "target": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "exists": true
+    },
+    {
+      "source": "TODO.md",
+      "target": "docs/AGENT_WORKFLOW_LEARNING.md",
+      "exists": true
+    },
+    {
+      "source": "CHANGELOG.md",
+      "target": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "exists": true
+    },
+    {
+      "source": "docs/research_log.md",
+      "target": "../pilot/enhancement/state-workflow-v0.1/README.md",
+      "exists": true
+    },
+    {
+      "source": "docs/research_log.md",
+      "target": "AGENT_WORKFLOW_LEARNING.md",
+      "exists": true
+    },
+    {
+      "source": "docs/CODEX_WORKFLOW.md",
+      "target": "../AGENTS.md",
+      "exists": true
+    },
+    {
+      "source": "docs/CODEX_WORKFLOW.md",
+      "target": "RESEARCH_CHARTER.md",
+      "exists": true
+    },
+    {
+      "source": "docs/CODEX_WORKFLOW.md",
+      "target": "../PROJECT_STATUS.md",
+      "exists": true
+    },
+    {
+      "source": "docs/CODEX_WORKFLOW.md",
+      "target": "../NEXT_ACTIONS.md",
+      "exists": true
+    },
+    {
+      "source": "docs/CODEX_WORKFLOW.md",
+      "target": "../DECISIONS.md",
+      "exists": true
+    },
+    {
+      "source": "docs/CODEX_WORKFLOW.md",
+      "target": "../README.md",
+      "exists": true
+    },
+    {
+      "source": "docs/CODEX_WORKFLOW.md",
+      "target": "../TODO.md",
+      "exists": true
+    },
+    {
+      "source": "docs/CODEX_WORKFLOW.md",
+      "target": "../DECISIONS.md#d-032-delegated-workflow-development-with-stepwise-explanation",
+      "exists": true
+    },
+    {
+      "source": "docs/CODEX_WORKFLOW.md",
+      "target": "validation.md",
+      "exists": true
+    },
+    {
+      "source": "docs/CODEX_WORKFLOW.md",
+      "target": "research_log.md",
+      "exists": true
+    },
+    {
+      "source": "docs/AGENT_WORKFLOW_LEARNING.md",
+      "target": "../pilot/enhancement/state-workflow-v0.1/README.md",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "target": "../../../docs/AGENT_WORKFLOW_LEARNING.md",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "target": "../../../DECISIONS.md#d-032-delegated-workflow-development-with-stepwise-explanation",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "target": "workflow.py",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "target": "demo/analysis.json",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "target": "demo/development-feedback.json",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "target": "demo/summary.json",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "target": "demo/analysis_and_verification/prompt.txt",
+      "exists": true
+    },
+    {
+      "source": "pilot/enhancement/state-workflow-v0.1/README.md",
+      "target": "source_manifest.json",
+      "exists": true
+    }
+  ],
+  "main_suite": "not rerun: shared implementation and evaluator unchanged",
+  "model_calls": 0,
+  "qpu_calls": 0,
+  "effect_on_model_quality": null,
+  "artifact_sha256": {
+    "workflow.py": "71e29d349676e0f19b2330fc8f4e085f4db221a43de3b94a004904581c8a0834",
+    "source_manifest.json": "0d08bbfcf9286cdae31278627f78b682164c1862f718d4bb1f57ecc6c8db01d6",
+    "test_workflow.py": "64e32be5ac2bbb8077e367be4d9c64bf1aab24732a924c0575bc8f6cce0ba97e",
+    "README.md": "8ca5870d1988676a5f8b1e13fa73ef4e6979eb4d24fdb8339dc1f8f376ccc963",
+    "demo/analysis.json": "5be3a3bff313bf3ad8b48044543be3d0fa0b8ea964248b55df055d5f2201af75",
+    "demo/summary.json": "0d58f8c2e850f02d4999530804253a7e6307733fcf68abde458d85feb16f2450",
+    "demo/development-feedback.json": "22d74bcf6c7f9bfccca2e952df749e12580502d43fb68191958a3cf7cb1aee39",
+    "demo/analysis_only/record.json": "040e586081b19cb8a7ad98b5b15658ac3cb5d9b200b4a88cc3a3fe64305ebaa1",
+    "demo/analysis_only/prompt.txt": "b8dad458cea2e3490e9b16d5b61c97226baf385f9e0e2a058e18ae40c2ebdf8b",
+    "demo/verification_only/record.json": "98585830af8c10cd194a19f5791537271f4472cf87e835776b5ebdfd9494dd99",
+    "demo/verification_only/prompt.txt": "b0d4fee1466b3898da2506d98bce34800aba6ae0a0bbd82e1da5fe174bcefc19",
+    "demo/self_review/record.json": "77cc116b2a4339379cfa3f62843f8ad0b4254f4037033a1bce6689c5e3c03116",
+    "demo/self_review/prompt.txt": "9f802b1d901009eefd39dae68505a7bb713a5719565479a9b4b12a95751767d5",
+    "demo/analysis_and_verification/record.json": "85b86d07fab698355d794ff878bc79819d9cf131d49b7dbe5b3073eb482d8233",
+    "demo/analysis_and_verification/prompt.txt": "a629896c2ee4679b64fd9a8185f49030f670bc283f669cb73092e3085f9de7e0"
+  }
+}

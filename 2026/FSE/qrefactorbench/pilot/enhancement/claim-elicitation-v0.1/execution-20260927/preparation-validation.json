@@ -1,0 +1,22 @@
+{
+  "utc": "2026-09-26T21:33:38.190737+00:00",
+  "focused_tests": {
+    "passed": 32,
+    "command": "python -m pytest -q pilot/enhancement/claim-elicitation-v0.1/test_campaign.py"
+  },
+  "regression_tests": {
+    "passed": 49,
+    "command": "python -m pytest -q pilot/enhancement/state-workflow-v0.1/test_workflow.py pilot/enhancement/state-workflow-v0.2/test_claims.py"
+  },
+  "preflight_sha256": "d3b7f6e93918ddbc4ea73b713b3400558dfca14960a706326c1e710c43186821",
+  "protocol_sha256": "dfec27c33f110f47aaa63d969d45622e1bd37861d27f2aded85a1a34ab2bedc2",
+  "source_lineage": {
+    "pilot/enhancement/feedback-control-v0.1/campaign.py": "b862d2dd8d7979553f7f1ac4b6fe23baa11ce09f3e16f71d17db4363a459fbe4",
+    "pilot/enhancement/feedback-control-v0.1/preflight.py": "72d5e284523f2511e9e470214d0329b7c79037b4cddb3ee98021e4cdd56154bb",
+    "pilot/enhancement/feedback-control-v0.1/test_campaign.py": "5724d48c1bbec6008ad3fdc87753a6070c92176e52c6e34e2f95360cb472c476"
+  },
+  "notes": [
+    "Fake-transport all10-slot rehearsal is part of focused tests; not model effect evidence.",
+    "All10 task/draft payloads audited in tests; one formalization prompt captured in wire preflight."
+  ]
+}

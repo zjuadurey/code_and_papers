@@ -1,0 +1,43 @@
+[
+  {
+    "url": "https://arxiv.org/html/2607.00939v1",
+    "file": "sources/qpipe-paper.html",
+    "bytes": 290656,
+    "sha256": "d5bc12fa7057f7ff23d8bba9464e5d6d8779a35f5e16373677b654a90faf25aa"
+  },
+  {
+    "url": "https://tuhat.helsinki.fi/ws/portalfiles/portal/159680541/Jon_Speer_Quantum_Offloading.pdf",
+    "file": "sources/offloading-paper.pdf",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/lfd/qce2025-design-automation/4b4490a6abfdebfe8a8801becad343dd733fa326/README.md",
+    "file": "sources/predict/README.md",
+    "bytes": 3817,
+    "sha256": "b2b7da6d9e6a349ffd373ea056bde0b6c5e57fde2596a2d887f84f1404fa76da"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/lfd/qce2025-design-automation/4b4490a6abfdebfe8a8801becad343dd733fa326/algorithm_selection_framework.py",
+    "file": "sources/predict/algorithm_selection_framework.py",
+    "bytes": 35026,
+    "sha256": "7aac3f12c3521b82900a7be1440dee5c83bf9609c98ac5d2dab48a026490178d"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/lfd/qce2025-design-automation/4b4490a6abfdebfe8a8801becad343dd733fa326/main.py",
+    "file": "sources/predict/main.py",
+    "bytes": 2408,
+    "sha256": "ce6c0a9a37409ca8d860c37df99823bdef274ae5ecee561bcc0cb5877fe17fbe"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/lfd/qce2025-design-automation/4b4490a6abfdebfe8a8801becad343dd733fa326/runtime_fit.py",
+    "file": "sources/predict/runtime_fit.py",
+    "bytes": 4916,
+    "sha256": "22631473bda6df66cdd6f494de2e1370a0502d08961be6b1c8b8e6682120fa34"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/lfd/qce2025-design-automation/4b4490a6abfdebfe8a8801becad343dd733fa326/csvs/classical_approximation_benchmark.py",
+    "file": "sources/predict/csvs/classical_approximation_benchmark.py",
+    "bytes": 2115,
+    "sha256": "8d9d059084849092d38d6a85acc82afbfbad6e00697526b302a8a954700a1d00"
+  }
+]

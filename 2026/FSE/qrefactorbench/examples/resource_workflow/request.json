@@ -1,0 +1,19 @@
+{
+  "version": "resource-workflow-v0.1",
+  "plan_id": "engineering-smoke-only",
+  "application": {
+    "format": "openqasm3",
+    "source": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nqubit[2] q;\nbit[2] c;\nh q[0];\nt q[0];\ncx q[0], q[1];\nc = measure q;\n",
+    "coverage": "Tiny integration circuit only; not a migrated benchmark case or benefit example."
+  },
+  "profiles": [
+    {
+      "id": "assumed-gate-based",
+      "gate_time_ns": 100,
+      "measurement_time_ns": 500,
+      "error_rate": 0.0001,
+      "source": "Hypothetical parameters from Microsoft getting-started documentation; not user hardware."
+    }
+  ],
+  "max_error": 0.01
+}

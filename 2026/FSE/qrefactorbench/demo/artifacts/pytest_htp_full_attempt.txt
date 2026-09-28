@@ -1,0 +1,67 @@
+
+==================================== ERRORS ====================================
+__________________ ERROR collecting tests/test_evaluation.py ___________________
+ImportError while importing test module '/home/audrey/code_and_papers/2026/FSE/qrefactorbench/tests/test_evaluation.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../miniconda3/envs/htp-static/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_evaluation.py:6: in <module>
+    from qrefactorbench.cli import evaluate, main
+qrefactorbench/cli.py:13: in <module>
+    from .evaluator.pipeline import evaluate_static, prediction_errors
+qrefactorbench/evaluator/pipeline.py:7: in <module>
+    from ..schema import schema_errors
+qrefactorbench/schema.py:7: in <module>
+    from jsonschema import Draft202012Validator, FormatChecker
+E   ModuleNotFoundError: No module named 'jsonschema'
+_____________________ ERROR collecting tests/test_pilot.py _____________________
+ImportError while importing test module '/home/audrey/code_and_papers/2026/FSE/qrefactorbench/tests/test_pilot.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../miniconda3/envs/htp-static/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_pilot.py:13: in <module>
+    from qrefactorbench.cli import compare_annotations, evaluate, main
+qrefactorbench/cli.py:13: in <module>
+    from .evaluator.pipeline import evaluate_static, prediction_errors
+qrefactorbench/evaluator/pipeline.py:7: in <module>
+    from ..schema import schema_errors
+qrefactorbench/schema.py:7: in <module>
+    from jsonschema import Draft202012Validator, FormatChecker
+E   ModuleNotFoundError: No module named 'jsonschema'
+___________________ ERROR collecting tests/test_pilot_v01.py ___________________
+ImportError while importing test module '/home/audrey/code_and_papers/2026/FSE/qrefactorbench/tests/test_pilot_v01.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../miniconda3/envs/htp-static/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_pilot_v01.py:14: in <module>
+    from qrefactorbench.pilot import prepare_packets
+qrefactorbench/pilot.py:10: in <module>
+    from .evaluator.pipeline import prediction_errors
+qrefactorbench/evaluator/pipeline.py:7: in <module>
+    from ..schema import schema_errors
+qrefactorbench/schema.py:7: in <module>
+    from jsonschema import Draft202012Validator, FormatChecker
+E   ModuleNotFoundError: No module named 'jsonschema'
+__________________ ERROR collecting tests/test_validation.py ___________________
+ImportError while importing test module '/home/audrey/code_and_papers/2026/FSE/qrefactorbench/tests/test_validation.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+../../../../miniconda3/envs/htp-static/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_validation.py:5: in <module>
+    from jsonschema import Draft202012Validator
+E   ModuleNotFoundError: No module named 'jsonschema'
+=========================== short test summary info ============================
+ERROR tests/test_evaluation.py
+ERROR tests/test_pilot.py
+ERROR tests/test_pilot_v01.py
+ERROR tests/test_validation.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 4 errors during collection !!!!!!!!!!!!!!!!!!!!
+4 errors in 0.18s

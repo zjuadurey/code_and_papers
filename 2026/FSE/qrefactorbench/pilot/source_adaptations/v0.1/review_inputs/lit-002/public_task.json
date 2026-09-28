@@ -1,0 +1,11 @@
+{
+  "case_id": "lit-002",
+  "title": "Connection inspection assignment",
+  "software_contract": "inspection_plan(request) returns selected_stations, station_count, connection_count. At least one endpoint of every declared connection must be selected. Return the fewest possible stations. If several such sets exist, choose the lexicographically smallest tuple of input positions, and emit station names in that order (not alphabetically). Repeated and reversed declarations describe one undirected connection; connection_count counts unique connections. Empty connections select no stations. Invalid requests raise ValueError; error message text is not part of the contract. Validate the entire request even after a valid prefix. Do not mutate the request. The program's JSON stdin/stdout entry point prints one response for valid requests; invalid input terminates with an error, not a success response.",
+  "input_domain": "A JSON object with exactly stations and connections. stations is a list of 0–16 unique nonempty strings. connections is a list of two-element lists of distinct known station names. Every station is available and has unit selection cost; there are no additional capacity, geography or scheduling rules. The 16-station bound is a local enumeration/testing limit, not a measured operational workload.",
+  "execution_assumptions": [
+    "Input arrives as ordinary classical JSON; one request produces one response.",
+    "No measured workload distribution, hardware target, encoding budget, latency requirement or repeated-use model is supplied.",
+    "No tolerance for uncovered connections, approximate cardinality or altered tie handling is granted."
+  ]
+}

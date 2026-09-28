@@ -1,0 +1,7 @@
+{
+  "case_id": "core-003",
+  "title": "Boolean clause consistency",
+  "software_contract": "has_assignment(n, clauses) returns exactly whether at least one Boolean assignment satisfies all clauses. A positive literal requires its variable true and a negative literal requires it false. Each clause is disjunction; the clause list is conjunction. Empty clause is false; empty clause list is true. No witness or counting output is required. Do not mutate clauses. Only valid-domain inputs are specified; no extra invalid-input validation behavior is added to the source function.",
+  "input_domain": "n is a nonnegative Python int, not bool. clauses is a finite list of finite lists of nonzero Python integers with absolute value at most n. Repeated literals/clauses and empty clauses are allowed. No smaller feature limit is introduced by this view.",
+  "execution_assumptions": ["Inputs are ordinary classical data. No hardware, encoding cost, workload distribution or practical benefit is specified."]
+}

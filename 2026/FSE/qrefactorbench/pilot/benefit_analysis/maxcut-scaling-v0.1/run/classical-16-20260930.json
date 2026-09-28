@@ -1,0 +1,108 @@
+{
+  "n": 16,
+  "edges": 32,
+  "complete": true,
+  "elapsed_seconds": 0.05508733699389268,
+  "optimum": 99,
+  "minimum_mask": 21675,
+  "solver_calls": [
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": -99.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 0.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    },
+    {
+      "status": 0,
+      "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+      "objective": 1.0,
+      "gap": 0.0
+    }
+  ],
+  "limit_seconds": 3,
+  "scope": "Kernel exact-value/minimum-mask target; floating solver status, not formal proof"
+}

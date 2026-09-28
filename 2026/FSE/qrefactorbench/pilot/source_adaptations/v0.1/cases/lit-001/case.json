@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "case_id": "lit-001",
+  "title": "Maintenance window assignment",
+  "description": "schedule(request) returns separated_weight (an exact integer), windows (two lists of names), and equipment_count. Each equipment item appears exactly once, in its input order within its window. The score is the sum of requirement weights whose endpoints are in different windows; return the globally largest score. Repeated or reversed requirements contribute independently and therefore add their weights. For equal scores choose the smallest sum of 2**i over input positions i in the first window. Empty inputs return score 0 and two empty lists. Invalid requests raise ValueError; error message text is not part of the contract. Validate the entire request even after a valid prefix. Do not mutate the request. The program's JSON stdin/stdout entry point prints one response for valid requests; invalid input terminates with an error, not a success response.",
+  "source": "AI-assisted source adaptation: unchanged C2|Q> kernel from the pinned public dataset mirror; new synthetic application requirements, wrapper and tests by Codex, 2026-09-21. See ../../sources/manifest.json and ADAPTATION.md. Not an independently reviewed benchmark or a deployed application.",
+  "source_url": "https://huggingface.co/datasets/boshuai1/c2q-dataset/tree/c5b457cf425c31e91bae829503ece6e92646dd0a",
+  "license": "NOASSERTION",
+  "domain": "source_adapted_synthetic_context",
+  "version": "0.1.0",
+  "migration_family": null,
+  "context_level": "small_program",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "files": [
+    "program.py",
+    "kernel.py"
+  ],
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "maxcut_bruteforce",
+      "start_line": 1,
+      "end_line": 16
+    }
+  ],
+  "structural_eligibility": null,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "expected_decision": null,
+  "computational_intent": null,
+  "admissible_migration_contracts": [],
+  "reference_plan": null,
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "property",
+    "description": "Draft full API equality plus separate feasibility/exact-objective checks in classical tests. No automatic migration oracle hook registered; not a quantum validation claim.",
+    "config": {
+      "test_artifact": "test_program.py",
+      "probabilistic_policy": null,
+      "approximation_permitted": false
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Input arrives as ordinary classical JSON; one request produces one response.",
+      "No measured workload distribution, hardware target, encoding budget, latency requirement or repeated-use model is supplied.",
+      "No tolerance for approximate scores or altered tie handling is granted."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT, AI-ASSISTED PROPOSAL — NOT GROUND TRUTH. Required case_type=positive denotes a provisional sampling hypothesis only. The region is a private review nomination, not an accepted localization answer. All scientific judgment fields remain null. Inspect ADAPTATION.md before human annotation.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "External kernel CC-BY-4.0; no license granted for newly authored wrapper/tests. Package license remains NOASSERTION pending release review.",
+    "Synthetic application context, not verified real-world software; original function names remain visible and can cue computational intent.",
+    "Exactness and deterministic tie requirements are part of the classical contract; a feasible quantum sample alone cannot satisfy it.",
+    "No independently validated migration contracts, plan, quantum oracle, practical suitability or advantage evidence."
+  ]
+}

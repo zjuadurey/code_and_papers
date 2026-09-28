@@ -1,0 +1,36 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-010",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "No region implements either supported computational family. The apparent numerical kernel in kernel.py lines 17-40 is a stateful, ordered conjugate-direction recurrence over binary64 values, not an unstructured finite-domain predicate search or a binary combinatorial optimization problem. Its inputs and state include rows, rhs, the current iterate, the step budget, tolerance, residual r, direction p, previous squared residual, and the recurrent norm. It activates only in advance mode through program.py lines 39-46; each iteration additionally depends on the budget and relative-residual stopping predicate at kernel.py line 24. Surrounding behavior that must remain intact includes validation and normalization in program.py lines 9-32, the separately computed initial residual in lines 33-38, zero-residual termination, the exact update ordering and per-step recurrent residual trace in kernel.py lines 24-39, breakdown and nonfinite exceptions, budget-limited nonconvergence, preservation of the resulting approximate iterate rather than substitution of an exact solution, and direct final-residual recomputation in program.py lines 41-46. Encoding real-valued iterates into a QUBO would introduce unresolved discretization, penalty, feasibility, and exactness changes and would not preserve the prescribed recurrence. Treating validation scans or sparse matrix operations as Grover searches would require coherent access and reversible predicates while still preserving deterministic exception behavior and ordering; the supplied material provides neither such an oracle nor a meaningful search objective. Structural eligibility is therefore false, so no conditional migration plan is warranted. Practical suitability is independently false because quantum data loading, arithmetic, state extraction, and classical verification would add unbounded overhead while the full named iterate and exact trace must remain classical outputs. Benchmark support is false: the material explicitly says this is not a compliant HPCG run and supplies no workload, resource, hardware, encoding-cost, or advantage measurements.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Validate a sparse symmetric strictly diagonally dominant system and execute a budgeted unpreconditioned conjugate-direction recurrence while reporting its ordered residual history and resulting named iterate.",
+  "assumptions": [
+    "Only unstructured_search and combinatorial_optimization are admissible migration families.",
+    "Python binary64 update order, stopping behavior, exceptions, output ordering, approximate iterate, and residual trace must not be relaxed.",
+    "Classical input loading and output reconstruction are not free, and no coherent sparse-memory mechanism is supplied."
+  ],
+  "risks": [
+    "A QUBO discretization would change the real-valued recurrence into a different optimization problem and could alter the iterate, stopping point, trace, and exceptions.",
+    "A probabilistic Grover-style validation oracle could miss invalid input or change which validation error is observed.",
+    "Quantum state preparation, reversible floating-point arithmetic, sparse access, repeated measurements, and extraction of the full iterate may dominate any proposed kernel benefit.",
+    "HPCG source attribution could be mistaken for benchmark evidence even though the software contract expressly disclaims HPCG compliance."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The main computation is an ordered numerical recurrence rather than marked-item search. Validation loops could only be recast as searches after supplying reversible predicates, coherent data access, deterministic no-solution handling, and exception-order preservation, none of which is established or practically motivated by the supplied material."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "There are no binary decision variables or combinatorial objective. Constructing them would require an unresolved finite-precision encoding and penalties and would solve a surrogate optimization problem instead of preserving the specified budgeted recurrence and exact trace semantics."
+    }
+  ]
+}

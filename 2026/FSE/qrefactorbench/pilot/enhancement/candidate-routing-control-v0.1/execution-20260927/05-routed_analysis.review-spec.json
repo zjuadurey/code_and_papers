@@ -1,0 +1,9 @@
+{
+ "resolution":"ambiguous",
+ "anchor_pointers":["/contract_applicability/0/rationale","/plan/formulation","/plan/input_encoding","/assumptions/4"],
+ "rationale":"Primary QUBO remains unconstructed: rank conversion, coefficient construction and penalty bounds are explicitly unresolved. Separately, the Grover applicability paragraph gives no-smaller-than-every-competitor and earlier-index-on-equality conditions with an explicit finite-column admission. Bind this secondary predicate only, retaining >= and literal not-< readings; competitors exclude the candidate itself. The finite guard applies explicitly to this secondary claim and outside-encoding states are declared classical. Finite agreement would not validate the primary QUBO or execute fallback.",
+ "interpretations":[
+ {"id":"finite_competitor_ge_first_equal","meaning":"On finite active values, >= every other candidate and precede each equal competitor.","mode":"predicate","expression":"all(values[i] >= values[j] for j in indices if j != i) and all(i < j for j in indices if j != i and values[i] == values[j])","guard":"all(isfinite(values[j]) for j in indices)","outside_guard":"classical_fallback_declared"},
+ {"id":"finite_competitor_not_lt_first_equal","meaning":"On finite active values, not-< every other candidate and precede each equal competitor.","mode":"predicate","expression":"not any(values[i] < values[j] for j in indices if j != i) and all(i < j for j in indices if j != i and values[i] == values[j])","guard":"all(isfinite(values[j]) for j in indices)","outside_guard":"classical_fallback_declared"}
+ ]
+}

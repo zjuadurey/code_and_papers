@@ -1,0 +1,127 @@
+{
+  "scope": "Descriptive systems comparison; same task/reference, different provider scaffolding and reasoning/output budgets. No stable ranking.",
+  "flash_incomplete_policy": "No full-population diagnostics; no silent exclusion or retry.",
+  "rows": [
+    {
+      "model": "gpt-5.6-sol",
+      "valid": 10,
+      "population": 10,
+      "structural_reference_agreement": {
+        "unresolved": 3,
+        "total": 10,
+        "reference_known": 7,
+        "prediction_known": 10,
+        "matched": 7,
+        "mismatched": 0,
+        "agreement_on_resolved_pairs": 1.0,
+        "matched_over_known_references": 1.0
+      },
+      "plan_coverage": {
+        "reference_required": 7,
+        "present": 7
+      },
+      "where": {
+        "population": 7,
+        "exact_region_set_matches": 6,
+        "mean_line_iou": 0.9761904761904763,
+        "note": "Descriptive overlap against draft anchors, not semantic localization correctness."
+      },
+      "family": {
+        "unresolved": 4,
+        "total": 10,
+        "reference_known": 7,
+        "prediction_known": 8,
+        "matched": 6,
+        "mismatched": 0,
+        "agreement_on_resolved_pairs": 1.0,
+        "matched_over_known_references": 0.8571428571428571
+      },
+      "mean_call_seconds": 103.8081,
+      "configuration": "medium/Codex"
+    },
+    {
+      "model": "gpt-6-astra",
+      "valid": 10,
+      "population": 10,
+      "structural_reference_agreement": {
+        "unresolved": 3,
+        "total": 10,
+        "reference_known": 7,
+        "prediction_known": 10,
+        "matched": 7,
+        "mismatched": 0,
+        "agreement_on_resolved_pairs": 1.0,
+        "matched_over_known_references": 1.0
+      },
+      "plan_coverage": {
+        "reference_required": 7,
+        "present": 7
+      },
+      "where": {
+        "population": 7,
+        "exact_region_set_matches": 6,
+        "mean_line_iou": 0.9761904761904763,
+        "note": "Descriptive overlap against draft anchors, not semantic localization correctness."
+      },
+      "family": {
+        "unresolved": 3,
+        "total": 10,
+        "reference_known": 7,
+        "prediction_known": 8,
+        "matched": 7,
+        "mismatched": 0,
+        "agreement_on_resolved_pairs": 1.0,
+        "matched_over_known_references": 1.0
+      },
+      "mean_call_seconds": 50.4354,
+      "configuration": "medium/Codex"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "valid": 10,
+      "population": 10,
+      "structural_reference_agreement": {
+        "unresolved": 3,
+        "total": 10,
+        "reference_known": 7,
+        "prediction_known": 10,
+        "matched": 7,
+        "mismatched": 0,
+        "agreement_on_resolved_pairs": 1.0,
+        "matched_over_known_references": 1.0
+      },
+      "plan_coverage": {
+        "reference_required": 7,
+        "present": 7
+      },
+      "where": {
+        "population": 7,
+        "exact_region_set_matches": 5,
+        "mean_line_iou": 0.9260204081632654
+      },
+      "family": {
+        "unresolved": 4,
+        "total": 10,
+        "reference_known": 7,
+        "prediction_known": 7,
+        "matched": 6,
+        "mismatched": 0,
+        "agreement_on_resolved_pairs": 1.0,
+        "matched_over_known_references": 0.8571428571428571
+      },
+      "mean_call_seconds": 157.5722,
+      "configuration": "high/direct API/16384 max tokens"
+    },
+    {
+      "model": "deepseek-flash",
+      "valid": 9,
+      "population": 10,
+      "structural_reference_agreement": null,
+      "plan_coverage": null,
+      "where": null,
+      "family": null,
+      "mean_call_seconds": 49.288,
+      "configuration": "high/direct API/16384 max tokens"
+    }
+  ]
+}

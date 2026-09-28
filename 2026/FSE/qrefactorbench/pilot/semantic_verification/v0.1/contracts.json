@@ -1,0 +1,1235 @@
+{
+  "version": "0.1",
+  "private": true,
+  "mother_cases": 10,
+  "scope_policy": "Representative selection fixed by task types: cover, search, unresolved control; clique reuses graph checker. No model-dependent case exclusion.",
+  "source_sha256": {
+    "pilot/reference_completion/v0.1.1/review_inputs/manifest.json": "cf3420621dcfbeb0b3c082e38c8dd54f737b56476108bbe1ff34fb8aee77c61a",
+    "pilot/provisional_labels/v0.1/labels.json": "36a691f92c0042cc558e318170c5273de54086bcf06c749b1b3be5d04d468a7e",
+    "schemas/phase1_prediction.schema.json": "7fbbce683b407d82e8f556d218c985c2aa398c60cfb6c794f8e2191f46e61caa",
+    "pilot/how_review/v0.2/PROTOCOL.md": "8c8fb42fa2c44b092a3399ab91064010ea5205e1866e3158f52a51142542ef94",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-001-C.txt": "9268f0b7023736ab7fa88e42610194c0cdfd7131c5ff6fa72403eab3b3e19a65",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-002-C.txt": "78d179578aad53e085314bc7c8950f504ab2171798424f88356fda67d61a7702",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-003-C.txt": "f20e2374eadaca85cb94fb983d706fd595b8e922c693b53d1e2d9accb50ac6f5",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-004-C.txt": "c7d39e87215fdb8d54b69d9c387911ca17020108782de50189a6fcb21847c278",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-005-C.txt": "dd8d7f2d0022e82930aed2f8f2293b707c4502ef882bbc387783f00afb644a10",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-006-C.txt": "788cc5bf47576888f1c5b883542ee92e9e6c73031524a1be1dc9a8bea557d817",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-007-C.txt": "2d0d9c2d999879cb3e43242ae092a56bf3889cb3af95b611419282dd6a1b7c74",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-008-C.txt": "0521e1deb52d47ba8b123f09c3b3ea894de23bbcc1c6bc05b2e80c6e8a764a20",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-009-C.txt": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+    "pilot/reference_completion/v0.1.1/review_inputs/lit-010-C.txt": "813a8c8fe93ec272831290f415c96a550c76cca8854b978a996e7c5689d91094"
+  },
+  "cases": [
+    {
+      "case_id": "lit-001",
+      "prediction_case_id": "context-001",
+      "condition": "C",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-001-C.txt",
+      "input_sha256": "9268f0b7023736ab7fa88e42610194c0cdfd7131c5ff6fa72403eab3b3e19a65",
+      "task_levels": {
+        "A": "candidate location, concrete family correspondence and conditions",
+        "B": "conditional plan when structural YES, even if REMAIN_CLASSICAL",
+        "C": "not required; no executable migration score"
+      },
+      "agent_visible": {
+        "case_id": "context-001",
+        "title": "Maintenance assignment review",
+        "software_contract": "review_schedule(request) validates the entire request or raises ValueError without mutating it; exception text is not fixed. It returns equipment_count (number of equipment items), requirement_count (number of raw requirement records), current, proposed and changes. Each of current/proposed contains windows, conflict_weight, separated_weight and conflicts. A conflict is a positive-total-weight equipment pair assigned to the same window. Repeated/reversed requirements add weights; zero-total pairs are omitted from conflict lists. conflict_weight sums same-window weights; separated_weight sums different-window weights. Proposed windows must globally minimize conflict_weight. Ties choose the smallest sum of 2**i over equipment input positions i in window 0, regardless of the current arrangement; minimum movement is NOT an objective. All output windows list names in equipment input order, even if input current_windows used another order. Conflict records have first, second and weight; endpoints and records are ordered by their equipment positions i<j, then increasing (i,j). changes contains moved_equipment (records with equipment, from_window, to_window, ordered by equipment input order; window indices are 0 and 1), conflict_reduction (current minus proposed conflict_weight), resolved_conflicts (current conflict records absent in proposed), and introduced_conflicts (proposed conflict records absent in current). The latter lists retain conflict ordering. Conflicts that remain are exactly proposed.conflicts. Zero improvement does not imply no moves. Empty equipment requires current_windows=[[],[]] and yields empty lists and zero scores/counts. The valid JSON CLI reads one request from stdin and prints one report; invalid input produces no successful report and a nonzero exit. No approximate score, arbitrary tie choice, input mutation or omitted reporting is permitted.",
+        "input_domain": "A JSON object with exactly equipment, requirements, current_windows. equipment is a list of 0–16 unique nonempty strings. requirements is a list of objects with exactly first, second, weight: endpoints are distinct known equipment names and weight is a nonnegative Python int (not bool; arbitrary precision). current_windows is a list of exactly two lists; each equipment item must occur exactly once across them, with no unknown names. Either window may be empty. There are no capacity, duration, staff, availability or move-cost constraints. The 16-item cap is a local enumeration limit, not a measured operational workload.",
+        "execution_assumptions": [
+          "This is a classical JSON-in/report-out program. Data arrive classically; no coherent data-access assumption is supplied.",
+          "No workload frequency, hardware backend, resource budget, latency target or deployment cost evidence is supplied.",
+          "The original exact selection and tie behavior is retained. Changes are reported for review, not automatically deployed."
+        ]
+      },
+      "submission_contract": {
+        "format": "unchanged Phase-1 prediction JSON schema 0.2.0",
+        "schema": "schemas/phase1_prediction.schema.json",
+        "required_content": "candidate_regions, separate eligibility/practical/support, decision, rationale; conditional plan on structural YES",
+        "not_required": "private polynomial/tables/receipts are reviewer evidence, NOT new agent outputs"
+      },
+      "premises": "A JSON object with exactly equipment, requirements, current_windows. equipment is a list of 0–16 unique nonempty strings. requirements is a list of objects with exactly first, second, weight: endpoints are distinct known equipment names and weight is a nonnegative Python int (not bool; arbitrary precision). current_windows is a list of exactly two lists; each equipment item must occur exactly once across them, with no unknown names. Either window may be empty. There are no capacity, duration, staff, availability or move-cost constraints. The 16-item cap is a local enumeration limit, not a measured operational workload.",
+      "missing_information": "No measured hardware, oracle/circuit cost, workload frequency or benefit; do not infer positive/negative advantage.",
+      "reference": {
+        "structural_eligibility": true,
+        "status": "PENDING",
+        "source": "pilot/provisional_labels/v0.1/labels.json",
+        "gold": false,
+        "review_needed": "candidate boundaries, alternate families, full migration and practical suitability"
+      },
+      "oracle_kind": null,
+      "verification_scope": "Contract catalogued; executable scoped-claim checks not implemented in this version.",
+      "claim_scope": null,
+      "oracle_basis": "Original public software definition; independent finite enumeration/bit truth table in oracles.py, not model agreement.",
+      "equivalences": "Object key order irrelevant; specified list order, eight-bit width and exact counts mandatory. Any implementation producing the contract behavior may be valid.",
+      "scoring": {
+        "format": "independent validity record",
+        "opportunity": "reference agreement only; pending and alternative answers need review",
+        "semantics": "per-obligation finite evidence, no explanation/format points can offset a counterexample",
+        "completion": "separate HOW v0.2 ledger; missing claim is insufficient_evidence",
+        "execution": null,
+        "quality": "exact, no tolerance or stochastic threshold introduced",
+        "stability_and_resources": "no model/QPU/stochastic solver measured",
+        "task_pass": null
+      },
+      "tests": []
+    },
+    {
+      "case_id": "lit-002",
+      "prediction_case_id": "context-002",
+      "condition": "C",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-002-C.txt",
+      "input_sha256": "78d179578aad53e085314bc7c8950f504ab2171798424f88356fda67d61a7702",
+      "task_levels": {
+        "A": "candidate location, concrete family correspondence and conditions",
+        "B": "conditional plan when structural YES, even if REMAIN_CLASSICAL",
+        "C": "not required; no executable migration score"
+      },
+      "agent_visible": {
+        "case_id": "context-002",
+        "title": "Connection inspection review and station worklists",
+        "software_contract": "review_inspections(request) validates the whole request or raises ValueError, without modifying it. Error text is not fixed. Return station_count (all declared stations), connection_count (unique undirected connections), current, proposed and changes. Proposed selects the fewest stations such that every connection has a selected endpoint; ties choose the lexicographically smallest tuple of station input positions. There is no requirement to minimize changes from current_stations. Current selection may leave connections uncovered and must be assessed honestly. Each plan contains selected_stations in station input order, selected_count, covered_connection_count, uncovered_connections, and checklists. Normalize each connection's endpoints by their input positions i<j, remove duplicate/reversed declarations, and order connections by increasing (i,j). Assign every covered connection to exactly one selected endpoint: the earliest endpoint in station input order. Checklists contains one object per selected station, in station input order, with station and connections; retain empty checklists. Uncovered connections are listed separately, never allocated to an unselected station. Changes contains add_stations and remove_stations in input order, selected_count_delta (proposed minus current), newly_covered_connections (uncovered before, covered after), and reassigned_connections for every connection whose assigned station changes. Reassigned records contain connection, from_station and to_station, using null for an unassigned connection; retain normalized connection order. All scores and worklists describe the actual returned selections. Empty stations require empty connections and current_stations, producing empty lists and zero counts. Empty connections propose no stations. Valid CLI input produces one JSON report; invalid requests produce no successful report and a nonzero exit. No uncovered proposed connection, approximate station count, or altered tie rule is permitted in this version.",
+        "input_domain": "JSON object with exactly stations, connections, current_stations. stations is a list of 0–16 unique nonempty strings. connections is a list of two-element lists of distinct known station names. current_stations is a list of distinct known station names; arbitrary order and empty selection are allowed. Every station is available at unit selection cost. A selected station can inspect any number of its incident connections. Inspection from either endpoint is sufficient. No travel, staff capacity, duration, geographical or activation-cost rules are modeled. The 16-station bound is a local enumeration limit, not a measured workload.",
+        "execution_assumptions": [
+          "Input is ordinary classical JSON. The report is a proposal for human review, not execution of inspections or deployment.",
+          "No hardware, latency target, workload frequency or deployment cost evidence is supplied.",
+          "Connection responsibility follows input ordering; station-count optimality and report correctness are separate requirements."
+        ]
+      },
+      "submission_contract": {
+        "format": "unchanged Phase-1 prediction JSON schema 0.2.0",
+        "schema": "schemas/phase1_prediction.schema.json",
+        "required_content": "candidate_regions, separate eligibility/practical/support, decision, rationale; conditional plan on structural YES",
+        "not_required": "private polynomial/tables/receipts are reviewer evidence, NOT new agent outputs"
+      },
+      "premises": "JSON object with exactly stations, connections, current_stations. stations is a list of 0–16 unique nonempty strings. connections is a list of two-element lists of distinct known station names. current_stations is a list of distinct known station names; arbitrary order and empty selection are allowed. Every station is available at unit selection cost. A selected station can inspect any number of its incident connections. Inspection from either endpoint is sufficient. No travel, staff capacity, duration, geographical or activation-cost rules are modeled. The 16-station bound is a local enumeration limit, not a measured workload.",
+      "missing_information": "No measured hardware, oracle/circuit cost, workload frequency or benefit; do not infer positive/negative advantage.",
+      "reference": {
+        "structural_eligibility": true,
+        "status": "PENDING",
+        "source": "pilot/provisional_labels/v0.1/labels.json",
+        "gold": false,
+        "review_needed": "candidate boundaries, alternate families, full migration and practical suitability"
+      },
+      "oracle_kind": "cover",
+      "verification_scope": "B: ground-state feasibility, minimum cardinality and canonical tuple decoding on valid normalized graphs. Not quantum execution or full inspection reports.",
+      "claim_scope": "direct_canonical_ground_state",
+      "oracle_basis": "Original public software definition; independent finite enumeration/bit truth table in oracles.py, not model agreement.",
+      "equivalences": "All binary variable permutations/complements with explicit bijective decode; arbitrary exact constant offset; positive rescaling, or negative rescaling with reversed sense. Every ground state must decode correctly. Alternate constructions outside this data representation remain unjudged.",
+      "scoring": {
+        "format": "independent validity record",
+        "opportunity": "reference agreement only; pending and alternative answers need review",
+        "semantics": "per-obligation finite evidence, no explanation/format points can offset a counterexample",
+        "completion": "separate HOW v0.2 ledger; missing claim is insufficient_evidence",
+        "execution": null,
+        "quality": "exact, no tolerance or stochastic threshold introduced",
+        "stability_and_resources": "no model/QPU/stochastic solver measured",
+        "task_pass": null
+      },
+      "tests": [
+        {
+          "id": "empty",
+          "category": "boundary",
+          "input": {
+            "n": 0,
+            "edges": []
+          },
+          "expected": [],
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "empty decoding",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "no_edges",
+          "category": "boundary",
+          "input": {
+            "n": 3,
+            "edges": []
+          },
+          "expected": [],
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "unnecessary selected vertices",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "single_edge",
+          "category": "discriminating",
+          "input": {
+            "n": 2,
+            "edges": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          "expected": [
+            0
+          ],
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "positive superincreasing tie reversal",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "tuple_not_mask",
+          "category": "discriminating",
+          "input": {
+            "n": 4,
+            "edges": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          },
+          "expected": [
+            0,
+            3
+          ],
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "numeric mask is not tuple lexicographic order",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "triangle",
+          "category": "normal",
+          "input": {
+            "n": 3,
+            "edges": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          },
+          "expected": [
+            0,
+            1
+          ],
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "insufficient constraint penalty",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "star",
+          "category": "discriminating",
+          "input": {
+            "n": 4,
+            "edges": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                0,
+                3
+              ]
+            ]
+          },
+          "expected": [
+            0
+          ],
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "feasible but nonminimum cover",
+          "premises": "Valid normalized core input"
+        }
+      ]
+    },
+    {
+      "case_id": "lit-003",
+      "prediction_case_id": "lit-003",
+      "condition": "C",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-003-C.txt",
+      "input_sha256": "f20e2374eadaca85cb94fb983d706fd595b8e922c693b53d1e2d9accb50ac6f5",
+      "task_levels": {
+        "A": "candidate location, concrete family correspondence and conditions",
+        "B": "conditional plan when structural YES, even if REMAIN_CLASSICAL",
+        "C": "not required; no executable migration score"
+      },
+      "agent_visible": {
+        "case_id": "lit-003",
+        "title": "Participant-aware agenda review",
+        "software_contract": "review_agenda(request) validates the whole request before processing, raises ValueError for invalid inputs (message unspecified), and never mutates it. Sessions sharing any participant cannot occupy the same slot. Output contains session_count, current, preview, proposed, status and moves. A described arrangement contains assignment in session input order, unassigned session IDs, conflicts (each pair in input order with first/second IDs and sorted shared participant names), feasible (all sessions assigned and no conflicts), and slots (all slots in declared order, each with slot and its session IDs in input order). mode=inspect reports current only: preview/proposed are null, status=inspected, moves=[]. In complete mode, preserve an already feasible current arrangement exactly, status=retained and preview=null. Otherwise construct a preview by taking the earliest slot available for each session in session order, without revisiting preceding choices. A completed preview is {status:ready, assignment:[slot names]}, becomes proposed, and yields status=preview. If preview blocks, retain {status:blocked, assignment:null}; find an arrangement satisfying all participant restrictions, choosing the lexicographically smallest slot-index vector. If found, report status=completed and its proposed description; if none exists, report status=unavailable and proposed=null. Preview blockage alone does not mean no arrangement exists. Failed previews and partial current arrangements impose no fixed assignments on completion. moves lists changed sessions in input order with session_id/from/to, only when a proposal exists. Empty sessions are feasible, including with zero slots. Nonempty sessions with zero slots cannot be completed. CLI reads a JSON request and prints one JSON report; invalid requests exit nonzero without a successful report.",
+        "input_domain": "Object with exactly slots, sessions, current, mode. slots is a finite list of distinct nonempty strings. sessions is a finite list of records with exactly session_id (unique nonempty string) and participants (finite list of distinct nonempty strings). current is a list of the same length as sessions, each item null or a declared slot string. mode is inspect or complete. Participant names are case-sensitive; empty participant lists are permitted. All slots are available to all sessions; there are no duration, room-capacity or availability rules. No added numerical session-count cap; ordinary Python recursion/runtime limits remain execution limitations, not evidence that a request is infeasible.",
+        "execution_assumptions": [
+          "This is a planning report, not calendar deployment. Preserve valid current choices and prescribed preview behavior even if another arrangement might be preferable.",
+          "Ordinary classical inputs; workload frequencies, hardware, encoding costs and latency targets are not supplied."
+        ]
+      },
+      "submission_contract": {
+        "format": "unchanged Phase-1 prediction JSON schema 0.2.0",
+        "schema": "schemas/phase1_prediction.schema.json",
+        "required_content": "candidate_regions, separate eligibility/practical/support, decision, rationale; conditional plan on structural YES",
+        "not_required": "private polynomial/tables/receipts are reviewer evidence, NOT new agent outputs"
+      },
+      "premises": "Object with exactly slots, sessions, current, mode. slots is a finite list of distinct nonempty strings. sessions is a finite list of records with exactly session_id (unique nonempty string) and participants (finite list of distinct nonempty strings). current is a list of the same length as sessions, each item null or a declared slot string. mode is inspect or complete. Participant names are case-sensitive; empty participant lists are permitted. All slots are available to all sessions; there are no duration, room-capacity or availability rules. No added numerical session-count cap; ordinary Python recursion/runtime limits remain execution limitations, not evidence that a request is infeasible.",
+      "missing_information": "No measured hardware, oracle/circuit cost, workload frequency or benefit; do not infer positive/negative advantage.",
+      "reference": {
+        "structural_eligibility": true,
+        "status": "PENDING",
+        "source": "pilot/provisional_labels/v0.1/labels.json",
+        "gold": false,
+        "review_needed": "candidate boundaries, alternate families, full migration and practical suitability"
+      },
+      "oracle_kind": null,
+      "verification_scope": "Contract catalogued; executable scoped-claim checks not implemented in this version.",
+      "claim_scope": null,
+      "oracle_basis": "Original public software definition; independent finite enumeration/bit truth table in oracles.py, not model agreement.",
+      "equivalences": "Object key order irrelevant; specified list order, eight-bit width and exact counts mandatory. Any implementation producing the contract behavior may be valid.",
+      "scoring": {
+        "format": "independent validity record",
+        "opportunity": "reference agreement only; pending and alternative answers need review",
+        "semantics": "per-obligation finite evidence, no explanation/format points can offset a counterexample",
+        "completion": "separate HOW v0.2 ledger; missing claim is insufficient_evidence",
+        "execution": null,
+        "quality": "exact, no tolerance or stochastic threshold introduced",
+        "stability_and_resources": "no model/QPU/stochastic solver measured",
+        "task_pass": null
+      },
+      "tests": []
+    },
+    {
+      "case_id": "lit-004",
+      "prediction_case_id": "lit-004",
+      "condition": "C",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-004-C.txt",
+      "input_sha256": "c7d39e87215fdb8d54b69d9c387911ca17020108782de50189a6fcb21847c278",
+      "task_levels": {
+        "A": "candidate location, concrete family correspondence and conditions",
+        "B": "conditional plan when structural YES, even if REMAIN_CLASSICAL",
+        "C": "not required; no executable migration score"
+      },
+      "agent_visible": {
+        "case_id": "lit-004",
+        "title": "Release group review from pair-check history",
+        "software_contract": "review_releases(request) validates every version/check/request before processing and raises ValueError for invalid input (message unspecified), without mutation. Pair checks are undirected; the last input record for a pair supersedes earlier records, including reversed pairs. Unknown pairs are unverified, not passed. A proposed group must contain only active versions from that request's members, with every pair's latest check passed. Requests are independent, never consume versions, and follow input order. Output contains version_count, check_count, pair_count (distinct checked pairs including inactive versions), superseded_check_count (check_count-pair_count), and requests. Each request report contains request_id, eligible (active requested versions in global version input order), current, preview, proposed and changes. A description contains selected IDs in global version order, size, inactive IDs, missing_pairs (global pair order, each left/right/reason=failed or unverified), and eligible_and_compatible (no inactive or missing pair). Current may be inactive or incompatible and is reported honestly. Preview always starts empty and scans eligible versions in order, accepting a version exactly when it is compatible with every already accepted one; preview must retain this behavior even if a larger group exists. For mode=inspect, proposed and changes are null. For mode=select, proposed has the greatest possible size among eligible pair-compatible groups; ties choose the smallest integer sum(2**i) over selected positions in eligible. Empty eligible produces empty proposal. changes.add/remove are differences from current in global version order, not an objective. Singleton groups need no pair checks. No triple-level compatibility, minimum-change preference, or approximate size is permitted. CLI reads one JSON request and prints one JSON report; invalid inputs exit nonzero with no successful report.",
+        "input_domain": "Object with exactly versions, checks, requests, all finite lists. Version records have exactly version_id (unique nonempty string), active (bool). Check records have exactly left, right (distinct known version ID strings), passed (bool). Repeated/reversed checks are permitted, order authoritative. Request records have exactly request_id (unique nonempty string), members (distinct known version IDs), current (distinct IDs drawn from members), mode (inspect or select). Member/current order need not follow catalogue order. No artificial version/count cap. Compatibility is explicitly pairwise according to supplied check records; these records are not executed tests or a claim about real software compatibility.",
+        "execution_assumptions": [
+          "Versions represent independently selectable artifacts, not necessarily alternatives of one package. Pair-check history is supplied by the caller; no network or package installation occurs.",
+          "All reports and previews are observable. No measured workload distribution, hardware budget, encoding cost or practical benefit is supplied."
+        ]
+      },
+      "submission_contract": {
+        "format": "unchanged Phase-1 prediction JSON schema 0.2.0",
+        "schema": "schemas/phase1_prediction.schema.json",
+        "required_content": "candidate_regions, separate eligibility/practical/support, decision, rationale; conditional plan on structural YES",
+        "not_required": "private polynomial/tables/receipts are reviewer evidence, NOT new agent outputs"
+      },
+      "premises": "Object with exactly versions, checks, requests, all finite lists. Version records have exactly version_id (unique nonempty string), active (bool). Check records have exactly left, right (distinct known version ID strings), passed (bool). Repeated/reversed checks are permitted, order authoritative. Request records have exactly request_id (unique nonempty string), members (distinct known version IDs), current (distinct IDs drawn from members), mode (inspect or select). Member/current order need not follow catalogue order. No artificial version/count cap. Compatibility is explicitly pairwise according to supplied check records; these records are not executed tests or a claim about real software compatibility.",
+      "missing_information": "No measured hardware, oracle/circuit cost, workload frequency or benefit; do not infer positive/negative advantage.",
+      "reference": {
+        "structural_eligibility": true,
+        "status": "PENDING",
+        "source": "pilot/provisional_labels/v0.1/labels.json",
+        "gold": false,
+        "review_needed": "candidate boundaries, alternate families, full migration and practical suitability"
+      },
+      "oracle_kind": "clique",
+      "verification_scope": "B: ground-state compatibility, maximum cardinality and canonical mask decoding on valid eligible graphs. Not request normalization, greedy preview or migration execution.",
+      "claim_scope": "direct_canonical_ground_state",
+      "oracle_basis": "Original public software definition; independent finite enumeration/bit truth table in oracles.py, not model agreement.",
+      "equivalences": "All binary variable permutations/complements with explicit bijective decode; arbitrary exact constant offset; positive rescaling, or negative rescaling with reversed sense. Every ground state must decode correctly. Alternate constructions outside this data representation remain unjudged.",
+      "scoring": {
+        "format": "independent validity record",
+        "opportunity": "reference agreement only; pending and alternative answers need review",
+        "semantics": "per-obligation finite evidence, no explanation/format points can offset a counterexample",
+        "completion": "separate HOW v0.2 ledger; missing claim is insufficient_evidence",
+        "execution": null,
+        "quality": "exact, no tolerance or stochastic threshold introduced",
+        "stability_and_resources": "no model/QPU/stochastic solver measured",
+        "task_pass": null
+      },
+      "tests": [
+        {
+          "id": "empty",
+          "category": "boundary",
+          "input": {
+            "n": 0,
+            "edges": []
+          },
+          "expected": [],
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "empty decoding",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "no_edges",
+          "category": "discriminating",
+          "input": {
+            "n": 3,
+            "edges": []
+          },
+          "expected": [
+            0
+          ],
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "missing nonedge penalty",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "complete",
+          "category": "normal",
+          "input": {
+            "n": 3,
+            "edges": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          },
+          "expected": [
+            0,
+            1,
+            2
+          ],
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "optimization direction",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "path",
+          "category": "discriminating",
+          "input": {
+            "n": 3,
+            "edges": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          },
+          "expected": [
+            0,
+            1
+          ],
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "incorrect canonical numeric mask",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "isolated",
+          "category": "boundary",
+          "input": {
+            "n": 1,
+            "edges": []
+          },
+          "expected": [
+            0
+          ],
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "rejecting singleton cliques",
+          "premises": "Valid normalized core input"
+        }
+      ]
+    },
+    {
+      "case_id": "lit-005",
+      "prediction_case_id": "lit-005",
+      "condition": "C",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-005-C.txt",
+      "input_sha256": "dd8d7f2d0022e82930aed2f8f2293b707c4502ef882bbc387783f00afb644a10",
+      "task_levels": {
+        "A": "candidate location, concrete family correspondence and conditions",
+        "B": "conditional plan when structural YES, even if REMAIN_CLASSICAL",
+        "C": "not required; no executable migration score"
+      },
+      "agent_visible": {
+        "case_id": "lit-005",
+        "title": "Named feature requirements",
+        "software_contract": "review(request) validates all fields before reporting. Each named rule has exactly three alternatives; at least one must match. Locked feature values must also match. Output failed_rules and locked_failures always describe current in input feature/rule order. inspect returns no proposal. complete retains a conforming current; otherwise returns the first conforming Boolean vector in feature order (False before True), or unavailable with null proposal. changes lists changed names in feature order. Repeated/contradictory literals within a rule are allowed. Empty rules are true. No mutation; invalid inputs raise ValueError, text unspecified. CLI reads one JSON request and prints the report.",
+        "input_domain": "Exactly features (distinct nonempty names), rules (unique id, any list of three {feature,enabled:bool}), locked (known-name to bool map), current (bool list matching features), mode inspect|complete. Empty feature lists require no rules or locks. No arbitrary size cap; enumeration is classical and finite.",
+        "execution_assumptions": [
+          "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+        ]
+      },
+      "submission_contract": {
+        "format": "unchanged Phase-1 prediction JSON schema 0.2.0",
+        "schema": "schemas/phase1_prediction.schema.json",
+        "required_content": "candidate_regions, separate eligibility/practical/support, decision, rationale; conditional plan on structural YES",
+        "not_required": "private polynomial/tables/receipts are reviewer evidence, NOT new agent outputs"
+      },
+      "premises": "Exactly features (distinct nonempty names), rules (unique id, any list of three {feature,enabled:bool}), locked (known-name to bool map), current (bool list matching features), mode inspect|complete. Empty feature lists require no rules or locks. No arbitrary size cap; enumeration is classical and finite.",
+      "missing_information": "No measured hardware, oracle/circuit cost, workload frequency or benefit; do not infer positive/negative advantage.",
+      "reference": {
+        "structural_eligibility": true,
+        "status": "PENDING",
+        "source": "pilot/provisional_labels/v0.1/labels.json",
+        "gold": false,
+        "review_needed": "candidate boundaries, alternate families, full migration and practical suitability"
+      },
+      "oracle_kind": "predicate",
+      "verification_scope": "B: marking predicate on every Boolean vector and core lex-first/absence selection. Not reversible circuit construction, Grover success probability or context retention of valid current.",
+      "claim_scope": "predicate_and_core_selection",
+      "oracle_basis": "Original public software definition; independent finite enumeration/bit truth table in oracles.py, not model agreement.",
+      "equivalences": "All binary variable permutations/complements with explicit bijective decode; arbitrary exact constant offset; positive rescaling, or negative rescaling with reversed sense. Every ground state must decode correctly. Alternate constructions outside this data representation remain unjudged.",
+      "scoring": {
+        "format": "independent validity record",
+        "opportunity": "reference agreement only; pending and alternative answers need review",
+        "semantics": "per-obligation finite evidence, no explanation/format points can offset a counterexample",
+        "completion": "separate HOW v0.2 ledger; missing claim is insufficient_evidence",
+        "execution": null,
+        "quality": "exact, no tolerance or stochastic threshold introduced",
+        "stability_and_resources": "no model/QPU/stochastic solver measured",
+        "task_pass": null
+      },
+      "tests": [
+        {
+          "id": "empty",
+          "category": "boundary",
+          "input": {
+            "n": 0,
+            "clauses": [],
+            "locked": []
+          },
+          "expected": {
+            "marked": [
+              []
+            ],
+            "first": []
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "empty conjunction is true",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "force_true",
+          "category": "normal",
+          "input": {
+            "n": 1,
+            "clauses": [
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1
+                ]
+              ]
+            ],
+            "locked": []
+          },
+          "expected": {
+            "marked": [
+              [
+                1
+              ]
+            ],
+            "first": [
+              1
+            ]
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "wrong literal polarity",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "force_false",
+          "category": "normal",
+          "input": {
+            "n": 1,
+            "clauses": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ]
+            ],
+            "locked": []
+          },
+          "expected": {
+            "marked": [
+              [
+                0
+              ]
+            ],
+            "first": [
+              0
+            ]
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "wrong literal polarity",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "locked",
+          "category": "discriminating",
+          "input": {
+            "n": 2,
+            "clauses": [],
+            "locked": [
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          "expected": {
+            "marked": [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "first": [
+              1,
+              0
+            ]
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "ignored lock",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "unsatisfiable",
+          "category": "discriminating",
+          "input": {
+            "n": 1,
+            "clauses": [
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1
+                ]
+              ],
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ]
+            ],
+            "locked": []
+          },
+          "expected": {
+            "marked": [],
+            "first": null
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "missing clause / false absence certificate",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "lex",
+          "category": "discriminating",
+          "input": {
+            "n": 2,
+            "clauses": [
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ]
+              ]
+            ],
+            "locked": []
+          },
+          "expected": {
+            "marked": [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            "first": [
+              0,
+              1
+            ]
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "arbitrary satisfying assignment instead of lex first",
+          "premises": "Valid normalized core input"
+        },
+        {
+          "id": "tautology",
+          "category": "boundary",
+          "input": {
+            "n": 1,
+            "clauses": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  0,
+                  1
+                ]
+              ]
+            ],
+            "locked": []
+          },
+          "expected": {
+            "marked": [
+              [
+                0
+              ],
+              [
+                1
+              ]
+            ],
+            "first": [
+              0
+            ]
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "repeated/contradictory literals mishandled",
+          "premises": "Valid normalized core input"
+        }
+      ]
+    },
+    {
+      "case_id": "lit-006",
+      "prediction_case_id": "lit-006",
+      "condition": "C",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-006-C.txt",
+      "input_sha256": "788cc5bf47576888f1c5b883542ee92e9e6c73031524a1be1dc9a8bea557d817",
+      "task_levels": {
+        "A": "candidate location, concrete family correspondence and conditions",
+        "B": "conditional plan when structural YES, even if REMAIN_CLASSICAL",
+        "C": "not required; no executable migration score"
+      },
+      "agent_visible": {
+        "case_id": "lit-006",
+        "title": "Independent transfer windows",
+        "software_contract": "review(request) validates the whole batch first. Eligible items are active entries in catalogue order. Each window is independent; no shared-stock allocation across windows. current report retains listed inactive items and marks infeasible if any are inactive or total weight exceeds capacity. select maximizes total value of indivisible eligible items under capacity; ties use smallest numeric mask in eligible order. proposal includes IDs/weight/value/feasible. transfers follows selected catalogue order with contiguous offsets starting at 0 and item weight as length. inspect has no proposal or transfers. No mutation; invalid input raises ValueError. CLI reads/prints JSON.",
+        "input_domain": "Exactly items and windows lists. Item={id:unique nonempty string, weight:positive int, value:nonnegative int, active:bool}. Window={id:unique nonempty string, capacity:nonnegative int, current:distinct known item IDs, mode:inspect|select}. Bool is not an int. Empty lists allowed; no added numeric cap.",
+        "execution_assumptions": [
+          "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+        ]
+      },
+      "submission_contract": {
+        "format": "unchanged Phase-1 prediction JSON schema 0.2.0",
+        "schema": "schemas/phase1_prediction.schema.json",
+        "required_content": "candidate_regions, separate eligibility/practical/support, decision, rationale; conditional plan on structural YES",
+        "not_required": "private polynomial/tables/receipts are reviewer evidence, NOT new agent outputs"
+      },
+      "premises": "Exactly items and windows lists. Item={id:unique nonempty string, weight:positive int, value:nonnegative int, active:bool}. Window={id:unique nonempty string, capacity:nonnegative int, current:distinct known item IDs, mode:inspect|select}. Bool is not an int. Empty lists allowed; no added numeric cap.",
+      "missing_information": "No measured hardware, oracle/circuit cost, workload frequency or benefit; do not infer positive/negative advantage.",
+      "reference": {
+        "structural_eligibility": true,
+        "status": "PENDING",
+        "source": "pilot/provisional_labels/v0.1/labels.json",
+        "gold": false,
+        "review_needed": "candidate boundaries, alternate families, full migration and practical suitability"
+      },
+      "oracle_kind": null,
+      "verification_scope": "Contract catalogued; executable scoped-claim checks not implemented in this version.",
+      "claim_scope": null,
+      "oracle_basis": "Original public software definition; independent finite enumeration/bit truth table in oracles.py, not model agreement.",
+      "equivalences": "Object key order irrelevant; specified list order, eight-bit width and exact counts mandatory. Any implementation producing the contract behavior may be valid.",
+      "scoring": {
+        "format": "independent validity record",
+        "opportunity": "reference agreement only; pending and alternative answers need review",
+        "semantics": "per-obligation finite evidence, no explanation/format points can offset a counterexample",
+        "completion": "separate HOW v0.2 ledger; missing claim is insufficient_evidence",
+        "execution": null,
+        "quality": "exact, no tolerance or stochastic threshold introduced",
+        "stability_and_resources": "no model/QPU/stochastic solver measured",
+        "task_pass": null
+      },
+      "tests": []
+    },
+    {
+      "case_id": "lit-007",
+      "prediction_case_id": "lit-007",
+      "condition": "C",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-007-C.txt",
+      "input_sha256": "2d0d9c2d999879cb3e43242ae092a56bf3889cb3af95b611419282dd6a1b7c74",
+      "task_levels": {
+        "A": "candidate location, concrete family correspondence and conditions",
+        "B": "conditional plan when structural YES, even if REMAIN_CLASSICAL",
+        "C": "not required; no executable migration score"
+      },
+      "agent_visible": {
+        "case_id": "lit-007",
+        "title": "Signed pair assignment review",
+        "software_contract": "review(request) validates one together/apart preference for every unordered pair, rejecting duplicates. current and proposed describe ordered False/True groups, signed score and violated pairs in catalogue-pair order. A satisfied preference contributes +1, an unsatisfied preference -1. inspect reports current only. propose maximizes signed score, ties use smallest numeric membership mask (member i is bit i); report gain and moved members. It need not retain another equally good current. No capacity or group-size constraint, groups may be empty. No mutation; invalid inputs raise ValueError. CLI reads/prints JSON.",
+        "input_domain": "Exactly members (distinct nonempty names), preferences ({left,right,relation:together|apart} for all distinct pairs), current (bool list matching members), mode inspect|propose. Empty/singleton groups allowed. Relation symmetry is explicit; no missing-pair defaults.",
+        "execution_assumptions": [
+          "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+        ]
+      },
+      "submission_contract": {
+        "format": "unchanged Phase-1 prediction JSON schema 0.2.0",
+        "schema": "schemas/phase1_prediction.schema.json",
+        "required_content": "candidate_regions, separate eligibility/practical/support, decision, rationale; conditional plan on structural YES",
+        "not_required": "private polynomial/tables/receipts are reviewer evidence, NOT new agent outputs"
+      },
+      "premises": "Exactly members (distinct nonempty names), preferences ({left,right,relation:together|apart} for all distinct pairs), current (bool list matching members), mode inspect|propose. Empty/singleton groups allowed. Relation symmetry is explicit; no missing-pair defaults.",
+      "missing_information": "No measured hardware, oracle/circuit cost, workload frequency or benefit; do not infer positive/negative advantage.",
+      "reference": {
+        "structural_eligibility": true,
+        "status": "PENDING",
+        "source": "pilot/provisional_labels/v0.1/labels.json",
+        "gold": false,
+        "review_needed": "candidate boundaries, alternate families, full migration and practical suitability"
+      },
+      "oracle_kind": null,
+      "verification_scope": "Contract catalogued; executable scoped-claim checks not implemented in this version.",
+      "claim_scope": null,
+      "oracle_basis": "Original public software definition; independent finite enumeration/bit truth table in oracles.py, not model agreement.",
+      "equivalences": "Object key order irrelevant; specified list order, eight-bit width and exact counts mandatory. Any implementation producing the contract behavior may be valid.",
+      "scoring": {
+        "format": "independent validity record",
+        "opportunity": "reference agreement only; pending and alternative answers need review",
+        "semantics": "per-obligation finite evidence, no explanation/format points can offset a counterexample",
+        "completion": "separate HOW v0.2 ledger; missing claim is insufficient_evidence",
+        "execution": null,
+        "quality": "exact, no tolerance or stochastic threshold introduced",
+        "stability_and_resources": "no model/QPU/stochastic solver measured",
+        "task_pass": null
+      },
+      "tests": []
+    },
+    {
+      "case_id": "lit-008",
+      "prediction_case_id": "lit-008",
+      "condition": "C",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-008-C.txt",
+      "input_sha256": "0521e1deb52d47ba8b123f09c3b3ea894de23bbcc1c6bc05b2e80c6e8a764a20",
+      "task_levels": {
+        "A": "candidate location, concrete family correspondence and conditions",
+        "B": "conditional plan when structural YES, even if REMAIN_CLASSICAL",
+        "C": "not required; no executable migration score"
+      },
+      "agent_visible": {
+        "case_id": "lit-008",
+        "title": "Ordered masking receipts",
+        "software_contract": "review(request) validates all records first. For each input row compute the bitwise exclusive-or of left and right, encode exactly eight bits (most significant first), count set bits and update a running sum modulo 256. Return ordered receipts with id/bits/set_bits/counts/prefix_checksum plus record_count and final checksum. counts mode maps the one deterministic bitstring to repetitions; inspect uses null counts but still produces every receipt. Do not replace full output by a sample/aggregate. No mutation; invalid input raises ValueError. CLI reads/prints JSON.",
+        "input_domain": "Exactly records list of {id:unique nonempty string,left:int 0..255,right:int 0..255}, repetitions:positive int, mode inspect|counts. Bool excluded from integers. Empty records allowed. repetitions denotes an exact repeated-outcome count, not random sampling or QPU execution.",
+        "execution_assumptions": [
+          "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+        ]
+      },
+      "submission_contract": {
+        "format": "unchanged Phase-1 prediction JSON schema 0.2.0",
+        "schema": "schemas/phase1_prediction.schema.json",
+        "required_content": "candidate_regions, separate eligibility/practical/support, decision, rationale; conditional plan on structural YES",
+        "not_required": "private polynomial/tables/receipts are reviewer evidence, NOT new agent outputs"
+      },
+      "premises": "Exactly records list of {id:unique nonempty string,left:int 0..255,right:int 0..255}, repetitions:positive int, mode inspect|counts. Bool excluded from integers. Empty records allowed. repetitions denotes an exact repeated-outcome count, not random sampling or QPU execution.",
+      "missing_information": "No measured hardware, oracle/circuit cost, workload frequency or benefit; do not infer positive/negative advantage.",
+      "reference": {
+        "structural_eligibility": null,
+        "status": "PENDING",
+        "source": "pilot/provisional_labels/v0.1/labels.json",
+        "gold": false,
+        "review_needed": "candidate boundaries, alternate families, full migration and practical suitability"
+      },
+      "oracle_kind": "receipts",
+      "verification_scope": "A/context obligation evidence: exact report examples, not an opportunity label or quantum mapping. No executable candidate migration is submitted or certified.",
+      "claim_scope": "full_receipt_examples",
+      "oracle_basis": "Original public software definition; independent finite enumeration/bit truth table in oracles.py, not model agreement.",
+      "equivalences": "Object key order irrelevant; specified list order, eight-bit width and exact counts mandatory. Any implementation producing the contract behavior may be valid.",
+      "scoring": {
+        "format": "independent validity record",
+        "opportunity": "reference agreement only; pending and alternative answers need review",
+        "semantics": "per-obligation finite evidence, no explanation/format points can offset a counterexample",
+        "completion": "separate HOW v0.2 ledger; missing claim is insufficient_evidence",
+        "execution": null,
+        "quality": "exact, no tolerance or stochastic threshold introduced",
+        "stability_and_resources": "no model/QPU/stochastic solver measured",
+        "task_pass": null
+      },
+      "tests": [
+        {
+          "id": "empty",
+          "category": "boundary",
+          "input": {
+            "records": [],
+            "mode": "counts",
+            "repetitions": 9
+          },
+          "expected": {
+            "record_count": 0,
+            "receipts": [],
+            "checksum": 0
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "empty full report",
+          "premises": "Valid complete public JSON request"
+        },
+        {
+          "id": "normal",
+          "category": "normal",
+          "input": {
+            "records": [
+              {
+                "id": "r0",
+                "left": 10,
+                "right": 20
+              },
+              {
+                "id": "r1",
+                "left": 61,
+                "right": 9
+              },
+              {
+                "id": "r2",
+                "left": 47,
+                "right": 8
+              }
+            ],
+            "mode": "counts",
+            "repetitions": 9
+          },
+          "expected": {
+            "record_count": 3,
+            "receipts": [
+              {
+                "id": "r0",
+                "bits": "00011110",
+                "set_bits": 4,
+                "counts": {
+                  "00011110": 9
+                },
+                "prefix_checksum": 30
+              },
+              {
+                "id": "r1",
+                "bits": "00110100",
+                "set_bits": 3,
+                "counts": {
+                  "00110100": 9
+                },
+                "prefix_checksum": 82
+              },
+              {
+                "id": "r2",
+                "bits": "00100111",
+                "set_bits": 4,
+                "counts": {
+                  "00100111": 9
+                },
+                "prefix_checksum": 121
+              }
+            ],
+            "checksum": 121
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "ignored rows / incorrect count",
+          "premises": "Valid complete public JSON request"
+        },
+        {
+          "id": "endian",
+          "category": "discriminating",
+          "input": {
+            "records": [
+              {
+                "id": "r0",
+                "left": 1,
+                "right": 0
+              }
+            ],
+            "mode": "counts",
+            "repetitions": 9
+          },
+          "expected": {
+            "record_count": 1,
+            "receipts": [
+              {
+                "id": "r0",
+                "bits": "00000001",
+                "set_bits": 1,
+                "counts": {
+                  "00000001": 9
+                },
+                "prefix_checksum": 1
+              }
+            ],
+            "checksum": 1
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "wrong bit ordering / missing leading zeroes",
+          "premises": "Valid complete public JSON request"
+        },
+        {
+          "id": "overflow",
+          "category": "boundary",
+          "input": {
+            "records": [
+              {
+                "id": "r0",
+                "left": 255,
+                "right": 0
+              },
+              {
+                "id": "r1",
+                "left": 2,
+                "right": 0
+              }
+            ],
+            "mode": "counts",
+            "repetitions": 9
+          },
+          "expected": {
+            "record_count": 2,
+            "receipts": [
+              {
+                "id": "r0",
+                "bits": "11111111",
+                "set_bits": 8,
+                "counts": {
+                  "11111111": 9
+                },
+                "prefix_checksum": 255
+              },
+              {
+                "id": "r1",
+                "bits": "00000010",
+                "set_bits": 1,
+                "counts": {
+                  "00000010": 9
+                },
+                "prefix_checksum": 1
+              }
+            ],
+            "checksum": 1
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "missing modulo 256 prefix checksum",
+          "premises": "Valid complete public JSON request"
+        },
+        {
+          "id": "inspect",
+          "category": "normal",
+          "input": {
+            "records": [
+              {
+                "id": "r0",
+                "left": 2,
+                "right": 0
+              },
+              {
+                "id": "r1",
+                "left": 1,
+                "right": 0
+              }
+            ],
+            "mode": "inspect",
+            "repetitions": 9
+          },
+          "expected": {
+            "record_count": 2,
+            "receipts": [
+              {
+                "id": "r0",
+                "bits": "00000010",
+                "set_bits": 1,
+                "counts": null,
+                "prefix_checksum": 2
+              },
+              {
+                "id": "r1",
+                "bits": "00000001",
+                "set_bits": 1,
+                "counts": null,
+                "prefix_checksum": 3
+              }
+            ],
+            "checksum": 3
+          },
+          "expected_source": "Original contract definition, independently computed by oracles.py; anchors also asserted in tests.",
+          "target_error": "counts in inspect / reordered output",
+          "premises": "Valid complete public JSON request"
+        }
+      ]
+    },
+    {
+      "case_id": "lit-009",
+      "prediction_case_id": "lit-009",
+      "condition": "C",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-009-C.txt",
+      "input_sha256": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+      "task_levels": {
+        "A": "candidate location, concrete family correspondence and conditions",
+        "B": "conditional plan when structural YES, even if REMAIN_CLASSICAL",
+        "C": "not required; no executable migration score"
+      },
+      "agent_visible": {
+        "case_id": "lit-009",
+        "title": "Named balance-system review",
+        "software_contract": "review(request) validates a dense square system then reports current residual. solve mode uses partial-pivoted elimination (largest absolute pivot, first index tie) and back substitution, raises ValueError on exact zero pivot or detected numerical overflow, and returns named float solution, deltas and proposed residual. inspect does not solve and need not reject a singular matrix. Residual vector is Ax-b. scaled_backward_error is its infinity norm divided by machine epsilon*(||A||inf*||x||inf+||b||inf)*n. Zero/zero is 0; nonzero/zero is null. within_requested_limit compares the proposed scaled diagnostic to caller residual_limit; not a quantum-semantic acceptance criterion. Empty system yields empty solution and zero residual. No mutation. This is a small serial Python program, not a compliant HPL performance run.",
+        "input_domain": "Exactly variables (distinct names), matrix (n rows of n finite real numbers), rhs/current (n finite numbers), residual_limit (finite nonnegative number), mode inspect|solve. Bool excluded from numbers. Computation uses Python binary64; values outside that range rejected; detected nonfinite results raise ValueError. No condition-number guarantee or bitwise match to a particular HPL installation.",
+        "execution_assumptions": [
+          "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+        ]
+      },
+      "submission_contract": {
+        "format": "unchanged Phase-1 prediction JSON schema 0.2.0",
+        "schema": "schemas/phase1_prediction.schema.json",
+        "required_content": "candidate_regions, separate eligibility/practical/support, decision, rationale; conditional plan on structural YES",
+        "not_required": "private polynomial/tables/receipts are reviewer evidence, NOT new agent outputs"
+      },
+      "premises": "Exactly variables (distinct names), matrix (n rows of n finite real numbers), rhs/current (n finite numbers), residual_limit (finite nonnegative number), mode inspect|solve. Bool excluded from numbers. Computation uses Python binary64; values outside that range rejected; detected nonfinite results raise ValueError. No condition-number guarantee or bitwise match to a particular HPL installation.",
+      "missing_information": "No measured hardware, oracle/circuit cost, workload frequency or benefit; do not infer positive/negative advantage.",
+      "reference": {
+        "structural_eligibility": null,
+        "status": "PENDING",
+        "source": "pilot/provisional_labels/v0.1/labels.json",
+        "gold": false,
+        "review_needed": "candidate boundaries, alternate families, full migration and practical suitability"
+      },
+      "oracle_kind": null,
+      "verification_scope": "Contract catalogued; executable scoped-claim checks not implemented in this version.",
+      "claim_scope": null,
+      "oracle_basis": "Original public software definition; independent finite enumeration/bit truth table in oracles.py, not model agreement.",
+      "equivalences": "Object key order irrelevant; specified list order, eight-bit width and exact counts mandatory. Any implementation producing the contract behavior may be valid.",
+      "scoring": {
+        "format": "independent validity record",
+        "opportunity": "reference agreement only; pending and alternative answers need review",
+        "semantics": "per-obligation finite evidence, no explanation/format points can offset a counterexample",
+        "completion": "separate HOW v0.2 ledger; missing claim is insufficient_evidence",
+        "execution": null,
+        "quality": "exact, no tolerance or stochastic threshold introduced",
+        "stability_and_resources": "no model/QPU/stochastic solver measured",
+        "task_pass": null
+      },
+      "tests": []
+    },
+    {
+      "case_id": "lit-010",
+      "prediction_case_id": "lit-010",
+      "condition": "C",
+      "input_path": "pilot/reference_completion/v0.1.1/review_inputs/lit-010-C.txt",
+      "input_sha256": "813a8c8fe93ec272831290f415c96a550c76cca8854b978a996e7c5689d91094",
+      "task_levels": {
+        "A": "candidate location, concrete family correspondence and conditions",
+        "B": "conditional plan when structural YES, even if REMAIN_CLASSICAL",
+        "C": "not required; no executable migration score"
+      },
+      "agent_visible": {
+        "case_id": "lit-010",
+        "title": "Sparse balance iteration review",
+        "software_contract": "review(request) validates a symmetric strictly diagonally dominant sparse matrix with positive diagonal. Missing entries are zero, duplicates rejected, entries normalized by variable order. inspect reports only initial Euclidean residual norm. advance follows the supplied unpreconditioned conjugate-direction recurrence from current, up to steps while recurrent residual norm / initial norm exceeds relative_tolerance. Zero initial residual takes zero steps. Return full named iterate, per-step recurrent residual trace, iterations and final directly recomputed residual norm. Budget exhaustion is not exact convergence; do not replace the iterate/trace with an exact solution. Numerical breakdown/nonfinite detected results raise ValueError. No mutation. No multigrid/MPI/rating; not a compliant HPCG run.",
+        "input_domain": "Exactly variables (distinct names), entries ({row,column:known names,value:finite number}), rhs/current (matching finite vectors), steps:nonnegative int, relative_tolerance:finite nonnegative number, mode inspect|advance. Bool excluded from numbers. Symmetry exact after float conversion; diagonal strictly exceeds sum of absolute off-diagonal entries. Empty system allowed. Python binary64 arithmetic, no added size cap.",
+        "execution_assumptions": [
+          "Classical inputs and outputs; no workload, quantum hardware, encoding-cost or advantage evidence supplied."
+        ]
+      },
+      "submission_contract": {
+        "format": "unchanged Phase-1 prediction JSON schema 0.2.0",
+        "schema": "schemas/phase1_prediction.schema.json",
+        "required_content": "candidate_regions, separate eligibility/practical/support, decision, rationale; conditional plan on structural YES",
+        "not_required": "private polynomial/tables/receipts are reviewer evidence, NOT new agent outputs"
+      },
+      "premises": "Exactly variables (distinct names), entries ({row,column:known names,value:finite number}), rhs/current (matching finite vectors), steps:nonnegative int, relative_tolerance:finite nonnegative number, mode inspect|advance. Bool excluded from numbers. Symmetry exact after float conversion; diagonal strictly exceeds sum of absolute off-diagonal entries. Empty system allowed. Python binary64 arithmetic, no added size cap.",
+      "missing_information": "No measured hardware, oracle/circuit cost, workload frequency or benefit; do not infer positive/negative advantage.",
+      "reference": {
+        "structural_eligibility": null,
+        "status": "PENDING",
+        "source": "pilot/provisional_labels/v0.1/labels.json",
+        "gold": false,
+        "review_needed": "candidate boundaries, alternate families, full migration and practical suitability"
+      },
+      "oracle_kind": null,
+      "verification_scope": "Contract catalogued; executable scoped-claim checks not implemented in this version.",
+      "claim_scope": null,
+      "oracle_basis": "Original public software definition; independent finite enumeration/bit truth table in oracles.py, not model agreement.",
+      "equivalences": "Object key order irrelevant; specified list order, eight-bit width and exact counts mandatory. Any implementation producing the contract behavior may be valid.",
+      "scoring": {
+        "format": "independent validity record",
+        "opportunity": "reference agreement only; pending and alternative answers need review",
+        "semantics": "per-obligation finite evidence, no explanation/format points can offset a counterexample",
+        "completion": "separate HOW v0.2 ledger; missing claim is insufficient_evidence",
+        "execution": null,
+        "quality": "exact, no tolerance or stochastic threshold introduced",
+        "stability_and_resources": "no model/QPU/stochastic solver measured",
+        "task_pass": null
+      },
+      "tests": []
+    }
+  ]
+}

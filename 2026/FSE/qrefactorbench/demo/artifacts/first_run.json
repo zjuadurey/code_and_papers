@@ -1,0 +1,380 @@
+{
+  "kind": "demo_not_benchmark",
+  "timestamp_utc": "2026-09-20T13:16:16.679140+00:00",
+  "python": "3.11.16",
+  "qiskit": "2.5.2",
+  "model_calls": 0,
+  "prediction_replays": {
+    "pilot-001": {
+      "schema_version": "0.2.0",
+      "case_id": "pilot-001",
+      "decision": "REMAIN_CLASSICAL",
+      "candidate_regions": [
+        {
+          "file": "program.py",
+          "function": "satisfies",
+          "start_line": 1,
+          "end_line": 6
+        },
+        {
+          "file": "program.py",
+          "function": "has_assignment",
+          "start_line": 9,
+          "end_line": 13
+        }
+      ],
+      "structural_eligibility": true,
+      "practical_suitability": false,
+      "benchmark_supported": null,
+      "computational_intent": "Decide exactly whether any of the 2^n Boolean assignments satisfies every supplied clause, returning a Boolean with no other required effects. Empty clauses must make the result false, while an empty clause list must make it true.",
+      "migration_family": "unstructured_search",
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": true,
+          "rationale": "The assignment space is finite and satisfies is a pure Boolean predicate, so a Grover-style formulation is structurally available. Applicability is conditional on constructing a reversible clause predicate, accounting for the classically supplied clause data and workspace, and resolving exact no-solution certification."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": null,
+          "rationale": "SAT can in principle be reduced to minimizing an unsatisfied-clause objective, with auxiliary variables and sufficiently strong penalties for higher-order clauses. No explicit QUBO reduction, coefficient bounds, penalty proof, resource accounting, or exact-optimum certification is supplied, and ordinary QAOA sampling would not by itself preserve the exact Boolean decision contract."
+        }
+      ],
+      "assumptions": [
+        "The input-domain guarantees hold for all calls.",
+        "The clause list is ordinary classical data and must be incorporated into any reversible predicate at nonzero cost.",
+        "Positive quantum outputs can be checked by the existing classical predicate.",
+        "No coherent clause memory, fault-tolerant hardware, or practical speedup evidence is available."
+      ],
+      "risks": [
+        "Reversible evaluation of all clauses may require substantial gate depth, ancillary workspace, and uncomputation.",
+        "Loading or hardwiring a growing classical clause list may dominate the proposed search.",
+        "Grover-style measurement is probabilistic, while the software contract requires an exact Boolean answer.",
+        "Classical verification certifies satisfying assignments but does not certify that no satisfying assignment exists.",
+        "An exhaustive classical fallback for exact negative answers can eliminate the intended search benefit.",
+        "The search space remains exponential and no end-to-end resource or advantage benchmark is supplied.",
+        "Physical feasibility and useful problem scale are unresolved."
+      ],
+      "rationale": "Lines 10-13 perform exhaustive assignment search, and lines 1-6 define the predicate that a quantum search oracle would need to reproduce. This is structurally compatible with unstructured search, but the expensive loop alone does not establish practical suitability. The clauses arrive as classical data, reversible oracle construction and workspace are uncosted, and the exact false result requires a justified no-solution procedure. No benchmark or measured practical benefit is provided. The conditional plan therefore records the possible formulation without recommending deployment.",
+      "plan": {
+        "schema_version": "0.1.0",
+        "contract_id": "grover-predicate-v0",
+        "computational_intent_id": "exact_cnf_satisfiability_existence",
+        "migration_family": "unstructured_search",
+        "formulation": "Encode each n-bit assignment as a basis state and mark it exactly when every clause contains at least one literal whose sign agrees with the corresponding assignment bit. A reversible oracle must reproduce the empty-clause and empty-clause-list semantics. The procedure must distinguish at least one marked assignment from no marked assignments without silently replacing the exact decision contract by bounded-error behavior.",
+        "input_encoding": "Use n assignment qubits for the candidate mask. Incorporate the classical clause list by synthesizing clause-controlled reversible logic or by another explicitly costed coherent representation. Compute literal truth values, reversible clause OR results, and their conjunction into a phase or flag qubit, then uncompute all temporary values. Gate count, clause-data representation, ancillary qubits, and synthesis cost remain unresolved.",
+        "quantum_algorithm_family": "grover_style",
+        "output_decoding": "Measure a candidate assignment and verify it with the classical satisfies predicate before returning true. Return false only after an exact or otherwise contract-approved no-solution certification; absent such a method, an exhaustive classical fallback is required and its cost must be included. Handle n=0, empty clauses, and an empty clause list explicitly.",
+        "assumptions": [
+          "A reversible implementation of the predicate can be constructed for the supplied clauses.",
+          "The implementation can recognize or search without prior knowledge of the number of satisfying assignments.",
+          "Any probabilistic error policy requires explicit approval because it changes the exact software contract.",
+          "All data preparation, oracle calls, repetitions, verification, and fallback work are included in evaluation."
+        ],
+        "risks": [
+          "Unknown solution count complicates amplitude-amplification scheduling and no-solution handling.",
+          "Exact negative certification may require enough work to remove any prospective advantage.",
+          "Oracle synthesis can scale with the total number of literals and require many ancillary operations.",
+          "Repeated state preparation and measurements add overhead.",
+          "No practical resource estimate, hardware feasibility evidence, or end-to-end benchmark is available."
+        ],
+        "expected_resource_characteristics": {
+          "status": "unresolved unless justified"
+        }
+      }
+    },
+    "pilot-002": {
+      "schema_version": "0.2.0",
+      "case_id": "pilot-002",
+      "decision": "REMAIN_CLASSICAL",
+      "candidate_regions": [],
+      "structural_eligibility": false,
+      "practical_suitability": false,
+      "benchmark_supported": null,
+      "computational_intent": "Sequentially consume every byte-string event, update a rolling SHA-256 digest from the preceding digest and current event, invoke the host audit callback exactly once per event in input order with each observable intermediate digest, propagate any callback exception according to normal Python execution, and return the final digest if processing completes.",
+      "migration_family": null,
+      "contract_applicability": [
+        {
+          "contract_id": "grover-predicate-v0",
+          "applicable": false,
+          "rationale": "The program does not search a candidate domain or evaluate a pure Boolean predicate. Lines 7-9 perform a deterministic, order-dependent hash chain with externally visible callbacks. Recasting some unrelated SHA-256 problem as predicate search would not implement the supplied software contract."
+        },
+        {
+          "contract_id": "qubo-ising-v0",
+          "applicable": false,
+          "rationale": "There are no binary decision variables, objective function, constraints, or optimum to encode as a QUBO or Ising model. Introducing an approximate optimization problem would change the computation and would not preserve the exact digest and audit behavior."
+        }
+      ],
+      "assumptions": [
+        "The supplied source and execution assumptions fully define the relevant behavior.",
+        "The audit callback may depend on every argument, may perform irreversible external effects, and may raise on any invocation.",
+        "No alternative batch interface, omitted audits, reordered effects, probabilistic digest, or approximate result is permitted."
+      ],
+      "risks": [
+        "The rolling dependency requires digest update i to use the exact digest from update i-1.",
+        "Every intermediate digest is externally observable, so audit calls cannot be elided, reordered, deferred, or replaced by final-result verification.",
+        "Callback exceptions affect how many events are consumed and which effects occur, further constraining any transformation.",
+        "Quantum state preparation, reversible SHA-256 construction, measurement, and host interaction would add unresolved overhead without mapping the task to either supported migration family.",
+        "No benchmark evidence is supplied for a quantum advantage or even a competitive implementation."
+      ],
+      "rationale": "The loop at lines 7-9 may be costly for a large event list, but it is a rejected hotspot rather than a supported quantumization candidate. Its purpose is deterministic sequential state evolution plus mandatory ordered host-side effects, not unstructured predicate search or combinatorial optimization. The exact dependency chain and per-event observable audits prevent treating the work as independent parallel evaluations, and neither catalog contract matches the computation. Therefore structural eligibility under the supported families is false, practical suitability is false, and no migration plan applies.",
+      "plan": null
+    }
+  },
+  "execution_checks": [
+    {
+      "name": "有解",
+      "n": 3,
+      "clauses": [
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ]
+      ],
+      "expected": true,
+      "passed": true,
+      "seed": 7,
+      "shots_requested": 16,
+      "shots_executed": 16,
+      "quantum_executed": true,
+      "classical_fallback": false,
+      "witness": 7,
+      "sampled_candidates": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        0,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "resources": {
+        "representation": "u/cx, opt=0, all-qubit terminal measurement",
+        "num_qubits": 6,
+        "depth": 34,
+        "operation_count": 80,
+        "gate_count": 73,
+        "two_qubit_gate_count": 18,
+        "measurement_count": 6,
+        "shots": 16,
+        "top_level_operations": {
+          "barrier": 1,
+          "cx": 18,
+          "measure": 6,
+          "u": 55
+        },
+        "limitations": [
+          "Counts refer to the supplied representation, not physical hardware cost."
+        ]
+      },
+      "output": true,
+      "reason": "Measured witness verified by original classical predicate"
+    },
+    {
+      "name": "无解：必须认证 false",
+      "n": 3,
+      "clauses": [
+        [
+          1
+        ],
+        [
+          -1
+        ]
+      ],
+      "expected": false,
+      "passed": true,
+      "seed": 7,
+      "shots_requested": 16,
+      "shots_executed": 16,
+      "quantum_executed": true,
+      "classical_fallback": true,
+      "witness": null,
+      "sampled_candidates": [
+        5,
+        7,
+        6,
+        1,
+        2,
+        6,
+        0,
+        6,
+        6,
+        3,
+        2,
+        2,
+        2,
+        3,
+        4,
+        4
+      ],
+      "resources": {
+        "representation": "u/cx, opt=0, all-qubit terminal measurement",
+        "num_qubits": 5,
+        "depth": 25,
+        "operation_count": 53,
+        "gate_count": 47,
+        "two_qubit_gate_count": 11,
+        "measurement_count": 5,
+        "shots": 16,
+        "top_level_operations": {
+          "barrier": 1,
+          "cx": 11,
+          "measure": 5,
+          "u": 36
+        },
+        "limitations": [
+          "Counts refer to the supplied representation, not physical hardware cost."
+        ]
+      },
+      "reason": "No verified sampled witness; exhaustive original code certifies result",
+      "output": false
+    },
+    {
+      "name": "空合取",
+      "n": 0,
+      "clauses": [],
+      "expected": true,
+      "passed": true,
+      "seed": 7,
+      "shots_requested": 16,
+      "shots_executed": 0,
+      "quantum_executed": false,
+      "classical_fallback": true,
+      "witness": null,
+      "sampled_candidates": [],
+      "resources": null,
+      "reason": "Outside bounded simulation domain; original code executes",
+      "output": true
+    },
+    {
+      "name": "空子句",
+      "n": 0,
+      "clauses": [
+        []
+      ],
+      "expected": false,
+      "passed": true,
+      "seed": 7,
+      "shots_requested": 16,
+      "shots_executed": 0,
+      "quantum_executed": false,
+      "classical_fallback": true,
+      "witness": null,
+      "sampled_candidates": [],
+      "resources": null,
+      "reason": "Outside bounded simulation domain; original code executes",
+      "output": false
+    },
+    {
+      "name": "重复文字/重言式",
+      "n": 2,
+      "clauses": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          -2
+        ]
+      ],
+      "expected": true,
+      "passed": true,
+      "seed": 7,
+      "shots_requested": 16,
+      "shots_executed": 16,
+      "quantum_executed": true,
+      "classical_fallback": false,
+      "witness": 3,
+      "sampled_candidates": [
+        2,
+        3,
+        3,
+        0,
+        1,
+        3,
+        0,
+        3,
+        3,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2
+      ],
+      "resources": {
+        "representation": "u/cx, opt=0, all-qubit terminal measurement",
+        "num_qubits": 3,
+        "depth": 14,
+        "operation_count": 26,
+        "gate_count": 22,
+        "two_qubit_gate_count": 3,
+        "measurement_count": 3,
+        "shots": 16,
+        "top_level_operations": {
+          "barrier": 1,
+          "cx": 3,
+          "measure": 3,
+          "u": 19
+        },
+        "limitations": [
+          "Counts refer to the supplied representation, not physical hardware cost."
+        ]
+      },
+      "output": true,
+      "reason": "Measured witness verified by original classical predicate"
+    }
+  ],
+  "limitations": [
+    "Saved predictions are not ground truth or fresh analysis.",
+    "Implementation is AI-assisted, not automatically generated from the plan.",
+    "One Grover iteration / 16 shots is a demo budget, not a success guarantee.",
+    "Exactness uses classical witness verification and exhaustive fallback.",
+    "Finite tests and simulator resources do not prove quantum advantage."
+  ],
+  "classical_retention": {
+    "passed": true,
+    "callback_count": 3,
+    "callbacks": [
+      [
+        0,
+        "8c85598eab852269c3174358d66efee4630752c64fe5728d19b97161c0a9d5ca"
+      ],
+      [
+        1,
+        "b29ca5299b4129aa283534b83084be89e4cea78f6ac16e2c5b734841ce239f3c"
+      ],
+      [
+        2,
+        "4d31789052659bdc75cdc0a45f2af5ad21ee0b8a8854f59ca30981fda2c12c90"
+      ]
+    ],
+    "digest": "4d31789052659bdc75cdc0a45f2af5ad21ee0b8a8854f59ca30981fda2c12c90",
+    "transformed": false
+  },
+  "input_hashes": {
+    "demo/hybrid_search.py": "99ed64f4228b56883df5c086508e8e1f30e7f12825e5d3bc3cd87edd8db314e3",
+    "demo/run.py": "9e6363601ab1cc4a2bfc368c7d35e351cb29456b392168bfa782b5255504e492",
+    "pilot/baseline-v0.1/conditional-plan-diagnostic/parsed/pilot-001.json": "b494be28349fa58dbfa132ad2ee0c716fae90d235986f753b3c91ccba43b282a",
+    "cases/pilot/pilot-001/program.py": "6c2c9e730ef42c63aab6f8baa44098c1b1e7439c4ab26a05cd94c71a8c75a8aa",
+    "pilot/baseline-v0.1/conditional-plan-diagnostic/parsed/pilot-002.json": "55ad6c6ef90e83d10a4257d982603b25fb68ec4fe7b6259596657a53c2b128e0",
+    "cases/pilot/pilot-002/program.py": "2ce7803004502b8237a561ab23d2a593303419c11360616c1bce477e7d58db9d"
+  },
+  "all_demo_checks_passed": true
+}

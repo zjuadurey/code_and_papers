@@ -1,0 +1,98 @@
+{
+  "schema_version": "0.1.0",
+  "title": "DRAFT: existence of a marked element",
+  "description": "DRAFT infrastructure demonstration; not scientifically validated ground truth.",
+  "source": "Original toy authored during infrastructure setup; generated assistance, human scientific review pending.",
+  "source_url": null,
+  "license": "NOASSERTION",
+  "domain": "infrastructure_demonstration",
+  "version": "0.1.0",
+  "migration_family": "unstructured_search",
+  "context_level": "kernel",
+  "case_type": "positive",
+  "difficulty": "unknown",
+  "classical_program": "program.py",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "exists_marked",
+      "start_line": 1,
+      "end_line": 3
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": true,
+  "benchmark_supported": true,
+  "expected_decision": "QUANTUMIZE",
+  "computational_intent": {
+    "id": "finite_marked_existence",
+    "description": "Return whether the finite Boolean list contains a marked element."
+  },
+  "admissible_migration_contracts": [
+    {
+      "contract_id": "draft-marked-existence",
+      "status": "DRAFT",
+      "applicability_conditions": [
+        "Finite Boolean domain; a human-reviewed reversible oracle would be required."
+      ],
+      "input_encoding": "OPEN QUESTION: account for list loading and reversible predicate cost.",
+      "formulation": "Illustrative marked-state search formulation.",
+      "algorithm_families": [
+        "grover_style"
+      ],
+      "output_decoding": "Return Boolean existence; handling zero marked states requires explicit validation.",
+      "semantic_relation": "Preserve Boolean existence on the declared finite inputs; probabilistic policy unresolved.",
+      "resource_assumptions": [
+        "Toy simulator setting; practical_suitability=true denotes demonstration policy only."
+      ],
+      "known_limitations": [
+        "No oracle implementation, advantage claim, or accepted statistical protocol."
+      ]
+    }
+  ],
+  "reference_plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "draft-marked-existence",
+    "computational_intent_id": "finite_marked_existence",
+    "migration_family": "unstructured_search",
+    "formulation": "DRAFT marked-state search",
+    "input_encoding": "OPEN QUESTION: explicit reversible Boolean oracle",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Boolean existence, including no marked states",
+    "assumptions": [
+      "Pedagogical local simulation only"
+    ],
+    "risks": [
+      "State loading and zero-solution behavior unresolved"
+    ],
+    "expected_resource_characteristics": {
+      "status": "not_estimated"
+    }
+  },
+  "reference_hybrid_implementation": null,
+  "classical_tests": [
+    "test_program.py"
+  ],
+  "semantic_oracle": {
+    "kind": "deterministic_equality",
+    "description": "Single example only; a full input suite must be defined by humans.",
+    "config": {
+      "input": [],
+      "expected": false
+    }
+  },
+  "resource_expectations": {
+    "assumptions": [
+      "Local simulator demonstration only; no speedup or practical advantage claim."
+    ],
+    "limits": {}
+  },
+  "negative_reason": null,
+  "annotation_rationale": "DRAFT toy metadata exercises the infrastructure. Researchers must replace or independently verify every scientific label.",
+  "annotators": [],
+  "annotation_status": "DRAFT",
+  "limitations": [
+    "Not benchmark ground truth; not evidence of advantage."
+  ],
+  "case_id": "toy-search-001"
+}

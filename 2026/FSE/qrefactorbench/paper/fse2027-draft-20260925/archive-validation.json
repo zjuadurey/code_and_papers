@@ -1,0 +1,10 @@
+{
+  "archive": "../../../latex.zip",
+  "files": 24,
+  "bytes": 519443,
+  "sha256": "e8fa91d963d37992126603072993efa6b4d6f0baded3b15883128bfa0534229d",
+  "zip_crc_check": "passed",
+  "source_bytes_match": true,
+  "unpacked_preview_compile_exit_code": 0,
+  "official_font_pagination_verified": false
+}

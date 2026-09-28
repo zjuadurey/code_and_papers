@@ -1,0 +1,26 @@
+{
+  "version": "resource-workflow-v0.1",
+  "plan_id": "llm-lit001",
+  "application": {
+    "format": "openqasm3",
+    "source": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nqubit[4] q;\nbit[4] r;\nh q[0];\nh q[1];\nh q[2];\nh q[3];\ncx q[0], q[1];\nrz(-pi/4) q[1];\ncx q[0], q[1];\ncx q[1], q[2];\nrz(-pi/4) q[2];\ncx q[1], q[2];\ncx q[2], q[3];\nrz(-pi/4) q[3];\ncx q[2], q[3];\ncx q[3], q[0];\nrz(-pi/4) q[0];\ncx q[3], q[0];\nrx(pi/4) q[0];\nrx(pi/4) q[1];\nrx(pi/4) q[2];\nrx(pi/4) q[3];\nr[0] = measure q[0];\nr[1] = measure q[1];\nr[2] = measure q[2];\nr[3] = measure q[3];",
+    "coverage": "One complete model-generated shot including preparation and measurement"
+  },
+  "profiles": [
+    {
+      "id": "hypothetical-100ns",
+      "gate_time_ns": 100,
+      "measurement_time_ns": 500,
+      "error_rate": 0.0001,
+      "source": "Hypothetical architecture, not a calibrated QPU"
+    },
+    {
+      "id": "hypothetical-1000ns",
+      "gate_time_ns": 1000,
+      "measurement_time_ns": 5000,
+      "error_rate": 0.0001,
+      "source": "Hypothetical architecture, not a calibrated QPU"
+    }
+  ],
+  "max_error": 0.01
+}

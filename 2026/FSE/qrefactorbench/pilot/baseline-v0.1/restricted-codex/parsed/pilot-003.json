@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-003",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "best_partition_score",
+      "start_line": 3,
+      "end_line": 6
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Enumerate binary vertex partitions, sum the weights of all edges whose endpoints lie on opposite sides, including repeated edges independently and excluding self-loop contributions, and return the exact maximum crossing weight.",
+  "migration_family": "combinatorial_optimization",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The required result is an optimum value rather than a direct marked-state search. A threshold predicate over partitions could be constructed, but obtaining the maximum would require an additional maximum-finding or repeated-threshold procedure outside this contract, reversible weighted arithmetic, coherent edge access, and an exact no-better-solution certification policy."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "With one binary variable x_u per vertex, the crossing-weight objective is explicitly representable as sum over edges of w_uv*(x_u+x_v-2*x_u*x_v), with repeated edges included separately and self-loop terms cancelling. Decoded assignments can be checked classically. This establishes structural applicability only; ordinary QAOA sampling does not guarantee the exact optimum required by the software contract."
+    }
+  ],
+  "assumptions": [
+    "Each mask bit represents the side assigned to the corresponding vertex.",
+    "All supplied edge endpoints satisfy the stated domain constraints.",
+    "The returned integer must equal the mathematical optimum for every valid input; an approximate value or merely high-probability candidate is not permitted.",
+    "No free coherent loading of the edge list or edge weights is available."
+  ],
+  "risks": [
+    "QAOA provides no general exact-optimum guarantee, so substituting its best sampled partition could violate the API.",
+    "Classically recomputing a sampled partition's score verifies that score but does not certify global optimality.",
+    "Encoding arbitrary integer weights may require substantial coefficient precision or reversible arithmetic resources.",
+    "The QUBO interaction graph follows the input graph and may require costly hardware embedding or routing.",
+    "State preparation, repeated measurements, parameter optimization, decoding, and classical verification introduce unquantified overhead.",
+    "No scale data or quantum benchmark evidence is supplied, so advantage and physical feasibility are unresolved."
+  ],
+  "rationale": "Lines 3-6 are the exponential classical hotspot and admit the standard weighted Max-Cut QUBO formulation, making them structurally quantumizable under the combinatorial-optimization family. They are nevertheless a rejected practical migration target under the supplied assumptions: the interface requires the exact optimum, while the catalog's QAOA-style proposal supplies no exactness or optimality-certificate guarantee. Making execution exhaustive or adding a classical exact fallback could preserve semantics but would leave any advantage unsupported. Edge-data encoding and hardware resource costs are also unknown. The region should therefore remain classical unless the contract later permits approximation or a concrete exact quantum procedure, error policy, resource analysis, and benchmark establish suitability.",
+  "plan": null
+}

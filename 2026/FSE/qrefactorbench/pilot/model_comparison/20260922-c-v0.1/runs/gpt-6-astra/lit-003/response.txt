@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-003",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "agenda.py",
+      "function": "complete",
+      "start_line": 28,
+      "end_line": 57
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Find the lexicographically smallest complete slot-index assignment satisfying every participant conflict, or establish that no assignment exists.",
+  "rationale": "agenda.py:28-57 contains finite constraint search: available checks neighboring sessions, and place explores sessions and slots in ascending order, returning the first complete assignment. This traversal establishes the required lexicographic minimum, not merely feasibility. The nominated boundary includes initialization, the state-dependent predicate, backtracking, and the failure/return interface; replacing available alone would omit its assigned-state dependency. Inputs are the symmetric, contiguous-index conflict graph constructed by catalog.py:32-38 and the declared slot count. A pure full-assignment predicate can replace the mutable partial-state checks for search purposes. Activation is restricted to program.py:21-33: complete mode, infeasible current arrangement, and a blocked prescribed preview. Neither partial current assignments nor failed preview choices constrain completion. Keep prepare's whole-request validation and nonmutation, describe's ordered reports and sorted participant names, inspect and retained branches, preview's exact first-available behavior, status transitions, moves, and CLI behavior classical and unchanged. Preview blockage is not an infeasibility certificate. Validation, reporting, graph construction, and the prescribed greedy preview are not independently justified migration targets by the supplied evidence. Structural eligibility follows from the explicit finite domain and Boolean constraint predicate; practical benefit and benchmark support remain unknown because no workload, implementation, resource measurements, or comparative results are supplied. Dataset provenance is not performance evidence. Retain the classical implementation pending resolution of exact ordered output and no-solution obligations.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "lexicographically-first-conflict-free-agenda",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditional investigation only: for n sessions and k slots, search assignments a in {0,...,k-1}^n using P(a) = AND over conflict edges (i,j) of [a_i != a_j]. Ordinary Grover sampling does not preserve lexicographic output. Construct the answer by fixing each session's smallest slot whose prefix admits a feasible suffix, using prefix-constrained existence searches. Every negative existence decision must be exact or classically certified before excluding that prefix. Handle n=0 by returning [] and n>0,k=0 by raising ValueError without quantum search.",
+    "input_encoding": "For k>=2, encode each session with ceil(log2(k)) bits and reject out-of-range labels. Compile the classical edge list into reversible equality tests, combine validity and edge constraints into a phase mark, and uncompute workspace. Prefix values become additional fixed constraints. Handle k=1 directly. Graph loading, reversible synthesis, ancillas, valid-domain preparation, and diffusion remain implementation obligations; assume no free coherent memory.",
+    "quantum_algorithm_family": "grover_style",
+    "output_decoding": "Decode and classically check every witness against slot bounds and all graph edges. Witness validation establishes feasibility only. Certify exclusion of all smaller prefixes before returning an assignment. An unsuccessful quantum run must never become ValueError by itself. Until an exact quantum existence procedure is justified, use exact classical search to certify exclusions and infeasibility, or retain complete as the fallback. Return the same list-of-indices interface and raise ValueError only for established impossibility; do not reinterpret runtime or recursion failures as unavailable.",
+    "assumptions": [
+      "The graph is produced by the existing validated application path and remains immutable during search.",
+      "No probabilistic error allowance or relaxation of lexicographic exactness is authorized.",
+      "The current application wrapper and prescribed preview remain unchanged."
+    ],
+    "risks": [
+      "An arbitrary feasible marked state can violate the required lexicographic minimum.",
+      "Unknown solution counts and zero-solution cases require a justified existence protocol; bounded sampling cannot certify absence.",
+      "Exact classical certification may dominate runtime and eliminate any benefit.",
+      "The classical backtracker prunes infeasible prefixes, so an unstructured-domain query comparison does not establish advantage."
+    ],
+    "expected_resource_characteristics": {
+      "assignment_qubits": "n*ceil(log2(k)) for k>=2, plus unresolved predicate, range-check, prefix, and diffusion workspace.",
+      "oracle_work": "Each full predicate evaluates slot validity and |E| edge inequalities on logarithmic-width registers; reversible gate counts and depth are unresolved.",
+      "search_work": "Potentially up to n*k prefix-existence queries, with varying suffix domains and marked-state counts; padded binary domains can increase search space.",
+      "additional_costs": "Include graph compilation, state preparation, repeated execution, measurement, classical verification and exact certification. No backend, qubit budget, depth budget, or end-to-end speedup is established."
+    },
+    "rationale": "This is a conditional migration plan for a structurally eligible search region, not an adoption recommendation or correctness certification."
+  },
+  "assumptions": [
+    "Only the supplied source and contract are evidence.",
+    "Session and slot input order are semantically significant.",
+    "No numerical session-count restriction may be added."
+  ],
+  "risks": [
+    "Changing the retained or preview branches would alter the software contract even if completion remained feasible.",
+    "Empty participant lists create isolated vertices, not extra scheduling restrictions.",
+    "No tests, execution results, workload frequencies, or quantum benchmarks were supplied."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "Applicable as a conditional structural formulation: finite assignments and a pure conflict predicate are explicit. Reversible construction, exact prefix decisions, no-solution handling, and resources remain unverified."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "A conditional alternative uses one-hot variables x[i,s], penalty C=sum_i(sum_s x[i,s]-1)^2 + sum_edges(i,j),s x[i,s]x[j,s], and lexicographic objective L=sum_i,s s*k^(n-1-i)*x[i,s]. For k>=2, minimizing A*C+L with A>k^n-1 makes every infeasible binary state cost more than any feasible assignment. An exact global optimum is necessary to establish lexicographic output or infeasibility; QAOA samples do not certify either. Exponentially large coefficient magnitudes, precision, n*k variables, penalty expansion, and any Ising mapping require assessment. Degenerate k cases stay classical. Draft-menu inclusion is not implementation approval."
+    }
+  ]
+}

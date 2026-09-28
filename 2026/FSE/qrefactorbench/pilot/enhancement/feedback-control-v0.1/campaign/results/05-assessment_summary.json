@@ -1,0 +1,20 @@
+{
+  "slot": "05-assessment_summary",
+  "replicate": 5,
+  "arm": "assessment_summary",
+  "mother_case": "lit-009",
+  "usage": [
+    {
+      "input_tokens": 16655,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2666,
+      "reasoning_output_tokens": 910
+    }
+  ],
+  "model_seconds": 52.609,
+  "task_pass": null,
+  "response_sha256": "92bd876d30d3a3cfbf7801699cab3f351c262a36f1d0f1ee31445142ecc970e4",
+  "status": "valid_response",
+  "validation_errors": []
+}

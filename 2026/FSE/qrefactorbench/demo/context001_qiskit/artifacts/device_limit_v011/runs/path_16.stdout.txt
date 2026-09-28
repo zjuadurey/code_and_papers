@@ -1,0 +1,1 @@
+{"fixture": "path_16", "execution_success": true, "hybrid_seconds": 2.9151032550726086, "process_peak_rss_kib_after_hybrid": 393960, "complete_report_equal": false, "objective_equal": false, "objective_gap": 4}

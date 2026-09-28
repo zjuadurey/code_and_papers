@@ -1,0 +1,43 @@
+{
+  "response_sha256": "19d46e4dbd7cf761434a1f2a7d78e78565bfdecc5d3e37c698d008314e507725",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 15.402,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:16:07.845550+00:00",
+  "review_submitted_utc": "2026-09-26T21:16:23.247170+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "19d46e4dbd7cf761434a1f2a7d78e78565bfdecc5d3e37c698d008314e507725",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate each execution of line 13 as a finite Grover-style maximum search over row indices i in [col,n). A reversible comparison predicate would mark an index when abs(rows[i][col]) is better than the current threshold, with the ordering extended so that the smallest index wins equal-magnitude ties. The construction must define success, no-improvement, and probabilistic-failure behavior without changing the subsequent exact-zero pivot check."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Decode a proposed pivot index and classically verify that it is in range and is the first index attaining the largest absolute pivot value under the required Python binary64 ordering. Exact contract preservation requires a defined response to failed verification or missed marked states; any classical fallback is an unresolved design obligation whose correctness and cost must be assessed."
+      },
+      {
+        "pointer": "/plan/risks/2",
+        "quote": "Grover-style search is probabilistic, whereas the software contract requires deterministic first-index pivot selection; exactness and failure handling remain unresolved."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "Line 13 has a finite domain of active row indices and can conditionally be expressed using a Boolean predicate that marks indices improving a threshold under a value-and-index ordering. Applicability is structural only. Reversible access to evolving row data, binary64 comparison, first-index ties, no-solution handling, probabilistic exactness, verification, and resources remain unresolved."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The broad function nomination is narrowed to the pivot statement and a conditional threshold-search plan appears. However, initialization, threshold updates, no-improvement and complete exact selection remain unresolved. A candidate-better-than-threshold predicate is not the full deterministic selector supported by the current checker. Keep nomination/plan change separate from semantic repair and retain insufficient evidence without inventing a scan.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

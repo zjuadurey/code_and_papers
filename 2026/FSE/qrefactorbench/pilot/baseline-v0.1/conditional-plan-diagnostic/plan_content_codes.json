@@ -1,0 +1,52 @@
+{
+  "pilot-001": {
+    "classification": "SUBSTANTIVE",
+    "basis": "AI-assisted descriptive review documented in PLAN_CONTENT_REVIEW.md; not correctness",
+    "plan_resource_object_generic_unresolved": true
+  },
+  "pilot-002": {
+    "classification": "NOT APPLICABLE",
+    "basis": "AI-assisted descriptive review documented in PLAN_CONTENT_REVIEW.md; not correctness",
+    "plan_resource_object_generic_unresolved": false
+  },
+  "pilot-003": {
+    "classification": "SUBSTANTIVE",
+    "basis": "AI-assisted descriptive review documented in PLAN_CONTENT_REVIEW.md; not correctness",
+    "plan_resource_object_generic_unresolved": true
+  },
+  "pilot-004": {
+    "classification": "SUBSTANTIVE",
+    "basis": "AI-assisted descriptive review documented in PLAN_CONTENT_REVIEW.md; not correctness",
+    "plan_resource_object_generic_unresolved": true
+  },
+  "pilot-005": {
+    "classification": "SUBSTANTIVE",
+    "basis": "AI-assisted descriptive review documented in PLAN_CONTENT_REVIEW.md; not correctness",
+    "plan_resource_object_generic_unresolved": true
+  },
+  "pilot-006": {
+    "classification": "SUBSTANTIVE",
+    "basis": "AI-assisted descriptive review documented in PLAN_CONTENT_REVIEW.md; not correctness",
+    "plan_resource_object_generic_unresolved": true
+  },
+  "pilot-007": {
+    "classification": "SUBSTANTIVE",
+    "basis": "AI-assisted descriptive review documented in PLAN_CONTENT_REVIEW.md; not correctness",
+    "plan_resource_object_generic_unresolved": true
+  },
+  "pilot-008": {
+    "classification": "NOT APPLICABLE",
+    "basis": "AI-assisted descriptive review documented in PLAN_CONTENT_REVIEW.md; not correctness",
+    "plan_resource_object_generic_unresolved": false
+  },
+  "pilot-009": {
+    "classification": "SUBSTANTIVE",
+    "basis": "AI-assisted descriptive review documented in PLAN_CONTENT_REVIEW.md; not correctness",
+    "plan_resource_object_generic_unresolved": true
+  },
+  "pilot-010": {
+    "classification": "SUBSTANTIVE",
+    "basis": "AI-assisted descriptive review documented in PLAN_CONTENT_REVIEW.md; not correctness",
+    "plan_resource_object_generic_unresolved": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "versions": [{"version_id": "legacy", "active": true}, {"version_id": "a", "active": true}, {"version_id": "b", "active": true}, {"version_id": "c", "active": true}, {"version_id": "retired", "active": false}],
+  "checks": [
+    {"left": "legacy", "right": "a", "passed": true},
+    {"left": "a", "right": "legacy", "passed": false},
+    {"left": "a", "right": "b", "passed": true},
+    {"left": "a", "right": "c", "passed": true},
+    {"left": "b", "right": "c", "passed": true},
+    {"left": "retired", "right": "a", "passed": true}
+  ],
+  "requests": [
+    {"request_id": "review", "members": ["c", "legacy", "a", "b", "retired"], "current": ["a", "legacy"], "mode": "inspect"},
+    {"request_id": "release", "members": ["c", "legacy", "a", "b", "retired"], "current": ["a", "legacy"], "mode": "select"}
+  ]
+}

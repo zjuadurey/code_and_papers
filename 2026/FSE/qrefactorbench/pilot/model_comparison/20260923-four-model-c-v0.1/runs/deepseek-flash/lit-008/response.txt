@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-008",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "The source computes a deterministic per-record bitwise XOR of two validated 8-bit integers, formats the result as an exact eight-bit string, counts set bits, and updates a modulo-256 running checksum while preserving input order. There is no finite candidate set with an unknown marked predicate for Grover-style search and no objective function or constraint system for QUBO/Ising/QAOA. All records are supplied and all receipts must be emitted; the counts mode uses repetitions only as a deterministic repetition count for the single computed bitstring, not as random sampling or QPU execution. Any probabilistic quantum path would threaten exact bits, set_bits, prefix_checksum ordering, and the all-records output contract. Validation dependencies in common.py and program.py (field exactness, integer bounds, unique names, ValueError paths, no mutation, CLI JSON behavior) must also remain intact. No workload, hardware, encoding-cost, or advantage evidence is supplied; therefore the classical implementation should remain in place.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "deterministic ordered per-record XOR-to-bitstring receipt generation with popcount, running modulo-256 checksum, and deterministic repeated-outcome counts",
+  "assumptions": [
+    "All records must be validated before any receipt is produced, preserving existing ValueError behavior.",
+    "Each receipt must appear in input order with exact id, bits, set_bits, counts, and prefix_checksum fields.",
+    "counts mode maps the one deterministic bitstring to exactly repetitions entries; inspect mode uses null counts but still emits every receipt.",
+    "repetitions is an exact repeated-outcome count, not random sampling or QPU shot counts.",
+    "No workload, quantum hardware, encoding-cost, or advantage evidence is supplied."
+  ],
+  "risks": [
+    "No supported quantum algorithm family maps to deterministic XOR, fixed-width formatting, popcount, or modulo-256 running checksum.",
+    "A sampling-based implementation would violate exactness, ordering, and the requirement to return full output rather than a sample or aggregate.",
+    "Any quantum execution would require classical verification and exact repetition semantics that are not justified by the supplied contract."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "There is no finite candidate space and no pure Boolean predicate with an unknown marked subset. The result is a direct deterministic XOR of supplied operands, not a search over candidate solutions."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "There is no binary objective to minimize or maximize and no constraints to encode as penalties. The computation is a fixed sequence of exact arithmetic and formatting operations."
+    }
+  ]
+}

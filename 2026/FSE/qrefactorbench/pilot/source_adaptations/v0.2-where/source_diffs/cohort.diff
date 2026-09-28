@@ -1,0 +1,92 @@
+--- pinned_source_functions
++++ adapted_context
+@@ -1,15 +1,75 @@
+-def clique_greedy(n, edges):
+-    clique = set()
+-    for node in range(n):
+-        if all((node, neighbor) in edges or (neighbor, node) in edges for neighbor in clique):
+-            clique.add(node)
+-    return clique
++"""Build pair evidence and independently described release groups."""
+ 
+-def clique_bitmask(n, edges):
+-    max_clique = []
+-    for mask in range(1 << n):
+-        subset = [i for i in range(n) if mask & (1 << i)]
+-        if all((u, v) in edges or (v, u) in edges for u in subset for v in subset if u != v):
+-            if len(subset) > len(max_clique):
+-                max_clique = subset
+-    return max_clique
++# Adapted source portions: C2|Q> Dataset, CC BY 4.0; see supplied NOTICE.txt.
++
++
++def relation(names: list[str], latest: dict[frozenset[str], bool]) -> list[list[bool]]:
++    return [[i != j and latest.get(frozenset((left, right))) is True for j, right in enumerate(names)]
++            for i, left in enumerate(names)]
++
++
++def compatible(indices: list[int], matrix: list[list[bool]]) -> bool:
++    return all(matrix[u][v] for u in indices for v in indices if u != v)
++
++
++def preview(matrix: list[list[bool]]) -> list[int]:
++    selected = []
++    for node in range(len(matrix)):
++        if all(matrix[node][neighbor] for neighbor in selected):
++            selected.append(node)
++    return selected
++
++
++def describe(versions: list[dict], selected: list[str], latest: dict[frozenset[str], bool]) -> dict:
++    ordered = [v["version_id"] for v in versions if v["version_id"] in selected]
++    inactive = [v["version_id"] for v in versions if v["version_id"] in selected and not v["active"]]
++    missing = []
++    for i, left in enumerate(ordered):
++        for right in ordered[i + 1:]:
++            outcome = latest.get(frozenset((left, right)))
++            if outcome is not True:
++                missing.append({"left": left, "right": right, "reason": "failed" if outcome is False else "unverified"})
++    return {"selected": ordered, "size": len(ordered), "inactive": inactive, "missing_pairs": missing,
++            "eligible_and_compatible": not inactive and not missing}
++
++"""Review current, quick-preview and requested release groups against check history."""
++
++# Adapted source portions: C2|Q> Dataset, CC BY 4.0; see supplied NOTICE.txt.
++
++import json
++import sys
++from typing import Any
++
++from catalog import eligible, latest_results, prepare
++from reports import compatible, describe, preview, relation
++
++
++def review_releases(request: Any) -> dict:
++    versions, checks, requests = prepare(request)
++    latest = latest_results(checks)
++    results = []
++    for row in requests:
++        names = eligible(versions, row["members"])
++        matrix = relation(names, latest)
++        first = [names[i] for i in preview(matrix)]
++        report = {"request_id": row["request_id"], "eligible": names,
++                  "current": describe(versions, row["current"], latest),
++                  "preview": describe(versions, first, latest), "proposed": None, "changes": None}
++        if row["mode"] == "select":
++            best = []
++            for mask in range(1 << len(names)):
++                subset = [i for i in range(len(names)) if mask & (1 << i)]
++                if compatible(subset, matrix) and len(subset) > len(best):
++                    best = subset
++            chosen = [names[i] for i in best]
++            report["proposed"] = describe(versions, chosen, latest)
++            report["changes"] = {"add": [v for v in chosen if v not in row["current"]],
++                                 "remove": [v["version_id"] for v in versions
++                                            if v["version_id"] in row["current"] and v["version_id"] not in chosen]}
++        results.append(report)
++    return {"version_count": len(versions), "check_count": len(checks), "pair_count": len(latest),
++            "superseded_check_count": len(checks) - len(latest), "requests": results}
++
++
++if __name__ == "__main__":
++    print(json.dumps(review_releases(json.load(sys.stdin)), indent=2))

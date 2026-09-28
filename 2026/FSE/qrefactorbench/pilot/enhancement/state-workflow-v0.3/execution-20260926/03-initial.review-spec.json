@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/rationale", "/computational_intent", "/contract_applicability/0/rationale"],
+  "rationale": "This initial response nominates no candidate and provides no conditional plan or pivot-selection predicate. Its retention decision and negative structural judgment do not constitute a checked pivot mapping. The local checker therefore has no claim to transcribe; this is insufficient evidence, not a local finite pass, repaired predicate, or withdrawal of a previously offered mapping. Whether the broad negative eligibility rationale misses a supported candidate belongs to separate WHERE/structural review, not this pivot semantics checker. The fixed policy still sends this delivered initial through all four revisions; the candidate-gated analysis inventory is empty by construction.",
+  "interpretations": []
+}

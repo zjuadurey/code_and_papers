@@ -1,0 +1,20 @@
+{
+  "slot": "01-cue_only",
+  "replicate": 1,
+  "arm": "cue_only",
+  "mother_case": "lit-009",
+  "usage": [
+    {
+      "input_tokens": 16512,
+      "cached_input_tokens": 16256,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1944,
+      "reasoning_output_tokens": 221
+    }
+  ],
+  "model_seconds": 43.106,
+  "task_pass": null,
+  "response_sha256": "99c714068ed42500d70df1cb93f9417696591ac5a647051a784b55b445dadfdc",
+  "status": "valid_response",
+  "validation_errors": []
+}

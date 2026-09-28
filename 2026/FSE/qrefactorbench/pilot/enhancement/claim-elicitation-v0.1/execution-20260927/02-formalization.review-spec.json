@@ -1,0 +1,6 @@
+{
+  "resolution": "transcribed",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/contract_applicability/0/rationale"],
+  "rationale": "The primary proposed quantum predicate is equality to an explicitly initialized, increasing-order, strict-greater recurrence. Its formulation and applicability explicitly require every active value finite, so retain that guard and exclusions. Output decoding separately gives the same classical reduction and fallback for nonfinite or unavailable cases; this is a declared fallback, not executed end-to-end verification or permission to remove the primary plan's guard.",
+  "interpretations": [{"id": "finite_ordered_strict_gt", "meaning": "First-index strict-greater ordered scan on explicitly finite active values.", "mode": "ordered_scan", "expression": "values[candidate] > values[incumbent]", "guard": "all(isfinite(values[j]) for j in indices)", "outside_guard": "classical_fallback_declared"}]
+}

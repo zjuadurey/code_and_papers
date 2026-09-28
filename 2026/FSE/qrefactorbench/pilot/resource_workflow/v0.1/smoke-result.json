@@ -1,0 +1,102 @@
+{
+  "application_sha256": "19508728701efb24f8c9602060d4f1a600d1fbf24804d33d7ce9df20ceea3aed",
+  "assumptions": {
+    "controller_context": {
+      "algorithm_failure_bound": null,
+      "application_sha256": "19508728701efb24f8c9602060d4f1a600d1fbf24804d33d7ce9df20ceea3aed",
+      "classical_seconds": null,
+      "comparison_id": "engineering-smoke-not-a-case",
+      "evidence_source": "Integration fixture; semantic and classical evidence absent",
+      "max_failure_probability": null,
+      "overheads_seconds": {
+        "classical_control": null,
+        "communication": null,
+        "compilation_amortized": null,
+        "preparation": null,
+        "readout_decode": null,
+        "validation_fallback": null
+      },
+      "quantum_executions": 1,
+      "same_task": null
+    },
+    "request": {
+      "application": {
+        "coverage": "Tiny integration circuit only; not a migrated benchmark case or benefit example.",
+        "format": "openqasm3",
+        "source": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nqubit[2] q;\nbit[2] c;\nh q[0];\nt q[0];\ncx q[0], q[1];\nc = measure q;\n"
+      },
+      "max_error": 0.01,
+      "plan_id": "engineering-smoke-only",
+      "profiles": [
+        {
+          "error_rate": 0.0001,
+          "gate_time_ns": 100,
+          "id": "assumed-gate-based",
+          "measurement_time_ns": 500,
+          "source": "Hypothetical parameters from Microsoft getting-started documentation; not user hardware."
+        }
+      ],
+      "version": "resource-workflow-v0.1"
+    }
+  },
+  "comparison_id": "engineering-smoke-not-a-case",
+  "conditional_benefit_points": [],
+  "context_sha256": "0ae5480c2703b33055c1629916e2898d868657403685ddd0ca506fdc3587c525",
+  "estimation_runs": [
+    {
+      "backend": "qdk.qre",
+      "backend_version": "1.32.3",
+      "model": "GateBased/SurfaceCode/RoundBasedFactory; PSSPC/LatticeSurgery",
+      "profile_id": "assumed-gate-based",
+      "rows": [
+        {
+          "error_bound": 0.000791000035,
+          "physical_qubits": 177,
+          "runtime_ns": 9000.0
+        }
+      ],
+      "stats": {
+        "num_isas": 1284,
+        "num_traces": 32,
+        "pareto_results": 1,
+        "successful_estimates": 1440,
+        "total_jobs": 41088
+      },
+      "status": "ok",
+      "use_graph": false
+    }
+  ],
+  "limitations": [
+    "Predictions under supplied models, not hardware observations or benchmark scores.",
+    "Controller evidence is consumed, not independently verified by this tool.",
+    "Serial schedule; all costs aggregated per request; no implicit overlap/amortization.",
+    "Failure bound uses a union bound; exceeding it does not prove actual failure rate.",
+    "Sampled profiles and backend frontier do not establish a globally minimal threshold."
+  ],
+  "plan_id": "engineering-smoke-only",
+  "points": [
+    {
+      "decision": "insufficient_evidence",
+      "error_bound": 0.000791000035,
+      "failure_upper_bound": null,
+      "hybrid_seconds": null,
+      "missing_cost_terms": [
+        "preparation",
+        "classical_control",
+        "communication",
+        "readout_decode",
+        "validation_fallback",
+        "compilation_amortized",
+        "classical_seconds"
+      ],
+      "physical_qubits": 177,
+      "profile_id": "assumed-gate-based",
+      "quality_bound_satisfied": null,
+      "quantum_seconds_total": 9e-06,
+      "runtime_ns": 9000.0,
+      "timing_relation": "unknown"
+    }
+  ],
+  "request_sha256": "2ba7d55d0df5b00a6cc16b167d7d6e80fb6a27cb2032b4bf4d8e11c613c535e1",
+  "version": "resource-workflow-v0.1"
+}

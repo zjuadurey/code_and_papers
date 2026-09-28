@@ -1,0 +1,26 @@
+{
+  "workflow_status": "completed",
+  "proposal_source": "current assistant session; no independent model run; negative control deliberately authored",
+  "case": "lit-005 v0.1.1",
+  "case_instances": 1,
+  "logical_qubits": 14,
+  "unitary_gates": 121,
+  "measurement_count": 3,
+  "backend_statuses": [
+    "ok",
+    "ok"
+  ],
+  "resource_points": 2,
+  "decision": "retain_classical_for_this_serial_prefix_repair_plan",
+  "decision_evidence": "Mandatory prefix checking retains the same-domain classical search work; quantum costs are additional and nonnegative. N-061 REPORT section 4 gives scoped proof.",
+  "cost_model_status": "complete list of terms; uncalibrated terms unknown, no numerical end-to-end advantage claim",
+  "quality_model_limit": "Current backend comparison propagates physical error conservatively; it does not model exact classical repair eliminating candidate-output errors. Do not relax contract to 1%.",
+  "scope": "Only this plan; no universal claim against all quantum algorithms or future hardware.",
+  "environment": {
+    "python": "3.10.21 | packaged by conda-forge | (main, Aug 21 2026, 22:42:31) [GCC 14.4.0]",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "qdk": "1.32.3",
+    "pyqir": "0.12.5"
+  },
+  "next_step": "Compare alternative certificate/minimum-finding plans and a competitive classical solver; independently test LLM harness later."
+}

@@ -1,0 +1,37 @@
+{
+  "changed_case_files": [
+    "cases/lit-005/ADAPTATION.md",
+    "cases/lit-005/case.json",
+    "cases/lit-005/program.py",
+    "cases/lit-005/test_program.py",
+    "cases/lit-006/ADAPTATION.md",
+    "cases/lit-007/ADAPTATION.md",
+    "cases/lit-007/NOTICE.txt",
+    "cases/lit-007/case.json",
+    "cases/lit-007/kernel.py",
+    "cases/lit-007/test_program.py",
+    "cases/lit-008/ADAPTATION.md",
+    "cases/lit-009/ADAPTATION.md",
+    "cases/lit-009/case.json",
+    "cases/lit-009/program.py",
+    "cases/lit-009/test_program.py",
+    "cases/lit-010/ADAPTATION.md"
+  ],
+  "changed_packets": [
+    "lit-005-B.txt",
+    "lit-005-C.txt",
+    "lit-007-A.txt",
+    "lit-007-B.txt",
+    "lit-007-C.txt",
+    "lit-009-B.txt",
+    "lit-009-C.txt"
+  ],
+  "unchanged_packets": 23,
+  "prompt_sha256": "fa72646781f8bbb4175c64125c0ed9d8fa9ff30ab587ab6952a6c87f2be8d7b0",
+  "prior_prompt_sha256": "fa72646781f8bbb4175c64125c0ed9d8fa9ff30ab587ab6952a6c87f2be8d7b0",
+  "protected_files": 1189,
+  "protected_changed": [],
+  "local_markdown_targets": 195,
+  "missing_local_targets": [],
+  "anchor_remote_check": false
+}

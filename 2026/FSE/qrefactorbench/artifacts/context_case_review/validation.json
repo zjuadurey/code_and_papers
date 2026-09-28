@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-21",
+  "scope": "Original-source functional-context review only",
+  "protected_files_unchanged": 717,
+  "changed_protected_files": [],
+  "observations_repeat_byte_identical": true,
+  "observation_command": [
+    "/home/audrey/miniconda3/envs/palqo/bin/python",
+    "artifacts/context_case_review/check_context.py"
+  ],
+  "observation_exit_code": 0,
+  "tests": [
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "cases/pilot/pilot-005/test_program.py"
+      ],
+      "result": "1 passed in 0.01s",
+      "log": "pytest_005.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "cases/pilot/pilot-009/test_program.py"
+      ],
+      "result": "1 passed in 0.01s",
+      "log": "pytest_009.txt"
+    }
+  ],
+  "local_document_targets_checked": 73,
+  "missing_links": [],
+  "not_run": [
+    "full suite",
+    "new model experiment",
+    "QPU task",
+    "quantum migration"
+  ],
+  "new_benchmark_cases": 0,
+  "scientific_labels_changed": 0
+}

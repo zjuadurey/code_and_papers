@@ -1,0 +1,7215 @@
+{
+  "protocol": {
+    "version": "0.1",
+    "authorization": "2026-09-28 side conversation: \u80fd\u628a\u8fd9\u4e09\u5757\u8865\u4e0a\u5417\uff1f",
+    "scope": "local engineering demonstration for lit-009; no new model evaluation, QPU, gold or paper claims",
+    "implementation_author": "Codex engineering implementation; NOT historical model output",
+    "max_active_rows": 8,
+    "grover_iterations": 1,
+    "shots_per_pivot": 4,
+    "semantic_seeds": [
+      7,
+      19,
+      41
+    ],
+    "benchmark_seed": 7,
+    "benchmark_sizes": [
+      2,
+      4,
+      8
+    ],
+    "benchmark_repeats": 7,
+    "classical_batch": 100,
+    "basis_gates": [
+      "u",
+      "cx"
+    ],
+    "optimization_level": 0,
+    "oracle": "enumerate finite active magnitudes against last-index threshold with earliest-index tie order; synthesize phase truth table, charge all classical work",
+    "completion": "sample candidates, then ALWAYS certify against original ordered max; mismatch falls back",
+    "guards": "single element, nonfinite magnitudes or more than 8 active rows delegate to original max",
+    "performance_scope": "warm-process local statevector end-to-end wall time; NOT QPU performance",
+    "classical_baselines": "original complete review; scipy/LAPACK solve in same report wrapper as quality-only competitor (not exact contract equivalent)",
+    "protected_scope": "all existing files under qrefactorbench before this package was created"
+  },
+  "versions": {
+    "qiskit": "2.5.2",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pytest": "9.1.1"
+  },
+  "python": "3.11.16",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "machine": "x86_64",
+  "cpu_count": 16,
+  "elapsed_seconds": 1.6546366109978408,
+  "semantics": {
+    "comparisons": 285,
+    "passed": 285,
+    "routes": {
+      "certified": 252,
+      "single_element": 231,
+      "fallback": 12,
+      "nonfinite": 9
+    },
+    "records": [
+      {
+        "case": "matrix2-0",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-0",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-0",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-1",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-1",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-1",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-2",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.5,
+              "x1": 0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.5,
+              "x1": 0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-2",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.5,
+              "x1": 0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.5,
+              "x1": 0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-2",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.5,
+              "x1": 0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.5,
+              "x1": 0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-3",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-3",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-3",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-4",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-4",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-4",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-5",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-5",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-5",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-6",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 0.5,
+              "x1": -1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 0.5,
+              "x1": -1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-6",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 0.5,
+              "x1": -1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 0.5,
+              "x1": -1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-6",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 0.5,
+              "x1": -1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 0.5,
+              "x1": -1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-7",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-7",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-7",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-8",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-8",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-8",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-9",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-9",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-9",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-10",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-10",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-10",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-11",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-11",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-11",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-12",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-12",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-12",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-13",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-13",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-13",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-14",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-14",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-14",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-15",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-15",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-15",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-16",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-16",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-16",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-17",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-17",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-17",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-18",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.5,
+              "x1": -0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.5,
+              "x1": -0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-18",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.5,
+              "x1": -0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.5,
+              "x1": -0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-18",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.5,
+              "x1": -0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.5,
+              "x1": -0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-19",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-19",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-19",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-20",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-20",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-20",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-21",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-21",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-21",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-22",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-22",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-22",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-23",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-23",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-23",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-24",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-24",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-24",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-25",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-25",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-25",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-26",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 0.5,
+              "x1": 1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 0.5,
+              "x1": 1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-26",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 0.5,
+              "x1": 1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 0.5,
+              "x1": 1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-26",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 0.5,
+              "x1": 1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 0.5,
+              "x1": 1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-27",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-27",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-27",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-28",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-28",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-28",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-29",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-29",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-29",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-30",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-30",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-30",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-31",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-31",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-31",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-32",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-32",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-32",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-33",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-33",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-33",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-34",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-34",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-34",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-35",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-35",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-35",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-36",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-36",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-36",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-37",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-37",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-37",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-38",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-38",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-38",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-39",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-39",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-39",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-40",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-40",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-40",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-41",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-41",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-41",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-42",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-42",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-42",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-43",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-43",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-43",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-44",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-44",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-44",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-45",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-45",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-45",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -3.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -3.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-46",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-46",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-46",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-47",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-47",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-47",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-48",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-48",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-48",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-49",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-49",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-49",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-50",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-50",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-50",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-51",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-51",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-51",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-52",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-52",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-52",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-53",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-53",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-53",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-54",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -0.5,
+              "x1": -1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -0.5,
+              "x1": -1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-54",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -0.5,
+              "x1": -1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -0.5,
+              "x1": -1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-54",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -0.5,
+              "x1": -1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -0.5,
+              "x1": -1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-55",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-55",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-55",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-56",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-56",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-56",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-57",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-57",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-57",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-58",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-58",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-58",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-59",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-59",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-59",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-60",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-60",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-60",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-61",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-61",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-61",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-62",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.5,
+              "x1": 0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.5,
+              "x1": 0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-62",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.5,
+              "x1": 0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.5,
+              "x1": 0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-62",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.5,
+              "x1": 0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.5,
+              "x1": 0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-63",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-63",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-63",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-64",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-64",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-64",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-65",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-65",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-65",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-66",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-66",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-66",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-67",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-67",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-67",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-68",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-68",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-68",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-69",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-69",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-69",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-70",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-70",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-70",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-71",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-71",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-71",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.0,
+              "x1": 1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.0,
+              "x1": 1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-72",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-72",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-72",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-73",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-73",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-73",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -2.0,
+              "x1": 3.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -2.0,
+              "x1": 3.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-74",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -0.5,
+              "x1": 1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -0.5,
+              "x1": 1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-74",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -0.5,
+              "x1": 1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -0.5,
+              "x1": 1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-74",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -0.5,
+              "x1": 1.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -0.5,
+              "x1": 1.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-75",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-75",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-75",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 3.0,
+              "x1": -2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 3.0,
+              "x1": -2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-76",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-76",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-76",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-77",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-77",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-77",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": -1.0,
+              "x1": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": -1.0,
+              "x1": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-78",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.5,
+              "x1": -0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.5,
+              "x1": -0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-78",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.5,
+              "x1": -0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.5,
+              "x1": -0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-78",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 1.5,
+              "x1": -0.5
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 1.5,
+              "x1": -0.5
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-79",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-79",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-79",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "x0": 2.0,
+              "x1": -1.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "x0": 2.0,
+              "x1": -1.0
+            }
+          }
+        }
+      },
+      {
+        "case": "matrix2-80",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-80",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "matrix2-80",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "singular system"
+        }
+      },
+      {
+        "case": "normal_control",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "a": 1.0,
+              "b": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "a": 1.0,
+              "b": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "normal_control",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "a": 1.0,
+              "b": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "a": 1.0,
+              "b": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "normal_control",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -2.0
+              ],
+              "infinity_norm": 2.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": {
+              "a": 1.0,
+              "b": 2.0
+            },
+            "proposed_residual": {
+              "vector": [
+                0.0,
+                0.0
+              ],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {
+              "a": 1.0,
+              "b": 2.0
+            }
+          }
+        }
+      },
+      {
+        "case": "archived_witness",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "numerical overflow"
+        }
+      },
+      {
+        "case": "archived_witness",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "numerical overflow"
+        }
+      },
+      {
+        "case": "archived_witness",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "numerical overflow"
+        }
+      },
+      {
+        "case": "reviewer_sensitivity_probe",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "numerical overflow"
+        }
+      },
+      {
+        "case": "reviewer_sensitivity_probe",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "numerical overflow"
+        }
+      },
+      {
+        "case": "reviewer_sensitivity_probe",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "numerical overflow"
+        }
+      },
+      {
+        "case": "empty",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "proposal": {},
+            "proposed_residual": {
+              "vector": [],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {}
+          }
+        }
+      },
+      {
+        "case": "empty",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "proposal": {},
+            "proposed_residual": {
+              "vector": [],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {}
+          }
+        }
+      },
+      {
+        "case": "empty",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "proposal": {},
+            "proposed_residual": {
+              "vector": [],
+              "infinity_norm": 0.0,
+              "scaled_backward_error": 0.0
+            },
+            "within_requested_limit": true,
+            "deltas": {}
+          }
+        }
+      },
+      {
+        "case": "inspect_singular",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -1.0
+              ],
+              "infinity_norm": 1.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": null,
+            "proposed_residual": null,
+            "within_requested_limit": null,
+            "deltas": null
+          }
+        }
+      },
+      {
+        "case": "inspect_singular",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -1.0
+              ],
+              "infinity_norm": 1.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": null,
+            "proposed_residual": null,
+            "within_requested_limit": null,
+            "deltas": null
+          }
+        }
+      },
+      {
+        "case": "inspect_singular",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "return": {
+            "current_residual": {
+              "vector": [
+                -1.0,
+                -1.0
+              ],
+              "infinity_norm": 1.0,
+              "scaled_backward_error": 2251799813685248.0
+            },
+            "proposal": null,
+            "proposed_residual": null,
+            "within_requested_limit": null,
+            "deltas": null
+          }
+        }
+      },
+      {
+        "case": "invalid_rhslist",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "invalid number"
+        }
+      },
+      {
+        "case": "invalid_rhslist",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "invalid number"
+        }
+      },
+      {
+        "case": "invalid_rhslist",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "invalid number"
+        }
+      },
+      {
+        "case": "invalid_matrixlist",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "wrong vector size"
+        }
+      },
+      {
+        "case": "invalid_matrixlist",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "wrong vector size"
+        }
+      },
+      {
+        "case": "invalid_matrixlist",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "wrong vector size"
+        }
+      },
+      {
+        "case": "invalid_currentlist",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "nonfinite number"
+        }
+      },
+      {
+        "case": "invalid_currentlist",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "nonfinite number"
+        }
+      },
+      {
+        "case": "invalid_currentlist",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "nonfinite number"
+        }
+      },
+      {
+        "case": "invalid_residual_limitint",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "invalid limit or mode"
+        }
+      },
+      {
+        "case": "invalid_residual_limitint",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "invalid limit or mode"
+        }
+      },
+      {
+        "case": "invalid_residual_limitint",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "invalid limit or mode"
+        }
+      },
+      {
+        "case": "invalid_modestr",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "invalid limit or mode"
+        }
+      },
+      {
+        "case": "invalid_modestr",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "invalid limit or mode"
+        }
+      },
+      {
+        "case": "invalid_modestr",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "invalid limit or mode"
+        }
+      },
+      {
+        "case": "invalid_variableslist",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "distinct names required"
+        }
+      },
+      {
+        "case": "invalid_variableslist",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "distinct names required"
+        }
+      },
+      {
+        "case": "invalid_variableslist",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "distinct names required"
+        }
+      },
+      {
+        "case": "invalid_rhslist",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "number outside float range"
+        }
+      },
+      {
+        "case": "invalid_rhslist",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "number outside float range"
+        }
+      },
+      {
+        "case": "invalid_rhslist",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "number outside float range"
+        }
+      },
+      {
+        "case": "delta_overflow_-1",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "nonfinite number"
+        }
+      },
+      {
+        "case": "delta_overflow_-1",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "nonfinite number"
+        }
+      },
+      {
+        "case": "delta_overflow_-1",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "nonfinite number"
+        }
+      },
+      {
+        "case": "delta_overflow_1",
+        "seed": 7,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "nonfinite number"
+        }
+      },
+      {
+        "case": "delta_overflow_1",
+        "seed": 19,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "nonfinite number"
+        }
+      },
+      {
+        "case": "delta_overflow_1",
+        "seed": 41,
+        "passed": true,
+        "outcome": {
+          "exception": "ValueError",
+          "message": "nonfinite number"
+        }
+      }
+    ],
+    "scope": "finite differential checks; not a whole-domain formal proof"
+  },
+  "benchmarks": [
+    {
+      "n": 2,
+      "input": {
+        "variables": [
+          "x0",
+          "x1"
+        ],
+        "matrix": [
+          [
+            6.0,
+            0.0
+          ],
+          [
+            3.0,
+            5.0
+          ]
+        ],
+        "rhs": [
+          1.0,
+          -2.0
+        ],
+        "current": [
+          0.0,
+          0.0
+        ],
+        "mode": "solve",
+        "residual_limit": 1.0
+      },
+      "seconds_per_call": {
+        "original": [
+          1.5632369904778898e-05,
+          1.2059269938617944e-05,
+          1.2706450070254504e-05,
+          1.2789630272891372e-05,
+          1.2892740196548402e-05,
+          1.3358700089156628e-05,
+          1.4856049965601414e-05
+        ],
+        "hybrid_simulator": [
+          0.0040807470213621855,
+          0.004288113996153697,
+          0.004092862014658749,
+          0.0037471220130100846,
+          0.00499217098695226,
+          0.004751786007545888,
+          0.004090746981091797
+        ],
+        "scipy_quality_only": [
+          4.722875979496166e-05,
+          4.554131999611855e-05,
+          3.8270830118563025e-05,
+          4.1971669998019936e-05,
+          5.131926998728886e-05,
+          4.2911980126518754e-05,
+          3.779766004299745e-05
+        ]
+      },
+      "median_seconds": {
+        "original": 1.2892740196548402e-05,
+        "hybrid_simulator": 0.004092862014658749,
+        "scipy_quality_only": 4.2911980126518754e-05
+      },
+      "hybrid_over_original": 317.454780928144,
+      "hybrid_over_scipy": 95.37807396889247,
+      "quality": {
+        "original": {
+          "relative_backward_error": 0.0,
+          "exact_report_match": true
+        },
+        "hybrid_simulator": {
+          "relative_backward_error": 0.0,
+          "exact_report_match": true
+        },
+        "scipy_quality_only": {
+          "relative_backward_error": 0.0,
+          "exact_report_match": true
+        }
+      },
+      "pivot_events": [
+        {
+          "col": 0,
+          "active_rows": 2,
+          "quantum_executed": true,
+          "route": "certified",
+          "samples": [
+            0,
+            1,
+            0,
+            1
+          ],
+          "candidate": 0,
+          "result": 0,
+          "backend_error": null,
+          "injected_sampler": false,
+          "oracle_comparisons": 2,
+          "certification_candidates": 2,
+          "shots": 4,
+          "oracle_calls_per_shot": 1,
+          "qubits": 1,
+          "depth": 9,
+          "operations": {
+            "u": 9
+          },
+          "oracle_operations": {
+            "x": 2,
+            "z": 1
+          },
+          "build_seconds": 0.00018228200497105718,
+          "compile_seconds": 0.0015528190124314278,
+          "simulation_and_decode_seconds": 0.0005791189905721694,
+          "certification_seconds": 2.2139865905046463e-06,
+          "total_seconds": 0.002319448976777494
+        },
+        {
+          "col": 1,
+          "active_rows": 1,
+          "quantum_executed": false,
+          "route": "single_element",
+          "result": 1,
+          "total_seconds": 2.6859925128519535e-06
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "input": {
+        "variables": [
+          "x0",
+          "x1",
+          "x2",
+          "x3"
+        ],
+        "matrix": [
+          [
+            16.0,
+            -1.0,
+            3.0,
+            2.0
+          ],
+          [
+            0.0,
+            15.0,
+            -2.0,
+            -3.0
+          ],
+          [
+            -3.0,
+            1.0,
+            16.0,
+            -2.0
+          ],
+          [
+            -1.0,
+            -3.0,
+            -3.0,
+            17.0
+          ]
+        ],
+        "rhs": [
+          -1.0,
+          3.0,
+          -2.0,
+          -1.0
+        ],
+        "current": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mode": "solve",
+        "residual_limit": 1.0
+      },
+      "seconds_per_call": {
+        "original": [
+          2.1706919942516833e-05,
+          2.0533750066533686e-05,
+          2.0188700000289826e-05,
+          2.0462950051296502e-05,
+          2.3687999928370118e-05,
+          2.1071690134704113e-05,
+          2.1340790262911468e-05
+        ],
+        "hybrid_simulator": [
+          0.008706900000106543,
+          0.00819655298255384,
+          0.007938038994325325,
+          0.007617322000442073,
+          0.008421326987445354,
+          0.00796547599020414,
+          0.0079384490090888
+        ],
+        "scipy_quality_only": [
+          4.6388689952436835e-05,
+          4.404384992085397e-05,
+          4.0669850131962446e-05,
+          4.748668987303972e-05,
+          4.29010100197047e-05,
+          5.398776003858075e-05,
+          4.394821997266263e-05
+        ]
+      },
+      "median_seconds": {
+        "original": 2.1071690134704113e-05,
+        "hybrid_simulator": 0.00796547599020414,
+        "scipy_quality_only": 4.404384992085397e-05
+      },
+      "hybrid_over_original": 378.01789696429546,
+      "hybrid_over_scipy": 180.85330879380348,
+      "quality": {
+        "original": {
+          "relative_backward_error": 3.142476650584927e-17,
+          "exact_report_match": true
+        },
+        "hybrid_simulator": {
+          "relative_backward_error": 3.142476650584927e-17,
+          "exact_report_match": true
+        },
+        "scipy_quality_only": {
+          "relative_backward_error": 3.142476650584927e-17,
+          "exact_report_match": false
+        }
+      },
+      "pivot_events": [
+        {
+          "col": 0,
+          "active_rows": 4,
+          "quantum_executed": true,
+          "route": "fallback",
+          "samples": [
+            1,
+            3,
+            1,
+            3
+          ],
+          "candidate": 3,
+          "result": 0,
+          "backend_error": null,
+          "injected_sampler": false,
+          "oracle_comparisons": 4,
+          "certification_candidates": 4,
+          "shots": 4,
+          "oracle_calls_per_shot": 1,
+          "qubits": 2,
+          "depth": 16,
+          "operations": {
+            "u": 22,
+            "cx": 3
+          },
+          "oracle_operations": {
+            "x": 6,
+            "h": 4,
+            "cx": 2
+          },
+          "build_seconds": 0.0003132050042040646,
+          "compile_seconds": 0.001310544990701601,
+          "simulation_and_decode_seconds": 0.0009250099828932434,
+          "certification_seconds": 1.7090060282498598e-06,
+          "total_seconds": 0.0025528219994157553
+        },
+        {
+          "col": 1,
+          "active_rows": 3,
+          "quantum_executed": true,
+          "route": "certified",
+          "samples": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "candidate": 1,
+          "result": 1,
+          "backend_error": null,
+          "injected_sampler": false,
+          "oracle_comparisons": 3,
+          "certification_candidates": 3,
+          "shots": 4,
+          "oracle_calls_per_shot": 1,
+          "qubits": 2,
+          "depth": 13,
+          "operations": {
+            "u": 18,
+            "cx": 2
+          },
+          "oracle_operations": {
+            "x": 4,
+            "h": 2,
+            "cx": 1
+          },
+          "build_seconds": 0.00018608398386277258,
+          "compile_seconds": 0.0011260030150879174,
+          "simulation_and_decode_seconds": 0.0007178449886851013,
+          "certification_seconds": 1.587992301210761e-06,
+          "total_seconds": 0.0020346779783722013
+        },
+        {
+          "col": 2,
+          "active_rows": 2,
+          "quantum_executed": true,
+          "route": "certified",
+          "samples": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "candidate": 2,
+          "result": 2,
+          "backend_error": null,
+          "injected_sampler": false,
+          "oracle_comparisons": 2,
+          "certification_candidates": 2,
+          "shots": 4,
+          "oracle_calls_per_shot": 1,
+          "qubits": 1,
+          "depth": 9,
+          "operations": {
+            "u": 9
+          },
+          "oracle_operations": {
+            "x": 2,
+            "z": 1
+          },
+          "build_seconds": 8.50890064612031e-05,
+          "compile_seconds": 0.0010963469976559281,
+          "simulation_and_decode_seconds": 0.0004916000179946423,
+          "certification_seconds": 1.641979906708002e-06,
+          "total_seconds": 0.0016770710062701255
+        },
+        {
+          "col": 3,
+          "active_rows": 1,
+          "quantum_executed": false,
+          "route": "single_element",
+          "result": 3,
+          "total_seconds": 2.5650078896433115e-06
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "input": {
+        "variables": [
+          "x0",
+          "x1",
+          "x2",
+          "x3",
+          "x4",
+          "x5",
+          "x6",
+          "x7"
+        ],
+        "matrix": [
+          [
+            33.0,
+            3.0,
+            -3.0,
+            1.0,
+            1.0,
+            -2.0,
+            -2.0,
+            -3.0
+          ],
+          [
+            -1.0,
+            34.0,
+            -2.0,
+            3.0,
+            -2.0,
+            3.0,
+            -1.0,
+            -3.0
+          ],
+          [
+            -3.0,
+            -2.0,
+            31.0,
+            2.0,
+            -1.0,
+            1.0,
+            -2.0,
+            2.0
+          ],
+          [
+            -3.0,
+            -3.0,
+            -3.0,
+            31.0,
+            -1.0,
+            2.0,
+            -3.0,
+            -2.0
+          ],
+          [
+            1.0,
+            2.0,
+            0.0,
+            3.0,
+            34.0,
+            0.0,
+            -3.0,
+            2.0
+          ],
+          [
+            -3.0,
+            0.0,
+            -2.0,
+            3.0,
+            -2.0,
+            30.0,
+            3.0,
+            1.0
+          ],
+          [
+            1.0,
+            -1.0,
+            -1.0,
+            -3.0,
+            3.0,
+            2.0,
+            32.0,
+            0.0
+          ],
+          [
+            -2.0,
+            3.0,
+            -3.0,
+            -3.0,
+            2.0,
+            -2.0,
+            -2.0,
+            35.0
+          ]
+        ],
+        "rhs": [
+          1.0,
+          -1.0,
+          5.0,
+          4.0,
+          -3.0,
+          0.0,
+          -3.0,
+          0.0
+        ],
+        "current": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mode": "solve",
+        "residual_limit": 1.0
+      },
+      "seconds_per_call": {
+        "original": [
+          5.0407439994160085e-05,
+          5.458275991259143e-05,
+          5.585400009294972e-05,
+          6.154950999189168e-05,
+          5.6277880212292075e-05,
+          5.098030989756808e-05,
+          5.100102018332109e-05
+        ],
+        "hybrid_simulator": [
+          0.02537532601854764,
+          0.026016534015070647,
+          0.026011449022917077,
+          0.028251448005903512,
+          0.025578476022928953,
+          0.025145589985186234,
+          0.02514878098736517
+        ],
+        "scipy_quality_only": [
+          6.393221003236248e-05,
+          7.433851016685366e-05,
+          8.610971999587492e-05,
+          7.524190004914999e-05,
+          6.0250860115047545e-05,
+          6.904869980644434e-05,
+          6.039439991582185e-05
+        ]
+      },
+      "median_seconds": {
+        "original": 5.458275991259143e-05,
+        "hybrid_simulator": 0.025578476022928953,
+        "scipy_quality_only": 6.904869980644434e-05
+      },
+      "hybrid_over_original": 468.6182242138397,
+      "hybrid_over_scipy": 370.4410958443812,
+      "quality": {
+        "original": {
+          "relative_backward_error": 7.096860702379413e-17,
+          "exact_report_match": true
+        },
+        "hybrid_simulator": {
+          "relative_backward_error": 7.096860702379413e-17,
+          "exact_report_match": true
+        },
+        "scipy_quality_only": {
+          "relative_backward_error": 7.096860702379413e-17,
+          "exact_report_match": false
+        }
+      },
+      "pivot_events": [
+        {
+          "col": 0,
+          "active_rows": 8,
+          "quantum_executed": true,
+          "route": "fallback",
+          "samples": [
+            2,
+            7,
+            2,
+            6
+          ],
+          "candidate": 2,
+          "result": 0,
+          "backend_error": null,
+          "injected_sampler": false,
+          "oracle_comparisons": 8,
+          "certification_candidates": 8,
+          "shots": 4,
+          "oracle_calls_per_shot": 1,
+          "qubits": 3,
+          "depth": 71,
+          "operations": {
+            "u": 84,
+            "cx": 30
+          },
+          "oracle_operations": {
+            "x": 14,
+            "h": 8,
+            "ccx": 4
+          },
+          "build_seconds": 0.00036983098834753036,
+          "compile_seconds": 0.0016598750080447644,
+          "simulation_and_decode_seconds": 0.003085519012529403,
+          "certification_seconds": 2.2619788069278e-06,
+          "total_seconds": 0.005119819979881868
+        },
+        {
+          "col": 1,
+          "active_rows": 7,
+          "quantum_executed": true,
+          "route": "certified",
+          "samples": [
+            3,
+            0,
+            0,
+            0
+          ],
+          "candidate": 1,
+          "result": 1,
+          "backend_error": null,
+          "injected_sampler": false,
+          "oracle_comparisons": 7,
+          "certification_candidates": 7,
+          "shots": 4,
+          "oracle_calls_per_shot": 1,
+          "qubits": 3,
+          "depth": 31,
+          "operations": {
+            "u": 43,
+            "cx": 12
+          },
+          "oracle_operations": {
+            "x": 6,
+            "h": 2,
+            "ccx": 1
+          },
+          "build_seconds": 0.00024781300453469157,
+          "compile_seconds": 0.0014044620038475841,
+          "simulation_and_decode_seconds": 0.0014614060055464506,
+          "certification_seconds": 1.6900012269616127e-06,
+          "total_seconds": 0.003119383007287979
+        },
+        {
+          "col": 2,
+          "active_rows": 6,
+          "quantum_executed": true,
+          "route": "certified",
+          "samples": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "candidate": 2,
+          "result": 2,
+          "backend_error": null,
+          "injected_sampler": false,
+          "oracle_comparisons": 6,
+          "certification_candidates": 6,
+          "shots": 4,
+          "oracle_calls_per_shot": 1,
+          "qubits": 3,
+          "depth": 45,
+          "operations": {
+            "u": 58,
+            "cx": 18
+          },
+          "oracle_operations": {
+            "x": 10,
+            "h": 4,
+            "ccx": 2
+          },
+          "build_seconds": 0.0002297530008945614,
+          "compile_seconds": 0.0013643800048157573,
+          "simulation_and_decode_seconds": 0.0017419869836885482,
+          "certification_seconds": 2.261018380522728e-06,
+          "total_seconds": 0.0033417460217606276
+        },
+        {
+          "col": 3,
+          "active_rows": 5,
+          "quantum_executed": true,
+          "route": "certified",
+          "samples": [
+            0,
+            0,
+            2,
+            0
+          ],
+          "candidate": 3,
+          "result": 3,
+          "backend_error": null,
+          "injected_sampler": false,
+          "oracle_comparisons": 5,
+          "certification_candidates": 5,
+          "shots": 4,
+          "oracle_calls_per_shot": 1,
+          "qubits": 3,
+          "depth": 45,
+          "operations": {
+            "u": 58,
+            "cx": 18
+          },
+          "oracle_operations": {
+            "x": 10,
+            "h": 4,
+            "ccx": 2
+          },
+          "build_seconds": 0.00027804600540548563,
+          "compile_seconds": 0.0013282779837027192,
+          "simulation_and_decode_seconds": 0.0020056170178577304,
+          "certification_seconds": 2.0459992811083794e-06,
+          "total_seconds": 0.0036172800173517317
+        },
+        {
+          "col": 4,
+          "active_rows": 4,
+          "quantum_executed": true,
+          "route": "certified",
+          "samples": [
+            1,
+            3,
+            0,
+            0
+          ],
+          "candidate": 4,
+          "result": 4,
+          "backend_error": null,
+          "injected_sampler": false,
+          "oracle_comparisons": 4,
+          "certification_candidates": 4,
+          "shots": 4,
+          "oracle_calls_per_shot": 1,
+          "qubits": 2,
+          "depth": 16,
+          "operations": {
+            "u": 22,
+            "cx": 3
+          },
+          "oracle_operations": {
+            "x": 6,
+            "h": 4,
+            "cx": 2
+          },
+          "build_seconds": 0.0002726880193222314,
+          "compile_seconds": 0.0015342929982580245,
+          "simulation_and_decode_seconds": 0.0010099500068463385,
+          "certification_seconds": 3.4190015867352486e-06,
+          "total_seconds": 0.002828247001161799
+        },
+        {
+          "col": 5,
+          "active_rows": 3,
+          "quantum_executed": true,
+          "route": "fallback",
+          "samples": [
+            3,
+            3,
+            3,
+            1
+          ],
+          "candidate": 6,
+          "result": 5,
+          "backend_error": null,
+          "injected_sampler": false,
+          "oracle_comparisons": 3,
+          "certification_candidates": 3,
+          "shots": 4,
+          "oracle_calls_per_shot": 1,
+          "qubits": 2,
+          "depth": 18,
+          "operations": {
+            "u": 22,
+            "cx": 3
+          },
+          "oracle_operations": {
+            "x": 6,
+            "h": 4,
+            "cx": 2
+          },
+          "build_seconds": 0.0002533100196160376,
+          "compile_seconds": 0.0013472480059135705,
+          "simulation_and_decode_seconds": 0.0008444369887001812,
+          "certification_seconds": 1.795007847249508e-06,
+          "total_seconds": 0.002450841013342142
+        },
+        {
+          "col": 6,
+          "active_rows": 2,
+          "quantum_executed": true,
+          "route": "certified",
+          "samples": [
+            1,
+            0,
+            1,
+            1
+          ],
+          "candidate": 6,
+          "result": 6,
+          "backend_error": null,
+          "injected_sampler": false,
+          "oracle_comparisons": 2,
+          "certification_candidates": 2,
+          "shots": 4,
+          "oracle_calls_per_shot": 1,
+          "qubits": 1,
+          "depth": 9,
+          "operations": {
+            "u": 9
+          },
+          "oracle_operations": {
+            "x": 2,
+            "z": 1
+          },
+          "build_seconds": 9.968402446247637e-05,
+          "compile_seconds": 0.0011718379973899573,
+          "simulation_and_decode_seconds": 0.00042460497934371233,
+          "certification_seconds": 1.4580145943909883e-06,
+          "total_seconds": 0.0017007010173983872
+        },
+        {
+          "col": 7,
+          "active_rows": 1,
+          "quantum_executed": false,
+          "route": "single_element",
+          "result": 7,
+          "total_seconds": 2.8779904823750257e-06
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "active_rows": 2,
+      "values": [
+        1.0,
+        0.0
+      ],
+      "qubits": 1,
+      "oracle_predicate_evaluations": 2,
+      "depth": 9,
+      "operations": {
+        "u": 9
+      },
+      "shots": 4,
+      "measurements_per_shot": 1,
+      "total_gate_applications_four_shots": 36,
+      "scope": "logical u/cx, no coupling map/noise/QEC; classical compilation and certification additional"
+    },
+    {
+      "active_rows": 4,
+      "values": [
+        3.0,
+        2.0,
+        1.0,
+        0.0
+      ],
+      "qubits": 2,
+      "oracle_predicate_evaluations": 4,
+      "depth": 21,
+      "operations": {
+        "u": 26,
+        "cx": 4
+      },
+      "shots": 4,
+      "measurements_per_shot": 2,
+      "total_gate_applications_four_shots": 120,
+      "scope": "logical u/cx, no coupling map/noise/QEC; classical compilation and certification additional"
+    },
+    {
+      "active_rows": 8,
+      "values": [
+        7.0,
+        6.0,
+        5.0,
+        4.0,
+        3.0,
+        2.0,
+        1.0,
+        0.0
+      ],
+      "qubits": 3,
+      "oracle_predicate_evaluations": 8,
+      "depth": 109,
+      "operations": {
+        "u": 127,
+        "cx": 48
+      },
+      "shots": 4,
+      "measurements_per_shot": 3,
+      "total_gate_applications_four_shots": 700,
+      "scope": "logical u/cx, no coupling map/noise/QEC; classical compilation and certification additional"
+    }
+  ],
+  "quantum_hardware_executed": false,
+  "new_model_calls": 0,
+  "source_sha256": {
+    "kernel.py": "7bd7ab7a59d78bf064f14a3e97f60f80d91b9e6d42977952c1e5c21d795dd18f",
+    "program.py": "40b399f11a314c9f7eff3f3dd9a799defc8b4d63919fabb7bbb31c245281e46f",
+    "common.py": "d45402e6db3166b6f35c1a654c2470e1e9cef82e67bcefdd43275f49cd397966"
+  }
+}

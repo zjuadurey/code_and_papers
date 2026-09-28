@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-005",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "complete",
+      "start_line": 10,
+      "end_line": 14
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "lexicographically_first_conforming_feature_assignment",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditionally encode the 2^size Boolean vectors as the search domain and reversibly mark vectors satisfying conforms(values, clauses, locked). A single Grover search is insufficient because complete must return the first conforming vector in False-before-True feature order. Preserving that requirement would need certified prefix-feasibility searches, fixing each bit to False whenever that prefix has any completion and otherwise fixing it to True, followed by an exact no-solution determination.",
+    "input_encoding": "Use one decision qubit per feature, with reversible access to every locked index/value pair and every ordered clause literal (feature index and required Boolean value). The encoding must handle repeated or contradictory literals, zero rules, locked variables, and the zero-feature domain without changing their classical meanings. Costs for loading instance-dependent clauses and locks, work qubits, and uncomputation remain unresolved.",
+    "quantum_algorithm_family": "Grover-style marked-state search used conditionally as a prefix-feasibility primitive",
+    "output_decoding": "Measure candidate suffixes, reconstruct the Boolean vector in feature order, and verify it classically with conforms. Return a list only after establishing that it conforms and that no lexicographically earlier conforming vector exists; return None only after a contract-compatible, exact no-solution determination. The surrounding review function must continue producing proposal and changes in feature order.",
+    "assumptions": [
+      "The validated size, clauses, and locked map produced by program.review are available to the search boundary.",
+      "A reversible oracle equivalent to kernel.conforms can be constructed without changing equality, conjunction, or disjunction semantics.",
+      "Any probabilistic search and no-solution behavior can be strengthened or certified to preserve the deterministic exact contract.",
+      "Classical validation, current-assignment retention, report construction, and exception behavior remain outside the migrated region."
+    ],
+    "risks": [
+      "Ordinary Grover measurement can return any satisfying assignment rather than the required first assignment.",
+      "False negatives in prefix-feasibility or global no-solution tests would change proposal, status, or ordering semantics.",
+      "Instance-data loading and reversible evaluation of all clauses and locks may dominate the search cost.",
+      "Repeated prefix searches, classical verification, and retries may eliminate any useful resource advantage.",
+      "No qubit, depth, shot, oracle-cost, hardware, workload, or advantage evidence is supplied."
+    ],
+    "expected_resource_characteristics": {
+      "search_space_size": "2^size before accounting for locked variables or fixed prefixes",
+      "decision_qubits": "At least size, potentially fewer only with a semantics-preserving elimination of locked variables",
+      "oracle_workspace": "Unspecified ancillas for literal comparisons, clause ORs, global conjunction, and uncomputation",
+      "oracle_calls": "An unconstrained feasibility query has idealized square-root search scaling, but lexicographic selection may require up to size prefix-feasibility stages plus certification",
+      "instance_loading": "Must be accounted for; no coherent-memory or free-oracle assumption is justified",
+      "quantitative_limits": "Unknown"
+    },
+    "rationale": "This is a conditional analysis plan, not an adoption recommendation. The loop is a finite unstructured search with a pure predicate, but preserving deterministic lexicographic selection and exact unavailable reporting creates unresolved oracle, certification, and resource obligations."
+  },
+  "rationale": "The defensible candidate is kernel.py lines 10-14: it enumerates the finite Boolean domain in False-before-True product order and returns the first vector accepted by conforms, or None. Structural eligibility is true because the candidate domain is explicit and finite and the predicate in kernel.py lines 5-7 is Boolean and side-effect-free. Required dependencies are size, the ordered clause literals, the locked index/value map, product ordering, and the exact behavior of conforms. The region activates only in complete mode when the validated current vector does not conform, through program.py lines 35-41. Input validation and ValueError behavior in program.py lines 8-30, reporting of failed_rules and locked_failures in input order at lines 31-34, retention of a conforming current vector at lines 37-38, status selection, proposal construction, feature-order changes, no mutation, and CLI behavior must remain classical and unchanged. Practical suitability is false: ordinary Grover-style search does not preserve the required first-solution ordering or deterministic no-solution result, and the supplied material gives no workload scale, oracle-construction cost, quantum resources, hardware, or advantage evidence. Benchmark support is true only in the limited provenance sense that NOTICE.txt attributes the formula to QuanBench task 03 and the same QuanBench+ Qiskit task; it supplies no independent source problem or empirical suitability evidence. Therefore the structurally eligible region merits further formulation analysis but should remain classical on the available evidence.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": true,
+  "computational_intent": "Find the lexicographically first Boolean feature vector, using False before True in feature order, that satisfies every named three-literal rule and every locked value, or determine that none exists.",
+  "assumptions": [
+    "The supplied contract's 'empty rules are true' means an empty rule collection; program.py rejects an individual rule unless it has exactly three alternatives.",
+    "The enumeration order of itertools.product((False, True), repeat=size) defines the required first conforming vector.",
+    "No quantum-resource or performance facts beyond the supplied provenance are assumed."
+  ],
+  "risks": [
+    "Quantum search can silently weaken exact deterministic semantics through probabilistic failure.",
+    "Returning an arbitrary satisfying assignment would violate the first-conforming-vector contract.",
+    "Incorrect handling of locked values, repeated literals, contradictory literals, or the zero-feature case could change feasibility.",
+    "Moving validation or report construction into the candidate boundary could alter exceptions, ordering, or observable output.",
+    "Benchmark provenance alone does not establish practical suitability or quantum advantage."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The domain is finite and conforms is a pure Boolean predicate, so the draft contract is structurally applicable. Its reversible-oracle, input-loading, exactness, lexicographic-selection, and no-solution obligations are unresolved and prevent a deployment recommendation."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "A conditional alternative could encode feature bits, clause-satisfaction penalties, locked-value penalties, and a lexicographic objective. It would require explicit quadratization or ancillas, proof that feasibility penalties dominate the ordering objective, potentially large coefficient ranges, and exact-optimum recovery. QAOA provides no supplied guarantee of the exact first solution, so this structural applicability does not establish practical suitability."
+    }
+  ]
+}

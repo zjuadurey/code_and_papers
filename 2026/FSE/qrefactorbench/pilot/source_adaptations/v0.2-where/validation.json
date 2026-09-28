@@ -1,0 +1,146 @@
+{
+  "utc": "2026-09-20T20:42:39.505507+00:00",
+  "commands": [
+    {
+      "name": "agenda_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/source_adaptations/v0.2-where/cases/lit-003/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/agenda_tests.stdout.txt",
+      "stderr": "validation/agenda_tests.stderr.txt"
+    },
+    {
+      "name": "cohort_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/source_adaptations/v0.2-where/cases/lit-004/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/cohort_tests.stdout.txt",
+      "stderr": "validation/cohort_tests.stderr.txt"
+    },
+    {
+      "name": "sources_and_views",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/source_adaptations/v0.2-where/test_sources_and_views.py"
+      ],
+      "exit_code": 1,
+      "stdout": "validation/sources_and_views.stdout.txt",
+      "stderr": "validation/sources_and_views.stderr.txt"
+    },
+    {
+      "name": "sources_and_views_after_test_fix",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/source_adaptations/v0.2-where/test_sources_and_views.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/sources_and_views_after_test_fix.stdout.txt",
+      "stderr": "validation/sources_and_views_after_test_fix.stderr.txt"
+    },
+    {
+      "name": "core_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/core_tests.stdout.txt",
+      "stderr": "validation/core_tests.stderr.txt"
+    },
+    {
+      "name": "validate_new",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "pilot/source_adaptations/v0.2-where/cases"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_new.stdout.txt",
+      "stderr": "validation/validate_new.stderr.txt"
+    },
+    {
+      "name": "summarize_new",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "pilot/source_adaptations/v0.2-where/cases",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/summarize_new.stdout.txt",
+      "stderr": "validation/summarize_new.stderr.txt"
+    },
+    {
+      "name": "validate_original",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_original.stdout.txt",
+      "stderr": "validation/validate_original.stderr.txt"
+    },
+    {
+      "name": "summarize_original",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "cases/",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/summarize_original.stdout.txt",
+      "stderr": "validation/summarize_original.stderr.txt"
+    }
+  ],
+  "final_artifact_checks": {
+    "utc": "2026-09-20T20:55:21.898487+00:00",
+    "protected_files_checked": 1032,
+    "protected_changed": [],
+    "public_files_checked": 16,
+    "public_hash_changes": [],
+    "public_extra_files": [],
+    "source_files_checked": 31,
+    "source_changes": [],
+    "draft_null_judgments": true,
+    "local_link_paths_checked": 236,
+    "broken_links": []
+  }
+}

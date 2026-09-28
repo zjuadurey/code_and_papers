@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/rationale", "/assumptions/4", "/contract_applicability/0/rationale", "/contract_applicability/1/rationale"],
+  "rationale": "The response explicitly nominates the whole solver for analysis while retaining no replacement and a null plan. Extra narration of classical execution is not a proposed local quantum selector and is not checked as one. The generic elicitation did not induce a narrower replacement candidate; do not turn missing nomination into a proven structural-negative label.",
+  "interpretations": []
+}

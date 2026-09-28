@@ -1,0 +1,7 @@
+{
+  "case_id": "source-core-003",
+  "title": "Ordered assignments for a finite conflict relation",
+  "software_contract": "The program exposes two different operations. greedy_kcolor_adj_matrix(adj_matrix,k) visits vertices in ascending index order and takes the first available color 0..k-1 without backtracking; on blockage it raises ValueError. Its failure is not a certificate of infeasibility. kcolor_backtracking(adj_list,k) returns the lexicographically first full vector of colors satisfying every undirected adjacency constraint, or raises ValueError when no vector exists. A color conflict means adjacent vertices have equal colors. Empty graphs return []. Both functions leave inputs unchanged. Exception text is not required by this view. There is no added invalid-input validation obligation.",
+  "input_domain": "k is a nonnegative Python int, not bool. The matrix is finite, square, symmetric, binary and has zero diagonal. The list representation is a dict with keys exactly 0..n-1 and finite duplicate-free neighbor-index lists, symmetric with no self-loops. Only valid inputs are specified. No extra numeric cap is added; Python recursion/runtime limits remain operational limits.",
+  "execution_assumptions": ["Inputs are ordinary classical data. The two functions have different failure guarantees and are not interchangeable.", "No hardware, workload frequency or resource assumptions are provided."]
+}

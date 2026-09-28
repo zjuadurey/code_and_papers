@@ -1,0 +1,29 @@
+{
+  "stations": [
+    "north",
+    "south",
+    "west",
+    "east"
+  ],
+  "connections": [
+    [
+      "north",
+      "south"
+    ],
+    [
+      "south",
+      "west"
+    ],
+    [
+      "west",
+      "east"
+    ],
+    [
+      "south",
+      "north"
+    ]
+  ],
+  "current_stations": [
+    "north"
+  ]
+}

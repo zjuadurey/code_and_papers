@@ -1,0 +1,15 @@
+{
+  "physical_backend": null,
+  "physical_qubits_available": null,
+  "connectivity": null,
+  "native_gates_and_durations": null,
+  "noise_and_readout_profile": null,
+  "logical_to_physical_mapping": null,
+  "qec_and_decoding_cost": null,
+  "communication_and_queue_policy": null,
+  "calibration_date": null,
+  "allowed_algorithm_error": 0,
+  "classical_machine_and_solver_timing": null,
+  "workload_distribution_and_amortization": null,
+  "note": "Unknown, not zero. Logical ideal oracle counts are available separately; no physical feasibility or numerical crossover inferred."
+}

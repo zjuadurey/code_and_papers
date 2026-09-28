@@ -1,0 +1,6 @@
+{
+  "resolution": "transcribed",
+  "anchor_pointers": ["/plan/formulation", "/plan/assumptions/2", "/plan/assumptions/3", "/plan/input_encoding"],
+  "rationale": "The response explicitly supplies a comparison formula only for finite intermediate pivots: strictly exceed every earlier magnitude and be at least every later magnitude. Bind that stated finite-state guard instead of extending the formula to nonfinite states. The response declares matching behavior or a verified classical fallback outside the guard, but neither is implemented or checked here; mark fallback as declared only. A conditional finite pass would not establish whole-domain repair.",
+  "interpretations": [{"id": "finite_strict_earlier_ge_later", "meaning": "Stated first-maximum predicate restricted to all-finite current pivot magnitudes.", "mode": "predicate", "expression": "all(values[i] > values[j] for j in indices if j < i) and all(values[i] >= values[k] for k in indices if k > i)", "guard": "all(isfinite(values[k]) for k in indices)", "outside_guard": "classical_fallback_declared"}]
+}

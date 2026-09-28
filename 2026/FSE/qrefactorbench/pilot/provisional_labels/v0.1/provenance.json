@@ -1,0 +1,16 @@
+{
+  "version": "0.1",
+  "evaluation_files_sha256": {
+    "pilot/provisional_labels/v0.1/labels.json": "36a691f92c0042cc558e318170c5273de54086bcf06c749b1b3be5d04d468a7e",
+    "pilot/provisional_labels/v0.1/evaluate.py": "a4cf196af816a1d1fcbe2306423beee89fd4cc9ef9023bd10a2c78568467a97e",
+    "pilot/reference_completion/v0.1.1/review_inputs/manifest.json": "cf3420621dcfbeb0b3c082e38c8dd54f737b56476108bbe1ff34fb8aee77c61a",
+    "qrefactorbench/evaluator/candidate.py": "e4b9e9c52dc873df3fc3ce6f7a521b8742b8fba3940935ef273412fa85540448",
+    "qrefactorbench/evaluator/recognition.py": "02f1882fbc1aa272696309a418a28f451edaf3769670c20e55aeb0872beef70c",
+    "qrefactorbench/schema.py": "e10e6ec441d8bd7d221d85145cef47740235d721f42779cdf519168557d41fd4",
+    "qrefactorbench/loader.py": "9b3489aaad30d52106bf0c22d32e288e1426ec10befa47be91299905e3537fd9",
+    "schemas/prediction.schema.json": "016e0ef79b0fe4bbdb837b1dda4251245fe6d72327b088906065924417b5f0a5",
+    "schemas/migration_plan.schema.json": "82fb0369cdb967bebef78942fcba6e2514ce3a2143271120b26b60aaa5c55639",
+    "schemas/case.schema.json": "ab043477501474a9055d75997ee194b576840f7e6613b332694b15c0a3f49124",
+    "schemas/phase1_prediction.schema.json": "7fbbce683b407d82e8f556d218c985c2aa398c60cfb6c794f8e2191f46e61caa"
+  }
+}

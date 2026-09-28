@@ -1,0 +1,7 @@
+{
+  "case_id": "core-001",
+  "title": "Weighted two-group assignment",
+  "software_contract": "Call maxcut_bruteforce(adj). Return (score, (left, right)), where left/right are ascending index lists partitioning every index exactly once. score sums weights of pairs assigned to different groups and must be globally maximal. Ties choose the smallest sum of 2**i over indices i in left. Empty matrix returns (0, ([], [])). Do not modify adj. Only valid-domain inputs are specified; there is no extra invalid-input validation requirement in this core view.",
+  "input_domain": "A symmetric square list of lists of size 0–16, zero diagonal, nonnegative arbitrary-precision Python integer weights (not bool). The bound is a local testing limit, not workload evidence.",
+  "execution_assumptions": ["Ordinary classical input; no hardware, latency or benefit assumptions supplied."]
+}

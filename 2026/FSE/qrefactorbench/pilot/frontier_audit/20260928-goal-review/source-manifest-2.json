@@ -1,0 +1,32 @@
+[
+  {
+    "file": "sources/hps-abstract.html",
+    "url": "https://arxiv.org/abs/2604.24578v1",
+    "bytes": 44142,
+    "sha256": "6b8a938e70a0ec61631d12f0caab6a002d6ebbe5497ddea078582a6d877a01ed"
+  },
+  {
+    "file": "sources/fse-cfp.html",
+    "url": "https://conf.researchr.org/track/fse-2027/fse-2027-papers",
+    "bytes": 339947,
+    "sha256": "35e7e8f340cd15c1931c41f43d3ef604e68978a547e0d9913026bb99120380a3"
+  },
+  {
+    "file": "sources/end-to-end-abstract.html",
+    "url": "https://arxiv.org/abs/2310.03011v2",
+    "bytes": 46808,
+    "sha256": "5349e0328988cb788a4b4703d5432e361c5396d0f348e13a668f27bd8b996ac9"
+  },
+  {
+    "file": "sources/bbbv-abstract.html",
+    "url": "https://arxiv.org/abs/quant-ph/9701001v1",
+    "bytes": 42590,
+    "sha256": "f8df6103b477ac2d891b19202dce1be2b823838b970ace00e60d9a99e5c00618"
+  },
+  {
+    "file": "sources/turing.pdf",
+    "url": "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf",
+    "bytes": 2198146,
+    "sha256": "a126650c315e998ba96ea8248a60bde0afe60fec3e810acfc2b6c70d3b0e9f36"
+  }
+]

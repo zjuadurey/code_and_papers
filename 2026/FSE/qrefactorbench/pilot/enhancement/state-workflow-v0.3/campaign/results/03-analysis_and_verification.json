@@ -1,0 +1,20 @@
+{
+  "slot": "03-analysis_and_verification",
+  "replicate": 3,
+  "arm": "analysis_and_verification",
+  "mother_case": "lit-009",
+  "usage": [
+    {
+      "input_tokens": 15807,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2222,
+      "reasoning_output_tokens": 432
+    }
+  ],
+  "model_seconds": 45.406,
+  "task_pass": null,
+  "response_sha256": "bfce83085fc9c5d888609197f6e21cf549c064044cc2a07c7e098121760d625d",
+  "status": "valid_response",
+  "validation_errors": []
+}

@@ -1,0 +1,36 @@
+{
+  "utc": "2026-09-26T19:43:49.751106+00:00",
+  "focused_tests": 32,
+  "related_regression_tests": 49,
+  "offline_preflight_checks": 5,
+  "captured_prompt": "02-with_witness",
+  "serialized_tools": [],
+  "real_credentials_read": false,
+  "new_model_inference_calls": 0,
+  "qpu_calls": 0,
+  "live_attempts": 0,
+  "live_state": "await_authorization",
+  "simulation_slots": 16,
+  "simulation_is_effect_evidence": false,
+  "denominators_by_arm": {
+    "self_review": 5,
+    "cue_only": 5,
+    "assessment_summary": 5,
+    "with_witness": 1
+  },
+  "protocol_sha256": "9ae6879a5555d8f8abbeec001c0fdd873fa26b3e3cea48739b310804681095bb",
+  "frozen_sources": 88,
+  "protected_files_unchanged": 2764,
+  "changed_protected_files": [],
+  "local_links_checked": 197,
+  "missing_links": [],
+  "scoped_diff_and_new_whitespace_checks": "passed",
+  "paper_edited": false,
+  "shared_main_suite_rerun": false,
+  "limitations": [
+    "No account/service availability tested.",
+    "Wire capture used witness prompt; all16 payloads checked by tests.",
+    "Known44-state regression, not unseen evaluation.",
+    "Single mother and one W/E opportunity; no new scientific effect result."
+  ]
+}

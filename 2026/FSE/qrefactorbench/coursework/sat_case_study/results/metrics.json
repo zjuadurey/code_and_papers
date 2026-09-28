@@ -1,0 +1,223 @@
+{
+  "study": "CA6000 SAT prediction, not quantumization classification",
+  "seed": 42,
+  "source_audit": {
+    "rows": 3000,
+    "missing_feature_cells": 0,
+    "duplicate_groups": 0,
+    "invalid_labels": 0,
+    "nonnumeric_cells": 0,
+    "infinite_cells": 0,
+    "invalid_negative_cells": 0,
+    "impossible_literal_totals": 0
+  },
+  "dirty_training_audit": {
+    "rows": 1804,
+    "missing_feature_cells": 8,
+    "duplicate_groups": 4,
+    "invalid_labels": 1,
+    "nonnumeric_cells": 3,
+    "infinite_cells": 1,
+    "invalid_negative_cells": 2,
+    "impossible_literal_totals": 1
+  },
+  "cleaned_training_audit": {
+    "rows": 1799,
+    "missing_feature_cells": 0,
+    "duplicate_groups": 0,
+    "invalid_labels": 0,
+    "nonnumeric_cells": 0,
+    "infinite_cells": 0,
+    "invalid_negative_cells": 0,
+    "impossible_literal_totals": 0
+  },
+  "imputed_cells": 15,
+  "split_counts": {
+    "train": 1799,
+    "validation": 600,
+    "test": 601
+  },
+  "features": [
+    "n_variables",
+    "n_clauses",
+    "clause_variable_ratio",
+    "total_literals",
+    "mean_clause_width",
+    "std_clause_width",
+    "min_clause_width",
+    "max_clause_width",
+    "binary_fraction",
+    "ternary_fraction",
+    "positive_literal_fraction",
+    "positive_occurrence_std",
+    "negative_occurrence_std",
+    "pair_edge_density",
+    "pair_cooccurrence_mean",
+    "pair_cooccurrence_std",
+    "pair_cooccurrence_max",
+    "occurrence_mean",
+    "occurrence_std",
+    "occurrence_min",
+    "occurrence_max",
+    "polarity_balance_mean",
+    "polarity_balance_std",
+    "polarity_balance_min",
+    "polarity_balance_max",
+    "degree_mean",
+    "degree_std",
+    "degree_min",
+    "degree_max",
+    "mean_clause_variable_overlap"
+  ],
+  "architecture": [
+    30,
+    64,
+    32,
+    1
+  ],
+  "parameters": 4097,
+  "best_epoch": 19,
+  "epochs_run": 44,
+  "linear_best_epoch": 196,
+  "linear_epochs_run": 200,
+  "majority_baseline_accuracy": 0.5590682196339434,
+  "mlp": {
+    "train": {
+      "n": 1799,
+      "accuracy": 0.8921623123957755,
+      "precision_sat": 0.8834827144686299,
+      "recall_sat": 0.8701134930643127,
+      "f1_sat": 0.8767471410419313,
+      "confusion_matrix": [
+        [
+          915,
+          91
+        ],
+        [
+          103,
+          690
+        ]
+      ],
+      "threshold": 0.5
+    },
+    "validation": {
+      "n": 600,
+      "accuracy": 0.8966666666666666,
+      "precision_sat": 0.9043824701195219,
+      "recall_sat": 0.8566037735849057,
+      "f1_sat": 0.87984496124031,
+      "confusion_matrix": [
+        [
+          311,
+          24
+        ],
+        [
+          38,
+          227
+        ]
+      ],
+      "threshold": 0.5
+    },
+    "test": {
+      "n": 601,
+      "accuracy": 0.9168053244592346,
+      "precision_sat": 0.915057915057915,
+      "recall_sat": 0.8943396226415095,
+      "f1_sat": 0.9045801526717557,
+      "confusion_matrix": [
+        [
+          314,
+          22
+        ],
+        [
+          28,
+          237
+        ]
+      ],
+      "threshold": 0.5
+    }
+  },
+  "linear": {
+    "train": {
+      "n": 1799,
+      "accuracy": 0.8832684824902723,
+      "precision_sat": 0.8685208596713021,
+      "recall_sat": 0.8663303909205549,
+      "f1_sat": 0.8674242424242424,
+      "confusion_matrix": [
+        [
+          902,
+          104
+        ],
+        [
+          106,
+          687
+        ]
+      ],
+      "threshold": 0.5
+    },
+    "validation": {
+      "n": 600,
+      "accuracy": 0.8983333333333333,
+      "precision_sat": 0.8984375,
+      "recall_sat": 0.8679245283018868,
+      "f1_sat": 0.8829174664107486,
+      "confusion_matrix": [
+        [
+          309,
+          26
+        ],
+        [
+          35,
+          230
+        ]
+      ],
+      "threshold": 0.5
+    },
+    "test": {
+      "n": 601,
+      "accuracy": 0.908485856905158,
+      "precision_sat": 0.8977272727272727,
+      "recall_sat": 0.8943396226415095,
+      "f1_sat": 0.8960302457466919,
+      "confusion_matrix": [
+        [
+          309,
+          27
+        ],
+        [
+          28,
+          237
+        ]
+      ],
+      "threshold": 0.5
+    }
+  },
+  "optimizer": "Adam",
+  "learning_rate": 0.001,
+  "batch_size": 64,
+  "weight_decay": 0.0001,
+  "early_stopping": {
+    "monitor": "validation BCE",
+    "patience": 25,
+    "max_epochs": 200,
+    "min_delta": 1e-05
+  },
+  "test_used_for_selection": false,
+  "device": "CPU",
+  "versions": {
+    "python": "3.10.21",
+    "torch": "2.7.1+cu128",
+    "pandas": "2.2.3",
+    "numpy": "1.26.4",
+    "matplotlib": "3.9.4"
+  },
+  "dataset_sha256": "066c6d6379600d46d5c025c19b0a66197f8fc5cf286ec4f5a85d87f6584da8a9",
+  "training_code_sha256": "d08e114038cf41b8891f95c1b6942678ca525ebc5db9eacc21febc7a05406ac7",
+  "limitations": [
+    "Synthetic small-CNF generator, 4 or 5 variables, same-distribution holdout.",
+    "Canonicalization handles variable renaming and clause/literal order, not all logical equivalence.",
+    "Aggregate features discard structural information; no solver replacement or speedup claim.",
+    "No quantum suitability labels used or created; predictions may be wrong."
+  ]
+}

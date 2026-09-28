@@ -1,0 +1,11 @@
+{
+  "case_id": "pilot-002",
+  "title": "Ordered ledger digest",
+  "software_contract": "Consume every event in order, call audit exactly once per event, and return the final rolling digest.",
+  "input_domain": "events is a finite list of bytes; audit is a callback with externally visible effects and may raise.",
+  "execution_assumptions": [
+    "The audit callback must run on the classical host, exactly in input order.",
+    "Every event affects the digest; each intermediate audit digest is observable.",
+    "The one-pass full ledger is the required output contract; there is no hidden existential query."
+  ]
+}

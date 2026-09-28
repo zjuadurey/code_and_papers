@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/assumptions/2", "/plan/risks/2", "/plan/rationale"],
+  "rationale": "The draft specifies the intended first maximum and a comparison-against-all oracle obligation, but gives neither a concrete comparison predicate nor an ordered scan rule. It explicitly says finite inputs can produce nonfinite intermediates and reproducing their comparison behavior remains unresolved; its rationale disclaims established semantic equivalence. Transcribing the historical universal >= formula would fill in an unspecified operator, while assigning an all-finite guard would invent a restriction not operationally stated. Keep the current local pivot mapping insufficiently specified, not contradicted or repaired. The claim of a unique marker is an unestablished assumption, not an implemented oracle. Other source, practical and whole-task claims are outside this checker.",
+  "interpretations": []
+}

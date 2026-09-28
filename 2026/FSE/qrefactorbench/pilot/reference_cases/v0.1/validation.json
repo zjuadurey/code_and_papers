@@ -1,0 +1,150 @@
+{
+  "utc": "2026-09-20T19:04:46.454373+00:00",
+  "commands": [
+    {
+      "name": "new_context_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_cases/v0.1/cases/context-002/test_program.py"
+      ],
+      "exit_code": 0,
+      "result": "37 passed in 0.16s",
+      "evidence": "First execution in this session, copied from tool output; not rerun"
+    },
+    {
+      "name": "paired_view_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_cases/v0.1/test_views.py"
+      ],
+      "exit_code": 0,
+      "result": "7 passed in 0.12s",
+      "evidence": "First execution in this session, copied from tool output; not rerun"
+    },
+    {
+      "name": "maxcut_source_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/source_adaptations/v0.1/cases/lit-001/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/maxcut_source_tests.stdout.txt",
+      "stderr": "validation/maxcut_source_tests.stderr.txt"
+    },
+    {
+      "name": "cover_source_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/source_adaptations/v0.1/cases/lit-002/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/cover_source_tests.stdout.txt",
+      "stderr": "validation/cover_source_tests.stderr.txt"
+    },
+    {
+      "name": "maxcut_context_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/context_adaptations/v0.1/cases/context-001/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/maxcut_context_tests.stdout.txt",
+      "stderr": "validation/maxcut_context_tests.stderr.txt"
+    },
+    {
+      "name": "core_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/core_tests.stdout.txt",
+      "stderr": "validation/core_tests.stderr.txt"
+    },
+    {
+      "name": "validate_new",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "pilot/reference_cases/v0.1/cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_new.stdout.txt",
+      "stderr": "validation/validate_new.stderr.txt"
+    },
+    {
+      "name": "validate_original",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/validate_original.stdout.txt",
+      "stderr": "validation/validate_original.stderr.txt"
+    },
+    {
+      "name": "summarize_original",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "cases/",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "validation/summarize_original.stdout.txt",
+      "stderr": "validation/summarize_original.stderr.txt"
+    }
+  ],
+  "protected_count": 823,
+  "protected_changed": [],
+  "new_case_status": "DRAFT",
+  "scientific_judgments_null": true,
+  "new_problem_lineages": 0,
+  "added_context_views": 1,
+  "new_model_quantum_runs": 0,
+  "optional_quantum_suite": "Not rerun; no quantum code changed",
+  "protected_changed_after_documentation": [],
+  "local_links_checked": 113,
+  "missing_local_links": [],
+  "public_export_files": 10,
+  "public_spec_cue_pattern": "\\b(qaoa|grover|qubo|quantum|candidate_region|structural_eligibility)\\b|\\b(positive|negative)\\s+(case|example|label)\\b",
+  "public_spec_cue_scan": "passed; source algorithm names remain visible",
+  "cue_scan_initial_attempt": "Naive substring scan flagged positive-total-weight and nonnegative mathematical input requirements. Inspected and corrected scan to explicit algorithm/annotation terms; no public input was changed.",
+  "pair_index_hashes_valid": true
+}

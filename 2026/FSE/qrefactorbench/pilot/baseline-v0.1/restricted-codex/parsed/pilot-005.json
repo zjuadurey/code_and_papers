@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-005",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "feasible_bundle",
+      "start_line": 4,
+      "end_line": 12
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "After filtering unavailable offers and sorting the remaining copies by SKU, determine exactly whether any subset of eligible offer instances has total units equal to target and total price at most budget; return only that Boolean decision together with the eligible-offer count and target metadata.",
+  "migration_family": "unstructured_search",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The eligible-offer indices define a finite domain of subset masks, and the marked-state predicate is total_units(mask) == target and total_price(mask) <= budget. This is structurally compatible with predicate search, provided sufficient-width reversible arithmetic, instance-data access, candidate verification, and a justified exact success/no-solution policy are supplied. Applicability does not establish practical advantage."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "Binary variables can represent offer inclusion, with squared penalties for the exact-unit equality and for a budget equality augmented by nonnegative slack bits. Coefficient widths, slack bounds, penalty sufficiency, and reliable recovery of a zero-penalty assignment would need validation. QAOA supplies no stated guarantee of the exact Boolean decision required here, making this a less direct formulation than predicate search."
+    }
+  ],
+  "assumptions": [
+    "Each eligible list position is a distinct selectable offer, including positions whose offer fields may be identical.",
+    "Any conditional quantum formulation would run after prepare_offers and leave filtering, SKU sorting, response construction, and metadata preservation classical.",
+    "Any finite-width encoding would have to select arithmetic widths from validated instance bounds so that it matches Python's non-overflowing integer semantics."
+  ],
+  "risks": [
+    "Classically arriving offer data may require substantial per-request state preparation or oracle construction, and no reusable coherent-data assumption is established.",
+    "The input scale, request frequency, hardware model, and end-to-end cost are unspecified, so practical suitability and advantage cannot be inferred from the exponential classical enumeration alone.",
+    "A probabilistic search procedure could return a false negative unless its no-solution and error policy is justified against the required exact Boolean semantics.",
+    "Reversible summation, comparison, workspace cleanup, and repeated oracle invocation may dominate the search cost.",
+    "A QAOA formulation could produce only nonzero-penalty samples and therefore cannot silently replace the required exact feasibility decision.",
+    "Moving preprocessing or changing offer-instance identity could alter the considered count, ordering behavior, or subset semantics."
+  ],
+  "rationale": "Lines 4-12 are an exponential exhaustive subset scan and admit a structural Grover-style formulation over masks. They are nevertheless a rejected hotspot for the current migration decision: no scale, benchmark, reusable data-loading mechanism, oracle resource estimate, or exact no-solution procedure is supplied. The handler must also preserve classical preprocessing and response metadata. Structural eligibility alone therefore does not support quantumization, and the program should remain classical unless end-to-end evidence and an exactness-preserving execution policy are later established.",
+  "plan": null
+}

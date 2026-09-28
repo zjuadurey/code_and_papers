@@ -1,0 +1,8 @@
+{
+  "protocol_sha256": "40286aa0d28cfc997dff045f9025c508ad1121808b5a3ecb1b8912cc1ed0a794",
+  "maximum_model_calls": 16,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "medium",
+  "simulation": true,
+  "user_instruction": "SIMULATION ONLY: fixture, not live approval"
+}

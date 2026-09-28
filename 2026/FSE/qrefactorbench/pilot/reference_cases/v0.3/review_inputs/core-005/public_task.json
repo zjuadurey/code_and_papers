@@ -1,0 +1,7 @@
+{
+  "case_id": "core-005",
+  "title": "Exact integer total decision",
+  "software_contract": "has_total(values, target) returns exactly whether some subset of list positions has sum equal to target. Each position is usable at most once; equal values at different positions are distinct available elements. Empty subset is allowed, so target zero is always true. No witness is returned and input is not mutated. Only valid-domain behavior is specified; no new validation requirement is added to the source function.",
+  "input_domain": "Finite list of Python integers (not bool), and target a Python integer (not bool). Signed values and targets are permitted. No imposed length or numeric cap. The paired inventory context uses a documented nonnegative business subdomain and filters held/site-ineligible entries; it is not claimed to expose the entire signed core domain.",
+  "execution_assumptions": ["Ordinary classical data. No workload distribution, hardware or resource-cost evidence is provided."]
+}

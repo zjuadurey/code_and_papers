@@ -1,0 +1,263 @@
+{
+  "utc": "2026-09-22T18:17:32.356715+00:00",
+  "attempted": 15,
+  "maximum_requests": 15,
+  "stopped": null,
+  "records": [
+    {
+      "replicate": 1,
+      "arm": "initial",
+      "folder": "runs/gpt-5.6-sol/01-initial",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 7837,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1247,
+          "reasoning_output_tokens": 885
+        }
+      ],
+      "model_seconds": 47.517,
+      "initial_sha256": null
+    },
+    {
+      "replicate": 1,
+      "arm": "self_review",
+      "folder": "runs/gpt-5.6-sol/01-self_review",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 8260,
+          "cached_input_tokens": 2304,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 697,
+          "reasoning_output_tokens": 306
+        }
+      ],
+      "model_seconds": 27.903,
+      "initial_sha256": "3ead2ab753db174aa281725476d17dc880d2f1aa025adc34ebf32ef062d2e040"
+    },
+    {
+      "replicate": 1,
+      "arm": "counterexample",
+      "folder": "runs/gpt-5.6-sol/01-counterexample",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 8287,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 609,
+          "reasoning_output_tokens": 252
+        }
+      ],
+      "model_seconds": 25.295,
+      "initial_sha256": "3ead2ab753db174aa281725476d17dc880d2f1aa025adc34ebf32ef062d2e040"
+    },
+    {
+      "replicate": 2,
+      "arm": "initial",
+      "folder": "runs/gpt-5.6-sol/02-initial",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 7837,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1226,
+          "reasoning_output_tokens": 883
+        }
+      ],
+      "model_seconds": 44.802,
+      "initial_sha256": null
+    },
+    {
+      "replicate": 2,
+      "arm": "counterexample",
+      "folder": "runs/gpt-5.6-sol/02-counterexample",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 8268,
+          "cached_input_tokens": 2304,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 687,
+          "reasoning_output_tokens": 279
+        }
+      ],
+      "model_seconds": 28.053,
+      "initial_sha256": "0abc67b13179b0383260a773995c3f2b032c2cc84bd17af2fbe62521a89e0186"
+    },
+    {
+      "replicate": 2,
+      "arm": "self_review",
+      "folder": "runs/gpt-5.6-sol/02-self_review",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 8241,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 860,
+          "reasoning_output_tokens": 462
+        }
+      ],
+      "model_seconds": 35.275,
+      "initial_sha256": "0abc67b13179b0383260a773995c3f2b032c2cc84bd17af2fbe62521a89e0186"
+    },
+    {
+      "replicate": 3,
+      "arm": "initial",
+      "folder": "runs/gpt-5.6-sol/03-initial",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 7837,
+          "cached_input_tokens": 2304,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1279,
+          "reasoning_output_tokens": 888
+        }
+      ],
+      "model_seconds": 53.183,
+      "initial_sha256": null
+    },
+    {
+      "replicate": 3,
+      "arm": "self_review",
+      "folder": "runs/gpt-5.6-sol/03-self_review",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 8289,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 735,
+          "reasoning_output_tokens": 336
+        }
+      ],
+      "model_seconds": 29.206,
+      "initial_sha256": "1736b5343e71b2d4f8eda217d9e303830d85316a69f9a3b265de982c9ae4ab99"
+    },
+    {
+      "replicate": 3,
+      "arm": "counterexample",
+      "folder": "runs/gpt-5.6-sol/03-counterexample",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 8316,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 649,
+          "reasoning_output_tokens": 266
+        }
+      ],
+      "model_seconds": 26.747,
+      "initial_sha256": "1736b5343e71b2d4f8eda217d9e303830d85316a69f9a3b265de982c9ae4ab99"
+    },
+    {
+      "replicate": 4,
+      "arm": "initial",
+      "folder": "runs/gpt-5.6-sol/04-initial",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 7837,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1466,
+          "reasoning_output_tokens": 1034
+        }
+      ],
+      "model_seconds": 57.145,
+      "initial_sha256": null
+    },
+    {
+      "replicate": 4,
+      "arm": "counterexample",
+      "folder": "runs/gpt-5.6-sol/04-counterexample",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 8356,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 593,
+          "reasoning_output_tokens": 178
+        }
+      ],
+      "model_seconds": 24.64,
+      "initial_sha256": "36eba2011e9d422a9c1db65889d97c006ed71f1da6b0000e0e8d250aa85ec0c6"
+    },
+    {
+      "replicate": 4,
+      "arm": "self_review",
+      "folder": "runs/gpt-5.6-sol/04-self_review",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 8329,
+          "cached_input_tokens": 5504,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 956,
+          "reasoning_output_tokens": 554
+        }
+      ],
+      "model_seconds": 37.028,
+      "initial_sha256": "36eba2011e9d422a9c1db65889d97c006ed71f1da6b0000e0e8d250aa85ec0c6"
+    },
+    {
+      "replicate": 5,
+      "arm": "initial",
+      "folder": "runs/gpt-5.6-sol/05-initial",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 7837,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1412,
+          "reasoning_output_tokens": 1034
+        }
+      ],
+      "model_seconds": 51.172,
+      "initial_sha256": null
+    },
+    {
+      "replicate": 5,
+      "arm": "self_review",
+      "folder": "runs/gpt-5.6-sol/05-self_review",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 8276,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 699,
+          "reasoning_output_tokens": 276
+        }
+      ],
+      "model_seconds": 27.7,
+      "initial_sha256": "9f435da59358e0fe59bfee98ecb2c5d8357049c37a7b7249909d87f9c30117bc"
+    },
+    {
+      "replicate": 5,
+      "arm": "counterexample",
+      "folder": "runs/gpt-5.6-sol/05-counterexample",
+      "execution_success": true,
+      "usage": [
+        {
+          "input_tokens": 8303,
+          "cached_input_tokens": 7680,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 611,
+          "reasoning_output_tokens": 242
+        }
+      ],
+      "model_seconds": 26.946,
+      "initial_sha256": "9f435da59358e0fe59bfee98ecb2c5d8357049c37a7b7249909d87f9c30117bc"
+    }
+  ]
+}

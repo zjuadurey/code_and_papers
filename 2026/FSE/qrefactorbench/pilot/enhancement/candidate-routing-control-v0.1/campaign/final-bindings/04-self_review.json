@@ -1,0 +1,39 @@
+{
+  "response_sha256": "450b5d5731e4cecc0e5b7564169b23ddf3cbdf9a91c5bf426b4941e20311a80e",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 43.958,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:17:33.544755+00:00",
+  "review_submitted_utc": "2026-09-26T22:18:17.502457+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "450b5d5731e4cecc0e5b7564169b23ddf3cbdf9a91c5bf426b4941e20311a80e",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate each pivot choice as a finite search over row indices col through n-1 for the unique index selected by Python's ordered maximum operation: the row having greatest absolute current-column value, with the lowest index winning ties. A marked-state predicate could identify that canonical index, or a Grover-style maximum-finding procedure could compare encoded candidates. The construction must reproduce the behavior of the ordered classical scan for every reachable binary64 row state."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a row index, then classically verify that it is exactly the first index attaining the maximum absolute pivot value. Preserve the exact-zero check and row swap in lines 14-16. To retain deterministic behavior, an unverified or unsuccessful quantum result must not be accepted; a semantics-preserving failure policy such as a complete classical fallback scan is required."
+      },
+      {
+        "pointer": "/rationale",
+        "quote": "The focused candidate is kernel.py line 13, where each elimination column selects a row from the finite range col through n-1 by largest absolute pivot value with the first index winning ties. Its inputs and state dependencies are n, col, and the private augmented rows created at line 11 and modified by prior swaps and elimination at lines 16-20. It is reached only from solve mode through program.py line 23, once per nonempty elimination column; it is not reached in inspect mode or for an empty system. Structurally, the finite index domain and deterministic canonical-pivot predicate permit conditional Grover-style analysis. This does not make the surrounding dense linear solve a Grover problem: elimination and back substitution remain continuous, ordered binary64 computations and are not supported-family candidates. Behavior that must remain intact includes first-index tie-breaking, the exact-zero singularity check and swap at lines 14-16, subsequent elimination and back substitution, detected-overflow behavior, no mutation of caller data, variable ordering, residual recomputation, deltas, and the diagnostic limit comparison. Practical suitability is false because coherent access to the changing dense rows, reversible binary64 comparison, repeated state preparation, exact verification, and deterministic fallback are not supplied and may dominate the classical linear scan. Benchmark support is separately false: the HPL attribution describes a classical algorithm and the notice expressly says this program is not an HPL port, rating, or compliant performance run; no quantum benchmark or advantage evidence is provided."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "Even self-review now changes whole-function nomination to line13 and adds a conditional plan. The plan alternates between a desired canonical-index predicate and a maximum-finding procedure without specifying either complete rule. No initialized scan or full marking relation is supplied; do not attribute this nomination change uniquely to directory or routing.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

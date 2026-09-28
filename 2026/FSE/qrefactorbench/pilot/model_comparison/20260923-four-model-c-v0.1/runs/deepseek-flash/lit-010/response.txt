@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-010",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "Source review shows review() in program.py validates and constructs sparse rows (lines 10-32), computes the initial residual norm (lines 33-36), then optionally delegates to kernel.advance (line 40), which runs an unpreconditioned conjugate-direction recurrence (kernel.py lines 17-40) over real vectors x, r, p, previous, and norm. Activation requires mode=='advance', nonnegative steps, finite nonnegative relative_tolerance, a symmetric strictly diagonally dominant matrix with positive diagonal, duplicate-free entries normalized by variable order, and zero initial residual taking zero steps. The computational objective is a deterministic numeric recurrence with exact binary64 semantics, full named iterate, per-step recurrent residual trace, and a directly recomputed final residual norm. It is not a finite Boolean predicate search over candidate states, nor a binary combinatorial optimization with decision variables, objective, and penalty constraints. The only search-like validation is duplicate-entry detection in program.py lines 18-25, but that is a linear-time dict check with strict exception semantics, not an expensive hotspot; a Grover-style formulation would need an oracle over entry pairs and would not be practically justified against classical O(m) validation. QUBO/Ising is structurally inapplicable because the real-valued iterates, recurrence ordering, residual trace, and exact final residual must be preserved; discretizing continuous binary64 vectors into binary variables would alter the contract and cannot guarantee exactness. Quantum linear-system algorithms are outside the supported families. Therefore no candidate region is justified: structural eligibility is false, practical suitability is false, and benchmark support is null because no workload, hardware, encoding-cost, or advantage evidence is supplied. Required surrounding behavior to remain intact includes all validation exceptions, symmetry and diagonal-dominance checks, stopping condition semantics, zero-initial-residual behavior, budget exhaustion as non-convergence, no mutation, and nonfinite/breakdown ValueError paths.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "iterative sparse linear-system advance using an unpreconditioned conjugate-direction recurrence with relative residual stopping and exact binary64 output semantics",
+  "assumptions": [
+    "Classical inputs and outputs with no mutation.",
+    "Python binary64 arithmetic and exact preservation of the supplied recurrence, ordering, trace, and final directly recomputed residual norm.",
+    "No workload, quantum hardware, encoding-cost, or advantage evidence is supplied."
+  ],
+  "risks": [
+    "Quantum linear-system routines such as HHL are outside the supported families and would not preserve the required per-step trace or exact binary64 recurrence semantics.",
+    "Discretizing real-valued iterates into binary variables for QUBO/Ising would break exactness and cannot reproduce the required residual trace or final residual norm.",
+    "A Grover formulation of duplicate detection or validation would not address the numerical solve and would likely be less practical than the existing linear-time classical checks."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "No task-level finite Boolean predicate whose marked solutions constitute the required output. The core computation is a numeric recurrence, and the only search-like validation is a linear-time dict duplicate check with strict exception semantics."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "No binary decision variables, objective, or constraint penalties are present. The task requires exact real-valued iterative linear algebra with a per-step trace and directly recomputed final residual; discretization would violate exactness and output semantics."
+    }
+  ]
+}

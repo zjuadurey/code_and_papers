@@ -1,0 +1,20 @@
+\newcommand{\bench}{\textsc{QRefactorBench}}
+\newcommand{\yes}{\textsc{Yes}}
+\newcommand{\no}{\textsc{No}}
+\newcommand{\unknown}{\textsc{Uncertain}}
+\newcommand{\classical}{\textsc{Remain\_Classical}}
+\newcommand{\quantumize}{\textsc{Quantumize}}
+% A genuinely empty result cell: never substitute zero for missing evidence.
+\newcommand{\blank}{\mbox{\rule{0pt}{1.6ex}\hspace{0.8em}}}
+\newcommand{\field}{\underline{\hspace{1.3cm}}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\figplaceholder}[4]{%
+  \begin{figure}[tb]
+  \centering
+  \fbox{\begin{minipage}[c][#2][c]{0.93\linewidth}
+    \centering\textbf{Figure placeholder: #1}\par\medskip
+    \small #3
+  \end{minipage}}
+  \caption{#4}\label{fig:#1}
+  \Description{An unfilled conceptual figure placeholder. The figure content is specified inside the frame; no empirical data are shown.}
+  \end{figure}}

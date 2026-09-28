@@ -1,0 +1,1 @@
+{"captured": true, "exit_code": 1, "tools": [], "model": "gpt-5.6-sol", "reasoning": {"effort": "medium", "context": "all_turns"}, "model_inference_calls": 0, "endpoint": "local rejecting HTTP sink in unshared network namespace"}

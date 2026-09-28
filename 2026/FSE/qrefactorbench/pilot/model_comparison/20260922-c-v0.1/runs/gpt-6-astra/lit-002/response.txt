@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "context-002",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "inspection.py",
+      "function": "min_vertex_cover_bruteforce",
+      "start_line": 77,
+      "end_line": 91
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Find an exact minimum-cardinality station vertex cover, breaking ties by the lexicographically smallest tuple of station input positions.",
+  "rationale": "The nominated function is a self-contained finite combinatorial optimization kernel. Lines 80–81 enumerate subsets by increasing cardinality and then lexicographic input-position order; lines 84–87 test whether every edge has a selected endpoint; lines 88–90 return the first feasible subset. These establish both exact optimality and the required tie rule. Its dependencies are only n and the normalized, deduplicated, sorted integer edges produced by prepare_request at lines 7–38; current_stations is not an optimization objective or constraint. program.py line 14 invokes the kernel only after whole-request validation and current-plan assessment. A conditional quantum path would activate only for validated nonempty-edge instances; empty edges, including n=0, must immediately return an empty set. Preserve the set-of-indices interface and input immutability. Validation, ValueError behavior, describe_plan and compare_plans remain classical: preserve honest uncovered current connections, input-ordered selections, earliest-selected-endpoint ownership, empty checklists, normalized connection ordering, all additions/removals and ownership changes including null owners, and actual-selection counts. Keep the CLI's single successful JSON report and nonzero failure behavior. The optimization structure justifies further analysis, not deployment. At most 2^16 subsets exist, and the source does not establish a measured hotspot, workload, hardware suitability or advantage; practical suitability and benchmark support remain unknown.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_station_cover_with_input_order_ties",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditional study only: introduce x_i in {0,1}, with x_i=1 selecting station i. Minimize E(x)=sum_i x_i+A*sum_(u,v in edges)(1-x_u)(1-x_v), using A=n+1. Every infeasible assignment costs at least A, whereas selecting all stations is feasible with cost n; therefore every global minimizer is feasible and minimizes station count. This energy does not encode the required lexicographic tie rule. Preserve that rule through exact classical canonicalization among covers of the certified optimal cardinality, or develop and prove a hierarchical encoding before replacement.",
+    "input_encoding": "Use one logical binary variable per station input position and construct coefficients classically from validated normalized edges, independently of current_stations. With x_i=(1-Z_i)/2, the Ising constant is n/2+A*|edges|/4, each Z_i coefficient is -1/2+A*degree(i)/4, and each edge ZZ coefficient is A/4. Check signs, coefficients, bit ordering and hardware precision. No coherent data-loading service is assumed.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Decode measurements into a set of station indices and classically recompute coverage and cardinality. Feasibility alone is insufficient: certify absence of every smaller cover and select the lexicographically first cover at the optimal size. Retain the existing ordered enumerator as an exact certification/fallback mechanism whenever those obligations are unresolved, including quantum execution failures. Never return an approximate count, uncovered proposal or arbitrary tied optimum. Pass only the certified canonical set into the unchanged reporting functions.",
+    "assumptions": [
+      "The candidate boundary is the validated application call, with 0<=n<=16 and edges between distinct valid indices.",
+      "All stations have unit cost, unlimited incident-edge inspection capacity and no additional activation constraints.",
+      "Empty-edge instances bypass quantum execution and return the empty selection.",
+      "A QUBO cost Hamiltonian replaces the search predicate for this formulation; no Grover oracle is assumed."
+    ],
+    "risks": [
+      "QAOA samples do not certify a global optimum or the required lexicographic tie winner.",
+      "Exact classical certification and canonicalization may consume the original enumeration cost.",
+      "Coefficient scaling, hardware connectivity, noise and finite measurement budgets may prevent reliable candidate generation.",
+      "Any alternative reversible feasibility oracle or hierarchical tie encoding still requires construction and verification."
+    ],
+    "expected_resource_characteristics": {
+      "logical_decision_qubits": "n, at most 16, before routing or other implementation overhead",
+      "quadratic_interactions": "One per unique connection, at most 120",
+      "unresolved_costs": [
+        "Circuit synthesis, connectivity routing and coefficient precision",
+        "State preparation and QAOA depth",
+        "Classical parameter optimization and total circuit evaluations",
+        "Measurement shots, decoding and exact classical certification",
+        "End-to-end latency and cost relative to classical enumeration"
+      ],
+      "measured_resource_estimates": null
+    },
+    "rationale": "The explicit binary objective independently supports conditional applicability of the draft QUBO contract. Penalty sufficiency is established algebraically, but backend feasibility, exact output certification and resource benefit are not established. This plan is not an adoption recommendation."
+  },
+  "assumptions": [
+    "Only the supplied application input domain and source are assessed.",
+    "Exact optimum, deterministic tie ordering, exceptions and report effects remain mandatory.",
+    "No supplied timing, benchmark execution or quantum hardware evidence is available."
+  ],
+  "risks": [
+    "Optimizing changes from current_stations would solve a different problem.",
+    "An arbitrary minimum cover can change worklists and reassignment records despite having the correct station count.",
+    "The local 16-station enumeration limit is not evidence of practical quantum advantage."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "Binary station choices and edge-cover penalties admit the explicit sufficient-penalty formulation in the conditional plan. Applicability is structural; exact tie handling, execution feasibility and resource suitability remain obligations, not certifications."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "An alternative structural formulation uses n-bit subsets and the pure predicate [sum_i x_i=r] AND every-edge-covered, with optional fixed-prefix constraints. A reversible circuit must compute cardinality and edge feasibility, phase-mark and uncompute its workspace, accounting for classical edge-data incorporation. Searching cardinalities and lexicographic prefixes requires justified exact existence/no-solution handling; ordinary Grover sampling neither certifies that smaller covers do not exist nor preserves first-match ordering. Exact classical certification/fallback, oracle synthesis, workspace, state preparation and total search costs remain unresolved. This is conditional applicability, not an endorsement."
+    }
+  ]
+}

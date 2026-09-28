@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-003",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "agenda.py",
+      "function": "complete",
+      "start_line": 28,
+      "end_line": 57
+    }
+  ],
+  "migration_family": "unstructured_search",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "grover-predicate-v0",
+    "computational_intent_id": "lexicographically-first-conflict-free-agenda",
+    "migration_family": "unstructured_search",
+    "formulation": "Conditionally replace only the exhaustive completion search with finite marked-state searches. A candidate is a slot-index vector for the sessions not fixed by a tested prefix, and the Boolean predicate marks it exactly when every index is in range, it extends that prefix, and every participant-conflict edge has unequal endpoint indices. To preserve the required lexicographically smallest complete vector, process sessions in input order and test slot indices in ascending order, using an existence search for a feasible suffix after each tentative prefix; commit only the first slot whose suffix is proven to exist. If no first-slot choice has a feasible suffix, reproduce the classical no-arrangement result. This is conditional on a justified exact existence and no-solution procedure and is not an adoption recommendation.",
+    "input_encoding": "Encode each of n sessions with enough basis bits to represent slot indices 0 through slot_count-1, explicitly rejecting unused bit patterns. Treat the adjacency lists derived by catalog.relations as read-only predicate data and account for their coherent loading or compiled-gate representation. Each prefix query must also encode the already selected slot indices and the current tentative choice. The unresolved obligations include reversible range checks, reversible inequality checks for every conflict edge, ancilla cleanup, representation of arbitrary input sizes, and special classical handling for zero slots.",
+    "quantum_algorithm_family": "Grover-style marked-state search or amplitude amplification used as a suffix-feasibility subroutine",
+    "output_decoding": "Measure a suffix candidate, decode its slot indices, and classically verify all bounds, the tested prefix, and every conflict edge. Commit prefix choices only under a no-solution policy strong enough to preserve the deterministic lexicographic contract. After constructing the full vector, verify that no smaller slot choice at any prefix admits a valid completion. Return the index vector to the unchanged caller; if feasibility is exactly ruled out, raise ValueError so program.py retains status unavailable and proposed null.",
+    "assumptions": [
+      "prepare has already validated the request, and relations has produced neighbors in session-index order.",
+      "The quantumized region is activated only in complete mode when the current arrangement is infeasible and the greedy preview has raised ValueError.",
+      "Failed preview choices and entries from current impose no fixed assignments on completion.",
+      "A finite reversible conflict predicate and controlled access to all adjacency data can be implemented with fully accounted resources.",
+      "An exactness or bounded-error policy acceptable for the existing deterministic success and failure semantics is established before migration."
+    ],
+    "risks": [
+      "Ordinary Grover sampling does not by itself prove that no marked suffix exists, so a false negative could change completed into unavailable or skip the lexicographically first assignment.",
+      "Repeated prefix-feasibility searches add state preparation, oracle, measurement, and classical verification costs that may eliminate any search reduction.",
+      "Coherent adjacency access, reversible comparisons, invalid-code rejection, and ancilla uncomputation may dominate execution.",
+      "Unknown marked-state counts complicate amplitude selection and no-solution detection.",
+      "The classical routine can terminate early on easy instances, while the proposed formulation offers no supplied end-to-end advantage evidence.",
+      "Replacing preview, validation, description, move construction, exception boundaries, or output ordering would violate the software contract."
+    ],
+    "expected_resource_characteristics": {
+      "logical_candidate_space": "Up to slot_count^r suffix assignments for a query with r undecided sessions.",
+      "logical_data": "Slot registers for undecided sessions, prefix controls, the participant-conflict graph, predicate workspace, and ancillas for reversible comparisons.",
+      "query_pattern": "Potentially multiple feasibility searches for each session, in ascending slot order, to preserve the lexicographically smallest vector.",
+      "unresolved_resources": "Logical and physical qubit counts, oracle depth, coherent graph-loading cost, repetitions, measurements, fault-tolerance overhead, and end-to-end latency are all unspecified."
+    },
+    "rationale": "This plan is required only because the completion kernel is structurally expressible as finite predicate search. It remains conditional: the supplied material does not resolve deterministic no-solution certification, lexicographic exactness, or resource feasibility."
+  },
+  "rationale": "The nominated region is the complete backtracking kernel, agenda.py lines 28-57. Lines 29-30 create search state; lines 32-40 define the local conflict predicate from neighbors and the mutable assignment; lines 42-53 enumerate slot-index vectors depth-first in session order and ascending slot order; and lines 55-57 distinguish the lexicographically first feasible vector from no arrangement. Its inputs are the participant-derived neighbors mapping and the declared slot count. Its state dependency is the partial assigned vector, and its predicate requires every conflicting earlier or later session to receive a different slot. In program.py it is reached only at lines 28-29 when mode is complete, describe has found current infeasible, and preview has raised ValueError. Thus inspect mode, retention of an already feasible current arrangement, and a successful greedy preview must remain classical and unchanged. Completion must also continue to ignore partial current assignments and failed preview choices. The caller must preserve ValueError-to-unavailable behavior, slot-name decoding, describe output ordering, and moves in session order. Structurally, this is a finite constraint search with a pure feasibility predicate and therefore is eligible for further Grover-style analysis. Practically, the present migration is unsuitable: exact lexicographic selection and reliable no-solution handling are mandatory, whereas the draft quantum method is probabilistic; graph-oracle construction and repeated prefix searches are uncosted; and no input-size, hardware, latency, or workload evidence supports an end-to-end benefit. Benchmark support is unknown because the supplied notice establishes provenance but supplies no comparative performance or resource measurements. The decision is therefore REMAIN_CLASSICAL despite structural eligibility.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Find the conflict-free assignment of sessions to declared slots having the lexicographically smallest slot-index vector, or determine that no such complete assignment exists.",
+  "assumptions": [
+    "All request validation and conflict-graph construction remain classical.",
+    "Participant conflicts are exactly the undirected edges produced by catalog.relations.",
+    "Session order and declared slot order define the required lexicographic ordering.",
+    "No current or preview assignment is fixed when the completion search runs.",
+    "No unreported numerical session or slot bound may be introduced."
+  ],
+  "risks": [
+    "A probabilistic false-negative or nonminimal result would violate observable status and proposal semantics.",
+    "Quantum data-loading and reversible-oracle costs are unknown.",
+    "No supplied benchmark establishes a useful operating regime or quantum advantage.",
+    "Changing exception behavior, ordering, validation, or report construction would violate surrounding behavior."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "The completion domain is finite and conflict feasibility can be expressed as a Boolean predicate. Applicability is conditional on reversible graph access, exact range and edge checks, classical verification, and a justified no-solution and lexicographic-minimum procedure."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "One-hot session-slot variables can express exactly-one-slot and conflict constraints, and a lexicographic objective can in principle be represented using position-dependent weights with feasibility penalties. However, penalty sufficiency, potentially extreme coefficient ranges, invalid or infeasible samples, exact optimum certification, and QAOA's lack of an exactness guarantee remain unresolved, so this contract does not establish practical suitability."
+    }
+  ]
+}

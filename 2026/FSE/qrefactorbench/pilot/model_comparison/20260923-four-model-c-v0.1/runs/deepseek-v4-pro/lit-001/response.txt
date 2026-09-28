@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "context-001",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "maintenance.py",
+      "function": "maxcut_bruteforce",
+      "start_line": 74,
+      "end_line": 89
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact-weighted-maxcut-with-canonical-tiebreak",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "For each equipment input position i (0..n-1), let x_i in {0,1}. Define x_i=1 as the first proposed window, window 0, and x_i=0 as the second window. For each pair i<j with validated symmetric weight w_ij, the separated-weight contribution is w_ij[x_i != x_j] = w_ij*(x_i+x_j-2*x_i*x_j). Maximize H(x)=sum_{i<j} w_ij*(x_i+x_j-2*x_i*x_j); equivalently minimize Q(x)=sum_{i<j} w_ij*(2*x_i*x_j-x_i-x_j). The original conflict_weight equals total_weight-H. No constraint penalties are required beyond the binary assignment domain. Ising conversion uses x_i=(1-Z_i)/2 after expanding Q.",
+    "input_encoding": "One qubit per equipment position, at most 16. Weights from the validated symmetric matrix are classical QUBO coefficients. Equipment names and current_windows are retained classically for validation, evaluation, tie-breaking, and reporting; they are not encoded in the optimizer.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure candidate bitstrings. For each candidate, map bit 1 to proposed window 0 and bit 0 to proposed window 1, reconstruct index lists, and classically call evaluate_windows(names, matrix, [first, second]) to recompute conflict_weight and separated_weight. Accept a candidate only if it is proven to be a global optimum and satisfies the canonical tie-break: among all optimal cuts, the window-0 indicator bitmask is the smallest numeric mask, i.e. the smallest sum of 2^i over equipment input positions i. Without exact optimality proof, fall back to maxcut_bruteforce.",
+    "assumptions": [
+      "The request has already been validated by prepare_request; the adjacency matrix is symmetric, nonnegative, and arbitrary-precision integer-valued.",
+      "Exact global optimality and canonical tie-breaking are preserved; approximate QAOA output alone is not accepted.",
+      "Any quantum execution is conditional on a verification strategy that meets the deterministic exactness contract.",
+      "The empty-equipment case remains classically handled with n=0 and mask 0."
+    ],
+    "risks": [
+      "QAOA is variational and may return a local optimum, so it does not guarantee the required exact global optimum.",
+      "The canonical tie-break requires comparison of all optimal candidates or another exact proof, not just equality of the objective value.",
+      "For n<=16 the classical brute-force search is bounded and quantum resource overhead may dominate.",
+      "The DRAFT qubo-ising-v0 contract does not prescribe QAOA depth, parameter optimization budget, approximation ratio, or shot count.",
+      "No workload frequency, latency target, hardware backend, or deployment cost evidence is supplied."
+    ],
+    "expected_resource_characteristics": {
+      "num_qubits": "at most 16",
+      "interaction_count": "O(n^2), at most 120 quadratic terms, plus linear Pauli terms after Ising expansion",
+      "depth": "unresolved; QAOA depth is problem/backend dependent",
+      "shots": "unresolved; must support exact candidate acceptance or verification",
+      "measurement_count": "at least one assignment measurement; exact verification may require additional classical enumeration"
+    },
+    "rationale": "Conditional plan only. maxcut_bruteforce is structurally weighted MaxCut and can be encoded as QUBO/Ising, but this does not recommend deployment because the problem is capped at 16 equipment items and the required output is exact with a deterministic tie-break."
+  },
+  "rationale": "Candidate region is maintenance.py lines 74-89, maxcut_bruteforce. This is the only exponential search region: it enumerates all 2^n window partitions to maximize separated weight, equivalent to minimizing conflict_weight because evaluate_windows computes conflict_weight = total_weight - separated_weight. It is structurally eligible as a combinatorial optimization (weighted MaxCut/QUBO/Ising), so a conditional migration plan is provided. Practical suitability is false: n is capped at 16 by prepare_request, so brute force is a bounded local enumeration with no supplied workload, latency, backend, or cost evidence; QAOA cannot certify the required exact optimum and deterministic tie-break. The ascending mask iteration with strict val>best implements the tie rule: the first best mask, and therefore smallest numeric mask/sum of 2^i for window 0, wins. Required surrounding behavior that must remain intact includes prepare_request validation and non-mutation, symmetric weight aggregation with arbitrary-precision nonnegative weights, evaluate_windows conflict total/separated semantics and equipment-input-order output, review_schedule returning proposed = evaluate_windows(names, matrix, [first, second]), and compare_assignments reporting moves and conflict changes without adding movement cost to the selection objective. Benchmark support is assessed as true only for the DRAFT qubo-ising-v0 planning contract; because exactness and tie semantics are unresolved, expected decision remains REMAIN_CLASSICAL.",
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": true,
+  "computational_intent": "exact-weighted-maxcut-with-canonical-tiebreak",
+  "assumptions": [
+    "Inputs are classically supplied JSON; there is no coherent data-access assumption.",
+    "The only quantumizable kernel is the exact MaxCut search over at most 16 equipment positions.",
+    "The current assignment is used only for reporting changes, not for the proposed-window selection objective.",
+    "Output ordering, exception behavior, non-mutation, and exact integer arithmetic must be preserved."
+  ],
+  "risks": [
+    "A QAOA/QUBO implementation may not preserve the exact global optimum and tie-break required by the software contract.",
+    "Quantum resource overhead is unlikely to be justified for n<=16 without workload evidence.",
+    "The shared DRAFT contract is not an approval or validated correctness guarantee.",
+    "Classical verification of optimality may require retaining the original brute-force search."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The kernel is explicitly weighted MaxCut with a direct QUBO/Ising binary objective and no additional constraints; coefficients are explicit nonnegative weights over at most 16 binary variables. However, the contract's QAOA-style framing leaves exact optimum and tie-break semantics unresolved."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "This is a weighted optimization objective, not a simple pure Boolean predicate over candidates. An oracle marking the exact optimum and canonical tie would require solving or embedding the MaxCut objective, so unstructured Grover-style predicate search is not the natural supported family."
+    }
+  ]
+}

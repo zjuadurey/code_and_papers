@@ -1,0 +1,10 @@
+{
+  "case_count": 4,
+  "execution": "extracted wheel outside checkout; no installation",
+  "integration": "passed",
+  "qiskit_real_circuit": true,
+  "schema_count": 3,
+  "wheel_entrypoint": true,
+  "wheel_schema_data": true,
+  "yaml_roundtrip": true
+}

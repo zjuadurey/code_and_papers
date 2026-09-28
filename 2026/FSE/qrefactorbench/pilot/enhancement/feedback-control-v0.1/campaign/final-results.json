@@ -1,0 +1,1060 @@
+{
+  "protocol_sha256": "9ae6879a5555d8f8abbeec001c0fdd873fa26b3e3cea48739b310804681095bb",
+  "simulation": false,
+  "planned_slots": 16,
+  "denominators_by_arm": {
+    "self_review": 5,
+    "cue_only": 5,
+    "assessment_summary": 5,
+    "with_witness": 1
+  },
+  "attempts": 16,
+  "task_pass": null,
+  "evaluation_role": "known_regression_previously_inspected_not_unseen",
+  "rows": [
+    {
+      "slot": "01-self_review",
+      "replicate": 1,
+      "arm": "self_review",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16489,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2356,
+          "reasoning_output_tokens": 720
+        }
+      ],
+      "model_seconds": 47.418,
+      "task_pass": null,
+      "response_sha256": "fed1b1f2ee29649794b6ee3811c358d8865c6001f60fd3938874f83bf8a7a0b6",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "fed1b1f2ee29649794b6ee3811c358d8865c6001f60fd3938874f83bf8a7a0b6",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "3c47e265434d9264234f8610f80d6f105f17b8f29173baaf4416030c419b9bd7",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The revision narrows the candidate to line13 and requires reproducing Python max, but supplies no actual comparator formula or ordered update recurrence. Unique marking is still an assumed obligation and exceptional-state handling unresolved. Do not invent a selector by expanding the target operation or add a finite-only guard; retain insufficient evidence for this replacement relation. Scope, implementation, fallback and whole-task claims remain separate.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.0005231899995123968,
+      "review_seconds": 23.84,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "01-cue_only",
+      "replicate": 1,
+      "arm": "cue_only",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16512,
+          "cached_input_tokens": 16256,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1944,
+          "reasoning_output_tokens": 221
+        }
+      ],
+      "model_seconds": 43.106,
+      "task_pass": null,
+      "response_sha256": "99c714068ed42500d70df1cb93f9417696591ac5a647051a784b55b445dadfdc",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "99c714068ed42500d70df1cb93f9417696591ac5a647051a784b55b445dadfdc",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "dbfe966ab86d16e30ae978c9dadecb07a2ded2a28909f1d819be366eb501219f",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The text requires global maximality and no earlier equal maximum, but does not define the maximality comparator or an ordered selection algorithm. Nonfinite intermediate semantics are explicitly unresolved. The tie clause alone cannot determine >= versus negated < or a Python fold; supplying one would complete the missing oracle. Keep insufficient evidence, consistent with the original draft's unspecified first-maximum target. Scope-cue acknowledgement does not establish verification or repair.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.00043023700709454715,
+      "review_seconds": 21.389,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "01-assessment_summary",
+      "replicate": 1,
+      "arm": "assessment_summary",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16596,
+          "cached_input_tokens": 16384,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2854,
+          "reasoning_output_tokens": 1126
+        }
+      ],
+      "model_seconds": 58.351,
+      "task_pass": null,
+      "response_sha256": "795a77caff1df3ffa667880747aae48cb4ec9a79daa5129bc61cdca5bb72abec",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "795a77caff1df3ffa667880747aae48cb4ec9a79daa5129bc61cdca5bb72abec",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "f98d156ed7e925c75e6daa445ba15af282a77e390554f6b06967fc643b0fb9f0",
+        "origin": "model_response",
+        "status": "finite_guarded_pass",
+        "interpretations": [
+          {
+            "id": "finite_earlier_gt_later_ge",
+            "status": "finite_guarded_pass",
+            "checked_states": 31,
+            "excluded_states": 13,
+            "outside_guard": "unresolved",
+            "failures": []
+          }
+        ],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.001951484999153763,
+      "review_seconds": 42.251,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "02-with_witness",
+      "replicate": 2,
+      "arm": "with_witness",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16954,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2375,
+          "reasoning_output_tokens": 435
+        }
+      ],
+      "model_seconds": 48.062,
+      "task_pass": null,
+      "response_sha256": "c1c38dc3f9922ac1869c8ccb34df54b90e5ff8196bf1d14ea78e2c62715c251f",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "c1c38dc3f9922ac1869c8ccb34df54b90e5ff8196bf1d14ea78e2c62715c251f",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "8c9ccc9ce7da920a07b5ab8f5435a633ba18eac12530f72deee5c2af6e26a09e",
+        "origin": "model_response",
+        "status": "finite_scope_pass",
+        "interpretations": [
+          {
+            "id": "explicit_ordered_strict_gt",
+            "status": "finite_scope_pass",
+            "checked_states": 44,
+            "excluded_states": 0,
+            "outside_guard": "unresolved",
+            "failures": []
+          }
+        ],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.0009080029994947836,
+      "review_seconds": 16.731,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "02-cue_only",
+      "replicate": 2,
+      "arm": "cue_only",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16478,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2590,
+          "reasoning_output_tokens": 835
+        }
+      ],
+      "model_seconds": 51.175,
+      "task_pass": null,
+      "response_sha256": "4a960ae2d205a6344b0d8557af506438962a3e4fb689a6fac218c824e9081311",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "4a960ae2d205a6344b0d8557af506438962a3e4fb689a6fac218c824e9081311",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "77136ae6b5b5663c9a0579a2cf68f90047457e57b4b51ab813ddf5eccc4a8936",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The revision abandons the explicit >=-all predicate and recognizes nonfinite-state mismatch, but states only the desired ordered max result or first finite maximum, with alternatives for simulation versus finite precheck/fallback. It gives neither a concrete comparison predicate nor the ordered update recurrence. Do not implement the target max on the model's behalf or choose an alternative admission policy. This is a clearer conditional specification with an unbound replacement, not a verified repair or complete withdrawal. Its interpretation of finite development checks as offering no nonfinite-state evidence is not warranted by the scope notice alone.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.00044689000060316175,
+      "review_seconds": 17.969,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "02-assessment_summary",
+      "replicate": 2,
+      "arm": "assessment_summary",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16603,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2141,
+          "reasoning_output_tokens": 397
+        }
+      ],
+      "model_seconds": 43.405,
+      "task_pass": null,
+      "response_sha256": "5b3b4ad619b355d5085679f5708dc1f15199fbfe58d5e70554d0e80a725cf710",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "5b3b4ad619b355d5085679f5708dc1f15199fbfe58d5e70554d0e80a725cf710",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "48406ab80b6bfb1515af2d3d5e6dc6b6e24dce7d41594f6e810c09f2714f3423",
+        "origin": "model_response",
+        "status": "finite_scope_pass",
+        "interpretations": [
+          {
+            "id": "explicit_ordered_strict_gt",
+            "status": "finite_scope_pass",
+            "checked_states": 44,
+            "excluded_states": 0,
+            "outside_guard": "unresolved",
+            "failures": []
+          }
+        ],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.0008737320022191852,
+      "review_seconds": 20.315,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "02-self_review",
+      "replicate": 2,
+      "arm": "self_review",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16455,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2545,
+          "reasoning_output_tokens": 915
+        }
+      ],
+      "model_seconds": 53.588,
+      "task_pass": null,
+      "response_sha256": "0cace4108912c66381a2405786f5a9d8fde2c97213dd4f057e3922f26f23b15d",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "0cace4108912c66381a2405786f5a9d8fde2c97213dd4f057e3922f26f23b15d",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "e6719a3ba1cc37fa50e20890391486c0ef0531906c5ad8eeaab817eb5d87ea92",
+        "origin": "model_response",
+        "status": "contradicted",
+        "interpretations": [
+          {
+            "id": "earlier_gt_later_ge",
+            "status": "contradicted",
+            "checked_states": 44,
+            "excluded_states": 0,
+            "outside_guard": "unresolved",
+            "failures": [
+              {
+                "request_id": "reserved-growth-3",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5"
+                  ],
+                  "matrix": [
+                    [
+                      2.4e+307,
+                      0.0,
+                      0.0,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      2.4e+307,
+                      0.0,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      2.4e+307,
+                      0.0
+                    ],
+                    [
+                      -2.4e+307,
+                      -2.4e+307,
+                      -2.4e+307,
+                      2.4e+307,
+                      -2.4e+307,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4,
+                    5
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-4",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5",
+                    "x6"
+                  ],
+                  "matrix": [
+                    [
+                      2.6e+307,
+                      0.0,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      -2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    4,
+                    5,
+                    6
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 4
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              },
+              {
+                "request_id": "reserved-growth-4",
+                "input": {
+                  "variables": [
+                    "x0",
+                    "x1",
+                    "x2",
+                    "x3",
+                    "x4",
+                    "x5",
+                    "x6"
+                  ],
+                  "matrix": [
+                    [
+                      2.6e+307,
+                      0.0,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      -2.6e+307,
+                      -2.6e+307,
+                      -2.6e+307,
+                      2.6e+307,
+                      -2.6e+307,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0,
+                      2.0
+                    ]
+                  ],
+                  "rhs": [
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0,
+                    1.0
+                  ],
+                  "current": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "mode": "solve",
+                  "residual_limit": 1.0
+                },
+                "state": {
+                  "indices": [
+                    5,
+                    6
+                  ],
+                  "values_repr": [
+                    "nan",
+                    "nan"
+                  ],
+                  "original": 5
+                },
+                "selected": [],
+                "original_outcome": {
+                  "exception": "ValueError",
+                  "message": "numerical overflow"
+                }
+              }
+            ]
+          }
+        ],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.002318014987395145,
+      "review_seconds": 20.112,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "03-assessment_summary",
+      "replicate": 3,
+      "arm": "assessment_summary",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 15779,
+          "cached_input_tokens": 2944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2651,
+          "reasoning_output_tokens": 1034
+        }
+      ],
+      "model_seconds": 52.478,
+      "task_pass": null,
+      "response_sha256": "1fad230c884982b8c595870e2f2f7d308f4fb90048c55bef8935c52027228df3",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "1fad230c884982b8c595870e2f2f7d308f4fb90048c55bef8935c52027228df3",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "05296fcf0bae9d6592cd7a6f866f026a7aa350aef468ca3c5c15f712dc4a4b30",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "A pivot candidate and threshold-search plan are now present, but the complete maximum-discovery procedure, threshold/update rules, ties and exceptional-state selector are explicitly unresolved. A threshold sketch does not uniquely determine the selector interpreted by the frozen checker. Keep increased nomination/plan coverage separate from semantic evidence and do not provide a reviewer-written fold or dominance oracle.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.0004729130014311522,
+      "review_seconds": 14.345,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "03-self_review",
+      "replicate": 3,
+      "arm": "self_review",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 15672,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2189,
+          "reasoning_output_tokens": 516
+        }
+      ],
+      "model_seconds": 44.063,
+      "task_pass": null,
+      "response_sha256": "47b231f06e3c8615ee0146dbba16221ae99a877c45524522f1495ca90f83d491",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "47b231f06e3c8615ee0146dbba16221ae99a877c45524522f1495ca90f83d491",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "f66b8b2d9b1e21e3389e957ae0d36d340f1e38e5282bdb1833db2ce4ac67adf4",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "Even without observations this revision introduces a pivot candidate and adaptive maximum-search plan. It describes a better-than-incumbent lexicographic comparison but not an initialized, ordered full selector or complete adaptive search and no-improvement policy. Turning this probabilistic sketch into the checker's ordered_scan would invent a control flow. Retain insufficient evidence for the full local selection relation; nomination increase alone is not semantic repair or a cue-specific effect.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.0004221050039632246,
+      "review_seconds": 18.8,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "03-cue_only",
+      "replicate": 3,
+      "arm": "cue_only",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 15695,
+          "cached_input_tokens": 2944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1957,
+          "reasoning_output_tokens": 390
+        }
+      ],
+      "model_seconds": 42.212,
+      "task_pass": null,
+      "response_sha256": "bd302d2ab811f600e5e4c3025ed878bb98f507faacab26af888a786dffea1553",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "bd302d2ab811f600e5e4c3025ed878bb98f507faacab26af888a786dffea1553",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "7da8c716fd47f7c23344cc85899b79d0272b401f9933bfb32cd4f95f6b1b368a",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The cue-only response adds a narrow candidate and lexicographic/threshold maximum-search sketch, but neither the global selector predicate nor the initialized update/termination procedure is constructed. Declaring a key and a desired first maximum is not enough to instantiate a full ordered scan or dominance predicate without adding reviewer choices, particularly for reachable nonfinite states. Retain insufficient local evidence; coverage and classical verification obligations are separate.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.00042948599730152637,
+      "review_seconds": 14.674,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "04-self_review",
+      "replicate": 4,
+      "arm": "self_review",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 15808,
+          "cached_input_tokens": 2944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1317,
+          "reasoning_output_tokens": 337
+        }
+      ],
+      "model_seconds": 20.286,
+      "task_pass": null,
+      "response_sha256": "ba04e2314ce14c94d2bda7735740aee3e8c08bd6190fb75ac4d8f42bdc138f4c",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "ba04e2314ce14c94d2bda7735740aee3e8c08bd6190fb75ac4d8f42bdc138f4c",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "fbe5431b1761f4b64a24caa87bcacaf335279a7ba86914407b81e71eeb0302e6",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The broad function nomination and null plan persist. Original pivot behavior is mentioned only as a preservation requirement; no replacement selector is proposed. Keep insufficient evidence, not a pass or withdrawal of an earlier local mapping. Rejection of the whole solver does not settle the separate eligibility of its pivot subregion.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.00038519200461450964,
+      "review_seconds": 15.124,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "04-cue_only",
+      "replicate": 4,
+      "arm": "cue_only",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 15831,
+          "cached_input_tokens": 15616,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2394,
+          "reasoning_output_tokens": 702
+        }
+      ],
+      "model_seconds": 47.729,
+      "task_pass": null,
+      "response_sha256": "6aa18eaea6a13df80b79db351992f946fcfa5e7fac80d020ae5b94691d37c2da",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "6aa18eaea6a13df80b79db351992f946fcfa5e7fac80d020ae5b94691d37c2da",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "4db77caedd84277f98afb68e878fd46e624e08a7f14188564f2b7333242c8451",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The cue produces a different whole-solver output-bit-pattern search plan, not a concrete local pivot selector. The oracle is defined by reproducing the original complete solver, whose reversible construction remains unresolved. Do not reinterpret this as discovered pivot mapping or invent an ordered scan. Keep the local evidence insufficient; the new broad structural YES and plan coverage require separate scientific review and do not establish meaningful eligibility, correctness or benefit.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.00039150399970822036,
+      "review_seconds": 18.859,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "04-assessment_summary",
+      "replicate": 4,
+      "arm": "assessment_summary",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 15915,
+          "cached_input_tokens": 15616,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2647,
+          "reasoning_output_tokens": 895
+        }
+      ],
+      "model_seconds": 52.438,
+      "task_pass": null,
+      "response_sha256": "19d46e4dbd7cf761434a1f2a7d78e78565bfdecc5d3e37c698d008314e507725",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "19d46e4dbd7cf761434a1f2a7d78e78565bfdecc5d3e37c698d008314e507725",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "2968df260e742ca8ab9ce2f5a9b8473b9a7ee2d6c5f59199d1af785ecc008527",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The broad function nomination is narrowed to the pivot statement and a conditional threshold-search plan appears. However, initialization, threshold updates, no-improvement and complete exact selection remain unresolved. A candidate-better-than-threshold predicate is not the full deterministic selector supported by the current checker. Keep nomination/plan change separate from semantic repair and retain insufficient evidence without inventing a scan.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.0003964200004702434,
+      "review_seconds": 15.402,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "05-cue_only",
+      "replicate": 5,
+      "arm": "cue_only",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16571,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1774,
+          "reasoning_output_tokens": 155
+        }
+      ],
+      "model_seconds": 39.298,
+      "task_pass": null,
+      "response_sha256": "ecb66fbbcfe2be958cd153619ac7ce814ac3bfade4bd7acc153d1e003d54fbdd",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "ecb66fbbcfe2be958cd153619ac7ce814ac3bfade4bd7acc153d1e003d54fbdd",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "abb2c8dfb7c8e23e4330884d776be58a291c1f84810ff5c1433b97813b658501",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The one-hot QUBO remains an obligation-level proposal without explicit objective/coefficient construction or sufficient penalty bounds. Its exact all-state encoding is unresolved, and the secondary Grover discussion supplies no concrete selector either. The frozen predicate/scan checker cannot validate an unconstructed QUBO; do not reject the allowed alternative family or invent a predicate/finite guard. The response correctly notes the scope notice has no check outcomes.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.00045804999535903335,
+      "review_seconds": 15.893,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "05-assessment_summary",
+      "replicate": 5,
+      "arm": "assessment_summary",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16655,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2666,
+          "reasoning_output_tokens": 910
+        }
+      ],
+      "model_seconds": 52.609,
+      "task_pass": null,
+      "response_sha256": "92bd876d30d3a3cfbf7801699cab3f351c262a36f1d0f1ee31445142ecc970e4",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "92bd876d30d3a3cfbf7801699cab3f351c262a36f1d0f1ee31445142ecc970e4",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "8ffc2bff0f2ea50ad5d8e125910749508821c335375fb56abe33743a5887b422",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The assessment summary elicits stronger caveats but no explicit QUBO coefficients, sufficient penalty construction, all-state encoding or concrete supplemental pivot predicate. The frozen checker has no uniquely supported replacement relation to evaluate. Retain insufficient evidence and do not treat acknowledging unknowns or rejecting uncertified samples as a proved encoding, fallback or repair.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.00044333600089885294,
+      "review_seconds": 13.928,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    },
+    {
+      "slot": "05-self_review",
+      "replicate": 5,
+      "arm": "self_review",
+      "mother_case": "lit-009",
+      "usage": [
+        {
+          "input_tokens": 16548,
+          "cached_input_tokens": 2944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2415,
+          "reasoning_output_tokens": 759
+        }
+      ],
+      "model_seconds": 49.901,
+      "task_pass": null,
+      "response_sha256": "e0170126f43cf1fe2cf7f73358c32d43df0a45d423644e2098d078b9384c4db8",
+      "status": "valid_response",
+      "validation_errors": [],
+      "evaluation_role": "known_regression_previously_inspected_not_unseen",
+      "evaluation": {
+        "split": "known_regression",
+        "suite_sha256": "14f6e49cd1f0d58708f721dacf650ec95c43d45b388d8a520c93e13b629cdd9b",
+        "response_sha256": "e0170126f43cf1fe2cf7f73358c32d43df0a45d423644e2098d078b9384c4db8",
+        "task_pass": null,
+        "fallback_execution": null,
+        "prose_fidelity_automatically_proved": false,
+        "binding_sha256": "f4f3a9142d0791d794ffe9a76ca1694070368c37b1748a462337701bb4e046f8",
+        "origin": "model_response",
+        "status": "insufficient_evidence",
+        "reason": "The self-review retains an unconstructed one-hot QUBO with unresolved coefficients, penalty bounds and exceptional-state ordering. It supplies no explicit secondary pivot selector. Preserve the supported alternative family as an unverified conditional plan rather than inventing a Boolean relation or counting fallback language as correctness. No concrete local rule is available to this checker.",
+        "interpretations": [],
+        "source_suite_role": "evaluator_reserved"
+      },
+      "evaluation_tool_seconds": 0.0005179349973332137,
+      "review_seconds": 25.572,
+      "reviewer": {
+        "identity": "Codex coordinator",
+        "status": "AI_REVIEW_PENDING"
+      }
+    }
+  ],
+  "paired_comparisons": {
+    "cue_minus_self": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "summary_minus_cue": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "witness_minus_summary": [
+      2
+    ]
+  },
+  "limits": [
+    "S/C/E each5; W only1. Compare W with same-draft E, not pooled proportions.",
+    "One known failure, one mother case; no independent generalization evidence.",
+    "Insufficient, ambiguous, guarded and contradicted claims remain separate.",
+    "Reviewer transcription is not independent human review or full-task correctness.",
+    "Offline preflight is not account availability or an effect measurement."
+  ]
+}

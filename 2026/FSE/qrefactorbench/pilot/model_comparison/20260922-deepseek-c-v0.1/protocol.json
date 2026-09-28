@@ -1,0 +1,117 @@
+{
+  "authorization": "User requested current benchmark LLM comparison, then explicitly added DeepSeek pro and flash and supplied a credential-file path; 10 C cases/model, one attempt each.",
+  "models": [
+    "deepseek-v4-pro",
+    "deepseek-flash"
+  ],
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "condition": "C",
+  "entries": [
+    {
+      "case_id": "lit-001",
+      "condition": "C",
+      "file": "lit-001-C.txt",
+      "sha256": "9268f0b7023736ab7fa88e42610194c0cdfd7131c5ff6fa72403eab3b3e19a65",
+      "prediction_case_id": "context-001"
+    },
+    {
+      "case_id": "lit-002",
+      "condition": "C",
+      "file": "lit-002-C.txt",
+      "sha256": "78d179578aad53e085314bc7c8950f504ab2171798424f88356fda67d61a7702",
+      "prediction_case_id": "context-002"
+    },
+    {
+      "case_id": "lit-003",
+      "condition": "C",
+      "file": "lit-003-C.txt",
+      "sha256": "f20e2374eadaca85cb94fb983d706fd595b8e922c693b53d1e2d9accb50ac6f5",
+      "prediction_case_id": "lit-003"
+    },
+    {
+      "case_id": "lit-004",
+      "condition": "C",
+      "file": "lit-004-C.txt",
+      "sha256": "c7d39e87215fdb8d54b69d9c387911ca17020108782de50189a6fcb21847c278",
+      "prediction_case_id": "lit-004"
+    },
+    {
+      "case_id": "lit-005",
+      "condition": "C",
+      "file": "lit-005-C.txt",
+      "sha256": "dd8d7f2d0022e82930aed2f8f2293b707c4502ef882bbc387783f00afb644a10",
+      "prediction_case_id": "lit-005"
+    },
+    {
+      "case_id": "lit-006",
+      "condition": "C",
+      "file": "lit-006-C.txt",
+      "sha256": "788cc5bf47576888f1c5b883542ee92e9e6c73031524a1be1dc9a8bea557d817",
+      "prediction_case_id": "lit-006"
+    },
+    {
+      "case_id": "lit-007",
+      "condition": "C",
+      "file": "lit-007-C.txt",
+      "sha256": "2d0d9c2d999879cb3e43242ae092a56bf3889cb3af95b611419282dd6a1b7c74",
+      "prediction_case_id": "lit-007"
+    },
+    {
+      "case_id": "lit-008",
+      "condition": "C",
+      "file": "lit-008-C.txt",
+      "sha256": "0521e1deb52d47ba8b123f09c3b3ea894de23bbcc1c6bc05b2e80c6e8a764a20",
+      "prediction_case_id": "lit-008"
+    },
+    {
+      "case_id": "lit-009",
+      "condition": "C",
+      "file": "lit-009-C.txt",
+      "sha256": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+      "prediction_case_id": "lit-009"
+    },
+    {
+      "case_id": "lit-010",
+      "condition": "C",
+      "file": "lit-010-C.txt",
+      "sha256": "813a8c8fe93ec272831290f415c96a550c76cca8854b978a996e7c5689d91094",
+      "prediction_case_id": "lit-010"
+    }
+  ],
+  "thinking": {
+    "type": "enabled"
+  },
+  "reasoning_effort": "high",
+  "max_tokens": 16384,
+  "stream": false,
+  "temperature": null,
+  "seed": null,
+  "response_format": null,
+  "tools": [],
+  "operator_retries": 0,
+  "concurrency": 2,
+  "socket_timeout_seconds": 600,
+  "planned_calls": 20,
+  "wrapper": "This is a restricted single-turn research baseline. All task information is in the supplied user message. Do not invoke tools, browse files or the web, execute code, delegate, request clarification, or produce interim messages. Return one final response to the supplied prompt. Do not use previous sessions.",
+  "wrapper_role": "system",
+  "runner_sha256": "e5a20e1013abf12095102188527b6b83d510a8089449876637b6f8abfcb5d5a9",
+  "created_utc": "2026-09-21T17:08:33.458223+00:00",
+  "reference_labels_sha256": "36a691f92c0042cc558e318170c5273de54086bcf06c749b1b3be5d04d468a7e",
+  "reference_provenance_sha256": "56137c7c8c830374de2dde39d2ab7e8d7210d1e92c1d77c97c836126cbf607ed",
+  "documentation": [
+    "https://api-docs.deepseek.com/",
+    "https://api-docs.deepseek.com/quick_start/pricing/",
+    "https://api-docs.deepseek.com/api/create-chat-completion/"
+  ],
+  "documented_versions_at_preparation": {
+    "deepseek-v4-pro": "DeepSeek-V4-Pro-0813",
+    "deepseek-flash": "DeepSeek-V4.1-Flash"
+  },
+  "comparison_limits": [
+    "Same public task bytes and reference; API has no Codex system scaffolding.",
+    "DeepSeek high and GPT medium are not matched reasoning budgets.",
+    "API aliases can move; preserve returned model/fingerprint without claiming pinned weights.",
+    "Output cap differs from unspecified GPT CLI cap; truncation is a failure, never repaired.",
+    "Pending labels, single sample; no stable ranking or whole-task accuracy."
+  ]
+}

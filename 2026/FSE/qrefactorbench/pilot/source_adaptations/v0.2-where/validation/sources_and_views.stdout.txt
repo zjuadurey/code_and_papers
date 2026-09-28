@@ -1,0 +1,48 @@
+.....F                                                                   [100%]
+=================================== FAILURES ===================================
+_____________ test_allowlist_regeneration_and_standalone_execution _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-audrey/pytest-82/test_allowlist_regeneration_an0')
+
+    def test_allowlist_regeneration_and_standalone_execution(tmp_path):
+        exporter = load(HERE / "prepare_inputs.py", "source_where_exporter")
+        out = tmp_path / "public"
+        exporter.prepare(out)
+        def files(root):
+            return {str(p.relative_to(root)): p.read_bytes() for p in root.rglob('*') if p.is_file()}
+        assert files(out) == files(HERE / "review_inputs")
+        expected = {"manifest.json"} | {f"{case_id}/{name}" for case_id, paths in exporter.PACKETS.items() for name in paths}
+        assert set(files(out)) == expected and len(expected) == 17
+        for case_id in exporter.PACKETS:
+            task = json.loads((out / case_id / "public_task.json").read_text())
+            assert set(task) == exporter.PUBLIC_KEYS
+            for forbidden in ("candidate_regions", "reference_plan", "structural_eligibility", "practical_suitability", "annotation_status"):
+                assert forbidden not in task
+        for case_id in ("lit-003", "lit-004"):
+            data = (HERE / "cases" / case_id / "example_request.json").read_text()
+            run = subprocess.run([sys.executable, str(out / case_id / "program.py")], input=data,
+                                 text=True, capture_output=True, check=True, cwd=tmp_path)
+            assert json.loads(run.stdout) == json.loads((HERE / "cases" / case_id / "example_report.json").read_text())
+            bad = subprocess.run([sys.executable, str(out / case_id / "program.py")], input='{}', text=True,
+                                 capture_output=True, cwd=tmp_path)
+            assert bad.returncode != 0 and not bad.stdout.strip()
+        with pytest.raises(FileExistsError):
+            exporter.prepare(out)
+>       assert files(out) == files(HERE / "review_inputs")
+E       assert {'manifest.js...bers]\n', ...} == {'manifest.js..."]\n}\n', ...}
+E         
+E         Omitting 17 identical items, use -vv to show
+E         Left contains 4 more items:
+E         {'lit-003/__pycache__/agenda.cpython-310.pyc': b'o\r\r\n\x00\x00\x00\x00@E\xb0j'
+E                                                        b"'\x06\x00\x00\xe3\x00\x00\x00"
+E                                                        b'\x00\x00\x00\x00'
+E                                                        b'\x00\x00\x00\x00'...
+E         
+E         ...Full output truncated (1165 lines hidden), use '-vv' to show
+
+pilot/source_adaptations/v0.2-where/test_sources_and_views.py:128: AssertionError
+----------------------------- Captured stdout call -----------------------------
+Exported 4 source/context views; no reference annotations or model invocation.
+=========================== short test summary info ============================
+FAILED pilot/source_adaptations/v0.2-where/test_sources_and_views.py::test_allowlist_regeneration_and_standalone_execution
+1 failed, 5 passed in 0.21s

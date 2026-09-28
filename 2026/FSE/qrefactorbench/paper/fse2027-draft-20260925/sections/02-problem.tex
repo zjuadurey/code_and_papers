@@ -1,0 +1,109 @@
+\section{Problem and Semantic Boundaries}
+\label{sec:problem}
+\subsection{Selective quantum opportunity analysis}
+Let $P$ be a classical program, $D$ its permitted inputs, and $C$ its observable
+contract. We write $\operatorname{Obs}(P,x)$ for the returned value, relevant
+effects, exceptions, and ordering observable on input $x$. A candidate region
+$r$ is a source region together with the definitions and uses required to
+interpret it. A mapping proposal $M$ describes an encoding, a search predicate
+or optimization objective, a quantum procedure, decoding, and integration
+conditions. A future transformed program $P[M/r]$ would need to satisfy
+\begin{equation}
+  \forall x\in D:\quad
+  \operatorname{Obs}(P[M/r],x)\;\mathcal{R}_{C}\;\operatorname{Obs}(P,x),
+  \label{eq:contract}
+\end{equation}
+where $\mathcal{R}_{C}$ is the relation permitted by the original contract.
+For deterministic exact outputs this is equality of the required observations.
+A probabilistic or approximate relation is admissible only when the contract
+explicitly permits it. No tolerance is inferred from the use of a quantum solver.
+Equation~\ref{eq:contract} states the eventual correctness requirement; passing
+the local checks below does not prove it.
+
+The analysis output is a tuple $(r,e,f,M,a,U)$: candidate regions $r$, structural
+eligibility $e$, formulation family $f$, conditional mapping $M$, adoption
+recommendation $a$, and unresolved obligations $U$. Eligibility takes values
+$\{\yes,\no,\unknown\}$. A \yes{} requires a concrete correspondence between
+the computation and a supported formulation, rather than only an algorithm name.
+Adoption depends on additional implementation and resource evidence. Thus
+$e=\yes$ and $a=\classical$ can be consistent. A conditional plan is still
+required for a structural \yes{} in the prospective protocol.
+
+\begin{table}[tb]
+\caption{Evidence required at different stages. Later stages are not inferred
+from earlier ones. Current experiments primarily concern the first four rows.}
+\label{tab:stages}
+\begin{tabularx}{\linewidth}{lYY}
+\toprule
+Stage & Required output & Distinct unresolved question \\
+\midrule
+WHERE & Candidate spans and dependencies & Is this an admissible region? \\
+WHETHER & Mapping evidence and conditions & Is adoption worthwhile? \\
+WHAT/HOW & Intent, encoding, predicate/objective & Does the formulation match the core? \\
+PLAN & Decoding and obligation disposition & Is the full contract accounted for? \\
+REFACTOR & Implemented hybrid replacement & Does integration preserve behavior? \\
+VALIDATE & Semantic and resource evidence & Is correctness or benefit established? \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The historical benchmark combines some of these conceptual stages in serialized
+task identifiers. We retain those formats when replaying historical material and
+use the named concepts in this paper to avoid conflating protocol versions.
+Candidate nomination is also distinct from suitability: a validation scan may
+be expressible as search yet offer no useful offloading opportunity. Whether it
+belongs in the intended candidate population requires an explicit reference
+policy, not an after-the-fact penalty for a model's choice.
+
+\subsection{Supported formulations}
+For search, the model must define a finite domain $\Omega(x)$ and a predicate
+$g_x(z)$, then explain how marked states correspond to the source computation.
+Grover's algorithm supplies a search primitive under oracle
+assumptions~\cite{grover}. It does not itself supply the reversible oracle,
+input-loading mechanism, mandated first witness, or no-solution certificate.
+Those remain explicit plan obligations.
+
+For optimization, a QUBO has the form
+\begin{equation}
+ E_x(z)=c_x+\sum_i h_i(x)z_i+\sum_{i<j}J_{ij}(x)z_i z_j,
+ \qquad z\in\{0,1\}^{n_x}.
+ \label{eq:qubo}
+\end{equation}
+The proposal must relate variables to source choices, encode constraints, specify
+optimization direction, and decode auxiliary variables. Ising formulations
+provide established constructions for combinatorial problems~\cite{lucas}.
+QAOA is a possible approximate optimization procedure~\cite{qaoa}; naming it
+does not certify exact global optimality or preserve a deterministic tie rule.
+The current positive scope excludes general linear-system and estimation families.
+Numerical programs can still contain search subregions, which are assessed locally.
+
+\subsection{A running contract example}
+Consider a vertex-cover routine that returns a minimum-cardinality cover and,
+among ties, the lexicographically smallest tuple of selected vertex indices.
+Its surrounding program turns the tuple into an ordered work list and a change
+report. Preserving cardinality without preserving the tuple can therefore alter
+the external report. Numeric bitmask order and tuple order are different
+relations and must not be substituted silently.
+
+Let $U(z)=\sum_{(i,j)\in E}(1-z_i)(1-z_j)$ count uncovered edges and let
+$A=2^n$. One illustrative exact formulation is
+\begin{equation}
+ E(z)=\sum_{i=0}^{n-1}\bigl(A-2^{n-1-i}\bigr)z_i
+       +P U(z),\qquad P=nA+1.
+ \label{eq:cover}
+\end{equation}
+Every selection cost is positive and their total is less than $nA$. Consequently
+an infeasible assignment is more expensive than the all-selected feasible
+assignment. Among feasible assignments, the range of the binary-weight tie term
+is less than $A$, so cardinality dominates. Among assignments of equal cardinality,
+the first differing index dominates all later tie terms and favors inclusion of
+the earlier vertex. This illustrates why semantic obligations determine the
+objective. It is not an experimental result, a required reference formula, or a
+claim that its coefficients are practical on a particular device. Equivalent
+encodings and smaller valid penalties must remain admissible.
+
+\figplaceholder{contract-example}{2.1cm}{Show the classical core, minimum-cardinality
+selection, tuple ordering, and downstream work-list/report dependencies. Highlight
+where a bitmask-based tie rule changes an observable output.}
+{Illustrative contract dependencies for the vertex-cover case. The figure is
+reserved for a source-linked explanation rather than experimental measurements.}

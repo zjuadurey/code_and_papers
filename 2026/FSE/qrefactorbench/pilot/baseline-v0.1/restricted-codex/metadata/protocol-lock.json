@@ -1,0 +1,20 @@
+{
+  "status": "READY",
+  "baseline_name": "Restricted Codex CLI single-turn pilot baseline",
+  "input_revision": "pilot-v0.1",
+  "case_count": 10,
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "smoke_passed": true,
+  "scientific_prompt_rewritten": false,
+  "wrapper_from_runner": true,
+  "formal_case_retry_policy": "One invocation, never overwrite or rerun",
+  "input_file_count": 14,
+  "reference_material_copied": false,
+  "cli_warnings": [
+    "skip_host_skill_discovery is under-development",
+    "code mode fails closed with its host disabled"
+  ],
+  "smoke_effective_snapshot": "not exposed by CLI JSONL",
+  "runner_sha256": "05d9a1cac32940eb8055f4111cf4297c870643eabc96dd1a852abbf5c6a8d126"
+}

@@ -1,0 +1,34 @@
+{
+  "requested_model": "deepseek-v4-pro",
+  "mother_case_id": "lit-001",
+  "started_utc": "2026-09-22T16:47:02.002484+00:00",
+  "input_sha256": "9268f0b7023736ab7fa88e42610194c0cdfd7131c5ff6fa72403eab3b3e19a65",
+  "request_sha256": "651ad3a98187b2cb7d3a89e23f72a19704004ba3fcb30371f233bcf1a8ac51ea",
+  "operator_retries": 0,
+  "http_status": 200,
+  "transport_error": null,
+  "response_complete": true,
+  "unexpected_tool_calls": false,
+  "elapsed_seconds": 131.004,
+  "finished_utc": "2026-09-22T16:49:13.009448+00:00",
+  "credential_echo_redacted": false,
+  "api_response_sha256": "96784821127121d837601c3d614a804e19f0f4b133eebfb25f46abd4856afe1b",
+  "returned_model": "deepseek-v4-pro",
+  "system_fingerprint": "a307abda487cd1b463329ccb945ce396",
+  "response_id": "3545ef87-e081-46b7-81f5-0f3855f4f281",
+  "usage": {
+    "prompt_tokens": 10087,
+    "completion_tokens": 9852,
+    "total_tokens": 19939,
+    "prompt_tokens_details": {
+      "cached_tokens": 9984
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 8190
+    },
+    "prompt_cache_hit_tokens": 9984,
+    "prompt_cache_miss_tokens": 103
+  },
+  "finish_reason": "stop",
+  "response_sha256": "2521188da1f7303cfbfaa4f7bb87249ce43369eec3432cb31d2f81af998ca6de"
+}

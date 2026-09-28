@@ -1,0 +1,43 @@
+{
+  "response_sha256": "1fad230c884982b8c595870e2f2f7d308f4fb90048c55bef8935c52027228df3",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 14.345,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:14:43.837452+00:00",
+  "review_submitted_utc": "2026-09-26T21:14:58.182881+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "1fad230c884982b8c595870e2f2f7d308f4fb90048c55bef8935c52027228df3",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate pivot selection as Grover-style search over row indices from col through n-1, using reversible threshold comparisons as part of a maximum-finding procedure. The selected result must be the lowest index attaining the largest absolute pivot value. This is only a structural formulation: a complete procedure for maximum discovery, ties, failure probability, and exact compatibility with Python max remains unresolved."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode each candidate row index and provide coherent access to the current augmented-row entry rows[i][col]. Account for loading the mutation-dependent binary64 row state, reversible absolute-value and comparison logic, threshold state, index bounds, ancillas, and uncomputation. The encoding must define behavior for every intermediate binary64 state reachable from prior elimination, including any nonfinite state relevant to existing exception behavior."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a candidate index, then classically establish that it has the greatest absolute pivot value and is the first index among ties before permitting the existing exact-zero check and row swap. Required retries, exhaustive verification, and any classical fallback must be specified and proved to preserve the contract; merely declaring excluded states or a fallback is not a verified repair."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "The pivot candidates form a finite index domain, and threshold comparison can conditionally define a Boolean marked-state predicate for Grover-style maximum search. Applicability is structural and conditional: reversible coherent access, exact binary64 comparison, maximum discovery, first-tie selection, probabilistic error handling, and full-domain verification remain unresolved."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "A pivot candidate and threshold-search plan are now present, but the complete maximum-discovery procedure, threshold/update rules, ties and exceptional-state selector are explicitly unresolved. A threshold sketch does not uniquely determine the selector interpreted by the frozen checker. Keep increased nomination/plan coverage separate from semantic evidence and do not provide a reviewer-written fold or dominance oracle.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

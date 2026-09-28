@@ -1,0 +1,217 @@
+{
+  "version": "0.1",
+  "annotation_status": "DRAFT",
+  "review_status": "PENDING",
+  "author": "Codex; AI-authored proposals, not an independent annotator",
+  "human_reviews": [],
+  "authorization": "2026-09-21: researcher requested labels for initial model comparison while keeping them pending review (D-022). Individual labels have not been approved.",
+  "input_manifest": "pilot/reference_completion/v0.1.1/review_inputs/manifest.json",
+  "sources": [
+    {"id": "lucas", "url": "https://arxiv.org/abs/1302.5843v3", "use": "Background on Ising formulations; case-specific formulas below are proposals checked against local programs, not quotations or whole-program guarantees."},
+    {"id": "grover", "url": "https://arxiv.org/abs/quant-ph/9605043v3", "use": "Finite predicate search; ordered selection and absence certification remain separate obligations."}
+  ],
+  "shared_labels": {
+    "practical_suitability": null,
+    "benchmark_supported": false,
+    "expected_decision": "REMAIN_CLASSICAL"
+  },
+  "shared_rationale": {
+    "practical_suitability": "No adequate workload, loading/oracle cost, hardware or end-to-end benefit evidence. Missing evidence is not a NO label.",
+    "benchmark_supported": "This input release has no reviewed admissible migration contracts or complete quantum migration acceptance harness. This describes migration support, not whether analysis responses can now be scored.",
+    "expected_decision": "Provisional conservative adoption judgment under the supplied assumptions: retain the current program pending evidence. This constant label is not useful alone for ranking models.",
+    "controls": "lit-008/009/010 have no established supported mapping in this reference proposal. Structural null is unresolved, not a gold UNCERTAIN answer or proof that all reductions are impossible. Do not force NO merely to create class balance. Their software intent and obligations remain reviewable.",
+    "families": "Primary-family agreement is descriptive. A different supported family is not automatically wrong; inspect its concrete mapping. Family membership alone is not plan correctness. No text/keyword similarity grading.",
+    "where": "Regions are provisional anchor nominations, not an exhaustive set of admissible boundaries. Exact match and overlap are diagnostics only. Rejected candidates can be legitimate under D-016. Control regions are not positive-eligibility labels."
+  },
+  "cases": [
+    {
+      "mother_case_id": "lit-001",
+      "structural_eligibility": true,
+      "primary_family": "combinatorial_optimization",
+      "intent": "Exact weighted maximum cut; contextual proposal minimizes same-window conflict weight.",
+      "mapping": "x_i in {0,1} denotes membership in the first window. Maximize sum_{i<j} w_ij(x_i+x_j-2*x_i*x_j); minimize its negative as a QUBO. Context uses aggregated nonnegative weights. With s_i=1-2*x_i, the separated weight is sum w_ij(1-s_i*s_j)/2. This establishes the objective correspondence, not exact solver/tie preservation.",
+      "mapping_sources": ["lucas"],
+      "core_regions": [{"file":"program.py","start_line":1,"end_line":16}],
+      "context_regions": [{"file":"maintenance.py","start_line":74,"end_line":89}],
+      "core_checks": [
+        {"id":"objective","criterion":"Binary partition, correct weighted cut objective/sign, no added capacity or movement objective."},
+        {"id":"exact_tie","criterion":"Identify exact global optimum and smallest first-window numeric mask; sampling a good cut does not establish either."},
+        {"id":"representation","criterion":"Decode both ascending index lists covering every item once; handle empty input and arbitrary-precision weights without silently rounding."}
+      ],
+      "context_checks": [
+        {"id":"aggregation","criterion":"Preserve repeated/reversed weight summation, input validation and nonmutation."},
+        {"id":"reporting","criterion":"Preserve named ordering, current/proposed conflict reports and changes; movement is reporting, not an optimization objective."}
+      ]
+    },
+    {
+      "mother_case_id": "lit-002",
+      "structural_eligibility": true,
+      "primary_family": "combinatorial_optimization",
+      "intent": "Exact minimum-cardinality vertex cover with lexicographic selected-index tie breaking.",
+      "mapping": "x_i=1 selects station i. Minimize sum_i x_i + P*sum_{(u,v) in E}(1-x_u)(1-x_v), P>n. A feasible cover costs at most n, whereas any infeasible assignment costs at least P. Therefore minimizers are minimum covers. Tie selection is a separate obligation; it is not smallest numeric bitmask.",
+      "mapping_sources": ["lucas"],
+      "core_regions": [{"file":"program.py","start_line":3,"end_line":17}],
+      "context_regions": [{"file":"inspection.py","start_line":77,"end_line":91}],
+      "core_checks": [
+        {"id":"cover","criterion":"Select vertices, cover each edge at one or both endpoints, minimize number selected; provide valid constraint or penalty reasoning."},
+        {"id":"exact_tie","criterion":"Identify exact optimality and lexicographically smallest sorted selected-index tuple; distinguish it from numeric-mask order."},
+        {"id":"decode","criterion":"Return the selected-index set and preserve empty-edge behavior; feasible alone is not optimal."}
+      ],
+      "context_checks": [
+        {"id":"normalization","criterion":"Retain full validation and deduplication of reversed/duplicate connections; current may be infeasible."},
+        {"id":"worklists","criterion":"Assign covered connections once to earliest selected endpoint; retain ordered/empty checklists and reassignment reporting."}
+      ]
+    },
+    {
+      "mother_case_id": "lit-003",
+      "structural_eligibility": true,
+      "primary_family": "unstructured_search",
+      "intent": "Finite graph-coloring completion, distinct from ordered greedy preview.",
+      "mapping": "Search colors c in {0,...,k-1}^n; mark iff every edge has c_u!=c_v. Binary registers must reject codes >=k. The alternative one-hot QUBO minimizes sum_i(sum_a x_ia-1)^2 + sum_edges sum_a x_ua*x_va; zero energy iff a valid coloring exists. Both establish a structural mapping. Lexicographic selection, infeasibility and the observable greedy operation remain obligations.",
+      "mapping_sources": ["grover","lucas"],
+      "core_regions": [{"file":"program.py","start_line":23,"end_line":52}],
+      "context_regions": [{"file":"agenda.py","start_line":28,"end_line":57}],
+      "core_checks": [
+        {"id":"predicate","criterion":"Encode full color assignments, reject invalid color codes and enforce every adjacency inequality (or equivalent one-hot QUBO)."},
+        {"id":"two_operations","criterion":"Distinguish greedy preview blockage from infeasibility; preserve both exposed operations."},
+        {"id":"lex_absence","criterion":"Identify lexicographic first complete assignment and no-solution guarantee; failed sampling is not an infeasibility certificate; handle n=0/k=0."}
+      ],
+      "context_checks": [
+        {"id":"activation","criterion":"Preserve inspect mode, retain feasible current exactly, use completion only after prescribed greedy preview blocks."},
+        {"id":"dependencies","criterion":"Build conflicts from shared participants; do not fix partial current/failed preview choices; preserve status, preview and ordered moves."}
+      ]
+    },
+    {
+      "mother_case_id": "lit-004",
+      "structural_eligibility": true,
+      "primary_family": "combinatorial_optimization",
+      "intent": "Maximum-cardinality clique, separate from ascending-order greedy preview.",
+      "mapping": "x_i selects eligible vertex i. Minimize -sum_i x_i + P*sum_{i<j, incompatible} x_i*x_j with P>n. Empty selection has energy 0; any incompatible selection has energy >0, so minima are maximum cliques. Alternatively search subset masks with compatibility and cardinality threshold, including optimum certification. Latest checks and active filtering define the contextual graph.",
+      "mapping_sources": ["lucas","grover"],
+      "core_regions": [{"file":"program.py","start_line":10,"end_line":17}],
+      "context_regions": [{"file":"program.py","start_line":25,"end_line":30}],
+      "core_checks": [
+        {"id":"clique","criterion":"Use pairwise compatibility and maximum cardinality, not maximality or greedy success; valid QUBO penalty or search threshold."},
+        {"id":"exact_tie","criterion":"Retain exact greatest size and smallest numeric-mask tie, sorted return list and empty/singleton behavior."},
+        {"id":"preview","criterion":"Preserve the separate greedy operation and the view's representation (set in the core, ordered reports in context); a larger answer does not preserve this operation."}
+      ],
+      "context_checks": [
+        {"id":"graph","criterion":"Latest undirected check wins; unknown is not passed; filter active requested versions in global order; requests independent."},
+        {"id":"activation","criterion":"Preserve preview even when suboptimal, inspect/select branching, current descriptions and ordered changes; do not minimize moves."}
+      ]
+    },
+    {
+      "mother_case_id": "lit-005",
+      "structural_eligibility": true,
+      "primary_family": "unstructured_search",
+      "intent": "Find the first Boolean feature assignment satisfying all three-literal clauses and locks.",
+      "mapping": "Search x in {0,1}^n with f(x)=AND_locked[x_i=l_i] AND_clauses OR_(i,v in clause)[x_i=v]. A reversible implementation computes this predicate, marks phase and uncomputes workspace. Repeated/contradictory literals remain literal predicates; empty clause list is true. Search correspondence does not establish lexicographic-first or no-solution semantics. An optimization alternative needs an explicit penalty/quadratization mapping.",
+      "mapping_sources": ["grover"],
+      "core_regions": [{"file":"kernel.py","start_line":10,"end_line":14}],
+      "context_regions": [{"file":"kernel.py","start_line":10,"end_line":14}],
+      "core_checks": [
+        {"id":"predicate","criterion":"Conjoin all clauses and all locked values; preserve polarity and repeated/contradictory literals."},
+        {"id":"ordered_absence","criterion":"Identify False-before-True vector order (not little-endian numeric mask), exact absence/None behavior, and empty-domain edge cases."},
+        {"id":"oracle","criterion":"Explain reversible predicate access and workspace cleanup as obligations; merely naming Grover is insufficient."}
+      ],
+      "context_checks": [
+        {"id":"activation","criterion":"Validate all fields; inspect gives no proposal; retain conforming current even when not first; only otherwise search."},
+        {"id":"reporting","criterion":"Failures describe current; locks/failures/changes follow declared feature/rule order, not dictionary insertion order."}
+      ]
+    },
+    {
+      "mother_case_id": "lit-006",
+      "structural_eligibility": true,
+      "primary_family": "combinatorial_optimization",
+      "intent": "Exact 0/1 knapsack for independent transfer windows; current implementation uses dynamic programming.",
+      "mapping": "Select x_i in {0,1}, maximize sum v_i*x_i subject to sum w_i*x_i<=C. Introduce binary slack s in [0,C] and minimize -sum v_i*x_i + P*(sum w_i*x_i+s-C)^2, P>sum v_i. Encode every integer slack 0..C; invalid extra codes cannot achieve zero penalty. Integer weights make nonzero residual squared >=1, and the feasible empty selection has energy 0. Coefficient precision, register sizes, exact optimum and ties remain obligations.",
+      "mapping_sources": ["lucas"],
+      "core_regions": [{"file":"kernel.py","start_line":4,"end_line":15}],
+      "context_regions": [{"file":"kernel.py","start_line":4,"end_line":15}],
+      "core_checks": [
+        {"id":"knapsack","criterion":"Model each indivisible item once with capacity constraint and value objective; a valid penalty/slack or search formulation."},
+        {"id":"exact_tie","criterion":"Identify exact value maximum and smallest numeric-mask tie; decode the mask and account for zero values/capacity."},
+        {"id":"classical_baseline","criterion":"Recognize the existing DP and its dependence on capacity; do not claim speedup by comparing only against exhaustive enumeration."}
+      ],
+      "context_checks": [
+        {"id":"filter_independence","criterion":"Filter active items in catalogue order and solve each window independently; current may include inactive items."},
+        {"id":"transfers","criterion":"Preserve whole-batch validation, inspect mode and contiguous ordered transfer offsets derived from selected weights."}
+      ]
+    },
+    {
+      "mother_case_id": "lit-007",
+      "structural_eligibility": true,
+      "primary_family": "combinatorial_optimization",
+      "intent": "Exact signed pair preference maximization, including together and apart relationships.",
+      "mapping": "x_i is group membership. Maximize sum_(i,j,w) w*(2*x_i+2*x_j-4*x_i*x_j-1). With s_i=1-2*x_i, maximize -sum w*s_i*s_j, equivalently minimize sum w*s_i*s_j. Together gives w=-1 and apart gives w=+1. Negative pair weights must not be discarded; the constant term matters for reports even when omitted from minimization.",
+      "mapping_sources": ["lucas"],
+      "core_regions": [{"file":"kernel.py","start_line":12,"end_line":19}],
+      "context_regions": [{"file":"kernel.py","start_line":12,"end_line":19}],
+      "core_checks": [
+        {"id":"signed_objective","criterion":"Correct signs/constants for together/apart, equivalent QUBO/Ising or threshold predicate, and complete pair dependence."},
+        {"id":"exact_tie","criterion":"Identify exact maximum and smallest numeric-mask tie; preserve empty/singleton behavior and allow empty groups."},
+        {"id":"no_added_constraints","criterion":"Do not add balance/capacity constraints or infer exactness from finite-depth QAOA sampling."}
+      ],
+      "context_checks": [
+        {"id":"current","criterion":"Inspect gives no proposal; propose uses the specified tie even when current is equally good."},
+        {"id":"reports","criterion":"Validate one preference per pair and preserve group order, violated pairs, gain and moved-member reports."}
+      ]
+    },
+    {
+      "mother_case_id": "lit-008",
+      "structural_eligibility": null,
+      "primary_family": null,
+      "intent": "Deterministic eight-bit XOR and full ordered receipts, not a supplied search or optimization problem.",
+      "mapping": "The immediate mapping is reversible Boolean arithmetic, outside the two positive families. A generic SAT/circuit reduction is conceivable but no meaningful supported mapping is established here; structural eligibility remains unresolved rather than universally false.",
+      "mapping_sources": [],
+      "core_regions": [{"file":"kernel.py","start_line":7,"end_line":9}],
+      "context_regions": [{"file":"kernel.py","start_line":7,"end_line":9}],
+      "core_checks": [
+        {"id":"arithmetic","criterion":"Recognize exact XOR and eight-bit most-significant-first string, not addition or a random sample."},
+        {"id":"scope","criterion":"Distinguish reversible arithmetic from a demonstrated Grover/QUBO mapping; any alternative needs explicit variables/predicate and conditions."}
+      ],
+      "context_checks": [
+        {"id":"full_output","criterion":"Preserve every ordered receipt, popcount and prefix checksum; no sample/aggregate substitution."},
+        {"id":"counts","criterion":"Counts are deterministic multiplicities, not empirical shots; validate the whole input and preserve inspect behavior."}
+      ]
+    },
+    {
+      "mother_case_id": "lit-009",
+      "structural_eligibility": null,
+      "primary_family": null,
+      "intent": "Dense pivoted linear-system solution and residual diagnostics over binary64 inputs.",
+      "mapping": "Linear-system quantum algorithms are outside current positive families. A discretized residual-minimization QUBO would need explicit variable encoding/domain and correspondence to the numerical core; those essential details are unresolved here. A real quadratic residual alone does not establish a binary QUBO. Do not infer NO solely from missing mapping evidence.",
+      "mapping_sources": [],
+      "core_regions": [{"file":"kernel.py","start_line":9,"end_line":26}],
+      "context_regions": [{"file":"kernel.py","start_line":9,"end_line":26}],
+      "core_checks": [
+        {"id":"numerical_task","criterion":"Identify pivoted solve and explicit residual vector/scaled diagnostic, with float and nonmutation semantics."},
+        {"id":"mapping_scope","criterion":"Do not silently introduce a linear-system family or assume a residual QUBO without finite encoding and correspondence evidence."},
+        {"id":"failure","criterion":"Preserve zero-pivot and detected-overflow errors; a low residual alone does not discharge the software contract."}
+      ],
+      "context_checks": [
+        {"id":"inspect","criterion":"Inspect does not solve and need not reject a singular matrix; caller residual_limit is not a benchmark quantum tolerance."},
+        {"id":"named_outputs","criterion":"Return full named vector, deltas and diagnostics; finite solution/current can still overflow on subtraction."}
+      ]
+    },
+    {
+      "mother_case_id": "lit-010",
+      "structural_eligibility": null,
+      "primary_family": null,
+      "intent": "Budgeted unpreconditioned conjugate-direction recurrence with observable iterate and residual trace.",
+      "mapping": "The specified computation is a finite numerical recurrence, not just its eventual linear-system solution or a discrete optimizer. No concrete supported predicate/QUBO correspondence for that core is established; a generic unrolling/bit encoding would require additional evidence. Alternative quantum linear algebra does not by itself settle this mapping or contract.",
+      "mapping_sources": [],
+      "core_regions": [{"file":"kernel.py","start_line":17,"end_line":40}],
+      "context_regions": [{"file":"kernel.py","start_line":17,"end_line":40}],
+      "core_checks": [
+        {"id":"recurrence","criterion":"Recognize the requested finite recurrence from current, budget and relative stopping rule; an exact solution is not an interchangeable result."},
+        {"id":"trace","criterion":"Preserve iterate, initial norm and recurrent residual trace; budget exhaustion is not convergence, zero initial residual takes zero steps."},
+        {"id":"scope_breakdown","criterion":"Identify absent supported mapping and numerical breakdown obligations; no automatic positive from matrix-vector loops."}
+      ],
+      "context_checks": [
+        {"id":"validation","criterion":"Preserve sparse normalization, symmetry/positive strict diagonal dominance validation and inspect branch."},
+        {"id":"final_residual","criterion":"Return full named iterate and recomputed final residual separately from recurrent residual trace."}
+      ]
+    }
+  ]
+}

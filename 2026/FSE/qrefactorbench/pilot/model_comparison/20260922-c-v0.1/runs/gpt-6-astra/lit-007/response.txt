@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-007",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "choose",
+      "start_line": 12,
+      "end_line": 19
+    }
+  ],
+  "migration_family": "combinatorial_optimization",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_signed_pair_assignment",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Conditional plan: let x_i be member i's Boolean membership and w_ij be +1 for apart and -1 for together. Maximize S(x)=sum_ij w_ij[2(x_i+x_j-2x_ix_j)-1]. Equivalently minimize E(x)=-S(x)=sum_ij w_ij[1-2x_i-2x_j+4x_ix_j]. With x_i=(1-Z_i)/2, E=sum_ij w_ij Z_i Z_j. Every bit string is feasible; no balance, capacity or nonempty-group penalties apply. Preserve the secondary objective of minimizing M(x)=sum_i 2^i x_i among exact score maximizers. One exact scalar encoding is minimizing 2^n E(x)+M(x), but its exponentially scaled coefficients introduce substantial precision obligations; an exact second-stage tie resolution is an alternative.",
+    "input_encoding": "Use n logical binary variables in catalogue order and the validated complete, sorted pair list as classical coefficients. The primary Ising model has n(n-1)/2 signed couplings. Document coefficient compilation, physical connectivity, bit ordering and any tie-breaking fields. Handle n=0 and n=1 classically, returning [] and [false], respectively.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Decode measurement bits into a Python Boolean list in member order and recompute kernel.score classically. Feasibility and score recomputation alone do not certify global optimality or smallest-mask selection. Require an exact certification procedure for both objectives, with the existing exhaustive chooser as a correctness-preserving fallback. Keep classical reporting and validation unchanged.",
+    "assumptions": [
+      "This is a conditional investigation, not authorization to substitute approximate assignments.",
+      "Only validated propose requests invoke the candidate; current membership is not an optimization constraint.",
+      "No marked-state oracle is required for the Ising route. Cost-unitary construction, signs and coefficients must nevertheless be validated against the classical score."
+    ],
+    "risks": [
+      "Finite-depth QAOA and finite sampling do not guarantee the exact optimum or deterministic tie-breaking.",
+      "Complementary assignments have equal primary score; arbitrary symmetry breaking can violate the smallest-mask contract.",
+      "Scalar tie-breaking can require exponential coefficient dynamic range; separate exact tie resolution may dominate execution.",
+      "Exact fallback can eliminate any prospective speed benefit."
+    ],
+    "expected_resource_characteristics": {
+      "logical_variables": "n for the primary objective; physical qubits and auxiliary resources depend on implementation.",
+      "objective_terms": "n(n-1)/2 pair couplings; dense connectivity may require routing or embedding.",
+      "classical_baseline": "Enumerates 2^n masks, constructing n bits and evaluating all n(n-1)/2 pairs per mask.",
+      "unresolved_costs": [
+        "State preparation and cost-unitary compilation",
+        "Circuit depth, routing, noise and coefficient precision",
+        "Classical parameter optimization and measurement budget",
+        "Exact optimality certification and deterministic tie resolution",
+        "End-to-end input loading, decoding and fallback overhead"
+      ],
+      "advantage_evidence": null
+    },
+    "rationale": "The explicit quadratic binary objective independently supports the draft QUBO/Ising formulation. Adoption remains conditional on exact semantic preservation and measured practical benefit."
+  },
+  "rationale": "kernel.py:12-19 is a self-contained pure exhaustive optimization boundary: it enumerates masks in increasing numeric order, constructs member-indexed bits, evaluates score, and updates only on strict improvement. Consequently it returns the smallest numeric mask attaining the global maximum, not necessarily current. Its required dependencies are size and the validated pair weights, plus the score definition at kernel.py:8-9; no external state or mutation is involved. program.py:15-31 must retain strict field/name/Boolean validation, pair symmetry normalization, duplicate rejection, complete-pair enforcement and sorting before any backend runs. Activation is exclusively program.py:34-35 for mode propose. inspect must continue reporting current without optimization. program.py:8-11 and 32-39 must retain False/True group ordering, catalogue order within groups, signed scores, violated pairs in sorted catalogue-pair order, gain, and moves in member order. CLI JSON behavior at program.py:42-43 and invalid-input ValueError behavior remain classical. The score routine alone is ordinary objective evaluation, not a separate optimization nomination. Structural eligibility follows from the explicit unconstrained quadratic binary objective, not from enumeration expense or attribution. Practical suitability and benchmark support are unknown: no workloads, timings, hardware costs or comparative results are supplied. SupermarQ attribution is not benchmark evidence for this newly authored chooser. Remain classical pending exactness and resource validation.",
+  "structural_eligibility": true,
+  "practical_suitability": null,
+  "benchmark_supported": null,
+  "computational_intent": "Find an exact maximum signed-preference two-group assignment, resolving all optimal ties by the smallest member-indexed numeric mask.",
+  "assumptions": [
+    "Only supplied source and contract evidence are used.",
+    "Empty assignments, singleton inputs and empty groups remain permitted.",
+    "Classical inputs and outputs incur encoding and decoding costs; no free coherent data access is assumed."
+  ],
+  "risks": [
+    "Approximate optimization would change the public contract.",
+    "Equal-score assignments can change groups and moved members even when gain is unchanged.",
+    "Neither quantum advantage nor an acceptable probabilistic error policy is established."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "The source objective maps directly to a signed quadratic binary model with no feasibility penalties. This establishes conditional formulation applicability, not exact QAOA execution or practical suitability; optimality and numeric-mask ties remain mandatory."
+    },
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": true,
+      "rationale": "An alternative conditional reduction uses the finite n-bit mask domain and pure threshold predicate S(x)>=t. Exact optimization requires repeated threshold decisions followed by smallest-mask resolution. A reversible signed-score accumulator, comparator and uncomputation must be constructed and costed; unknown marked-state counts and no-solution certification must be handled without accepting probabilistic false negatives. A single Grover search or verification of one returned score is insufficient to preserve this contract."
+    }
+  ]
+}

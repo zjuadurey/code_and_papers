@@ -1,0 +1,11 @@
+{
+  "case_id": "pilot-006",
+  "title": "Coefficient interface",
+  "software_contract": "Return the exact minimum value of the expression computed from biases and couplings over assignments with each entry 0 or 1.",
+  "input_domain": "biases are integers; couplings (i,j,w) refer to valid indices and count once per tuple; self couplings and repeated terms are allowed.",
+  "execution_assumptions": [
+    "The specified expression, including signs and repeated terms, defines the required return value.",
+    "Inputs can grow; test inputs are finite correctness fixtures, not performance measurements.",
+    "No approximation threshold or execution resource budget is supplied."
+  ]
+}

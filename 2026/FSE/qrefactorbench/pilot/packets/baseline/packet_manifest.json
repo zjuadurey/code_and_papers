@@ -1,0 +1,33 @@
+{
+  "case_ids": [
+    "pilot-001",
+    "pilot-002",
+    "pilot-003",
+    "pilot-004",
+    "pilot-005",
+    "pilot-006",
+    "pilot-007",
+    "pilot-008",
+    "pilot-009",
+    "pilot-010"
+  ],
+  "files_sha256": {
+    "INSTRUCTIONS.md": "26f26558a85b521c883e322ad2239d37a2456cd89f95b7e223db3288248acca8",
+    "prompts/pilot-001.md": "1fc25e170f6b68c068756cabdea480fe0abfc9f90f1de15b4d6aa9956c975e62",
+    "prompts/pilot-002.md": "baf1a4561c932eaddf5e3414c2aef7581a59664ebf55561c1967a06adb9d28a7",
+    "prompts/pilot-003.md": "7a282f60cbf4f9c38e9ecbeb2ecfc08c576d3a3119647f16627fa5b673ff591d",
+    "prompts/pilot-004.md": "facb9ff4f66b7aba296b56c334aa295c506d5f7304c18b117e4c30fa3d9e3a62",
+    "prompts/pilot-005.md": "cadb0c3ca9eb3e591f0312133a3cff6ddfda4ef73faa4df7eab7ed4d929c6cf6",
+    "prompts/pilot-006.md": "bb0ab29ab7d69c879373a48b82c1be77929d8e796b2facafdf7d861cd4d94d98",
+    "prompts/pilot-007.md": "c18175c8875ac54ca44d0571aee61b443a4f0dc59e1484bca544b386da36504d",
+    "prompts/pilot-008.md": "2a8136db33d5dde12fb31a8adbf5556871f941ca86826a871d8c586cfec8a9f4",
+    "prompts/pilot-009.md": "5ec703bed607c0b989f99e52b38b8adfd90780b9bd0b0293e842d7ae60620758",
+    "prompts/pilot-010.md": "b93e7782b55bfa9fef0c7efe5eb57286ad77cfbfdcf15f02f705ff91d0f57509",
+    "run_metadata.template.json": "e41605eadc0b64d3faca1df52a52ee0d302dc11616b2058ea4e088d4dd78eda6",
+    "schemas/case.schema.json": "c5a78bf44c0e86e48c64c482b5bdb99d4d9b03860cbe970b1cb8089060cde127",
+    "schemas/migration_plan.schema.json": "2b3a7fc52558cc8b6ba3d32ee6e9e23d8f51f0bb87b5b97eeb0c3d96e3aa3be2",
+    "schemas/phase1_prediction.schema.json": "83930dc89b7cd3b7a9c62e34abc3797315a1f76ab1fbc5951bb17ad4018cb28d",
+    "schemas/prediction.schema.json": "3332f30e433b294ebadd1969a6b7599ec7f681a93e1a00e48e1c3412a4a39a78"
+  },
+  "packet_version": "phase1-v0"
+}

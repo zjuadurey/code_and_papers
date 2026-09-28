@@ -1,0 +1,6 @@
+{
+  "resolution": "unsupported",
+  "anchor_pointers": ["/plan/formulation", "/plan/input_encoding", "/plan/output_decoding", "/plan/risks/1", "/contract_applicability/0/rationale"],
+  "rationale": "The primary QUBO is now explicitly constructed: finite-value guard, pairwise magnitude/index rank c_i, E=sum(c_i*z_i)+P*(sum(z_i)-1)^2, expanded coefficients, argument for exact P>0, one-hot decoding and fallback. This is specified but outside the frozen predicate/ordered-scan checker, not the former missing-construction category and not a refutation. Its explicit strict-greater scan serves classical certification of QUBO samples; do not substitute that verifier for evaluating the QUBO objective or credit it as the primary migration. The separate Grover paragraph remains a conditional sketch with unresolved applicability and no concrete comparison rule. No QUBO enumeration or new checker is performed in this protocol.",
+  "interpretations": []
+}

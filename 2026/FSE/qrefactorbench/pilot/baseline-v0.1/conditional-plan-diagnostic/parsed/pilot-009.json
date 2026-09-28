@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "pilot-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "program.py",
+      "function": "best_cost",
+      "start_line": 5,
+      "end_line": 12
+    }
+  ],
+  "structural_eligibility": true,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Validate a batch of jobs and links, compute the exact minimum cost over all binary left/right placements, and return that cost with the original job names and job count in a classical report.",
+  "migration_family": "combinatorial_optimization",
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": null,
+      "rationale": "The finite placement space could support a reversible threshold predicate such as cost(mask) <= T, followed by a separately specified exact minimum-finding procedure. However, the supplied program is not an existence-search API, and no reversible oracle, threshold schedule, success amplification, or exact no-solution/error policy is provided."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": true,
+      "rationale": "Each placement is a binary variable, unary placement costs are linear, and every same-side link penalty is quadratic, so the exact classical objective has an explicit QUBO/Ising representation. Applicability is structural only: the contract does not establish that QAOA will return or certify the required exact optimum."
+    }
+  ],
+  "assumptions": [
+    "Job and link validation remains classical and occurs before invoking any optimization kernel.",
+    "The required result is the exact minimum cost; an approximate or merely best-observed cost is not acceptable.",
+    "No useful lower bound on batch size, target hardware, coefficient range, or performance objective is available."
+  ],
+  "risks": [
+    "QAOA sampling does not by itself guarantee or certify the exact global minimum required by the API.",
+    "Classical certification of optimality could require exponential work and eliminate any proposed benefit.",
+    "Encoding integer costs and penalties may require unsupported coefficient precision or scaling.",
+    "State preparation, parameter optimization, repeated measurements, decoding, and classical objective evaluation may dominate execution.",
+    "No benchmark evidence or workload scale supports a performance advantage.",
+    "Validation exceptions, empty-job behavior, exact integer cost semantics, and report metadata must remain unchanged."
+  ],
+  "rationale": "Lines 5-12 are an exponential exhaustive-search hotspot and admit a direct binary quadratic formulation, so they are structurally quantumizable. That does not make deployment suitable: the software contract requires the exact minimum cost, while the available QAOA-style draft contract provides no exactness guarantee, certification method, depth budget, success threshold, or performance evidence. Input validation and report construction are required classical surrounding behavior. The region is therefore a rejected hotspot under current assumptions, and the program should remain classical unless an exact-output protocol and favorable resource evidence are established.",
+  "plan": {
+    "schema_version": "0.1.0",
+    "contract_id": "qubo-ising-v0",
+    "computational_intent_id": "exact_binary_placement_cost_minimization",
+    "migration_family": "combinatorial_optimization",
+    "formulation": "Introduce one binary variable x_i per job, with x_i=0 for left and x_i=1 for right. Minimize sum_i(left_cost_i*(1-x_i)+right_cost_i*x_i) plus sum_(a,b,p) p*(1-x_a-x_b+2*x_a*x_b). This also yields the constant penalty p for a self-link because x_i^2=x_i. Preserve all constants when recovering the exact integer objective. A quantum result is substitutable only if the global minimum cost is exactly established; approximate QAOA samples alone do not satisfy that requirement.",
+    "input_encoding": "After classical validation, construct the QUBO coefficients from the unary costs and links and map each binary variable with x_i=(1-Z_i)/2 to an Ising Hamiltonian. Account for coefficient magnitudes, signed unary terms, constant offsets, Hamiltonian construction, parameter selection, circuit depth, and repeated state preparation and measurement. The zero-job case should remain a classical cost of zero.",
+    "quantum_algorithm_family": "qaoa",
+    "output_decoding": "Measure placement bitstrings, classically recompute each original objective using exact integer arithmetic, and retain the least observed cost. Before returning it as the API result, an independently justified procedure must certify that it is the global minimum with semantics acceptable for an exact API. No such certification or probabilistic error policy is currently supplied; exhaustive classical certification would preserve semantics but may remove any advantage. Construct names and count classically and preserve validation failures unchanged.",
+    "assumptions": [
+      "The QUBO coefficients can be represented without changing the ordering or exact values of candidate costs.",
+      "A future execution design supplies an exact-optimality certification mechanism or an explicitly approved error policy.",
+      "Quantum execution is limited to the optimization kernel; validation and report formatting remain classical."
+    ],
+    "risks": [
+      "QAOA may fail to sample an optimal placement.",
+      "Exact certification remains unresolved.",
+      "Coefficient rescaling or finite precision could change the optimum or reported cost.",
+      "Circuit, measurement, and classical parameter-optimization costs are unknown.",
+      "No scale or benchmark establishes practical benefit over classical graph-optimization or exhaustive methods."
+    ],
+    "expected_resource_characteristics": {
+      "status": "unresolved unless justified"
+    }
+  }
+}

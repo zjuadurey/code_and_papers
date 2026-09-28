@@ -1,0 +1,22 @@
+{
+  "local_link_targets_checked": 19,
+  "missing_paths": [],
+  "protected_input_files": 15,
+  "all_input_hashes_match": true,
+  "replays": [
+    {
+      "case": "lit001-v0.1",
+      "replay_circuit_semantics_and_backend": "identical"
+    },
+    {
+      "case": "lit005-v0.1",
+      "replay_circuit_semantics_and_backend": "identical"
+    }
+  ],
+  "shell_blocks_syntax": "passed",
+  "python_compile": "passed",
+  "tests": {
+    "lit001": 20,
+    "lit005": 3
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "utc": "2026-09-20T18:16:29.415898+00:00",
+  "commands": [
+    {
+      "name": "quantum_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/htp-static/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "demo/context001_qiskit/test_conversion.py",
+        "tests/test_optional.py"
+      ],
+      "exit_code": 0,
+      "stdout": "quantum_tests.stdout.txt",
+      "stderr": "quantum_tests.stderr.txt"
+    },
+    {
+      "name": "core_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "core_tests.stdout.txt",
+      "stderr": "core_tests.stderr.txt"
+    },
+    {
+      "name": "context_tests",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "pilot/context_adaptations/v0.1/cases/context-001/test_program.py"
+      ],
+      "exit_code": 0,
+      "stdout": "context_tests.stdout.txt",
+      "stderr": "context_tests.stderr.txt"
+    },
+    {
+      "name": "validate_original",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validate_original.stdout.txt",
+      "stderr": "validate_original.stderr.txt"
+    },
+    {
+      "name": "validate_context",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "validate",
+        "pilot/context_adaptations/v0.1/cases/"
+      ],
+      "exit_code": 0,
+      "stdout": "validate_context.stdout.txt",
+      "stderr": "validate_context.stderr.txt"
+    },
+    {
+      "name": "summary",
+      "argv": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-m",
+        "qrefactorbench",
+        "summarize",
+        "cases/",
+        "--json"
+      ],
+      "exit_code": 0,
+      "stdout": "summary.stdout.txt",
+      "stderr": "summary.stderr.txt"
+    }
+  ],
+  "protected_count": 529,
+  "protected_changed": [],
+  "run_inputs_changed": [],
+  "first_run_sha256": "20c7c3734e9b1d73f49207f4ab10d8849af9483a9f37ab2c2f69b94f3bcad281",
+  "first_run_unchanged": true,
+  "maintenance_copy_identical": true,
+  "new_dependencies_installed": false,
+  "documentation_links_checked": 116,
+  "missing_local_links": [],
+  "protected_changed_after_documentation": [],
+  "first_run_unchanged_after_documentation": true
+}

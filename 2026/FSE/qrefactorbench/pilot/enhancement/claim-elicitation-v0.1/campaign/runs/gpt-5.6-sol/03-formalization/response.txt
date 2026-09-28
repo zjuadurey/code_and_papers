@@ -1,0 +1,38 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "No replacement computation or quantum candidate is retained, so there is no proposed quantum input domain, state, traversal, update rule, termination rule, or decoding procedure to place in plan; plan is therefore null. The existing computation remains classical. In solve mode, program.py lines 22-27 call kernel.solve(matrix, rhs), compute the proposed residual, preserve variable order when constructing the named proposal and deltas, and compare the scaled diagnostic with residual_limit. kernel.py lines 9-26 initialize an augmented mutable copy rows = [matrix row plus rhs value]. For each column col from 0 through n-1, they inspect row indices col through n-1, select the row maximizing abs(rows[i][col]) with Python max's first-index tie behavior, reject an exactly zero selected pivot, swap it into row col, and eliminate every lower row by computing factor = rows[i][col] / rows[col][col] and updating entries j from col through n inclusive in ascending order. After elimination, back substitution initializes x to n zeros, traverses i from n-1 down to 0, and computes x[i] from the augmented value minus the ascending generator sum over already computed x[j], divided by the diagonal. It terminates by rejecting any nonfinite solution value or returning x; n = 0 naturally returns an empty vector. kernel.py lines 29-38 compute each residual component as the ordered row dot product minus rhs, then the infinity norm, matrix infinity norm, denominator, overflow checks, and the specified zero-denominator rule. These routines depend on validated finite binary64 matrix, rhs, current, distinct variable names, mode, and limit; solve activates only when mode is solve, while residual activates before the mode branch and again for a proposal. Validation, inspect behavior, exact-zero singularity rejection, detected-overflow rejection, operation ordering, first-pivot tie handling, output ordering, and nonmutation must remain intact. Admission to a Grover-style replacement would require a justified finite candidate domain, a pure reversible predicate, deterministic-equivalent success and no-solution handling, and accounted encoding and oracle resources. Admission to QUBO/Ising would require a justified binary encoding, explicit objective coefficients and constraints, sufficient penalty bounds, exact decoding, and proof that the required solution and failure semantics are preserved. None is supplied. Outside those admission conditions, including this case, behavior remains the stated classical implementation. The HPL attribution supports only the classical algorithmic context; this is explicitly not a compliant HPL performance run, and no quantum workload, hardware, resource, benchmark, or advantage evidence is supplied.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Validate and inspect a named dense linear system, optionally solving it through deterministic binary64 partial-pivoted elimination and reporting the current and proposed residual diagnostics.",
+  "assumptions": [
+    "Only unstructured_search and combinatorial_optimization are supported migration families.",
+    "The specified pivot selection, traversal and arithmetic ordering, exceptions, report ordering, and observable binary64 semantics may not be weakened.",
+    "Quantum data loading, state preparation, reversible arithmetic, oracle construction, workspace, measurement, and decoding are not free.",
+    "The supplied source and public task are the complete evidence base."
+  ],
+  "risks": [
+    "Discretizing real-valued unknowns would require unsupported bounds and precision and could change the required binary64 result and exception behavior.",
+    "Residual minimization could produce an approximate or nonunique vector rather than the result of the specified elimination procedure.",
+    "A Grover predicate would require an unsupported candidate encoding and reversible reproduction of floating-point arithmetic, pivot ties, singularity checks, and overflow checks.",
+    "Probabilistic execution could alter deterministic output or failure semantics.",
+    "Encoding and readout costs could dominate this explicitly small serial workload, and no benefit evidence is supplied."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "No Grover replacement is proposed. Applicability would require an explicitly bounded finite candidate domain and a reversible Boolean predicate. The source instead directly computes a real-valued binary64 solution. A hypothetical predicate would still leave unspecified the candidate encoding, initialization, reversible implementation of ordered elimination and overflow behavior, marked-state uniqueness, iteration or stopping policy, failure probability, deterministic no-solution behavior, tie preservation, and resource cost. Until all such conditions are established, execution remains classical."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "No binary optimization replacement is proposed. The source supplies no binary variables, value bounds, bit precision, QUBO objective, coefficient construction, feasibility constraints, penalty terms, penalty sufficiency bound, optimizer termination rule, or exact decoder. Residual minimization is not equivalent on the supplied evidence to reproducing partial-pivoted binary64 elimination and its singularity and overflow semantics, and QAOA approximation cannot silently weaken the contract. Until an exact semantics-preserving formulation and resources are established, execution remains classical."
+    }
+  ]
+}

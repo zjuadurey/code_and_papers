@@ -1,0 +1,601 @@
+                                       PhysComp96                                                                                               Tight bounds on
+                                       Full paper
+                                       Draft, 10 May 1996                                                                                     quantum searching
+                                                                                                                                                               Michel Boyer
+                                                                                                                                                        Université de Montréal∗
+                                                                                                                                                   Gilles Brassard, frsc†
+                                                                                                                                                        Université de Montréal
+                                                                                                                                                                Peter Høyer‡
+                                                                                                                                                              Odense University§
+                                                                                                                                                                 Alain Tapp¶
+                                                                                                                                                        Université de Montréal
+
+
+
+
+arXiv:quant-ph/9605034v1 23 May 1996
+                                                                     We provide a tight analysis of Grover’s recent algorithm for quantum database searching. We give
+                                                                     a simple closed-form formula for the probability of success after any given number of iterations of
+                                                                     the algorithm. This allows us to determine the number of iterations necessary to achieve almost
+                                                                     certainty of finding the answer. Furthermore, we analyse the behaviour of the algorithm when the
+                                                                     element to be found appears more than once in the table and we provide a new algorithm to find such
+                                                                     an element even when the number of solutions is not known ahead of time. Using techniques from
+                                                                     Shor’s quantum factoring algorithm in addition to Grover’s approach, we introduce a new technique
+                                                                     for approximate quantum counting, which allows to estimate the number of solutions. Finally we
+                                                                     provide a lower bound on the efficiency of any possible quantum database searching algorithm and
+                                                                     we show that Grover’s algorithm nearly comes within a factor 2 of being optimal in terms of the
+                                                                     number of probes required in the table.
+
+
+
+                                       1     Introduction                                                          the answer, as well as an upper bound on the probability
+                                                                                                                   of failure. More significantly, we analyse the behaviour of
+                                       Assume you have a large table T [0 . . N − 1] in which                      the algorithm when the element to be found appears more
+                                       you would like to find some element x. More precisely,                      than once in the table. An algorithm follows   immediately
+                                       you wish to find an integer i such that 0 ≤ i < N and
+                                                                                                                                                           p
+                                                                                                                   to solve the problem in a time in O( N/t ) when it is
+                                       T [i] = x, provided such an i exists. This problem can                      known that there are exactly t solutions. We also provide
+                                       obviously be solved in a time in O(log N ) if the table is                  an palgorithm capable of solving the problem in a time in
+                                       sorted, but no classical algorithm (deterministic or prob-                  O( N/t ) even if the number t of solutions is not known
+                                       abilistic) can succeed in the general case—when the el-                     in advance. Bringing ideas from Shor’s quantum factor-
+                                       ements of T are in an arbitrary order—with probability                      ization algorithm [6] into Grover’s algorithm, we sketch a
+                                       better than 1/2, say, without probing more than half the                    new quantum algorithm capable of approximately count-
+                                       entries of T . Grover [4] has recently discovered an algo-                  ing the number of solutions. We also generalize Grover’s
+                                       rithm for the quantum computer
+                                                                    √    that can solve this prob-                 algorithm in the case N is not a power of 2. Finally, we
+                                       lem in expected time in O( N ). He also remarked that                       refine the argument of [1] to show that Grover’s algorithm
+                                       a result in [1] implies that his algorithm is optimal, up                   could not be improved to require much less than half the
+                                       to a multiplicative constant, among all possible quantum                    number of table lookups that it currently makes when a
+                                       algorithms.                                                                 50% probability of success is desired.
+                                          In this paper we provide a tight analysis of Grover’s
+                                       algorithm. In particular we give a simple closed-form for-
+                                       mula for the probability of success after any given number                  2    Finding a unique solution
+                                       of iterations. This allows us to determine the number of
+                                       iterations necessary to achieve almost certainty of finding                 Assume for now that there is a unique i0 such that
+                                                                                                                   T [i0 ] = x. For any real numbers k and ℓ such that
+                                          ∗ Département IRO, C.P. 6128, succursale centre–ville, Montréal,
+                                                                                                                   k 2 + (N − 1)ℓ2 = 1, define the state of a quantum register
+                                       Canada H3C 3J7. {boyer,brassard,tappa}@iro.umontreal.ca
+                                          † Supported in part by Nserc and Fcar                                                                         X
+                                          ‡ Supported in part by the esprit Long Term Research Pro-                                |Ψ(k, ℓ)i = k|i0 i +     ℓ|ii
+                                       gramme of the EU under project number 20244 (alcom-it).                                                        i6=i0
+                                          § Department of Mathematics and Computer Science, Odense
+
+                                       University, Campusvej 55, DK–5230 Odense M, Denmark.
+                                                                                                                   where the sum is over all i 6= i0 such that 0 ≤ i < N .
+                                       u2pi@imada.ou.dk                                                            (We shall never need complex amplitudes in this paper,
+                                          ¶ Supported in part by Nserc                                             except in §7.)
+
+                                                                                                               1
+  The heart of Grover’s algorithm is a process, henceforth          we work twice as hard as we would need to succeed with
+                                                                                                                         √
+called an iteration, that efficiently transforms |Ψ(k, ℓ)i          almost certainty, that is we apply approximately π2 N
+into |Ψ( NN−2 k + 2(NN−1) ℓ, NN−2 ℓ − N2 k)i. Although we re-       iterations of Grover’s algorithm, we achieve a negligible
+view the iteration process in §6—where we call it G—                probability of success!
+we refer the reader to Grover’s original article [4] for a
+more complete description and the proof that it performs
+as required. Grover’s algorithm begins by creating an               3     The case of multiple solutions
+equal superposition
+                                                                    Let us now consider the case when there are t solutions
+                                        N −1                        to the problem, that is there are t different values of i
+                     √     √            X    1
+        |Ψ0 i = |Ψ(1/ N, 1/ N )i =          √ |ii                   such that T [i] = x. We are interested in finding an ar-
+                                        i=0
+                                             N                      bitrary solution. Grover briefly considers this setting [4],
+                                                                    but he provides no details concerning the efficiency of his
+of all possible values for i, 0 ≤ i < N. Then some num-             method.
+ber m of iterations are performed. It is clear from the               We assume in this section that the value of t is known.
+above discussion that the effect of the j–th iteration √ is         Let A = {i | T [i] = x} and B = {i | T [i] 6= x}. For any real
+to produce state |Ψj i=|Ψ(kj , ℓj )i where k0 = l0 = 1/ N           numbers k and ℓ such that tk 2 + (N − t)ℓ2 = 1, redefine
+and                                           
+              kj+1 = NN−2 kj + 2(NN−1) ℓj 
+                                                                                               X          X
+                                                                                   |Ψ(k, ℓ)i =    k|ii +        ℓ|ii .
+                                                        (1)                                    i∈A        i∈B
+              ℓj+1 = NN−2 ℓj − N2 kj          
+                                                                    A straightforward analysis of Grover’s algorithm shows
+Finally, state |Ψm i is observed, yielding some value i.
+                                                                    that one iteration transforms |Ψ(k, ℓ)i into
+The algorithm succeeds if and only if T [i] = x.
+   In his paper,
+             √ Grover proves that there exists a number                        |Ψ( NN
+                                                                                    −2t
+                                                                                        k + 2(NN−t) ℓ, NN
+                                                                                                        −2t    2t
+                                                                                                            ℓ− N  k)i .
+m less than 2N such that the probability of success after
+m iterations is at least 1/2. This is correct, but one must         This gives rise to a recurrence similar to (1), whose so-
+be careful in using his algorithm because the probability           lution is that the state |Ψ(kj , ℓj )i after j iterations is
+of success does not increase monotonically with the num-
+                                                       √            given by
+ber of iterations. By the time you have performed 2N                                                              
+iterations, the probability of success has dropped down                           kj = √1t sin((2j + 1)θ)         
+to less than 9.5% and it becomes vanishingly small after                                                                     (3)
+                                                                                  ℓj = √N1−t cos((2j + 1)θ) 
+about 11% more iterations before it picks up again. This
+shows that it is not sufficient to know the existence of m
+                                                                    where the angle θ is chosen so that sin2 θ = t/N .
+in order to apply the algorithm in practice: its explicit
+                                                                       The probability of obtaining a solution is maximized
+value is needed.
+                                                                    when ℓm is as close to 0 as possible. We would have
+   The key to a tighter analysis of Grover’s algorithm is
+                                                                    ℓm̃ = 0 when m̃ = (π − 2θ)/4θ if that were an integer.
+an explicit closed-form formula for kj and ℓj . This can
+                                                                    Let m = ⌊π/4θ⌋. Note that |m − m̃| ≤ 1/2. It follows
+be obtained by standard techniques—and a little sweat—
+                                                                    that |(2m + 1)θ − (2m̃ + 1)θ| ≤ θ. But (2m̃ + 1)θ = π/2
+from recurrence (1). Let angle θ be defined so that
+                                                                    by definition of m̃. Therefore | cos((2m + 1)θ)| ≤ | sin θ|.
+sin2 θ = 1/N . It is straightforward to verify by mathe-
+                                                                    We conclude that the probability of failure after exactly
+matical induction that
+                                                                   m iterations is
+              kj = sin((2j + 1)θ)
+                                                                          (N − t)ℓ2m = cos2 ((2m + 1)θ) ≤ sin2 θ = t/N .
+                                               
+                                                         (2)
+              ℓj = √N1−1 cos((2j + 1)θ) 
+                                                                    This is negligible when t ≪ N .                  p
+                                                                       Note that this palgorithm runs in a time in O( N/t )
+It follows from equation (2) that km = 1 when
+(2m + 1)θ = π/2, which happens when m = (π − 2θ)/4θ.                since θ ≥ sin θ = t/N and therefore
+Of course, we must perform an integer number of itera-                                               r
+                                                                                               π   π N
+tions but it will be shown in the next section that the                                 m≤       ≤        .
+probability of failure is no more than                                                        4θ   4    t
+                                      √ 1/N if we iterate
+⌊π/4θ⌋ times. This is very close to π4 N when N is large              A slight improvement is possible in terms of the ex-
+                       √
+because θ ≈ sin θ = 1/ N when θ is small. It is sufficient          pected time if we stop short of m iterations, observe the
+to√perform half this number of iterations, approximately            register, and start all over again in case of failure. The ex-
+π
+8 N , if we are content with a 50% probability of success,          pected number of iterations before success with this strat-
+as Grover considered in his original paper [4]. However, if         egy is E(j) = j/tkj2 if we stop after j iterations since our
+
+                                                                2
+probability of success at that point is tkj2 . Setting the          804 times. The same number of iterations would yield a
+derivative of E(j) to 0 tells us that the optimal number            solution with probability less than one in a million should
+of iterations is given by the j so that 4θj = tan((2j + 1)θ).       there be 4 solutions! In order to find a solution efficiently
+   We have not solved this equation exactly but it is very          when their number is unknown, we need the following
+close to z = tan(z/2) with z = 4θj when the optimal j is            lemmas, the first of which is proved by straightforward
+large, which happens when t ≪ N . The solution for z is             algebra.
+approximately 2.33112. It follows p   that the optimal num-
+ber of iterations is close to 0.58278 N/t when t ≪ N and            Lemma 1 For any real numbers α and β, and any posi-
+the probability of success is close to sin2 (z/2) ≈ 0.84458.        tive integer m,
+Therefore, the expected number of iterations before suc-                m−1
+                                                                        X                       sin(mβ) cos(α + (m − 1)β)
+cess if we restartpthe process in case
+                                     p of failure is roughly                   cos(α + 2βj) =                             .
+(z/(4 sin2p(z/2))) N/t ≈ 0.69003 N/t, which is about                     j=0
+                                                                                                           sin β
+88% of π4 N/t, the number of iterations after which suc-
+                                                                    In particular, when α = β,
+cess is almost certain. For a numerical example, consider
+the case N = 220 and t = 1. In this case, we achieve al-                          m−1
+                                                                                  X                        sin(2mα)
+most certainty of success after 804 iterations. If, instead,                            cos((2j + 1)α) =             .
+we stop at 596 iterations, the probability of success is                          j=0
+                                                                                                             2 sin α
+only 0.8442 but the expected number of iterations be-
+fore success if we restart the process in case of failure is        Lemma 2 Let t be the (unknown) number of solutions
+596/0.8442 ≈ 706, which is indeed better than 804.                  and let θ be such that sin2 θ = t/N . Let m be an ar-
+                                                                    bitrary positive integer. Let j be an integer chosen at
+3.1    The case t = N /4                                            random according to the uniform distribution between 0
+                                                                    and m − 1. If we observe the register after applying j iter-
+An interesting special case occurs when t = N/4.                    ations ofPGrover’s algorithm starting from the initial state
+Of course, even a classical computer can find a solu-               |Ψ0 i = i √1N |ii, the probability of obtaining a solution
+tion efficiently in this case, with high probability, but
+                                                                    is exactly
+not quite as efficiently as a quantum computer. Here                                          1    sin(4mθ)
+sin2 θ = t/N = 1/4 and therefore θ = π/6. This implies                               Pm =       −            .
+                                                                                              2 4m sin(2θ)
+that
+                         1                                          In particular Pm ≥ 1/4 when m ≥ 1/ sin(2θ).
+                 ℓ1 = √        cos(3θ) = 0 .
+                        N −t
+                                                                    Proof. The probability of success if we perform j itera-
+In other words, a solution is found with certainty after a          tions of Grover’s algorithm is tkj2 = sin2 ((2j + 1)θ). It fol-
+single iteration. Because one iteration of Grover’s algo-           lows that the average success probability when 0 ≤ j < m
+rithm requires two table look-ups (including one for un-            is chosen randomly is
+computation purposes—see §7), this is twice as efficient
+                                                                                          m−1
+(in terms of table look-ups) than the expected perfor-                                    X    1
+mance of the obvious classical probabilistic algorithm—                         Pm    =          sin2 ((2j + 1)θ)
+                                                                                           j=0
+                                                                                               m
+and that’s best possible classically. Furthermore, the
+                                                                                                m−1
+quantum algorithm becomes exponentially better than                                         1 X
+any possible classical algorithm if we compare worst-case                             =           1 − cos((2j + 1)2θ)
+                                                                                           2m j=0
+performances, taking the worst possible coin flips in the
+case of a probabilistic algorithm. This is somewhat remi-                                  1   sin(4mθ)
+                                                                                      =      −          .
+niscent of the Deutsch–Jozsa algorithm [3].                                                2 4m sin(2θ)
+                                                                    If m ≥ 1/ sin(2θ) then
+4     Unknown number of solutions                                                     sin(4mθ)        1       1
+                                                                                                ≤            ≤ .
+A much more interesting case occurs when the number                                  4m sin(2θ)   4m sin(2θ)  4
+of solutions
+          √ is not known ahead of time. If we decide to             The conclusion follows.
+iterate π4 N times, which would give almost certainty of
+                                                                      We are now ready to describe the algorithm for finding
+finding a solution if there were only one, the probability
+                                                                    a solution when the number t of solutions is unknown.
+of success would be vanishingly small should the num-
+                                                                    For simplicity we assume at first that 1 ≤ t ≤ 3N/4.
+ber of solutions be in fact 4 times a small perfect square.
+For example we saw above that we are almost certain to               1. Initialize m = 1 and set λ = 6/5.
+find a unique solution among 220 possibilities if we iterate            (Any value of λ strictly between 1 and 4/3 would do.)
+
+                                                                3
+ 2. choose j uniformly at random among the nonnegative                of iterations that we would have needed had we known the
+    integers smaller than m.                                          value of t ahead of time. The case t > 3N/4 can be dis-
+                                                                      posed of in constant expected time by classical sampling.
+ 3. Apply j iterations of Grover’s     algorithm starting             The case t = 0 is handled by an appropriate time-out in
+    from initial state |Ψ0 i = i √1N |ii.
+                              P
+                                                                      the√above algorithm, which allows to claim in a time in
+                                                                      O( N ) that there are no solutions when this is the case,
+ 4. Observe the register: let i be the outcome.
+                                                                      with an arbitrarily small probability of failure when in
+ 5. If T [i] = x, the problem is solved: exit.                        fact there is a solution.
+                                    √
+ 6. Otherwise, set m to min(λm, N )
+    and go back to step 2.                                            5     Quantum counting
+Theorem p 3 This algorithm finds a solution in expected               We are currently investigating the power of quantum com-
+time in O( N/t ).                                                     puters in approximately counting the number t of solu-
+                                                                      tions, rather than merely finding one. For this, we use
+Proof. Let θ be the angle so that sin2 θ = t/N . Let                  techniques inspired by Shor’s celebrated quantum factor-
+                                           r                          ization algorithm [6] and combine them with Grover’s
+                                N             N                       algorithm. Here we sketch the basic ideas, leaving the
+        m0 = 1/ sin(2θ) =                <
+                                                                      details—many of which still have to be worked out—to a
+                             p
+                           2 (N − t)t         t
+                                                                      further paper [2].
+(recall that we assumed t ≤ 3N/4).                                       Let kj and ℓj be as in equation (3) and recall that
+   We shall estimate the expected number of times that                A = {i | T [i] = x} and B = {i | T [i] 6= x}. The key obser-
+a Grover iteration is performed: the total time needed is             vation is that the value of θ, and therefore that of t, can be
+clearly in the order of that number. On the s–th time                 inferred directly from the period of the function that sends
+round the main loop, the value of m is λs−1 and the                   j onto kj . This period can be estimated from sampling in
+expected number of Grover iterations is less than half                a discrete Fourier transform of the function. In order to
+that value since j is chosen randomly so that 0 ≤ j < m.              profit from the ability of quantum computers to compute
+We say that the algorithm reaches the critical stage if it            Fourier transforms, though, we must first create a state in
+goes through the main loop more than ⌈ logλ m0 ⌉ times.               which the amplitude of |ji is proportional to kj for values
+The value of m will exceed m0 if and when the algorithm               of j ranging over several periods.
+reaches that stage.                                                      Let P be a power of 2, arbitrary for the moment, and
+   The expected total number of Grover iterations needed              let f = P θ/π be the number of periods of kj when j spans
+to reach the critical stage, if it is reached, is at most             the range from 0 to P − 1. (In general f need not be an
+                                                                      integer.) Create state
+               ⌈ logλ m0 ⌉
+           1      X                   1 λ
+                             λs−1 <        m0 = 3m0 .                                           P −1 N −1
+           2                          2λ−1                                                      X    X    1
+                  s=1                                                                 |Ψ0 i =           √   |j, ii .
+                                                                                                j=0 i=0
+                                                                                                         PN
+Thus, if the algorithm succeeds before reaching thep   critical
+stage, it does so in a time in O(m0 ), which is in O( N/t )           Then apply to |Ψ0 i a transformation that sends |ji|Ψi to
+as required.                                                          |ji Gj |Ψi, where G is the Grover iteration. This takes a
+   If the critical stage is reached then every time round the         time proportional to P , resulting in the state
+main loop from this point on will succeed with probability
+at least 1/4 by virtue of Lemma 2 since m ≥ 1/ sin(2θ).                          P −1
+                                                                                      "                               !#
+                                                                                 X       1     X            X
+It follows that the expected number of Grover iterations                                √ |ji      kj |ii +     lj |ii   .
+needed to succeed once the critical stage has been reached                       j=0
+                                                                                          P    i∈A          i∈B
+is upper-bounded by
+                                                                      Now, observe the second part of the register. Assume
+         ∞
+      1 X 3u u+⌈ logλ m0 ⌉     λ        3                             without loss of generality that some element from A is
+                 λ         <        m0 = m0 .                         obtained. (There are no essential differences if instead an
+      2 u=0 4u+1             8 − 6λ     2
+                                                                      element from B is obtained since kj and ℓj have exactly
+The total expected number of Grover iterations, in case               the same period.) At this point, the first part of the
+the critical stage is reached, is therefore upper-bounded             register has collapsed to state
+by 92 m0 and thus the total expected time is in O( N/t )
+                                                   p
+                                                                                                  P −1
+provided 0 < t ≤ 3N/4. Note that 29 m0 ≈ 49 N/t when
+                                              p                                                   X
+                                                                                                         kj |ji
+t ≪ N , which is less than four times the expected number                                         j=0
+
+
+                                                                  4
+up to renormalization. If we apply a quantum discrete                   vanishingly small probability of error provided the
+Fourier transform to this state [6] (not what Grover calls              number of solutions is a small perfect square.
+the quantum Fourier transform in [4]!), and if f is large
+enough, the amplitude of all values of j becomes vanish-            We defer the details to [2].
+ingly small, except for values very close to f or P − f .
+Finally, we observe the register. With high probability,
+this yields an excellent approximation f˜ on f , from which
+                                                                    6    Implementation considerations
+we estimate                                                         Grover’s algorithm consists of a number of iterations fol-
+                     f˜π                                            lowed by a measurement. In his original article [4] Grover
+              θ̃ =         and t̃ = N sin2 θ̃ .                     shows that the unitary transform G, defined below, effi-
+                      P
+                                                                    ciently implements what we called an iteration in §2.
+   To evaluate the accuracy of t̃, we assume that                      For every A ⊂ ZN , let SA be the conditional phase
+|f − f˜| < 1, which happens with reasonable proba-                  shift transform given by
+bility provided f is sufficiently large—see [2] for                                         
+details.     It follows that |θ − θ̃| < π/P and there-                                        −|ii if i ∈ A
+                                                                                   SA |ii =
+fore | sin θ − sin θ̃| < π/Pp as well. From t̃ = N sin2 θ̃,                                    |ii otherwise.
+t = N sin2 θ and sin θ = t/N , we derive
+                                                                    For every i ∈ ZN , denote S{i} by Si . Let T be the Walsh-
+                           2π √    π2                               Hadamard transform
+                |t − t̃| <     tN + 2 N .                (4)
+                           P       P                                                               N −1
+                                                                                             1 X
+Recall that the running time of the algorithm is propor-                            T |ji = √      (−1)i·j |ii,
+                                                                                             N i=0
+tional to P . This parameter allows us to balance the
+desired accuracy of the approximation with the running              where i · j denotes the bitwise dot product of the two
+time required to achieve it. Let c be a constant.                   strings i and j. Then the transform G is given by
+                      √
+                    c N , the error in our estimate of t is
+   ⋄ If we take P = √
+                            2                                                            G = −T S0 T Si0 .
+     bounded by 2πc   t + πc2 provided |f − f˜| < 1. This is
+     reminiscent of finding the answer up to a few stan-               Grover considers only the case when N is a power of 2
+     dard deviations.                                               since the transform T is well-defined only in this case.
+  ⋄ If we are satisfied with keeping small the relative er-         However, the assumption on N can be removed by observ-
+    ror, we run the algorithm on successive powers of 2             ing that G is just one of many transforms that efficiently
+    for P until f˜ becomes                                          implements an iteration. Let T ′ be any unitary transform
+                           p reasonably large. This will            satisfying
+    happen whenpP = c N/t. After a total time pro-                                                  N −1
+    portional to N/t, this yields an estimate for t that                                          1 X
+                                                                                       T ′ |0i = √       |ii.              (5)
+    is likely to be within a factor (1 + π/c)2 of the correct                                     N i=0
+    answer.
+                                                                    Then one may easily verify that the transform
+                                                                              −1
+  ⋄ If we want the absolute error to be probably bounded            T ′ S0 T ′ Si0 works just as well, and, more interestingly,
+    by a √ constant, we apply the algorithm once with               that
+                                                                                                     −1
+    P = c N in order to estimate √      t. Then, we run                                    T ′ S0 T ′ SA
+    it again, but with P = c t̃N√    . According to equa-           implements the general iteration analysed in §3. Any
+    tion (4), and pretending P = c tN for simplicity, the           transform T ′ satisfying (5) can thus be used in the al-
+    resulting error in our second estimate of t is likely to        gorithm.
+                            π2
+    be bounded by 2π   c + c2 t . In particular, we get the           When N is a power of 2, the Walsh-Hadamard trans-
+    exact answer, provided |f − f˜| < 1, if we take c ≥ 14          form is indeed the simplest possible choice for T ′ . When
+                π2
+    since 2π
+           c + c2 t < 1/2 in that case. (Note that succes-          N is not a power of two, the approximate Fourier trans-
+    sive applications of Grover’s algorithm in which we             form given by Kitaev [5] can be used.
+    strike out the solutions as they are found will also
+    provide an√exact count with high probability in a
+    time in O( tN ), but at an enormous cost in terms               7    An improved lower bound
+    of additional memory—see [2].)
+                                                                    Drawing on general results from [1], Grover points out
+  ⋄ Finally, we have a variation on this technique
+                                           √       that             that any algorithm for quantum database
+                                                                                                         √ searching must
+    gives the exact answer in a time in O( N ) with a               take a time at least proportional to N when there is
+
+                                                                5
+                                                                                                             Pr−1
+a unique solution. Here we refine and generalize this re-                     1. k|φ′r i − |φr ik ≤ 2            i=0 |αi,y |      for all y ∈ S
+sult by giving an explicit lower bound on the number of
+                                                                              2. 2{1 − |αr,y | − |α′r,y |} ≤ k|φ′r i − |φr ik2                  for all y ∈ S
+table lookups required by any quantum algorithm as a
+function of the number of solutions. This lower bound is                              √
+                                                                              3. N − N − y∈S |α′r,y | ≤ 2r2
+                                                                                               P
+only a few percent smaller than the number of iterations
+required by Grover’s algorithm when the number of solu-                      Proof. We divide the proof into three parts.
+tions is known in advance. Unfortunately, each iteration                     Proof of (1): For all y ∈ S, and all i = 1, . . . , r we have
+of Grover’s algorithm requires two table lookups because                       Ui′ |φi−1 i = Ui′ (αi−1,y |φi−1,y i + αi−1,y |φi−1,y i)
+T [i] must first be fetched (to decide on potential phase                      = Ui′ (αi−1,y |φi−1,y i) + Ui (αi−1,y |φi−1,y i)
+shift) and then it must be erased (to allow interference to                    = Ui′ (αi−1,y |φi−1,y i) − Ui (αi−1,y |φi−1,y i) + Ui |φi−1 i
+take place) by a process often referred to as uncomputa-                       = |φi i + (Ui′ − Ui ) (αi−1,y |φi−1,y i) .
+tion. Therefore, we merely prove that Grover’s algorithm
+is roughly within a factor 2 of being optimal in terms of                      Hence, by induction on i,
+the number of table lookups.                                                  |φ′i i = Ui′ . . . U1′ |φ0 i
+   We rephrase the problem in terms of an oracle O defined                                Pi
+                                                                              = |φi i + j=1 (Ui′ . . . Uj+1′
+                                                                                                             )(Uj′ − Uj ) (αj−1,y |φj−1,y i) ,
+so that O(i) = 1 whenever i is a solution. All matrices and
+vectors in this section are finite and complex-valued. Let                   so,
+theP inner product ha, bi of two vectors a and b be defined                        k|φ′i i − |φi ik
+as i a⋆i bi , where c⋆ denotes the complex conjugate of c.
+                                                                                   = k ij=1 (Ui′ . . . Uj+1
+                                                                                                        ′
+                                                                                                            )(Uj′ − Uj ) (αj−1,y |φj−1,y i) k
+                                                                                         P
+The norm of a is denoted kak. The absolute value of a                                    Pi
+complex number c is denoted |c|.                                                   ≤ 2 j=1 |αj−1,y |,
+   We restate a basic fact on complex-valued vectors:                        and (1) follows.
+Proposition 4 For all normalized vectors a and b, and                        Proof of (2): The identity follows from:
+all complex scalars α and β,                                                           k|φ′r i − |φr ik
+                                                                                       = k(α′r,y |φ′r,y i + α′r,y |φ′r,y i)
+               kαa − βbk2 ≥ |α|2 + |β|2 − 2|α||β|.
+                                                                                            − (αr,y |φr,y i + αr,y |φr,y i)k
+  The following proposition is a consequence of Cheby-                                 = k(α′r,y |φ′r,y i − αr,y |φr,y i)
+                                                                                                  ′     ′
+shev’s summation inequalities.                                                            + (α   r,y |φr,y i − αr,y |φr,y i)k
+                                                                                       = kαr,y |φr,y i − αr,y |φr,y ik2
+                                                                                               ′     ′
+Proposition 5 For all set of complex numbers, {xi }r−1
+                                                   i=0 ,                                            ′    ′                          2 1/2
+                                                                                         + kαr,y |φr,y i − αr,y |φr,y ik
+                      r−1
+                                  !2        r−1                                        ≥ (|α′r,y |2 + |αr,y |2 − 2|α′r,y ||αr,y |)
+                                                                                                                                                      1/2
+                      X                     X
+                            |xi |      ≤r         |xi |2 .                                    + (|α′r,y |2 + |αr,y |2 − 2|α′r,y ||αr,y |)
+                      i=0                   i=0                                                                                              1/2
+                                                                                       = 2 − 2(|α′r,y ||αr,y | + |α′r,y ||αr,y |)
+                                                                                          
+                                                                                        √                                        1/2
+                                                                                       = 2 1 − |α′r,y ||αr,y | − |α′r,y ||αr,y |
+Lemma 6 Let S be any set of N strings, and C be any                                     √                          1/2
+configurationspace. Let |φ0 i be any superposition, and                                ≥ 2 1 − |αr,y | − |α′r,y |        ,
+                                                                             where the two inequalities follow from proposition 4 and
+                      |φr i = Ur . . . U2 U1 |φ0 i
+                                                                             the fact that the absolute value of any scalar is at most
+any sequence of r unitary transforms. Let {fi }ri=0 be any                   one.
+set of partial functions from C into S. For any y ∈ S, let                   Proof of (3): By (2), (1), and proposition 5,
+                                                                                                                 1 ′
+                      |φ′r i = Ur′ . . . U2′ U1′ |φ0 i                        1 − |αr,y | − |α′r,y | ≤             k|φ i − |φr ik2
+                                                                                                                 2 r
+                                                                                                                     r−1
+                                                                                                                                !2      r−1
+be any sequence of r unitary transforms where for all                                                                X                  X
+i = 1, . . . , r,                                                                                        ≤       2       |αi,y |   ≤ 2r     |αi,y |2 .
+                                                                                                                      i=0                        i=0
+               Ui′ |ci = Ui |ci     if      fi−1 (|ci) 6= y.                 Thus,
+  Set |φ′0 i  = |φ0 i, and for all i = 1, . . . , r, set |φi i =                                                                    r−1
+                                                                                                                                                       !
+                                                                             X                                         X            X
+                                                                                                                                                   2
+                                                                                    1 − |αr,y | − |α′r,y |
+                                                                                                             
+Ui |φi−1 i and |φ′i i = Ui′ |φ′i−1 i. For all i = 0, 1, . . . , r, set                                            ≤            2r           |αi,y |
+|φi i = αi,y |φi,y i + αi,y |φi,y i, where |φi,y i (|φi,y i) is the          y∈S                                       y∈S            i=0
+normalized superposition of configurations where fi (does
+                                                                                                                                                      
+                                                                                                                            r−1
+not) equals y. Denote |φ′i i similarly.
+                                                                                                                            X         X
+                                                                                                                  =    2r                  |αi,y |2  = 2r2 .
+   Then the following holds:                                                                                                i=0     y∈S
+
+
+                                                                         6
+  Since,                                                                       where Ui′ |ci = Ui |ci if fi−1 (|ci) 6= y.
+                                                                                                                                  ′
+     X                                  X           X                            At the end of the computation of M O , we measure the
+           1 − |αr,y | − |α′r,y | = N −               |α′r,y |
+                                 
+                                          |αr,y | −                            superposition |φ′r i in order to determine the unknown y.
+     y∈S                                      y∈S                    y∈S       For each configuration |ci ∈ C, set fr (|ci) = x if, by mea-
+                                      1/2                                    suring |ci, M answers that x is the unknown y.
+                √        X                          X
+                                                                                 Set |φ′r i = α′r,y |φ′r,y i + α′r,y |φ′r,y i where |φ′r,y i (|φ′r,y i) is
+        ≥N−         N         |αr,y |2      −           |α′r,y |
+                         y∈S                        y∈S
+                                                                               the normalized superposition of configurations where fr
+                √        X                                                     (does not) equals y. Then |α′r,y |2 is the probability that
+        =N−         N−         |α′r,y |,                                           ′
+                                                                               M O correctly determines y. Since, by assumption, this
+                         y∈S
+                                                                               probability is at least 1/2,
+we have                                                                                                      1
+      √                                                                                           |α′r,y | ≤ √      for all     y ∈ S.
+        X            X                                                                                        2
+ N− N−    |α′r,y | ≤   (1 − |αr,y | − |α′r,y |) ≤ 2r2 ,
+               y∈S              y∈S                                            Furthermore, by Lemma 6,
+                                                                                                 √    X
+and (3) follows.                                                                             N− N−      |α′r,y | ≤ 2r2 .
+                                                                                                                  y∈S
+Theorem 7 Let S be any set of N strings, and M be
+                                                                               Hence,
+any oracle quantum machine with bounded error prob-
+ability. Let y ∈R S be a randomly and uniformly cho-                                                               √   X
+                                                                                                  2r2   ≥    N−     N−   |α′r,y |
+sen element from S. Put O to be the oracle where                                                                              y∈S
+O(x) = 1 if and only if x = y. Then the expected num-                                                             √     1
+ber of times M must query O in order to determine
+                                                √ y with                                                ≥    N− N−√ N
+probability at least 1/2 is at least ⌊(sin(π/8)) N ⌋.                                                                    2
+                                                                                                                   1      √
+                                                                                                        =    (1 − √ )N − N,
+Proof. Let S be any set of N strings and C be any config-                                                           2
+urationspace. Let |ψ0 i be any superposition of configura-                     so
+tions, and M any bounded-error oracle quantum machine.
+                                               ⋆                                                        (                √ )1/2
+Given any oracle O⋆ , assume that we run M O for s steps,                                                       √ N       N
+and assume that M queries its oracle O⋆ r times during                                        r    ≥      (2 − 2) −
+                                                                                                                    4     2
+the computation. Since we will only run M using oracle                                                                  1/2 √
+O⋆ with O⋆ (x) = 0 if x ∈                                                                                      √
+                                                                                                        
+                            / S, without loss of generality,                                                          2       N
+                                                                                                   =      2− 2− √
+assume that M never queries O⋆ on strings not in S.                                                                   N       2
+   First, consider the case that we run M using the trivial                                                                √
+                                                                                                                 √
+                                                                                                        q
+                                                                                                                        2     N
+oracle: let O be the oracle where O(x) = 0 for all x ∈ S,                                          >        2− 2− √
+                                                                                                                        N    2
+and let                                                                                                 p      √
+                    |ψs i = As . . . A1 |ψ0 i           (6)                                                2− 2   √
+                                                                                                   =                N −1
+be the unitary transformation corresponding to the com-                                                      2     √
+putation of M using oracle O.                                                                      =    (sin(π/8)) N − 1,
+   For all i = 1, . . . , r, set qi to be the timestamp for M ’s
+                                                                               which proves the theorem.
+i’th query, and set qr+1 = s + 1. Then (6) can also be
+written as                                                                        Theorem 7 gives a lower bound for finding a unique
+                        |φr i = Ur . . . U1 |φ0 i           (7)                feasible y ∈ S using a bounded-error quantum machine.
+                                                                               However, in most applications we would expect that there
+where |φ0 i = Aq1 −1 . . . A1 |ψ0 i, and for all i = 1, . . . , r,             will be more than one feasible y, say t such y’s. Further-
+Ui = Aqi+1 −1 . . . Aqi and |φi i = Ui |φi−1 i. At the i’th                    more, we might even not know if there is a feasible y or
+query some configurations will query O, some will not.                         not. For the case t ≥ 1, we have:
+For all i = 0, . . . , r − 1, set fi (|ci) = x if |ci queries x at
+the i + 1’th query.                                                            Theorem 8 Let S be any set of N strings, and M be
+  Now, consider what happens if we flip one bit of the                         any bounded-error oracle quantum machine. Let A ⊂R S
+oracle bits: Given any y ∈ S, let O′ be the oracle where                       be a randomly and uniformly chosen subset of S of size t,
+O′ (x) = 1 if and only if x = y. Then the computation of                       t ≥ 1. Put O to be the oracle where O(x) = 1 if and only
+    ′
+M O corresponds to the unitary transformation                                  if x ∈ A. Then the expected number of times M must
+                                                                               query O in order to determine some member p     y ∈ A with
+                     |φ′r i = Ur′ . . . U1′ |φ0 i                              probability at least 1/2 is at least ⌊(sin(π/8)) ⌊N/t⌋⌋.
+
+                                                                           7
+   The proof of this theorem is almost identical to the
+proof of Lemma 6 and Theorem 7. In Lemma 6, equations
+(1) and (2) now hold for all subsets of t strings. Hence, by
+choosing a largest number of such disjoint subsets from S,
+say T = {X1 , . . . , XNt } where Nt = ⌊N/t⌋, in the proof
+of (3), we obtain
+                     p       X
+             Nt − Nt −            |α′r,X | ≤ 2r2 .
+                                     i
+                           Xi ∈T
+
+The remaining part of the proof is the same as the proof
+of Theorem 7, only with obvious and minor changes.
+
+
+Acknowledgements
+We are grateful to Umesh and Vijay Vazirani for
+discussions concerning classical approximate counting.
+The third author would like to thank Edmund Chris-
+tiansen for helpful discussions concerning recursion equa-
+tions, and Joan Boyar for helpful discussions in general.
+
+
+References
+ [1] Bennett, Charles H., Ethan Bernstein, Gilles Bras-
+     sard and Umesh Vazirani, “Strengths and weaknesses
+     of quantum computing”, manuscript (1995).
+ [2] Brassard, Gilles and Alain Tapp, “Approximate quan-
+     tum counting”, in preparation (1996).
+ [3] Deutsch, David and Richard Jozsa, “Rapid solution of
+     problems by quantum computation”, Proceedings of the
+     Royal Society, London A439 (1992), 553 – 558.
+ [4] Grover, Lov K., “A fast quantum mechanical algorithm
+     for database search”, Proceedings of the 28th Annual
+     ACM Symposium on Theory of Computing (1996).
+ [5] Kitaev, A. Yu., “Quantum measurements and the
+     Abelian stabilizer problem”, manuscript quant-ph/9511-
+     026 (1995).
+ [6] Shor, Peter W., “Algorithms for quantum computation:
+     Discrete logarithms and factoring”, Proceedings of the
+     35th Annual IEEE Symposium on Foundations of Com-
+     puter Science (1994), 124 – 134.
+
+
+
+
+                                                               8
+

@@ -1,0 +1,404 @@
+{
+  "rows": [
+    {
+      "n": 8,
+      "depth": 1,
+      "classical_seconds": 8.757199975661933e-05,
+      "points": [
+        {
+          "physical_qubits": 3605,
+          "runtime_ns": 135000.0,
+          "error_bound": 0.00042495066499999995,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 56.77659258556863,
+          "max_integer_shots_with_H_zero": 56,
+          "remaining_seconds_for_all_overheads_at_64_shots": -0.0009751600009482355,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": -0.00855242800024338
+        },
+        {
+          "physical_qubits": 3825,
+          "runtime_ns": 81000.0,
+          "error_bound": 0.0024297006650000003,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 94.62765430928104,
+          "max_integer_shots_with_H_zero": 94,
+          "remaining_seconds_for_all_overheads_at_64_shots": 0.0024808399990517644,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": -0.005096428000243381
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "depth": 4,
+      "classical_seconds": 8.757199975661933e-05,
+      "points": [
+        {
+          "physical_qubits": 3945,
+          "runtime_ns": 420000.0,
+          "error_bound": 0.00168180266,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 18.249619045361342,
+          "max_integer_shots_with_H_zero": 18,
+          "remaining_seconds_for_all_overheads_at_64_shots": -0.019215160000948237,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": -0.026792428000243382
+        },
+        {
+          "physical_qubits": 4845,
+          "runtime_ns": 252000.0,
+          "error_bound": 0.007918802660000002,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 30.416031742268906,
+          "max_integer_shots_with_H_zero": 30,
+          "remaining_seconds_for_all_overheads_at_64_shots": -0.008463160000948235,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": -0.01604042800024338
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "depth": 16,
+      "classical_seconds": 8.757199975661933e-05,
+      "points": [
+        {
+          "physical_qubits": 3945,
+          "runtime_ns": 1560000.0,
+          "error_bound": 0.006709210639999999,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 4.913358973751131,
+          "max_integer_shots_with_H_zero": 4,
+          "remaining_seconds_for_all_overheads_at_64_shots": -0.09217516000094825,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": -0.09975242800024339
+        }
+      ]
+    },
+    {
+      "n": 16,
+      "depth": 1,
+      "classical_seconds": 0.02527922100125579,
+      "points": [
+        {
+          "physical_qubits": 4165,
+          "runtime_ns": 165000.0,
+          "error_bound": 0.008255701365,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 173.38624245233157,
+          "max_integer_shots_with_H_zero": 173,
+          "remaining_seconds_for_all_overheads_at_64_shots": 0.018048730004634708,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": 0.014719221001255792
+        }
+      ]
+    },
+    {
+      "n": 16,
+      "depth": 4,
+      "classical_seconds": 0.02527922100125579,
+      "points": [
+        {
+          "physical_qubits": 4925,
+          "runtime_ns": 860000.0,
+          "error_bound": 0.00355500546,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 33.26596512166826,
+          "max_integer_shots_with_H_zero": 33,
+          "remaining_seconds_for_all_overheads_at_64_shots": -0.026431269995365297,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": -0.029760778998744214
+        }
+      ]
+    },
+    {
+      "n": 16,
+      "depth": 16,
+      "classical_seconds": 0.02527922100125579,
+      "points": [
+        {
+          "physical_qubits": 14165,
+          "runtime_ns": 4480000.0,
+          "error_bound": 0.00014157384000000004,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 6.385877233177389,
+          "max_integer_shots_with_H_zero": 6,
+          "remaining_seconds_for_all_overheads_at_64_shots": -0.2581112699953653,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": -0.26144077899874424
+        },
+        {
+          "physical_qubits": 14945,
+          "runtime_ns": 3200000.0,
+          "error_bound": 0.0009969338400000003,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 8.940228126448346,
+          "max_integer_shots_with_H_zero": 8,
+          "remaining_seconds_for_all_overheads_at_64_shots": -0.1761912699953653,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": -0.17952077899874422
+        }
+      ]
+    },
+    {
+      "n": 24,
+      "depth": 1,
+      "classical_seconds": 0.19939812699885806,
+      "points": [
+        {
+          "physical_qubits": 5127,
+          "runtime_ns": 375000.0,
+          "error_bound": 0.0012280517849999999,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 531.7283386636215,
+          "max_integer_shots_with_H_zero": 531,
+          "remaining_seconds_for_all_overheads_at_64_shots": 0.17539812699885807,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": 0.17539812699885807
+        }
+      ]
+    },
+    {
+      "n": 24,
+      "depth": 4,
+      "classical_seconds": 0.19939812699885806,
+      "points": [
+        {
+          "physical_qubits": 5807,
+          "runtime_ns": 1140000.0,
+          "error_bound": 0.00477612714,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 174.91063771829653,
+          "max_integer_shots_with_H_zero": 174,
+          "remaining_seconds_for_all_overheads_at_64_shots": 0.12643812699885804,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": 0.12643812699885804
+        }
+      ]
+    },
+    {
+      "n": 24,
+      "depth": 16,
+      "classical_seconds": 0.19939812699885806,
+      "points": [
+        {
+          "physical_qubits": 15827,
+          "runtime_ns": 4200000.0,
+          "error_bound": 0.0017614365600000003,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 47.47574452353763,
+          "max_integer_shots_with_H_zero": 47,
+          "remaining_seconds_for_all_overheads_at_64_shots": -0.06940187300114198,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": -0.06940187300114198
+        }
+      ]
+    },
+    {
+      "n": 32,
+      "depth": 1,
+      "classical_seconds": 0.5790757979993941,
+      "points": [
+        {
+          "physical_qubits": 6009,
+          "runtime_ns": 505000.0,
+          "error_bound": 0.001715132415,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 1146.6847485136516,
+          "max_integer_shots_with_H_zero": 1146,
+          "remaining_seconds_for_all_overheads_at_64_shots": 0.5467557979993941,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": 0.5467557979993941
+        }
+      ]
+    },
+    {
+      "n": 32,
+      "depth": 4,
+      "classical_seconds": 0.5790757979993941,
+      "points": [
+        {
+          "physical_qubits": 6689,
+          "runtime_ns": 1540000.0,
+          "error_bound": 0.00662724966,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 376.023245454152,
+          "max_integer_shots_with_H_zero": 376,
+          "remaining_seconds_for_all_overheads_at_64_shots": 0.48051579799939415,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": 0.48051579799939415
+        }
+      ]
+    },
+    {
+      "n": 32,
+      "depth": 16,
+      "classical_seconds": 0.5790757979993941,
+      "points": [
+        {
+          "physical_qubits": 16709,
+          "runtime_ns": 5680000.0,
+          "error_bound": 0.0029956706400000007,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 101.94996443651304,
+          "max_integer_shots_with_H_zero": 101,
+          "remaining_seconds_for_all_overheads_at_64_shots": 0.21555579799939412,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": 0.21555579799939412
+        }
+      ]
+    },
+    {
+      "n": 48,
+      "depth": 1,
+      "classical_seconds": 1.4112361969964695,
+      "points": [
+        {
+          "physical_qubits": 7773,
+          "runtime_ns": 780000.0,
+          "error_bound": 0.0028479637799999997,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 1809.2771756364991,
+          "max_integer_shots_with_H_zero": 1809,
+          "remaining_seconds_for_all_overheads_at_64_shots": 1.3613161969964696,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": 1.3613161969964696
+        }
+      ]
+    },
+    {
+      "n": 48,
+      "depth": 4,
+      "classical_seconds": 1.4112361969964695,
+      "points": [
+        {
+          "physical_qubits": 13389,
+          "runtime_ns": 3360000.0,
+          "error_bound": 0.00921846312,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 420.0107729156159,
+          "max_integer_shots_with_H_zero": 420,
+          "remaining_seconds_for_all_overheads_at_64_shots": 1.1961961969964694,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": 1.1961961969964694
+        },
+        {
+          "physical_qubits": 17493,
+          "runtime_ns": 2400000.0,
+          "error_bound": 0.0017768311200000002,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 588.0150820818623,
+          "max_integer_shots_with_H_zero": 588,
+          "remaining_seconds_for_all_overheads_at_64_shots": 1.2576361969964696,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": 1.2576361969964696
+        }
+      ]
+    },
+    {
+      "n": 48,
+      "depth": 16,
+      "classical_seconds": 1.4112361969964695,
+      "points": [
+        {
+          "physical_qubits": 18473,
+          "runtime_ns": 8880000.0,
+          "error_bound": 0.00660188448,
+          "status": "necessary_budget_only",
+          "shots_upper_bound": 158.92299515726006,
+          "max_integer_shots_with_H_zero": 158,
+          "remaining_seconds_for_all_overheads_at_64_shots": 0.8429161969964695,
+          "success_probability": null,
+          "exact_certificate_cost": null,
+          "benefit_established": false,
+          "overhead_budget_at_64_seconds": 0.8429161969964695
+        }
+      ]
+    },
+    {
+      "n": 64,
+      "depth": 1,
+      "classical_seconds": null,
+      "points": [
+        {
+          "physical_qubits": 9488,
+          "runtime_ns": 1035000.0,
+          "error_bound": 0.003989825005,
+          "status": "unknown_classical_completion",
+          "shots_upper_bound": null,
+          "overhead_budget_at_64_seconds": null
+        }
+      ]
+    },
+    {
+      "n": 64,
+      "depth": 4,
+      "classical_seconds": null,
+      "points": [
+        {
+          "physical_qubits": 19208,
+          "runtime_ns": 3180000.0,
+          "error_bound": 0.00302201602,
+          "status": "unknown_classical_completion",
+          "shots_upper_bound": null,
+          "overhead_budget_at_64_seconds": null
+        }
+      ]
+    },
+    {
+      "n": 64,
+      "depth": 16,
+      "classical_seconds": null,
+      "points": [
+        {
+          "physical_qubits": 24544,
+          "runtime_ns": 16464000.0,
+          "error_bound": 0.0005946752800000001,
+          "status": "unknown_classical_completion",
+          "shots_upper_bound": null,
+          "overhead_budget_at_64_seconds": null
+        }
+      ]
+    }
+  ],
+  "comparison": "Same first-seed graph; min(MILP, available optimized enumeration)",
+  "64_shots": "Illustrative slice of parameter S, not measured sufficient sampling budget",
+  "positive_budget_is_not_benefit": true
+}

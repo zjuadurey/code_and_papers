@@ -1,0 +1,39 @@
+{
+  "response_sha256": "ba73e54a26a70fee116469c53e736d8e49ecdbdc37eae4bf8309ae2b707f60bb",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 44.499,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:17:33.558527+00:00",
+  "review_submitted_utc": "2026-09-26T22:18:18.057136+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "ba73e54a26a70fee116469c53e736d8e49ecdbdc37eae4bf8309ae2b707f60bb",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate each pivot selection as search over indices i in [col,n) using the ordered key (abs(rows[i][col]), -i), so the result must be the largest absolute pivot and the lowest index among ties. A Grover-style maximum-finding construction would require repeated reversible predicates comparing an indexed key with an incumbent or threshold. This is only a structural formulation; its probabilistic behavior does not satisfy the software contract without an exactness and failure policy."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode the active index range, col, and the current augmented-row pivot-column values. Supply reversible indexed access to rows[i][col] and implement binary64 absolute-value, comparison, equality, and index tie-breaking. Account for data loading, coherent storage or recomputation, ancillas, and uncomputation; none is assumed free."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a candidate pivot index, check classically that it is in range, and verify against every active row that no larger absolute pivot or earlier equal pivot exists. Only a verified exact index may enter the existing zero-pivot check and row swap. Any failed or inconclusive quantum attempt must use a defined retry or classical fallback policy preserving deterministic behavior."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "Primary plan specifies the desired ordered key (magnitude,-index) but only sketches adaptive predicates against an incumbent or threshold. It does not supply a complete selection procedure or marking relation on reachable binary64 states. Output decoding describes a classical certificate, not the construction of the primary search; do not convert it into a favorable primary selector. More precise location is separate from these unresolved obligations.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

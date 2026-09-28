@@ -1,0 +1,130 @@
+{
+  "task": "UCI WDBC neural-network classification coursework",
+  "seed": 42,
+  "source_audit": {
+    "rows": 569,
+    "columns": 32,
+    "missing_cells": 0,
+    "duplicate_rows": 0,
+    "duplicate_ids": 0,
+    "invalid_labels": 0,
+    "nonnumeric_feature_cells": 0,
+    "infinite_feature_cells": 0,
+    "negative_feature_cells": 0
+  },
+  "dirty_training_audit": {
+    "rows": 346,
+    "columns": 32,
+    "missing_cells": 8,
+    "duplicate_rows": 4,
+    "duplicate_ids": 4,
+    "invalid_labels": 1,
+    "nonnumeric_feature_cells": 3,
+    "infinite_feature_cells": 1,
+    "negative_feature_cells": 2
+  },
+  "cleaned_training_audit": {
+    "rows": 341,
+    "columns": 32,
+    "missing_cells": 0,
+    "duplicate_rows": 0,
+    "duplicate_ids": 0,
+    "invalid_labels": 0,
+    "nonnumeric_feature_cells": 0,
+    "infinite_feature_cells": 0,
+    "negative_feature_cells": 0
+  },
+  "imputed_training_cells": 14,
+  "clipped_training_cells": 216,
+  "split_counts": {
+    "train": 341,
+    "validation": 113,
+    "test": 115
+  },
+  "best_epoch": 24,
+  "epochs_run": 54,
+  "architecture": [
+    30,
+    32,
+    16,
+    1
+  ],
+  "parameters": 1537,
+  "optimizer": "Adam",
+  "learning_rate": 0.001,
+  "batch_size": 32,
+  "weight_decay": 0.0001,
+  "early_stopping": "validation BCE, patience=30, min_delta=1e-5, max_epochs=300",
+  "test_evaluated_after_checkpoint_selection": true,
+  "majority_baseline_accuracy": 0.6260869565217392,
+  "train": {
+    "accuracy": 0.9853372434017595,
+    "precision_malignant": 0.9841269841269841,
+    "recall_malignant": 0.9763779527559056,
+    "f1_malignant": 0.9802371541501976,
+    "confusion_matrix": [
+      [
+        212,
+        2
+      ],
+      [
+        3,
+        124
+      ]
+    ],
+    "n": 341,
+    "threshold": 0.5
+  },
+  "validation": {
+    "accuracy": 0.9823008849557522,
+    "precision_malignant": 1.0,
+    "recall_malignant": 0.9523809523809523,
+    "f1_malignant": 0.975609756097561,
+    "confusion_matrix": [
+      [
+        71,
+        0
+      ],
+      [
+        2,
+        40
+      ]
+    ],
+    "n": 113,
+    "threshold": 0.5
+  },
+  "test": {
+    "accuracy": 0.991304347826087,
+    "precision_malignant": 1.0,
+    "recall_malignant": 0.9767441860465116,
+    "f1_malignant": 0.988235294117647,
+    "confusion_matrix": [
+      [
+        72,
+        0
+      ],
+      [
+        1,
+        42
+      ]
+    ],
+    "n": 115,
+    "threshold": 0.5
+  },
+  "versions": {
+    "python": "3.10.21",
+    "torch": "2.7.1+cu128",
+    "pandas": "2.2.3",
+    "numpy": "1.26.4",
+    "matplotlib": "3.9.4"
+  },
+  "device": "CPU",
+  "source_sha256": "d606af411f3e5be8a317a5a8b652b425aaf0ff38ca683d5327ffff94c3695f4a",
+  "training_source_sha256": "6e08bb428eb2ec4b67a0a100d6e9c61ac13bbdc5d73cb767eb397bfc12a30824",
+  "limitations": [
+    "One fixed split and seed; no significance or clinical-use claim.",
+    "Winsorization can suppress legitimate extreme observations; raw data retained.",
+    "Synthetic corruption affects training only; test set is original held-out data.",
+    "ID excluded from features; all preprocessing statistics fit only on training."
+  ]
+}

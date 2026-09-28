@@ -1,0 +1,10 @@
+{
+  "protected_files_unchanged": 3285,
+  "frozen_source_hashes_valid": true,
+  "local_links_checked": 217,
+  "artifact_files_hashed": 11,
+  "exact_replay_passed": true,
+  "notes": [
+    "File targets checked; heading fragments not checked here."
+  ]
+}

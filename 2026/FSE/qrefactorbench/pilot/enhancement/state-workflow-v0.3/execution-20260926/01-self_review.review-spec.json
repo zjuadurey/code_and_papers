@@ -1,0 +1,6 @@
+{
+  "resolution": "transcribed",
+  "anchor_pointers": ["/plan/input_encoding", "/plan/assumptions/2", "/plan/risks/2", "/plan/rationale"],
+  "rationale": "The revision now explicitly states two Boolean conditions: no candidate has a larger magnitude, and no earlier candidate has an equal magnitude. These are negated existential > and == comparisons, not the historical universal >= condition. Nonfinite handling remains unresolved but no executable guard restricts the domain. Check the literal relation with guard True; conditional future circuit feasibility and whole-plan equivalence remain unjudged.",
+  "interpretations": [{"id": "no_larger_no_earlier_equal", "meaning": "Literal no-larger and no-earlier-equal conditions on absolute pivot values.", "mode": "predicate", "expression": "not any(values[k] > values[i] for k in indices) and not any(values[j] == values[i] for j in indices if j < i)", "guard": "True", "outside_guard": "unresolved"}]
+}

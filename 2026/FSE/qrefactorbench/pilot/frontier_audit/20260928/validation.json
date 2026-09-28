@@ -1,0 +1,11 @@
+{
+  "protected_files": 3580,
+  "archived_sources": 37,
+  "manifest_download_errors": 1,
+  "selected_zip_members": 6,
+  "local_link_occurrences": 341,
+  "artifact_files": 71,
+  "errors": [],
+  "passed": true,
+  "scope": "byte integrity and local path existence only; no scientific or performance validation"
+}

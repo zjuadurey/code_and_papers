@@ -1,0 +1,169 @@
+{
+  "created_utc": "2026-09-22T14:58:32.517323+00:00",
+  "commands": [
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_semantic_verification.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.8411707299528643,
+      "stdout": "0.stdout.txt",
+      "stderr": "0.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests"
+      ],
+      "exit_code": 0,
+      "seconds": 4.125053163967095,
+      "stdout": "1.stdout.txt",
+      "stderr": "1.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/provisional_labels/v0.1/test_labels.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.6618634419282898,
+      "stdout": "2.stdout.txt",
+      "stderr": "2.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/how_review/v0.2/test_review.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.2064182290341705,
+      "stdout": "3.stdout.txt",
+      "stderr": "3.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/test_corrections.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.621471778023988,
+      "stdout": "4.stdout.txt",
+      "stderr": "4.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_cases/v0.1/cases/context-002/test_program.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.2690518170129508,
+      "stdout": "5.stdout.txt",
+      "stderr": "5.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/source_adaptations/v0.2-where/cases/lit-004/test_program.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.1884710470912978,
+      "stdout": "6.stdout.txt",
+      "stderr": "6.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-005/test_program.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.18008122593164444,
+      "stdout": "7.stdout.txt",
+      "stderr": "7.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "pilot/reference_completion/v0.1.1/cases/lit-008/test_program.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.2418521330691874,
+      "stdout": "8.stdout.txt",
+      "stderr": "8.stderr.txt"
+    },
+    {
+      "command": [
+        "/home/audrey/miniconda3/envs/palqo/bin/python",
+        "-B",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/pilot/semantic_verification/v0.1/run_controls.py",
+        "--output",
+        "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/artifacts/semantic_verification_v01/after/evidence"
+      ],
+      "exit_code": 0,
+      "seconds": 0.06449884595349431,
+      "stdout": "9.stdout.txt",
+      "stderr": "9.stderr.txt"
+    }
+  ],
+  "before_manifest": "/home/audrey/code_and_papers/2026/FSE/qrefactorbench/artifacts/semantic_verification_v01/protected_before.json",
+  "protected_files": 1636,
+  "changed_files": [],
+  "passed": true,
+  "new_model_calls": 0,
+  "new_quantum_runs": 0,
+  "dependency_installations": 0
+}

@@ -1,0 +1,39 @@
+{
+  "response_sha256": "0d09b319ed21514ad94744b4c5f13ff357ae70bec1f65009600bb324ade48b24",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 44.252,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T22:17:33.552495+00:00",
+  "review_submitted_utc": "2026-09-26T22:18:17.804321+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "0d09b319ed21514ad94744b4c5f13ff357ae70bec1f65009600bb324ade48b24",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally formulate each execution of line 13 as finite-domain maximum finding over indices i in range(col, n), using Grover-style threshold predicates on abs(rows[i][col]). The ordering must rank larger magnitudes first and, for equal magnitudes, smaller indices first so that the result exactly matches Python max with its first-index tie behavior. The formulation remains unresolved for binary64 comparison semantics, exceptional intermediate values, deterministic success, and integration with the sequential elimination state."
+      },
+      {
+        "pointer": "/plan/output_decoding",
+        "quote": "Measure a candidate pivot index, check that it is in range(col, n), and classically verify that no later index has a larger absolute value and no earlier index has an equal maximum. Only a verified index may feed the existing exact-zero test and row swap. A retry or failure policy must be defined for probabilistic failure; silently accepting a nonmaximal pivot is impermissible."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "Line 13 has a finite candidate domain and can conditionally use pure Boolean threshold predicates comparing an encoded row's absolute pivot value with a current incumbent, augmented by index ordering for ties. Applicability is only structural: reversible binary64 comparison, coherent access to evolving rows, uncomputation, exact verification, and a deterministic failure policy remain unresolved."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "Primary plan is an adaptive threshold maximum-finding sketch with unspecified initialization, traversal and exact termination. Output decoding separately states a verifier checking later larger values and earlier equal values; that is not the missing primary search construction and must not be substituted for it. Record this verifier wording for separate auxiliary examination, preserving the primary insufficient result. All three arms nominate line13 in this group.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

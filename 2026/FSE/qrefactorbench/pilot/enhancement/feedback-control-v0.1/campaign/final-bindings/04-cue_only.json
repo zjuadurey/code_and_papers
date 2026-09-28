@@ -1,0 +1,43 @@
+{
+  "response_sha256": "6aa18eaea6a13df80b79db351992f946fcfa5e7fac80d020ae5b94691d37c2da",
+  "reviewer": {
+    "identity": "Codex coordinator",
+    "status": "AI_REVIEW_PENDING"
+  },
+  "review_seconds": 18.859,
+  "review_time_definition": "Wall-clock from first detailed inspection to submission; includes coordination/tool delays, not independent human labor.",
+  "review_started_utc": "2026-09-26T21:15:48.565074+00:00",
+  "review_submitted_utc": "2026-09-26T21:16:07.423608+00:00",
+  "binding": {
+    "version": "0.2",
+    "response_sha256": "6aa18eaea6a13df80b79db351992f946fcfa5e7fac80d020ae5b94691d37c2da",
+    "scope": "lit009_pivot_selection",
+    "origin": "model_response",
+    "reviewer": {
+      "identity": "Codex coordinator",
+      "status": "AI_REVIEW_PENDING"
+    },
+    "anchors": [
+      {
+        "pointer": "/plan/formulation",
+        "quote": "Conditionally encode every n-component binary64 bit pattern as a candidate solution and mark exactly the pattern produced by the specified partial-pivoted elimination and back-substitution computation. The reversible predicate must reproduce the ordered loops, largest-absolute-pivot rule with first-index tie resolution, exact-zero-pivot test, binary64 arithmetic and detected-overflow status. This formulation is only structural: the oracle substantially contains the original solver and offers no established advantage."
+      },
+      {
+        "pointer": "/plan/input_encoding",
+        "quote": "Encode each validated matrix and rhs binary64 value, candidate solution component, loop index, augmented-row value, pivot index, arithmetic workspace and exception-status flag in finite registers. The representation of Python binary64 operations, comparisons, signed zero, rounding, intermediate nonfinite values and reversible cleanup remains unresolved and must be specified exactly."
+      },
+      {
+        "pointer": "/plan/rationale",
+        "quote": "This is a mandatory conditional plan for the narrowly structural finite-domain formulation. It does not recommend implementation, establish exact reversible encoding, or demonstrate practical or benchmark support."
+      },
+      {
+        "pointer": "/contract_applicability/0/rationale",
+        "quote": "Binary64 output tuples provide a finite formal domain, and an exact marked-state predicate could conditionally be defined by reversible reproduction of the specified solver followed by bit-pattern comparison. Applicability is only structural: the encoding, reversible oracle, deterministic success and no-solution policy, exception propagation, exactness proof and resource bounds are unresolved."
+      }
+    ],
+    "resolution": "unsupported",
+    "rationale": "The cue produces a different whole-solver output-bit-pattern search plan, not a concrete local pivot selector. The oracle is defined by reproducing the original complete solver, whose reversible construction remains unresolved. Do not reinterpret this as discovered pivot mapping or invent an ordered scan. Keep the local evidence insufficient; the new broad structural YES and plan coverage require separate scientific review and do not establish meaningful eligibility, correctness or benefit.",
+    "interpretations": []
+  },
+  "unbound_reason": null
+}

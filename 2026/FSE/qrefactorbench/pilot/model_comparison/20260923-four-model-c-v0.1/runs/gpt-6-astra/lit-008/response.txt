@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-008",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "No region is justified for either supported family. kernel.py:7-9 directly computes XOR of two known eight-bit integers and formats the result; it neither searches unknown candidates nor optimizes decision variables. program.py:19-24 performs a mandatory ordered map and prefix accumulation, not selective search. Each receipt depends on the row's id, left and right, the validated mode and repetitions, and the checksum carried from all preceding rows. Processing activates only after all validation in program.py:9-17 succeeds. Those checks, including exact fields, integer bounds with bool excluded, and unique nonempty identifiers in common.py:5-14 and 29-33, must retain their ValueError behavior and validation-before-processing order. program.py:18-25 must preserve every receipt, eight-bit MSB-first text, exact population counts, modulo-256 prefix and final checksums, record order, and the empty-input result. counts mode constructs one exact repeated-outcome entry; inspect mode still computes every receipt with null counts. Neither mode nor a large repetitions value activates a search, optimization, or sampling workload. Nonmutation and the JSON CLI in program.py:28-29 must remain intact. Structurally, neither supported migration applies. Practically, fixed-width direct arithmetic and required full output provide no justified quantum target. Benchmark support is unknown: the attribution to a quantum exercise supplies provenance, not performance, resource, or advantage evidence.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": null,
+  "computational_intent": "Validate an entire request, then produce ordered deterministic eight-bit XOR receipts with population counts, optional exact repeated-outcome counts, and running modulo-256 checksums.",
+  "assumptions": [
+    "Inputs and outputs are classical, and the supplied exact software contract is binding.",
+    "No workload measurements, hardware configuration, encoding costs, or quantum advantage evidence are supplied."
+  ],
+  "risks": [
+    "Replacing receipts with a sample, existence result, or aggregate would violate full-output and ordering requirements.",
+    "Treating repetitions as quantum shots would replace exact deterministic counts with execution-dependent behavior.",
+    "Recasting known XOR outputs as artificial search or optimization variables does not establish a supported computational opportunity."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "There is no unknown marked-state retrieval task. Input-validation predicates are ordered exception-producing checks, and receipt generation requires every directly computed result. A finite bit domain alone does not establish Grover applicability."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "There are no free decision variables, objective comparisons, or requested optimum. Encoding deterministic XOR equations as penalties would introduce an artificial optimization problem rather than identify an existing optimization region."
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "mother_case": "lit-001",
+    "input": "inputs/lit-001-C.txt",
+    "input_sha256": "9268f0b7023736ab7fa88e42610194c0cdfd7131c5ff6fa72403eab3b3e19a65",
+    "software_contract_verbatim": "review_schedule(request) validates the entire request or raises ValueError without mutating it; exception text is not fixed. It returns equipment_count (number of equipment items), requirement_count (number of raw requirement records), current, proposed and changes. Each of current/proposed contains windows, conflict_weight, separated_weight and conflicts. A conflict is a positive-total-weight equipment pair assigned to the same window. Repeated/reversed requirements add weights; zero-total pairs are omitted from conflict lists. conflict_weight sums same-window weights; separated_weight sums different-window weights. Proposed windows must globally minimize conflict_weight. Ties choose the smallest sum of 2**i over equipment input positions i in window 0, regardless of the current arrangement; minimum movement is NOT an objective. All output windows list names in equipment input order, even if input current_windows used another order. Conflict records have first, second and weight; endpoints and records are ordered by their equipment positions i<j, then increasing (i,j). changes contains moved_equipment (records with equipment, from_window, to_window, ordered by equipment input order; window indices are 0 and 1), conflict_reduction (current minus proposed conflict_weight), resolved_conflicts (current conflict records absent in proposed), and introduced_conflicts (proposed conflict records absent in current). The latter lists retain conflict ordering. Conflicts that remain are exactly proposed.conflicts. Zero improvement does not imply no moves. Empty equipment requires current_windows=[[],[]] and yields empty lists and zero scores/counts. The valid JSON CLI reads one request from stdin and prints one report; invalid input produces no successful report and a nonzero exit. No approximate score, arbitrary tie choice, input mutation or omitted reporting is permitted.",
+    "coordinator_checklist_pending_review": [
+      "聚合重复/反向权重；区分 conflict 与 separated。",
+      "全局最小冲突，window0 的最小 numeric mask；current/movement 不是目标。",
+      "空设备、零权重、输入序、冲突序和完整 changes。"
+    ]
+  },
+  {
+    "mother_case": "lit-002",
+    "input": "inputs/lit-002-C.txt",
+    "input_sha256": "78d179578aad53e085314bc7c8950f504ab2171798424f88356fda67d61a7702",
+    "software_contract_verbatim": "review_inspections(request) validates the whole request or raises ValueError, without modifying it. Error text is not fixed. Return station_count (all declared stations), connection_count (unique undirected connections), current, proposed and changes. Proposed selects the fewest stations such that every connection has a selected endpoint; ties choose the lexicographically smallest tuple of station input positions. There is no requirement to minimize changes from current_stations. Current selection may leave connections uncovered and must be assessed honestly. Each plan contains selected_stations in station input order, selected_count, covered_connection_count, uncovered_connections, and checklists. Normalize each connection's endpoints by their input positions i<j, remove duplicate/reversed declarations, and order connections by increasing (i,j). Assign every covered connection to exactly one selected endpoint: the earliest endpoint in station input order. Checklists contains one object per selected station, in station input order, with station and connections; retain empty checklists. Uncovered connections are listed separately, never allocated to an unselected station. Changes contains add_stations and remove_stations in input order, selected_count_delta (proposed minus current), newly_covered_connections (uncovered before, covered after), and reassigned_connections for every connection whose assigned station changes. Reassigned records contain connection, from_station and to_station, using null for an unassigned connection; retain normalized connection order. All scores and worklists describe the actual returned selections. Empty stations require empty connections and current_stations, producing empty lists and zero counts. Empty connections propose no stations. Valid CLI input produces one JSON report; invalid requests produce no successful report and a nonzero exit. No uncovered proposed connection, approximate station count, or altered tie rule is permitted in this version.",
+    "coordinator_checklist_pending_review": [
+      "每条连接至少一个选中端点；全局最少站点。",
+      "同基数按已选位置 tuple 字典序；不要默认为 numeric mask。",
+      "current 可不覆盖；earliest owner、空 checklist、reassignment 和整体验证。"
+    ]
+  },
+  {
+    "mother_case": "lit-003",
+    "input": "inputs/lit-003-C.txt",
+    "input_sha256": "f20e2374eadaca85cb94fb983d706fd595b8e922c693b53d1e2d9accb50ac6f5",
+    "software_contract_verbatim": "review_agenda(request) validates the whole request before processing, raises ValueError for invalid inputs (message unspecified), and never mutates it. Sessions sharing any participant cannot occupy the same slot. Output contains session_count, current, preview, proposed, status and moves. A described arrangement contains assignment in session input order, unassigned session IDs, conflicts (each pair in input order with first/second IDs and sorted shared participant names), feasible (all sessions assigned and no conflicts), and slots (all slots in declared order, each with slot and its session IDs in input order). mode=inspect reports current only: preview/proposed are null, status=inspected, moves=[]. In complete mode, preserve an already feasible current arrangement exactly, status=retained and preview=null. Otherwise construct a preview by taking the earliest slot available for each session in session order, without revisiting preceding choices. A completed preview is {status:ready, assignment:[slot names]}, becomes proposed, and yields status=preview. If preview blocks, retain {status:blocked, assignment:null}; find an arrangement satisfying all participant restrictions, choosing the lexicographically smallest slot-index vector. If found, report status=completed and its proposed description; if none exists, report status=unavailable and proposed=null. Preview blockage alone does not mean no arrangement exists. Failed previews and partial current arrangements impose no fixed assignments on completion. moves lists changed sessions in input order with session_id/from/to, only when a proposal exists. Empty sessions are feasible, including with zero slots. Nonempty sessions with zero slots cannot be completed. CLI reads a JSON request and prints one JSON report; invalid requests exit nonzero without a successful report.",
+    "coordinator_checklist_pending_review": [
+      "每 session 一个 slot，参与者冲突禁止同 slot；不额外加入容量。",
+      "最小 slot 向量字典序；失败预览/部分 current 不固定解。",
+      "complete 的激活路径、精确无解、空 sessions/slots、moves 与原返回/异常。"
+    ]
+  },
+  {
+    "mother_case": "lit-004",
+    "input": "inputs/lit-004-C.txt",
+    "input_sha256": "c7d39e87215fdb8d54b69d9c387911ca17020108782de50189a6fcb21847c278",
+    "software_contract_verbatim": "review_releases(request) validates every version/check/request before processing and raises ValueError for invalid input (message unspecified), without mutation. Pair checks are undirected; the last input record for a pair supersedes earlier records, including reversed pairs. Unknown pairs are unverified, not passed. A proposed group must contain only active versions from that request's members, with every pair's latest check passed. Requests are independent, never consume versions, and follow input order. Output contains version_count, check_count, pair_count (distinct checked pairs including inactive versions), superseded_check_count (check_count-pair_count), and requests. Each request report contains request_id, eligible (active requested versions in global version input order), current, preview, proposed and changes. A description contains selected IDs in global version order, size, inactive IDs, missing_pairs (global pair order, each left/right/reason=failed or unverified), and eligible_and_compatible (no inactive or missing pair). Current may be inactive or incompatible and is reported honestly. Preview always starts empty and scans eligible versions in order, accepting a version exactly when it is compatible with every already accepted one; preview must retain this behavior even if a larger group exists. For mode=inspect, proposed and changes are null. For mode=select, proposed has the greatest possible size among eligible pair-compatible groups; ties choose the smallest integer sum(2**i) over selected positions in eligible. Empty eligible produces empty proposal. changes.add/remove are differences from current in global version order, not an objective. Singleton groups need no pair checks. No triple-level compatibility, minimum-change preference, or approximate size is permitted. CLI reads one JSON request and prints one JSON report; invalid inputs exit nonzero with no successful report.",
+    "coordinator_checklist_pending_review": [
+      "latest check 和 eligibility 定义兼容矩阵；failed/unverified 都不可选为兼容对。",
+      "最大基数后最小 numeric mask；current 不提供偏好。",
+      "inspect/preview 保留；select 触发、解码 best、名字序及 add/remove。"
+    ]
+  },
+  {
+    "mother_case": "lit-005",
+    "input": "inputs/lit-005-C.txt",
+    "input_sha256": "dd8d7f2d0022e82930aed2f8f2293b707c4502ef882bbc387783f00afb644a10",
+    "software_contract_verbatim": "review(request) validates all fields before reporting. Each named rule has exactly three alternatives; at least one must match. Locked feature values must also match. Output failed_rules and locked_failures always describe current in input feature/rule order. inspect returns no proposal. complete retains a conforming current; otherwise returns the first conforming Boolean vector in feature order (False before True), or unavailable with null proposal. changes lists changed names in feature order. Repeated/contradictory literals within a rule are allowed. Empty rules are true. No mutation; invalid inputs raise ValueError, text unspecified. CLI reads one JSON request and prints the report.",
+    "coordinator_checklist_pending_review": [
+      "锁定等式与每条恰三文字规则；重复/矛盾文字合法。",
+      "False-before-True 首解；空规则集与非法空单条规则区别。",
+      "先验证；current 合格则保留；无解 None；failed/locked/changes 顺序。"
+    ]
+  },
+  {
+    "mother_case": "lit-006",
+    "input": "inputs/lit-006-C.txt",
+    "input_sha256": "788cc5bf47576888f1c5b883542ee92e9e6c73031524a1be1dc9a8bea557d817",
+    "software_contract_verbatim": "review(request) validates the whole batch first. Eligible items are active entries in catalogue order. Each window is independent; no shared-stock allocation across windows. current report retains listed inactive items and marks infeasible if any are inactive or total weight exceeds capacity. select maximizes total value of indivisible eligible items under capacity; ties use smallest numeric mask in eligible order. proposal includes IDs/weight/value/feasible. transfers follows selected catalogue order with contiguous offsets starting at 0 and item weight as length. inspect has no proposal or transfers. No mutation; invalid input raises ValueError. CLI reads/prints JSON.",
+    "coordinator_checklist_pending_review": [
+      "正整数 weight、非负 value/capacity，DP 的最大 value 目标。",
+      "并列最优取最小 numeric mask；容量等式/slack 条件若提出需核对。",
+      "active 过滤、每窗口独立、select 激活、空输入/零容量/零价值和 transfer offset。"
+    ]
+  },
+  {
+    "mother_case": "lit-007",
+    "input": "inputs/lit-007-C.txt",
+    "input_sha256": "2d0d9c2d999879cb3e43242ae092a56bf3889cb3af95b611419282dd6a1b7c74",
+    "software_contract_verbatim": "review(request) validates one together/apart preference for every unordered pair, rejecting duplicates. current and proposed describe ordered False/True groups, signed score and violated pairs in catalogue-pair order. A satisfied preference contributes +1, an unsatisfied preference -1. inspect reports current only. propose maximizes signed score, ties use smallest numeric membership mask (member i is bit i); report gain and moved members. It need not retain another equally good current. No capacity or group-size constraint, groups may be empty. No mutation; invalid inputs raise ValueError. CLI reads/prints JSON.",
+    "coordinator_checklist_pending_review": [
+      "完整唯一 together/apart 偏好；signed score 正负号及常数。",
+      "全局最大 score 后最小 numeric mask；无容量/平衡限制。",
+      "propose 激活、False/True 组序、violated pairs 序、gain/moves 和空组。"
+    ]
+  },
+  {
+    "mother_case": "lit-008",
+    "input": "inputs/lit-008-C.txt",
+    "input_sha256": "0521e1deb52d47ba8b123f09c3b3ea894de23bbcc1c6bc05b2e80c6e8a764a20",
+    "software_contract_verbatim": "review(request) validates all records first. For each input row compute the bitwise exclusive-or of left and right, encode exactly eight bits (most significant first), count set bits and update a running sum modulo 256. Return ordered receipts with id/bits/set_bits/counts/prefix_checksum plus record_count and final checksum. counts mode maps the one deterministic bitstring to repetitions; inspect uses null counts but still produces every receipt. Do not replace full output by a sample/aggregate. No mutation; invalid input raises ValueError. CLI reads/prints JSON.",
+    "coordinator_checklist_pending_review": [
+      "给定字节 XOR、固定八位表示；全量有序回执，而非选一个记录。",
+      "prefix checksum 状态、counts 的 repetitions 是确定计数字段。",
+      "验证先行、非 bool 整数/边界、全量输出；提名后可拒绝，勿凭家族名作普遍排除。"
+    ]
+  },
+  {
+    "mother_case": "lit-009",
+    "input": "inputs/lit-009-C.txt",
+    "input_sha256": "2c28bc2ad947c658ab965d5c786c2b5bcc653e2448e6139392c130180902af1e",
+    "software_contract_verbatim": "review(request) validates a dense square system then reports current residual. solve mode uses partial-pivoted elimination (largest absolute pivot, first index tie) and back substitution, raises ValueError on exact zero pivot or detected numerical overflow, and returns named float solution, deltas and proposed residual. inspect does not solve and need not reject a singular matrix. Residual vector is Ax-b. scaled_backward_error is its infinity norm divided by machine epsilon*(||A||inf*||x||inf+||b||inf)*n. Zero/zero is 0; nonzero/zero is null. within_requested_limit compares the proposed scaled diagnostic to caller residual_limit; not a quantum-semantic acceptance criterion. Empty system yields empty solution and zero residual. No mutation. This is a small serial Python program, not a compliant HPL performance run.",
+    "coordinator_checklist_pending_review": [
+      "区分完整 solve 与可提名子区域；候选依赖当前 rows/col。",
+      "最大绝对值 pivot 首索引 tie；浮点中间状态与精确零异常。",
+      "solve/inspect、无输入修改、残差先行、后续算术序/overflow/deltas；不私自放宽精确性。"
+    ]
+  },
+  {
+    "mother_case": "lit-010",
+    "input": "inputs/lit-010-C.txt",
+    "input_sha256": "813a8c8fe93ec272831290f415c96a550c76cca8854b978a996e7c5689d91094",
+    "software_contract_verbatim": "review(request) validates a symmetric strictly diagonally dominant sparse matrix with positive diagonal. Missing entries are zero, duplicates rejected, entries normalized by variable order. inspect reports only initial Euclidean residual norm. advance follows the supplied unpreconditioned conjugate-direction recurrence from current, up to steps while recurrent residual norm / initial norm exceeds relative_tolerance. Zero initial residual takes zero steps. Return full named iterate, per-step recurrent residual trace, iterations and final directly recomputed residual norm. Budget exhaustion is not exact convergence; do not replace the iterate/trace with an exact solution. Numerical breakdown/nonfinite detected results raise ValueError. No mutation. No multigrid/MPI/rating; not a compliant HPCG run.",
+    "coordinator_checklist_pending_review": [
+      "按预算运行给定 recurrence，不是返回任意精确解。",
+      "x/r/p 状态、停止条件、逐步 trace 与最终直接 residual 的区别。",
+      "advance/inspect、空/零初残差/零预算、归一化/重复/对称性/对角占优和异常序。"
+    ]
+  }
+]

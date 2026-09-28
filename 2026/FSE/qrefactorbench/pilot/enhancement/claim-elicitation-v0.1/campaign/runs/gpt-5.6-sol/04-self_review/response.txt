@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.2.0",
+  "case_id": "lit-009",
+  "decision": "REMAIN_CLASSICAL",
+  "candidate_regions": [
+    {
+      "file": "kernel.py",
+      "function": "solve",
+      "start_line": 9,
+      "end_line": 26
+    }
+  ],
+  "migration_family": null,
+  "plan": null,
+  "rationale": "The region warranting focused analysis is kernel.py lines 9-26, which performs the dominant dense linear-system computation: copying the inputs into an augmented matrix, deterministic partial-pivot selection, elimination, back substitution, and final nonfinite-solution detection. It requires the already validated finite binary64 matrix and rhs and depends on n=len(rhs), the private mutable rows copy, Python floating-point arithmetic and iteration order, largest-absolute-value pivot selection with the first index winning ties, exact-zero pivot detection, and the final finiteness check. It is activated only when program.py lines 22-27 receive mode equal to solve. Behavior that must remain intact includes strict input validation, no mutation of caller data, inspect mode avoiding the solve and not necessarily rejecting singular matrices, ValueError behavior for exact zero pivots and detected numerical overflow, residual recomputation by kernel.py lines 29-38, variable-name ordering, delta calculation, and comparison of the proposed scaled diagnostic with residual_limit. Structural eligibility is false because the computation is an ordered continuous numerical algorithm, not a finite-domain Boolean predicate search or an explicitly binary combinatorial optimization problem. Artificially discretizing solution values and pivot-state evolution would create a different formulation without an established way to preserve binary64 arithmetic, tie-breaking, exceptions, and outputs. Practical suitability is independently false because this is a small serial program and no workload scale, coherent data-loading mechanism, quantum hardware, resource budget, or advantage evidence is supplied. Benchmark support is independently false because the notice provides only HPL algorithm attribution and expressly says the software is not an HPL port, rating, or compliant performance run; no quantum benchmark evidence is provided.",
+  "structural_eligibility": false,
+  "practical_suitability": false,
+  "benchmark_supported": false,
+  "computational_intent": "Solve a validated dense real linear system using deterministic partial-pivoted Gaussian elimination and back substitution so the caller can report a named proposed solution, deltas, and residual diagnostics.",
+  "assumptions": [
+    "Inputs and outputs remain classical Python binary64 values.",
+    "The supported migration families are limited to Grover-style unstructured search and QUBO/Ising combinatorial optimization.",
+    "Exact pivot rules, exception behavior, ordering, residual definitions, and interface semantics cannot be relaxed.",
+    "No free coherent loading of the dense matrix or rhs is assumed."
+  ],
+  "risks": [
+    "A finite-bit search reformulation would require a potentially enormous candidate domain and a reversible predicate reproducing relevant binary64 arithmetic, deterministic pivoting, and failure behavior.",
+    "A QUBO discretization could change the continuous linear-system problem, introduce approximation error, and fail to preserve singularity or overflow semantics.",
+    "Probabilistic quantum results could violate the deterministic contract without exact classical verification and a specified failure policy.",
+    "Encoding, state preparation, arithmetic workspace, measurement, decoding, and verification costs could dominate this small workload.",
+    "Changing the solver could alter downstream residuals, named solution ordering, deltas, and limit comparisons."
+  ],
+  "contract_applicability": [
+    {
+      "contract_id": "grover-predicate-v0",
+      "applicable": false,
+      "rationale": "The solver exposes no search over a finite candidate domain and no pure Boolean predicate. Applying this contract would require an unresolved discretization of every solution component, a reversible oracle reproducing the required numerical semantics, an exactness argument, a no-solution policy, and complete loading and workspace costs."
+    },
+    {
+      "contract_id": "qubo-ising-v0",
+      "applicable": false,
+      "rationale": "The source defines neither binary decision variables nor a combinatorial objective. A QUBO formulation would require unresolved numeric encodings, coefficient ranges, constraints and sufficient penalties, precision bounds, feasibility decoding, and proof that the result preserves the required binary64 outputs and exceptions. QAOA supplies no exact-solution guarantee for this contract."
+    }
+  ]
+}
