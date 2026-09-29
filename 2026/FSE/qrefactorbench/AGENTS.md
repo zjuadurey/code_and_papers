@@ -10,8 +10,15 @@ Python → hybrid Python/Qiskit；正向家族仅 Search/Grover 与 Optimization
 **Never assume that previous chat context is available. Reconstruct project context
 from repository documentation. 用户不需要重述研究 idea。**
 
+并行工作同样由文档恢复：用户不必记 ABC、任务名或隔离目录，可以都从原 FSE 开始对话。
+用户询问如何推进时，读当前状态和[并行说明](docs/parallel/20260929/README.md)后按进度安排；
+自然语言任务和同一对话的“继续”即可确定工作。目录切换与版本交接由 Agent 执行，
+遵循[原 FSE 入口](../AGENTS.md)；不再要求用户打开深层 worktree 或粘贴启动命令。
+
 用户说 **“读取当前目录”／“了解项目”**：只读以下文件，然后汇报，不自动执行下一任务。
-用户说 **“继续”／“推进”／“proceed”**：完成同一阅读链后，推进队列中的最高优先安全工作。
+用户说 **“继续”／“推进”／“proceed”**：完成同一阅读链；新对话尚未确定负责范围时，
+主动展示当前任务的编号选项及推荐项，用户只需选编号或说“就推荐的”，不要求其回忆任务名。
+已确定负责范围的对话直接继续对应安全工作。
 
 1. 本文件。
 2. [研究纲领](docs/RESEARCH_CHARTER.md)：长期意图、当前范围、科学边界。

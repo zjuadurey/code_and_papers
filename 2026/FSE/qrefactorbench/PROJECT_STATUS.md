@@ -1,5 +1,17 @@
 # QRefactorBench 当前状态
 
+**2026-09-29工作组织：已建立[三窗口独立worktree与固定快照运行](docs/parallel/20260929/ISOLATION.md)。**
+A负责文献/案例/背景素材，B负责代码开发及集成，C负责实验设计和论文；
+按用户后续讨论调整为短期内不依赖彼此新结果的三条线，先各自验证再集成，替代最初流水线分工。
+用户统一从原FSE开始对话，无需记ABC、任务或路径；Agent读取当前进度恢复分工，按自然语言任务推进。
+Agent在内部指定各自worktree执行目录，以只读快照交接和运行；入口约定见[并行说明](docs/parallel/20260929/README.md)。
+仅B派发本轮模型实验并在自己的worktree维护集成状态；回写原目录需核对重叠改动。
+论文仅用原FSE/paper及用户的Overleaf Git流程；新增论文worktree/副本已撤掉，原论文与Git未改。
+C准备论文内容，background/evaluation方法可先写，design保留实现状态，结果留空。
+已补代码导入检查、独立运行/缓存目录和本机协作锁；实际验收见[记录](docs/parallel/20260929/ISOLATION_VALIDATION.json)。
+研究工作包尚未执行；未扩正式案例/家族，未冻结新方法或指标，未启动模型/QPU实验。
+老师讨论的代表性案例与LLM缺陷研究由该分工承接；以下既有结果和科学边界保持。
+
 **Mac接续（2026-09-28）：[跨机器交接](docs/MAC_HANDOFF.md)已保存。**
 用户提供LogicalQubit云平台用于小规模实验；公开资料确认AGate-100为100物理超导qubit，
 已核查lqcloud0.5.0接口/版本要求，尚未登录、安装SDK、查实际后端或提交QPU。

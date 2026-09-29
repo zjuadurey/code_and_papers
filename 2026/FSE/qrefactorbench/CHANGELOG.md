@@ -1,5 +1,46 @@
 # Changelog
 
+## 2026-09-29 — Let agents recover parallel tasks from the original FSE entry
+
+- Documented D-044 in the root/project entries: users need not remember ABC, task names,
+  worktree paths or launch commands. Agents recover the current division of work from project state.
+- Clarified new-session behavior: “继续” prompts the agent to present numbered tasks and a recommendation
+  when no responsibility is established; users need not recall or name a task first.
+- Reconciled current status, queue and parallel instructions: conversations start in the original FSE;
+  agents explicitly scope execution and edits to the assigned code worktree. Paper stays in original paper/.
+- This is a documented operator procedure, not an automatic task-claim or CLI directory-switch feature.
+- Validation: checked affected local links/internal worktree paths, whitespace and protected-file hashes.
+  No code, case, experiment result or paper edits; no model/QPU calls, installs or Git mutations.
+
+## 2026-09-29 — Keep one paper entry under the existing Overleaf Git workflow
+
+- Removed the newly created paper worktree, local bare paper copy, and generated A/B/C reading copies
+  after confirming all 28 paper files matched the original. Kept the A/B/C code worktrees.
+- Pointed window instructions to the original FSE/paper; no additional paper branch, mirror, or symlink.
+- Original paper files, Git configuration/index/HEAD remain unchanged. No Overleaf connection or Git push.
+- This supersedes the paper-worktree arrangement in the previous isolation entry; its historical checks remain recorded.
+
+## 2026-09-29 — Isolated worktrees and immutable experiment inputs
+
+- Created A/B/C sparse worktrees from an independent local bare copy, with no source-repository
+  index/ref changes and no new commits. Copied current uncommitted research and paper reading materials.
+- Added read-only, hash-verified snapshots that reject symlinks/overwrites; window launchers verify
+  local imports, record environments, isolate run/cache directories, and offer model/compute locks.
+- Replaced the shared-directory instructions with explicit worktree paths, fixed-version handoffs,
+  and frozen-code execution. Model/QPU experiments and actual A/B/C research remain unstarted.
+- Incorporated the subsequent discussion: A handles literature/cases, B implementation, and C experimental
+  design/writing. First-round deliverables are independent; C owns a separate paper worktree for later writing.
+- Actual focused tests and isolation checks: [validation](docs/parallel/20260929/ISOLATION_VALIDATION.json).
+
+## 2026-09-29 — Three-window work packages
+
+- Prepared [parallel handoff](docs/parallel/20260929/README.md) and A/B/C launch instructions:
+  cases and references; strong baselines and failure diagnosis; verification and method development.
+- Assigned exclusive output directories, B-owned shared status/model dispatch, and versioned/hash-bound handoffs.
+- Distinguished immediately independent preparation from case/baseline/method experiment dependencies;
+  retained existing scientific and external-state boundaries. No work package or new experiment was executed.
+- Synced status/queue; documentation only. Validation is recorded in the local parallel-work package.
+
 ## 2026-09-28 — Mac handoff and LogicalQubit platform reconnaissance
 
 - Saved [Mac handoff](docs/MAC_HANDOFF.md): current results, raw-artifact pointers, complete working-tree

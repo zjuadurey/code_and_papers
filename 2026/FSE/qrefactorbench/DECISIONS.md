@@ -1255,3 +1255,20 @@ Status: ACCEPTED evidence strategy / individual numerical assumptions remain exp
 未授权QPU、付费服务、安装或发布。实际交付见
 [公式/条件研究](pilot/benefit_analysis/maxcut-formulas-v0.1/REPORT.md)与
 [推导](pilot/benefit_analysis/maxcut-formulas-v0.1/DERIVATION.md)。
+
+## D-044: Agent-owned parallel task recovery and directory management
+
+Date: 2026-09-29
+Status: ACCEPTED workflow preference / research scope unchanged
+
+用户要求并行推进不要增加使用负担，并明确要求把“不需要记ABC或三个任务，由Agent从文档恢复”文档化。
+因此用户统一从原FSE开始对话，用自然语言说明意图；Agent读取当前进度，恢复或调整分工。
+任务确定后，内部执行目录、固定版本交接和进度记录均由Agent负责；同一对话的“继续”继承任务。
+当前文献/案例、代码开发、实验设计/论文三条线是阶段安排，不是用户需要背下来的固定菜单。
+用户进一步指出，要求新对话先报任务名仍是记忆负担。入口补充为：新对话只说“继续”，
+Agent就主动展示当前任务的编号选项和推荐项；用户选编号即可。已有负责范围时直接接续。
+
+[根入口](../AGENTS.md)及[并行说明](docs/parallel/20260929/README.md)替代旧的用户切换worktree步骤。
+执行仍使用各自代码worktree和冻结快照；论文只用原paper与既有Overleaf Git。
+本次仅落地文档约定，没有实现自动认领服务、自动改变CLI会话根目录或自动启动研究任务。
+不改变科学决策、模型/QPU授权、提交/合并/推送边界。

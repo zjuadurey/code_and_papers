@@ -1,0 +1,73 @@
+{
+  "date": "2026-09-29",
+  "scope": "local isolation infrastructure and task reassignment; no research campaign executed",
+  "focused_tests": {
+    "command": "/home/audrey/miniconda3/envs/palqo/bin/python -B -m pytest -q -p no:cacheprovider qrefactorbench/tests/test_parallel_snapshot.py",
+    "passed": 8
+  },
+  "shell_syntax_check": {
+    "command": "bash -n qrefactorbench/scripts/parallel_run.sh",
+    "passed": true
+  },
+  "integration_checks": {
+    "A_imports_local": true,
+    "B_imports_local": true,
+    "C_imports_local": true,
+    "code_files_have_distinct_inodes": true,
+    "B_edit_does_not_affect_A_new_process": true,
+    "frozen_code_survives_own_worktree_edit": true,
+    "A_model_dispatch_rejected": true,
+    "model_lock_rejects_competing_process": true,
+    "model_released_after_exit": true,
+    "compute_lock_rejects_competing_process": true,
+    "compute_released_after_exit": true,
+    "per_run_outputs_and_caches_unique": true,
+    "run_manifest_pins_frozen_code": true
+  },
+  "local_smoke_runs": 11,
+  "protected_existing_files_unchanged": 3675,
+  "source_paper_files_unchanged": 28,
+  "source_git_head_and_index_unchanged": true,
+  "source_paper_head_and_index_unchanged": true,
+  "bare_copies_have_no_remotes_or_alternates": true,
+  "distinct_git_object_inode_samples": 10,
+  "worktrees": {
+    "A": "/home/audrey/code_and_papers/2026/FSE/.parallel/20260929/A/2026/FSE",
+    "B": "/home/audrey/code_and_papers/2026/FSE/.parallel/20260929/B/2026/FSE",
+    "C": "/home/audrey/code_and_papers/2026/FSE/.parallel/20260929/C/2026/FSE"
+  },
+  "local_links_checked": 30,
+  "bootstrap_manifest": "/home/audrey/code_and_papers/2026/FSE/.parallel/20260929/bootstrap-manifest.json",
+  "integration_record": "/home/audrey/code_and_papers/2026/FSE/.parallel/20260929/integration-validation.json",
+  "limitations": [
+    "Shared palqo environment is reused without modifications; dependency changes need separate environments.",
+    "Read-only modes and locks are cooperative, not a security boundary against the same Unix account.",
+    "Worktrees and bootstrap manifests are local and ignored by the source repository; ordinary git pull does not transfer them.",
+    "Only local import/freeze/lock checks were executed, not all historical experiments."
+  ],
+  "new_model_calls": 0,
+  "qpu_calls": 0,
+  "dependency_installs": 0,
+  "new_commits": 0,
+  "merges": 0,
+  "pushes": 0,
+  "paper_chapter_edits": 0,
+  "paper_worktree_at_initial_validation": {
+    "path": "/home/audrey/code_and_papers/2026/FSE/.parallel/20260929/C/2026/FSE/paper",
+    "branch": "parallel/paper",
+    "source_head": "d5eca0c5c008e11442a5b0d70b9e2517e14aa118",
+    "current_status": "removed at user request after content identity check"
+  },
+  "paper_management": {
+    "mode": "original paper only, existing user Overleaf Git workflow",
+    "path": "/home/audrey/code_and_papers/2026/FSE/paper",
+    "new_paper_worktrees": 0,
+    "new_paper_bare_copies": 0,
+    "generated_reading_copies": 0,
+    "removed_copies_verified_identical": 4,
+    "original_files_unchanged": 28,
+    "original_git_head_index_config_unchanged": true,
+    "overleaf_connections": 0
+  },
+  "current_bootstrap_excludes_paper": true
+}
